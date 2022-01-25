@@ -16,3 +16,31 @@ a {
 * {
   box-sizing: border-box;
 }
+
+h1 {
+  @apply text-violet text-6xl;
+}
+
+h2 {
+  @apply text-violet text-xl;
+
+  @screen sm {
+    @apply text-xl;
+  }
+
+  @screen md {
+    @apply text-2xl;
+  }
+
+  @screen lg {
+    @apply text-3xl;
+  }
+
+  @screen xl {
+    @apply text-4xl;
+  }
+
+  @screen 2xl {
+    @apply text-5xl;
+  }
+}
