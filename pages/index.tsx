@@ -2,6 +2,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import styles from '../styles/start.module.scss';
 import { Header } from '../components/Header';
+import Image from 'next/image';
 
 const Home: NextPage = () => {
   return (
@@ -16,10 +17,23 @@ const Home: NextPage = () => {
       </Head>
 
       <Header />
-
-      <div className='m-8'>
-        <h1>Willkommen an Board! :)</h1>
+      <div className='flex my-16'>
+        <div className='w-3/6'>
+          <Image
+            src={`https://xbge-directus.frac.tools/assets/3e2ffd09-a09e-42ab-b234-19288361d727`}
+            alt='Logo der Expedition Grundeinkommen'
+            height={728}
+            width={1153}
+            layout='responsive'
+          />
+        </div>
+        <div className='w-3/6'>
+          <h2>Hol das Grundeinkommen in deinen Wohnort!</h2>
+        </div>
       </div>
+      <section>
+        <h2>Section 1 :)</h2>
+      </section>
     </div>
   );
 };

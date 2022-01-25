@@ -17,7 +17,7 @@ export default async function handler(
   res: NextApiResponse<Promise<Data>>
 ) {
   const data = await axios
-    .get(`${process.env.DIRECTUS}/items/mainmenu`)
+    .get(`${process.env.DIRECTUS}items/mainmenu`)
     .then((response) => {
       return response.data.data;
     });
