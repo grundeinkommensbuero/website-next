@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { ReactElement, useEffect, useState } from 'react';
 
 type MenuEntry = {
@@ -29,11 +30,9 @@ export const MainMenu = (): ReactElement => {
       {data &&
         data.map((entry) => {
           return (
-            <button
-              className='py-2 px-6 mx-1 text-white bg-slate-600 hover:bg-slate-800 rounded'
-              key={entry.id}>
-              {entry.label}
-            </button>
+            <Link key={entry.id} href={entry.slug}>
+              <a className='mx-2 text-lg'>{entry.label}</a>
+            </Link>
           );
         })}
     </div>
