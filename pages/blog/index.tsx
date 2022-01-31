@@ -1,0 +1,70 @@
+import type { GetServerSideProps } from 'next';
+import { ReactElement } from 'react';
+import { Post } from '../../components/blog/Post';
+import fetchData from '../../graphql/fetchData';
+import { getAssetURL } from '../../utils/getAssetURL';
+
+export type Blogpost = {
+  id: string;
+  title: string;
+  content: string;
+  featured_image: {
+    id: string;
+  };
+};
+
+const query = `query Blogposts {
+  blogposts {
+    id
+    title
+    featured_image {
+      id
+    }
+    content
+  }
+}
+`;
+
+const variables = {
+  variables: {},
+};
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const blogposts: Promise<Blogpost[]> = await fetchData(query, variables).then(
+    (data) => {
+      return data.data.blogposts;
+    }
+  );
+  return {
+    props: {
+      blogposts,
+    },
+  };
+};
+
+type SSProps = {
+  blogposts: Blogpost[];
+};
+
+const Blog = ({ blogposts }: SSProps): ReactElement => {
+  return (
+    <>
+      <h2 className='text-center'>Expeditionsblog:</h2>
+      <div className='flex justify-around'>
+        {blogposts &&
+          blogposts.map((post) => {
+            return (
+              <Post
+                key={post.id}
+                title={post.title}
+                content={post.content}
+                imageURL={getAssetURL(post.featured_image.id)}
+              />
+            );
+          })}
+      </div>
+    </>
+  );
+};
+
+export default Blog;

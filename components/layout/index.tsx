@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import Head from 'next/head';
-import { Header } from '../Header';
+import { Header } from '../header';
 
 type LayoutProps = {
   children: ReactElement;

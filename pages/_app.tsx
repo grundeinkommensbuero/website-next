@@ -1,7 +1,7 @@
 import '../styles/globals.scss';
 import type { AppProps } from 'next/app';
 import { QueryClientProvider, QueryClient } from 'react-query';
-import { Layout } from '../components/Layout';
+import { Layout } from '../components/layout';
 
 const queryClient = new QueryClient();
 
