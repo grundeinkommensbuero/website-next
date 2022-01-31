@@ -49,8 +49,8 @@ type SSProps = {
 const Blog = ({ blogposts }: SSProps): ReactElement => {
   return (
     <>
-      <h2 className='text-center'>Expeditionsblog:</h2>
-      <div className='flex justify-around'>
+      <h2 className='mx-8'>Expeditionsblog:</h2>
+      <div className='flex flex-wrap xs:flex-column justify-around'>
         {blogposts &&
           blogposts.map((post) => {
             return (
