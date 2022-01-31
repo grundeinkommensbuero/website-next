@@ -1,23 +1,14 @@
 import Link from 'next/link';
 import { ReactElement, useEffect, useState } from 'react';
-
-type MenuEntry = {
-  id: number;
-  slug: string;
-  label: string;
-  status: string;
-  sort: number | null;
-  date_updated: string | null;
-  user_updated: string | null;
-};
+import { Menuentry } from '../../pages/api/content/mainmenu';
 
 export const MainMenu = (): ReactElement => {
-  const [data, setData] = useState<MenuEntry[]>([]);
+  const [data, setData] = useState<Menuentry[]>([]);
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
-    fetch('api/mainmenu')
+    fetch('api/content/mainmenu')
       .then((res) => res.json())
       .then((data) => {
         setData(data);
@@ -26,7 +17,7 @@ export const MainMenu = (): ReactElement => {
   }, []);
 
   return (
-    <div className='py-3'>
+    <div className='py-4'>
       {data &&
         data.map((entry) => {
           return (

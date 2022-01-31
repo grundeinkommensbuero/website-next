@@ -1,22 +1,12 @@
 import type { NextPage } from 'next';
-import Head from 'next/head';
+
 import styles from '../styles/start.module.scss';
-import { Header } from '../components/Header';
+
 import Image from 'next/image';
 
-const Home: NextPage = () => {
+const Start: NextPage = () => {
   return (
     <div className={styles.container}>
-      <Head>
-        <title>Expedition Grundeinkommen</title>
-        <meta
-          name='description'
-          content='Modellversuch zum Grundeinkommen jetzt!'
-        />
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
-
-      <Header />
       <div className='flex mt-5% relative'>
         <div className='w-3/6'>
           <Image
@@ -42,4 +32,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default Start;
