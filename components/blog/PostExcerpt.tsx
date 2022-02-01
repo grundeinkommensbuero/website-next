@@ -1,15 +1,16 @@
 import Image from 'next/image';
 import parseHTML from 'html-react-parser';
 import { useRouter } from 'next/router';
-import { encodeURL } from '../../utils/encodeURL';
+// import { encodeURL } from '../../utils/encodeURL';
 
 type BlogProps = {
   title: string;
   content: string;
   imageURL: string;
+  id: string;
 };
 
-export const Post = ({ title, content, imageURL }: BlogProps) => {
+export const PostExcerpt = ({ title, content, imageURL, id }: BlogProps) => {
   const router = useRouter();
 
   const border = 'border-2 border-white hover:border-violet rounded';
@@ -17,7 +18,8 @@ export const Post = ({ title, content, imageURL }: BlogProps) => {
 
   return (
     <div
-      onClick={() => router.push(`/blog/${encodeURL(title)}`)}
+      // onClick={() => router.push(`/blog/${encodeURL(title)}`)}
+      onClick={() => router.push(`/blog/${id}`)}
       className={`${border} ${cardWidth} m-4 hover:cursor-pointer overflow-hidden shadow-lg relative`}>
       <Image
         src={imageURL}
