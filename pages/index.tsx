@@ -10,6 +10,7 @@ const Start: NextPage = () => {
       <div className='flex mt-5% relative'>
         <div className='w-3/6'>
           <Image
+            priority={true}
             src={`${process.env.NEXT_PUBLIC_DIRECTUS}assets/3e2ffd09-a09e-42ab-b234-19288361d727`}
             alt='Logo der Expedition Grundeinkommen'
             height={728}

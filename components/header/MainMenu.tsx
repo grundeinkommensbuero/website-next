@@ -1,31 +1,32 @@
 import Link from 'next/link';
-import { ReactElement, useEffect, useState } from 'react';
-import { Menuentry } from '../../pages/api/content/mainmenu';
+import { ReactElement } from 'react';
 
-export const MainMenu = (): ReactElement => {
-  const [data, setData] = useState<Menuentry[]>([]);
-  const [isLoading, setLoading] = useState(false);
+export type Menuentry = {
+  id: string;
+  label: string;
+  slug: string;
+};
 
-  useEffect(() => {
-    setLoading(true);
-    fetch('api/content/mainmenu')
-      .then((res) => res.json())
-      .then((data) => {
-        setData(data);
-        setLoading(false);
-      });
-  }, []);
+type MainMenuProps = {
+  mainmenu: Menuentry[];
+};
 
+export const MainMenu = ({ mainmenu }: MainMenuProps): ReactElement => {
   return (
     <div className='py-4'>
-      {data &&
-        data.map((entry) => {
-          return (
-            <Link key={entry.id} href={entry.slug}>
-              <a className='mx-2 text-lg'>{entry.label}</a>
-            </Link>
-          );
-        })}
+      {mainmenu.map((entry) => {
+        return (
+          <Link
+            key={entry.id}
+            href={
+              // Apperently this prop is getting prefixed in the client, but
+              // not on the server. Until fixed this workaround helps:
+              entry.slug.substring(0, 1) === '/' ? entry.slug : `/${entry.slug}`
+            }>
+            <a className='mx-2 text-lg'>{entry.label}</a>
+          </Link>
+        );
+      })}
     </div>
   );
 };
