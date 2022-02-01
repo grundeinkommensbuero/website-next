@@ -1,7 +1,7 @@
 import type { GetServerSideProps } from 'next';
 import { ReactElement } from 'react';
 import { PostExcerpt } from '../../components/blog/PostExcerpt';
-import fetchData from '../../graphql/fetchData';
+import fetchData from '../../directus/graphql/fetchData';
 import { getAssetURL } from '../../utils/getAssetURL';
 
 export type Blogpost = {

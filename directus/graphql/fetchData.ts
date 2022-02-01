@@ -15,6 +15,8 @@ const fetchData = async (query: string, { variables = {} }) => {
   const json = await res.json();
 
   if (json.errors) {
+    console.log(json.errors);
+    console.log(json.errors[0].extensions.graphqlErrors);
     throw new Error(json.errors);
   }
 

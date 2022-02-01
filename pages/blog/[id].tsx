@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next';
 import { ReactElement } from 'react';
 import { Blogpost } from '.';
-import fetchData from '../../graphql/fetchData';
+import fetchData from '../../directus/graphql/fetchData';
 import { PostFull } from '../../components/blog/PostFull';
 import { getAssetURL } from '../../utils/getAssetURL';
 

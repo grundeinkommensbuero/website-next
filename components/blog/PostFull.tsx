@@ -1,7 +1,5 @@
 import Image from 'next/image';
 import parseHTML from 'html-react-parser';
-import { useRouter } from 'next/router';
-import { encodeURL } from '../../utils/encodeURL';
 
 type BlogProps = {
   title: string;
@@ -10,12 +8,8 @@ type BlogProps = {
 };
 
 export const PostFull = ({ title, content, imageURL }: BlogProps) => {
-  const router = useRouter();
-
   return (
-    <div
-      onClick={() => router.push(`/blog/${encodeURL(title)}`)}
-      className={`m-4 overflow-hidden shadow-lg relative`}>
+    <div className={`m-4 overflow-hidden shadow-lg relative`}>
       <Image
         src={imageURL}
         alt='Bild zum Blogpost'
