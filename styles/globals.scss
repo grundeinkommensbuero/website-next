@@ -2,8 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Ideal';
+  font-weight: normal;
+  src: url('../webfonts/ideal-regular.eot');
+  src: url('../webfonts/ideal-regular.eot?#iefix') format('embedded-opentype'),
+    url('../webfonts/ideal-regular.woff2') format('woff2'),
+    url('../webfonts/ideal-regular.woff') format('woff'),
+    url('../webfonts/ideal-regular.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ideal';
+  font-weight: 500 600;
+  src: url('../webfonts/ideal-medium.otf');
+  src: url('../webfonts/ideal-medium.otf?#iefix') format('otf'),
+    url('../webfonts/ideal-medium.woff2') format('woff2'),
+    url('../webfonts/ideal-medium.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ideal';
+  font-weight: bold;
+  src: url('../webfonts/ideal-bold.eot');
+  src: url('../webfonts/ideal-bold.eot?#iefix') format('embedded-opentype'),
+    url('../webfonts/ideal-bold.woff2') format('woff2'),
+    url('../webfonts/ideal-bold.woff') format('woff'),
+    url('../webfonts/ideal-bold.ttf') format('truetype');
+  font-display: swap;
+}
+
 html,
 body {
+  font-family: 'Ideal', sans-serif;
   padding: 0;
   margin: 0;
 }
@@ -18,11 +51,11 @@ a {
 }
 
 h1 {
-  @apply text-violet text-6xl;
+  @apply text-6xl;
 }
 
 h2 {
-  @apply text-violet text-xl;
+  @apply text-xl;
 
   @screen sm {
     @apply text-xl;
@@ -43,4 +76,94 @@ h2 {
   @screen 2xl {
     @apply text-5xl;
   }
+}
+
+$red: #ff4664;
+$aqua: #46b4b4;
+$blueDark: #3423f6;
+$rose: #e5b5c8;
+$violet: #7d69f6;
+$yellow: #fef377;
+$grey: #f0f0f0;
+$greyBright: #f5f5f5;
+$greyMedium: #dedede;
+$white: white;
+$black: black;
+$violetLight: #ae9fff;
+
+$violetTransparent: rgba(120, 95, 255, 0.2);
+$whiteTransparent: rgba(255, 255, 255, 0.2);
+$aquaTransparent: rgba(70, 180, 180, 0.2);
+
+// COLOR SCHEMES
+.colorSchemeWhite {
+  background-color: $white;
+  color: $black;
+  --primary-color: $white;
+  --secondary-color: $violet;
+  --bg-color: $white;
+  --font-color: $black;
+  --heading-color: $violet;
+  --text-on-secondary-color: $white;
+  --button-font-color: $violet;
+  --button-bg-color: rgb(152, 133, 255); // IE Fallback
+  --button-bg-color: $violetTransparent;
+  --button-hover-bg-color: $violet;
+  --button-hover-font-color: $white;
+  --input-border-color: $violet;
+  --input-font-color: $violet;
+}
+
+.colorSchemeViolet {
+  background-color: $violet;
+  color: $white;
+  --primary-color: $violet;
+  --secondary-color: $white;
+  --bg-color: $violet;
+  --font-color: $white;
+  --heading-color: $white;
+  --text-on-secondary-color: $black;
+  --button-font-color: $white;
+  --button-bg-color: $black; // IE Fallback
+  --button-bg-color: $whiteTransparent;
+  --button-hover-bg-color: $white;
+  --button-hover-font-color: $violet;
+  --input-border-color: $black;
+  --input-font-color: $violet;
+}
+
+.colorSchemeAqua {
+  background-color: $aqua;
+  color: $white;
+  --primary-color: $aqua;
+  --secondary-color: $white;
+  --bg-color: $aqua;
+  --font-color: $white;
+  --heading-color: $white;
+  --text-on-secondary-color: $black;
+  --button-font-color: $white;
+  --button-bg-color: $black; // IE Fallback
+  --button-bg-color: $whiteTransparent;
+  --button-hover-bg-color: $white;
+  --button-hover-font-color: $aqua;
+  --input-border-color: $black;
+  --input-font-color: $aqua;
+}
+
+.colorSchemeRed {
+  background-color: $red;
+  color: $white;
+  --primary-color: $red;
+  --secondary-color: $white;
+  --bg-color: $red;
+  --font-color: $white;
+  --heading-color: $white;
+  --text-on-secondary-color: $black;
+  --button-font-color: $white;
+  --button-bg-color: $black; // IE Fallback
+  --button-bg-color: $whiteTransparent;
+  --button-hover-bg-color: $white;
+  --button-hover-font-color: $red;
+  --input-border-color: $black;
+  --input-font-color: $red;
 }
