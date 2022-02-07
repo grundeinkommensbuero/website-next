@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-export const fetchCollection = async (collection: string) => {
+export const fetchItem = async (collection: string, id: string | number) => {
   const data = await axios
     .get(
       `${
         process.env.DIRECTUS || process.env.NEXT_PUBLIC_DIRECTUS
-      }items/${collection}`
+      }items/${collection}/${id}`
     )
     .then((response) => {
       return response.data.data;

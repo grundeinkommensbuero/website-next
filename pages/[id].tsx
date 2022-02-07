@@ -1,15 +1,57 @@
 import { GetServerSideProps } from 'next';
+import { Directus } from '@directus/sdk';
 import Link from 'next/link';
 import { ReactElement } from 'react';
-import fetchData from '../directus/graphql/fetchData';
-import { getPageData, Page } from '../directus/graphql/getPageData';
-import { fetchCollection } from '../directus/restAPI/fetchCollection';
+import parseHTML from 'html-react-parser';
+import Image from 'next/image';
+import { getAssetURL } from '../utils/getAssetURL';
+
+type Page = {
+  title: string;
+  sections: number[];
+};
 
 type PageProps = {
   page: Page;
+  sections: Section[];
 };
 
-const PageWithSections = ({ page }: PageProps): ReactElement => {
+type Section = {
+  id: string;
+  title: string;
+  sort: number | null;
+  status: string;
+  elements: number[];
+  render: Element[];
+};
+
+type PagesSection = {
+  id: number;
+  collection: string;
+  item: string;
+  status: string;
+};
+
+type SectionsElement = {
+  collection: string;
+  id: number;
+  item: string;
+  sections_id: string;
+};
+
+type Element = {
+  id: string;
+  title: string;
+  content: string;
+  image: string;
+  collection: string;
+};
+
+type SectionProps = {
+  section: Section;
+};
+
+const PageWithSections = ({ page, sections }: PageProps): ReactElement => {
   if (!page) {
     return (
       <div className='text-center'>
@@ -20,7 +62,41 @@ const PageWithSections = ({ page }: PageProps): ReactElement => {
       </div>
     );
   }
-  return <h1>{page.title}</h1>;
+  return (
+    <section className='p-8'>
+      <h1>{page.title}</h1>
+      {sections.map((section) => {
+        return <Section key={section.id} section={section} />;
+      })}
+    </section>
+  );
+};
+
+const Section = ({ section }: SectionProps): ReactElement => {
+  return (
+    <section className='py-16'>
+      <h2>{section.title}</h2>
+      {section.render.map((element) => {
+        switch (element.collection) {
+          case 'sectionsText':
+            return <div key={element.id}>{parseHTML(element.content)}</div>;
+          case 'sectionsImage':
+            return (
+              <Image
+                key={element.id}
+                src={getAssetURL(element.image)}
+                alt='Bild zum Blogpost'
+                height={600}
+                width={2000}
+                className='object-cover h-full w-full'
+              />
+            );
+          default:
+            return null;
+        }
+      })}
+    </section>
+  );
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
@@ -28,95 +104,65 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     return {
       props: {
         page: null,
+        sections: null,
       },
     };
   }
 
-  const currentPage = await getCurrentPage(params.id);
-  // const pages = await fetchCollection('pages');
-  const pages_sections = await fetchCollection('pages_sections');
-  const sections = await fetchCollection('sections');
-  const sections_elements = await fetchCollection('sections_elements');
+  const directus = new Directus(process.env.DIRECTUS || '');
 
-  // console.log('pages:', pages);
-  // console.log('pages_sections:', pages_sections);
-  console.log('sections:', sections);
-  console.log('sections_elements:', sections_elements);
+  const sdkPage = (await directus.items('pages').readOne(params.id)) as Page;
 
-  const currentSections = pages_sections.filter(
-    (s: { collection: string; id: number; item: string; pages_slug: string }) =>
-      s.pages_slug === currentPage.slug
+  const sdkPagesSections: PagesSection[] = await Promise.all(
+    sdkPage.sections.map(
+      async (id) =>
+        (await directus.items('pages_sections').readOne(id)) as PagesSection
+    )
   );
 
-  console.log('currentPage', currentPage);
-  console.log('currentSections', currentSections);
+  const sdkSections: Section[] = await Promise.all(
+    sdkPagesSections.map(
+      async (section) =>
+        (await directus
+          .items(section.collection)
+          .readOne(section.item)) as Section
+    )
+  );
 
-  // const query = `query GetPagesById($params_id: ID!){
-  //   pages_by_id(id: $params_id) {
-  //     slug
-  //     title
-  //     sections {
-  //       id
-  //     }
-  //   }
-  // }`;
+  const sectionsWithElements = await Promise.all(
+    sdkSections.map(async (section) => {
+      const toRender = await Promise.all(
+        section.elements.map(
+          async (el) =>
+            (await directus
+              .items('sections_elements')
+              .readOne(el)) as SectionsElement
+        )
+      );
+      const render = await Promise.all(
+        toRender.map(async (el) => {
+          const element = (await directus
+            .items(el.collection)
+            .readOne(el.item)) as Element;
+          return {
+            ...element,
+            collection: el.collection,
+          };
+        })
+      );
+      return {
+        ...section,
+        render,
+      };
+    })
+  );
 
-  // const pageData = await fetchData(query, {
-  //   variables: {
-  //     params_id: params?.id,
-  //   },
-  // });
-
-  // console.log(pageData.data.pages_by_id.sections);
-
-  // type PagesSection = {
-  //   id: string;
-  //   pages_slug: string;
-  //   item: string;
-  //   collection: string;
-  // };
-
-  // const pageSections: PagesSection[] = [];
-  // pageData.data.pages_by_id.sections.forEach(
-  //   async (section: { id: string }) => {
-  //     const query_section = `query {
-  //     pages_sections_by_id(id: "${section.id}") {
-  //       id
-  //       collection
-  //     }
-  //   }`;
-  //     const sectionData = await fetchData(query_section, { variables: {} });
-  //     pageSections.push(sectionData.data.pages_sections_by_id);
-  //     console.log(pageSections);
-  //   }
-  // );
-
-  if (typeof params?.id === 'string') return getPageData(params.id);
   return {
     props: {
-      page: null,
+      page: sdkPage,
+      sections: sectionsWithElements,
     },
   };
-};
-
-const getCurrentPage = async (id: string) => {
-  const query = `query GetPagesById($params_id: ID!){
-    pages_by_id(id: $params_id) {
-      slug
-      title
-      sections {
-        id
-      }
-    }
-  }`;
-
-  const pageData = await fetchData(query, {
-    variables: {
-      params_id: id,
-    },
-  });
-
-  return pageData.data.pages_by_id;
 };
 
 export default PageWithSections;

@@ -20,9 +20,5 @@ export const getPageData = async (slug: string) => {
     return data.data.pages_by_id;
   });
 
-  return {
-    props: {
-      page,
-    },
-  };
+  return page;
 };
