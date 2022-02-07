@@ -23,7 +23,13 @@ export const MainMenu = ({ mainmenu }: MainMenuProps): ReactElement => {
               // not on the server. Until fixed this workaround helps:
               entry.slug.substring(0, 1) === '/' ? entry.slug : `/${entry.slug}`
             }>
-            <a className='mx-2 text-lg'>{entry.label}</a>
+            <a
+              className='mx-2 text-lg'
+              aria-label={`Zu ${
+                entry.slug === '/' ? 'Start' : entry.slug
+              } navigieren`}>
+              {entry.label}
+            </a>
           </Link>
         );
       })}

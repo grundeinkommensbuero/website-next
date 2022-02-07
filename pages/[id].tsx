@@ -37,6 +37,7 @@ type SectionsElement = {
   id: number;
   item: string;
   sections_id: string;
+  sort: number | null;
 };
 
 type Element = {
@@ -45,6 +46,7 @@ type Element = {
   content: string;
   image: string;
   collection: string;
+  sort: null;
 };
 
 type SectionProps = {
@@ -57,7 +59,9 @@ const PageWithSections = ({ page, sections }: PageProps): ReactElement => {
       <div className='text-center'>
         <h2 className='mt-16 mb-4'>Diese Seite gibt es leider nicht.</h2>
         <Link href='/'>
-          <a className='text-xl'>Zurück zur Startseite</a>
+          <a className='text-xl' aria-label='Zurück zur Startseite'>
+            Zurück zur Startseite
+          </a>
         </Link>
       </div>
     );
@@ -75,7 +79,7 @@ const PageWithSections = ({ page, sections }: PageProps): ReactElement => {
 const Section = ({ section }: SectionProps): ReactElement => {
   return (
     <section className='py-16'>
-      <h2>{section.title}</h2>
+      <h2 className='mb-4'>{section.title}</h2>
       {section.render.map((element) => {
         switch (element.collection) {
           case 'sectionsText':
@@ -146,13 +150,14 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
             .readOne(el.item)) as Element;
           return {
             ...element,
+            sort: el.sort || 0,
             collection: el.collection,
           };
         })
       );
       return {
         ...section,
-        render,
+        render: render.sort((a, b) => a.sort - b.sort),
       };
     })
   );
