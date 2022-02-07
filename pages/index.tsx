@@ -1,8 +1,12 @@
-import type { NextPage } from 'next';
 import styles from '../styles/start.module.scss';
 import Image from 'next/image';
+import { PageProps } from './[id]';
+import { ReactElement } from 'react';
+import { Section } from '../components/section';
+import { GetServerSideProps } from 'next';
+import { getPageProps } from '../utils/getPageProps';
 
-const Start: NextPage = () => {
+const Start = ({ page, sections }: PageProps): ReactElement => {
   return (
     <div className={styles.container}>
       <div className='flex mt-5% relative'>
@@ -24,11 +28,28 @@ const Start: NextPage = () => {
         </div>
         <div className='bg-violet w-full h-10% absolute bottom-0 z-0'></div>
       </div>
-      <section className='bg-violet'>
-        <h2 className='text-white'>Section 1 :)</h2>
-      </section>
+      {page && (
+        <section className='p-8 bg-violet'>
+          {sections.map((section) => {
+            return <Section key={section.id} section={section} />;
+          })}
+        </section>
+      )}
     </div>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async ({ res }) => {
+  res.setHeader(
+    'Cache-Control',
+    `public, s-maxage=${60 * 60}, stale-while-revalidate=${59}`
+  );
+
+  const pageProps = await getPageProps('start');
+
+  return {
+    props: pageProps,
+  };
 };
 
 export default Start;

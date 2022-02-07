@@ -4,7 +4,7 @@ import { QueryClientProvider, QueryClient } from 'react-query';
 import { Layout } from '../components/layout';
 import fetchData from '../directus/graphql/fetchData';
 import App from 'next/app';
-import { getPageData } from '../directus/graphql/getPageData';
+import { getPageProps } from '../utils/getPageProps';
 
 const queryClient = new QueryClient();
 
@@ -25,10 +25,29 @@ function XbgeApp({ Component, pageProps, mainmenu }: XbgeAppProps) {
 XbgeApp.getInitialProps = async (appContext: AppContext) => {
   const appProps = await App.getInitialProps(appContext);
   const mainmenu = await fetchData(query, variables);
-  // console.log('current route:', appContext.router);
-  // const pageData = await getPageData(appContext.router.asPath);
-  // console.log(pageData);
-  return { mainmenu: mainmenu.data.mainmenu, ...appProps };
+
+  const route =
+    appContext.router.route === '/' ? 'start' : appContext.router.route;
+
+  // TODO: Refctor!
+  // const directusPage =
+  //   appContext.router.route === '/' ? 'start' : appContext.router.route;
+  // let pageProps;
+  // if (directusPage !== '/[id]') {
+  //   pageProps = await getPageProps(directusPage);
+  // } else {
+  //   pageProps = {
+  //     page: null,
+  //     sections: [],
+  //   };
+  // }
+  return {
+    ...appProps,
+    mainmenu: mainmenu.data.mainmenu,
+    pageProps: {
+      route,
+    },
+  };
 };
 
 export type Menuentry = {
