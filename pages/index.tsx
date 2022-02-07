@@ -22,7 +22,7 @@ const Start = ({ page, sections }: PageProps): ReactElement => {
           />
         </div>
         <div className='w-3/6 pr-10% pl-5% pt-5%'>
-          <h2 className='z-10'>
+          <h2 className='z-10 text-violet'>
             <b>Hol das Grundeinkommen jetzt in deinen Wohnort!</b>
           </h2>
         </div>

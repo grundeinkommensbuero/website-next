@@ -21,7 +21,7 @@ export type Section = {
 
 export const Section = ({ section }: SectionProps): ReactElement => {
   return (
-    <section className='py-16'>
+    <section className='px-8 py-16 colorSchemeViolet'>
       <h2 className='mb-4'>{section.title}</h2>
       {section.render.map((element) => {
         switch (element.collection) {

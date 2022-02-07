@@ -30,7 +30,9 @@ const PageWithSections = ({ page, sections }: PageProps): ReactElement => {
   if (!page) {
     return (
       <div className='text-center'>
-        <h2 className='mt-16 mb-4'>Diese Seite gibt es leider nicht.</h2>
+        <h2 className='mt-16 mb-4 text-violet'>
+          Diese Seite gibt es leider nicht.
+        </h2>
         <Link href='/'>
           <a className='text-xl' aria-label='Zurück zur Startseite'>
             Zurück zur Startseite
@@ -40,8 +42,8 @@ const PageWithSections = ({ page, sections }: PageProps): ReactElement => {
     );
   }
   return (
-    <section className='p-8'>
-      <h1>{page.title}</h1>
+    <section>
+      {page.title && <h2 className='m-8 text-violet'>{page.title}</h2>}
       {sections.map((section) => {
         return <Section key={section.id} section={section} />;
       })}
