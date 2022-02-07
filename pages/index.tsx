@@ -1,7 +1,5 @@
 import type { NextPage } from 'next';
-
 import styles from '../styles/start.module.scss';
-
 import Image from 'next/image';
 
 const Start: NextPage = () => {

@@ -1,10 +1,11 @@
 import { GetServerSideProps } from 'next';
 import { Directus } from '@directus/sdk';
 import Link from 'next/link';
-import { ReactElement } from 'react';
+import React, { lazy, ReactElement } from 'react';
 import parseHTML from 'html-react-parser';
 import Image from 'next/image';
 import { getAssetURL } from '../utils/getAssetURL';
+import dynamic from 'next/dynamic';
 
 type Page = {
   title: string;
@@ -45,6 +46,7 @@ type Element = {
   title: string;
   content: string;
   image: string;
+  component: string;
   collection: string;
   sort: null;
 };
@@ -95,6 +97,12 @@ const Section = ({ section }: SectionProps): ReactElement => {
                 className='object-cover h-full w-full'
               />
             );
+          case 'reactComponent':
+            const Component = dynamic(
+              () => import(`../components/_dynamic/${element.component}`),
+              { ssr: false }
+            );
+            return <Component key={element.id} />;
           default:
             return null;
         }
@@ -115,16 +123,16 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 
   const directus = new Directus(process.env.DIRECTUS || '');
 
-  const sdkPage = (await directus.items('pages').readOne(params.id)) as Page;
+  const page = (await directus.items('pages').readOne(params.id)) as Page;
 
   const sdkPagesSections: PagesSection[] = await Promise.all(
-    sdkPage.sections.map(
+    page.sections.map(
       async (id) =>
         (await directus.items('pages_sections').readOne(id)) as PagesSection
     )
   );
 
-  const sdkSections: Section[] = await Promise.all(
+  const _sections: Section[] = await Promise.all(
     sdkPagesSections.map(
       async (section) =>
         (await directus
@@ -133,8 +141,8 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     )
   );
 
-  const sectionsWithElements = await Promise.all(
-    sdkSections.map(async (section) => {
+  const sections = await Promise.all(
+    _sections.map(async (section) => {
       const toRender = await Promise.all(
         section.elements.map(
           async (el) =>
@@ -164,8 +172,8 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 
   return {
     props: {
-      page: sdkPage,
-      sections: sectionsWithElements,
+      page,
+      sections,
     },
   };
 };
