@@ -22,14 +22,14 @@ const Start = ({ page, sections }: PageProps): ReactElement => {
           />
         </div>
         <div className='w-3/6 pr-10% pl-5% pt-5%'>
-          <h2 className='z-10 text-violet'>
+          <h2 className={`z-10 text-violet ${styles.keyVisualClaim}`}>
             <b>Hol das Grundeinkommen jetzt in deinen Wohnort!</b>
           </h2>
         </div>
         <div className='bg-violet w-full h-10% absolute bottom-0 z-0'></div>
       </div>
       {page && (
-        <section className='p-8 bg-violet'>
+        <section>
           {sections.map((section) => {
             return <Section key={section.id} section={section} />;
           })}

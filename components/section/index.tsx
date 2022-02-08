@@ -17,11 +17,12 @@ export type Section = {
   status: string;
   elements: number[];
   render: Element[];
+  colorScheme: string;
 };
 
 export const Section = ({ section }: SectionProps): ReactElement => {
   return (
-    <section className='px-8 py-16 colorSchemeViolet'>
+    <section className={`px-8 py-16 ${section.colorScheme}`}>
       <h2 className='mb-4'>{section.title}</h2>
       {section.render.map((element) => {
         switch (element.collection) {
