@@ -1,5 +1,27 @@
-$color-primary: #0070f3;
-
 .container {
   min-height: 100vh;
+}
+
+.keyVisualClaim {
+  @apply text-xl;
+
+  @screen sm {
+    @apply text-xl;
+  }
+
+  @screen md {
+    @apply text-2xl;
+  }
+
+  @screen lg {
+    @apply text-3xl;
+  }
+
+  @screen xl {
+    @apply text-4xl;
+  }
+
+  @screen 2xl {
+    @apply text-5xl;
+  }
 }

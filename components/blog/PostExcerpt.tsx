@@ -29,7 +29,7 @@ export const PostExcerpt = ({ title, content, imageURL, id }: BlogProps) => {
         className='object-cover h-full w-full'
       />
       <div className='px-6 py-4'>
-        <h2 className='text-xl mb-2'>{title}</h2>
+        <h2 className='text-d-xl mb-2'>{title}</h2>
         {parseHTML(content)}
       </div>
       <div className='absolute bottom-0 w-full text-center'>

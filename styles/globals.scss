@@ -1,3 +1,4 @@
+@import './vars.scss';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -36,9 +37,22 @@
 
 html,
 body {
-  font-family: 'Ideal', sans-serif;
-  padding: 0;
+  font-family: 'Ideal', Tahoma, Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  background: $white;
   margin: 0;
+  background-color: $white;
+  color: $black;
+  --grid-gap: 1rem;
+  --bg-color: $white;
+  --font-color: $black;
+  --secondary-color: $violet;
+  --text-on-secondary-color: $white;
+  --button-font-color: $violet;
+  --button-bg-color: rgb(152, 133, 255); // IE Fallback
+  --button-bg-color: $violetTransparent;
+  --button-hover-bg-color: $violet;
+  --button-hover-font-color: $white;
 }
 
 a {
@@ -51,49 +65,60 @@ a {
 }
 
 h1 {
-  @apply text-6xl;
+  line-height: 1.4;
 }
 
+h1,
 h2 {
-  @apply text-xl;
+  @apply text-d-xl;
+  letter-spacing: 0.15px;
+  margin: 0 0 1rem 0;
 
-  @screen sm {
-    @apply text-xl;
-  }
-
-  @screen md {
-    @apply text-2xl;
-  }
-
-  @screen lg {
-    @apply text-3xl;
-  }
-
-  @screen xl {
-    @apply text-4xl;
-  }
-
-  @screen 2xl {
-    @apply text-5xl;
+  @media md {
+    @apply text-m-xl;
+    hyphens: auto;
   }
 }
 
-$red: #ff4664;
-$aqua: #46b4b4;
-$blueDark: #3423f6;
-$rose: #e5b5c8;
-$violet: #7d69f6;
-$yellow: #fef377;
-$grey: #f0f0f0;
-$greyBright: #f5f5f5;
-$greyMedium: #dedede;
-$white: white;
-$black: black;
-$violetLight: #ae9fff;
+h3 {
+  @apply text-d-lg;
 
-$violetTransparent: rgba(120, 95, 255, 0.2);
-$whiteTransparent: rgba(255, 255, 255, 0.2);
-$aquaTransparent: rgba(70, 180, 180, 0.2);
+  @media md {
+    @apply text-m-lg;
+    hyphens: auto;
+  }
+}
+
+h4 {
+  @apply text-d-base;
+
+  @media md {
+    @apply text-m-base;
+    hyphens: auto;
+  }
+}
+
+a {
+  color: currentColor;
+}
+
+p {
+  line-height: 1.5;
+  @apply text-d-base;
+
+  @media md {
+    @apply text-m-base;
+  }
+
+  a {
+    text-decoration: none;
+    box-shadow: 0 0.1em 0 var(--bg-color), 0 0.2em 0 currentColor;
+
+    &:hover {
+      box-shadow: none;
+    }
+  }
+}
 
 // COLOR SCHEMES
 .colorSchemeWhite {

@@ -5,6 +5,22 @@ module.exports = {
   ],
   theme: {
     fontSize: {
+      // MOBILE
+      'm-xs': '0.625rem', // For very small hints - use wisely
+      'm-sm': '0.75rem', // For small hints / captions
+      'm-base': '1rem', // Normal body text size
+      'm-lg': '1.125rem', // For smaller headlines and teaser texts
+      'm-xl': '1.25rem', // For big headlines
+      'm-2xl': '1.5rem', // Use wisely
+      // DESKTOP
+      'd-xs': '0.75rem', // For very small hints - use wisely
+      'd-sm': '1rem', // For small hints / captions
+      'd-base': '1rem', // Normal body text size
+      'd-lg': '1.25rem', // For smaller headlines and teaser texts
+      'd-xl': '1.75rem', // For big headlines
+      'd-2xl': '3.375rem', // For big headlines
+      'd-3xl': '4.5rem', // HUGE, Use only in special cases
+      // EXTRA
       xs: '.75rem',
       sm: '.875rem',
       base: '1rem',

@@ -24,7 +24,7 @@ export const MainMenu = ({ mainmenu }: MainMenuProps): ReactElement => {
               entry.slug.substring(0, 1) === '/' ? entry.slug : `/${entry.slug}`
             }>
             <a
-              className='mx-2 text-lg'
+              className='mx-2 text-d-lg'
               aria-label={`Zu ${
                 entry.slug === '/' ? 'Start' : entry.slug
               } navigieren`}>

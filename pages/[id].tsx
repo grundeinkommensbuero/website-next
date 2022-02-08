@@ -34,7 +34,7 @@ const PageWithSections = ({ page, sections }: PageProps): ReactElement => {
           Diese Seite gibt es leider nicht.
         </h2>
         <Link href='/'>
-          <a className='text-xl' aria-label='Zurück zur Startseite'>
+          <a className='text-d-xl' aria-label='Zurück zur Startseite'>
             Zurück zur Startseite
           </a>
         </Link>
