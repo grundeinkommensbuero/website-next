@@ -22,42 +22,44 @@ export type Section = {
 
 export const Section = ({ section }: SectionProps): ReactElement => {
   return (
-    <section className={`px-8 py-16 ${section.colorScheme}`}>
-      <h2 className='mb-4'>{section.title}</h2>
-      {section.render.map((element) => {
-        switch (element.collection) {
-          case 'sectionsText':
-            return (
-              <div className='mb-8' key={element.id}>
-                {parseHTML(element.content)}
-              </div>
-            );
-          case 'sectionsImage':
-            return (
-              <div key={element.id} className='mb-8'>
-                <Image
-                  src={getAssetURL(element.image)}
-                  alt='Bild zum Blogpost'
-                  height={600}
-                  width={2000}
-                  className='object-cover h-full w-full'
-                />
-              </div>
-            );
-          case 'reactComponent':
-            const Component = dynamic(
-              () => import(`../_dynamic/${element.component}`),
-              { ssr: false, loading: () => null }
-            );
-            return (
-              <div key={element.id} className='mb-8'>
-                <Component key={element.id} />
-              </div>
-            );
-          default:
-            return null;
-        }
-      })}
+    <section className={`py-16 ${section.colorScheme}`}>
+      <section className='sections'>
+        <h2 className='mb-4'>{section.title}</h2>
+        {section.render.map((element) => {
+          switch (element.collection) {
+            case 'sectionsText':
+              return (
+                <div className='mb-8' key={element.id}>
+                  {parseHTML(element.content)}
+                </div>
+              );
+            case 'sectionsImage':
+              return (
+                <div key={element.id} className='mb-8'>
+                  <Image
+                    src={getAssetURL(element.image)}
+                    alt='Bild zum Blogpost'
+                    height={600}
+                    width={2000}
+                    className='object-cover h-full w-full'
+                  />
+                </div>
+              );
+            case 'reactComponent':
+              const Component = dynamic(
+                () => import(`../_dynamic/${element.component}`),
+                { ssr: false, loading: () => null }
+              );
+              return (
+                <div key={element.id} className='mb-8'>
+                  <Component key={element.id} />
+                </div>
+              );
+            default:
+              return null;
+          }
+        })}
+      </section>
     </section>
   );
 };

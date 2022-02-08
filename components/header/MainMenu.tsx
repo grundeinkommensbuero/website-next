@@ -13,7 +13,7 @@ type MainMenuProps = {
 
 export const MainMenu = ({ mainmenu }: MainMenuProps): ReactElement => {
   return (
-    <div className='py-4'>
+    <div className='py-7'>
       {mainmenu.map((entry) => {
         return (
           <Link

@@ -66,13 +66,15 @@ a {
 
 h1 {
   line-height: 1.4;
+  font-weight: bold;
 }
 
 h1,
 h2 {
-  @apply text-d-xl;
+  @apply text-d-2xl;
   letter-spacing: 0.15px;
   margin: 0 0 1rem 0;
+  font-weight: bold;
 
   @media md {
     @apply text-m-xl;
@@ -104,7 +106,7 @@ a {
 
 p {
   line-height: 1.5;
-  @apply text-d-base;
+  @apply text-d-lg;
 
   @media md {
     @apply text-m-base;
@@ -191,4 +193,18 @@ p {
   --button-hover-font-color: $red;
   --input-border-color: $black;
   --input-font-color: $red;
+}
+
+.sections {
+  max-width: $headerWidth;
+  margin: 0 auto;
+}
+
+.header {
+  max-height: $headerHeight;
+}
+
+.mainMenu {
+  max-width: $headerWidth;
+  margin: 0 auto;
 }

@@ -8,9 +8,13 @@ type HeaderProps = {
 
 export const Header = ({ mainmenu }: HeaderProps): ReactElement => {
   return (
-    <div className='bg-white px-8 h-16 flex justify-between sticky top-0 z-50'>
-      <PageLogo />
-      <MainMenu mainmenu={mainmenu} />
+    <div className='header bg-white sticky top-0 z-50'>
+      <div className='mainMenu'>
+        <div className='flex justify-between'>
+          <PageLogo />
+          <MainMenu mainmenu={mainmenu} />
+        </div>
+      </div>
     </div>
   );
 };
