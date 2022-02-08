@@ -1,0 +1,20 @@
+.button {
+  &:hover {
+    color: var(--secondary-color);
+  }
+
+  &L {
+    font-size: 2em;
+  }
+
+  &XL {
+    font-size: 3em;
+  }
+
+  svg {
+    font-size: 1.3333333333em;
+    width: 1.5em;
+    vertical-align: -0.225em;
+    line-height: 0.75em;
+  }
+}

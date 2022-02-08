@@ -1,7 +1,8 @@
 import { ReactElement } from 'react';
 import Head from 'next/head';
-import { Header } from '../header';
-import { Menuentry } from '../header/MainMenu';
+import { Header } from './Header';
+import { Menuentry } from './Header/MainMenu';
+import { Footer } from './Footer';
 
 type LayoutProps = {
   children: ReactElement;
@@ -21,6 +22,7 @@ export const Layout = ({ children, mainmenu }: LayoutProps): ReactElement => {
       </Head>
       <Header mainmenu={mainmenu} />
       {children}
+      <Footer />
     </>
   );
 };

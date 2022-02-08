@@ -1,5 +1,5 @@
 import { Directus } from '@directus/sdk';
-import { Section } from '../components/section';
+import { Section } from '../components/Section';
 import { Element, Page, PageProps } from '../pages/[id]';
 
 type PagesSection = {

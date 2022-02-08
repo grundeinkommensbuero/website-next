@@ -1,7 +1,7 @@
 import '../styles/globals.scss';
 import type { AppContext, AppProps } from 'next/app';
 import { QueryClientProvider, QueryClient } from 'react-query';
-import { Layout } from '../components/layout';
+import { Layout } from '../components/Layout';
 import fetchData from '../directus/graphql/fetchData';
 import App from 'next/app';
 import { getPageProps } from '../utils/getPageProps';

@@ -1,0 +1,60 @@
+@import '../../../styles/vars.scss';
+
+.footer {
+  @apply text-d-base;
+  background: $red;
+  color: $greyBright;
+  min-height: 15rem;
+  padding: 3rem 0 6rem;
+  --secondary-color: $white;
+  text-align: center;
+
+  @media sm {
+    padding: 3rem;
+  }
+}
+
+.itemContainer {
+  width: $headerWidth;
+  justify-content: space-between;
+  margin: auto;
+
+  @media xl {
+    width: 100%;
+  }
+}
+
+.nav {
+  list-style: none;
+  padding: 0;
+  margin: -0.5rem 0rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  @media md {
+    width: 100%;
+    display: block;
+    margin: 0rem 0 2rem;
+    line-height: 3rem;
+  }
+}
+
+.navItem {
+  margin: 0;
+  display: inline;
+  margin: 0.5rem;
+  display: block;
+
+  @media md {
+    margin: 0;
+  }
+}
+
+.socialMedia {
+  margin: 2rem 0;
+}
+
+.partnerLogos {
+  margin: 1rem 0 0;
+}

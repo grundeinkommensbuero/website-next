@@ -2,7 +2,7 @@ import styles from '../styles/start.module.scss';
 import Image from 'next/image';
 import { PageProps } from './[id]';
 import { ReactElement } from 'react';
-import { Section } from '../components/section';
+import { Section } from '../components/Section';
 import { GetServerSideProps } from 'next';
 import { getPageProps } from '../utils/getPageProps';
 

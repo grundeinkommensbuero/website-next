@@ -9,7 +9,7 @@ export const PageLogo = (): ReactElement => {
     <Image
       src={`${process.env.NEXT_PUBLIC_DIRECTUS}assets/74ad5cd6-c61a-4c08-a8a6-ea5530fc05bd`}
       alt='Logo der Expedition Grundeinkommen'
-      height={80}
+      height={85}
       width={200}
       className='cursor-pointer'
       onClick={() => router.push('/')}

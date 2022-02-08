@@ -4,7 +4,7 @@ import Link from 'next/link';
 import React, { ReactElement } from 'react';
 
 import { getPageProps } from '../utils/getPageProps';
-import { Section } from '../components/section';
+import { Section } from '../components/Section';
 
 export type Page = {
   title: string;

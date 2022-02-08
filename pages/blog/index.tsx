@@ -1,6 +1,6 @@
 import type { GetServerSideProps } from 'next';
 import { ReactElement } from 'react';
-import { PostExcerpt } from '../../components/blog/PostExcerpt';
+import { PostExcerpt } from '../../components/Blog/PostExcerpt';
 import fetchData from '../../directus/graphql/fetchData';
 import { getAssetURL } from '../../utils/getAssetURL';
 
