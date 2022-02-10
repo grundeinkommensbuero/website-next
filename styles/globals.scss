@@ -1,4 +1,12 @@
 @import './vars.scss';
+@import './base.scss';
+@import './utility/spacing.scss';
+@import './utility/text.scss';
+@import './utility/misc.scss';
+@import './utility/flex.scss';
+@import './utility/position.scss';
+@import './utility/colors.scss';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -196,15 +204,6 @@ p {
 }
 
 .sections {
-  max-width: $headerWidth;
-  margin: 0 auto;
-}
-
-.header {
-  max-height: $headerHeight;
-}
-
-.mainMenu {
   max-width: $headerWidth;
   margin: 0 auto;
 }

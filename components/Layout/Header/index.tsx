@@ -1,6 +1,7 @@
 import { ReactElement } from 'react';
 import { MainMenu, Menuentry } from './MainMenu';
 import { PageLogo } from './PageLogo';
+import s from './style.module.scss';
 
 type HeaderProps = {
   mainmenu: Menuentry[];
@@ -8,12 +9,10 @@ type HeaderProps = {
 
 export const Header = ({ mainmenu }: HeaderProps): ReactElement => {
   return (
-    <div className='header bg-white sticky top-0 z-50'>
-      <div className='mainMenu'>
-        <div className='flex justify-between'>
-          <PageLogo />
-          <MainMenu mainmenu={mainmenu} />
-        </div>
+    <div className={s.header}>
+      <div className={s.mainMenu}>
+        <PageLogo />
+        <MainMenu mainmenu={mainmenu} />
       </div>
     </div>
   );

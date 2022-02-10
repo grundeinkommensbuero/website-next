@@ -9,8 +9,8 @@ import { getPageProps } from '../utils/getPageProps';
 const Start = ({ page, sections }: PageProps): ReactElement => {
   return (
     <div className={styles.container}>
-      <div className='flex mt-5% relative'>
-        <div className='w-3/6'>
+      <div className='flex mt-16 relative'>
+        <div className='w-half'>
           <Image
             priority={true}
             src={`${process.env.NEXT_PUBLIC_DIRECTUS}assets/3e2ffd09-a09e-42ab-b234-19288361d727`}
@@ -21,12 +21,12 @@ const Start = ({ page, sections }: PageProps): ReactElement => {
             className='z-10'
           />
         </div>
-        <div className='w-3/6 pr-10% pl-5% pt-5%'>
+        <div className='w-half pr-8 pl-4 pt-16'>
           <h2 className={`z-10 text-violet ${styles.keyVisualClaim}`}>
             <b>Hol das Grundeinkommen jetzt in deinen Wohnort!</b>
           </h2>
         </div>
-        <div className='bg-violet w-full h-10% absolute bottom-0 z-0'></div>
+        <div className='bg-violet w-full h-percent10 absolute bottom-0 z-0'></div>
       </div>
       {page && (
         <section>

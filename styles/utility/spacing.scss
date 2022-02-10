@@ -1,0 +1,131 @@
+$sides: (top, bottom, left, right);
+$spacings: (
+  0: 0,
+  px: 1px,
+  px2: 2px,
+  px3: 3px,
+  px4: 4px,
+  px5: 5px,
+  px6: 6px,
+  px7: 7px,
+  px8: 8px,
+  1: 0.25rem,
+  2: 0.5rem,
+  3: 0.75rem,
+  4: 1rem,
+  5: 1.25rem,
+  6: 1.5rem,
+  7: 1.75rem,
+  8: 2rem,
+  9: 2.25rem,
+  10: 2.5rem,
+  11: 2.75rem,
+  12: 3rem,
+  13: 3.25rem,
+  14: 3.5rem,
+  15: 3.75rem,
+  16: 4rem,
+  32: 8rem,
+  64: 16rem,
+  128: 32rem,
+  percent10: 10%,
+  percent20: 20%,
+  quater: 25%,
+  half: 50%,
+  3quater: 75%,
+  full: 100%,
+);
+
+// margin and padding, top, bottom, left, right
+@each $space, $spaceSize in $spacings {
+  @each $side in $sides {
+    .m#{str-slice($side, 0, 1)}-#{$space} {
+      margin-#{$side}: #{$spaceSize};
+    }
+
+    .p#{str-slice($side, 0, 1)}-#{$space} {
+      padding-#{$side}: #{$spaceSize};
+    }
+  }
+}
+
+// margin and padding on x axis
+@each $space, $spaceSize in $spacings {
+  .mx-#{$space} {
+    margin-left: #{$spaceSize};
+    margin-right: #{$spaceSize};
+  }
+
+  .px-#{$space} {
+    padding-left: #{$spaceSize};
+    padding-right: #{$spaceSize};
+  }
+}
+
+// margin and padding on y axis
+@each $space, $spaceSize in $spacings {
+  .my-#{$space} {
+    margin-top: #{$spaceSize};
+    margin-bottom: #{$spaceSize};
+  }
+
+  .py-#{$space} {
+    padding-top: #{$spaceSize};
+    padding-bottom: #{$spaceSize};
+  }
+}
+
+// width and height
+@each $space, $spaceSize in $spacings {
+  .w-#{$space} {
+    width: #{$spaceSize};
+  }
+
+  .h-#{$space} {
+    height: #{$spaceSize};
+  }
+}
+
+// top, bottom, left, right
+@each $space, $spaceSize in $spacings {
+  @each $side in $sides {
+    .#{$side}-#{$space} {
+      #{$side}: #{$spaceSize};
+    }
+
+    .#{$side}-#{$space} {
+      #{$side}: #{$spaceSize};
+    }
+  }
+}
+
+$index: (
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  20,
+  30,
+  40,
+  50,
+  60,
+  70,
+  80,
+  90,
+  100,
+  200,
+  500
+);
+
+// z-index
+@each $index in $index {
+  .z-#{$index} {
+    z-index: #{$index};
+  }
+}

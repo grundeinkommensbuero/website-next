@@ -1,0 +1,50 @@
+@import '../vars.scss';
+
+$textSizes: (
+  // MOBILE
+  m-xs: 0.625rem,
+  m-sm: 0.75rem,
+  m-base: 1rem,
+  m-lg: 1.125rem,
+  m-xl: 1.25rem,
+  m-2xl: 1.5rem,
+  // DESKTOP
+  d-xs: 0.75rem,
+  d-sm: 1rem,
+  d-base: 1rem,
+  d-lg: 1.25rem,
+  d-xl: 1.75rem,
+  d-2xl: 3.375rem,
+  d-3xl: 4.5rem,
+  // EXTRA
+  xs: 0.75rem,
+  sm: 0.875rem,
+  base: 1rem,
+  lg: 1.125rem,
+  xl: 1.25rem,
+  2xl: 1.5rem,
+  3xl: 1.875rem,
+  4xl: 2.25rem,
+  5xl: 3rem,
+  6xl: 4rem
+);
+
+$textColors: (
+  violet: $violet,
+  aqua: $aqua,
+  red: $red,
+  white: $white,
+  black: $black,
+);
+
+@each $label, $size in $textSizes {
+  .text-#{'' + $label} {
+    font-size: #{$size};
+  }
+}
+
+@each $label, $color in $textColors {
+  .text-#{'' + $label} {
+    color: #{$color};
+  }
+}

@@ -1,0 +1,16 @@
+@import '../vars.scss';
+
+$bgColors: (
+  violet: $violet,
+  aqua: $aqua,
+  red: $red,
+  white: $white,
+  black: $black,
+);
+
+@each $label, $color in $bgColors {
+  .bg-#{'' + $label} {
+    background: #{$color};
+    background-color: #{$color};
+  }
+}

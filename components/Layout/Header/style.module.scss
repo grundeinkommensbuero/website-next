@@ -1,0 +1,16 @@
+@import '../../../styles/vars.scss';
+
+.header {
+  max-height: $headerHeight;
+  background: white;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.mainMenu {
+  display: flex;
+  justify-content: space-between;
+  max-width: $headerWidth;
+  margin: 0 auto;
+}
