@@ -13,14 +13,11 @@ type BlogProps = {
 export const PostExcerpt = ({ title, content, imageURL, id }: BlogProps) => {
   const router = useRouter();
 
-  const border = 'border-2 border-white hover:border-violet rounded';
-  const cardWidth = '2xl:max-w-md md:max-w-xs h-160';
-
   return (
     <div
       // onClick={() => router.push(`/blog/${encodeURL(title)}`)}
       onClick={() => router.push(`/blog/${id}`)}
-      className={`${border} ${cardWidth} m-4 hover:cursor-pointer overflow-hidden shadow-lg relative`}>
+      className={`w-quarter h-128 rounded m-4 cursor-pointer overflow-hidden shadow-lg relative`}>
       <Image
         src={imageURL}
         alt='Bild zum Blogpost'
@@ -35,7 +32,7 @@ export const PostExcerpt = ({ title, content, imageURL, id }: BlogProps) => {
       <div className='absolute bottom-0 w-full text-center'>
         <div className='h-16 bg-gradient-to-t from-white'></div>
         <div className='w-full bg-white'>
-          <h2 className='mb-0 pt-8 text-d-xl text-violet'>Weiterlesen!</h2>
+          <h2 className='m-0 pb-4 pt-4 text-d-xl text-violet'>Weiterlesen!</h2>
         </div>
       </div>
     </div>

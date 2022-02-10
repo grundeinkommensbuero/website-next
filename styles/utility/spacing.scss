@@ -28,13 +28,25 @@ $spacings: (
   32: 8rem,
   64: 16rem,
   128: 32rem,
-  percent10: 10%,
-  percent20: 20%,
-  quater: 25%,
+  10percent: 10%,
+  20percent: 20%,
+  quarter: 25%,
   half: 50%,
-  3quater: 75%,
+  2quarter: 50%,
+  3quarter: 75%,
   full: 100%,
 );
+
+// margin and padding
+@each $space, $spaceSize in $spacings {
+  .m-#{$space} {
+    margin: #{$spaceSize};
+  }
+
+  .p-#{$space} {
+    padding: #{$spaceSize};
+  }
+}
 
 // margin and padding, top, bottom, left, right
 @each $space, $spaceSize in $spacings {

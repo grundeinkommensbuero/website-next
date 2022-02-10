@@ -21,12 +21,12 @@ const Start = ({ page, sections }: PageProps): ReactElement => {
             className='z-10'
           />
         </div>
-        <div className='w-half pr-8 pl-4 pt-16'>
+        <div className='w-half pr-16 pl-6 pt-16'>
           <h2 className={`z-10 text-violet ${styles.keyVisualClaim}`}>
             <b>Hol das Grundeinkommen jetzt in deinen Wohnort!</b>
           </h2>
         </div>
-        <div className='bg-violet w-full h-percent10 absolute bottom-0 z-0'></div>
+        <div className='bg-violet w-full h-10percent absolute bottom-0 z-0'></div>
       </div>
       {page && (
         <section>

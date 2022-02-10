@@ -1,3 +1,33 @@
 .cursor-pointer {
   cursor: pointer;
 }
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.object-cover {
+  object-fit: cover;
+}
+
+.shadow-lg {
+  --shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-colored: 0 10px 15px -3px var(--shadow-color),
+    0 4px 6px -4px var(--shadow-color);
+  box-shadow: var(--ring-offset-shadow, 0 0 #0000),
+    var(--ring-shadow, 0 0 #0000), var(--shadow);
+}
+
+.rounded {
+  border-radius: 0.25rem;
+}
+
+.bg-gradient-to-t {
+  background-image: linear-gradient(to top, var(--gradient-stops));
+}
+
+.from-white {
+  --gradient-from: #fff;
+  --gradient-stops: var(--gradient-from),
+    var(--gradient-to, rgb(255 255 255 / 0));
+}
