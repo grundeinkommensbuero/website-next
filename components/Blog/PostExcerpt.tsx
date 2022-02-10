@@ -35,7 +35,7 @@ export const PostExcerpt = ({ title, content, imageURL, id }: BlogProps) => {
       <div className='absolute bottom-0 w-full text-center'>
         <div className='h-16 bg-gradient-to-t from-white'></div>
         <div className='w-full bg-white'>
-          <h2>Weiterlesen!</h2>
+          <h2 className='mb-0 pt-8 text-d-xl text-violet'>Weiterlesen!</h2>
         </div>
       </div>
     </div>
