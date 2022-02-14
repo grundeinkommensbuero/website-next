@@ -5,6 +5,7 @@ import { Layout } from '../components/Layout';
 import fetchData from '../directus/graphql/fetchData';
 import App from 'next/app';
 import { getPageProps } from '../utils/getPageProps';
+import { getMenus } from '../utils/getMenus';
 
 const queryClient = new QueryClient();
 
@@ -26,24 +27,14 @@ XbgeApp.getInitialProps = async (appContext: AppContext) => {
   const appProps = await App.getInitialProps(appContext);
   const mainmenu = await fetchData(query, variables);
 
-  const route =
-    appContext.router.route === '/' ? 'start' : appContext.router.route;
+  const menus = await getMenus();
 
-  // TODO: Refctor!
-  // const directusPage =
-  //   appContext.router.route === '/' ? 'start' : appContext.router.route;
-  // let pageProps;
-  // if (directusPage !== '/[id]') {
-  //   pageProps = await getPageProps(directusPage);
-  // } else {
-  //   pageProps = {
-  //     page: null,
-  //     sections: [],
-  //   };
-  // }
+  // Pass current route as string to all pages
+  const route = appContext.router.route;
+
   return {
     ...appProps,
-    mainmenu: mainmenu.data.mainmenu,
+    mainmenu: menus.mainmenu,
     pageProps: {
       route,
     },

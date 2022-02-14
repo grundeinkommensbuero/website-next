@@ -19,3 +19,20 @@ $headerHeight: 5rem;
 $headerHeightS: 4rem;
 
 $headerWidth: 70rem;
+
+$breakPointXL: 1200px;
+$breakPointL: 1000px;
+$breakPointM: 800px;
+$breakPointS: 500px;
+$breakPointXS: 330px;
+
+.menuLink {
+  text-decoration: none;
+  box-shadow: none;
+}
+
+.linkUnderlined {
+  text-decoration: none;
+  box-shadow: 0 0.1em currentColor;
+  border-bottom: 0.05em transparent solid;
+}
