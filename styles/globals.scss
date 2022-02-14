@@ -203,6 +203,11 @@ p {
   --input-font-color: $red;
 }
 
+.pageWidth {
+  padding-left: calc(calc(100vw - #{$headerWidth}) / 2);
+  margin: 0 auto;
+}
+
 .sections {
   max-width: $headerWidth;
   margin: 0 auto;

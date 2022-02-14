@@ -43,7 +43,9 @@ const PageWithSections = ({ page, sections }: PageProps): ReactElement => {
   }
   return (
     <section>
-      {page.title && <h2 className='m-8 text-violet'>{page.title}</h2>}
+      <div className='pageWidth'>
+        {page.title && <h2 className='text-violet my-8'>{page.title}</h2>}
+      </div>
       {sections.map((section) => {
         return <Section key={section.id} section={section} />;
       })}

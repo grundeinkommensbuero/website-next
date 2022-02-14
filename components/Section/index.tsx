@@ -45,7 +45,7 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                   />
                 </div>
               );
-            case 'reactComponent':
+            case 'sectionsComponent':
               const Component = dynamic(
                 () => import(`../_dynamic/${element.component}`),
                 { ssr: false, loading: () => null }
