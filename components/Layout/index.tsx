@@ -1,12 +1,12 @@
 import { ReactElement } from 'react';
 import Head from 'next/head';
 import { Header } from './Header';
-import { Menuentry } from './Header/MainMenu';
 import { Footer } from './Footer';
+import { MenuElement } from '../../utils/getMenus';
 
 type LayoutProps = {
   children: ReactElement;
-  mainmenu: Menuentry[];
+  mainmenu: MenuElement[];
 };
 
 export const Layout = ({ children, mainmenu }: LayoutProps): ReactElement => {

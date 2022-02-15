@@ -4,12 +4,11 @@ import { QueryClientProvider, QueryClient } from 'react-query';
 import { Layout } from '../components/Layout';
 import fetchData from '../directus/graphql/fetchData';
 import App from 'next/app';
-import { getPageProps } from '../utils/getPageProps';
-import { getMenus } from '../utils/getMenus';
+import { getMenus, MenuElement } from '../utils/getMenus';
 
 const queryClient = new QueryClient();
 
-type XbgeAppProps = AppProps & { mainmenu: Menuentry[] };
+type XbgeAppProps = AppProps & { mainmenu: MenuElement[] };
 
 function XbgeApp({ Component, pageProps, mainmenu }: XbgeAppProps) {
   return (
@@ -39,12 +38,6 @@ XbgeApp.getInitialProps = async (appContext: AppContext) => {
       route,
     },
   };
-};
-
-export type Menuentry = {
-  id: string;
-  label: string;
-  slug: string;
 };
 
 const query = `query Mainmenu {
