@@ -14,3 +14,23 @@
   max-width: $headerWidth;
   margin: 0 auto;
 }
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdownContent {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 160px;
+  // box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+  padding: 12px 16px;
+  padding-top: 0.5rem;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdownContent {
+  display: block;
+}

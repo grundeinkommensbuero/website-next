@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { ReactElement } from 'react';
 import { Dropdown, Mainmenu, MenuEntry } from '../../../utils/getMenus';
-import { MenuItemParent } from './Menu/MenuItemParent';
+import s from './style.module.scss';
 
 type MainMenuProps = {
   mainmenu: Mainmenu;
@@ -9,21 +9,24 @@ type MainMenuProps = {
 
 export const MainMenu = ({ mainmenu }: MainMenuProps): ReactElement => {
   return (
-    <div className='py-6 flex-row'>
+    <div className='my-7 flex-row'>
       {mainmenu.map((entry) => {
         if ((entry as Dropdown).entries)
           return (
-            <MenuItemParent title={entry.label} key={entry.id}>
-              <>
-                {(entry as Dropdown).entries.map((entry) => {
-                  return (
-                    <div className='mb-4' key={entry.slug}>
-                      <MenuLink entry={entry} />
-                    </div>
-                  );
-                })}
-              </>
-            </MenuItemParent>
+            <div className={s.dropdown}>
+              <span className='mx-2 text-xl nowrap'>{entry.label}</span>
+              <div className={s.dropdownContent}>
+                <>
+                  {(entry as Dropdown).entries.map((entry) => {
+                    return (
+                      <div className='my-4' key={entry.slug}>
+                        <MenuLink entry={entry} />
+                      </div>
+                    );
+                  })}
+                </>
+              </div>
+            </div>
           );
         return (
           <MenuLink
@@ -46,7 +49,7 @@ const MenuLink = ({ entry }: { entry: MenuEntry }) => {
         entry.slug.substring(0, 1) === '/' ? entry.slug : `/${entry.slug}`
       }>
       <a
-        className='mx-2 text-2xl'
+        className='mx-2 text-xl nowrap hoverUnderline'
         aria-label={`Zu ${
           entry.slug === '/' ? 'Start' : entry.slug
         } navigieren`}>

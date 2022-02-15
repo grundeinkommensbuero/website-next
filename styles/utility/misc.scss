@@ -31,3 +31,19 @@
   --gradient-stops: var(--gradient-from),
     var(--gradient-to, rgb(255 255 255 / 0));
 }
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.hoverUnderline:hover {
+  border-bottom: 2px solid black;
+}
+
+.hoverUnderline {
+  border-bottom: 2px solid white;
+}
+
+.boderBox {
+  box-sizing: border-box;
+}

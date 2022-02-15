@@ -20,7 +20,7 @@ export const MenuItemParent = ({
   return (
     <div className={cN({ [s.navItemParent]: true }, s.navItem)}>
       {!internalLink && !externalLink && (
-        <a className={cN('mx-2 text-2xl')}>{title}</a>
+        <a className={cN('mx-2 text-xl')}>{title}</a>
       )}
       {internalLink && (
         <Link
