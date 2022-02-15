@@ -31,3 +31,12 @@
   display: flex;
   flex-direction: row;
 }
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.grow {
+  flex-grow: 1;
+}

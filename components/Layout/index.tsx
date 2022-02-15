@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { Mainmenu } from '../../utils/getMenus';
+import cN from 'classnames';
 
 type LayoutProps = {
   children: ReactElement;
@@ -16,7 +17,7 @@ export const Layout = ({
   currentRoute,
 }: LayoutProps): ReactElement => {
   return (
-    <>
+    <div className='flex-column h-fullVH'>
       <Head>
         <title>Expedition Grundeinkommen</title>
         <meta
@@ -26,8 +27,8 @@ export const Layout = ({
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header mainmenu={mainmenu} currentRoute={currentRoute} />
-      {children}
+      <div className='grow'>{children}</div>
       <Footer />
-    </>
+    </div>
   );
 };
