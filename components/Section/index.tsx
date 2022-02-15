@@ -55,8 +55,7 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                   className={cN(
                     overrideFlexItemClass
                       ? overrideFlexItemClass
-                      : flexItemClass,
-                    'mb-8'
+                      : flexItemClass
                   )}
                   key={'text' + element.id}>
                   {parseHTML(element.content)}
@@ -69,8 +68,7 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                   className={cN(
                     overrideFlexItemClass
                       ? overrideFlexItemClass
-                      : flexItemClass,
-                    'mb-8'
+                      : flexItemClass
                   )}>
                   <Image
                     src={getAssetURL(element.image)}
@@ -92,8 +90,7 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                   className={cN(
                     overrideFlexItemClass
                       ? overrideFlexItemClass
-                      : flexItemClass,
-                    'mb-8'
+                      : flexItemClass
                   )}>
                   <Component key={element.id} />
                 </div>
@@ -121,7 +118,7 @@ const SectionWrapper = ({
   return (
     <section className={`py-16 ${colorScheme}`}>
       <section className='sections'>
-        <h2 className='mb-4'>{title}</h2>
+        <h2 className='mb-4 px-4'>{title}</h2>
         {children}
       </section>
     </section>

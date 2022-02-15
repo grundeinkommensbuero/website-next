@@ -15,7 +15,7 @@
 }
 
 .itemContainer {
-  width: $headerWidth;
+  max-width: $headerWidth;
   justify-content: space-between;
   margin: auto;
 
