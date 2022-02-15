@@ -1,11 +1,11 @@
 import { ReactElement } from 'react';
-import { MenuElement } from '../../../utils/getMenus';
+import { Mainmenu } from '../../../utils/getMenus';
 import { MainMenu } from './MainMenu';
 import { PageLogo } from './PageLogo';
 import s from './style.module.scss';
 
 type HeaderProps = {
-  mainmenu: MenuElement[];
+  mainmenu: Mainmenu;
 };
 
 export const Header = ({ mainmenu }: HeaderProps): ReactElement => {

@@ -2,13 +2,12 @@ import '../styles/globals.scss';
 import type { AppContext, AppProps } from 'next/app';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { Layout } from '../components/Layout';
-import fetchData from '../directus/graphql/fetchData';
 import App from 'next/app';
-import { getMenus, MenuElement } from '../utils/getMenus';
+import { getMenus, Mainmenu } from '../utils/getMenus';
 
 const queryClient = new QueryClient();
 
-type XbgeAppProps = AppProps & { mainmenu: MenuElement[] };
+type XbgeAppProps = AppProps & { mainmenu: Mainmenu };
 
 function XbgeApp({ Component, pageProps, mainmenu }: XbgeAppProps) {
   return (
@@ -24,7 +23,6 @@ function XbgeApp({ Component, pageProps, mainmenu }: XbgeAppProps) {
 
 XbgeApp.getInitialProps = async (appContext: AppContext) => {
   const appProps = await App.getInitialProps(appContext);
-  const mainmenu = await fetchData(query, variables);
 
   const menus = await getMenus();
 
@@ -38,19 +36,6 @@ XbgeApp.getInitialProps = async (appContext: AppContext) => {
       route,
     },
   };
-};
-
-const query = `query Mainmenu {
-  mainmenu {
-    id
-    label
-    slug
-  }
-}
-`;
-
-const variables = {
-  variables: {},
 };
 
 export default XbgeApp;
