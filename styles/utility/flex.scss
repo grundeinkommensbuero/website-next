@@ -2,6 +2,11 @@
   display: flex;
 }
 
+.flexWrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .justify-between {
   display: flex;
   justify-content: space-between;

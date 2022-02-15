@@ -16,16 +16,6 @@ export type PageProps = {
   sections: Section[];
 };
 
-export type Element = {
-  id: string;
-  title: string;
-  content: string;
-  image: string;
-  component: string;
-  collection: string;
-  sort: number | null;
-};
-
 const PageWithSections = ({ page, sections }: PageProps): ReactElement => {
   if (!page) {
     return (
