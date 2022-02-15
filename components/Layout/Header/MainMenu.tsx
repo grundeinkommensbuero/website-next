@@ -17,7 +17,7 @@ export const MainMenu = ({
       {mainmenu.map((entry) => {
         if ((entry as Dropdown).entries)
           return (
-            <div className={s.dropdown}>
+            <div key={entry.id} className={s.dropdown}>
               <span className='mx-2 text-xl nowrap'>{entry.label}</span>
               <div className={s.dropdownContent}>
                 <>
