@@ -7,9 +7,14 @@ import { Mainmenu } from '../../utils/getMenus';
 type LayoutProps = {
   children: ReactElement;
   mainmenu: Mainmenu;
+  currentRoute: string;
 };
 
-export const Layout = ({ children, mainmenu }: LayoutProps): ReactElement => {
+export const Layout = ({
+  children,
+  mainmenu,
+  currentRoute,
+}: LayoutProps): ReactElement => {
   return (
     <>
       <Head>
@@ -20,7 +25,7 @@ export const Layout = ({ children, mainmenu }: LayoutProps): ReactElement => {
         />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <Header mainmenu={mainmenu} />
+      <Header mainmenu={mainmenu} currentRoute={currentRoute} />
       {children}
       <Footer />
     </>

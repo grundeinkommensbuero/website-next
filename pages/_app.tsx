@@ -13,7 +13,7 @@ function XbgeApp({ Component, pageProps, mainmenu }: XbgeAppProps) {
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        <Layout mainmenu={mainmenu}>
+        <Layout mainmenu={mainmenu} currentRoute={pageProps.route}>
           <Component {...pageProps} />
         </Layout>
       </QueryClientProvider>
@@ -23,11 +23,10 @@ function XbgeApp({ Component, pageProps, mainmenu }: XbgeAppProps) {
 
 XbgeApp.getInitialProps = async (appContext: AppContext) => {
   const appProps = await App.getInitialProps(appContext);
-
   const menus = await getMenus();
 
   // Pass current route as string to all pages
-  const route = appContext.router.route;
+  const route = appContext.router.query.id ? appContext.router.query.id : '/';
 
   return {
     ...appProps,

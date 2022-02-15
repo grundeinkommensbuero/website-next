@@ -6,14 +6,18 @@ import s from './style.module.scss';
 
 type HeaderProps = {
   mainmenu: Mainmenu;
+  currentRoute: string;
 };
 
-export const Header = ({ mainmenu }: HeaderProps): ReactElement => {
+export const Header = ({
+  mainmenu,
+  currentRoute,
+}: HeaderProps): ReactElement => {
   return (
     <div className={s.header}>
       <div className={s.mainMenu}>
         <PageLogo />
-        <MainMenu mainmenu={mainmenu} />
+        <MainMenu mainmenu={mainmenu} currentRoute={currentRoute} />
       </div>
     </div>
   );

@@ -5,9 +5,13 @@ import s from './style.module.scss';
 
 type MainMenuProps = {
   mainmenu: Mainmenu;
+  currentRoute: string;
 };
 
-export const MainMenu = ({ mainmenu }: MainMenuProps): ReactElement => {
+export const MainMenu = ({
+  mainmenu,
+  currentRoute,
+}: MainMenuProps): ReactElement => {
   return (
     <div className='my-7 flex-row'>
       {mainmenu.map((entry) => {
@@ -20,7 +24,7 @@ export const MainMenu = ({ mainmenu }: MainMenuProps): ReactElement => {
                   {(entry as Dropdown).entries.map((entry) => {
                     return (
                       <div className='my-4' key={entry.slug}>
-                        <MenuLink entry={entry} />
+                        <MenuLink entry={entry} currentRoute={currentRoute} />
                       </div>
                     );
                   })}
@@ -32,6 +36,7 @@ export const MainMenu = ({ mainmenu }: MainMenuProps): ReactElement => {
           <MenuLink
             entry={entry as MenuEntry}
             key={(entry as MenuEntry).slug}
+            currentRoute={currentRoute}
           />
         );
       })}
@@ -39,7 +44,13 @@ export const MainMenu = ({ mainmenu }: MainMenuProps): ReactElement => {
   );
 };
 
-const MenuLink = ({ entry }: { entry: MenuEntry }) => {
+const MenuLink = ({
+  entry,
+  currentRoute,
+}: {
+  entry: MenuEntry;
+  currentRoute: string;
+}) => {
   return (
     <Link
       key={entry.id}
@@ -49,7 +60,9 @@ const MenuLink = ({ entry }: { entry: MenuEntry }) => {
         entry.slug.substring(0, 1) === '/' ? entry.slug : `/${entry.slug}`
       }>
       <a
-        className='mx-2 text-xl nowrap hoverUnderline'
+        className={`mx-2 text-xl nowrap ${
+          entry.slug === currentRoute ? 'underline' : 'hoverUnderline'
+        }`}
         aria-label={`Zu ${
           entry.slug === '/' ? 'Start' : entry.slug
         } navigieren`}>

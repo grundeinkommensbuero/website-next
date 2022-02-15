@@ -36,6 +36,10 @@
   white-space: nowrap;
 }
 
+.underline {
+  border-bottom: 2px solid black;
+}
+
 .hoverUnderline:hover {
   border-bottom: 2px solid black;
 }
