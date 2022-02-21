@@ -48,12 +48,14 @@ type Menus = {
   mainmenu: Mainmenu;
 };
 
+const MAINMENU_ID = 1;
+
 export const getMenus = async (): Promise<Menus> => {
   const directus = new Directus(process.env.DIRECTUS || '');
 
   try {
     // Get menus from directus by id (ID)
-    const _mainmenu = (await directus.items('menu').readOne(1, {
+    const _mainmenu = (await directus.items('menu').readOne(MAINMENU_ID, {
       fields: [
         'id',
         'status',
