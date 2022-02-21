@@ -11,6 +11,7 @@ import { getEvenLayout, getOddLayout, getOverrideLayout } from './utlis';
 import { Tiptap } from '../Editor/Tiptap';
 import { EditSection } from './EditSection';
 import { EditElement } from './EditElement';
+import { DirectusImage } from '../Utils/DirectusImage';
 
 type SectionProps = {
   section: Section;
@@ -53,7 +54,29 @@ export type Element = {
 export const Section = ({ section }: SectionProps): ReactElement => {
   const [modifiedSection, setModifiedSection] = useState<Section>(section);
   // (!) Will be replaced with actual login State
-  const isLoggedIn = false;
+  const isLoggedIn = process.env.NEXT_PUBLIC_FAKEROOT === 'true' ? true : false;
+
+  // Should be moved to a "EditText" component
+  const updateContent = (index: number, content: string): void => {
+    // Get and update the edited element
+    const updatedElement: Element = {
+      ...modifiedSection.render[index],
+      content,
+    };
+    // Replace it in render list
+    const updatedRender = modifiedSection.render.map((element, elIndex) => {
+      if (elIndex === index) {
+        return updatedElement;
+      }
+      return element;
+    });
+    // Update renderlist in section
+    const updated = {
+      ...modifiedSection,
+      render: updatedRender,
+    };
+    setModifiedSection(updated);
+  };
 
   return (
     <>
@@ -98,7 +121,12 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                     {!element.edit ? (
                       <>{parseHTML(element.content)}</>
                     ) : (
-                      <Tiptap content={element.content} />
+                      <Tiptap
+                        content={element.content}
+                        updateContent={(content) =>
+                          updateContent(index, content)
+                        }
+                      />
                     )}
                   </div>
                 );
@@ -119,15 +147,11 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                         index={index}
                       />
                     )}
-                    <div>
-                      <Image
-                        src={getAssetURL(element.image)}
-                        alt='Bild zum Blogpost'
-                        height={600}
-                        width={600}
-                        className='object-cover h-full w-full'
-                      />
-                    </div>
+                    <DirectusImage
+                      className='object-cover h-full w-full'
+                      assetId={element.image}
+                      alt={element.title}
+                    />
                   </div>
                 );
               case 'sectionsComponent':
@@ -143,6 +167,14 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                         ? overrideFlexItemClass
                         : flexItemClass
                     )}>
+                    {isLoggedIn && (
+                      <EditElement
+                        modifiedSection={modifiedSection}
+                        setModifiedSection={setModifiedSection}
+                        element={element}
+                        index={index}
+                      />
+                    )}
                     <Component key={element.id} />
                   </div>
                 );

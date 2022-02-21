@@ -3,10 +3,18 @@ import StarterKit from '@tiptap/starter-kit';
 import s from './ButtonRow.module.scss';
 import cN from 'classnames';
 
-export const Tiptap = ({ content }: { content: string }) => {
+type TiptapProps = {
+  content: string;
+  updateContent: (content: string) => void;
+};
+
+export const Tiptap = ({ content, updateContent }: TiptapProps) => {
   const editor = useEditor({
     extensions: [StarterKit],
     content,
+    onUpdate({ editor }) {
+      updateContent(editor.getHTML());
+    },
   });
 
   // console.log(editor?.getHTML());
