@@ -1,0 +1,13 @@
+.noStyleButton {
+  outline: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+
+  &:hover {
+    outline: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+}

@@ -1,4 +1,4 @@
-import styles from '../styles/start.module.scss';
+import styles from '../styles/pages/start.module.scss';
 import Image from 'next/image';
 import { PageProps } from './[id]';
 import { ReactElement } from 'react';
