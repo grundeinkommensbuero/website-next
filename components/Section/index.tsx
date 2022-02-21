@@ -6,22 +6,11 @@ import { getAssetURL } from '../../utils/getAssetURL';
 import dynamic from 'next/dynamic';
 
 import cN from 'classnames';
-import s from './style.module.scss';
 import { getEvenLayout, getOddLayout, getOverrideLayout } from './utlis';
 
-import ReactTooltip from 'react-tooltip';
-
-import Icon from '@mdi/react';
-import {
-  mdiPageLayoutHeader,
-  mdiPageLayoutHeaderFooter,
-  mdiDockLeft,
-  mdiTablet,
-  mdiBackspaceOutline,
-  mdiPlaylistEdit,
-} from '@mdi/js';
-import { SelectColor } from './SelectColor';
 import { Tiptap } from '../Editor/Tiptap';
+import { EditSection } from './EditSection';
+import { EditElement } from './EditElement';
 
 type SectionProps = {
   section: Section;
@@ -63,140 +52,17 @@ export type Element = {
 
 export const Section = ({ section }: SectionProps): ReactElement => {
   const [modifiedSection, setModifiedSection] = useState<Section>(section);
-
-  const loggedIn = false;
-
-  const updateSectionLayout = (layout: Layout): void => {
-    const updated = {
-      ...modifiedSection,
-      layout,
-    };
-    setModifiedSection(updated);
-  };
-
-  const updateColorScheme = (colorScheme: ColorScheme): void => {
-    const updated = {
-      ...modifiedSection,
-      colorScheme,
-    };
-    setModifiedSection(updated);
-  };
-
-  const updateElementLayout = (
-    overrideLayout: OverrideLayout,
-    index: number
-  ): void => {
-    // Get and update the edited element
-    const updatedElement: Element = {
-      ...modifiedSection.render[index],
-      overrideLayout,
-    };
-    // Replace it in render list
-    const updatedRender = modifiedSection.render.map((element, elIndex) => {
-      if (elIndex === index) {
-        return updatedElement;
-      }
-      return element;
-    });
-    // Update renderlist in section
-    const updated = {
-      ...modifiedSection,
-      render: updatedRender,
-    };
-    setModifiedSection(updated);
-  };
-
-  const editElement = (edit: boolean, index: number): void => {
-    // Get and update the edited element
-    const updatedElement: Element = {
-      ...modifiedSection.render[index],
-      edit,
-    };
-    // Replace it in render list
-    const updatedRender = modifiedSection.render.map((element, elIndex) => {
-      if (elIndex === index) {
-        return updatedElement;
-      }
-      return element;
-    });
-    // Update renderlist in section
-    const updated = {
-      ...modifiedSection,
-      render: updatedRender,
-    };
-    setModifiedSection(updated);
-  };
+  // (!) Will be replaced with actual login State
+  const isLoggedIn = false;
 
   return (
     <>
-      <ReactTooltip backgroundColor='black' />
-
-      <div className={cN(s.editSection, { [s.hide]: !loggedIn })}>
-        <div className='sections flex'>
-          <button
-            className='noStyleButton'
-            onClick={() => updateSectionLayout('25-75')}>
-            <Icon
-              path={mdiDockLeft}
-              title='Layout 25-75'
-              size={1.25}
-              horizontal
-              vertical
-              rotate={180}
-              color='gray'
-              data-tip='Layout 25%-75%'
-            />
-          </button>
-
-          <button
-            className='noStyleButton'
-            onClick={() => updateSectionLayout('50-50')}>
-            <Icon
-              path={mdiPageLayoutHeaderFooter}
-              title='Layout 50-50'
-              size={1.25}
-              horizontal
-              vertical
-              rotate={90}
-              color='gray'
-              data-tip='Layout 50%-50%'
-            />
-          </button>
-
-          <button
-            className='noStyleButton'
-            onClick={() => updateSectionLayout('75-25')}>
-            <Icon
-              path={mdiPageLayoutHeader}
-              title='Layout 75-25'
-              size={1.25}
-              horizontal
-              vertical
-              rotate={-90}
-              color='gray'
-              data-tip='Layout 75%-25%'
-            />
-          </button>
-
-          <button
-            className='noStyleButton'
-            onClick={() => updateSectionLayout('100')}>
-            <Icon
-              path={mdiTablet}
-              title='Layout 100'
-              size={1.25}
-              horizontal
-              vertical
-              rotate={0}
-              color='gray'
-              data-tip='Layout 100%'
-            />
-          </button>
-
-          <SelectColor updateColorScheme={updateColorScheme} />
-        </div>
-      </div>
-
+      {isLoggedIn && (
+        <EditSection
+          modifiedSection={modifiedSection}
+          setModifiedSection={setModifiedSection}
+        />
+      )}
       <SectionWrapper
         colorScheme={modifiedSection.colorScheme}
         title={modifiedSection.title}>
@@ -215,106 +81,22 @@ export const Section = ({ section }: SectionProps): ReactElement => {
               case 'sectionsText':
                 return (
                   <div
-                    key={'editText' + element.id}
+                    key={'text' + element.id}
                     className={cN(
                       overrideFlexItemClass
                         ? overrideFlexItemClass
                         : flexItemClass
                     )}>
-                    <div className={cN(s.editElement, { [s.hide]: !loggedIn })}>
-                      <ReactTooltip backgroundColor='black' />
-                      <button
-                        className='noStyleButton'
-                        onClick={() => updateElementLayout('25', index)}>
-                        <Icon
-                          path={mdiDockLeft}
-                          title='Element Layout 25'
-                          size={1.25}
-                          horizontal
-                          vertical
-                          rotate={180}
-                          color='gray'
-                          data-tip='Element Layout 25%'
-                        />
-                      </button>
-                      <button
-                        className='noStyleButton'
-                        onClick={() => updateElementLayout('50', index)}>
-                        <Icon
-                          path={mdiPageLayoutHeaderFooter}
-                          title='Element Layout 50'
-                          size={1.25}
-                          horizontal
-                          vertical
-                          rotate={90}
-                          color='gray'
-                          data-tip='Element Layout 50%'
-                        />
-                      </button>
-                      <button
-                        className='noStyleButton'
-                        onClick={() => updateElementLayout('75', index)}>
-                        <Icon
-                          path={mdiPageLayoutHeader}
-                          title='Element Layout 75'
-                          size={1.25}
-                          horizontal
-                          vertical
-                          rotate={-90}
-                          color='gray'
-                          data-tip='Element Layout 75%'
-                        />
-                      </button>
-                      <button
-                        className='noStyleButton'
-                        onClick={() => updateElementLayout('100', index)}>
-                        <Icon
-                          path={mdiTablet}
-                          title='Element Layout 100'
-                          size={1.25}
-                          horizontal
-                          vertical
-                          rotate={0}
-                          color='gray'
-                          data-tip='Element Layout 100%'
-                        />
-                      </button>
-                      <button
-                        className='noStyleButton'
-                        onClick={() => updateElementLayout(null, index)}>
-                        <Icon
-                          path={mdiBackspaceOutline}
-                          title='Element Layout entfernen'
-                          size={1.25}
-                          horizontal
-                          vertical
-                          rotate={180}
-                          color='gray'
-                          data-tip='Element Layout entfernen'
-                        />
-                      </button>
-                      <button
-                        className='noStyleButton'
-                        onClick={() =>
-                          editElement(element.edit ? false : true, index)
-                        }>
-                        <Icon
-                          path={mdiPlaylistEdit}
-                          title='Text bearbeiten'
-                          size={1.25}
-                          horizontal
-                          vertical
-                          rotate={180}
-                          color='gray'
-                          data-tip='Text bearbeiten'
-                        />
-                      </button>
-                    </div>
-
+                    {isLoggedIn && (
+                      <EditElement
+                        modifiedSection={modifiedSection}
+                        setModifiedSection={setModifiedSection}
+                        element={element}
+                        index={index}
+                      />
+                    )}
                     {!element.edit ? (
-                      <div key={'text' + element.id}>
-                        {parseHTML(element.content)}
-                      </div>
+                      <>{parseHTML(element.content)}</>
                     ) : (
                       <Tiptap content={element.content} />
                     )}
@@ -323,86 +105,21 @@ export const Section = ({ section }: SectionProps): ReactElement => {
               case 'sectionsImage':
                 return (
                   <div
-                    key={'editImage' + element.id}
+                    key={'image' + element.id}
                     className={cN(
                       overrideFlexItemClass
                         ? overrideFlexItemClass
                         : flexItemClass
                     )}>
-                    <div className={cN(s.editElement, { [s.hide]: !loggedIn })}>
-                      <ReactTooltip backgroundColor='black' />
-                      <button
-                        className='noStyleButton'
-                        onClick={() => updateElementLayout('25', index)}>
-                        <Icon
-                          path={mdiDockLeft}
-                          title='Element Layout 25'
-                          size={1.25}
-                          horizontal
-                          vertical
-                          rotate={180}
-                          color='gray'
-                          data-tip='Element Layout 25%'
-                        />
-                      </button>
-                      <button
-                        className='noStyleButton'
-                        onClick={() => updateElementLayout('50', index)}>
-                        <Icon
-                          path={mdiPageLayoutHeaderFooter}
-                          title='Element Layout 50'
-                          size={1.25}
-                          horizontal
-                          vertical
-                          rotate={90}
-                          color='gray'
-                          data-tip='Element Layout 50%'
-                        />
-                      </button>
-                      <button
-                        className='noStyleButton'
-                        onClick={() => updateElementLayout('75', index)}>
-                        <Icon
-                          path={mdiPageLayoutHeader}
-                          title='Element Layout 75'
-                          size={1.25}
-                          horizontal
-                          vertical
-                          rotate={-90}
-                          color='gray'
-                          data-tip='Element Layout 75%'
-                        />
-                      </button>
-                      <button
-                        className='noStyleButton'
-                        onClick={() => updateElementLayout('100', index)}>
-                        <Icon
-                          path={mdiTablet}
-                          title='Element Layout 100'
-                          size={1.25}
-                          horizontal
-                          vertical
-                          rotate={0}
-                          color='gray'
-                          data-tip='Element Layout 100%'
-                        />
-                      </button>
-                      <button
-                        className='noStyleButton'
-                        onClick={() => updateElementLayout(null, index)}>
-                        <Icon
-                          path={mdiBackspaceOutline}
-                          title='Element Layout entfernen'
-                          size={1.25}
-                          horizontal
-                          vertical
-                          rotate={180}
-                          color='gray'
-                          data-tip='Element Layout entfernen'
-                        />
-                      </button>
-                    </div>
-                    <div key={'image' + element.id}>
+                    {isLoggedIn && (
+                      <EditElement
+                        modifiedSection={modifiedSection}
+                        setModifiedSection={setModifiedSection}
+                        element={element}
+                        index={index}
+                      />
+                    )}
+                    <div>
                       <Image
                         src={getAssetURL(element.image)}
                         alt='Bild zum Blogpost'

@@ -3,7 +3,6 @@ import Head from 'next/head';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { Mainmenu } from '../../utils/getMenus';
-import cN from 'classnames';
 
 type LayoutProps = {
   children: ReactElement;
