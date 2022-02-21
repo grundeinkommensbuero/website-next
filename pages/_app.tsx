@@ -3,7 +3,7 @@ import type { AppContext, AppProps } from 'next/app';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { Layout } from '../components/Layout';
 import App from 'next/app';
-import { getMenus, Mainmenu } from '../utils/getMenus';
+import { getMenus, Mainmenu } from '../directus/sdk/getMenus';
 
 const queryClient = new QueryClient();
 
