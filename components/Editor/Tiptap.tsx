@@ -27,6 +27,11 @@ const MenuBar = ({ editor }: { editor: Editor | null }) => {
   return (
     <div className={s.buttonRow}>
       <button
+        className={s.rowButton}
+        onClick={() => editor.chain().focus().setHardBreak().run()}>
+        Absatz{' '}
+      </button>
+      <button
         onClick={() => editor.chain().focus().toggleBold().run()}
         className={cN(s.rowButton, editor.isActive('bold') ? 'is-active' : '')}>
         bold
@@ -39,7 +44,7 @@ const MenuBar = ({ editor }: { editor: Editor | null }) => {
         )}>
         italic
       </button>
-      <button
+      {/* <button
         onClick={() => editor.chain().focus().toggleStrike().run()}
         className={cN(
           s.rowButton,
@@ -47,7 +52,7 @@ const MenuBar = ({ editor }: { editor: Editor | null }) => {
         )}>
         strike
       </button>
-      {/* <button
+      <button
         onClick={() => editor.chain().focus().toggleCode().run()}
         className={cN(s.rowButton, editor.isActive('code') ? 'is-active' : '')}>
         code
@@ -102,7 +107,7 @@ const MenuBar = ({ editor }: { editor: Editor | null }) => {
         )}>
         h4
       </button>
-      <button
+      {/* <button
         onClick={() => editor.chain().focus().toggleHeading({ level: 5 }).run()}
         className={cN(
           s.rowButton,
@@ -117,7 +122,7 @@ const MenuBar = ({ editor }: { editor: Editor | null }) => {
           editor.isActive('heading', { level: 6 }) ? 'is-active' : ''
         )}>
         h6
-      </button>
+      </button> */}
       {/* <button
         onClick={() => editor.chain().focus().toggleBulletList().run()}
         className={cN(
@@ -154,11 +159,6 @@ const MenuBar = ({ editor }: { editor: Editor | null }) => {
         className={s.rowButton}
         onClick={() => editor.chain().focus().setHorizontalRule().run()}>
         horizontal rule
-      </button>
-      <button
-        className={s.rowButton}
-        onClick={() => editor.chain().focus().setHardBreak().run()}>
-        hard break{' '}
       </button>
       <button
         className={s.rowButton}
