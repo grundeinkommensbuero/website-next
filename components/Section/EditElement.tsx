@@ -11,6 +11,7 @@ import {
   mdiPlaylistEdit,
 } from '@mdi/js';
 import { OverrideLayout, Section, Element } from '.';
+import { NoSsr } from '../Utils/NoSsr';
 
 type EditElementProps = {
   modifiedSection: Section;
@@ -72,91 +73,105 @@ export const EditElement = ({
 
   return (
     <div className={s.editElement}>
-      <ReactTooltip backgroundColor='black' />
+      <NoSsr>
+        <ReactTooltip backgroundColor='black' />
+      </NoSsr>
       <button
         className='noStyleButton'
         onClick={() => updateElementLayout('25', index)}>
-        <Icon
-          path={mdiDockLeft}
-          title='Element Layout 25'
-          size={1.25}
-          horizontal
-          vertical
-          rotate={180}
-          color='gray'
-          data-tip='Element Layout 25%'
-        />
-      </button>
-      <button
-        className='noStyleButton'
-        onClick={() => updateElementLayout('50', index)}>
-        <Icon
-          path={mdiPageLayoutHeaderFooter}
-          title='Element Layout 50'
-          size={1.25}
-          horizontal
-          vertical
-          rotate={90}
-          color='gray'
-          data-tip='Element Layout 50%'
-        />
-      </button>
-      <button
-        className='noStyleButton'
-        onClick={() => updateElementLayout('75', index)}>
-        <Icon
-          path={mdiPageLayoutHeader}
-          title='Element Layout 75'
-          size={1.25}
-          horizontal
-          vertical
-          rotate={-90}
-          color='gray'
-          data-tip='Element Layout 75%'
-        />
-      </button>
-      <button
-        className='noStyleButton'
-        onClick={() => updateElementLayout('100', index)}>
-        <Icon
-          path={mdiTablet}
-          title='Element Layout 100'
-          size={1.25}
-          horizontal
-          vertical
-          rotate={0}
-          color='gray'
-          data-tip='Element Layout 100%'
-        />
-      </button>
-      <button
-        className='noStyleButton'
-        onClick={() => updateElementLayout(null, index)}>
-        <Icon
-          path={mdiBackspaceOutline}
-          title='Element Layout entfernen'
-          size={1.25}
-          horizontal
-          vertical
-          rotate={180}
-          color='gray'
-          data-tip='Element Layout entfernen'
-        />
-      </button>
-      {element.content && (
-        <button
-          className='noStyleButton'
-          onClick={() => editElement(element.edit ? false : true, index)}>
+        <NoSsr>
           <Icon
-            path={mdiPlaylistEdit}
-            title='Text bearbeiten'
+            path={mdiDockLeft}
+            title='Element Layout 25'
             size={1.25}
             horizontal
             vertical
             rotate={180}
             color='gray'
-            data-tip='Text bearbeiten'
+            data-tip='Element Layout 25%'
           />
+        </NoSsr>
+      </button>
+      <button
+        className='noStyleButton'
+        onClick={() => updateElementLayout('50', index)}>
+        <NoSsr>
+          <Icon
+            path={mdiPageLayoutHeaderFooter}
+            title='Element Layout 50'
+            size={1.25}
+            horizontal
+            vertical
+            rotate={90}
+            color='gray'
+            data-tip='Element Layout 50%'
+          />
+        </NoSsr>
+      </button>
+      <button
+        className='noStyleButton'
+        onClick={() => updateElementLayout('75', index)}>
+        <NoSsr>
+          <Icon
+            path={mdiPageLayoutHeader}
+            title='Element Layout 75'
+            size={1.25}
+            horizontal
+            vertical
+            rotate={-90}
+            color='gray'
+            data-tip='Element Layout 75%'
+          />
+        </NoSsr>
+      </button>
+      <button
+        className='noStyleButton'
+        onClick={() => updateElementLayout('100', index)}>
+        <NoSsr>
+          <Icon
+            path={mdiTablet}
+            title='Element Layout 100'
+            size={1.25}
+            horizontal
+            vertical
+            rotate={0}
+            color='gray'
+            data-tip='Element Layout 100%'
+          />
+        </NoSsr>
+      </button>
+      <button
+        className='noStyleButton'
+        onClick={() => updateElementLayout(null, index)}>
+        <NoSsr>
+          <Icon
+            path={mdiBackspaceOutline}
+            title='Element Layout entfernen'
+            size={1.25}
+            horizontal
+            vertical
+            rotate={180}
+            color='gray'
+            data-tip='Element Layout entfernen'
+          />
+        </NoSsr>
+      </button>
+      {element.content && (
+        <button
+          className='noStyleButton'
+          onClick={() => editElement(element.edit ? false : true, index)}>
+          <NoSsr>
+            <Icon
+              path={mdiPlaylistEdit}
+              title='Text bearbeiten'
+              size={1.25}
+              horizontal
+              vertical
+              rotate={180}
+              color='gray'
+              data-tip='Text bearbeiten'
+            />
+          </NoSsr>
         </button>
       )}
     </div>
