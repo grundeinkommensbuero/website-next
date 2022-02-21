@@ -1,0 +1,25 @@
+.rowButton {
+  border-radius: 0;
+  outline: none;
+  border: 1px solid #4e4e4e;
+  border-right: none;
+  flex-grow: 1;
+  background: none;
+  padding: 0.5rem;
+  background-color: white;
+
+  &:hover {
+    background: #e7e7e7;
+    cursor: pointer;
+  }
+
+  &:last-child {
+    border-right: 1px solid #4e4e4e;
+  }
+}
+
+.buttonRow {
+  display: flex;
+  width: 100vw;
+  max-width: 100%;
+}
