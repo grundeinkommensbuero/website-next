@@ -1,21 +1,16 @@
-import Image from 'next/image';
 import { ReactElement, useState } from 'react';
 import parseHTML from 'html-react-parser';
 
-import { getAssetURL } from '../../utils/getAssetURL';
 import dynamic from 'next/dynamic';
 
 import cN from 'classnames';
-import { getEvenLayout, getOddLayout, getOverrideLayout } from './utlis';
+import { getEvenLayout, getOddLayout, getOverrideLayout } from './style.utlis';
 
 import { Tiptap } from '../Editor/Tiptap';
 import { EditSection } from './EditSection';
 import { EditElement } from './EditElement';
 import { DirectusImage } from '../Utils/DirectusImage';
-
-type SectionProps = {
-  section: Section;
-};
+import { SectionWrapper } from './SectionWrapper';
 
 export type Layout = '100' | '75-25' | '50-50' | '25-75';
 
@@ -49,6 +44,10 @@ export type Element = {
   overrideLayout: string | null;
   align: string;
   edit?: boolean;
+};
+
+type SectionProps = {
+  section: Section;
 };
 
 export const Section = ({ section }: SectionProps): ReactElement => {
@@ -185,33 +184,5 @@ export const Section = ({ section }: SectionProps): ReactElement => {
         </div>
       </SectionWrapper>
     </>
-  );
-};
-
-type SectionWrapperProps = {
-  children: ReactElement;
-  colorScheme: ColorScheme;
-  title: string;
-};
-
-const SectionWrapper = ({
-  children,
-  colorScheme,
-  title,
-}: SectionWrapperProps) => {
-  return (
-    <section className={`py-16 ${colorScheme}`}>
-      <section className='sections'>
-        <h2
-          className={cN(
-            'mb-4',
-            'px-4',
-            `${colorScheme === 'colorSchemeWhite' ? 'text-violet' : ''}`
-          )}>
-          {title}
-        </h2>
-        {children}
-      </section>
-    </section>
   );
 };
