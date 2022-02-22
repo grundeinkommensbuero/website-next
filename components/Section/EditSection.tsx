@@ -15,11 +15,13 @@ import { EditIcon } from './EditIcon';
 type EditSectionProps = {
   modifiedSection: Section;
   setModifiedSection: (section: Section) => void;
+  currentColorScheme: string;
 };
 
 export const EditSection = ({
   modifiedSection,
   setModifiedSection,
+  currentColorScheme,
 }: EditSectionProps): ReactElement => {
   const updateSectionLayout = (layout: Layout): void => {
     const updated = {
@@ -72,7 +74,10 @@ export const EditSection = ({
             tooltip="Layout 100%"
           />
 
-          <SelectColor updateColorScheme={updateColorScheme} />
+          <SelectColor
+            currentColorScheme={currentColorScheme}
+            updateColorScheme={updateColorScheme}
+          />
 
           <div className="grow" />
 

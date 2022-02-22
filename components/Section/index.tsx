@@ -83,6 +83,7 @@ export const Section = ({ section }: SectionProps): ReactElement => {
         <EditSection
           modifiedSection={modifiedSection}
           setModifiedSection={setModifiedSection}
+          currentColorScheme={modifiedSection.colorScheme}
         />
       )}
       <SectionWrapper

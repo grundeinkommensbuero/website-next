@@ -16,22 +16,28 @@ const options: Option[] = [
 ];
 
 export const SelectColor = ({
+  currentColorScheme,
   updateColorScheme,
 }: {
+  currentColorScheme: string;
   updateColorScheme: (color: ColorScheme) => void;
 }) => (
   <div className={s.dropdown}>
-    <span>Farbschema</span>
+    <div className="flex">
+      <div className={cN(s.themePreview, currentColorScheme, 'mr-2')} />
+      <span>Farbschema</span>
+    </div>
     <div className={s.dropdownContent}>
       {options.map(option => {
         return (
-          <button
-            className={cN('noStyleButton', s.optionButton)}
-            key={option.value}
-            onClick={() => updateColorScheme(option.value)}
-          >
-            {option.label}
-          </button>
+          <section key={option.value} className={option.value}>
+            <button
+              className={cN('noStyleButton', s.optionButton)}
+              onClick={() => updateColorScheme(option.value)}
+            >
+              {option.label}
+            </button>
+          </section>
         );
       })}
     </div>
