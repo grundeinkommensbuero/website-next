@@ -1,9 +1,7 @@
 import { ReactElement } from 'react';
 import s from './style.module.scss';
-import { Icon } from '@mdi/react';
 import { SelectColor } from './SelectColor';
 import { Layout, ColorScheme, Section } from '.';
-import ReactTooltip from 'react-tooltip';
 import {
   mdiPageLayoutHeader,
   mdiPageLayoutHeaderFooter,
@@ -12,7 +10,7 @@ import {
   mdiContentSaveOutline,
 } from '@mdi/js';
 import { updateSection } from '../../directus/sdk/updateSection';
-import { NoSsr } from '../Utils/NoSsr';
+import { EditIcon } from './EditIcon';
 
 type EditSectionProps = {
   modifiedSection: Section;
@@ -41,103 +39,50 @@ export const EditSection = ({
 
   return (
     <>
-      <NoSsr>
-        <ReactTooltip backgroundColor="black" />
-      </NoSsr>
-
       <div className={s.editSection}>
         <div className="sections flex">
-          <button
-            className="noStyleButton"
-            onClick={() => updateSectionLayout('25-75')}
-          >
-            <NoSsr>
-              <Icon
-                path={mdiDockLeft}
-                title="Layout 25-75"
-                size={1.25}
-                horizontal
-                vertical
-                rotate={180}
-                color="gray"
-                data-tip="Layout 25%-75%"
-              />
-            </NoSsr>
-          </button>
+          <EditIcon
+            path={mdiDockLeft}
+            action={() => updateSectionLayout('25-75')}
+            size={1.25}
+            tooltip="Layout 25%-75%"
+          />
 
-          <button
-            className="noStyleButton"
-            onClick={() => updateSectionLayout('50-50')}
-          >
-            <NoSsr>
-              <Icon
-                path={mdiPageLayoutHeaderFooter}
-                title="Layout 50-50"
-                size={1.25}
-                horizontal
-                vertical
-                rotate={90}
-                color="gray"
-                data-tip="Layout 50%-50%"
-              />
-            </NoSsr>
-          </button>
+          <EditIcon
+            path={mdiPageLayoutHeaderFooter}
+            action={() => updateSectionLayout('50-50')}
+            size={1.25}
+            rotate={90}
+            tooltip="Layout 50%-50%"
+          />
 
-          <button
-            className="noStyleButton"
-            onClick={() => updateSectionLayout('75-25')}
-          >
-            <NoSsr>
-              <Icon
-                path={mdiPageLayoutHeader}
-                title="Layout 75-25"
-                size={1.25}
-                horizontal
-                vertical
-                rotate={-90}
-                color="gray"
-                data-tip="Layout 75%-25%"
-              />
-            </NoSsr>
-          </button>
+          <EditIcon
+            path={mdiPageLayoutHeader}
+            action={() => updateSectionLayout('75-25')}
+            size={1.25}
+            rotate={90}
+            tooltip="Layout 75%-25%"
+          />
 
-          <button
-            className="noStyleButton"
-            onClick={() => updateSectionLayout('100')}
-          >
-            <NoSsr>
-              <Icon
-                path={mdiTablet}
-                title="Layout 100"
-                size={1.25}
-                horizontal
-                vertical
-                rotate={0}
-                color="gray"
-                data-tip="Layout 100%"
-              />
-            </NoSsr>
-          </button>
+          <EditIcon
+            path={mdiTablet}
+            action={() => updateSectionLayout('100')}
+            size={1.25}
+            rotate={0}
+            tooltip="Layout 100%"
+          />
 
           <SelectColor updateColorScheme={updateColorScheme} />
 
           <div className="grow" />
 
-          <button
-            className="noStyleButton"
-            onClick={() => updateSection(modifiedSection)}
-          >
-            <NoSsr>
-              <Icon
-                path={mdiContentSaveOutline}
-                title="Speichern"
-                size={1.25}
-                rotate={0}
-                color="gray"
-                data-tip="Speichern"
-              />
-            </NoSsr>
-          </button>
+          <EditIcon
+            path={mdiContentSaveOutline}
+            action={() => updateSection(modifiedSection)}
+            size={1.25}
+            rotate={0}
+            tooltip="Speichern"
+          />
         </div>
       </div>
     </>

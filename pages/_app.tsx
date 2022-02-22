@@ -4,6 +4,8 @@ import { QueryClientProvider, QueryClient } from 'react-query';
 import { Layout } from '../components/Layout';
 import App from 'next/app';
 import { getMenus, Mainmenu } from '../directus/sdk/getMenus';
+import { NoSsr } from '../components/Utils/NoSsr';
+import ReactTooltip from 'react-tooltip';
 
 const queryClient = new QueryClient();
 
@@ -17,6 +19,9 @@ function XbgeApp({ Component, pageProps, mainmenu }: XbgeAppProps) {
           <Component {...pageProps} />
         </Layout>
       </QueryClientProvider>
+      <NoSsr>
+        <ReactTooltip backgroundColor={'black'} />
+      </NoSsr>
     </>
   );
 }
