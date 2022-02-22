@@ -16,7 +16,7 @@ export const getPageData = async (slug: string) => {
     variables: {},
   };
 
-  const page: Promise<Page> = await fetchData(query, variables).then((data) => {
+  const page: Promise<Page> = await fetchData(query, variables).then(data => {
     return data.data.pages_by_id;
   });
 

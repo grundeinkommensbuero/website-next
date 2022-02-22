@@ -30,12 +30,14 @@ export const MenuItemParent = ({
             internalLink.substring(0, 1) === '/'
               ? internalLink
               : `/${internalLink}`
-          }>
+          }
+        >
           <a
-            className='mx-2 text-2xl'
+            className="mx-2 text-2xl"
             aria-label={`Zu ${
               internalLink === '/' ? 'Start' : internalLink
-            } navigieren`}>
+            } navigieren`}
+          >
             {title}
           </a>
         </Link>
@@ -44,8 +46,9 @@ export const MenuItemParent = ({
         <a
           className={s.link}
           href={externalLink}
-          rel='noreferrer'
-          target='_blank'>
+          rel="noreferrer"
+          target="_blank"
+        >
           {title}
         </a>
       )}

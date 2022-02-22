@@ -7,7 +7,7 @@ export const fetchFileMetadata = async (assetId: string) => {
         process.env.DIRECTUS || process.env.NEXT_PUBLIC_DIRECTUS
       }files/${assetId}`
     )
-    .then((response) => {
+    .then(response => {
       return response.data.data;
     });
   return data;

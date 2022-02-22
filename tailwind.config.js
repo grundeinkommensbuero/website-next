@@ -32,19 +32,19 @@ module.exports = {
       '5xl': '3rem',
       '6xl': '4rem',
     },
-    backgroundColor: (theme) => ({
+    backgroundColor: theme => ({
       ...theme('colors'),
       violet: '#7d69f6',
       aqua: '#46b4b4',
       red: '#ff4664',
     }),
-    textColor: (theme) => ({
+    textColor: theme => ({
       ...theme('colors'),
       violet: '#7d69f6',
       aqua: '#46b4b4',
       red: '#ff4664',
     }),
-    borderColor: (theme) => ({
+    borderColor: theme => ({
       ...theme('colors'),
       violet: '#7d69f6',
       aqua: '#46b4b4',

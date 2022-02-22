@@ -29,9 +29,9 @@ const variables = {
   variables: {},
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async context => {
   const blogposts: Promise<Blogpost[]> = await fetchData(query, variables).then(
-    (data) => {
+    data => {
       return data.data.blogposts;
     }
   );
@@ -49,10 +49,10 @@ type SSProps = {
 const Blog = ({ blogposts }: SSProps): ReactElement => {
   return (
     <>
-      <h2 className='mx-8'>Expeditionsblog:</h2>
-      <div className='flex flex-wrap xs:flex-column justify-around'>
+      <h2 className="mx-8">Expeditionsblog:</h2>
+      <div className="flex flex-wrap xs:flex-column justify-around">
         {blogposts &&
-          blogposts.map((post) => {
+          blogposts.map(post => {
             return (
               <PostExcerpt
                 key={post.id}

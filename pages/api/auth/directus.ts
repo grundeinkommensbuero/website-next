@@ -35,7 +35,7 @@ export default async function handler(
     return token;
   };
 
-  authenticate().then(async (token) => {
+  authenticate().then(async token => {
     console.log(token);
 
     const user = await directus.users.me.read();

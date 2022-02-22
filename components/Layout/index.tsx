@@ -16,17 +16,17 @@ export const Layout = ({
   currentRoute,
 }: LayoutProps): ReactElement => {
   return (
-    <div className='flex-column container'>
+    <div className="flex-column container">
       <Head>
         <title>Expedition Grundeinkommen</title>
         <meta
-          name='description'
-          content='Modellversuch zum Grundeinkommen jetzt!'
+          name="description"
+          content="Modellversuch zum Grundeinkommen jetzt!"
         />
-        <link rel='icon' href='/favicon.ico' />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header mainmenu={mainmenu} currentRoute={currentRoute} />
-      <div className='grow'>{children}</div>
+      <div className="grow">{children}</div>
       <Footer />
     </div>
   );

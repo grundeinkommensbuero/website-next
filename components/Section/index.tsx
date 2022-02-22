@@ -87,8 +87,9 @@ export const Section = ({ section }: SectionProps): ReactElement => {
       )}
       <SectionWrapper
         colorScheme={modifiedSection.colorScheme}
-        title={modifiedSection.title}>
-        <div className='flexWrap'>
+        title={modifiedSection.title}
+      >
+        <div className="flexWrap">
           {modifiedSection.render.map((element, index) => {
             const flexItemClass =
               index % 2 == 0
@@ -108,7 +109,8 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                       overrideFlexItemClass
                         ? overrideFlexItemClass
                         : flexItemClass
-                    )}>
+                    )}
+                  >
                     {isLoggedIn && (
                       <EditElement
                         modifiedSection={modifiedSection}
@@ -122,9 +124,7 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                     ) : (
                       <Tiptap
                         content={element.content}
-                        updateContent={(content) =>
-                          updateContent(index, content)
-                        }
+                        updateContent={content => updateContent(index, content)}
                       />
                     )}
                   </div>
@@ -137,7 +137,8 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                       overrideFlexItemClass
                         ? overrideFlexItemClass
                         : flexItemClass
-                    )}>
+                    )}
+                  >
                     {isLoggedIn && (
                       <EditElement
                         modifiedSection={modifiedSection}
@@ -147,7 +148,7 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                       />
                     )}
                     <DirectusImage
-                      className='object-cover h-full w-full'
+                      className="object-cover h-full w-full"
                       assetId={element.image}
                       alt={element.title}
                     />
@@ -165,7 +166,8 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                       overrideFlexItemClass
                         ? overrideFlexItemClass
                         : flexItemClass
-                    )}>
+                    )}
+                  >
                     {isLoggedIn && (
                       <EditElement
                         modifiedSection={modifiedSection}

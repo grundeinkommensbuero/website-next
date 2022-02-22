@@ -27,7 +27,7 @@ export const getPageProps = async (slug: string): Promise<PageProps> => {
     // Get IDs for all sections from pages_sections
     const sdkPagesSections: PagesSection[] = await Promise.all(
       page.sections.map(
-        async (id) =>
+        async id =>
           (await directus.items('pages_sections').readOne(id)) as PagesSection
       )
     );
@@ -35,7 +35,7 @@ export const getPageProps = async (slug: string): Promise<PageProps> => {
     // Get all sections for the current page by ID
     const _sections: Section[] = await Promise.all(
       sdkPagesSections.map(
-        async (section) =>
+        async section =>
           (await directus
             .items(section.collection)
             .readOne(section.item)) as Section
@@ -44,17 +44,17 @@ export const getPageProps = async (slug: string): Promise<PageProps> => {
 
     // Get all elements in current page sections by ID
     const sections = await Promise.all(
-      _sections.map(async (section) => {
+      _sections.map(async section => {
         const toRender = await Promise.all(
           section.elements.map(
-            async (el) =>
+            async el =>
               (await directus
                 .items('sections_elements')
                 .readOne(el)) as SectionsElement
           )
         );
         const render = await Promise.all(
-          toRender.map(async (el) => {
+          toRender.map(async el => {
             const element = (await directus
               .items(el.collection)
               .readOne(el.item)) as Element;

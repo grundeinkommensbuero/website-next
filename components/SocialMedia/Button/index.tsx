@@ -34,8 +34,8 @@ export const SocialMediaButton = ({
   iconSize,
 }: SocialButtonProps) => (
   <a
-    target='_blank'
-    rel='noreferrer'
+    target="_blank"
+    rel="noreferrer"
     href={link}
     aria-label={label}
     className={cN(s.button, className, s['button' + iconSize])}

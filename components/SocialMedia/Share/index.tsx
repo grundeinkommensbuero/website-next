@@ -20,17 +20,17 @@ export const Share = ({ children, className }: ShareProps) => {
       {children && <p>{children}</p>}
       <div className={s.iconContainer}>
         <SocialMediaButton
-          icon='Facebook'
+          icon="Facebook"
           link={`https://www.facebook.com/share.php?u=https://expedition-grundeinkommen.de&quote=${facebookText}`}
           iconSize={iconSize}
-          label='Teile auf Facebook'
+          label="Teile auf Facebook"
           className={s.shareButton}
         />
         <SocialMediaButton
-          icon='Twitter'
+          icon="Twitter"
           link={`https://www.twitter.com/intent/tweet?text=${twitterText}`}
           iconSize={iconSize}
-          label='Teile auf Twitter'
+          label="Teile auf Twitter"
           className={s.shareButton}
         />
       </div>

@@ -36,12 +36,14 @@ const MenuBar = ({ editor }: { editor: Editor | null }) => {
     <div className={s.buttonRow}>
       <button
         className={s.rowButton}
-        onClick={() => editor.chain().focus().setHardBreak().run()}>
+        onClick={() => editor.chain().focus().setHardBreak().run()}
+      >
         Absatz{' '}
       </button>
       <button
         onClick={() => editor.chain().focus().toggleBold().run()}
-        className={cN(s.rowButton, editor.isActive('bold') ? 'is-active' : '')}>
+        className={cN(s.rowButton, editor.isActive('bold') ? 'is-active' : '')}
+      >
         bold
       </button>
       <button
@@ -49,7 +51,8 @@ const MenuBar = ({ editor }: { editor: Editor | null }) => {
         className={cN(
           s.rowButton,
           editor.isActive('italic') ? 'is-active' : ''
-        )}>
+        )}
+      >
         italic
       </button>
       {/* <button
@@ -80,7 +83,8 @@ const MenuBar = ({ editor }: { editor: Editor | null }) => {
         className={cN(
           s.rowButton,
           editor.isActive('paragraph') ? 'is-active' : ''
-        )}>
+        )}
+      >
         paragraph
       </button>
       <button
@@ -88,7 +92,8 @@ const MenuBar = ({ editor }: { editor: Editor | null }) => {
         className={cN(
           s.rowButton,
           editor.isActive('heading', { level: 1 }) ? 'is-active' : ''
-        )}>
+        )}
+      >
         h1
       </button>
       <button
@@ -96,7 +101,8 @@ const MenuBar = ({ editor }: { editor: Editor | null }) => {
         className={cN(
           s.rowButton,
           editor.isActive('heading', { level: 2 }) ? 'is-active' : ''
-        )}>
+        )}
+      >
         h2
       </button>
       <button
@@ -104,7 +110,8 @@ const MenuBar = ({ editor }: { editor: Editor | null }) => {
         className={cN(
           s.rowButton,
           editor.isActive('heading', { level: 3 }) ? 'is-active' : ''
-        )}>
+        )}
+      >
         h3
       </button>
       <button
@@ -112,7 +119,8 @@ const MenuBar = ({ editor }: { editor: Editor | null }) => {
         className={cN(
           s.rowButton,
           editor.isActive('heading', { level: 4 }) ? 'is-active' : ''
-        )}>
+        )}
+      >
         h4
       </button>
       {/* <button

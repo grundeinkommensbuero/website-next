@@ -7,7 +7,7 @@ export const fetchCollection = async (collection: string) => {
         process.env.DIRECTUS || process.env.NEXT_PUBLIC_DIRECTUS
       }items/${collection}`
     )
-    .then((response) => {
+    .then(response => {
       return response.data.data;
     });
   return data;

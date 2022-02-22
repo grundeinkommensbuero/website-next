@@ -36,7 +36,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   };
 
   const blogpost: Promise<Blogpost> = await fetchData(query, variables).then(
-    (data) => {
+    data => {
       return data.data.blogposts_by_id;
     }
   );

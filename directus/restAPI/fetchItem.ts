@@ -7,7 +7,7 @@ export const fetchItem = async (collection: string, id: string | number) => {
         process.env.DIRECTUS || process.env.NEXT_PUBLIC_DIRECTUS
       }items/${collection}/${id}`
     )
-    .then((response) => {
+    .then(response => {
       return response.data.data;
     });
   return data;

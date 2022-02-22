@@ -69,7 +69,7 @@ export const getMenus = async (): Promise<Menus> => {
     // Get all menu entries for the current menu
     const _menuEntries: Array<FetchedEntries> = await Promise.all(
       _mainmenu.elements.map(
-        async (element) =>
+        async element =>
           (await directus.items(element.collection).readOne(element.item, {
             fields: [
               'id',
@@ -87,11 +87,11 @@ export const getMenus = async (): Promise<Menus> => {
       )
     );
 
-    const mainmenu: Mainmenu = _menuEntries.map((menuElement) => {
+    const mainmenu: Mainmenu = _menuEntries.map(menuElement => {
       if (!menuElement.entries) return menuElement;
       const updatedEntry: Dropdown = {
         ...menuElement,
-        entries: menuElement.entries.map((x) => x.menuentry_id),
+        entries: menuElement.entries.map(x => x.menuentry_id),
       };
       return updatedEntry;
     });

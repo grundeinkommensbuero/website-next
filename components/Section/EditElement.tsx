@@ -74,102 +74,108 @@ export const EditElement = ({
   return (
     <div className={s.editElement}>
       <NoSsr>
-        <ReactTooltip backgroundColor='black' />
+        <ReactTooltip backgroundColor="black" />
       </NoSsr>
       <button
-        className='noStyleButton'
-        onClick={() => updateElementLayout('25', index)}>
+        className="noStyleButton"
+        onClick={() => updateElementLayout('25', index)}
+      >
         <NoSsr>
           <Icon
             path={mdiDockLeft}
-            title='Element Layout 25'
+            title="Element Layout 25"
             size={1.25}
             horizontal
             vertical
             rotate={180}
-            color='gray'
-            data-tip='Element Layout 25%'
+            color="gray"
+            data-tip="Element Layout 25%"
           />
         </NoSsr>
       </button>
       <button
-        className='noStyleButton'
-        onClick={() => updateElementLayout('50', index)}>
+        className="noStyleButton"
+        onClick={() => updateElementLayout('50', index)}
+      >
         <NoSsr>
           <Icon
             path={mdiPageLayoutHeaderFooter}
-            title='Element Layout 50'
+            title="Element Layout 50"
             size={1.25}
             horizontal
             vertical
             rotate={90}
-            color='gray'
-            data-tip='Element Layout 50%'
+            color="gray"
+            data-tip="Element Layout 50%"
           />
         </NoSsr>
       </button>
       <button
-        className='noStyleButton'
-        onClick={() => updateElementLayout('75', index)}>
+        className="noStyleButton"
+        onClick={() => updateElementLayout('75', index)}
+      >
         <NoSsr>
           <Icon
             path={mdiPageLayoutHeader}
-            title='Element Layout 75'
+            title="Element Layout 75"
             size={1.25}
             horizontal
             vertical
             rotate={-90}
-            color='gray'
-            data-tip='Element Layout 75%'
+            color="gray"
+            data-tip="Element Layout 75%"
           />
         </NoSsr>
       </button>
       <button
-        className='noStyleButton'
-        onClick={() => updateElementLayout('100', index)}>
+        className="noStyleButton"
+        onClick={() => updateElementLayout('100', index)}
+      >
         <NoSsr>
           <Icon
             path={mdiTablet}
-            title='Element Layout 100'
+            title="Element Layout 100"
             size={1.25}
             horizontal
             vertical
             rotate={0}
-            color='gray'
-            data-tip='Element Layout 100%'
+            color="gray"
+            data-tip="Element Layout 100%"
           />
         </NoSsr>
       </button>
       <button
-        className='noStyleButton'
-        onClick={() => updateElementLayout(null, index)}>
+        className="noStyleButton"
+        onClick={() => updateElementLayout(null, index)}
+      >
         <NoSsr>
           <Icon
             path={mdiBackspaceOutline}
-            title='Element Layout entfernen'
+            title="Element Layout entfernen"
             size={1.25}
             horizontal
             vertical
             rotate={180}
-            color='gray'
-            data-tip='Element Layout entfernen'
+            color="gray"
+            data-tip="Element Layout entfernen"
           />
         </NoSsr>
       </button>
       {element.content && (
         <button
-          className='noStyleButton'
-          onClick={() => editElement(element.edit ? false : true, index)}>
+          className="noStyleButton"
+          onClick={() => editElement(element.edit ? false : true, index)}
+        >
           <NoSsr>
             <Icon
               path={mdiPlaylistEdit}
-              title='Text bearbeiten'
+              title="Text bearbeiten"
               size={1.25}
               horizontal
               vertical
               rotate={180}
-              color='gray'
-              data-tip='Text bearbeiten'
+              color="gray"
+              data-tip="Text bearbeiten"
             />
           </NoSsr>
         </button>

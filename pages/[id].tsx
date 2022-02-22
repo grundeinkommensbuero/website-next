@@ -19,12 +19,12 @@ export type PageProps = {
 const PageWithSections = ({ page, sections }: PageProps): ReactElement => {
   if (!page) {
     return (
-      <div className='text-center'>
-        <h2 className='mt-16 mb-4 text-violet'>
+      <div className="text-center">
+        <h2 className="mt-16 mb-4 text-violet">
           Diese Seite gibt es leider nicht.
         </h2>
-        <Link href='/'>
-          <a className='text-d-xl' aria-label='Zurück zur Startseite'>
+        <Link href="/">
+          <a className="text-d-xl" aria-label="Zurück zur Startseite">
             Zurück zur Startseite
           </a>
         </Link>
@@ -33,10 +33,10 @@ const PageWithSections = ({ page, sections }: PageProps): ReactElement => {
   }
   return (
     <section>
-      <div className='pageWidth'>
-        {page.title && <h2 className='text-violet my-8'>{page.title}</h2>}
+      <div className="pageWidth">
+        {page.title && <h2 className="text-violet my-8">{page.title}</h2>}
       </div>
-      {sections.map((section) => {
+      {sections.map(section => {
         return <Section key={section.id} section={section} />;
       })}
     </section>

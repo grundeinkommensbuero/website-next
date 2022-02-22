@@ -26,7 +26,7 @@ export const DirectusImage = ({
   const assetURL = getAssetURL(assetId);
 
   useEffect(() => {
-    fetchFileMetadata(assetId).then((meta) => {
+    fetchFileMetadata(assetId).then(meta => {
       if (meta) setImageMeta(meta);
     });
     // eslint-disable-next-line

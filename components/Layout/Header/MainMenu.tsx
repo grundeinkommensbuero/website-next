@@ -13,17 +13,17 @@ export const MainMenu = ({
   currentRoute,
 }: MainMenuProps): ReactElement => {
   return (
-    <div className='my-7 flex-row'>
-      {mainmenu.map((entry) => {
+    <div className="my-7 flex-row">
+      {mainmenu.map(entry => {
         if ((entry as Dropdown).entries)
           return (
             <div key={entry.id} className={s.dropdown}>
-              <span className='mx-2 text-xl nowrap'>{entry.label}</span>
+              <span className="mx-2 text-xl nowrap">{entry.label}</span>
               <div className={s.dropdownContent}>
                 <>
-                  {(entry as Dropdown).entries.map((entry) => {
+                  {(entry as Dropdown).entries.map(entry => {
                     return (
-                      <div className='my-4' key={entry.slug}>
+                      <div className="my-4" key={entry.slug}>
                         <MenuLink entry={entry} currentRoute={currentRoute} />
                       </div>
                     );
@@ -58,14 +58,16 @@ const MenuLink = ({
         // Apperently this prop is getting prefixed in the client, but
         // not on the server. Until fixed this workaround helps:
         entry.slug.substring(0, 1) === '/' ? entry.slug : `/${entry.slug}`
-      }>
+      }
+    >
       <a
         className={`mx-2 text-xl nowrap ${
           entry.slug === currentRoute ? 'underline' : 'hoverUnderline'
         }`}
         aria-label={`Zu ${
           entry.slug === '/' ? 'Start' : entry.slug
-        } navigieren`}>
+        } navigieren`}
+      >
         {entry.label}
       </a>
     </Link>

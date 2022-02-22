@@ -23,12 +23,13 @@ export const SelectColor = ({
   <div className={s.dropdown}>
     <span>Farbschema</span>
     <div className={s.dropdownContent}>
-      {options.map((option) => {
+      {options.map(option => {
         return (
           <button
             className={cN('noStyleButton', s.optionButton)}
             key={option.value}
-            onClick={() => updateColorScheme(option.value)}>
+            onClick={() => updateColorScheme(option.value)}
+          >
             {option.label}
           </button>
         );
