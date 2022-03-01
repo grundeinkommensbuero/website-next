@@ -3,12 +3,6 @@ import { ReactElement, useState, useEffect, ReactNode } from 'react';
 import { getAssetURL } from '../../utils/getAssetURL';
 import { fetchFileMetadata } from '../../directus/restAPI/fetchFileMetadata';
 
-type DirectusImageProps = {
-  assetId: string;
-  alt: string;
-  className: string;
-};
-
 type ImageMeta = {
   width: number | null;
   height: number | null;
@@ -16,10 +10,18 @@ type ImageMeta = {
   title: string;
 };
 
+type DirectusImageProps = {
+  assetId: string;
+  alt: string;
+  className: string;
+  fill?: boolean;
+};
+
 export const DirectusImage = ({
   assetId,
   className,
   alt,
+  fill = false,
 }: DirectusImageProps): ReactElement => {
   const [imageMeta, setImageMeta] = useState<ImageMeta | null>(null);
 
@@ -34,12 +36,12 @@ export const DirectusImage = ({
 
   return (
     <>
-      {imageMeta && (
+      {imageMeta?.height && imageMeta?.width && (
         <Image
           src={assetURL}
           alt={alt}
-          height={imageMeta.height || 600}
-          width={imageMeta.width || 600}
+          height={imageMeta.height}
+          width={imageMeta.width}
           className={className}
         />
       )}
