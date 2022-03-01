@@ -84,7 +84,7 @@ export const Section = ({ section }: SectionProps): ReactElement => {
         };
       };
 
-      if (!element.groupElement && index !== 0) {
+      if (element.overrideLayout || (!element.groupElement && index !== 0)) {
         increment();
       }
 
