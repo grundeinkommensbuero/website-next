@@ -25,9 +25,11 @@ export const Layout = ({
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
       <Header mainmenu={mainmenu} currentRoute={currentRoute} />
-      <div className="grow">{children}</div>
+      {children}
       <Footer />
+      <div className="grow bg-red" />
     </div>
   );
 };

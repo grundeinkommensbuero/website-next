@@ -18,7 +18,7 @@ export const MenuItemParent = ({
   externalLink,
 }: MenuItemParentProps): ReactElement => {
   return (
-    <div className={cN({ [s.navItemParent]: true }, s.navItem)}>
+    <div className={cN(s.navItemParent, s.navItem)}>
       {!internalLink && !externalLink && (
         <a className={cN('mx-2 text-xl')}>{title}</a>
       )}
