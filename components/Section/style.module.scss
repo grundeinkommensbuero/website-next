@@ -2,36 +2,42 @@
   max-width: 100%;
   min-width: 100%;
   padding: 1rem;
+  transition: all 0.25s ease-out;
 }
 
 .flexItem75 {
   max-width: 75%;
   min-width: 75%;
   padding: 1rem;
+  transition: all 0.25s ease-out;
 }
 
 .flexItem50 {
   max-width: 50%;
   min-width: 50%;
   padding: 1rem;
+  transition: all 0.25s ease-out;
 }
 
 .flexItem25 {
   max-width: 25%;
   min-width: 25%;
   padding: 1rem;
+  transition: all 0.25s ease-out;
 }
 
 .flexItem2 {
   max-width: 50%;
   min-width: 50%;
   padding: 1rem;
+  transition: all 0.25s ease-out;
 }
 
 .flexItem3 {
   max-width: 50%;
   min-width: 50%;
   padding: 1rem;
+  transition: all 0.25s ease-out;
 }
 
 .editSection {
@@ -52,7 +58,10 @@
 .dropdown {
   position: relative;
   display: inline-block;
-  margin: 0.5rem;
+}
+
+.dropdown:hover .dropdownContent {
+  display: block;
 }
 
 .dropdownContent {
@@ -64,8 +73,23 @@
   z-index: 1;
 }
 
-.dropdown:hover .dropdownContent {
-  display: block;
+.dropdownEditRow {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdownEditRow:hover .dropdownEditRowContent {
+  display: flex;
+}
+
+.dropdownEditRowContent {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 8rem;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  margin-top: -0.25rem;
 }
 
 .optionButton {
@@ -88,4 +112,12 @@
   border: 1px solid black;
   height: 1rem;
   width: 1rem;
+}
+
+.flexRight {
+  margin-left: 50%;
+}
+
+.flexLeft {
+  margin-right: 50%;
 }

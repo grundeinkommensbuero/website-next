@@ -1,6 +1,6 @@
 import s from './style.module.scss';
 
-export const getEvenLayout = (layout: string): string => {
+export const getLeftLayout = (layout: string): string => {
   switch (layout) {
     case '100':
       return s.flexItem100;
@@ -15,7 +15,7 @@ export const getEvenLayout = (layout: string): string => {
   }
 };
 
-export const getOddLayout = (layout: string): string => {
+export const getRightLayout = (layout: string): string => {
   switch (layout) {
     case '100':
       return s.flexItem100;

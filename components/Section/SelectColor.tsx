@@ -6,13 +6,14 @@ import cN from 'classnames';
 type Option = {
   value: ColorScheme;
   label: string;
+  fontColor: string;
 };
 
 const options: Option[] = [
-  { value: 'colorSchemeAqua', label: 'Aqua' },
-  { value: 'colorSchemeViolet', label: 'Violet' },
-  { value: 'colorSchemeWhite', label: 'White' },
-  { value: 'colorSchemeRed', label: 'Red' },
+  { value: 'colorSchemeAqua', label: 'Aqua', fontColor: 'text-white' },
+  { value: 'colorSchemeViolet', label: 'Violet', fontColor: 'text-white' },
+  { value: 'colorSchemeWhite', label: 'White', fontColor: 'text-black' },
+  { value: 'colorSchemeRed', label: 'Red', fontColor: 'text-white' },
 ];
 
 export const SelectColor = ({
@@ -22,7 +23,7 @@ export const SelectColor = ({
   currentColorScheme: string;
   updateColorScheme: (color: ColorScheme) => void;
 }) => (
-  <div className={s.dropdown}>
+  <div className={cN(s.dropdown, 'm-2')}>
     <div className="flex">
       <div className={cN(s.themePreview, currentColorScheme, 'mr-2')} />
       <span>Farbschema</span>
@@ -35,7 +36,7 @@ export const SelectColor = ({
               className={cN('noStyleButton', s.optionButton)}
               onClick={() => updateColorScheme(option.value)}
             >
-              {option.label}
+              <b className={cN(option.fontColor, 'text-lg')}>{option.label}</b>
             </button>
           </section>
         );

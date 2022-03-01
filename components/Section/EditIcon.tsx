@@ -2,8 +2,6 @@ import { ReactElement, useState } from 'react';
 import { NoSsr } from '../Utils/NoSsr';
 import { Icon } from '@mdi/react';
 
-type IconColors = 'gray' | '#46b4b4';
-
 type EditIconProps = {
   path: string;
   action: () => void;
@@ -13,6 +11,7 @@ type EditIconProps = {
   size?: number;
   title?: string;
   tooltip?: string;
+  isActive?: boolean;
 };
 
 export const EditIcon = ({
@@ -24,15 +23,23 @@ export const EditIcon = ({
   size = 1,
   title,
   tooltip,
+  isActive = false,
 }: EditIconProps): ReactElement => {
-  const [color, setColor] = useState<IconColors>('gray');
+  const [hover, setHover] = useState<boolean>(false);
+
+  const getColor = () => {
+    if (!hover) {
+      return isActive ? '#7d69f6' : 'gray';
+    }
+    return '#46b4b4';
+  };
 
   return (
     <button
       className="noStyleButton"
       onClick={() => action()}
-      onMouseEnter={() => setColor('#46b4b4')}
-      onMouseLeave={() => setColor('gray')}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
     >
       <NoSsr>
         <Icon
@@ -41,7 +48,7 @@ export const EditIcon = ({
           horizontal={flipHorizontal}
           vertical={flipVertical}
           rotate={rotate}
-          color={color}
+          color={getColor()}
           title={title}
           data-tip={tooltip}
         />
