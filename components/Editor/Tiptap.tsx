@@ -34,12 +34,12 @@ const MenuBar = ({ editor }: { editor: Editor | null }) => {
 
   return (
     <div className={s.buttonRow}>
-      <button
+      {/* <button
         className={s.rowButton}
         onClick={() => editor.chain().focus().setHardBreak().run()}
       >
         Absatz{' '}
-      </button>
+      </button> */}
       <button
         onClick={() => editor.chain().focus().toggleBold().run()}
         className={cN(s.rowButton, editor.isActive('bold') ? 'is-active' : '')}
