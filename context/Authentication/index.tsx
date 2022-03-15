@@ -5,6 +5,7 @@ import { getCurrentUser, getUser } from '../../hooks/Api/Users/Get';
 import { useLocalStorageUser, signOut } from '../../hooks/Authentication';
 import { updateUser } from '../../hooks/Api/Users/Update';
 import { CognitoUser } from '@aws-amplify/auth';
+import Amplify from '@aws-amplify/auth';
 
 export interface UserAttributes {
   sub: string;
@@ -143,23 +144,20 @@ const AuthProvider = ({ children }: AuthProviderProps): ReactElement => {
     else {
       if (typeof window !== `undefined`) {
         // Check if the user is already signed in
-        import(/* webpackChunkName: "Amplify" */ '@aws-amplify/auth').then(
-          ({ default: Amplify }) => {
-            Amplify.currentAuthenticatedUser()
-              .then(user => {
-                if (user) {
-                  setCognitoUser(user);
-                }
-              }) // set user in context (global state)
-              .catch(() => {
-                //error is thrown if user is not authenticated
-                setIsAuthenticated(false);
-              });
-          }
-        );
+        Amplify.currentAuthenticatedUser()
+          .then(user => {
+            if (user) {
+              setCognitoUser(user);
+            }
+          }) // set user in context (global state)
+          .catch(() => {
+            //error is thrown if user is not authenticated
+            setIsAuthenticated(false);
+          });
       }
     }
-  }, [setUserId, signUserOut, userId]);
+    // eslint-disable-next-line
+  }, []);
 
   /*
    * Custom attributes type defined according to the attributes used in this app
@@ -180,7 +178,8 @@ const AuthProvider = ({ children }: AuthProviderProps): ReactElement => {
         setUserId(cognitoUser.attributes.sub);
       }
     }
-  }, [cognitoUser, setUserId, userId]);
+    // eslint-disable-next-line
+  }, [cognitoUser]);
 
   // Getting user data from backend
   useEffect(() => {
@@ -203,7 +202,8 @@ const AuthProvider = ({ children }: AuthProviderProps): ReactElement => {
       // we want to reset userData (this would happen after a signout)
       setCustomUserData({});
     }
-  }, [userId, isAuthenticated, signUserOut, token]);
+    // eslint-disable-next-line
+  }, [userId, isAuthenticated]);
 
   return (
     <AuthContext.Provider
