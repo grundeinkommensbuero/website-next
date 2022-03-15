@@ -263,10 +263,10 @@ export const signOut = async ({
 
     // Update user state
     if (setCognitoUser) setCognitoUser(null);
-    if (setUserId) setUserId(undefined);
-    if (setToken) setToken(undefined);
+    if (setUserId) setUserId('');
+    if (setToken) setToken(null);
     if (setIsAuthenticated) setIsAuthenticated(false);
-    if (setTempEmail) setTempEmail(undefined);
+    if (setTempEmail) setTempEmail(null);
     if (setPreviousAction) setPreviousAction('signOut');
     return;
   } catch (error) {
@@ -294,7 +294,7 @@ const bounceToIdentifiedState = async ({
 
     // Update user state
     if (setCognitoUser) setCognitoUser(null);
-    if (setToken) setToken(undefined);
+    if (setToken) setToken(null);
     if (setIsAuthenticated) setIsAuthenticated(false);
   } catch (error) {
     console.log('Error while bouncing user to identified state', error);

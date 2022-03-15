@@ -12,7 +12,7 @@ export const saveUser = async ({
   url: string;
   method: string;
   ags?: string;
-  newsletterConsent: boolean;
+  newsletterConsent?: boolean;
   store?: {
     referredByUser: string | (string | null)[] | null;
   };
