@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "yarn run depcruise && next dev",
-    "build": "yarn run depcruise && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "prettier:check": "prettier --check .",
