@@ -2,12 +2,13 @@
   "name": "xbge-next",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "yarn run depcruise && next dev",
+    "build": "yarn run depcruise && next build",
     "start": "next start",
     "lint": "next lint",
     "prettier:check": "prettier --check .",
-    "prettier:write": "prettier --write ."
+    "prettier:write": "prettier --write .",
+    "depcruise": "depcruise --exclude '^(.next|.git|node_modules|tailwind.config.js|postcss.config.js|next.config.js|next-env.d.ts)' --output-type dot . | dot -T svg > dependencygraph.svg"
   },
   "dependencies": {
     "@directus/sdk": "^9.4.3",
@@ -36,6 +37,7 @@
     "@types/react": "17.0.38",
     "@types/sortablejs": "^1.10.7",
     "autoprefixer": "^10.4.2",
+    "dependency-cruiser": "^11.4.0",
     "eslint": "8.7.0",
     "eslint-config-next": "12.0.8",
     "postcss": "^8.4.5",

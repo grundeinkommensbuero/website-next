@@ -6,6 +6,7 @@ const nextConfig = {
     defaultLocale: 'de',
   },
   images: {
+    dangerouslyAllowSVG: true,
     domains: ['xbge-directus.frac.tools'],
   },
   webpack(config) {
