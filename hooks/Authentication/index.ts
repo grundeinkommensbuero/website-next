@@ -17,7 +17,7 @@ import AuthContext, {
 } from '../../context/Authentication';
 import { createUser } from '../Api/Users/Create';
 import CONFIG from '../../backend-config';
-import { CognitoUser } from '@aws-amplify/auth';
+import Auth, { CognitoUser } from '@aws-amplify/auth';
 import { Request } from './Verification';
 export { useAnswerChallenge } from './AnswerChallenge';
 export { useVerification } from './Verification';
@@ -160,10 +160,6 @@ const signUp = async (
   data: { referral: string | (string | null)[] | null; email: string },
   { setUserId }: { setUserId: React.Dispatch<string | undefined> }
 ) => {
-  const { default: Auth } = await import(
-    /* webpackChunkName: "Amplify" */ '@aws-amplify/auth'
-  );
-
   // We have to “generate” a password for them, because a password is required by Amazon Cognito when users sign up
   const { userSub: userId } = await Auth.signUp({
     username: data.email.toLowerCase(),
@@ -247,10 +243,6 @@ export const signOut = async ({
   setPreviousAction: SetPreviousAction;
 }) => {
   try {
-    const { default: Auth } = await import(
-      /* webpackChunkName: "Amplify" */ '@aws-amplify/auth'
-    );
-
     await Auth.signOut();
 
     // Remove URL params if existing
@@ -286,10 +278,6 @@ const bounceToIdentifiedState = async ({
   setToken: SetToken;
 }) => {
   try {
-    const { default: Auth } = await import(
-      /* webpackChunkName: "Amplify" */ '@aws-amplify/auth'
-    );
-
     await Auth.signOut();
 
     // Update user state
@@ -308,10 +296,6 @@ const changeEmail = async (
 ) => {
   try {
     setState('loading');
-    const { default: Auth } = await import(
-      /* webpackChunkName: "Amplify" */ '@aws-amplify/auth'
-    );
-
     await Auth.updateUserAttributes(cognitoUser, { email });
     setState('success');
   } catch (error: any) {
@@ -332,11 +316,6 @@ const validateNewEmail = async (
 ) => {
   try {
     setState('loading');
-    const { default: Auth } = await import(
-      /* webpackChunkName: "Amplify"import { CognitoUser } from '@aws-amplify/auth';
-       */ '@aws-amplify/auth'
-    );
-
     await Auth.verifyUserAttributeSubmit(cognitoUser, 'email', code);
     setState('success');
   } catch (error: any) {

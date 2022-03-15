@@ -8,19 +8,16 @@ import { NoSsr } from '../components/Util/NoSsr';
 import ReactTooltip from 'react-tooltip';
 import { AuthProvider } from '../context/Authentication';
 import CONFIG from '../backend-config';
+import Amplify from '@aws-amplify/auth';
 
 const clientId = process.env.NEXT_PUBLIC_DEV_COGNITO_APP_CLIENT_ID;
 if (clientId) {
   if (typeof window !== `undefined`) {
-    import(/* webpackChunkName: "Amplify" */ '@aws-amplify/auth').then(
-      ({ default: Amplify }) => {
-        Amplify.configure({
-          region: CONFIG.COGNITO.REGION,
-          userPoolId: CONFIG.COGNITO.USER_POOL_ID,
-          userPoolWebClientId: clientId,
-        });
-      }
-    );
+    Amplify.configure({
+      region: CONFIG.COGNITO.REGION,
+      userPoolId: CONFIG.COGNITO.USER_POOL_ID,
+      userPoolWebClientId: clientId,
+    });
   }
 } else {
   console.log('no userPoolWebClientId provided');

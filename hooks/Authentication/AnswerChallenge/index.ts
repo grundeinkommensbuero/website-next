@@ -1,4 +1,4 @@
-import { CognitoUser } from '@aws-amplify/auth';
+import Auth, { CognitoUser } from '@aws-amplify/auth';
 import { UsernamePasswordOpts } from '@aws-amplify/auth/lib-esm/types';
 import { useContext, useState } from 'react';
 import { TrackJS } from 'trackjs';
@@ -30,10 +30,6 @@ const answerCustomChallenge = async (
   // Send the answer to the User Pool
   try {
     setState('loading');
-    const { default: Auth } = await import(
-      /* webpackChunkName: "Amplify" */ '@aws-amplify/auth'
-    );
-
     // If there is no email we definitely should have a userId
     const param = tempEmail || userId;
     if (param === null) return;
