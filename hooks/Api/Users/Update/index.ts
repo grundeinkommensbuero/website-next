@@ -1,17 +1,17 @@
-import CONFIG from '../../../../../backend-config';
+import CONFIG from '../../../../backend-config';
 import { useState, useContext } from 'react';
 import { saveUser } from '../shared';
 import AuthContext from '../../../../context/Authentication';
 
 export const useUpdateUser = () => {
-  const [state, setState] = useState();
+  const [state, setState] = useState<string | null>(null);
 
   //get auth token from global context
   const { token, userId } = useContext(AuthContext);
 
   return [
     state,
-    async data => {
+    async (data: any) => {
       try {
         setState('loading');
         await updateUser({ token, userId, ...data });
@@ -26,7 +26,17 @@ export const useUpdateUser = () => {
 };
 
 //Makes api call to update user in db, throws error if unsuccessful
-export const updateUser = async ({ userId, token, ...data }) => {
+export const updateUser = async ({
+  userId,
+  token,
+  ...data
+}: {
+  userId: string;
+  token: string;
+  confirmed?: boolean;
+  code?: string;
+  store?: any;
+}) => {
   const url = `${CONFIG.API.INVOKE_URL}/users/${userId}`;
 
   const response = await saveUser({
