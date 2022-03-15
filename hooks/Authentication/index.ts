@@ -3,7 +3,7 @@
  */
 import { getRandomString } from '../../utils/getRandomString';
 import { sleep, getReferral } from '../utils';
-import { useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import querystring from 'query-string';
 import { navigate } from '@reach/router';
 import { TrackJS } from 'trackjs';
@@ -25,7 +25,7 @@ export { useLocalStorageUser } from './LocalStorageUser';
 
 export const useSignUp = () => {
   const [state, setState] = useState<string | undefined>();
-  const [userExists, setUserExists] = useState<string | undefined>();
+  const [userExists, setUserExists] = useState<boolean | undefined>();
 
   //get global context
   const context = useContext(AuthContext);
@@ -88,7 +88,7 @@ export const useBounceToIdentifiedState = () => {
 };
 
 export const useChangeEmail = () => {
-  const [state, setState] = useState();
+  const [state, setState] = useState<string | undefined>();
 
   //get global context
   const { cognitoUser } = useContext(AuthContext);
@@ -101,7 +101,7 @@ export const useChangeEmail = () => {
 };
 
 export const useValidateNewEmail = () => {
-  const [state, setState] = useState();
+  const [state, setState] = useState<string | undefined>();
 
   //get global context
   const { cognitoUser } = useContext(AuthContext);
@@ -112,7 +112,12 @@ export const useValidateNewEmail = () => {
   ];
 };
 
-const startSignInProcess = async (data, setState, setUserExists, context) => {
+const startSignInProcess = async (
+  data: any,
+  setState: React.Dispatch<string | undefined>,
+  setUserExists: React.Dispatch<boolean | undefined>,
+  context: any
+) => {
   try {
     setState('loading');
 
@@ -299,7 +304,7 @@ const bounceToIdentifiedState = async ({
 const changeEmail = async (
   email: string,
   setState: React.Dispatch<string>,
-  cognitoUser: CognitoUser
+  cognitoUser: CognitoUser | null
 ) => {
   try {
     setState('loading');
@@ -323,7 +328,7 @@ const changeEmail = async (
 const validateNewEmail = async (
   code: string,
   setState: React.Dispatch<string>,
-  cognitoUser: CognitoUser
+  cognitoUser: CognitoUser | null
 ) => {
   try {
     setState('loading');
