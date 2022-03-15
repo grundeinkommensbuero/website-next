@@ -1,5 +1,5 @@
 import { ReactElement, useState, useEffect } from 'react';
-import { NoSsr } from '../Utils/NoSsr';
+import { NoSsr } from '../Util/NoSsr';
 import ReactTooltip from 'react-tooltip';
 
 import dynamic from 'next/dynamic';
@@ -14,7 +14,7 @@ import {
 
 import { EditSection } from './EditSection';
 import { EditElement } from './EditElement';
-import { DirectusImage } from '../Utils/DirectusImage';
+import { DirectusImage } from '../Util/DirectusImage';
 import { SectionWrapper } from './SectionWrapper';
 import { SectionsText } from './SectionsText';
 

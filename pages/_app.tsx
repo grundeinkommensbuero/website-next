@@ -1,10 +1,10 @@
 import '../styles/globals.scss';
 import type { AppContext, AppProps } from 'next/app';
 import { QueryClientProvider, QueryClient } from 'react-query';
-import { Layout } from '../components/Layout';
+import { Layout } from '../Layout';
 import App from 'next/app';
 import { getMenus, Mainmenu } from '../directus/sdk/getMenus';
-import { NoSsr } from '../components/Utils/NoSsr';
+import { NoSsr } from '../components/Util/NoSsr';
 import ReactTooltip from 'react-tooltip';
 
 const queryClient = new QueryClient();

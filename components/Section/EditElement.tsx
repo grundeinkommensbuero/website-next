@@ -16,7 +16,7 @@ import {
   mdiDrag,
 } from '@mdi/js';
 
-import { NoSsr } from '../Utils/NoSsr';
+import { NoSsr } from '../Util/NoSsr';
 import ReactTooltip from 'react-tooltip';
 import cN from 'classnames';
 

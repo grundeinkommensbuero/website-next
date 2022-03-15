@@ -1,5 +1,5 @@
 import { ReactElement, useState } from 'react';
-import { NoSsr } from '../Utils/NoSsr';
+import { NoSsr } from '../Util/NoSsr';
 import { Icon } from '@mdi/react';
 
 type EditIconProps = {

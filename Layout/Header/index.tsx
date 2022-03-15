@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { Mainmenu } from '../../../directus/sdk/getMenus';
+import { Mainmenu } from '../../directus/sdk/getMenus';
 import { MainMenu } from './MainMenu';
 import { PageLogo } from './PageLogo';
 import s from './style.module.scss';
