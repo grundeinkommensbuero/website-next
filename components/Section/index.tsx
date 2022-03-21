@@ -86,8 +86,6 @@ export const Section = ({ section }: SectionProps): ReactElement => {
     };
 
     modifiedSection.render.forEach((element, index) => {
-      console.log(element, index);
-
       // We want to add the orig index to the element,
       // to target a specific update
       const addIndex = (element: SectionElement) => {
