@@ -1,9 +1,8 @@
 import { GetServerSideProps } from 'next';
 import { ReactElement } from 'react';
 import { Blogpost } from '.';
-import fetchData from '../../directus/graphql/fetchData';
+import fetchData from './fetchData';
 import { PostFull } from '../../components/Blog/PostFull';
-import { getAssetURL } from '../../utils/getAssetURL';
 
 type PostProps = {
   blogpost: Blogpost;
@@ -14,7 +13,7 @@ const PostPage = ({ blogpost }: PostProps): ReactElement => {
     <PostFull
       title={blogpost.title}
       content={blogpost.content}
-      imageURL={getAssetURL(blogpost.featured_image.id)}
+      assetId={blogpost.featured_image.id}
     />
   );
 };

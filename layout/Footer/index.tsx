@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './style.module.scss';
-import { Follow } from '../../components/SocialMedia/Follow';
+import { Follow } from '../SocialMedia/Follow';
 import { ReactElement } from 'react';
 
 export const Footer = (): ReactElement => (

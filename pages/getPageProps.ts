@@ -6,8 +6,8 @@ import {
   SectionsImage,
   SectionsComponent,
   SectionsText,
-} from '../../components/Section';
-import { PageProps } from '../../pages/[id]';
+} from '../components/Section';
+import { PageProps } from './[id]';
 
 export type Page = {
   slug: string;

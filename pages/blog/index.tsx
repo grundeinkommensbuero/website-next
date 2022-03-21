@@ -1,8 +1,7 @@
 import type { GetServerSideProps } from 'next';
 import { ReactElement } from 'react';
 import { PostExcerpt } from '../../components/Blog/PostExcerpt';
-import fetchData from '../../directus/graphql/fetchData';
-import { getAssetURL } from '../../utils/getAssetURL';
+import fetchData from './fetchData';
 
 export type Blogpost = {
   id: string;
@@ -58,7 +57,7 @@ const Blog = ({ blogposts }: SSProps): ReactElement => {
                 key={post.id}
                 title={post.title}
                 content={post.content}
-                imageURL={getAssetURL(post.featured_image.id)}
+                assetId={post.featured_image.id}
                 id={post.id}
               />
             );

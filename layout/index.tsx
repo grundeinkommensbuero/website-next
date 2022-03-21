@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 import Head from 'next/head';
 import { Header } from './Header';
 import { Footer } from './Footer';
-import { Mainmenu } from '../directus/sdk/getMenus';
+import { Mainmenu } from '../pages/getMenus';
 
 type LayoutProps = {
   children: ReactElement;

@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { ReactElement, useState, useEffect, ReactNode } from 'react';
-import { getAssetURL } from '../../utils/getAssetURL';
-import { fetchFileMetadata } from '../../directus/restAPI/fetchFileMetadata';
+import { getAssetURL } from './getAssetURL';
+import { fetchFileMetadata } from './fetchFileMetadata';
 
 type ImageMeta = {
   width: number | null;
@@ -14,14 +14,16 @@ type DirectusImageProps = {
   assetId: string;
   alt: string;
   className: string;
-  fill?: boolean;
+  overrideHeight?: number;
+  overrideWidth?: number;
 };
 
 export const DirectusImage = ({
   assetId,
   className,
   alt,
-  fill = false,
+  overrideHeight,
+  overrideWidth,
 }: DirectusImageProps): ReactElement => {
   const [imageMeta, setImageMeta] = useState<ImageMeta | null>(null);
 
@@ -40,8 +42,8 @@ export const DirectusImage = ({
         <Image
           src={assetURL}
           alt={alt}
-          height={imageMeta.height}
-          width={imageMeta.width}
+          height={overrideHeight || imageMeta.height}
+          width={overrideWidth || imageMeta.width}
           className={className}
         />
       )}

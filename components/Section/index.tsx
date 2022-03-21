@@ -193,7 +193,6 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                             className=""
                             assetId={element.image}
                             alt={element.alt}
-                            fill
                           />
                         </div>
                       );

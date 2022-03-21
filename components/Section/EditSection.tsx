@@ -9,7 +9,7 @@ import {
   mdiTablet,
   mdiContentSaveOutline,
 } from '@mdi/js';
-import { updateSection } from '../../directus/sdk/updateSection';
+import { updateSection } from './updateSection';
 import { EditIcon } from './EditIcon';
 
 type EditSectionProps = {

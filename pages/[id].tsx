@@ -3,7 +3,7 @@ import { GetServerSideProps } from 'next';
 import Link from 'next/link';
 import React, { ReactElement } from 'react';
 
-import { getPageProps, Page } from '../directus/sdk/getPageProps';
+import { getPageProps, Page } from './getPageProps';
 import { Section } from '../components/Section';
 
 export type PageProps = {

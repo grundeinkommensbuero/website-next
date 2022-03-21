@@ -4,7 +4,7 @@ import { PageProps } from './[id]';
 import { ReactElement } from 'react';
 import { Section } from '../components/Section';
 import { GetServerSideProps } from 'next';
-import { getPageProps } from '../directus/sdk/getPageProps';
+import { getPageProps } from './getPageProps';
 
 const Start = ({ page }: PageProps): ReactElement => {
   return (

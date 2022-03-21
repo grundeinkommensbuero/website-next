@@ -1,5 +1,5 @@
 import { Directus } from '@directus/sdk';
-import { SectionElement, Section } from '../../components/Section';
+import { SectionElement, Section } from '.';
 
 export const updateSection = async (section: Section) => {
   const directus = new Directus(process.env.NEXT_PUBLIC_DIRECTUS || '');
