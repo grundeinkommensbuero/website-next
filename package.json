@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "yarn run depcruise && next dev",
     "build": "next build",
-    "start": "ts-node --project tsconfig.server.json server.ts",
+    "start": "node server.js",
     "lint": "next lint",
     "prettier:check": "prettier --check .",
     "prettier:write": "prettier --write .",
