@@ -20,13 +20,7 @@ type FetchedPage = {
   slug: string;
   title: string;
   status: string;
-  sections: FetchedSection[];
-};
-
-type FetchedSection = {
-  pages_slug: {
-    sections: FetchedSectionData[];
-  };
+  sections: FetchedSectionData[];
 };
 
 type FetchedSectionData = {
@@ -63,30 +57,26 @@ export const getPageProps = async (slug: string): Promise<PageProps> => {
 
   try {
     // Get the current page from directus by slug (ID)
-    const page = (await directus.items('pages').readOne(slug, {
+    const _page = (await directus.items('pages').readOne(slug, {
       fields: [
         'slug',
         'title',
         'status',
-        'sections.pages_slug.sections.sort',
-        'sections.pages_slug.sections.item.id',
-        'sections.pages_slug.sections.item.status',
-        'sections.pages_slug.sections.item.sort',
-        'sections.pages_slug.sections.item.title',
-        'sections.pages_slug.sections.item.label',
-        'sections.pages_slug.sections.item.layout',
-        'sections.pages_slug.sections.item.colorScheme',
-        'sections.pages_slug.sections.item.elements.collection',
-        'sections.pages_slug.sections.item.elements.item.*',
+        'sections.sort',
+        'sections.item.id',
+        'sections.item.status',
+        'sections.item.sort',
+        'sections.item.title',
+        'sections.item.label',
+        'sections.item.layout',
+        'sections.item.colorScheme',
+        'sections.item.elements.collection',
+        'sections.item.elements.item.*',
       ],
     })) as FetchedPage;
 
-    console.log(JSON.stringify(page, null, 2));
-
-    const finalPage = updatePageStructure(page);
-
     return {
-      page: finalPage,
+      page: updatePageStructure(_page),
     };
   } catch (err) {
     console.log(err);
@@ -101,7 +91,7 @@ const updatePageStructure = (fetchedPage: FetchedPage): Page => {
     slug: fetchedPage.slug,
     title: fetchedPage.title,
     status: fetchedPage.status,
-    sections: fetchedPage.sections[0].pages_slug.sections.map(section => {
+    sections: fetchedPage.sections.map(section => {
       return {
         id: section.item.id,
         title: section.item.title,
