@@ -3,20 +3,14 @@ import { GetServerSideProps } from 'next';
 import Link from 'next/link';
 import React, { ReactElement } from 'react';
 
-import { getPageProps } from '../directus/sdk/getPageProps';
+import { getPageProps, Page } from '../directus/sdk/getPageProps';
 import { Section } from '../components/Section';
-
-export type Page = {
-  title: string;
-  sections: number[];
-};
 
 export type PageProps = {
   page: Page | null;
-  sections: Section[];
 };
 
-const PageWithSections = ({ page, sections }: PageProps): ReactElement => {
+const PageWithSections = ({ page }: PageProps): ReactElement => {
   if (!page) {
     return (
       <div className="text-center">
@@ -36,7 +30,7 @@ const PageWithSections = ({ page, sections }: PageProps): ReactElement => {
       <div className="pageWidth">
         {page.title && <h2 className="text-violet my-8">{page.title}</h2>}
       </div>
-      {sections.map(section => {
+      {page.sections.map(section => {
         return <Section key={section.id} section={section} />;
       })}
     </section>
@@ -56,7 +50,6 @@ export const getServerSideProps: GetServerSideProps = async ({
     return {
       props: {
         page: null,
-        sections: null,
       },
     };
   }

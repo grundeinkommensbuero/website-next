@@ -1,20 +1,61 @@
 import { Directus } from '@directus/sdk';
-import { Element, Section } from '../../components/Section';
-import { Page, PageProps } from '../../pages/[id]';
+import {
+  Section,
+  Layout,
+  ColorScheme,
+  SectionsImage,
+  SectionsComponent,
+  SectionsText,
+} from '../../components/Section';
+import { PageProps } from '../../pages/[id]';
 
-type PagesSection = {
-  id: number;
-  collection: string;
-  item: string;
+export type Page = {
+  slug: string;
+  title: string;
   status: string;
+  sections: Section[];
 };
 
-type SectionsElement = {
-  collection: string;
-  id: number;
-  item: string;
-  sections_id: string;
-  sort: number | null;
+type FetchedPage = {
+  slug: string;
+  title: string;
+  status: string;
+  sections: FetchedSection[];
+};
+
+type FetchedSection = {
+  pages_slug: {
+    sections: FetchedSectionData[];
+  };
+};
+
+type FetchedSectionData = {
+  sort: number;
+  item: {
+    id: string;
+    status: string;
+    sort: null | number;
+    title: string;
+    label: string;
+    layout: Layout;
+    colorScheme: ColorScheme;
+    elements: FetchedElement[];
+  };
+};
+
+type FetchedElement = {
+  collection: 'sectionsText' | 'sectionsImage' | 'sectionsComponent';
+  item: {
+    id: string;
+    status: string;
+    sort: number;
+    overrideLayout: string | null;
+    groupElement: boolean;
+    image?: string;
+    alt?: string;
+    content?: string;
+    component?: string;
+  };
 };
 
 export const getPageProps = async (slug: string): Promise<PageProps> => {
@@ -22,65 +63,82 @@ export const getPageProps = async (slug: string): Promise<PageProps> => {
 
   try {
     // Get the current page from directus by slug (ID)
-    const page = (await directus.items('pages').readOne(slug)) as Page;
+    const page = (await directus.items('pages').readOne(slug, {
+      fields: [
+        'slug',
+        'title',
+        'status',
+        'sections.pages_slug.sections.sort',
+        'sections.pages_slug.sections.item.id',
+        'sections.pages_slug.sections.item.status',
+        'sections.pages_slug.sections.item.sort',
+        'sections.pages_slug.sections.item.title',
+        'sections.pages_slug.sections.item.label',
+        'sections.pages_slug.sections.item.layout',
+        'sections.pages_slug.sections.item.colorScheme',
+        'sections.pages_slug.sections.item.elements.collection',
+        'sections.pages_slug.sections.item.elements.item.*',
+      ],
+    })) as FetchedPage;
 
-    // Get IDs for all sections from pages_sections
-    const sdkPagesSections: PagesSection[] = await Promise.all(
-      page.sections.map(
-        async id =>
-          (await directus.items('pages_sections').readOne(id)) as PagesSection
-      )
-    );
-
-    // Get all sections for the current page by ID
-    const _sections: Section[] = await Promise.all(
-      sdkPagesSections.map(
-        async section =>
-          (await directus
-            .items(section.collection)
-            .readOne(section.item)) as Section
-      )
-    );
-
-    // Get all elements in current page sections by ID
-    const sections = await Promise.all(
-      _sections.map(async section => {
-        const toRender = await Promise.all(
-          section.elements.map(
-            async el =>
-              (await directus
-                .items('sections_elements')
-                .readOne(el)) as SectionsElement
-          )
-        );
-        const render = await Promise.all(
-          toRender.map(async el => {
-            const element = (await directus
-              .items(el.collection)
-              .readOne(el.item)) as Element;
-            return {
-              ...element,
-              sort: el.sort || 0,
-              collection: el.collection,
-            };
-          })
-        );
-        return {
-          ...section,
-          render: render.sort((a, b) => a.sort - b.sort),
-        };
-      })
-    );
+    const finalPage = updatePageStructure(page);
 
     return {
-      page,
-      sections,
+      page: finalPage,
     };
   } catch (err) {
     console.log(err);
     return {
       page: null,
-      sections: [],
     };
   }
+};
+
+const updatePageStructure = (fetchedPage: FetchedPage): Page => {
+  const page = {
+    slug: fetchedPage.slug,
+    title: fetchedPage.title,
+    status: fetchedPage.status,
+    sections: fetchedPage.sections[0].pages_slug.sections.map(section => {
+      return {
+        id: section.item.id,
+        title: section.item.title,
+        sort: section.item.sort,
+        status: section.item.status,
+        layout: section.item.layout,
+        colorScheme: section.item.colorScheme,
+        elements: section.item.elements.map(element => {
+          const baseElement = {
+            id: element.item.id,
+            status: element.item.status,
+            sort: element.item.sort,
+            overrideLayout: element.item.overrideLayout,
+            groupElement: element.item.groupElement,
+          };
+          switch (element.collection) {
+            case 'sectionsText':
+              return {
+                ...baseElement,
+                collection: 'sectionsText',
+                content: element.item.content,
+              } as SectionsText;
+            case 'sectionsImage':
+              return {
+                ...baseElement,
+                collection: 'sectionsImage',
+                image: element.item.image,
+                alt: element.item.alt,
+              } as SectionsImage;
+            case 'sectionsComponent':
+              return {
+                ...baseElement,
+                collection: 'sectionsComponent',
+                component: element.item.component,
+              } as SectionsComponent;
+          }
+        }),
+      };
+    }),
+  };
+  return page;
 };

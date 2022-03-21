@@ -5,7 +5,6 @@ import ReactTooltip from 'react-tooltip';
 import dynamic from 'next/dynamic';
 
 import cN from 'classnames';
-import s from './style.module.scss';
 import {
   getLeftLayout,
   getRightLayout,
@@ -16,7 +15,44 @@ import { EditSection } from './EditSection';
 import { EditElement } from './EditElement';
 import { DirectusImage } from '../Util/DirectusImage';
 import { SectionWrapper } from './SectionWrapper';
-import { SectionsText } from './SectionsText';
+import { SectionsTextEditable } from './SectionsTextEditable';
+
+export type Section = {
+  id: string;
+  title: string;
+  sort: number | null;
+  status: string;
+  layout: Layout;
+  colorScheme: ColorScheme;
+  elements: SectionElement[];
+};
+
+export type SectionElement = SectionsText | SectionsImage | SectionsComponent;
+
+export type SectionsText = SectionElementBase & {
+  collection: 'sectionsText';
+  content: string;
+  edit?: boolean;
+};
+
+export type SectionsImage = SectionElementBase & {
+  collection: 'sectionsImage';
+  image: string;
+  alt: string;
+};
+
+export type SectionsComponent = SectionElementBase & {
+  collection: 'sectionsComponent';
+  component: string;
+};
+
+export type SectionElementBase = {
+  id: string;
+  sort: number | null;
+  overrideLayout: string | null;
+  index?: number;
+  groupElement: boolean;
+};
 
 export type Layout = '100' | '75-25' | '50-50' | '25-75';
 
@@ -30,54 +66,29 @@ export type ColorScheme =
   | 'colorSchemeWhite'
   | 'colorSchemeRed';
 
-export type Section = {
-  id: string;
-  title: string;
-  sort: number | null;
-  status: string;
-  elements: number[];
-  render: Element[];
-  colorScheme: ColorScheme;
-  layout: Layout;
-};
-
-export type Element = {
-  id: string;
-  title: string;
-  content: string;
-  image: string;
-  component: string;
-  collection: string;
-  sort: number | null;
-  overrideLayout: string | null;
-  edit?: boolean;
-  index: number;
-  groupElement: boolean;
-};
-
 type SectionProps = {
   section: Section;
 };
 
 export const Section = ({ section }: SectionProps): ReactElement => {
   const [modifiedSection, setModifiedSection] = useState<Section>(section);
-  const [groupedElements, setGroupedElements] = useState<Array<Array<Element>>>(
-    []
-  );
+  const [groupedElements, setGroupedElements] = useState<
+    Array<Array<SectionElement>>
+  >([]);
   // (!) Will be replaced with actual login State
   const isLoggedIn = process.env.NEXT_PUBLIC_FAKEROOT === 'true' ? true : false;
 
   useEffect(() => {
-    const elements: Element[][] = [];
+    const elements: SectionElement[][] = [];
     let groupId = 0;
     const increment = () => {
       groupId = groupId + 1;
     };
 
-    modifiedSection.render.forEach((element, index) => {
+    modifiedSection.elements.forEach((element, index) => {
       // We want to add the orig index to the element,
       // to target a specific update
-      const addIndex = (element: Element) => {
+      const addIndex = (element: SectionElement) => {
         return {
           ...element,
           index,
@@ -99,13 +110,14 @@ export const Section = ({ section }: SectionProps): ReactElement => {
 
   // Should be moved to a "EditText" component
   const updateContent = (index: number, content: string): void => {
+    const origElement = modifiedSection.elements[index] as SectionsText;
     // Get and update the edited element
-    const updatedElement: Element = {
-      ...modifiedSection.render[index],
+    const updatedElement: SectionsText = {
+      ...origElement,
       content,
     };
     // Replace it in render list
-    const updatedRender = modifiedSection.render.map((element, elIndex) => {
+    const updatedRender = modifiedSection.elements.map((element, elIndex) => {
       if (elIndex === index) {
         return updatedElement;
       }
@@ -114,7 +126,7 @@ export const Section = ({ section }: SectionProps): ReactElement => {
     // Update renderlist in section
     const updated = {
       ...modifiedSection,
-      render: updatedRender,
+      elements: updatedRender,
     };
     setModifiedSection(updated);
   };
@@ -158,7 +170,7 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                   switch (element.collection) {
                     case 'sectionsText':
                       return (
-                        <SectionsText
+                        <SectionsTextEditable
                           key={'text-' + element.index}
                           element={element}
                           modifiedSection={modifiedSection}
@@ -180,7 +192,7 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                           <DirectusImage
                             className=""
                             assetId={element.image}
-                            alt={element.title}
+                            alt={element.alt}
                             fill
                           />
                         </div>

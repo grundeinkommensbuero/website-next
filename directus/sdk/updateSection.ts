@@ -1,5 +1,5 @@
 import { Directus } from '@directus/sdk';
-import { Element, Section } from '../../components/Section';
+import { SectionElement, Section } from '../../components/Section';
 
 export const updateSection = async (section: Section) => {
   const directus = new Directus(process.env.NEXT_PUBLIC_DIRECTUS || '');
@@ -13,7 +13,7 @@ export const updateSection = async (section: Section) => {
     .updateOne(section.id, section);
   // console.log('Updated:', updated);
 
-  section.render.forEach(async (element: Element) => {
+  section.elements.forEach(async (element: SectionElement) => {
     const updated = await directus
       .items(element.collection)
       .updateOne(element.id, element);

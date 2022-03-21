@@ -1,24 +1,24 @@
 import { Dispatch, ReactElement, SetStateAction } from 'react';
 import { EditElement } from './EditElement';
-import { Section, Element } from '.';
+import { Section, SectionsText } from '.';
 import parseHTML from 'html-react-parser';
 import { Tiptap } from '../Editor/Tiptap';
 
-type SectionsTextProps = {
-  element: Element;
+type SectionsTextEditableProps = {
+  element: SectionsText;
   modifiedSection: Section;
   isLoggedIn: boolean;
   updateContent: (index: number, content: string) => void;
   setModifiedSection: Dispatch<SetStateAction<Section>>;
 };
 
-export const SectionsText = ({
+export const SectionsTextEditable = ({
   element,
   modifiedSection,
   isLoggedIn,
   updateContent,
   setModifiedSection,
-}: SectionsTextProps): ReactElement => {
+}: SectionsTextEditableProps): ReactElement => {
   return (
     <div>
       {isLoggedIn && (

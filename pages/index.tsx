@@ -6,7 +6,7 @@ import { Section } from '../components/Section';
 import { GetServerSideProps } from 'next';
 import { getPageProps } from '../directus/sdk/getPageProps';
 
-const Start = ({ page, sections }: PageProps): ReactElement => {
+const Start = ({ page }: PageProps): ReactElement => {
   return (
     <div className={styles.container}>
       <div className="flex mt-16 relative">
@@ -30,7 +30,7 @@ const Start = ({ page, sections }: PageProps): ReactElement => {
       </div>
       {page && (
         <section>
-          {sections.map(section => {
+          {page.sections.map(section => {
             return <Section key={section.id} section={section} />;
           })}
         </section>
