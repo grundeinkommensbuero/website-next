@@ -53,7 +53,7 @@ type Menus = {
 const MAINMENU_ID = 1;
 
 export const getMenus = async (): Promise<Menus> => {
-  const directus = new Directus(process.env.DIRECTUS || '');
+  const directus = new Directus(process.env.NEXT_PUBLIC_DIRECTUS || '');
 
   try {
     // Get menus from directus by id (ID)
