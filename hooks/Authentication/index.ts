@@ -1,4 +1,4 @@
-import { getRandomString } from '../../utils/getRandomString';
+import { getRandomString } from './getRandomString';
 import { sleep, getReferral } from '../utils';
 import React, { useContext, useState } from 'react';
 import querystring from 'query-string';
