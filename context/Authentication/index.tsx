@@ -6,6 +6,7 @@ import { useLocalStorageUser, signOut } from '../../hooks/Authentication';
 import { updateUser } from '../../hooks/Api/Users/Update';
 import { CognitoUser } from '@aws-amplify/auth';
 import Amplify from '@aws-amplify/auth';
+import CONFIG from '../../hooks/Authentication/backend-config';
 
 export interface UserAttributes {
   sub: string;
@@ -82,7 +83,7 @@ const initAuth = {
   updateCustomUserData: null,
 };
 
-const AuthContext = React.createContext<AuthContextType>(initAuth);
+export const AuthContext = React.createContext<AuthContextType>(initAuth);
 
 type AuthProviderProps = { children: ReactElement };
 
@@ -94,6 +95,19 @@ const AuthProvider = ({ children }: AuthProviderProps): ReactElement => {
   const [tempEmail, setTempEmail] = useState<string | null>(null);
   const [previousAction, setPreviousAction] = useState<string | null>(null);
   const [userId, setUserId] = useLocalStorageUser();
+
+  const clientId = process.env.NEXT_PUBLIC_DEV_COGNITO_APP_CLIENT_ID;
+  if (clientId) {
+    if (typeof window !== `undefined`) {
+      Amplify.configure({
+        region: CONFIG.COGNITO.REGION,
+        userPoolId: CONFIG.COGNITO.USER_POOL_ID,
+        userPoolWebClientId: clientId,
+      });
+    }
+  } else {
+    console.log('no userPoolWebClientId provided');
+  }
 
   const signUserOut = useCallback(
     async () =>

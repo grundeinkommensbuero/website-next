@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import CONFIG from '../../../../backend-config';
+import CONFIG from '../../../Authentication/backend-config';
 import AuthContext from '../../../../context/Authentication';
 import { Request } from '../../../Authentication/Verification';
 
