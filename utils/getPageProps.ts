@@ -7,7 +7,7 @@ import {
   SectionsComponent,
   SectionsText,
 } from '../components/Section';
-import { PageProps } from './[id]';
+import { PageProps } from '../pages/[id]';
 
 export type Page = {
   slug: string;

@@ -3,7 +3,7 @@ import type { AppContext, AppProps } from 'next/app';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { Layout } from '../layout';
 import App from 'next/app';
-import { getMenus, Mainmenu } from './getMenus';
+import { getMenus, Mainmenu } from '../utils/getMenus';
 import { NoSsr } from '../components/Util/NoSsr';
 import ReactTooltip from 'react-tooltip';
 

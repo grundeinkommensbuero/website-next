@@ -3,7 +3,7 @@ import { GetServerSideProps } from 'next';
 import Link from 'next/link';
 import React, { ReactElement } from 'react';
 
-import { getPageProps, Page } from './getPageProps';
+import { getPageProps, Page } from '../utils/getPageProps';
 import { Section } from '../components/Section';
 
 export type PageProps = {
@@ -30,7 +30,7 @@ const PageWithSections = ({ page }: PageProps): ReactElement => {
       <div className="pageWidth">
         {page.title && <h2 className="text-violet my-8">{page.title}</h2>}
       </div>
-      {page.sections.map(section => {
+      {page.sections.map((section: Section) => {
         return <Section key={section.id} section={section} />;
       })}
     </section>

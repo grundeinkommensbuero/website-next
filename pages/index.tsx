@@ -4,7 +4,7 @@ import { PageProps } from './[id]';
 import { ReactElement } from 'react';
 import { Section } from '../components/Section';
 import { GetServerSideProps } from 'next';
-import { getPageProps } from './getPageProps';
+import { getPageProps } from '../utils/getPageProps';
 
 const Start = ({ page }: PageProps): ReactElement => {
   return (
@@ -30,7 +30,7 @@ const Start = ({ page }: PageProps): ReactElement => {
       </div>
       {page && (
         <section>
-          {page.sections.map(section => {
+          {page.sections.map((section: Section) => {
             return <Section key={section.id} section={section} />;
           })}
         </section>

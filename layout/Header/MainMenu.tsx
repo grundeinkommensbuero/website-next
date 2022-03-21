@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { ReactElement } from 'react';
-import { Dropdown, Mainmenu, MenuEntry } from '../../pages/getMenus';
+import { Dropdown, Mainmenu, MenuEntry } from '../../utils/getMenus';
 import s from './style.module.scss';
 
 type MainMenuProps = {
