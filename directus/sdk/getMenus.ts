@@ -3,7 +3,7 @@ import { Directus } from '@directus/sdk';
 export type Mainmenu = Array<MenuEntry | Dropdown>;
 
 export type MenuEntry = {
-  id: number;
+  id: string;
   status: string;
   sort: number | null;
   label: string;
@@ -11,7 +11,7 @@ export type MenuEntry = {
 };
 
 export type Dropdown = {
-  id: number;
+  id: string;
   status: string;
   sort: number | null;
   label: string;
@@ -19,29 +19,31 @@ export type Dropdown = {
 };
 
 type FetchedMenu = {
-  id: number;
-  status: string;
+  id: string;
   name: string;
-  elements: DirectusJoinElement[];
-};
-
-type DirectusJoinElement = {
-  id: number;
-  collection: string;
-  item: string;
+  status: string;
+  elements: FetchedEntries[];
 };
 
 type FetchedEntries = {
-  id: number;
-  status: string;
-  sort: number | null;
-  label: string;
-  slug: string;
-  entries: FetchedMenuEntry[];
+  item: {
+    id: string;
+    status: string;
+    sort: number | null;
+    label: string;
+    slug?: string;
+    entries?: NestedFetchedEntries[];
+  };
 };
 
-type FetchedMenuEntry = {
-  menuentry_id: MenuEntry;
+type NestedFetchedEntries = {
+  menuentry_id: {
+    id: string;
+    status: string;
+    sort: number | null;
+    label: string;
+    slug: string;
+  };
 };
 
 type Menus = {
@@ -58,46 +60,23 @@ export const getMenus = async (): Promise<Menus> => {
     const _mainmenu = (await directus.items('menu').readOne(MAINMENU_ID, {
       fields: [
         'id',
-        'status',
         'name',
-        'elements.id',
-        'elements.collection',
-        'elements.item',
+        'status',
+        'elements.item.id',
+        'elements.item.status',
+        'elements.item.sort',
+        'elements.item.label',
+        'elements.item.slug',
+        'elements.item.entries.menuentry_id.id',
+        'elements.item.entries.menuentry_id.status',
+        'elements.item.entries.menuentry_id.sort',
+        'elements.item.entries.menuentry_id.label',
+        'elements.item.entries.menuentry_id.slug',
       ],
     })) as FetchedMenu;
 
-    // Get all menu entries for the current menu
-    const _menuEntries: Array<FetchedEntries> = await Promise.all(
-      _mainmenu.elements.map(
-        async element =>
-          (await directus.items(element.collection).readOne(element.item, {
-            fields: [
-              'id',
-              'status',
-              'sort',
-              'label',
-              'slug',
-              'menuentries.id',
-              'entries.menuentry_id.label',
-              'entries.menuentry_id.status',
-              'entries.menuentry_id.sort',
-              'entries.menuentry_id.slug',
-            ],
-          })) as FetchedEntries
-      )
-    );
-
-    const mainmenu: Mainmenu = _menuEntries.map(menuElement => {
-      if (!menuElement.entries) return menuElement;
-      const updatedEntry: Dropdown = {
-        ...menuElement,
-        entries: menuElement.entries.map(x => x.menuentry_id),
-      };
-      return updatedEntry;
-    });
-
     return {
-      mainmenu,
+      mainmenu: updateMenuStructure(_mainmenu),
     };
   } catch (err) {
     console.log(err);
@@ -105,4 +84,34 @@ export const getMenus = async (): Promise<Menus> => {
       mainmenu: [],
     };
   }
+};
+
+const updateMenuStructure = (fetchedMenu: FetchedMenu): Mainmenu => {
+  return fetchedMenu.elements.map(element => {
+    const entryBase = {
+      id: element.item.id,
+      status: element.item.status,
+      sort: element.item.sort,
+      label: element.item.label,
+    };
+    if (element.item.slug) {
+      return {
+        ...entryBase,
+        slug: element.item.slug,
+      } as MenuEntry;
+    } else {
+      return {
+        ...entryBase,
+        entries: element.item.entries?.map(entry => {
+          return {
+            id: entry.menuentry_id.id,
+            status: entry.menuentry_id.status,
+            sort: entry.menuentry_id.sort,
+            label: entry.menuentry_id.label,
+            slug: entry.menuentry_id.slug,
+          };
+        }),
+      } as Dropdown;
+    }
+  });
 };

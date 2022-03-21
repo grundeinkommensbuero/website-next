@@ -87,7 +87,7 @@ export const getPageProps = async (slug: string): Promise<PageProps> => {
 };
 
 const updatePageStructure = (fetchedPage: FetchedPage): Page => {
-  const page = {
+  return {
     slug: fetchedPage.slug,
     title: fetchedPage.title,
     status: fetchedPage.status,
@@ -133,5 +133,4 @@ const updatePageStructure = (fetchedPage: FetchedPage): Page => {
       };
     }),
   };
-  return page;
 };
