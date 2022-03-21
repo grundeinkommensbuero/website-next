@@ -1,4 +1,4 @@
-import CONFIG from '../../../../backend-config';
+import CONFIG from '../../../Authentication/backend-config';
 import { saveUser } from '../shared';
 
 //Makes api call to update user in db, throws error if unsuccessful

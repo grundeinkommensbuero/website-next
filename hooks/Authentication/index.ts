@@ -1,6 +1,3 @@
-/**
- * This file holds several hook functions regarding everything concerning authentication
- */
 import { getRandomString } from '../../utils/getRandomString';
 import { sleep, getReferral } from '../utils';
 import React, { useContext, useState } from 'react';
@@ -16,7 +13,7 @@ import AuthContext, {
   SetUserId,
 } from '../../context/Authentication';
 import { createUser } from '../Api/Users/Create';
-import CONFIG from '../../backend-config';
+import CONFIG from './backend-config';
 import Auth, { CognitoUser } from '@aws-amplify/auth';
 import { Request } from './Verification';
 export { useAnswerChallenge } from './AnswerChallenge';
@@ -27,7 +24,7 @@ export const useSignUp = () => {
   const [state, setState] = useState<string | undefined>();
   const [userExists, setUserExists] = useState<boolean | undefined>();
 
-  //get global context
+  // get global context
   const context = useContext(AuthContext);
 
   return [
