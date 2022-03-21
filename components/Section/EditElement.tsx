@@ -1,11 +1,5 @@
 import { ReactElement } from 'react';
-import {
-  OverrideLayout,
-  Section,
-  SectionElement,
-  Align,
-  SectionsText,
-} from '.';
+import { OverrideLayout, Section, SectionElement, SectionsText } from '.';
 import { EditIcon } from './EditIcon';
 
 import s from './style.module.scss';
@@ -43,11 +37,11 @@ export const EditElement = ({
   ): void => {
     // Get and update the edited element
     const updatedElement: SectionElement = {
-      ...modifiedSection.elements[index],
+      ...modifiedSection.render[index],
       overrideLayout,
     };
     // Replace it in render list
-    const updatedRender = modifiedSection.elements.map((element, elIndex) => {
+    const updatedRender = modifiedSection.render.map((element, elIndex) => {
       if (elIndex === index) {
         return updatedElement;
       }
@@ -56,7 +50,7 @@ export const EditElement = ({
     // Update renderlist in section
     const updated = {
       ...modifiedSection,
-      elements: updatedRender,
+      render: updatedRender,
     };
     setModifiedSection(updated);
   };
@@ -67,11 +61,11 @@ export const EditElement = ({
   ): void => {
     // Get and update the edited element
     const updatedElement: SectionElement = {
-      ...modifiedSection.elements[index],
+      ...modifiedSection.render[index],
       groupElement,
     };
     // Replace it in render list
-    const updatedRender = modifiedSection.elements.map((element, elIndex) => {
+    const updatedRender = modifiedSection.render.map((element, elIndex) => {
       if (elIndex === index) {
         return updatedElement;
       }
@@ -80,20 +74,20 @@ export const EditElement = ({
     // Update renderlist in section
     const updated = {
       ...modifiedSection,
-      elements: updatedRender,
+      render: updatedRender,
     };
     setModifiedSection(updated);
   };
 
   const editElement = (edit: boolean, index: number): void => {
-    const origElement = modifiedSection.elements[index] as SectionsText;
+    const origElement = modifiedSection.render[index] as SectionsText;
     // Get and update the edited element
     const updatedElement: SectionsText = {
       ...origElement,
       edit,
     };
     // Replace it in render list
-    const updatedRender = modifiedSection.elements.map((element, elIndex) => {
+    const updatedRender = modifiedSection.render.map((element, elIndex) => {
       if (elIndex === index) {
         return updatedElement;
       }
@@ -102,7 +96,7 @@ export const EditElement = ({
     // Update renderlist in section
     const updated = {
       ...modifiedSection,
-      elements: updatedRender,
+      render: updatedRender,
     };
     setModifiedSection(updated);
   };

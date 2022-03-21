@@ -24,7 +24,7 @@ export type Section = {
   status: string;
   layout: Layout;
   colorScheme: ColorScheme;
-  elements: SectionElement[];
+  render: SectionElement[];
 };
 
 export type SectionElement = SectionsText | SectionsImage | SectionsComponent;
@@ -50,7 +50,7 @@ export type SectionElementBase = {
   id: string;
   sort: number | null;
   overrideLayout: string | null;
-  index?: number;
+  index: number;
   groupElement: boolean;
 };
 
@@ -85,7 +85,9 @@ export const Section = ({ section }: SectionProps): ReactElement => {
       groupId = groupId + 1;
     };
 
-    modifiedSection.elements.forEach((element, index) => {
+    modifiedSection.render.forEach((element, index) => {
+      console.log(element, index);
+
       // We want to add the orig index to the element,
       // to target a specific update
       const addIndex = (element: SectionElement) => {
@@ -110,14 +112,14 @@ export const Section = ({ section }: SectionProps): ReactElement => {
 
   // Should be moved to a "EditText" component
   const updateContent = (index: number, content: string): void => {
-    const origElement = modifiedSection.elements[index] as SectionsText;
+    const origElement = modifiedSection.render[index] as SectionsText;
     // Get and update the edited element
     const updatedElement: SectionsText = {
       ...origElement,
       content,
     };
     // Replace it in render list
-    const updatedRender = modifiedSection.elements.map((element, elIndex) => {
+    const updatedRender = modifiedSection.render.map((element, elIndex) => {
       if (elIndex === index) {
         return updatedElement;
       }
@@ -126,7 +128,7 @@ export const Section = ({ section }: SectionProps): ReactElement => {
     // Update renderlist in section
     const updated = {
       ...modifiedSection,
-      elements: updatedRender,
+      render: updatedRender,
     };
     setModifiedSection(updated);
   };

@@ -81,6 +81,8 @@ export const getPageProps = async (slug: string): Promise<PageProps> => {
       ],
     })) as FetchedPage;
 
+    console.log(JSON.stringify(page, null, 2));
+
     const finalPage = updatePageStructure(page);
 
     return {
@@ -107,13 +109,14 @@ const updatePageStructure = (fetchedPage: FetchedPage): Page => {
         status: section.item.status,
         layout: section.item.layout,
         colorScheme: section.item.colorScheme,
-        elements: section.item.elements.map(element => {
+        render: section.item.elements.map((element, index) => {
           const baseElement = {
             id: element.item.id,
             status: element.item.status,
             sort: element.item.sort,
             overrideLayout: element.item.overrideLayout,
             groupElement: element.item.groupElement,
+            index,
           };
           switch (element.collection) {
             case 'sectionsText':
