@@ -6,6 +6,7 @@ import {
   SectionsImage,
   SectionsComponent,
   SectionsText,
+  SectionsVideo,
 } from '../components/Section';
 import { PageProps } from '../pages/[id]';
 
@@ -38,7 +39,11 @@ type FetchedSectionData = {
 };
 
 type FetchedElement = {
-  collection: 'sectionsText' | 'sectionsImage' | 'sectionsComponent';
+  collection:
+    | 'sectionsText'
+    | 'sectionsImage'
+    | 'sectionsComponent'
+    | 'sectionsVideo';
   item: {
     id: string;
     status: string;
@@ -49,6 +54,7 @@ type FetchedElement = {
     alt?: string;
     content?: string;
     component?: string;
+    embedId?: string;
   };
 };
 
@@ -128,6 +134,12 @@ const updatePageStructure = (fetchedPage: FetchedPage): Page => {
                 collection: 'sectionsComponent',
                 component: element.item.component,
               } as SectionsComponent;
+            case 'sectionsVideo':
+              return {
+                ...baseElement,
+                collection: 'sectionsVideo',
+                embedId: element.item.embedId,
+              } as SectionsVideo;
           }
         }),
       };

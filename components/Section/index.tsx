@@ -224,7 +224,12 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                         </div>
                       );
                     case 'sectionsVideo':
-                      return <YoutubeEmbed embedId={element.embedId} />;
+                      return (
+                        <YoutubeEmbed
+                          key={'video-' + element.index}
+                          embedId={element.embedId}
+                        />
+                      );
                     default:
                       return null;
                   }
