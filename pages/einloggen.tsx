@@ -38,13 +38,13 @@ const Login = (): ReactElement => {
             }}
           />
         )}
-        {code && (
+        {/* {code && (
           <div>
             <button onClick={() => sendCode(code)}>Submit</button>
           </div>
         )}
         {userId && <>{userId}</>}
-        {customUserData && <>{JSON.stringify(customUserData, null, 2)}</>}
+        {customUserData && <>{JSON.stringify(customUserData, null, 2)}</>} */}
       </div>
     </div>
   );
