@@ -1,6 +1,6 @@
-const useDevBackend =
-  process.env.NODE_ENV === 'development' ||
-  process.env.GATSBY_USE_DEV_BACKEND === 'override';
+const useDevBackend = true;
+// process.env.NODE_ENV === 'development' ||
+// process.env.GATSBY_USE_DEV_BACKEND === 'override';
 
 let API_INVOKE_URL = useDevBackend
   ? 'https://2j0bcp5tr9.execute-api.eu-central-1.amazonaws.com/dev'
