@@ -2,11 +2,11 @@ import { NextPageContext } from 'next';
 
 const Error = ({ statusCode }: { statusCode: number }) => {
   return (
-    <p>
+    <h3 style={{ textAlign: 'center', margin: '2rem 5rem' }}>
       {statusCode
         ? `Ooops, bei uns ist etwas schief gegangen! :O ${statusCode}`
         : 'Ooops, bei uns ist etwas schief gegangen!'}
-    </p>
+    </h3>
   );
 };
 
