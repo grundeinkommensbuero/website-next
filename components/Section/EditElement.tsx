@@ -107,13 +107,13 @@ export const EditElement = ({
         <ReactTooltip backgroundColor={'black'} />
       </NoSsr>
 
-      <EditIcon
+      {/* <EditIcon
         path={mdiDrag}
         action={() => console.log('DRAG!')}
         size={1.25}
         rotate={0}
         tooltip="Sortieren"
-      />
+      /> */}
 
       <EditIcon
         path={mdiEjectOutline}

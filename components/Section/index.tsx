@@ -16,6 +16,7 @@ import { EditElement } from './EditElement';
 import { DirectusImage } from '../Util/DirectusImage';
 import { SectionWrapper } from './SectionWrapper';
 import { SectionsTextEditable } from './SectionsTextEditable';
+import { YoutubeEmbed } from '../Video/YoutubeEmbed';
 
 export type Section = {
   id: string;
@@ -27,7 +28,11 @@ export type Section = {
   render: SectionElement[];
 };
 
-export type SectionElement = SectionsText | SectionsImage | SectionsComponent;
+export type SectionElement =
+  | SectionsText
+  | SectionsImage
+  | SectionsComponent
+  | SectionsVideo;
 
 export type SectionsText = SectionElementBase & {
   collection: 'sectionsText';
@@ -44,6 +49,11 @@ export type SectionsImage = SectionElementBase & {
 export type SectionsComponent = SectionElementBase & {
   collection: 'sectionsComponent';
   component: string;
+};
+
+export type SectionsVideo = SectionElementBase & {
+  collection: 'sectionsVideo';
+  embedId: string;
 };
 
 export type SectionElementBase = {
@@ -213,6 +223,8 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                           <Component key={element.id} />
                         </div>
                       );
+                    case 'sectionsVideo':
+                      return <YoutubeEmbed embedId={element.embedId} />;
                     default:
                       return null;
                   }
