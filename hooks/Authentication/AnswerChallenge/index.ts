@@ -1,18 +1,22 @@
 import Auth, { CognitoUser } from '@aws-amplify/auth';
 import { UsernamePasswordOpts } from '@aws-amplify/auth/lib-esm/types';
-import { useContext, useState } from 'react';
+import { useContext, useState, Dispatch, SetStateAction } from 'react';
 import { TrackJS } from 'trackjs';
 import AuthContext, { AuthContextType } from '../../../context/Authentication';
 import { updateUser } from '../../Api/Users/Update';
 import { sleep } from '../../utils';
 
-export const useAnswerChallenge = () => {
+export const useAnswerChallenge = (): [
+  string | undefined,
+  (code: string) => Promise<void>,
+  Dispatch<SetStateAction<string | undefined>>
+] => {
   const [state, setState] = useState<string | undefined>();
 
   //get global context
   const context = useContext(AuthContext);
 
-  if (context === null) return;
+  // if (context === null) return;
 
   return [
     state,

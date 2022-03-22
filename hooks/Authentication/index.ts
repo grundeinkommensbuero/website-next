@@ -35,7 +35,7 @@ export const useSignUp = () => {
   ];
 };
 
-export const useSignIn = () => {
+export const useSignIn = (): [string | undefined, () => void] => {
   const [state, setState] = useState<string | undefined>();
 
   //get global context
