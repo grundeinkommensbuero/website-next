@@ -1,4 +1,4 @@
-import { ReactElement, useState, useEffect } from 'react';
+import { ReactElement, useState, useEffect, useContext } from 'react';
 import { NoSsr } from '../Util/NoSsr';
 import ReactTooltip from 'react-tooltip';
 
@@ -17,6 +17,7 @@ import { DirectusImage } from '../Util/DirectusImage';
 import { SectionWrapper } from './SectionWrapper';
 import { SectionsTextEditable } from './SectionsTextEditable';
 import { YoutubeEmbed } from '../Video/YoutubeEmbed';
+import { XbgeAppContext } from '../../context/App';
 
 export type Section = {
   id: string;
@@ -85,8 +86,7 @@ export const Section = ({ section }: SectionProps): ReactElement => {
   const [groupedElements, setGroupedElements] = useState<
     Array<Array<SectionElement>>
   >([]);
-  // (!) Will be replaced with actual login State
-  const isLoggedIn = process.env.NEXT_PUBLIC_FAKEROOT === 'true' ? true : false;
+  const { pageBuilderActive } = useContext(XbgeAppContext);
 
   useEffect(() => {
     const elements: SectionElement[][] = [];
@@ -146,7 +146,7 @@ export const Section = ({ section }: SectionProps): ReactElement => {
       <NoSsr>
         <ReactTooltip backgroundColor={'black'} />
       </NoSsr>
-      {isLoggedIn && (
+      {pageBuilderActive && (
         <EditSection
           modifiedSection={modifiedSection}
           setModifiedSection={setModifiedSection}
@@ -184,7 +184,7 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                           key={'text-' + element.index}
                           element={element}
                           modifiedSection={modifiedSection}
-                          isLoggedIn={isLoggedIn}
+                          pageBuilderActive={pageBuilderActive}
                           updateContent={updateContent}
                           setModifiedSection={setModifiedSection}
                         />
@@ -192,7 +192,7 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                     case 'sectionsImage':
                       return (
                         <div key={'image-' + element.index}>
-                          {isLoggedIn && (
+                          {pageBuilderActive && (
                             <EditElement
                               modifiedSection={modifiedSection}
                               setModifiedSection={setModifiedSection}
@@ -213,7 +213,7 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                       );
                       return (
                         <div key={'component-' + element.index}>
-                          {isLoggedIn && (
+                          {pageBuilderActive && (
                             <EditElement
                               modifiedSection={modifiedSection}
                               setModifiedSection={setModifiedSection}

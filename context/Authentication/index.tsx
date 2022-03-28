@@ -42,6 +42,15 @@ export interface CognitoUserExt extends CognitoUser {
  * would be less efficient than keeping an aditional local state
  */
 
+export type User = {
+  username: string;
+  profilePictures: string[];
+  srcOverwrite: string;
+  directus: {
+    token: string;
+  };
+};
+
 export type SetCognitoUser = React.Dispatch<CognitoUserExt | null> | null;
 export type SetUserId = ((userId: string) => void) | null;
 export type SetIsAuthenticated = React.Dispatch<boolean | null> | null;
@@ -60,9 +69,10 @@ export type AuthContextType = {
   setToken: SetToken;
   isAuthenticated: boolean | null;
   setIsAuthenticated: SetIsAuthenticated;
-  customUserData: any | null;
+  customUserData: User | null;
   previousAction: any | null;
   setPreviousAction: SetPreviousAction;
+  signUserOut: () => void;
   updateCustomUserData: (() => Promise<void>) | null;
 };
 
@@ -80,6 +90,7 @@ const initAuth = {
   customUserData: null,
   previousAction: null,
   setPreviousAction: null,
+  signUserOut: () => {},
   updateCustomUserData: null,
 };
 
@@ -90,7 +101,7 @@ type AuthProviderProps = { children: ReactElement };
 const AuthProvider = ({ children }: AuthProviderProps): ReactElement => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
   const [cognitoUser, setCognitoUser] = useState<CognitoUserExt | null>(null);
-  const [customUserData, setCustomUserData] = useState<object | null>({});
+  const [customUserData, setCustomUserData] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(null);
   const [tempEmail, setTempEmail] = useState<string | null>(null);
   const [previousAction, setPreviousAction] = useState<string | null>(null);
@@ -214,7 +225,7 @@ const AuthProvider = ({ children }: AuthProviderProps): ReactElement => {
     } else if (!userId && !isAuthenticated) {
       // If userId is not set and is Authenticated is not true,
       // we want to reset userData (this would happen after a signout)
-      setCustomUserData({});
+      setCustomUserData(null);
     }
     // eslint-disable-next-line
   }, [userId, isAuthenticated]);
@@ -235,6 +246,7 @@ const AuthProvider = ({ children }: AuthProviderProps): ReactElement => {
         customUserData,
         previousAction,
         setPreviousAction,
+        signUserOut,
         updateCustomUserData: () =>
           updateCustomUserData({
             isAuthenticated,
@@ -253,7 +265,7 @@ const AuthProvider = ({ children }: AuthProviderProps): ReactElement => {
 type UpdateCustomUserDataArgs = {
   isAuthenticated: boolean | null;
   token: string | null;
-  setCustomUserData: React.Dispatch<object | null>;
+  setCustomUserData: React.Dispatch<User | null>;
   userId: string | ((userId: string) => void) | null;
   signUserOut: () => void;
 };

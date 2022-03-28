@@ -15,9 +15,8 @@ export const Header = ({
 }: HeaderProps): ReactElement => {
   return (
     <div className={s.header}>
-      <div className={s.mainMenu}>
+      <div className={s.headerContent}>
         <PageLogo />
-
         <MainMenu mainmenu={mainmenu} currentRoute={currentRoute} />
       </div>
     </div>
