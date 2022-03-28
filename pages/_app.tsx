@@ -1,34 +1,24 @@
 import '../styles/globals.scss';
 import type { AppContext, AppProps } from 'next/app';
-import { QueryClientProvider, QueryClient } from 'react-query';
 import { Layout } from '../layout';
 import App from 'next/app';
 import { getMenus, Mainmenu } from '../utils/getMenus';
 import { NoSsr } from '../components/Util/NoSsr';
 import ReactTooltip from 'react-tooltip';
-import { AuthProvider } from '../context/Authentication';
-import { OnboardingModalProvider } from '../context/OnboardingModal';
-
-const queryClient = new QueryClient();
+import { ProviderWrapper } from '../components/Util/ProviderWrapper';
 
 type XbgeAppProps = AppProps & { mainmenu: Mainmenu };
 
 function XbgeApp({ Component, pageProps, mainmenu }: XbgeAppProps) {
   return (
-    <AuthProvider>
-      <OnboardingModalProvider>
-        <>
-          <QueryClientProvider client={queryClient}>
-            <Layout mainmenu={mainmenu} currentRoute={pageProps.route}>
-              <Component {...pageProps} />
-            </Layout>
-          </QueryClientProvider>
-          <NoSsr>
-            <ReactTooltip backgroundColor={'black'} />
-          </NoSsr>
-        </>
-      </OnboardingModalProvider>
-    </AuthProvider>
+    <ProviderWrapper>
+      <Layout mainmenu={mainmenu}>
+        <Component {...pageProps} />
+      </Layout>
+      <NoSsr>
+        <ReactTooltip backgroundColor={'black'} />
+      </NoSsr>
+    </ProviderWrapper>
   );
 }
 
@@ -36,15 +26,9 @@ XbgeApp.getInitialProps = async (appContext: AppContext) => {
   const appProps = await App.getInitialProps(appContext);
   const menus = await getMenus();
 
-  // Pass current route as string to all pages
-  const route = appContext.router.query.id ? appContext.router.query.id : '/';
-
   return {
     ...appProps,
     mainmenu: menus.mainmenu,
-    pageProps: {
-      route,
-    },
   };
 };
 
