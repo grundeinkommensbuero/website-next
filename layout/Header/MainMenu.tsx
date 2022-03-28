@@ -40,6 +40,10 @@ export const MainMenu = ({
           />
         );
       })}
+      <UserMenuLink
+        entry={{ id: 'login', slug: 'login', label: 'Einloggen' }}
+        currentRoute={currentRoute}
+      />
     </div>
   );
 };
@@ -51,22 +55,42 @@ const MenuLink = ({
   entry: MenuEntry;
   currentRoute: string;
 }) => {
+  const prefixedSlug =
+    entry.slug.substring(0, 1) === '/' ? entry.slug : `/${entry.slug}`;
+
   return (
-    <Link
-      key={entry.id}
-      href={
-        // Apperently this prop is getting prefixed in the client, but
-        // not on the server. Until fixed this workaround helps:
-        entry.slug.substring(0, 1) === '/' ? entry.slug : `/${entry.slug}`
-      }
-    >
+    <Link key={entry.id} href={prefixedSlug}>
       <a
         className={`mx-2 text-xl nowrap ${
-          entry.slug === currentRoute ? 'underline' : 'hoverUnderline'
+          prefixedSlug === currentRoute ? 'underline' : 'hoverUnderline'
         }`}
         aria-label={`Zu ${
           entry.slug === '/' ? 'Start' : entry.slug
         } navigieren`}
+      >
+        {entry.label}
+      </a>
+    </Link>
+  );
+};
+
+const UserMenuLink = ({
+  entry,
+  currentRoute,
+}: {
+  entry: { id: string; slug: string; label: string };
+  currentRoute: string;
+}) => {
+  const prefixedSlug =
+    entry.slug.substring(0, 1) === '/' ? entry.slug : `/${entry.slug}`;
+
+  return (
+    <Link key={entry.id} href={prefixedSlug}>
+      <a
+        className={`mx-2 text-xl nowrap pointer ${
+          prefixedSlug === currentRoute ? 'underline' : 'hoverUnderline'
+        }`}
+        aria-label={`Zu ${entry.slug} navigieren`}
       >
         {entry.label}
       </a>

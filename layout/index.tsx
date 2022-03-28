@@ -1,20 +1,18 @@
-import { ReactElement } from 'react';
+import { ReactElement, useContext } from 'react';
 import Head from 'next/head';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { Mainmenu } from '../utils/getMenus';
+import { XbgeAppContext } from '../context/App/index';
 
 type LayoutProps = {
   children: ReactElement;
   mainmenu: Mainmenu;
-  currentRoute: string;
 };
 
-export const Layout = ({
-  children,
-  mainmenu,
-  currentRoute,
-}: LayoutProps): ReactElement => {
+export const Layout = ({ children, mainmenu }: LayoutProps): ReactElement => {
+  const { currentRoute } = useContext(XbgeAppContext);
+
   return (
     <div className="flex-column container">
       <Head>

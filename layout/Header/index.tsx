@@ -17,6 +17,7 @@ export const Header = ({
     <div className={s.header}>
       <div className={s.mainMenu}>
         <PageLogo />
+
         <MainMenu mainmenu={mainmenu} currentRoute={currentRoute} />
       </div>
     </div>
