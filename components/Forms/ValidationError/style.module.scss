@@ -1,0 +1,29 @@
+.error {
+  background: var(--secondary-color);
+  color: var(--text-on-secondary-color);
+  padding: 0.2em;
+  animation-duration: 0.5s;
+  animation-iteration-count: 3;
+  animation-name: blink;
+  display: inline-block;
+}
+
+.christmas {
+  background: $grey;
+  color: $red;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  49% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}

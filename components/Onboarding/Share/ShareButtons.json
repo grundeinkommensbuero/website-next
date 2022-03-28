@@ -1,0 +1,32 @@
+[
+  {
+    "name": "FacebookShareButton",
+    "label": "Facebook",
+    "channelIdentifier": "facebook"
+  },
+  {
+    "name": "EmailShareButton",
+    "label": "E-Mail",
+    "channelIdentifier": "email"
+  },
+  {
+    "name": "TelegramShareButton",
+    "label": "Telegram",
+    "channelIdentifier": "telegram"
+  },
+  {
+    "name": "TwitterShareButton",
+    "label": "Twitter",
+    "channelIdentifier": "twitter"
+  },
+  {
+    "name": "WhatsappShareButton",
+    "label": "WhatsApp",
+    "channelIdentifier": "whatsapp"
+  },
+  {
+    "name": "InstagramHowTo",
+    "label": "Instagram",
+    "channelIdentifier": "instagram"
+  }
+]

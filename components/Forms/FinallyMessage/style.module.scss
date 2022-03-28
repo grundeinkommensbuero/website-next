@@ -1,0 +1,50 @@
+.message {
+  padding: 1em;
+  position: relative;
+  z-index: 1;
+
+  @media (min-width: $breakPointM) {
+    font-size: $DesktopFontSizeM;
+  }
+}
+
+.messageInner {
+  display: flex;
+  align-items: center;
+
+  p {
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.children {
+  width: 100%;
+}
+
+.savingIndicator {
+  height: 3rem;
+  width: 3rem;
+  margin-right: 1.5rem;
+  background: var(--text-on-secondary-color);
+  flex: 0 0 auto;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-name: rotate;
+  align-self: flex-start;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -7,6 +7,7 @@ import { getMenus, Mainmenu } from '../utils/getMenus';
 import { NoSsr } from '../components/Util/NoSsr';
 import ReactTooltip from 'react-tooltip';
 import { AuthProvider } from '../context/Authentication';
+import { OnboardingModalProvider } from '../context/OnboardingModal';
 
 const queryClient = new QueryClient();
 
@@ -15,16 +16,18 @@ type XbgeAppProps = AppProps & { mainmenu: Mainmenu };
 function XbgeApp({ Component, pageProps, mainmenu }: XbgeAppProps) {
   return (
     <AuthProvider>
-      <>
-        <QueryClientProvider client={queryClient}>
-          <Layout mainmenu={mainmenu} currentRoute={pageProps.route}>
-            <Component {...pageProps} />
-          </Layout>
-        </QueryClientProvider>
-        <NoSsr>
-          <ReactTooltip backgroundColor={'black'} />
-        </NoSsr>
-      </>
+      <OnboardingModalProvider>
+        <>
+          <QueryClientProvider client={queryClient}>
+            <Layout mainmenu={mainmenu} currentRoute={pageProps.route}>
+              <Component {...pageProps} />
+            </Layout>
+          </QueryClientProvider>
+          <NoSsr>
+            <ReactTooltip backgroundColor={'black'} />
+          </NoSsr>
+        </>
+      </OnboardingModalProvider>
     </AuthProvider>
   );
 }

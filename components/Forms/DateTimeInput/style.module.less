@@ -1,0 +1,31 @@
+@import '../../style/vars.less';
+
+.input {
+  background: @white;
+  border: 2px solid @violet;
+  color: @violet;
+  font-family: inherit;
+  border-radius: 0;
+  padding: @inputPadding;
+  line-height: inherit;
+  max-width: 100%;
+  font-size: @DesktopFontSizeL;
+
+  @media (max-width: @breakPointS) {
+    width: 100%;
+  }
+
+  &::placeholder {
+    color: @greyMedium;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: inset 0 0 0 @borderWidthThick @violet;
+  }
+
+  &::-ms-clear,
+  &::-webkit-clear-button {
+    display: none;
+  }
+}

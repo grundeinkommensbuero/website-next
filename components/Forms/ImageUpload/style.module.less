@@ -1,0 +1,148 @@
+@import '../../style/vars.less';
+.imageUploadContainer {
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.avatarImage {
+  display: block;
+  transition: transform 0.3s;
+  pointer-events: all;
+
+  &.defaultSize {
+    margin-top: 1rem;
+    height: 5rem;
+    width: 5rem;
+  }
+
+  &.large {
+    height: 7rem;
+    width: 7rem;
+  }
+
+  @media (max-width: @breakPointM) {
+    height: 4rem;
+    width: 4rem;
+  }
+}
+
+/*
+ * Hide only visually, but have it available for screen readers:
+ * https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+ *
+ * 1. For long content, line feeds are not interpreted as spaces and small width
+ *    causes content to wrap 1 word per line:
+ *    https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
+ */
+
+.avatarUploadButton {
+  border: 0;
+  clip: rect(0 0 0 0);
+  -webkit-clip-path: inset(50%);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap; /* 1 */
+}
+
+.avatarImageContainer {
+  position: relative;
+  cursor: pointer;
+  pointer-events: none;
+
+  &:hover {
+    .avatarImage {
+      transform: rotate(-15deg);
+    }
+  }
+
+  &:focus-within {
+    .avatarImage {
+      border: 3px solid @violet;
+    }
+  }
+}
+
+.avatarImageLabel {
+  position: absolute;
+  width: 15rem;
+  pointer-events: all;
+  top: 8.5rem;
+  left: 1rem;
+  font-size: @DesktopFontSizeM;
+
+  @media (max-width: @breakPointM) {
+    transform: rotate(10deg);
+    transform-origin: 0 0;
+    top: 8rem;
+    left: 2rem;
+    font-size: @DesktopFontSizeS;
+  }
+
+  &:hover {
+    color: @violet;
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    right: 100%;
+    background-image: url('./arrow.svg');
+    background-size: 100% 100%;
+    bottom: 0.8rem;
+    width: 3rem;
+    height: 2rem;
+    transform: rotate(10deg);
+
+    @media (max-width: @breakPointM) {
+      left: -2.1rem;
+      bottom: -0.8rem;
+      right: auto;
+      transform: rotate(-10deg);
+    }
+  }
+
+  @media not all and (min-resolution: 0.001dpcm) {
+    @supports (-webkit-appearance: none) {
+      top: 1rem;
+    }
+  }
+}
+
+.submitButton {
+  position: relative;
+  top: 4rem;
+}
+
+.buttonOnAquaBackground {
+  color: @white;
+  border: @white solid;
+  background-color: @whiteTransparent;
+
+  &:hover {
+    color: @aqua;
+    background-color: @white;
+  }
+}
+
+.uploadMessageContainer {
+  position: relative;
+}
+
+.uploadStateMessage {
+  position: absolute;
+  left: -2.5rem;
+  top: 1rem;
+  font-size: @DesktopFontSizeS;
+}
+
+.loadingMsg {
+  margin-left: 0.5em;
+  font-size: @DesktopFontSizeS;
+}

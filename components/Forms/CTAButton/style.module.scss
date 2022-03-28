@@ -1,0 +1,100 @@
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -1rem;
+  > * {
+    margin: 1rem;
+  }
+  @media (max-width: $breakPointS) {
+    margin: -0.5rem;
+    > * {
+      margin: 0.5rem;
+    }
+  }
+}
+
+.container {
+  &.hasIllustration {
+    margin-bottom: 1.8rem;
+    @media (max-width: $breakPointS) {
+      margin-bottom: 5rem;
+    }
+  }
+}
+
+.inner {
+  position: relative;
+  display: inline-flex;
+  flex-wrap: wrap;
+  margin: -1rem;
+
+  > * {
+    margin: 1rem;
+  }
+
+  @media (max-width: $breakPointM) {
+    margin: -0.5rem;
+
+    > * {
+      margin: 0.5rem;
+    }
+  }
+}
+
+.button {
+  @media (min-width: $breakPointM) {
+    font-size: $DesktopFontSizeM;
+  }
+}
+
+.illustrationPointLeft,
+.illustrationPointRight,
+.illustrationPointLeftMobile {
+  section:nth-child(3n + 1):not(:only-child) & {
+    &.yellow {
+      display: none;
+    }
+  }
+
+  section:nth-child(3n + 2) &,
+  section:nth-child(3n + 3) &,
+  section:only-child & {
+    &.red {
+      display: none;
+    }
+  }
+}
+
+.illustrationPointLeft {
+  position: absolute;
+  width: 13rem;
+  top: calc(100% - 7rem);
+  left: calc(100% + 4rem);
+
+  @media (max-width: $breakPointS) {
+    display: none;
+  }
+}
+
+.illustrationPointLeftMobile {
+  position: absolute;
+  width: 10rem;
+  top: calc(100% + 1rem);
+  left: 10rem;
+
+  @media (min-width: $breakPointS) {
+    display: none;
+  }
+}
+
+.illustrationPointRight {
+  position: absolute;
+  transform: scaleX(-1);
+  width: 13rem;
+  top: calc(100% - 9rem);
+  left: calc(100% - 36rem);
+
+  @media (max-width: $breakPointL) {
+    display: none;
+  }
+}

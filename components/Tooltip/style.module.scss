@@ -1,0 +1,54 @@
+.arrow {
+  $distance: -0.5rem;
+  position: absolute;
+  height: 1.5rem;
+  width: 1.5rem;
+  transform: rotate(45deg);
+  z-index: 0;
+  background: var(--font-color);
+
+  &[data-placement*='top'] {
+    bottom: $distance;
+  }
+
+  &[data-placement*='bottom'] {
+    top: $distance;
+  }
+}
+
+.popup {
+  color: var(--bg-color);
+  padding: 0.5rem;
+  visibility: hidden;
+  text-align: left;
+  z-index: 10;
+
+  &:before {
+    content: '';
+    background: var(--font-color);
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    transform: skew(3deg);
+  }
+
+  .content:hover ~ & {
+    visibility: visible;
+  }
+}
+
+.tooltipContent {
+  z-index: 1;
+  position: relative;
+  font-size: $DesktopFontSizeM;
+  text-shadow: none;
+  color: var(--bg-color);
+  max-width: 20rem;
+}
+
+.content {
+  display: inline-block;
+}

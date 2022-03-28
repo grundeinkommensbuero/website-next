@@ -14,11 +14,35 @@ $violetLight: #ae9fff;
 $violetTransparent: rgba(120, 95, 255, 0.2);
 $whiteTransparent: rgba(255, 255, 255, 0.2);
 $aquaTransparent: rgba(70, 180, 180, 0.2);
+$blackTransparent: rgba(0, 0, 0, 0.2);
+
+$DesktopFontSizeXXL: 6.25rem; // HUGE, Use only in special cases
+$DesktopFontSizeXL: 3.375rem; // For big headlines
+$DesktopFontSizeLL: 2.125rem; // For in between headlines - use sparingly
+$DesktopFontSizeL: 1.75rem; // For smaller headlines and teaser texts
+$DesktopFontSizeM: 1.25rem; // Normal body text size
+$DesktopFontSizeS: 1rem; // For hints / image captions
+$DesktopFontSizeXS: 0.75rem; // For very small hints
+
+$MobileFontSizeXXL: 4.5rem; // Use wisely
+$MobileFontSizeXL: 1.75rem; // For big headlines
+$MobileFontSizeL: 1.25rem; // For smaller headlines and teaser texts
+$MobileFontSizeM: 1rem; // Normal body text size
+$MobileFontSizeS: 0.75rem; // For small hints / captions
+$MobileFontSizeXS: 0.625rem; // For very small hints - use wisely
 
 $headerHeight: 5rem;
 $headerHeightS: 4rem;
 
 $headerWidth: 70rem;
+
+$borderWidth: 1px;
+$borderWidthThick: 3px;
+$borderRadius: 2rem;
+$borderRadiusSmall: 0.9rem;
+$buttonPadding: 0.87rem 4.9rem 0.55rem;
+$buttonPaddingSmall: 0.87rem 2rem 0.55rem;
+$inputPadding: 0.8rem 0.8rem 0.5rem;
 
 $breakPointXL: 1200px;
 $breakPointL: 1000px;

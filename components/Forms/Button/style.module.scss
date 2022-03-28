@@ -1,0 +1,238 @@
+.linkButton,
+.button {
+  background: $white; // fallback for IE
+  background: var(--button-bg-color);
+  border: $black; //fallback for IE
+  border: var(--button-font-color) solid $borderWidthThick;
+  border-radius: $borderRadius;
+  color: var(--button-font-color);
+  font-size: $DesktopFontSizeM;
+  font-weight: bold;
+  padding: $buttonPadding;
+  text-decoration: none;
+  min-height: 1rem;
+  min-width: 1rem;
+  position: relative;
+
+  transition: padding 0.3s ease;
+
+  @media (max-width: $breakPointS) {
+    padding: $buttonPaddingSmall;
+  }
+
+  &.medium {
+    font-size: $DesktopFontSizeM;
+  }
+
+  &.small {
+    padding: 0.5rem 1.5rem 0.25rem 1.5rem;
+  }
+
+  &:hover {
+    color: var(--button-hover-font-color);
+    background: var(--button-hover-bg-color);
+  }
+
+  &:focus {
+    outline: none;
+    background-color: darken($violet, 10%);
+    color: $white;
+    border-color: darken($violet, 10%);
+    //box-shadow: inset 0 0 0 $borderWidthThick var(--button-hover-font-color);
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+    border-color: $greyMedium;
+    background: $greyBright;
+    color: $greyMedium;
+  }
+
+  .buttonText {
+    opacity: 1;
+    transition: opacity 0.2s ease, font-size 0.2s ease 0.5s;
+  }
+
+  .progressBar {
+    background-color: var(--secondary-color);
+    border-radius: $borderRadius;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 0%;
+    transition: width 0.5s ease-out 0.5s;
+  }
+
+  .successIcon {
+    position: relative;
+    top: -2.5rem;
+    // Needs to stay zero even when rendered because of spacing issues
+    height: 0rem;
+
+    img {
+      height: 0rem;
+      width: 0rem;
+      transition: all 0.5s ease 0.4s;
+    }
+  }
+
+  &.loading {
+    padding: 0;
+    background-color: $greyMedium;
+    border: none;
+    margin-top: 2.5rem;
+    pointer-events: none;
+    margin-bottom: 2rem;
+
+    .buttonText {
+      opacity: 0;
+    }
+
+    .progressBar {
+      width: 95%;
+    }
+  }
+
+  &.success {
+    background-color: var(--bg-color);
+    border: none;
+    padding: 0;
+    margin-bottom: 2.6rem;
+    margin-top: 2.2rem;
+    transition: background-color 0.1s ease 0.6s;
+    pointer-events: none;
+
+    .buttonText {
+      opacity: 0;
+    }
+
+    .progressBar {
+      transition: width 0.5s ease, background-color 0.1s ease 0.6s;
+      width: 100%;
+      background-color: var(--bg-color);
+    }
+
+    .buttonText {
+      font-size: 0.05rem;
+    }
+
+    .successIcon {
+      img {
+        width: 73px;
+        height: 73px;
+      }
+    }
+  }
+}
+
+.linkButton {
+  display: inline-block;
+}
+
+.button {
+  font-family: inherit;
+  line-height: inherit;
+  cursor: pointer;
+}
+
+.inlineButton {
+  display: inline;
+  padding: 0;
+  margin: 0;
+  height: 1.15em;
+  background: transparent;
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0.1em 0 var(--bg-color), 0 0.2em 0 currentColor;
+
+  &:hover {
+    box-shadow: none;
+  }
+}
+a.inlineButton {
+  text-decoration: none;
+}
+
+p a.linkButton {
+  box-shadow: none;
+}
+
+.primarySecondaryButtonContainer {
+  display: flex;
+  width: 25rem;
+  margin-top: 3rem;
+  justify-content: space-between;
+  align-items: center;
+
+  .inlineButton {
+    font-size: $DesktopFontSizeM;
+    font-weight: bold;
+
+    @media (max-width: $breakPointS) {
+      margin-top: 1rem;
+    }
+  }
+
+  @media (max-width: $breakPointS) {
+    width: 100%;
+    flex-direction: column-reverse;
+  }
+}
+
+.dropdownButton {
+  cursor: pointer;
+  border: $black solid $borderWidth;
+  border-radius: $borderRadius;
+  padding: 0.67rem 1.2rem 0.35rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  min-width: 14rem;
+
+  &:hover {
+    background-color: #f5f5f5;
+  }
+
+  &.active {
+    background-color: $aqua;
+    color: $white;
+
+    .triangle {
+      border-left-color: $white;
+    }
+  }
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  margin-left: 0.5rem;
+  border-top: 8.6px solid transparent;
+  border-left: 10px solid #3e3e3e;
+  border-bottom: 8.6px solid transparent;
+  animation-name: rotateTriangle;
+  background: none;
+  // for some reason, this is neccessary for the triangle to show up in Safari
+  transform: rotate(0deg);
+
+  &:hover {
+    background: none;
+  }
+}
+
+.animateTriangle {
+  transform: rotate(90deg);
+}
+
+@keyframes rotateTriangle {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(90deg);
+  }
+}

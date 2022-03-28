@@ -1,0 +1,67 @@
+$inputWidth: 25rem;
+
+.textInput,
+.textInputInline,
+.textarea {
+  background: $white;
+  border: 2px solid var(--secondary-color);
+  color: var(--input-font-color);
+  font-family: inherit;
+  border-radius: 0;
+  padding: $inputPadding;
+  line-height: inherit;
+  max-width: 100%;
+  width: $inputWidth;
+  font-size: $DesktopFontSizeL;
+
+  @media (max-width: $breakPointS) {
+    width: 100%;
+  }
+
+  &.fullWidth {
+    width: 100%;
+  }
+
+  &::placeholder {
+    color: $greyMedium;
+  }
+
+  &:focus {
+    outline: none;
+    border: transparent;
+    border: 2px solid var(--input-border-color);
+    box-shadow: inset 0 0 0 $borderWidthThick var(--input-border-color);
+  }
+}
+
+.textInputSmall {
+  font-size: $DesktopFontSizeS;
+}
+
+.textInputInline {
+  font-size: $DesktopFontSizeS;
+}
+
+.textarea {
+  font-size: $DesktopFontSizeS;
+  resize: vertical;
+  min-height: 6rem;
+}
+
+.hideNumberArrows {
+  &[type='number'] {
+    -moz-appearance: textfield;
+  }
+
+  &::-webkit-outer-adjust-hue-button,
+  &::-webkit-inner-adjust-hue-button {
+    -webkit-appearance: none;
+  }
+}
+
+.charLeftDisplay {
+  font-weight: normal;
+  text-align: right;
+  max-width: 100%;
+  width: $inputWidth;
+}

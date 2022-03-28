@@ -1,0 +1,92 @@
+@import '../../style/vars.less';
+
+.countField {
+  width: 5rem;
+}
+
+.listIdField {
+  width: 12rem;
+}
+
+.countField,
+.listIdField {
+  @media (max-width: @breakPointS) {
+    font-size: @DesktopFontSizeS;
+    width: 100%;
+  }
+}
+
+.formSection {
+  margin-bottom: 2rem;
+}
+
+.formSectionCombined {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 1rem;
+
+  @media (max-width: @breakPointS) {
+    grid-template-columns: 1fr 3fr;
+  }
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.buttonContainerMessage {
+  margin-top: 1rem;
+}
+
+.label {
+  @media (max-width: @breakPointS) {
+    font-size: @DesktopFontSizeXS;
+    hyphens: auto;
+  }
+}
+
+.statisticsOverall {
+  display: flex;
+  justify-content: space-between;
+
+  @media (max-width: @breakPointM) {
+    grid-column: wide-start / wide-end;
+    grid-row: 2;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 2rem;
+  }
+}
+
+.visualisation {
+  grid-column: 5 / wide-end;
+
+  @media (max-width: @breakPointM) {
+    grid-column: wide-start / wide-end;
+  }
+}
+
+.headingSelfScan {
+  margin: 0 0 1rem;
+  font-size: @DesktopFontSizeL;
+}
+
+.campaignVisualisations {
+  margin-top: 0;
+}
+
+.fieldContainer {
+  width: 75%;
+}
+
+.fieldLabel {
+  //min-height: 3rem;
+
+  @media (max-width: @breakPointM) {
+    font-size: 18px;
+  }
+
+  @media (max-width: @breakPointS) {
+    font-size: 15px;
+  }
+}
