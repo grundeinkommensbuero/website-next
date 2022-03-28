@@ -19,71 +19,71 @@ $bgColors: (
 .colorSchemeWhite {
   background-color: $white;
   color: $black;
-  --primary-color: $white;
-  --secondary-color: $violet;
-  --bg-color: $white;
-  --font-color: $black;
-  --heading-color: $violet;
-  --text-on-secondary-color: $white;
-  --button-font-color: $violet;
+  --primary-color: #{$white};
+  --secondary-color: #{$violet};
+  --bg-color: #{$white};
+  --font-color: #{$black};
+  --heading-color: #{$violet};
+  --text-on-secondary-color: #{$white};
+  --button-font-color: #{$violet};
   --button-bg-color: rgb(152, 133, 255); // IE Fallback
-  --button-bg-color: $violetTransparent;
-  --button-hover-bg-color: $violet;
-  --button-hover-font-color: $white;
-  --input-border-color: $violet;
-  --input-font-color: $violet;
+  --button-bg-color: #{$violetTransparent};
+  --button-hover-bg-color: #{$violet};
+  --button-hover-font-color: #{$white};
+  --input-border-color: #{$violet};
+  --input-font-color: #{$violet};
 }
 
 .colorSchemeViolet {
   background-color: $violet;
   color: $white;
-  --primary-color: $violet;
-  --secondary-color: $white;
-  --bg-color: $violet;
-  --font-color: $white;
-  --heading-color: $white;
-  --text-on-secondary-color: $black;
-  --button-font-color: $white;
-  --button-bg-color: $black; // IE Fallback
-  --button-bg-color: $whiteTransparent;
-  --button-hover-bg-color: $white;
-  --button-hover-font-color: $violet;
-  --input-border-color: $black;
-  --input-font-color: $violet;
+  --primary-color: #{$violet};
+  --secondary-color: #{$white};
+  --bg-color: #{$violet};
+  --font-color: #{$white};
+  --heading-color: #{$white};
+  --text-on-secondary-color: #{$black};
+  --button-font-color: #{$white};
+  --button-bg-color: #{$black}; // IE Fallback
+  --button-bg-color: #{$whiteTransparent};
+  --button-hover-bg-color: #{$white};
+  --button-hover-font-color: #{$violet};
+  --input-border-color: #{$black};
+  --input-font-color: #{$violet};
 }
 
 .colorSchemeAqua {
   background-color: $aqua;
   color: $white;
-  --primary-color: $aqua;
-  --secondary-color: $white;
-  --bg-color: $aqua;
-  --font-color: $white;
-  --heading-color: $white;
-  --text-on-secondary-color: $black;
-  --button-font-color: $white;
-  --button-bg-color: $black; // IE Fallback
-  --button-bg-color: $whiteTransparent;
-  --button-hover-bg-color: $white;
-  --button-hover-font-color: $aqua;
-  --input-border-color: $black;
-  --input-font-color: $aqua;
+  --primary-color: #{$aqua};
+  --secondary-color: #{$white};
+  --bg-color: #{$aqua};
+  --font-color: #{$white};
+  --heading-color: #{$white};
+  --text-on-secondary-color: #{$black};
+  --button-font-color: #{$white};
+  --button-bg-color: #{$black}; // IE Fallback
+  --button-bg-color: #{$whiteTransparent};
+  --button-hover-bg-color: #{$white};
+  --button-hover-font-color: #{$aqua};
+  --input-border-color: #{$black};
+  --input-font-color: #{$aqua};
 }
 
 .colorSchemeRed {
   background-color: $red;
   color: $white;
-  --primary-color: $red;
-  --secondary-color: $white;
-  --bg-color: $red;
-  --font-color: $white;
-  --heading-color: $white;
-  --text-on-secondary-color: $black;
-  --button-font-color: $white;
-  --button-bg-color: $black; // IE Fallback
-  --button-bg-color: $whiteTransparent;
-  --button-hover-bg-color: $white;
-  --button-hover-font-color: $red;
-  --input-border-color: $black;
-  --input-font-color: $red;
+  --primary-color: #{$red};
+  --secondary-color: #{$white};
+  --bg-color: #{$red};
+  --font-color: #{$white};
+  --heading-color: #{$white};
+  --text-on-secondary-color: #{$black};
+  --button-font-color: #{$white};
+  --button-bg-color: #{$black}; // IE Fallback
+  --button-bg-color: #{$whiteTransparent};
+  --button-hover-bg-color: #{$white};
+  --button-hover-font-color: #{$red};
+  --input-border-color: #{$black};
+  --input-font-color: #{$red};
 }

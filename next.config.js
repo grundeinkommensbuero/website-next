@@ -9,6 +9,9 @@ const nextConfig = {
     dangerouslyAllowSVG: true,
     domains: ['xbge-directus.frac.tools'],
   },
+  sassOptions: {
+    prependData: `@import "./styles/vars.scss";`,
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,

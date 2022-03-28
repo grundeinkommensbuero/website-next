@@ -1,0 +1,144 @@
+@import '../../style/vars.less';
+
+.donationForm {
+  font-weight: normal;
+  padding-top: 1rem;
+  // Only for HurrayCrowd component:
+  // position: relative;
+  // z-index: 1;
+
+  @media (max-width: @breakPointS) {
+    margin-top: 0;
+    padding: 2.5rem 1.5rem;
+  }
+
+  .donationIntervalSelection {
+    margin-bottom: 5rem;
+  }
+
+  .selectionContainer {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .selectionElement {
+    border: @borderWidthThick solid var(--button-font-color);
+    color: var(--button-font-color);
+    font-size: 1.25rem;
+    padding: 1.2rem 2rem 1rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    min-width: 10rem;
+    text-align: center;
+    background-color: transparent;
+
+    &:hover,
+    &:focus,
+    &.selectionElementActive {
+      cursor: pointer;
+      color: var(--button-hover-font-color);
+      background: var(--button-hover-bg-color);
+    }
+  }
+
+  h3 {
+    hyphens: unset;
+  }
+
+  div {
+    font-size: @DesktopFontSizeM;
+    margin-bottom: 0; // Overwrites unneeded field container margins
+
+    @media (max-width: @breakPointM) {
+      font-size: @DesktopFontSizeS;
+    }
+  }
+
+  input[type='radio'] {
+    margin-bottom: 0.8rem;
+  }
+
+  // Error message
+  label div {
+    font-size: @DesktopFontSizeS;
+    font-weight: bold;
+  }
+}
+
+.donationButtons {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.link {
+  .linkUnderlined();
+
+  &:hover {
+    .menuLink();
+  }
+}
+
+.secondaryLink {
+  font-size: @DesktopFontSizeXS;
+  margin: 1.5rem 0.5rem;
+}
+
+.partialForm {
+  margin-bottom: 0;
+}
+
+.customAmount {
+  display: flex;
+
+  input {
+    margin: 0.5rem 0.5rem 0 0;
+  }
+}
+
+.currency {
+  font-size: @DesktopFontSizeXL;
+  margin-top: 6px;
+}
+
+.info {
+  font-weight: bold;
+}
+
+.hint {
+  font-size: @DesktopFontSizeS;
+  margin-bottom: 3rem;
+}
+
+.emphasis {
+  font-weight: bold;
+}
+
+button {
+  border: 1px solid @grey;
+  color: @grey;
+
+  &:hover {
+    color: @red;
+    background: @grey;
+  }
+}
+
+.certificateInfo {
+  margin-top: 3rem;
+}
+
+.christmasTheme {
+  --bg-color: @grey;
+  background-color: @red;
+  color: @grey;
+  & input:checked {
+    color: @red;
+  }
+
+  .adjustFinallyMessage {
+    --secondary-color: @red;
+    --text-on-secondary-color: @grey;
+  }
+}
