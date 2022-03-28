@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { ReactElement, useContext } from 'react';
 import s from './style.module.scss';
 import { SelectColor } from './SelectColor';
 import { Layout, ColorScheme, Section } from '.';
@@ -11,6 +11,7 @@ import {
 } from '@mdi/js';
 import { updateSection } from './updateSection';
 import { EditIcon } from './EditIcon';
+import AuthContext from '../../context/Authentication';
 
 type EditSectionProps = {
   modifiedSection: Section;
@@ -23,6 +24,8 @@ export const EditSection = ({
   setModifiedSection,
   currentColorScheme,
 }: EditSectionProps): ReactElement => {
+  const { customUserData } = useContext(AuthContext);
+
   const updateSectionLayout = (layout: Layout): void => {
     const updated = {
       ...modifiedSection,
@@ -87,7 +90,10 @@ export const EditSection = ({
 
           <EditIcon
             path={mdiContentSaveOutline}
-            action={() => updateSection(modifiedSection)}
+            action={() =>
+              customUserData?.directus?.token &&
+              updateSection(modifiedSection, customUserData.directus.token)
+            }
             size={1.25}
             rotate={0}
             tooltip="Speichern"

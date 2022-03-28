@@ -1,11 +1,9 @@
 import { Directus } from '@directus/sdk';
 import { SectionElement, Section } from '.';
 
-export const updateSection = async (section: Section) => {
+export const updateSection = async (section: Section, token: string) => {
   const directus = new Directus(process.env.NEXT_PUBLIC_DIRECTUS || '');
-  const auth = await directus.auth.static(
-    process.env.NEXT_PUBLIC_FRONTENDKEY || ''
-  );
+  const auth = await directus.auth.static(token);
   // console.log('Directus authenticated:', auth);
 
   const updated = await directus

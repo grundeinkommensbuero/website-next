@@ -7,7 +7,7 @@ import { Tiptap } from '../Editor/Tiptap';
 type SectionsTextEditableProps = {
   element: SectionsText;
   modifiedSection: Section;
-  isLoggedIn: boolean;
+  pageBuilderActive: boolean;
   updateContent: (index: number, content: string) => void;
   setModifiedSection: Dispatch<SetStateAction<Section>>;
 };
@@ -15,13 +15,13 @@ type SectionsTextEditableProps = {
 export const SectionsTextEditable = ({
   element,
   modifiedSection,
-  isLoggedIn,
+  pageBuilderActive,
   updateContent,
   setModifiedSection,
 }: SectionsTextEditableProps): ReactElement => {
   return (
     <div>
-      {isLoggedIn && (
+      {pageBuilderActive && (
         <EditElement
           modifiedSection={modifiedSection}
           setModifiedSection={setModifiedSection}
