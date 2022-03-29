@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import cN from 'classnames';
-import * as s from './style.module.less';
+import s from './style.module.scss';
+
+type MunicipalityInfoProps = {
+  start: number;
+  end: number;
+  goal: number;
+  title: string;
+  description: string;
+};
 
 export const MunicipalityInfo = ({
   start = 0,
@@ -8,7 +16,7 @@ export const MunicipalityInfo = ({
   goal = 0,
   title,
   description,
-}) => {
+}: MunicipalityInfoProps) => {
   const [displayCount, setDisplayCount] = useState(0);
   const [displayWidth, setDisplayWidth] = useState(0);
 
@@ -23,9 +31,15 @@ export const MunicipalityInfo = ({
     calculateSteps(start, end, displayCount, setDisplayCount);
     // count up display width in percent
     calculateSteps(start, finalPercentage, displayWidth, setDisplayWidth);
+    // eslint-disable-next-line
   }, [end]);
 
-  const calculateSteps = (start, end, count, setFn) => {
+  const calculateSteps = (
+    start: number,
+    end: number,
+    count: number,
+    setFn: (arg: number) => void
+  ) => {
     const startFrom = start;
     const distance = end - startFrom;
     if (end !== count) {

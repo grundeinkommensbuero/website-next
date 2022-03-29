@@ -3,8 +3,8 @@ import { useState } from 'react';
 const USER_ID_KEY = 'user-id';
 
 export const useLocalStorageUser = (): [
-  userId: string | null,
-  setUserId: ((userId: string) => void) | null
+  userId: string,
+  setUserId: (userId: string) => void
 ] => {
   // Reactive state for user id
   const [userId, setUserIdState] = useState(() => {

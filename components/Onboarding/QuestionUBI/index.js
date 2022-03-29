@@ -1,8 +1,9 @@
 import React from 'react';
-import * as gS from '../style.module.less';
+import gS from '../style.module.scss';
 
 import { Textarea } from '../../Forms/TextInput';
 import { Button } from '../../Forms/Button';
+import { PageContainer } from '../PageContainer';
 
 export const QuestionUBI = ({
   userData,
@@ -10,7 +11,7 @@ export const QuestionUBI = ({
   setCurrentElementByIndex,
 }) => {
   return (
-    <section className={gS.pageContainer}>
+    <PageContainer>
       <h3 className={gS.moduleTitle}>Deine Frage ans Grundeinkommen</h3>
       <p className={gS.descriptionTextLarge}>
         Was erhoffst du dir vom Grundeinkommen? Welche Fragen soll der
@@ -39,6 +40,6 @@ export const QuestionUBI = ({
           Jetzt nicht
         </span>
       </div>
-    </section>
+    </PageContainer>
   );
 };

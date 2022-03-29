@@ -1,8 +1,21 @@
 import React, { useState } from 'react';
-import * as gS from '../style.module.less';
-import * as s from './style.module.less';
+import gS from '../style.module.scss';
+import s from './style.module.scss';
 import DonationForm from '../../Forms/DonationForm';
 import { InlineButton } from '../../Forms/Button';
+import { User } from '../../../context/Authentication';
+import { Municipality } from '../../../context/Municipality';
+import { PageContainer } from '../PageContainer';
+
+type DonateProps = {
+  userData: User;
+  userId: string;
+  updateUser: (data: any) => Promise<void>;
+  updateCustomUserData: (() => Promise<void>) | null;
+  compIndex: number;
+  setCurrentElementByIndex: (index: number) => void;
+  municipality: Municipality;
+};
 
 export const Donate = ({
   userData,
@@ -12,10 +25,10 @@ export const Donate = ({
   compIndex,
   setCurrentElementByIndex,
   municipality,
-}) => {
+}: DonateProps) => {
   const [showDonationForm, setShowDonationForm] = useState(false);
 
-  const saveDonationReaction = type => {
+  const saveDonationReaction = (type: string) => {
     const existingReactions = [...userData?.store?.donationOnboardingReaction];
     const reactionForMunicipality = {
       ags: municipality.ags,
@@ -45,7 +58,7 @@ export const Donate = ({
   };
 
   return (
-    <section className={gS.pageContainer}>
+    <PageContainer>
       {showDonationForm ? (
         <>
           <DonationForm
@@ -97,6 +110,6 @@ export const Donate = ({
           </div>
         </>
       )}
-    </section>
+    </PageContainer>
   );
 };

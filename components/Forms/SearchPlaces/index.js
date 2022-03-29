@@ -5,7 +5,6 @@ import LabelInputErrorWrapper from '../LabelInputErrorWrapper';
 import s from './style.module.scss';
 import cN from 'classnames';
 import { Button } from '../Button';
-import { navigate } from 'gatsby';
 
 import Fuse from 'fuse.js';
 

@@ -3,8 +3,8 @@ import { useState, useContext } from 'react';
 import { saveUser } from '../shared';
 import AuthContext from '../../../../context/Authentication';
 
-export const useUpdateUser = () => {
-  const [state, setState] = useState<string | null>(null);
+export const useUpdateUser = (): [string, (data: any) => Promise<void>] => {
+  const [state, setState] = useState<string>('');
 
   //get auth token from global context
   const { token, userId } = useContext(AuthContext);

@@ -15,6 +15,7 @@ import municipalities from '../../data/municipalitiesForMap.json';
 
 export type Municipality = {
   ags: string;
+  name: string;
   signups?: number;
   percent?: number;
   goal?: number;
@@ -55,7 +56,8 @@ export const MunicipalityContext = React.createContext<MunicipalityContext>({
   isMunicipality: false,
   setIsMunicipality: () => {},
   municipality: {
-    ags: '123',
+    ags: '',
+    name: '',
   },
   setMunicipality: () => {},
   municipalityContentfulState: 'noMunicipality',

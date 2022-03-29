@@ -180,12 +180,12 @@ const signIn = async (
     userId,
   }: {
     setTempEmail: ((tempEmail: string) => void) | null;
-    userId: string | null;
+    userId: string;
   }
 ) => {
   const body: {
     email?: string;
-    userId?: string | null;
+    userId?: string;
   } = {};
 
   if (email) {
@@ -253,9 +253,9 @@ export const signOut = async ({
     // Update user state
     if (setCognitoUser) setCognitoUser(null);
     if (setUserId) setUserId('');
-    if (setToken) setToken(null);
+    if (setToken) setToken('');
     if (setIsAuthenticated) setIsAuthenticated(false);
-    if (setTempEmail) setTempEmail(null);
+    if (setTempEmail) setTempEmail('');
     if (setPreviousAction) setPreviousAction('signOut');
     return;
   } catch (error) {
@@ -279,7 +279,7 @@ const bounceToIdentifiedState = async ({
 
     // Update user state
     if (setCognitoUser) setCognitoUser(null);
-    if (setToken) setToken(null);
+    if (setToken) setToken('');
     if (setIsAuthenticated) setIsAuthenticated(false);
   } catch (error) {
     console.log('Error while bouncing user to identified state', error);
