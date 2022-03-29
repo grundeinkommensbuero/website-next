@@ -1,14 +1,26 @@
 import React from 'react';
-import * as s from './style.module.less';
-import * as gS from '../style.module.less';
+import s from './style.module.scss';
+import gS from '../style.module.scss';
 import { Button } from '../../Forms/Button';
 import cN from 'classnames';
 
 import { MunicipalityInfo } from './MunicipalityInfo';
+import { User } from '../../../context/Authentication';
+import { PageContainer } from '../PageContainer';
 
-export const Engage = ({ userData, compIndex, setCurrentElementByIndex }) => {
+type EngageProps = {
+  userData: User;
+  compIndex: number;
+  setCurrentElementByIndex: (index: number) => void;
+};
+
+export const Engage = ({
+  userData,
+  compIndex,
+  setCurrentElementByIndex,
+}: EngageProps) => {
   return (
-    <section className={gS.pageContainer}>
+    <PageContainer>
       <h3 className={gS.moduleTitle}>
         Willkommen bei der Expedition Grundeinkommen!
       </h3>
@@ -64,6 +76,6 @@ export const Engage = ({ userData, compIndex, setCurrentElementByIndex }) => {
           Jetzt nicht
         </span>
       </div>
-    </section>
+    </PageContainer>
   );
 };

@@ -1,10 +1,24 @@
-import React, { useState } from 'react';
+import React, { RefObject, useState } from 'react';
 import cN from 'classnames';
-import * as s from './style.module.less';
-import * as gS from '../style.module.less';
+import s from './style.module.scss';
+import gS from '../style.module.scss';
 import { ShareButtonRow } from './ShareButtonRow';
 import { SharePreview } from './SharePreview';
 import { Button, InlineButton } from '../../Forms/Button';
+import { Municipality } from '../../../context/Municipality';
+import { User } from '../../../context/Authentication';
+
+type SharingFeatureProps = {
+  compIndex: number;
+  setCurrentElementByIndex: (index: number) => void;
+  municipality: Municipality | null;
+  userData: User;
+  userId: string;
+  isInOnboarding?: boolean;
+  introText?: string;
+  previewComponent?: string;
+  scrollToRef?: RefObject<any>;
+};
 
 export const SharingFeature = ({
   compIndex,
@@ -16,7 +30,7 @@ export const SharingFeature = ({
   introText,
   previewComponent,
   scrollToRef,
-}) => {
+}: SharingFeatureProps) => {
   const [sharePreviewActive, setSharePreviewActive] = useState(false);
   const [shareChannel, setShareChannel] = useState();
 
@@ -52,6 +66,7 @@ export const SharingFeature = ({
       className={cN(
         {
           [gS.pageContainer]: isInOnboarding,
+          colorSchemeWhite: isInOnboarding,
         },
         {
           [s.municipalityShareContainer]: !isInOnboarding,

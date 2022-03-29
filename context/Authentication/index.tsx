@@ -47,54 +47,63 @@ export type User = {
   username: string;
   email: string;
   profilePictures: string[];
-  srcOverwrite: string;
+  srcOverwrite?: string;
   municipalities?: Municipality[];
-  directus: {
+  directus?: {
     token: string;
+  };
+  store?: {
+    donationOnboardingReaction: [];
   };
 };
 
 export type SetCognitoUser = React.Dispatch<CognitoUserExt | null> | null;
-export type SetUserId = ((userId: string) => void) | null;
-export type SetIsAuthenticated = React.Dispatch<boolean | null> | null;
-export type SetToken = React.Dispatch<string | null> | null;
-export type SetTempEmail = React.Dispatch<string | null> | null;
-export type SetPreviousAction = React.Dispatch<string | null> | null;
+export type SetUserId = (userId: string) => void;
+export type SetIsAuthenticated = React.Dispatch<boolean>;
+export type SetToken = React.Dispatch<string>;
+export type SetTempEmail = React.Dispatch<string>;
+export type SetPreviousAction = React.Dispatch<string>;
 
 export type AuthContextType = {
   setTempEmail: SetTempEmail;
-  tempEmail: string | null;
+  tempEmail: string;
   cognitoUser: CognitoUserExt | null;
   setCognitoUser: SetCognitoUser;
-  userId: string | null;
+  userId: string;
   setUserId: SetUserId;
-  token: string | null;
+  token: string;
   setToken: SetToken;
-  isAuthenticated: boolean | null;
+  isAuthenticated: boolean;
   setIsAuthenticated: SetIsAuthenticated;
-  customUserData: User | null;
-  previousAction: any | null;
+  customUserData: User;
+  previousAction: any;
   setPreviousAction: SetPreviousAction;
   signUserOut: () => void;
-  updateCustomUserData: (() => Promise<void>) | null;
+  updateCustomUserData: () => Promise<void>;
+};
+
+const initUser = {
+  username: '',
+  email: '',
+  profilePictures: [],
 };
 
 const initAuth = {
-  setTempEmail: null,
-  tempEmail: null,
+  setTempEmail: () => {},
+  tempEmail: '',
   cognitoUser: null,
   setCognitoUser: null,
-  userId: null,
-  setUserId: null,
-  token: null,
-  setToken: null,
-  isAuthenticated: null,
-  setIsAuthenticated: null,
-  customUserData: null,
-  previousAction: null,
-  setPreviousAction: null,
+  userId: '',
+  setUserId: () => {},
+  token: '',
+  setToken: () => {},
+  isAuthenticated: false,
+  setIsAuthenticated: () => {},
+  customUserData: initUser,
+  previousAction: '',
+  setPreviousAction: () => {},
   signUserOut: () => {},
-  updateCustomUserData: null,
+  updateCustomUserData: (() => {}) as any,
 };
 
 export const AuthContext = React.createContext<AuthContextType>(initAuth);
@@ -102,12 +111,12 @@ export const AuthContext = React.createContext<AuthContextType>(initAuth);
 type AuthProviderProps = { children: ReactElement };
 
 const AuthProvider = ({ children }: AuthProviderProps): ReactElement => {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [cognitoUser, setCognitoUser] = useState<CognitoUserExt | null>(null);
-  const [customUserData, setCustomUserData] = useState<User | null>(null);
-  const [token, setToken] = useState<string | null>(null);
-  const [tempEmail, setTempEmail] = useState<string | null>(null);
-  const [previousAction, setPreviousAction] = useState<string | null>(null);
+  const [customUserData, setCustomUserData] = useState<User>(initUser);
+  const [token, setToken] = useState<string>('');
+  const [tempEmail, setTempEmail] = useState<string>('');
+  const [previousAction, setPreviousAction] = useState<string>('');
   const [userId, setUserId] = useLocalStorageUser();
 
   const clientId = process.env.NEXT_PUBLIC_DEV_COGNITO_APP_CLIENT_ID;
@@ -228,7 +237,7 @@ const AuthProvider = ({ children }: AuthProviderProps): ReactElement => {
     } else if (!userId && !isAuthenticated) {
       // If userId is not set and is Authenticated is not true,
       // we want to reset userData (this would happen after a signout)
-      setCustomUserData(null);
+      setCustomUserData(initUser);
     }
     // eslint-disable-next-line
   }, [userId, isAuthenticated]);
@@ -266,10 +275,10 @@ const AuthProvider = ({ children }: AuthProviderProps): ReactElement => {
 };
 
 type UpdateCustomUserDataArgs = {
-  isAuthenticated: boolean | null;
-  token: string | null;
-  setCustomUserData: React.Dispatch<User | null>;
-  userId: string | ((userId: string) => void) | null;
+  isAuthenticated: boolean;
+  token: string;
+  setCustomUserData: React.Dispatch<User>;
+  userId: string | ((userId: string) => void);
   signUserOut: () => void;
 };
 

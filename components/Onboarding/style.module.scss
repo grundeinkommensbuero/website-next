@@ -21,8 +21,6 @@
   //margin-top: 2rem;
   margin-bottom: 2rem;
 
-  @include colorSchemeWhite;
-
   @media (max-width: $breakPointM) {
     max-width: 72rem;
     padding: 1rem;

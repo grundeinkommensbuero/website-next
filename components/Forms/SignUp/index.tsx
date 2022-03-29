@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Form, Field } from 'react-final-form';
-import { validateEmail } from '../../utils';
 import { TextInputWrapped } from '../TextInput';
 import FormSection from '../FormSection';
 import { Checkbox } from '../Checkbox';
@@ -16,7 +15,7 @@ import { EnterLoginCode } from '../../Login/EnterLoginCode';
 import s from './style.module.scss';
 import { MunicipalityContext } from '../../../context/Municipality';
 import { SearchPlaces } from '../SearchPlaces';
-import { navigate } from 'gatsby';
+import { validateEmail } from '../../../hooks/Authentication/validateEmail';
 
 // Not needed at the moment
 /* const AuthenticatedDialogDefault = () => {
@@ -33,12 +32,33 @@ import { navigate } from 'gatsby';
   );
 }; */
 
-export default ({
+type Illustration = 'POINT_LEFT';
+
+type Fields =
+  | 'email'
+  | 'username'
+  | 'municipality'
+  | 'zipCode'
+  | 'nudgeBox'
+  | 'newsletterConsent';
+
+type SignUpProps = {
+  initialValues?: {
+    zipCode?: number;
+    email?: string;
+    username?: string;
+  };
+  postSignupAction?: () => void;
+  illustration?: Illustration;
+  fieldsToRender?: Fields;
+};
+
+const SignUp = ({
   initialValues,
   postSignupAction,
   illustration = 'POINT_LEFT',
   fieldsToRender,
-}) => {
+}: SignUpProps) => {
   const [signUpState, userExists, signUp, setSignUpState] = useSignUp();
   const [updateUserState, updateUser] = useUpdateUser();
   const [hasSubmitted, setHasSubmitted] = useState(false);
@@ -311,3 +331,5 @@ const getNudgeBoxLabel = municipality => {
 
   return 'Ja, ich will, dass das Bürgerbegehren startet.';
 };
+
+export default SignUp;

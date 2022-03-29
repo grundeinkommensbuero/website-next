@@ -3,20 +3,20 @@ import React, { useState, useContext, useEffect } from 'react';
 import AuthContext from '../../context/Authentication';
 import { MunicipalityContext } from '../../context/Municipality';
 import { useUpdateUser } from '../../hooks/Api/Users/Update';
+import { OnboardingModalContext } from '../../context/OnboardingModal';
 
 import s from './style.module.scss';
 import menuElements from './BreadcrumbMenu.json';
 
 import { BreadcrumbLinks } from './BreadcrumbLinks';
 import { SignUpFlow } from './SignUpFlow';
-import { Engage } from './Engage';
-import { EngagementLevel } from './EngagementLevel';
-import { QuestionUBI } from './QuestionUBI';
-import { SharingFeature } from './Share';
-import { Donate } from './Donate';
+// import { Engage } from './Engage';
+// import { EngagementLevel } from './EngagementLevel';
+// import { QuestionUBI } from './QuestionUBI';
+// import { SharingFeature } from './Share';
+// import { Donate } from './Donate';
 import { SetupProfile } from './SetupProfile';
-import { FinalNote } from './FinalNote';
-import { OnboardingModalContext } from '../../context/OnboardingModal';
+// import { FinalNote } from './FinalNote';
 
 export const Onboarding = () => {
   const {
@@ -33,16 +33,16 @@ export const Onboarding = () => {
   const { setShowModal } = useContext(OnboardingModalContext);
   const [, updateUser] = useUpdateUser();
 
-  const Components = {
-    SignUpFlow,
-    Engage,
-    EngagementLevel,
-    QuestionUBI,
-    SharingFeature,
-    Donate,
-    SetupProfile,
-    FinalNote,
-  };
+  // const Components = {
+  //   SignUpFlow,
+  //   Engage,
+  //   EngagementLevel,
+  //   QuestionUBI,
+  //   SharingFeature,
+  //   Donate,
+  //   SetupProfile,
+  //   FinalNote,
+  // };
 
   // Fetch new user data in the beginning
   useEffect(() => {
@@ -71,25 +71,42 @@ export const Onboarding = () => {
     return key in obj;
   }
 
+  // const CurrentComponent = () => {
+  //   if (hasKey(Components, currentElement) && userData) {
+  //     const Comp = Components[currentElement];
+  //     return (
+  //       <Comp
+  //         setShowModal={setShowModal}
+  //         compIndex={menuElements.findIndex(el => el.name === currentElement)}
+  //         setCurrentElementByIndex={setCurrentElementByIndex}
+  //         userData={userData}
+  //         userId={userId}
+  //         updateUser={updateUser}
+  //         updateCustomUserData={updateCustomUserData}
+  //         engagementOption={engagementOption}
+  //         setEngagementOption={setEngagementOption}
+  //         municipality={municipality}
+  //       />
+  //     );
+  //   }
+  //   return null;
+  // };
+
   const CurrentComponent = () => {
-    if (hasKey(Components, currentElement)) {
-      const Comp = Components[currentElement];
-      return (
-        <Comp
-          setShowModal={setShowModal}
-          compIndex={menuElements.findIndex(el => el.name === currentElement)}
-          setCurrentElementByIndex={setCurrentElementByIndex}
-          userData={userData}
-          userId={userId}
-          updateUser={updateUser}
-          updateCustomUserData={updateCustomUserData}
-          engagementOption={engagementOption}
-          setEngagementOption={setEngagementOption}
-          municipality={municipality}
-        />
-      );
+    switch (currentElement) {
+      case 'SetupProfile':
+        return (
+          <SetupProfile
+            userData={userData}
+            userId={userId}
+            compIndex={menuElements.findIndex(el => el.name === currentElement)}
+            setCurrentElementByIndex={setCurrentElementByIndex}
+          />
+        );
+
+      default:
+        return <h2>Oops! Seite nicht gefunden!</h2>;
     }
-    return null;
   };
 
   return (

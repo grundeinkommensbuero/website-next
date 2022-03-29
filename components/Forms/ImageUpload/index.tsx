@@ -11,11 +11,13 @@ import { Spinner } from '../../Spinner';
 import AuthContext from '../../../context/Authentication';
 import { Button } from '../Button';
 
-export default ({
+const ImageUpload = ({
   userData,
   userId,
   onUploadDone,
   onImageChosen,
+  showUploadLabel,
+  showEditLabel,
   size = 'default',
   buttonOnAquaBackground = false,
   smallSubmitButton = false,
@@ -198,3 +200,5 @@ export const ImageInput = ({
     </label>
   );
 };
+
+export default ImageUpload;

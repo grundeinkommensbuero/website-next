@@ -1,9 +1,10 @@
 import React from 'react';
-import * as gS from '../style.module.less';
+import gS from '../style.module.scss';
 import * as s from './style.module.less';
 import { Button } from '../../Forms/Button';
 import Confetti from '../../Confetti';
 import { navigate } from 'gatsby';
+import { PageContainer } from '../PageContainer';
 
 export const FinalNote = ({ municipality, setShowModal }) => {
   const isLotteryPage =
@@ -15,7 +16,7 @@ export const FinalNote = ({ municipality, setShowModal }) => {
   // Did not come up with a more clever solution just now
   if (isLotteryPage) {
     return (
-      <section className={gS.pageContainer}>
+      <PageContainer>
         <h3 className={gS.moduleTitle}>Vielen Dank für die Anmeldung!</h3>
 
         <Button
@@ -26,7 +27,7 @@ export const FinalNote = ({ municipality, setShowModal }) => {
         >
           Weiter zur Verlosung
         </Button>
-      </section>
+      </PageContainer>
     );
   }
 

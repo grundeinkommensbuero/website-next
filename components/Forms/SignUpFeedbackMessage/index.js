@@ -1,9 +1,14 @@
 import React from 'react';
 import { FinallyMessage } from '../FinallyMessage';
-import { trackEvent, addActionTrackingId } from '../../utils';
+// import { trackEvent, addActionTrackingId } from '../../utils';
 import { LinkButton } from '../Button';
 
-export default ({ className, state, trackingId, trackingCategory }) => {
+const SignUpFeedbackMessage = ({
+  className,
+  state,
+  trackingId,
+  trackingCategory,
+}) => {
   let finallyState;
   if (state === 'saved' || state === 'updated' || state === 'success') {
     finallyState = 'success';
@@ -58,3 +63,5 @@ export default ({ className, state, trackingId, trackingCategory }) => {
     </div>
   );
 };
+
+export default SignUpFeedbackMessage;

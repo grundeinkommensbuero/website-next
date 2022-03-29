@@ -1,7 +1,8 @@
 import React from 'react';
-import * as gS from '../style.module.less';
-import * as s from './style.module.less';
+import gS from '../style.module.scss';
+import s from './style.module.scss';
 import cN from 'classnames';
+import { PageContainer } from '../PageContainer';
 
 export const EngagementLevel = ({
   userData,
@@ -12,7 +13,7 @@ export const EngagementLevel = ({
   municipality,
 }) => {
   return (
-    <section className={gS.pageContainer}>
+    <PageContainer>
       <h3 className={gS.moduleTitle}>Werde vor Ort aktiv!</h3>
       <p className={gS.descriptionTextLarge}>
         Um die Kampagne {municipality ? `in ${municipality.name} ` : ''} starten
@@ -48,6 +49,6 @@ export const EngagementLevel = ({
           Nein, ich möchte lieber nur unterschrieben!
         </div>
       </div>
-    </section>
+    </PageContainer>
   );
 };
