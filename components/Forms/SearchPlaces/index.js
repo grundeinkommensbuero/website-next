@@ -183,6 +183,7 @@ export const SearchPlaces = ({
     } else {
       setResults([]);
     }
+    // eslint-disable-next-line
   }, [query, fuse]);
 
   const validate = () => {

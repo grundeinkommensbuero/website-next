@@ -99,6 +99,7 @@ const SignUp = ({
         updateCustomUserData();
       }
     }
+    // eslint-disable-next-line
   }, [hasSubmitted, isAuthenticated, userId, updateUserState]);
 
   useEffect(() => {
@@ -121,6 +122,7 @@ const SignUp = ({
     if (!isAuthenticated && signUpState === 'signedIn') {
       setSignUpState(undefined);
     }
+    // eslint-disable-next-line
   }, [isAuthenticated, hasSubmitted, formData, userId]);
 
   if (signUpState === 'success') {

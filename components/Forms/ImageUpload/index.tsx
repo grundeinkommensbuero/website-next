@@ -58,6 +58,7 @@ const ImageUpload = ({
       setImageUploadIsProcessing(false);
       setShowUploadErrorMessage(true);
     }
+    // eslint-disable-next-line
   }, [uploadImageState]);
 
   return (

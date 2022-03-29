@@ -16,7 +16,7 @@ import { navigate } from 'gatsby';
 
 const trackingCategory = 'ListDownload';
 
-export default ({ signaturesId }) => {
+const SignatureDownloadList = ({ signaturesId }) => {
   const [state, pdf, anonymous, createPdf] = useCreateSignatureList();
   const [signUpState, userExists, signUp] = useSignUp();
   const [loginCodeRequested, setLoginCodeRequested] = useState();
@@ -35,6 +35,7 @@ export default ({ signaturesId }) => {
         shouldNotUpdateUser: loginCodeRequested,
       });
     }
+    // eslint-disable-next-line
   }, [isAuthenticated, loginCodeRequested]);
 
   // As soon as signature list is created we navigate to to "checkpoints" page
@@ -43,6 +44,7 @@ export default ({ signaturesId }) => {
     if (state === 'created' && pdf.url && !anonymous) {
       navigate('/unterschreiben-schritte', { state: { pdfUrl: pdf.url } });
     }
+    // eslint-disable-next-line
   }, [state, pdf]);
 
   // After user starts sign in process or if they are identified and request the list,
@@ -241,3 +243,5 @@ const validate = (values, userId) => {
 
   return errors;
 };
+
+export default SignatureDownloadList;
