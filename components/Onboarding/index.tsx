@@ -92,7 +92,7 @@ export const Onboarding = () => {
   //   return null;
   // };
 
-  const CurrentComponent = () => {
+  const CurrentComponent = (): ReactElement => {
     switch (currentElement) {
       case 'SetupProfile':
         return (
