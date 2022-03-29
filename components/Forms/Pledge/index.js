@@ -19,7 +19,7 @@ import { useUpdatePledge } from '../../../hooks/Api/Pledge/Update';
 import { FinallyMessage } from '../FinallyMessage';
 import { useUpdateUser } from '../../../hooks/Api/Users/Update';
 
-export default ({ className, pledgeId }) => {
+const Pledge = ({ className, pledgeId }) => {
   return (
     <div className={className}>
       <div className={s.jumpToAnchorWrapper}>
@@ -56,6 +56,7 @@ const SignaturePledge = ({ pledgeId }) => {
         createPledge(pledge);
       }
     }
+    // eslint-disable-next-line
   }, [isAuthenticated, hasSubmitted, userExists]);
 
   if (
@@ -276,3 +277,5 @@ const pledgeIdMap = {
     state: 'Berlin',
   },
 };
+
+export default Pledge;

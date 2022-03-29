@@ -25,7 +25,7 @@ import { FinallyMessage } from '../FinallyMessage';
 import Confetti from '../../Confetti';
 import { validateEmail } from '../../utils';
 
-export default ({ onboardingNextPage }) => {
+const DonationForm = ({ onboardingNextPage }) => {
   const {
     isAuthenticated,
     tempEmail,
@@ -754,3 +754,5 @@ export default ({ onboardingNextPage }) => {
 //     {({ input: { value } }) => (value === is ? children : null)}
 //   </Field>
 // );
+
+export default DonationForm;

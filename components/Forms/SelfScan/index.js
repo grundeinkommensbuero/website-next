@@ -17,7 +17,7 @@ import { FinallyMessage } from '../FinallyMessage';
 import { TextInputWrapped } from '../TextInput';
 import s from './style.module.scss';
 
-export default ({ successMessage, className }) => {
+const SelfScan = ({ successMessage, className }) => {
   const [state, updateSignatureList, resetSignatureListState] =
     useUpdateSignatureListByUser();
   const [signatureCountOfUser, getSignatureCountOfUser, resetSignatureCount] =
@@ -40,12 +40,14 @@ export default ({ successMessage, className }) => {
     if (userId || eMail) {
       getSignatureCountOfUser({ userId: userId, email: eMail });
     }
+    // eslint-disable-next-line
   }, [userId, eMail, state]);
 
   useEffect(() => {
     if (!userId) {
       resetSignatureCount();
     }
+    // eslint-disable-next-line
   }, [userId]);
 
   const countSignaturesFormProps = {
@@ -344,3 +346,5 @@ const validate = (values, needsEMail, needsListId) => {
 
   return errors;
 };
+
+export default SelfScan;

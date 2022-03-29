@@ -65,6 +65,7 @@ export const CreateMeetup = ({
 
       countdown();
     }
+    // eslint-disable-next-line
   }, [createMeetupState]);
 
   const countdown = () => {
