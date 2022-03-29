@@ -7,6 +7,7 @@ import { updateUser } from '../../hooks/Api/Users/Update';
 import { CognitoUser } from '@aws-amplify/auth';
 import Amplify from '@aws-amplify/auth';
 import CONFIG from '../../hooks/Authentication/backend-config';
+import { Municipality } from '../Municipality';
 
 export interface UserAttributes {
   sub: string;
@@ -44,8 +45,10 @@ export interface CognitoUserExt extends CognitoUser {
 
 export type User = {
   username: string;
+  email: string;
   profilePictures: string[];
   srcOverwrite: string;
+  municipalities?: Municipality[];
   directus: {
     token: string;
   };

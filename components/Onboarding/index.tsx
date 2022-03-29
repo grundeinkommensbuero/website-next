@@ -4,7 +4,7 @@ import AuthContext from '../../context/Authentication';
 import { MunicipalityContext } from '../../context/Municipality';
 import { useUpdateUser } from '../../hooks/Api/Users/Update';
 
-import * as s from './style.module.less';
+import s from './style.module.scss';
 import menuElements from './BreadcrumbMenu.json';
 
 import { BreadcrumbLinks } from './BreadcrumbLinks';
@@ -47,8 +47,9 @@ export const Onboarding = () => {
   // Fetch new user data in the beginning
   useEffect(() => {
     if (isAuthenticated) {
-      updateCustomUserData();
+      updateCustomUserData && updateCustomUserData();
     }
+    // eslint-disable-next-line
   }, [isAuthenticated]);
 
   // TODO: use state of updateUser for improvement (Vali: comment still relevant? I removed some stuff)
@@ -62,26 +63,33 @@ export const Onboarding = () => {
     }
   }, [userData, municipality]);
 
-  const setCurrentElementByIndex = index => {
+  const setCurrentElementByIndex = (index: number) => {
     setCurrentElement(menuElements[index].name);
   };
 
+  function hasKey<O>(obj: O, key: PropertyKey): key is keyof O {
+    return key in obj;
+  }
+
   const CurrentComponent = () => {
-    const Comp = Components[currentElement];
-    return (
-      <Comp
-        setShowModal={setShowModal}
-        compIndex={menuElements.findIndex(el => el.name === currentElement)}
-        setCurrentElementByIndex={setCurrentElementByIndex}
-        userData={userData}
-        userId={userId}
-        updateUser={updateUser}
-        updateCustomUserData={updateCustomUserData}
-        engagementOption={engagementOption}
-        setEngagementOption={setEngagementOption}
-        municipality={municipality}
-      />
-    );
+    if (hasKey(Components, currentElement)) {
+      const Comp = Components[currentElement];
+      return (
+        <Comp
+          setShowModal={setShowModal}
+          compIndex={menuElements.findIndex(el => el.name === currentElement)}
+          setCurrentElementByIndex={setCurrentElementByIndex}
+          userData={userData}
+          userId={userId}
+          updateUser={updateUser}
+          updateCustomUserData={updateCustomUserData}
+          engagementOption={engagementOption}
+          setEngagementOption={setEngagementOption}
+          municipality={municipality}
+        />
+      );
+    }
+    return null;
   };
 
   return (

@@ -13,7 +13,7 @@ export const useVerification = () => {
 export type Request = {
   method: string;
   mode: RequestMode;
-  headers: {
+  headers?: {
     'Content-Type': string;
     Authorization?: string;
   };
