@@ -49,6 +49,7 @@ export type User = {
   profilePictures: string[];
   srcOverwrite?: string;
   municipalities?: Municipality[];
+  zipCode?: string;
   directus?: {
     token: string;
   };

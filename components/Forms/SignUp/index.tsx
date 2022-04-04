@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, ReactElement } from 'react';
 import { Form, Field } from 'react-final-form';
 import { TextInputWrapped } from '../TextInput';
 import FormSection from '../FormSection';
@@ -13,9 +13,14 @@ import { EnterLoginCode } from '../../Login/EnterLoginCode';
 // import AuthInfo from '../../AuthInfo';
 // import { FinallyMessage } from '../FinallyMessage';
 import s from './style.module.scss';
-import { MunicipalityContext } from '../../../context/Municipality';
+import {
+  Municipality,
+  MunicipalityContext,
+} from '../../../context/Municipality';
 import { SearchPlaces } from '../SearchPlaces';
 import { validateEmail } from '../../../hooks/Authentication/validateEmail';
+import { navigate } from '@reach/router';
+import { hasKey } from '../../../utils/hasKey';
 
 // Not needed at the moment
 /* const AuthenticatedDialogDefault = () => {
@@ -42,6 +47,62 @@ type Fields =
   | 'nudgeBox'
   | 'newsletterConsent';
 
+type SignUpValues = {
+  email: {
+    name: string;
+    label: string;
+    description: string;
+    placeholder: string;
+    type: string;
+    component: any;
+  };
+  username: {
+    name: string;
+    label: string;
+    placeholder: string;
+    type: string;
+    component: any;
+  };
+  municipality: {
+    name: string;
+    label: string;
+    placeholder: string;
+    type: string;
+    component: any;
+    onPlaceSelect: (m: Municipality) => void;
+    initialPlace: Municipality | {};
+    isInsideForm: boolean;
+  };
+  zipCode: {
+    name: string;
+    label: string;
+    placeholder: string;
+    type: string;
+    component: any;
+  };
+  nudgeBox: {
+    name: string;
+    label: string;
+    type: string;
+    component: any;
+  };
+  newsletterConsent: {
+    name: string;
+    label: string;
+    type: string;
+    component: any;
+  };
+};
+
+type SignUpFormValues = {
+  email: string;
+  nudgeBox: boolean;
+  newsletterConsent: boolean;
+  ags?: string;
+  username?: string;
+  zipCode?: string;
+};
+
 type SignUpProps = {
   initialValues?: {
     zipCode?: number;
@@ -50,7 +111,7 @@ type SignUpProps = {
   };
   postSignupAction?: () => void;
   illustration?: Illustration;
-  fieldsToRender?: Fields;
+  fieldsToRender?: Fields[];
 };
 
 const SignUp = ({
@@ -68,10 +129,11 @@ const SignUp = ({
     customUserData: userData,
     updateCustomUserData,
   } = useContext(AuthContext);
-  const [formData, setFormData] = useState();
+  const [formData, setFormData] = useState({});
 
   const { municipality } = useContext(MunicipalityContext);
-  const [municipalityInForm, setMunicipalityInForm] = useState(municipality);
+  const [municipalityInForm, setMunicipalityInForm] =
+    useState<Municipality | null>(municipality);
 
   let prefilledZip;
 
@@ -160,7 +222,7 @@ const SignUp = ({
   //   }
   // }
 
-  const handlePlaceSelect = newMunicipality => {
+  const handlePlaceSelect = (newMunicipality: Municipality) => {
     setMunicipalityInForm(newMunicipality);
   };
 
@@ -175,7 +237,7 @@ const SignUp = ({
   if (fieldsToRender) {
     fields = fieldsToRender;
   }
-  const fieldData = {
+  const fieldData: SignUpValues = {
     email: {
       name: 'email',
       label: 'E-mail',
@@ -255,7 +317,9 @@ const SignUp = ({
           email: (isAuthenticated && userData?.email) || '',
           username: userData?.username || '',
         }}
-        validate={values => validate(values, municipalityInForm)}
+        validate={(values: SignUpFormValues) =>
+          validate(values, municipalityInForm)
+        }
         keepDirtyOnReinitialize={true}
         render={({ handleSubmit }) => {
           return (
@@ -263,6 +327,9 @@ const SignUp = ({
               <form onSubmit={handleSubmit}>
                 <FormSection>
                   {fields.map((field, i) => {
+                    if (!hasKey(fieldData, field)) {
+                      return <h4>Field missing</h4>;
+                    }
                     return (
                       <Field key={`form-field-${i}`} {...fieldData[field]} />
                     );
@@ -283,8 +350,19 @@ const SignUp = ({
   );
 };
 
-const validate = (values, municipalityInForm) => {
-  const errors = {};
+type SignUpErrors = {
+  email: string;
+  newsletterConsent: string;
+};
+
+const validate = (
+  values: SignUpFormValues,
+  municipalityInForm: Municipality | null
+) => {
+  const errors: SignUpErrors = {
+    email: '',
+    newsletterConsent: '',
+  };
 
   if (values.email && values.email.includes('+')) {
     errors.email = 'Zurzeit unterstützen wir kein + in E-Mails';
@@ -315,7 +393,7 @@ const validate = (values, municipalityInForm) => {
 };
 
 // For the existing campaigns we want different labels
-const getNudgeBoxLabel = municipality => {
+const getNudgeBoxLabel = (municipality: Municipality | null): string => {
   // Berlin
   if (municipality?.ags === '11000000') {
     return 'Ja, ich will, dass Berlin an dem Modellversuch teilnimmt.';
