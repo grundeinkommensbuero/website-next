@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import s from './style.module.scss';
 import cN from 'classnames';
-import { LinkButton, Button, LinkButtonLocal } from '../Button';
+import { LinkButton, Button, LinkButtonLocal, ButtonType } from '../Button';
 import POINT_LEFT_YELLOW from './figure_point_left_yellow.svg';
 import POINT_LEFT_MOBILE_YELLOW from './figure_point_left_mobile_yellow.svg';
 import POINT_LEFT_RED from './figure_point_left_red.svg';
@@ -87,7 +87,7 @@ type CTAButtonProps = {
   children: ReactElement | string;
   className?: string;
   onClick?: () => void;
-  type?: string;
+  type?: ButtonType;
   other?: any;
 };
 

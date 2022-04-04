@@ -4,12 +4,28 @@ import { OnChange } from 'react-final-form-listeners';
 import s from './style.module.scss';
 import cN from 'classnames';
 
-import { useUploadImage } from '../../../hooks/images';
-import AvatarImage from '../../AvatarImage';
-import { Spinner } from '../../Spinner';
+// import { useUploadImage } from '../../../hooks/images';
+// import { Spinner } from '../../Spinner';
 
-import AuthContext from '../../../context/Authentication';
-import { Button } from '../Button';
+import AuthContext, { User } from '../../../context/Authentication';
+import { Button, ButtonType } from '../Button';
+import { Spinner } from '../../Spinner';
+import AvatarImage from '../../AvatarImage';
+import { useUploadImage } from '../../../hooks/images';
+
+type Size = 'default' | 'large';
+
+type ImageUploadProps = {
+  userData: User;
+  userId: string;
+  onUploadDone: () => void;
+  onImageChosen: () => void;
+  showUploadLabel: boolean;
+  showEditLabel: boolean;
+  size: Size;
+  buttonOnAquaBackground: boolean;
+  smallSubmitButton: boolean;
+};
 
 const ImageUpload = ({
   userData,
@@ -21,7 +37,7 @@ const ImageUpload = ({
   size = 'default',
   buttonOnAquaBackground = false,
   smallSubmitButton = false,
-}) => {
+}: ImageUploadProps) => {
   const [uploadImageState, uploadImage] = useUploadImage();
   const [unsavedChanges, setUnsavedChanges] = useState(false);
   const [imageUploadIsProcessing, setImageUploadIsProcessing] = useState(false);
@@ -76,7 +92,7 @@ const ImageUpload = ({
             <div className={s.avatarImageContainer}>
               <Field
                 name="image"
-                component={ImageInput}
+                component={ImageInput as any}
                 user={userData}
                 size={size}
                 unsavedChanges={unsavedChanges}
@@ -101,11 +117,11 @@ const ImageUpload = ({
 
             {unsavedChanges ? (
               <Button
-                type="submit"
+                type={'submit' as ButtonType}
                 className={cN(s.submitButton, {
                   [s.buttonOnAquaBackground]: buttonOnAquaBackground,
                 })}
-                size={smallSubmitButton && 'SMALL'}
+                size={smallSubmitButton ? 'SMALL' : undefined}
               >
                 Hochladen
               </Button>
@@ -141,22 +157,43 @@ const ImageUpload = ({
   );
 };
 
+type OnChangeArgs = {
+  files: FileList | null;
+  srcOverwrite?: string | ArrayBuffer;
+};
+
+type InputProps = {
+  value: string;
+  onChange: ({ files, srcOverwrite }: OnChangeArgs) => void;
+  target: HTMLInputElement;
+};
+
+type ImageInputProps = {
+  input: InputProps;
+  user: User;
+  size: Size;
+  unsavedChanges: boolean;
+  showUploadLabel: boolean;
+};
+
 export const ImageInput = ({
   input: { value, onChange, ...input },
   user,
   size,
   unsavedChanges,
   showUploadLabel,
-}) => {
-  const [avatarImage, setAvatarImage] = useState(null);
+}: ImageInputProps) => {
+  const [avatarImage, setAvatarImage] = useState<string | ArrayBuffer>('');
 
-  const handleChange = ({ target }) => {
+  const handleChange = ({ target }: { target: HTMLInputElement }) => {
     if (target.files && target.files[0]) {
       const reader = new FileReader();
       reader.readAsDataURL(target.files[0]);
       reader.onload = e => {
-        setAvatarImage(e.target.result);
-        onChange({ files: target.files, srcOverwrite: e.target.result });
+        if (e?.target?.result) {
+          setAvatarImage(e.target.result);
+          onChange({ files: target.files, srcOverwrite: e.target.result });
+        }
       };
     } else {
       onChange({ files: target.files });
@@ -170,7 +207,7 @@ export const ImageInput = ({
       aria-label="Lade ein Bild hoch"
     >
       <AvatarImage
-        srcOverwrite={avatarImage}
+        // srcOverwrite={avatarImage}
         aria-label="Lade ein Bild hoch"
         className={cN(
           s.avatarImage,
@@ -178,7 +215,7 @@ export const ImageInput = ({
           { [s.large]: size === 'large' }
         )}
         user={user}
-        sizes="80px"
+        sizes="200"
       />
       {showUploadLabel ? (
         <>
@@ -190,7 +227,7 @@ export const ImageInput = ({
         </>
       ) : null}
       <input
-        tabIndex="0"
+        tabIndex={0}
         type="file"
         onChange={handleChange}
         className={s.avatarUploadButton}

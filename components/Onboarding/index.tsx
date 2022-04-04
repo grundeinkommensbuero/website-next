@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, ReactElement } from 'react';
 
 import AuthContext from '../../context/Authentication';
 import { MunicipalityContext } from '../../context/Municipality';

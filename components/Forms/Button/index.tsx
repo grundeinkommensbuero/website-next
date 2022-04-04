@@ -1,4 +1,4 @@
-import React, { ReactElement, Ref } from 'react';
+import React, { ButtonHTMLAttributes, ReactElement, Ref } from 'react';
 import s from './style.module.scss';
 import cN from 'classnames';
 import Link from 'next/link';
@@ -57,6 +57,8 @@ export function LinkButtonLocal({
   );
 }
 
+export type ButtonType = 'button' | 'submit' | 'reset' | undefined;
+
 type ButtonProps = {
   children: ReactElement | string;
   className?: string;
@@ -66,6 +68,7 @@ type ButtonProps = {
   loading?: boolean;
   success?: boolean;
   onClick?: (e: any) => void;
+  type?: ButtonType;
 };
 
 export function Button({
@@ -77,6 +80,7 @@ export function Button({
   loading,
   success,
   onClick,
+  type = 'button',
 }: ButtonProps) {
   return (
     <>
@@ -94,6 +98,7 @@ export function Button({
         ref={customRef}
         disabled={disabled}
         onClick={onClick}
+        type={type}
       >
         <div className={s.buttonText}>{children}</div>
         {/* <div className={s.progressBar}></div>
