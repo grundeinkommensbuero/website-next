@@ -1,0 +1,31 @@
+.statisticsCountItem {
+  padding-right: 4rem;
+  max-width: 20rem;
+  min-width: 50%;
+  margin-bottom: 4rem;
+
+  &:last-of-type {
+    margin-bottom: 0rem;
+  }
+
+  @media (max-width: $breakPointM) {
+    margin-bottom: 3rem;
+  }
+}
+
+.statisticsCount {
+  font-size: $DesktopFontSizeXL;
+
+  @media (max-width: $breakPointM) {
+    font-size: $DesktopFontSizeXL;
+  }
+}
+
+.statisticsLabel {
+  font-size: $DesktopFontSizeM;
+  line-height: 1.3;
+
+  @media (max-width: $breakPointM) {
+    font-size: $DesktopFontSizeS;
+  }
+}

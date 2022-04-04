@@ -6,12 +6,14 @@ import { getMenus, Mainmenu } from '../utils/getMenus';
 import { NoSsr } from '../components/Util/NoSsr';
 import ReactTooltip from 'react-tooltip';
 import { ProviderWrapper } from '../components/Util/ProviderWrapper';
+import { Toaster } from 'react-hot-toast';
 
 type XbgeAppProps = AppProps & { mainmenu: Mainmenu };
 
 function XbgeApp({ Component, pageProps, mainmenu }: XbgeAppProps) {
   return (
     <ProviderWrapper>
+      <Toaster />
       <Layout mainmenu={mainmenu}>
         <Component {...pageProps} />
       </Layout>

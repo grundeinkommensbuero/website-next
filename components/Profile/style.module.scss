@@ -1,0 +1,191 @@
+.profilePageGrid {
+  width: 100%;
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 2rem 2rem 7rem;
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-columns: 50% 50%;
+  justify-content: center;
+
+  @media (max-width: $breakPointM) {
+    grid-template-columns: 90%;
+    padding: 2rem 0 2rem;
+  }
+
+  @media (max-width: $breakPointS) {
+    grid-template-columns: 100%;
+    grid-gap: 1rem;
+    padding: 1rem 0 1rem;
+  }
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+
+  @media (max-width: $breakPointS) {
+    margin-bottom: 1.5rem;
+  }
+}
+
+.avatarContainer {
+  margin-right: 4rem;
+}
+
+.userInfo {
+  display: grid;
+  grid-template-columns: 200px auto;
+
+  @media (max-width: $breakPointM) {
+    grid-template-columns: 160px auto;
+  }
+
+  @media (max-width: $breakPointS) {
+    display: block;
+  }
+}
+
+.username {
+  font-size: $DesktopFontSizeXL;
+  margin: 0;
+  padding: 0;
+
+  @media (max-width: $breakPointM) {
+    font-size: $DesktopFontSizeXL;
+  }
+}
+
+// Details section
+.placeInfo {
+  margin-bottom: 0.3rem;
+  font-size: $DesktopFontSizeM;
+}
+
+.details {
+  margin: 0;
+
+  @media (max-width: $breakPointS) {
+    margin-top: 1em;
+    font-size: $DesktopFontSizeS;
+  }
+}
+
+.optionSectionHeading {
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+}
+
+.editPageSection {
+  position: relative;
+  padding: 3.3rem 4rem;
+
+  @media (max-width: $breakPointS) {
+    padding: 3.3rem 2rem;
+  }
+}
+
+.editSettings {
+  grid-column: 1 / span 2;
+  @media (max-width: $breakPointS) {
+    grid-column: 1 / span 1;
+  }
+}
+
+.backToProfile {
+  left: 1rem;
+  margin-bottom: 3rem;
+
+  &:before {
+    content: '< ';
+  }
+}
+
+.bottomRightLink {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+}
+
+.linkLikeFormatted {
+  text-decoration: underline;
+  cursor: pointer;
+  margin: 0;
+}
+
+.linkLikeFormattedButton {
+  background-color: transparent;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+  margin: 0;
+  font-size: $DesktopFontSizeM;
+  &:hover {
+    background-color: transparent;
+    outline: none;
+    border: none;
+  }
+
+  &.onWhiteBackground {
+    color: black;
+  }
+}
+
+.alignRight {
+  text-align: right;
+}
+
+.floatRight {
+  float: right;
+}
+
+.noMargin {
+  margin: 0;
+}
+
+.inputDescription {
+  margin-bottom: -0.25em;
+}
+
+.socialButtonRow {
+  padding-top: 1em;
+}
+
+.messengerIcon {
+  margin-right: 0.5em;
+}
+
+.loading {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid #f0f0f0;
+  border-radius: 50%;
+  border-top-color: #ff4646;
+  animation: adjust-hue 1s ease-in-out infinite;
+  -webkit-animation: adjust-hue 1s ease-in-out infinite;
+}
+
+.loadingMsg {
+  margin-left: 0.5em;
+  font-size: 18px;
+}
+
+.infoMsg {
+  font-size: 18px;
+}
+
+.snackbarMsg {
+  margin: 0;
+}
+
+@keyframes adjust-hue {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes adjust-hue {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}

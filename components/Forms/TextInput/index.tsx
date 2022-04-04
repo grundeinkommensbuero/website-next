@@ -7,13 +7,15 @@ import { ValidationError } from '../ValidationError';
 type InputSize = 'SMALL';
 
 type TextInputProps = {
-  children: ReactElement | ReactElement[] | HTMLCollection;
+  children?: ReactElement | ReactElement[] | HTMLCollection;
   className?: string;
-  label: string;
+  label?: string;
   size?: InputSize;
   customRef?: RefObject<any>;
-  name: string;
+  name?: string;
   placeholder: string;
+  onChange?: (() => void) | React.Dispatch<React.SetStateAction<string>>;
+  value?: string;
 } & InputProps;
 
 export function TextInput({
@@ -22,6 +24,8 @@ export function TextInput({
   label,
   size,
   customRef,
+  onChange,
+  value,
   ...input
 }: TextInputProps) {
   return (
@@ -31,8 +35,10 @@ export function TextInput({
           e.target.autocomplete = 'none';
         }
       }}
+      onChange={e => onChange && onChange(e.target.value)}
       aria-label={label}
       type={'search'}
+      value={value}
       className={cN(
         s.textInput,
         { [s.textInputSmall]: size === 'SMALL' },
@@ -78,7 +84,7 @@ export function Textarea({
 }
 
 type InputProps = {
-  label: string;
+  label?: string;
   meta?: {
     error: string;
     touched: boolean;
@@ -89,12 +95,12 @@ type InputProps = {
   theme?: string;
   className?: string;
   inputClassName?: string;
-  maxLength: number;
-  min: number;
-  max: number;
+  maxLength?: number;
+  min?: number;
+  max?: number;
   hideLabel?: boolean;
   explanation?: string;
-  inputMode:
+  inputMode?:
     | 'search'
     | 'text'
     | 'email'
@@ -104,9 +110,9 @@ type InputProps = {
     | 'numeric'
     | 'decimal'
     | undefined;
-  pattern: string;
-  autoComplete: string;
-  customRef: RefObject<any>;
+  pattern?: string;
+  autoComplete?: string;
+  customRef?: RefObject<any>;
   errorClassName?: string;
 };
 

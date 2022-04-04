@@ -39,12 +39,14 @@ type LinkButtonLocalProps = {
   children: ReactElement | string;
   className?: string;
   size?: Size;
+  to?: string;
 };
 
 export function LinkButtonLocal({
   children,
   className,
   size,
+  to,
   ...other
 }: LinkButtonLocalProps) {
   return (
@@ -169,7 +171,7 @@ export function InlineLinkButton({
 }
 
 type PrimarySecondaryButtonContainerProps = {
-  children: ReactElement;
+  children: ReactElement | ReactElement[];
   className?: string;
   size?: Size;
 };

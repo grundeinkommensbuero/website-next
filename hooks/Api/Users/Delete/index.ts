@@ -3,9 +3,9 @@ import CONFIG from '../../../Authentication/backend-config';
 import AuthContext from '../../../../context/Authentication';
 import { Request } from '../../../Authentication/Verification';
 
-export const useDeleteUser = () => {
+export const useDeleteUser = (): (() => void) => {
   const { token, userId } = useContext(AuthContext);
-  if (!userId || !token) return;
+  if (!userId || !token) return () => {};
   return () => {
     deleteUser(userId, token);
   };

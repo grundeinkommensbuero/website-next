@@ -4,8 +4,8 @@ import AuthContext from '../../../context/Authentication';
 import { CustomMenuAction } from './CustomMenuAction';
 import { CustomEntry, CustomMenuLink } from './CustomMenuLink';
 import s from './style.module.scss';
-import { signOut } from '../../../hooks/Authentication/index';
 import { XbgeAppContext } from '../../../context/App';
+import { useRouter } from 'next/router';
 
 export const UserMenuLink = ({
   entry,
@@ -14,9 +14,10 @@ export const UserMenuLink = ({
   entry: CustomEntry;
   currentRoute: string;
 }) => {
-  const { isAuthenticated, customUserData, signUserOut } =
+  const { isAuthenticated, customUserData, userId, signUserOut } =
     useContext(AuthContext);
   const { togglePageBuilder } = useContext(XbgeAppContext);
+  const router = useRouter();
 
   if (!isAuthenticated) {
     return <CustomMenuLink entry={entry} currentRoute={currentRoute} />;
@@ -36,9 +37,11 @@ export const UserMenuLink = ({
           </div>
           <div className={s.dropdownContent}>
             <div className="my-4 mt-8">
-              <CustomMenuLink
-                entry={{ id: 'profile', slug: 'profile', label: 'Zum Profil' }}
-                currentRoute={currentRoute}
+              <CustomMenuAction
+                entry={{
+                  action: () => router.push(`/mensch/${userId}`),
+                  label: 'Zum Profil',
+                }}
               />
             </div>
             {customUserData?.directus?.token && (

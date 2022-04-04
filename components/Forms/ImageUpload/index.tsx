@@ -19,12 +19,13 @@ type ImageUploadProps = {
   userData: User;
   userId: string;
   onUploadDone: () => void;
-  onImageChosen: () => void;
-  showUploadLabel: boolean;
-  showEditLabel: boolean;
+  onImageChosen?: () => void;
+  showUploadLabel?: boolean;
+  showEditLabel?: boolean;
   size: Size;
   buttonOnAquaBackground: boolean;
   smallSubmitButton: boolean;
+  className?: string;
 };
 
 const ImageUpload = ({
@@ -37,6 +38,7 @@ const ImageUpload = ({
   size = 'default',
   buttonOnAquaBackground = false,
   smallSubmitButton = false,
+  className,
 }: ImageUploadProps) => {
   const [uploadImageState, uploadImage] = useUploadImage();
   const [unsavedChanges, setUnsavedChanges] = useState(false);
