@@ -1,5 +1,3 @@
-@import '../../style/vars.less';
-
 .donationForm {
   font-weight: normal;
   padding-top: 1rem;
@@ -7,7 +5,7 @@
   // position: relative;
   // z-index: 1;
 
-  @media (max-width: @breakPointS) {
+  @media (max-width: $breakPointS) {
     margin-top: 0;
     padding: 2.5rem 1.5rem;
   }
@@ -23,7 +21,7 @@
   }
 
   .selectionElement {
-    border: @borderWidthThick solid var(--button-font-color);
+    border: $borderWidthThick solid var(--button-font-color);
     color: var(--button-font-color);
     font-size: 1.25rem;
     padding: 1.2rem 2rem 1rem;
@@ -47,11 +45,11 @@
   }
 
   div {
-    font-size: @DesktopFontSizeM;
+    font-size: $DesktopFontSizeM;
     margin-bottom: 0; // Overwrites unneeded field container margins
 
-    @media (max-width: @breakPointM) {
-      font-size: @DesktopFontSizeS;
+    @media (max-width: $breakPointM) {
+      font-size: $DesktopFontSizeS;
     }
   }
 
@@ -61,7 +59,7 @@
 
   // Error message
   label div {
-    font-size: @DesktopFontSizeS;
+    font-size: $DesktopFontSizeS;
     font-weight: bold;
   }
 }
@@ -72,16 +70,17 @@
   margin-top: 2rem;
 }
 
-.link {
-  .linkUnderlined();
+// TODO: Fix link class
+// .link {
+//   @extend #{$linkUnderlined};
 
-  &:hover {
-    .menuLink();
-  }
-}
+//   &:hover {
+//     @extend #{$menuLink};
+//   }
+// }
 
 .secondaryLink {
-  font-size: @DesktopFontSizeXS;
+  font-size: $DesktopFontSizeXS;
   margin: 1.5rem 0.5rem;
 }
 
@@ -98,7 +97,7 @@
 }
 
 .currency {
-  font-size: @DesktopFontSizeXL;
+  font-size: $DesktopFontSizeXL;
   margin-top: 6px;
 }
 
@@ -107,7 +106,7 @@
 }
 
 .hint {
-  font-size: @DesktopFontSizeS;
+  font-size: $DesktopFontSizeS;
   margin-bottom: 3rem;
 }
 
@@ -116,12 +115,12 @@
 }
 
 button {
-  border: 1px solid @grey;
-  color: @grey;
+  border: 1px solid $grey;
+  color: $grey;
 
   &:hover {
-    color: @red;
-    background: @grey;
+    color: $red;
+    background: $grey;
   }
 }
 
@@ -130,15 +129,15 @@ button {
 }
 
 .christmasTheme {
-  --bg-color: @grey;
-  background-color: @red;
-  color: @grey;
+  --bg-color: $grey;
+  background-color: $red;
+  color: $grey;
   & input:checked {
-    color: @red;
+    color: $red;
   }
 
   .adjustFinallyMessage {
-    --secondary-color: @red;
-    --text-on-secondary-color: @grey;
+    --secondary-color: $red;
+    --text-on-secondary-color: $grey;
   }
 }

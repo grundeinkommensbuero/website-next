@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import * as s from './style.module.less';
+import s from './style.module.scss';
 import gS from '../style.module.scss';
 import AvatarImage from '../../AvatarImage';
 import ImageUpload from '../../Forms/ImageUpload';
