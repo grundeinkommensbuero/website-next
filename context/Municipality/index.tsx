@@ -12,10 +12,12 @@ import {
 } from '../../hooks/Api/Municipalities';
 
 import municipalities from '../../data/municipalitiesForMap.json';
+import { hasKey } from '../../utils/hasKey';
 
 export type Municipality = {
   ags: string;
   name: string;
+  slug: string;
   signups?: number;
   percent?: number;
   goal?: number;
@@ -25,6 +27,7 @@ export type Municipality = {
   event?: { signups: [number, number] };
   grewByPercent?: number;
   population?: number;
+  zipCodes?: string[];
 };
 
 type MunicipalitsStatsSummary = {};
@@ -58,6 +61,7 @@ export const MunicipalityContext = React.createContext<MunicipalityContext>({
   municipality: {
     ags: '',
     name: '',
+    slug: '',
   },
   setMunicipality: () => {},
   municipalityContentfulState: 'noMunicipality',
@@ -191,10 +195,6 @@ export const MunicipalityProvider = ({
       setStatsSummary(allMunicipalityStats.summary);
     }
   }, [allMunicipalityStats]);
-
-  function hasKey<O>(obj: O, key: PropertyKey): key is keyof O {
-    return key in obj;
-  }
 
   type MunicipalityWithEvent = {
     name: string;

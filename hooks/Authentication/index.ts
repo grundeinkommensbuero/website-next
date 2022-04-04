@@ -1,6 +1,6 @@
 import { getRandomString } from './getRandomString';
 import { sleep, getReferral } from '../utils';
-import React, { useContext, useState } from 'react';
+import React, { SetStateAction, useContext, useState } from 'react';
 import querystring from 'query-string';
 import { navigate } from '@reach/router';
 import { TrackJS } from 'trackjs';
@@ -20,7 +20,12 @@ export { useAnswerChallenge } from './AnswerChallenge';
 export { useVerification } from './Verification';
 export { useLocalStorageUser } from './LocalStorageUser';
 
-export const useSignUp = () => {
+export const useSignUp = (): [
+  string | undefined,
+  boolean | undefined,
+  (data: any) => Promise<void>,
+  React.Dispatch<SetStateAction<string | undefined>>
+] => {
   const [state, setState] = useState<string | undefined>();
   const [userExists, setUserExists] = useState<boolean | undefined>();
 

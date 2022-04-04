@@ -3,7 +3,7 @@ import s from './style.module.scss';
 import cN from 'classnames';
 
 type FormSectionProps = {
-  children: ReactElement;
+  children: ReactElement | ReactElement[];
   className?: string;
   heading?: string;
   fieldContainerClassName?: string;
