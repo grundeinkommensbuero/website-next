@@ -12,6 +12,7 @@ import { InlineButton } from '../../Forms/Button';
 import { CTAButtonContainer, CTAButton } from '../../Forms/CTAButton';
 import s from '../style.module.scss';
 import { OnboardingModalContext } from '../../../context/OnboardingModal';
+import { useRouter } from 'next/router';
 
 type EnterLoginCodeProps = {
   children?: ReactElement | ReactElement[] | string;
@@ -34,6 +35,7 @@ export const EnterLoginCode = ({
   const [signInState, startSignIn] = useSignIn();
   const [triggerMinuteTimer, setTriggerOneMinuteTimer] = useState(0);
   const [timerCounter, setTimerCounter] = useState(0);
+  const router = useRouter();
 
   useEffect(() => {
     // We don't want to start sign in again, if flag is set
@@ -45,12 +47,11 @@ export const EnterLoginCode = ({
   }, []);
 
   useEffect(() => {
-    if (
-      onAnswerChallengeSuccess &&
-      answerChallengeState === 'success' &&
-      isAuthenticated
-    ) {
-      onAnswerChallengeSuccess();
+    if (answerChallengeState === 'success' && isAuthenticated) {
+      if (onAnswerChallengeSuccess) {
+        onAnswerChallengeSuccess();
+      }
+      router.push('/');
     } else if (answerChallengeState === 'restartSignIn') {
       // We want to send a new code by starting sign in again
       startSignIn();
