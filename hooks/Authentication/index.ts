@@ -89,8 +89,12 @@ export const useBounceToIdentifiedState = () => {
   return () => bounceToIdentifiedState(context);
 };
 
-export const useChangeEmail = () => {
-  const [state, setState] = useState<string | undefined>();
+export const useChangeEmail = (): [
+  string,
+  (e: string) => void,
+  React.Dispatch<SetStateAction<string>>
+] => {
+  const [state, setState] = useState<string>('');
 
   //get global context
   const { cognitoUser } = useContext(AuthContext);
@@ -102,8 +106,11 @@ export const useChangeEmail = () => {
   ];
 };
 
-export const useValidateNewEmail = () => {
-  const [state, setState] = useState<string | undefined>();
+export const useValidateNewEmail = (): [
+  string,
+  (c: string) => Promise<void>
+] => {
+  const [state, setState] = useState<string>('');
 
   //get global context
   const { cognitoUser } = useContext(AuthContext);

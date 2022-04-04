@@ -1,0 +1,188 @@
+.tileContainer {
+  padding: 3rem 0rem 2rem 0rem;
+}
+
+.tileFlexContainer {
+  font-weight: normal;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 2rem;
+
+  @media (max-width: @breakPointS) {
+    padding: 1.5rem;
+  }
+
+  p {
+    font-size: @DesktopFontSizeM;
+    margin: 0.7rem 0;
+
+    @media (max-width: @breakPointM) {
+      font-size: @MobileFontSizeM;
+      margin-bottom: 1.5rem;
+    }
+    @media (max-width: @breakPointS) {
+      font-size: @MobileFontSizeM;
+      line-height: 1.625rem;
+    }
+  }
+
+  .municipalityLabel {
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    font-size: @DesktopFontSizeL;
+  }
+}
+
+.headline {
+  margin-top: 0;
+  margin-bottom: 0.4rem;
+  font-size: @DesktopFontSizeLL;
+
+  &.centerDesktop {
+    margin-top: 1.5rem;
+  }
+
+  @media (max-width: @breakPointM) {
+    margin-top: 1.5rem;
+  }
+}
+
+.flexElementOnlyInfo {
+  @media (max-width: @breakPointL) {
+    width: 70%;
+  }
+
+  @media (max-width: @breakPointM) {
+    width: 60%;
+  }
+
+  @media (max-width: @breakPointS) {
+    width: 100%;
+  }
+}
+
+.flexElement {
+  width: 50%;
+
+  @media (max-width: @breakPointL) {
+    width: 100%;
+  }
+}
+
+.avatarAndInfo {
+  display: flex;
+
+  @media (max-width: @breakPointL) {
+    width: 100%;
+  }
+
+  @media (max-width: @breakPointS) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.avatar {
+  margin-right: 1.5rem;
+  width: 130px;
+  height: 130px;
+
+  @media (max-width: @breakPointXL) {
+    width: 100px;
+    height: 100px;
+  }
+
+  @media (max-width: @breakPointL) {
+    width: 130px;
+    height: 130px;
+  }
+
+  @media (max-width: @breakPointS) {
+    margin-right: 0;
+  }
+}
+
+.centeredAvatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .avatar {
+    margin-right: 0;
+  }
+}
+
+.info {
+  @media (max-width: @breakPointL) {
+    width: 50%;
+  }
+  @media (max-width: @breakPointS) {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+.municipalityButtonGroup {
+  @media (max-width: @breakPointL) {
+    margin-bottom: 3rem;
+  }
+}
+
+.infoText {
+  font-size: @DesktopFontSizeM;
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+
+  li {
+    margin-bottom: 0.25rem;
+  }
+  li:last-child {
+    margin-bottom: 0;
+  }
+  margin-bottom: 2rem;
+
+  @media (max-width: @breakPointM) {
+    font-size: @MobileFontSizeM;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (max-width: @breakPointS) {
+    font-size: @MobileFontSizeM;
+    line-height: 1.625rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.userCity,
+.userCreated {
+  font-size: @DesktopFontSizeS;
+}
+
+.userCreated {
+  opacity: 0.6;
+}
+
+.centerMobile {
+  @media (max-width: @breakPointS) {
+    text-align: center;
+  }
+}
+
+.centerDesktop {
+  @media (min-width: @breakPointL) {
+    text-align: center;
+  }
+}
+
+.referredUsersMessage {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  padding-left: 2rem;
+  font-size: @DesktopFontSizeM;
+  text-align: center;
+}

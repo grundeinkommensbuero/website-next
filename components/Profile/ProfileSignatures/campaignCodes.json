@@ -1,0 +1,32 @@
+[
+  {
+    "campaignName": "Berlin",
+    "campaignCode": "berlin-1",
+    "ags": "11000000",
+    "successMessage": "Danke! Bitte schicke die Listen möglichst schnell an: Expedition Grundeinkommen, Karl-Marx-Straße 50, 12043 Berlin"
+  },
+  {
+    "campaignName": "Brandenburg",
+    "campaignCode": "brandenburg-1",
+    "ags": "brandenburg",
+    "successMessage": "Danke! Bitte schicke die Listen möglichst schnell an: Expedition Grundeinkommen, Karl-Marx-Straße 50, 12043 Berlin."
+  },
+  {
+    "campaignName": "Bremen",
+    "campaignCode": "bremen-1",
+    "ags": "04011000",
+    "successMessage": "Danke! Bitte schicke die Listen möglichst schnell an: Svenja Heer, Borchshöher Straße 168 b, 28755 Bremen"
+  },
+  {
+    "campaignName": "Hamburg",
+    "campaignCode": "hamburg-1",
+    "ags": "01053129",
+    "successMessage": "Danke! Bitte schicke die Listen möglichst schnell an: Expedition Grundeinkommen, Am Langenzug 12, 22085 Hamburg"
+  },
+  {
+    "campaignName": "Schleswig-Holstein",
+    "campaignCode": "schleswig-holstein-1",
+    "ags": "schleswig-holstein",
+    "successMessage": "Danke! Bitte schicke die Listen möglichst schnell an: Johannes Wagner, Postfach 1104, 24585 Nortorf."
+  }
+]

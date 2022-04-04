@@ -46,6 +46,8 @@ export interface CognitoUserExt extends CognitoUser {
 export type User = {
   username: string;
   email: string;
+  createdAt: string;
+  city: string;
   profilePictures: string[];
   srcOverwrite?: string;
   municipalities?: Municipality[];
@@ -53,6 +55,8 @@ export type User = {
   directus?: {
     token: string;
   };
+  interactions?: any[];
+  donations?: any;
   store?: {
     donationOnboardingReaction: [];
   };
@@ -87,6 +91,8 @@ const initUser = {
   username: '',
   email: '',
   profilePictures: [],
+  createdAt: '',
+  city: '',
 };
 
 const initAuth = {
