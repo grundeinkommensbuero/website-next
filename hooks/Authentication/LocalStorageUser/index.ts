@@ -12,13 +12,13 @@ export const useLocalStorageUser = (): [
     try {
       if (typeof window !== 'undefined') {
         const userId = window.localStorage.getItem(USER_ID_KEY);
-        return userId ? userId : null;
+        return userId ? userId : '';
       }
 
-      return null;
+      return '';
     } catch (err) {
       console.warn('Error querying localStorage for user-id', err);
-      return null;
+      return '';
     }
   });
 

@@ -1,8 +1,20 @@
-import React from 'react';
+import React, { ReactElement, RefObject } from 'react';
 import s from './style.module.scss';
 import cN from 'classnames';
 import LabelInputErrorWrapper from '../LabelInputErrorWrapper';
 import { ValidationError } from '../ValidationError';
+
+type InputSize = 'SMALL';
+
+type TextInputProps = {
+  children: ReactElement | ReactElement[] | HTMLCollection;
+  className?: string;
+  label: string;
+  size?: InputSize;
+  customRef?: RefObject<any>;
+  name: string;
+  placeholder: string;
+} & InputProps;
 
 export function TextInput({
   children,
@@ -11,7 +23,7 @@ export function TextInput({
   size,
   customRef,
   ...input
-}) {
+}: TextInputProps) {
   return (
     <input
       onFocus={e => {
@@ -36,7 +48,13 @@ export function TextInput({
   );
 }
 
-export function Textarea({ children, className, label, customRef, ...input }) {
+export function Textarea({
+  children,
+  className,
+  label,
+  customRef,
+  ...input
+}: any) {
   let charLeft;
   if (input.maxLength && input.value) {
     charLeft = input.maxLength - input.value.length;
@@ -50,7 +68,7 @@ export function Textarea({ children, className, label, customRef, ...input }) {
         {...input}
         ref={customRef}
       />
-      {input.maxLength && charLeft < 100 && (
+      {input.maxLength && charLeft && charLeft < 100 && (
         <div className={s.charLeftDisplay}>
           {charCount} / {input.maxLength}
         </div>
@@ -58,6 +76,43 @@ export function Textarea({ children, className, label, customRef, ...input }) {
     </div>
   );
 }
+
+type InputProps = {
+  label: string;
+  meta?: {
+    error: string;
+    touched: boolean;
+  };
+  placeholder: string;
+  description?: string;
+  hide?: string;
+  theme?: string;
+  className?: string;
+  inputClassName?: string;
+  maxLength: number;
+  min: number;
+  max: number;
+  hideLabel?: boolean;
+  explanation?: string;
+  inputMode:
+    | 'search'
+    | 'text'
+    | 'email'
+    | 'tel'
+    | 'url'
+    | 'none'
+    | 'numeric'
+    | 'decimal'
+    | undefined;
+  pattern: string;
+  autoComplete: string;
+  customRef: RefObject<any>;
+  errorClassName?: string;
+};
+
+type WrappedTextInputProps = {
+  input: HTMLInputElement;
+} & InputProps;
 
 export const TextInputWrapped = ({
   input,
@@ -79,14 +134,14 @@ export const TextInputWrapped = ({
   autoComplete,
   customRef,
   errorClassName,
-}) => {
+}: WrappedTextInputProps) => {
   if (hide) {
     return null;
   }
   const outputLabel = description ? `${label} (${description})` : label;
   return (
     <LabelInputErrorWrapper
-      label={!hideLabel && outputLabel}
+      label={!hideLabel ? outputLabel : undefined}
       meta={meta}
       className={className}
       errorClassName={errorClassName}
@@ -106,6 +161,7 @@ export const TextInputWrapped = ({
       ) : (
         <TextInput
           {...input}
+          size={undefined}
           placeholder={placeholder}
           className={inputClassName}
           maxLength={maxLength}
@@ -122,11 +178,38 @@ export const TextInputWrapped = ({
   );
 };
 
-export function TextInputInline({ children, className, ...other }) {
+type TextInputInlineProps = {
+  children?: ReactElement;
+  className?: string;
+  placeholder: string;
+  other?: any;
+};
+
+export function TextInputInline({
+  children,
+  className,
+  placeholder,
+  ...other
+}: TextInputInlineProps) {
   return <input className={cN(s.textInputInline, className)} {...other} />;
 }
 
-export const TextInputOneLine = ({ input, label, meta, placeholder }) => (
+type TextInputOneLineProps = {
+  input: InputProps;
+  label: string;
+  meta: {
+    error: string;
+    touched: boolean;
+  };
+  placeholder: string;
+};
+
+export const TextInputOneLine = ({
+  input,
+  label,
+  meta,
+  placeholder,
+}: TextInputOneLineProps) => (
   <label style={{ display: 'block' }}>
     <span>{label}</span>
     <TextInputInline {...input} placeholder={placeholder} />

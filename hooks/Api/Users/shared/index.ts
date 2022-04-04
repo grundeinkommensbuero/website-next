@@ -36,7 +36,7 @@ export const saveUser = async ({
   };
 
   // If there was an auth token passed add it to the headers
-  if (token) {
+  if (token && request?.headers) {
     request.headers.Authorization = token;
   }
 

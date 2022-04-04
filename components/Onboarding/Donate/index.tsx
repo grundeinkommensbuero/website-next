@@ -28,21 +28,32 @@ export const Donate = ({
 }: DonateProps) => {
   const [showDonationForm, setShowDonationForm] = useState(false);
 
+  type Reaction = {
+    ags: string;
+    reaction: string;
+    timestamp: Date;
+  };
+
   const saveDonationReaction = (type: string) => {
-    const existingReactions = [...userData?.store?.donationOnboardingReaction];
+    const existingReactions: Reaction[] = userData?.store
+      ?.donationOnboardingReaction
+      ? [...userData?.store?.donationOnboardingReaction]
+      : [];
     const reactionForMunicipality = {
       ags: municipality.ags,
       reaction: type,
       timestamp: new Date(),
     };
-    // Find and update reaction for ags or add a new one
-    const reactionIndex = existingReactions.findIndex(
-      el => el?.ags === municipality.ags
-    );
-    if (reactionIndex !== -1) {
-      existingReactions[reactionIndex] = reactionForMunicipality;
-    } else {
-      existingReactions.push(reactionForMunicipality);
+    if (existingReactions.length > 0) {
+      // Find and update reaction for ags or add a new one
+      const reactionIndex = existingReactions.findIndex(
+        (el: any) => el?.ags === municipality.ags
+      );
+      if (reactionIndex !== -1) {
+        existingReactions[reactionIndex] = reactionForMunicipality;
+      } else {
+        existingReactions.push(reactionForMunicipality);
+      }
     }
     // Save updated Reaction Array
     updateUser({
@@ -53,7 +64,7 @@ export const Donate = ({
     });
     // Refresh local userData Object
     setTimeout(() => {
-      updateCustomUserData();
+      updateCustomUserData && updateCustomUserData();
     }, 500);
   };
 
