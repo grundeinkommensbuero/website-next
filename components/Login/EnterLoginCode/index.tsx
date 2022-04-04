@@ -123,7 +123,7 @@ export const EnterLoginCode = ({
         <CTAButtonContainer>
           <CTAButton
             onClick={() => {
-              setTempEmail && setTempEmail(null);
+              setTempEmail && setTempEmail('');
             }}
           >
             Nochmal versuchen
@@ -188,7 +188,7 @@ export const EnterLoginCode = ({
                       placeholder="Geheimer Code"
                       type="text"
                       autoComplete="off"
-                      component={TextInputWrapped}
+                      component={TextInputWrapped as any}
                     ></Field>
                   </FormSection>
 

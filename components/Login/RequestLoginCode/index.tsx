@@ -83,7 +83,7 @@ export const RequestLoginCodeWithEmail = ({
   useEffect(() => {
     window.addEventListener(
       'hashchange',
-      () => setTempEmail && setTempEmail(null)
+      () => setTempEmail && setTempEmail('')
     );
   }, [setTempEmail]);
 
@@ -124,7 +124,7 @@ export const RequestLoginCodeWithEmail = ({
                         placeholder="Email"
                         type="text"
                         autoComplete="on"
-                        component={TextInputWrapped}
+                        component={TextInputWrapped as any}
                       ></Field>
                     </FormSection>
 
