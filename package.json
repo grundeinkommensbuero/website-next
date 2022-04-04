@@ -24,6 +24,7 @@
     "@types/react-final-form-listeners": "^1.0.0",
     "@types/react-overlays": "^3.1.0",
     "axios": "^0.25.0",
+    "canvas-confetti": "^1.5.1",
     "classnames": "^2.3.1",
     "express": "^4.17.3",
     "final-form": "^4.20.6",

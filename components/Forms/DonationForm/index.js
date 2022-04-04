@@ -23,7 +23,7 @@ import s from './style.module.scss';
 import cN from 'classnames';
 import { FinallyMessage } from '../FinallyMessage';
 import Confetti from '../../Confetti';
-import { validateEmail } from '../../utils';
+import { validateEmail } from '../../../hooks/Authentication/validateEmail';
 
 const DonationForm = ({ onboardingNextPage }) => {
   const {

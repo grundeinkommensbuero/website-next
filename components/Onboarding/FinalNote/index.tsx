@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { SetStateAction } from 'react';
 import gS from '../style.module.scss';
-import * as s from './style.module.less';
+import s from './style.module.scss';
 import { Button } from '../../Forms/Button';
-import Confetti from '../../Confetti';
-import { navigate } from 'gatsby';
+// import Confetti from '../../Confetti';
 import { PageContainer } from '../PageContainer';
+import { Municipality } from '../../../context/Municipality';
+import { useRouter } from 'next/router';
 
-export const FinalNote = ({ municipality, setShowModal }) => {
+type FinalNoteProps = {
+  municipality: Municipality | null;
+  setShowModal: React.Dispatch<SetStateAction<boolean>>;
+};
+
+export const FinalNote = ({ municipality, setShowModal }: FinalNoteProps) => {
+  const router = useRouter();
   const isLotteryPage =
     typeof window !== 'undefined'
       ? window.location.pathname.includes('verlosung')
@@ -42,7 +49,7 @@ export const FinalNote = ({ municipality, setShowModal }) => {
         className={s.redirectButton}
         onClick={() => {
           setShowModal(false);
-          navigate('/aktiv-werden', { replace: true });
+          router.push('/aktiv-werden');
         }}
       >
         Zur Mitmachen-Seite
@@ -60,13 +67,13 @@ export const FinalNote = ({ municipality, setShowModal }) => {
         className={s.redirectButton}
         onClick={() => {
           setShowModal(false);
-          navigate(`/orte/${municipality.slug}`, { replace: true });
+          router.push(`/orte/${municipality?.slug}`);
         }}
       >
         Zur Unterseite
       </Button>
 
-      <Confetti></Confetti>
+      {/* <Confetti></Confetti> */}
     </section>
   );
 };

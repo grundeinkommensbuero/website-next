@@ -14,7 +14,7 @@ type DonateProps = {
   updateCustomUserData: (() => Promise<void>) | null;
   compIndex: number;
   setCurrentElementByIndex: (index: number) => void;
-  municipality: Municipality;
+  municipality: Municipality | null;
 };
 
 export const Donate = ({
@@ -29,7 +29,7 @@ export const Donate = ({
   const [showDonationForm, setShowDonationForm] = useState(false);
 
   type Reaction = {
-    ags: string;
+    ags?: string;
     reaction: string;
     timestamp: Date;
   };
@@ -40,14 +40,14 @@ export const Donate = ({
       ? [...userData?.store?.donationOnboardingReaction]
       : [];
     const reactionForMunicipality = {
-      ags: municipality.ags,
+      ags: municipality?.ags,
       reaction: type,
       timestamp: new Date(),
     };
     if (existingReactions.length > 0) {
       // Find and update reaction for ags or add a new one
       const reactionIndex = existingReactions.findIndex(
-        (el: any) => el?.ags === municipality.ags
+        (el: any) => el?.ags === municipality?.ags
       );
       if (reactionIndex !== -1) {
         existingReactions[reactionIndex] = reactionForMunicipality;

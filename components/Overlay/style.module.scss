@@ -1,0 +1,52 @@
+.container {
+  --bg-color: $white;
+  --font-color: $black;
+  --secondary-color: $aqua;
+  --text-on-secondary-color: $white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: $red;
+  z-index: 100;
+  background-color: var(--bg-color);
+  color: var(--font-color);
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  overflow: scroll;
+}
+
+.closeButton {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  height: 4rem;
+  width: 4rem;
+  cursor: pointer;
+  font-size: 0;
+  background-image: url('./close-icon.svg');
+  background-size: cover;
+  background-color: transparent;
+  border: none;
+
+  @media (max-width: $breakPointM) {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+.title {
+  margin-top: 0;
+
+  @media (max-width: $breakPointM) {
+    padding-right: 3rem;
+  }
+}
+
+.body {
+  max-width: $contentWidthL;
+  margin: 0 auto;
+}

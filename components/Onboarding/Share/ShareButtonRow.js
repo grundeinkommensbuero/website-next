@@ -1,5 +1,5 @@
 import React from 'react';
-import * as s from './style.module.less';
+import s from './style.module.scss';
 import ShareButtons from './ShareButtons.json';
 import cN from 'classnames';
 

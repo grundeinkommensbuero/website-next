@@ -290,6 +290,8 @@ const SignUp = ({
       <br />
       <Form
         onSubmit={e => {
+          console.log('onSubmit', formData);
+
           e.ags = municipalityInForm?.ags;
           if (!e.newsletterConsent) {
             e.newsletterConsent = false;
@@ -324,7 +326,12 @@ const SignUp = ({
         render={({ handleSubmit }) => {
           return (
             <FormWrapper>
-              <form onSubmit={handleSubmit}>
+              <form
+                onSubmit={e => {
+                  console.log('submitting:', e);
+                  handleSubmit(e);
+                }}
+              >
                 <FormSection>
                   {fields.map((field, i) => {
                     if (!hasKey(fieldData, field)) {
