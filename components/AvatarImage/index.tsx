@@ -5,7 +5,7 @@ import Avatar1 from './avatar1.svg';
 import Avatar2 from './avatar2.svg';
 import { User } from '../../context/Authentication';
 
-type Sizes = '200' | '500' | '900' | '1200' | 'original';
+export type Sizes = '200' | '500' | '900' | '1200' | 'original';
 
 type AvatarImageProps = {
   user: User;
