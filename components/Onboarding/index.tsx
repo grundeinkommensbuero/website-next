@@ -17,6 +17,7 @@ import { SignUpFlow } from './SignUpFlow';
 // import { Donate } from './Donate';
 import { SetupProfile } from './SetupProfile';
 // import { FinalNote } from './FinalNote';
+import { hasKey } from '../../utils/hasKey';
 
 export const Onboarding = () => {
   const {
@@ -66,10 +67,6 @@ export const Onboarding = () => {
   const setCurrentElementByIndex = (index: number) => {
     setCurrentElement(menuElements[index].name);
   };
-
-  function hasKey<O>(obj: O, key: PropertyKey): key is keyof O {
-    return key in obj;
-  }
 
   // const CurrentComponent = () => {
   //   if (hasKey(Components, currentElement) && userData) {
