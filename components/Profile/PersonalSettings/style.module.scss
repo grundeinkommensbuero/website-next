@@ -75,11 +75,11 @@
 
 .revokeButton {
   margin: 0.5rem;
-  --button-font-color: $aqua;
-  --button-bg-color: $black; // IE Fallback
-  --button-bg-color: $aquaTransparent;
-  --button-hover-bg-color: $aqua;
-  --button-hover-font-color: $white;
+  --button-font-color: #{$aqua};
+  --button-bg-color: #{$black}; // IE Fallback
+  --button-bg-color: #{$aquaTransparent};
+  --button-hover-bg-color: #{$aqua};
+  --button-hover-font-color: #{$white};
 }
 
 .revokeButtonRow {

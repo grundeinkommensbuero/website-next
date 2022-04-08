@@ -1,11 +1,31 @@
 import s from './style.module.scss';
-import React, { useState, useEffect, useRef } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  ReactElement,
+  SetStateAction,
+} from 'react';
 import Cookies from 'js-cookie';
 const COOKIE_NAME = 'overlayHasBeenDismissed';
 
-export const OverlayContext = React.createContext();
+const init = {
+  overlayOpen: false,
+  toggleOverlay: () => {},
+  setAutomaticOpenDelay: () => {},
+};
 
-export const OverlayProvider = ({ children }) => {
+type OverlayContext = {
+  overlayOpen: boolean;
+  toggleOverlay: () => void;
+  setAutomaticOpenDelay: React.Dispatch<SetStateAction<boolean>>;
+};
+
+export const OverlayContext = React.createContext<OverlayContext>(init);
+
+type OverlayProviderProps = { children: ReactElement | ReactElement[] };
+
+export const OverlayProvider = ({ children }: OverlayProviderProps) => {
   const [overlayOpen, setOverlayOpen] = useState(false);
   const [automaticOpenDelay, setAutomaticOpenDelay] = useState(false);
   const [hasBeenDismissed, setHasBeenDismissed] = useHasBeenDismissed();
@@ -21,11 +41,12 @@ export const OverlayProvider = ({ children }) => {
       setTimeout(() => {
         if (
           !hasBeenDismissedRef.current &&
+          document?.activeElement &&
           document.activeElement.tagName !== 'INPUT'
         ) {
           setOverlayOpen(true);
         }
-      }, automaticOpenDelay * 1000);
+      }, 1000);
     }
   }, [automaticOpenDelay, hasBeenDismissed]);
 
@@ -33,7 +54,7 @@ export const OverlayProvider = ({ children }) => {
     <OverlayContext.Provider
       value={{
         overlayOpen,
-        toggleOverlay: sholdBeOpen => {
+        toggleOverlay: (sholdBeOpen?: boolean) => {
           if (sholdBeOpen !== undefined) {
             setOverlayOpen(sholdBeOpen);
           } else {
@@ -50,15 +71,17 @@ export const OverlayProvider = ({ children }) => {
 };
 
 const useHasBeenDismissed = () => {
-  const [hasBeenDismissed, setHasBeenDismissed] = useState(() => {
-    return Cookies.get(COOKIE_NAME) === 'true';
-  });
+  const [hasBeenDismissed, setHasBeenDismissed] = useState<() => boolean>(
+    () => {
+      return Cookies.get(COOKIE_NAME) === 'true';
+    }
+  );
 
   return [
     hasBeenDismissed,
-    value => {
-      setHasBeenDismissed(value);
-      Cookies.set(COOKIE_NAME, value, { expires: 1 });
+    (value: boolean) => {
+      setHasBeenDismissed(() => value);
+      Cookies.set(COOKIE_NAME, value.toString(), { expires: 1 });
     },
   ];
 };

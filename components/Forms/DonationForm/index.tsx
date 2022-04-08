@@ -25,7 +25,9 @@ import { FinallyMessage } from '../FinallyMessage';
 import Confetti from '../../Confetti';
 import { validateEmail } from '../../../hooks/Authentication/validateEmail';
 
-const DonationForm = ({ onboardingNextPage }) => {
+type DonationFormProps = { onboardingNextPage?: () => void };
+
+const DonationForm = ({ onboardingNextPage }: DonationFormProps) => {
   const {
     isAuthenticated,
     tempEmail,
@@ -42,16 +44,18 @@ const DonationForm = ({ onboardingNextPage }) => {
   const [donationError, setDonationError] = useState(false);
   const [updateUserState, updateUser] = useUpdateUser();
   const [, updateUserStore] = useUpdateUser();
-  const [donationInfo, setDonationInfo] = useState({});
-  const [initialValues, setInitialValues] = useState({ customAmount: '15' });
+  const [donationInfo, setDonationInfo] = useState<any>({});
+  const [initialValues, setInitialValues] = useState<any>({
+    customAmount: '15',
+  });
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
   const [paypalButtonClicked, setPaypalButtonClicked] = useState(false);
 
-  const [donationInterval, setDonationInverval] = useState();
+  const [donationInterval, setDonationInverval] = useState<string>('');
   const [paymentType, setPaymentType] = useState('Lastschrift');
 
-  let formData = {};
-  let formErrors = {};
+  let formData: any = {};
+  let formErrors: any = {};
 
   useEffect(() => {
     if (updateUserState === 'loading') {
@@ -109,16 +113,16 @@ const DonationForm = ({ onboardingNextPage }) => {
   const toggleOverlay = () => {
     setIsOverlayOpen(prev => !prev);
   };
-  const toggleSepaOverlay = e => {
+  const toggleSepaOverlay = (e: KeyboardEvent) => {
     if (e.key !== 'Enter' && e.keyCode !== 13) {
       e.preventDefault();
     }
     toggleOverlay();
   };
 
-  const validate = (values, emailRequired) => {
+  const validate = (values: any, emailRequired: boolean) => {
     formData = { ...values };
-    const errors = {};
+    const errors: any = {};
 
     if (emailRequired && values.email && values.email.includes('+')) {
       errors.email = 'Zurzeit unterstützen wir kein + in E-Mails';
@@ -165,7 +169,7 @@ const DonationForm = ({ onboardingNextPage }) => {
     }
 
     let extractedIban = ibantools.electronicFormatIBAN(formData.iban);
-    if (!ibantools.isValidIBAN(extractedIban)) {
+    if (extractedIban && !ibantools.isValidIBAN(extractedIban)) {
       errors.iban = 'Muss eine gültige IBAN sein';
     } else {
       formData.extractedIban = extractedIban;
@@ -239,7 +243,7 @@ const DonationForm = ({ onboardingNextPage }) => {
                   yearly: donationInterval === 'jährlich',
                   iban: formData.extractedIban,
                 };
-                const donationInfo = { donation };
+                const donationInfo: { donation: any } = { donation };
                 // only set temporary mail address, when user is not already signed in
                 !isAuthenticated && setTempEmail(data.email);
                 setInitialValues(data);
@@ -261,7 +265,7 @@ const DonationForm = ({ onboardingNextPage }) => {
                                 name="customAmount"
                                 placeholder="100"
                                 type="number"
-                                component={TextInputWrapped}
+                                component={TextInputWrapped as any}
                                 min={2}
                                 inputMode="numeric"
                                 step="1"
@@ -343,7 +347,7 @@ const DonationForm = ({ onboardingNextPage }) => {
                               label="Vorname"
                               placeholder="Vorname"
                               type="text"
-                              component={TextInputWrapped}
+                              component={TextInputWrapped as any}
                               theme="christmas"
                             />
                             <Field
@@ -351,22 +355,24 @@ const DonationForm = ({ onboardingNextPage }) => {
                               label="Nachname"
                               placeholder="Nachname"
                               type="text"
-                              component={TextInputWrapped}
+                              component={TextInputWrapped as any}
                               theme="christmas"
                             />
-                            {!isAuthenticated && (
-                              <Field
-                                name="email"
-                                label="E-Mail"
-                                placeholder="E-Mail-Adresse"
-                                type="text"
-                                component={TextInputWrapped}
-                                theme="christmas"
-                              />
-                            )}
-                            {isAuthenticated && (
-                              <p>E-Mail Adresse: {userData.email}</p>
-                            )}
+                            <>
+                              {!isAuthenticated && (
+                                <Field
+                                  name="email"
+                                  label="E-Mail"
+                                  placeholder="E-Mail-Adresse"
+                                  type="text"
+                                  component={TextInputWrapped as any}
+                                  theme="christmas"
+                                />
+                              )}
+                              {isAuthenticated && (
+                                <p>E-Mail Adresse: {userData.email}</p>
+                              )}
+                            </>
                             <p className={s.hint}>
                               Hinweis: Wir schicken deine Spendenbestätigung an
                               diese Adresse.
@@ -376,7 +382,7 @@ const DonationForm = ({ onboardingNextPage }) => {
                               label="IBAN"
                               placeholder="IBAN"
                               type="text"
-                              component={TextInputWrapped}
+                              component={TextInputWrapped as any}
                               theme="christmas"
                             />
 
@@ -399,7 +405,6 @@ const DonationForm = ({ onboardingNextPage }) => {
                               isOpen={isOverlayOpen}
                               toggleOverlay={toggleOverlay}
                               title="SEPA-Mandat"
-                              theme="christmas"
                             >
                               <p>
                                 Ich ermächtige Vertrauensgesellschaft e.V.
@@ -448,9 +453,8 @@ const DonationForm = ({ onboardingNextPage }) => {
                               <CTAButton
                                 type="submit"
                                 onClick={() => {
-                                  onAmountClick(true);
+                                  onAmountClick();
                                 }}
-                                size="MEDIUM"
                               >
                                 Spenden
                               </CTAButton>
@@ -482,7 +486,6 @@ const DonationForm = ({ onboardingNextPage }) => {
                                 onClick={() => {
                                   onboardingNextPage();
                                 }}
-                                size="MEDIUM"
                               >
                                 Weiter
                               </CTAButton>
@@ -538,7 +541,6 @@ const DonationForm = ({ onboardingNextPage }) => {
                         onClick={() => {
                           onboardingNextPage();
                         }}
-                        size="MEDIUM"
                       >
                         Weiter
                       </CTAButton>
@@ -579,7 +581,7 @@ const DonationForm = ({ onboardingNextPage }) => {
                   />
                   <Button
                     name="submit"
-                    tabIndex="0"
+                    tabIndex={0}
                     onClick={() => setPaypalButtonClicked(true)}
                   >
                     Jetzt spenden
@@ -592,7 +594,6 @@ const DonationForm = ({ onboardingNextPage }) => {
                         onClick={() => {
                           onboardingNextPage();
                         }}
-                        size="MEDIUM"
                       >
                         Weiter
                       </CTAButton>
@@ -652,7 +653,6 @@ const DonationForm = ({ onboardingNextPage }) => {
                     signUp({ email: tempEmail });
                   }
                 }}
-                size="MEDIUM"
               >
                 Weiter
               </CTAButton>
@@ -679,7 +679,7 @@ const DonationForm = ({ onboardingNextPage }) => {
       {waitingForApi && (
         <FinallyMessage
           className={s.adjustFinallyMessage}
-          preventScrolling="true"
+          preventScrolling={true}
           state="progress"
         >
           Sichere Datenübertragung, bitte einen Moment Geduld...
@@ -705,7 +705,6 @@ const DonationForm = ({ onboardingNextPage }) => {
                 onClick={() => {
                   onboardingNextPage();
                 }}
-                size="MEDIUM"
               >
                 Weiter
               </CTAButton>
@@ -738,7 +737,6 @@ const DonationForm = ({ onboardingNextPage }) => {
                 setEnteredPaymentInfo(false);
                 setDonationError(false);
               }}
-              size="MEDIUM"
             >
               Zurück zum Formular
             </CTAButton>

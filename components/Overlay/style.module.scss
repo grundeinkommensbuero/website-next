@@ -1,8 +1,8 @@
 .container {
-  --bg-color: $white;
-  --font-color: $black;
-  --secondary-color: $aqua;
-  --text-on-secondary-color: $white;
+  --bg-color: #{$white};
+  --font-color: #{$black};
+  --secondary-color: #{$aqua};
+  --text-on-secondary-color: #{$white};
   position: fixed;
   top: 0;
   left: 0;

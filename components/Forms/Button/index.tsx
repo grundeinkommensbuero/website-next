@@ -69,8 +69,10 @@ type ButtonProps = {
   customRef?: Ref<any>;
   loading?: boolean;
   success?: boolean;
-  onClick?: (e: any) => void;
+  onClick?: (e?: any) => void;
   type?: ButtonType;
+  name?: string;
+  tabIndex?: number;
 };
 
 export function Button({
@@ -83,6 +85,8 @@ export function Button({
   success,
   onClick,
   type = 'button',
+  name,
+  tabIndex,
 }: ButtonProps) {
   return (
     <>
@@ -101,6 +105,8 @@ export function Button({
         disabled={disabled}
         onClick={onClick}
         type={type}
+        name={name}
+        tabIndex={tabIndex}
       >
         <div className={s.buttonText}>{children}</div>
         {/* <div className={s.progressBar}></div>
