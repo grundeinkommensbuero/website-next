@@ -10,6 +10,7 @@ import rocketIcon from './rocket-icon.min.svg';
 import { EditProfileSection } from '../EditProfileSection';
 import { User } from '../../../context/Authentication';
 import Link from 'next/link';
+import { BackToProfile } from '../BackToProfile';
 
 type ProfileDonationSettingsProps = {
   userId: string;
@@ -82,9 +83,7 @@ export const ProfileDonationSettings = ({
   return (
     <section className={gS.profilePageGrid}>
       <EditProfileSection>
-        <div className={gS.backToProfile}>
-          <Link href={`/mensch/${userId}`}>Zurück zum Profil</Link>
-        </div>
+        <BackToProfile />
         <h2>Spenden-Einstellungen</h2>
         <p>
           Die Expedition ist gemeinnützig und finanziert sich ausschließlich aus
