@@ -1,21 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import s from './style.module.scss';
 import gS from '../style.module.scss';
-import * as nS from '../ProfileNotifications/style.module.less';
+import nS from '../ProfileNotifications/style.module.scss';
 import cN from 'classnames';
-import { Link } from 'gatsby';
 import { Button } from '../../Forms/Button';
 import DonationForm from '../../Forms/DonationForm';
 import { useUpdateUser } from '../../../hooks/Api/Users/Update';
 import rocketIcon from './rocket-icon.min.svg';
 import { EditProfileSection } from '../EditProfileSection';
+import { User } from '../../../context/Authentication';
+import Link from 'next/link';
+
+type ProfileDonationSettingsProps = {
+  userId: string;
+  userData: User;
+  updateCustomUserData: () => void;
+};
 
 export const ProfileDonationSettings = ({
   userId,
   userData,
   updateCustomUserData,
-  path,
-}) => {
+}: ProfileDonationSettingsProps) => {
   const [showDonationForm, setShowDonationForm] = useState(false);
   const [showDeleteDonationDialog, setShowDeleteDonationDialog] =
     useState(false);
@@ -36,11 +42,13 @@ export const ProfileDonationSettings = ({
     if (updateUserState === 'error') {
       setWaitingForApi(false);
     }
+    // eslint-disable-next-line
   }, [updateUserState]);
 
   useEffect(() => {
     // Update userData to get the most recent donation state
     updateCustomUserData();
+    // eslint-disable-next-line
   }, []);
 
   const removeDonation = () => {
@@ -75,7 +83,7 @@ export const ProfileDonationSettings = ({
     <section className={gS.profilePageGrid}>
       <EditProfileSection>
         <div className={gS.backToProfile}>
-          <Link to={'/'}>Zurück zum Profil</Link>
+          <Link href={`/mensch/${userId}`}>Zurück zum Profil</Link>
         </div>
         <h2>Spenden-Einstellungen</h2>
         <p>
@@ -83,53 +91,57 @@ export const ProfileDonationSettings = ({
           den Spenden vieler, vieler Expeditionsmitglieder und einiger
           Stiftungen. Deine Spende macht die Expedition also erst möglich!
         </p>
-        {userData &&
-        userData.donations &&
-        userData.donations.recurringDonation &&
-        !userData.donations.recurringDonation.cancelledAt &&
-        !showDonationForm ? (
-          <>
-            <div className={cN(s.flexContainerSimple, s.donationStatusMessage)}>
-              <img
-                className={s.icon}
-                src={rocketIcon}
-                alt="Ein Raketensymbol"
-              />
-              <div>
-                <h3>
-                  Du bist Dauerspender*in! <br />
-                  Vielen Dank!
-                </h3>
-                <p>
-                  Du spendest aktuell monatlich{' '}
-                  <span className={s.donationAmountRecurring}>
-                    {userData.donations.recurringDonation.amount}€
-                  </span>
-                </p>
+        <>
+          {userData &&
+          userData.donations &&
+          userData.donations.recurringDonation &&
+          !userData.donations.recurringDonation.cancelledAt &&
+          !showDonationForm ? (
+            <>
+              <div
+                className={cN(s.flexContainerSimple, s.donationStatusMessage)}
+              >
+                <img
+                  className={s.icon}
+                  src={rocketIcon}
+                  alt="Ein Raketensymbol"
+                />
+                <div>
+                  <h3>
+                    Du bist Dauerspender*in! <br />
+                    Vielen Dank!
+                  </h3>
+                  <p>
+                    Du spendest aktuell monatlich{' '}
+                    <span className={s.donationAmountRecurring}>
+                      {userData.donations.recurringDonation.amount}€
+                    </span>
+                  </p>
+                </div>
               </div>
-            </div>
-            {!showDeleteDonationDialog ? (
-              <div className={s.flexContainer}>
-                <button
-                  className={gS.linkLikeFormattedButton}
-                  onClick={() => setShowDonationForm(true)}
-                >
-                  Meine Spende bearbeiten
-                </button>
-                <button
-                  className={gS.linkLikeFormattedButton}
-                  onClick={() => setShowDeleteDonationDialog(true)}
-                >
-                  Meine Spende löschen
-                </button>
-              </div>
-            ) : (
-              <DeleteDonationDialog />
-            )}
-          </>
-        ) : (
-          <DonationForm />
-        )}
+              {!showDeleteDonationDialog ? (
+                <div className={s.flexContainer}>
+                  <button
+                    className={gS.linkLikeFormattedButton}
+                    onClick={() => setShowDonationForm(true)}
+                  >
+                    Meine Spende bearbeiten
+                  </button>
+                  <button
+                    className={gS.linkLikeFormattedButton}
+                    onClick={() => setShowDeleteDonationDialog(true)}
+                  >
+                    Meine Spende löschen
+                  </button>
+                </div>
+              ) : (
+                <DeleteDonationDialog />
+              )}
+            </>
+          ) : (
+            <DonationForm />
+          )}
+        </>
       </EditProfileSection>
     </section>
   );

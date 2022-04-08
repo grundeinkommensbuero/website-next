@@ -107,6 +107,7 @@ export function CTAButton({
 type CTALinkProps = {
   children: ReactElement | string;
   className?: string;
+  to?: string;
   other?: any;
 };
 

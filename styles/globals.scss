@@ -53,15 +53,15 @@ body {
   background-color: $white;
   color: $black;
   --grid-gap: 1rem;
-  --bg-color: $white;
-  --font-color: $black;
-  --secondary-color: $violet;
-  --text-on-secondary-color: $white;
-  --button-font-color: $violet;
+  --bg-color: #{$white};
+  --font-color: #{$black};
+  --secondary-color: #{$violet};
+  --text-on-secondary-color: #{$white};
+  --button-font-color: #{$violet};
   --button-bg-color: rgb(152, 133, 255); // IE Fallback
-  --button-bg-color: $violetTransparent;
-  --button-hover-bg-color: $violet;
-  --button-hover-font-color: $white;
+  --button-bg-color: #{$violetTransparent};
+  --button-hover-bg-color: #{$violet};
+  --button-hover-font-color: #{$white};
 }
 
 a {
