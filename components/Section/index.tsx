@@ -77,16 +77,16 @@ export type ColorScheme =
   | 'colorSchemeWhite'
   | 'colorSchemeRed';
 
+type GroupedElements = Array<Array<SectionElement>>;
+
 type SectionProps = {
   section: Section;
 };
 
 export const Section = ({ section }: SectionProps): ReactElement => {
-  const [modifiedSection, setModifiedSection] = useState<Section>(section);
-  const [groupedElements, setGroupedElements] = useState<
-    Array<Array<SectionElement>>
-  >([]);
   const { pageBuilderActive } = useContext(XbgeAppContext);
+  const [modifiedSection, setModifiedSection] = useState<Section>(section);
+  const [groupedElements, setGroupedElements] = useState<GroupedElements>([]);
 
   useEffect(() => {
     const elements: SectionElement[][] = [];
@@ -225,10 +225,16 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                       );
                     case 'sectionsVideo':
                       return (
-                        <YoutubeEmbed
-                          key={'video-' + element.index}
-                          embedId={element.embedId}
-                        />
+                        <div key={'video-' + element.index}>
+                          {pageBuilderActive && (
+                            <EditElement
+                              modifiedSection={modifiedSection}
+                              setModifiedSection={setModifiedSection}
+                              element={element}
+                            />
+                          )}
+                          <YoutubeEmbed embedId={element.embedId} />
+                        </div>
                       );
                     default:
                       return null;

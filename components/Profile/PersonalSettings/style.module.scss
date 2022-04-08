@@ -6,11 +6,11 @@
     display: block;
   }
 
-  --button-font-color: $white;
-  --button-bg-color: $black; // IE Fallback
-  --button-bg-color: $whiteTransparent;
-  --button-hover-bg-color: $white;
-  --button-hover-font-color: $aqua;
+  --button-font-color: #{$white};
+  --button-bg-color: #{$black}; // IE Fallback
+  --button-bg-color: #{$whiteTransparent};
+  --button-hover-bg-color: #{$white};
+  --button-hover-font-color: #{$aqua};
 }
 
 .userInfo {
