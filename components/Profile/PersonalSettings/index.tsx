@@ -16,6 +16,7 @@ import { EditProfileSection } from '../EditProfileSection';
 import { User } from '../../../context/Authentication';
 import { formatDate } from '../../../utils/formatDate';
 import Link from 'next/link';
+import { BackToProfile } from '../BackToProfile';
 
 type PersonalSettingsProps = {
   userData: User;
@@ -84,9 +85,7 @@ export const PersonalSettings = ({
   return (
     <section className={gS.profilePageGrid}>
       <EditProfileSection>
-        <div className={gS.backToProfile}>
-          <Link href={`/mensch/${userId}`}>Zurück zum Profil</Link>
-        </div>
+        <BackToProfile />
 
         <section className={s.userInfo}>
           <div className={gS.avatarContainer}>

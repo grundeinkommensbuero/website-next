@@ -2,27 +2,44 @@ import React, { useState, useEffect } from 'react';
 import s from './style.module.scss';
 import gS from '../style.module.scss';
 import cN from 'classnames';
-import { Link } from 'gatsby';
 import { NewsletterCard } from './NewsletterCard';
 import { SearchPlaces } from '../../Forms/SearchPlaces';
 import { Button } from '../../Forms/Button';
 import { EditProfileSection } from '../EditProfileSection';
 
 import { useUpdateUser } from '../../../hooks/Api/Users/Update';
+import {
+  CustomNewsletterConsent,
+  NewsletterConsent,
+  User,
+} from '../../../context/Authentication';
+import { Municipality } from '../../../context/Municipality';
+import { BackToProfile } from '../BackToProfile';
+
+type ProfileNotificationsProps = {
+  userId: string;
+  userData: User;
+  updateCustomUserData: () => void;
+};
 
 export const ProfileNotifications = ({
   userData,
   userId,
   updateCustomUserData,
-  path,
-}) => {
-  const [componentToBeUpdated, setComponentToBeUpdated] = useState();
+}: ProfileNotificationsProps) => {
+  const [componentToBeUpdated, setComponentToBeUpdated] = useState<string>('');
   const [updateUserState, updateUser] = useUpdateUser();
   const [waitingForApi, setWaitingForApi] = useState(false);
-  const [mainNewsletterConsent, setMainNewsletterConsent] = useState();
-  const [reminderMailConsent, setReminderMailConsent] = useState();
-  const [customNewsletterSettings, setCustomNewsletterSettings] = useState([]);
-  const [municipality, setMunicipality] = useState();
+  const [mainNewsletterConsent, setMainNewsletterConsent] = useState<
+    Omit<NewsletterConsent, 'timestamp'>
+  >({ value: false });
+  const [reminderMailConsent, setReminderMailConsent] = useState<
+    Omit<NewsletterConsent, 'timestamp'>
+  >({ value: false });
+  const [customNewsletterSettings, setCustomNewsletterSettings] = useState<
+    CustomNewsletterConsent[]
+  >([]);
+  const [municipality, setMunicipality] = useState<Municipality>();
   const [
     unsubscribeMainNewsletterDialogActive,
     setUnsubscribeMainNewsletterDialog,
@@ -31,7 +48,8 @@ export const ProfileNotifications = ({
     unsubscribeReminderMailsDialogActive,
     setUnsubscribeReminderMailsDialog,
   ] = useState(false);
-  const [unsubscribeAllDialogActive, setShowUnsubscribeAllDialog] = useState();
+  const [unsubscribeAllDialogActive, setShowUnsubscribeAllDialog] =
+    useState<boolean>(false);
 
   useEffect(() => {
     if (updateUserState === 'loading') {
@@ -46,6 +64,7 @@ export const ProfileNotifications = ({
     if (updateUserState === 'error') {
       setWaitingForApi(false);
     }
+    // eslint-disable-next-line
   }, [updateUserState]);
 
   // setup newsletter state depending on userData
@@ -62,7 +81,7 @@ export const ProfileNotifications = ({
   }, [userData]);
 
   // store user selected location to add custom newsletters
-  const handlePlaceSelect = municipality => {
+  const handlePlaceSelect = (municipality: Municipality) => {
     setMunicipality(municipality);
   };
 
@@ -116,6 +135,7 @@ export const ProfileNotifications = ({
 
   // decide how to proceed with a user created custom newsletter
   const handleNewsletterAddRequest = () => {
+    if (!municipality) return;
     const newsletterToAdd = constructNewsletter(municipality);
     let newsletterExists = false;
     for (let i = 0; i < customNewsletterSettings.length; i++) {
@@ -134,7 +154,7 @@ export const ProfileNotifications = ({
     }
   };
 
-  const constructNewsletter = municipality => {
+  const constructNewsletter = (municipality: Municipality) => {
     const newNewsletter = {
       name: municipality.name,
       value: true,
@@ -145,7 +165,7 @@ export const ProfileNotifications = ({
     return newNewsletter;
   };
 
-  const reactivateNewsletter = async newsletter => {
+  const reactivateNewsletter = async (newsletter: CustomNewsletterConsent) => {
     try {
       setComponentToBeUpdated(newsletter.ags);
       const updatedNewsletters = [...customNewsletterSettings];
@@ -167,7 +187,7 @@ export const ProfileNotifications = ({
     }
   };
 
-  const addNewsletter = async newsletter => {
+  const addNewsletter = async (newsletter: CustomNewsletterConsent) => {
     try {
       setComponentToBeUpdated(newsletter.ags);
       const updatedNewsletters = [...customNewsletterSettings];
@@ -180,7 +200,9 @@ export const ProfileNotifications = ({
   };
 
   // callback for child-component to save individual newsletter settings
-  const updateSingleNewsletter = async newsletter => {
+  const updateSingleNewsletter = async (
+    newsletter: CustomNewsletterConsent
+  ) => {
     setComponentToBeUpdated(newsletter.ags);
     try {
       const updatedNewsletters = [...customNewsletterSettings];
@@ -409,9 +431,7 @@ export const ProfileNotifications = ({
   return (
     <section className={gS.profilePageGrid}>
       <EditProfileSection>
-        <div className={gS.backToProfile}>
-          <Link to={`/mensch/${userId}/`}>Zurück zum Profil</Link>
-        </div>
+        <BackToProfile />
 
         <h2>Newsletter & Kontakt</h2>
         <h3 className={gS.optionSectionHeading}>E-Mail Einstellungen</h3>

@@ -43,12 +43,28 @@ export interface CognitoUserExt extends CognitoUser {
  * would be less efficient than keeping an aditional local state
  */
 
+export type NewsletterConsent = {
+  value: boolean;
+  timestamp: string;
+};
+
+export type CustomNewsletterConsent = {
+  ags: string;
+  name: string;
+  extraInfo: boolean;
+  timestamp: string;
+  value: boolean;
+};
+
 export type User = {
   username: string;
   email: string;
   createdAt: string;
   city: string;
   profilePictures: string[];
+  newsletterConsent: NewsletterConsent;
+  reminderMails?: NewsletterConsent;
+  customNewsletters?: CustomNewsletterConsent[];
   srcOverwrite?: string;
   municipalities?: Municipality[];
   zipCode?: string;
@@ -93,6 +109,10 @@ const initUser = {
   profilePictures: [],
   createdAt: '',
   city: '',
+  newsletterConsent: {
+    value: false,
+    timestamp: '',
+  },
 };
 
 const initAuth = {
