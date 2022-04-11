@@ -1,6 +1,5 @@
 .newsletterCard {
-  @extend colorSchemeWhite !optional;
-  --secondary-color: $aqua;
+  --secondary-color: #{$aqua};
   padding: 0.5em 1.5em 0.5em 1.5em;
   border-radius: 15px;
   margin-top: 1em;

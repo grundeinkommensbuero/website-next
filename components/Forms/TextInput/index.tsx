@@ -4,7 +4,7 @@ import cN from 'classnames';
 import LabelInputErrorWrapper from '../LabelInputErrorWrapper';
 import { ValidationError } from '../ValidationError';
 
-type InputSize = 'SMALL';
+export type InputSize = 'SMALL';
 
 type TextInputProps = {
   children?: ReactElement | ReactElement[] | HTMLCollection;
@@ -16,6 +16,8 @@ type TextInputProps = {
   placeholder: string;
   onChange?: (() => void) | React.Dispatch<React.SetStateAction<string>>;
   value?: string;
+  onKeyDown?: any;
+  onBlur?: any;
 } & InputProps;
 
 export function TextInput({

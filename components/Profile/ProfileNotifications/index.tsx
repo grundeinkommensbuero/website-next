@@ -81,8 +81,8 @@ export const ProfileNotifications = ({
   }, [userData]);
 
   // store user selected location to add custom newsletters
-  const handlePlaceSelect = (municipality: Municipality) => {
-    setMunicipality(municipality);
+  const handlePlaceSelect = (suggestion: Municipality) => {
+    setMunicipality(suggestion);
   };
 
   // show unsubscribe dialog, set target to show loading animation
@@ -235,7 +235,7 @@ export const ProfileNotifications = ({
 
   const MainCard = () => {
     return (
-      <div className={s.newsletterCard}>
+      <div className={cN(s.newsletterCard, 'colorSchemeWhite')}>
         <p className={s.newsletterCardHeading}>
           Allgemeiner Expeditions-Letter
         </p>
@@ -280,7 +280,7 @@ export const ProfileNotifications = ({
 
   const MailSettingCard = () => {
     return (
-      <div className={s.newsletterCard}>
+      <div className={cN(s.newsletterCard, 'colorSchemeWhite')}>
         <p className={s.newsletterCardHeading}>Erinnerungsmails</p>
         {/* remindermail info claim */}
         {reminderMailConsent && reminderMailConsent.value ? (
@@ -323,7 +323,7 @@ export const ProfileNotifications = ({
 
   const UnsubscribeNewsletterDialog = () => {
     return (
-      <section className={s.newsletterCard}>
+      <section className={cN(s.newsletterCard, 'colorSchemeWhite')}>
         <p className={s.newsletterCardHeading}>
           Bist du sicher, dass du den Expeditions-Letter nicht mehr bekommen
           möchtest?
@@ -354,7 +354,7 @@ export const ProfileNotifications = ({
 
   const UnsubscribeReminderMailsDialog = () => {
     return (
-      <section className={s.newsletterCard}>
+      <section className={cN(s.newsletterCard, 'colorSchemeWhite')}>
         <p className={s.newsletterCardHeading}>
           Bist du sicher, dass du keine Erinnerungsmails mehr bekommen möchtest?
         </p>
@@ -384,7 +384,7 @@ export const ProfileNotifications = ({
 
   const UnsubscribeAllDialog = () => {
     return (
-      <section className={s.newsletterCard}>
+      <section className={cN(s.newsletterCard, 'colorSchemeWhite')}>
         <p className={s.newsletterCardHeading}>
           Bist du sicher, dass du keine Newsletter von uns mehr bekommen
           möchtest?

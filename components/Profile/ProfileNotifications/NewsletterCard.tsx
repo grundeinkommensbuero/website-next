@@ -5,13 +5,21 @@ import gS from '../style.module.scss';
 import cN from 'classnames';
 import { Checkbox } from '../../Forms/Checkbox';
 import { Button } from '../../Forms/Button';
+import { CustomNewsletterConsent } from '../../../context/Authentication';
+
+type NewsletterCardProps = {
+  newsletter: CustomNewsletterConsent;
+  updateSingleNewsletter: (n: CustomNewsletterConsent) => void;
+  waitingForApi: boolean;
+  componentToBeUpdated: string;
+};
 
 export const NewsletterCard = ({
   newsletter,
   updateSingleNewsletter,
   waitingForApi,
   componentToBeUpdated,
-}) => {
+}: NewsletterCardProps) => {
   const [newsletterSettings, updateNewsletterSettings] = useState(newsletter);
   const [newsletterRevokeState, setNewsletterRevokeState] = useState(false);
 
@@ -35,7 +43,7 @@ export const NewsletterCard = ({
     }
   };
 
-  const toggleExtraInfoConsent = value => {
+  const toggleExtraInfoConsent = (value: { extraInfoConsent: boolean }) => {
     if (value.extraInfoConsent !== newsletterSettings.extraInfo) {
       try {
         const updatedNewsletter = {
@@ -52,11 +60,11 @@ export const NewsletterCard = ({
     }
   };
 
-  const isEmptyObj = obj =>
+  const isEmptyObj = (obj: any) =>
     Object.keys(obj).length === 0 && obj.constructor === Object ? true : false;
 
   return (
-    <div className={s.newsletterCard}>
+    <div className={cN(s.newsletterCard, 'colorSchemeWhite')}>
       {!newsletterRevokeState ? (
         /* newsletter info claim */
         <section>
@@ -79,8 +87,11 @@ export const NewsletterCard = ({
             <Form
               onSubmit={() => {}}
               initialValues={{ extraInfoConsent: newsletterSettings.extraInfo }}
-              validate={values =>
-                !isEmptyObj(values) ? toggleExtraInfoConsent(values) : null
+              validate={
+                ((values: any) =>
+                  !isEmptyObj(values)
+                    ? toggleExtraInfoConsent(values)
+                    : null) as any
               }
               render={() => {
                 return (
