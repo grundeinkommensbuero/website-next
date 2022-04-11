@@ -1,22 +1,62 @@
-import React, { useRef } from 'react';
+import React, { ChangeEvent, useRef } from 'react';
 import { useState, useEffect, useLayoutEffect } from 'react';
-import { TextInput } from '../TextInput';
+import { InputSize, TextInput } from '../TextInput';
 import LabelInputErrorWrapper from '../LabelInputErrorWrapper';
 import s from './style.module.scss';
 import cN from 'classnames';
-import { Button } from '../Button';
+import { Button, ButtonSize } from '../Button';
 
 import Fuse from 'fuse.js';
+import { Municipality } from '../../../context/Municipality';
 
-const handleButtonClickDefault = ({ validate }) => {
-  // If no place was selected, we check if the top result
-  // has a very good score, if yes -> navigate to the page
-  // of that place
-  // --> validate function
-  const validation = validate();
-  if (validation.status === 'success') {
-    navigate(validation.slug);
-  }
+// const handleButtonClickDefault = ({
+//   validate,
+// }: {
+//   validate: () => { status: 'success' };
+// }) => {
+//   // If no place was selected, we check if the top result
+//   // has a very good score, if yes -> navigate to the page
+//   // of that place
+//   // --> validate function
+//   const validation = validate();
+//   if (validation.status === 'success') {
+//     navigate(validation.slug);
+//   }
+// };
+
+type Place = {
+  name: string;
+  ags: string;
+  slug: string;
+  score: number;
+  nameUnique: string;
+  zipCodes: number[];
+};
+
+const initPlace = {
+  name: '',
+  ags: '',
+  slug: '',
+  score: 0,
+  nameUnique: '',
+  zipCodes: [],
+};
+
+type SearchPlacesProps = {
+  showButton?: boolean;
+  buttonLabel: string;
+  placeholder?: string;
+  onPlaceSelect: (suggestion?: Place) => void;
+  label: string;
+  searchTitle?: string;
+  validateOnBlur?: boolean;
+  inputSize?: InputSize;
+  buttonSize?: ButtonSize;
+  profileButtonStyle?: boolean;
+  isInsideForm?: boolean;
+  fullWidthInput?: boolean;
+  handleButtonClick: (arg: any) => void;
+  initialPlace: Place;
 };
 
 export const SearchPlaces = ({
@@ -32,16 +72,16 @@ export const SearchPlaces = ({
   profileButtonStyle,
   isInsideForm,
   fullWidthInput = false,
-  handleButtonClick = handleButtonClickDefault,
-  initialPlace = {},
-}) => {
+  handleButtonClick = () => {},
+  initialPlace = initPlace,
+}: SearchPlacesProps) => {
   const [query, setQuery] = useState(initialPlace.name || '');
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState<Place[]>([]);
   const [selectedPlace, setSelectedPlace] = useState(initialPlace);
-  const [suggestionsActive, setSuggestionsActive] = useState(false);
-  const [formState, setFormState] = useState({});
-  const [fuse, setFuse] = useState();
-  const [focusedResult, setFocusedResult] = useState(null);
+  const [suggestionsActive, setSuggestionsActive] = useState<boolean>(false);
+  const [formState, setFormState] = useState<any>({});
+  const [fuse, setFuse] = useState<Fuse<any>>();
+  const [focusedResult, setFocusedResult] = useState<number>(0);
 
   useEffect(() => {
     import('./municipalitiesForSearch.json').then(({ default: places }) => {
@@ -59,7 +99,7 @@ export const SearchPlaces = ({
     if (query.length > 1) {
       if (query !== selectedPlace.name) {
         setSuggestionsActive(true);
-        setSelectedPlace({});
+        setSelectedPlace(initPlace);
         if (onPlaceSelect) {
           onPlaceSelect();
         }
@@ -69,7 +109,7 @@ export const SearchPlaces = ({
         // We need to split the query string into zip code
         // and municipality name, so the user can search
         // for something like 99955 Bad Tennstedt
-        let digits = query.match(/\d+/);
+        let digits: RegExpMatchArray | null | string = query.match(/\d+/);
         digits = digits ? digits[0] : '';
         const name = query.replace(/\d+/g, '').trim();
 
@@ -202,7 +242,7 @@ export const SearchPlaces = ({
     return { status: 'failed' };
   };
 
-  const handleSuggestionClick = suggestion => {
+  const handleSuggestionClick = (suggestion: Place) => {
     if (suggestion) {
       setQuery(suggestion.name);
       setSelectedPlace(suggestion);
@@ -216,7 +256,7 @@ export const SearchPlaces = ({
     }
   };
 
-  const handleChange = e => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setQuery(value);
     const touched = false;
@@ -224,7 +264,7 @@ export const SearchPlaces = ({
     setFormState({ error, touched });
   };
 
-  const handleEnterKey = e => {
+  const handleEnterKey = (e: KeyboardEvent) => {
     // Emulate click when enter is pressed
     if (e.key === 'Enter') {
       handleSuggestionClick(results[0]);
@@ -236,7 +276,7 @@ export const SearchPlaces = ({
     }
   };
 
-  const handleArrowListNavigation = e => {
+  const handleArrowListNavigation = (e: any) => {
     const isTab = e.key === 'Tab' || e.which === 9;
 
     const upBehavior =
@@ -266,7 +306,7 @@ export const SearchPlaces = ({
     }
   };
 
-  const handleBlur = e => {
+  const handleBlur = (e: any) => {
     const isAutoCompleteTarget =
       e.relatedTarget &&
       [...e.relatedTarget.classList].join('').includes('suggestionsItem');
@@ -279,7 +319,7 @@ export const SearchPlaces = ({
     if (!isAutoCompleteTarget && !isAutoCompleteContainerTarget) {
       setTimeout(() => {
         setSuggestionsActive(false);
-        setFocusedResult(null);
+        setFocusedResult(0);
 
         // If search places input is inside form,
         // we want to choose first element of suggestions as place
@@ -312,9 +352,9 @@ export const SearchPlaces = ({
             autoComplete="off"
             label="Stadt"
             value={query}
-            onChange={handleChange}
-            onKeyDown={handleEnterKey}
-            onBlur={handleBlur}
+            onChange={handleChange as any}
+            onKeyDown={handleEnterKey as any}
+            onBlur={handleBlur as any}
             className={cN(
               s.searchBar,
               { [s.isNotInsideForm]: !isInsideForm },
@@ -350,6 +390,17 @@ export const SearchPlaces = ({
     </>
   );
 };
+
+type AutoCompleteListProps = {
+  query: string;
+  results: Place[];
+  focusedResult: number;
+  suggestionsActive: boolean;
+  handleSuggestionClick: (x: Place) => void;
+  handleBlur: (e: any) => void;
+  handleArrowListNavigation: any;
+};
+
 export function AutoCompleteList({
   query,
   results,
@@ -358,8 +409,8 @@ export function AutoCompleteList({
   handleSuggestionClick,
   handleBlur,
   handleArrowListNavigation,
-}) {
-  const resultsRef = useRef([]);
+}: AutoCompleteListProps) {
+  const resultsRef = useRef<any>([]);
 
   useEffect(() => {
     resultsRef.current = resultsRef.current.slice(0, results.length);
@@ -406,7 +457,7 @@ export function AutoCompleteList({
               {x.nameUnique},{' '}
               {x.zipCodes.length === 1
                 ? `${x.zipCodes[0]}`
-                : `${x.zipCodes[0]} – ${x.zipCodes[x.zipCodes.length - 1]}`}
+                : `${x.zipCodes[0]} - ${x.zipCodes[x.zipCodes.length - 1]}`}
             </div>
           );
         })}

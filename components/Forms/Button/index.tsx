@@ -5,12 +5,12 @@ import Link from 'next/link';
 import successIcon from './success.svg';
 import { MoveEvent } from 'sortablejs';
 
-type Size = 'MEDIUM' | 'SMALL';
+export type ButtonSize = 'MEDIUM' | 'SMALL';
 
 type LinkButtonProps = {
   children: ReactElement | string;
   className?: string;
-  size?: Size;
+  size?: ButtonSize;
   target?: string;
   href?: string;
   onClick?: () => void;
@@ -38,7 +38,7 @@ export function LinkButton({
 type LinkButtonLocalProps = {
   children: ReactElement | string;
   className?: string;
-  size?: Size;
+  size?: ButtonSize;
   to?: string;
 };
 
@@ -65,7 +65,7 @@ type ButtonProps = {
   children: ReactElement | string;
   className?: string;
   disabled?: boolean;
-  size?: Size;
+  size?: ButtonSize;
   customRef?: Ref<any>;
   loading?: boolean;
   success?: boolean;
@@ -73,6 +73,7 @@ type ButtonProps = {
   type?: ButtonType;
   name?: string;
   tabIndex?: number;
+  id?: string;
 };
 
 export function Button({
@@ -87,6 +88,7 @@ export function Button({
   type = 'button',
   name,
   tabIndex,
+  id,
 }: ButtonProps) {
   return (
     <>
@@ -107,6 +109,7 @@ export function Button({
         type={type}
         name={name}
         tabIndex={tabIndex}
+        id={id}
       >
         <div className={s.buttonText}>{children}</div>
         {/* <div className={s.progressBar}></div>
@@ -123,7 +126,7 @@ type InlineButtonProps = {
   children: ReactElement | string;
   className?: string;
   onClick: (e: any) => void;
-  size?: Size;
+  size?: ButtonSize;
   customRef?: Ref<any>;
   loading?: boolean;
   success?: boolean;
@@ -179,7 +182,7 @@ export function InlineLinkButton({
 type PrimarySecondaryButtonContainerProps = {
   children: ReactElement | ReactElement[];
   className?: string;
-  size?: Size;
+  size?: ButtonSize;
 };
 
 export function PrimarySecondaryButtonContainer({

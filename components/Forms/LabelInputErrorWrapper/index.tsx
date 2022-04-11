@@ -5,7 +5,7 @@ import { ValidationError } from '../ValidationError';
 import { Tooltip } from '../../Tooltip';
 
 type LabelInputErrorWrapperProps = {
-  children: ReactElement;
+  children?: ReactElement;
   className?: string;
   label?: string;
   meta?: {
