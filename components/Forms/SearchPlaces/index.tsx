@@ -24,14 +24,7 @@ import { Municipality } from '../../../context/Municipality';
 //   }
 // };
 
-type Place = {
-  name: string;
-  ags: string;
-  slug: string;
-  score: number;
-  nameUnique: string;
-  zipCodes: number[];
-};
+export type MunicipalityWithScore = Municipality & { score: number };
 
 const initPlace = {
   name: '',
@@ -46,7 +39,7 @@ type SearchPlacesProps = {
   showButton?: boolean;
   buttonLabel: string;
   placeholder?: string;
-  onPlaceSelect: (suggestion?: Place) => void;
+  onPlaceSelect: (suggestion?: Municipality) => void;
   label: string;
   searchTitle?: string;
   validateOnBlur?: boolean;
@@ -56,7 +49,7 @@ type SearchPlacesProps = {
   isInsideForm?: boolean;
   fullWidthInput?: boolean;
   handleButtonClick: (arg: any) => void;
-  initialPlace: Place;
+  initialPlace?: MunicipalityWithScore;
 };
 
 export const SearchPlaces = ({
@@ -76,7 +69,7 @@ export const SearchPlaces = ({
   initialPlace = initPlace,
 }: SearchPlacesProps) => {
   const [query, setQuery] = useState(initialPlace.name || '');
-  const [results, setResults] = useState<Place[]>([]);
+  const [results, setResults] = useState<MunicipalityWithScore[]>([]);
   const [selectedPlace, setSelectedPlace] = useState(initialPlace);
   const [suggestionsActive, setSuggestionsActive] = useState<boolean>(false);
   const [formState, setFormState] = useState<any>({});
@@ -242,7 +235,7 @@ export const SearchPlaces = ({
     return { status: 'failed' };
   };
 
-  const handleSuggestionClick = (suggestion: Place) => {
+  const handleSuggestionClick = (suggestion: MunicipalityWithScore) => {
     if (suggestion) {
       setQuery(suggestion.name);
       setSelectedPlace(suggestion);
@@ -393,10 +386,10 @@ export const SearchPlaces = ({
 
 type AutoCompleteListProps = {
   query: string;
-  results: Place[];
+  results: MunicipalityWithScore[];
   focusedResult: number;
   suggestionsActive: boolean;
-  handleSuggestionClick: (x: Place) => void;
+  handleSuggestionClick: (x: MunicipalityWithScore) => void;
   handleBlur: (e: any) => void;
   handleArrowListNavigation: any;
 };
@@ -455,9 +448,13 @@ export function AutoCompleteList({
               }}
             >
               {x.nameUnique},{' '}
-              {x.zipCodes.length === 1
-                ? `${x.zipCodes[0]}`
-                : `${x.zipCodes[0]} - ${x.zipCodes[x.zipCodes.length - 1]}`}
+              {x.zipCodes && (
+                <>
+                  {x.zipCodes.length === 1
+                    ? `${x.zipCodes[0]}`
+                    : `${x.zipCodes[0]} - ${x.zipCodes[x.zipCodes.length - 1]}`}
+                </>
+              )}
             </div>
           );
         })}
