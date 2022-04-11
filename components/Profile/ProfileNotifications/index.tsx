@@ -81,7 +81,7 @@ export const ProfileNotifications = ({
   }, [userData]);
 
   // store user selected location to add custom newsletters
-  const handlePlaceSelect = (suggestion: Municipality) => {
+  const handlePlaceSelect = (suggestion?: Municipality) => {
     setMunicipality(suggestion);
   };
 

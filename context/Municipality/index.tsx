@@ -28,6 +28,7 @@ export type Municipality = {
   grewByPercent?: number;
   population?: number;
   zipCodes?: string[];
+  nameUnique?: string;
 };
 
 type MunicipalitsStatsSummary = {};
