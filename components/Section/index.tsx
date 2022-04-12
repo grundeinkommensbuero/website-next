@@ -22,6 +22,7 @@ import { XbgeAppContext } from '../../context/App';
 export type Section = {
   id: string;
   title: string;
+  label: string;
   sort: number | null;
   status: string;
   layout: Layout;
