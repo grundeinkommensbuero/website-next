@@ -2,20 +2,35 @@ import React, { useEffect, useState } from 'react';
 import s from './style.module.scss';
 import gS from '../style.module.scss';
 import cN from 'classnames';
-import { Link } from 'gatsby';
 import { Helmet } from 'react-helmet-async';
-import { SectionWrapper } from '../../../components/Layout/Sections';
 import SelfScan from '../../../components/Forms/SelfScan';
 import campaignCodes from './campaignCodes.json';
-import { CampainScanVisualisation } from '../../Forms/SelfScan/CampaignScanVisualisation';
+// import { CampainScanVisualisation } from '../../Forms/SelfScan/CampaignScanVisualisation';
 import { EditProfileSection } from '../EditProfileSection';
+import { BackToProfile } from '../BackToProfile';
+import { User } from '../../../context/Authentication';
 
-export const ProfileSignatures = ({ userId, userData, path }) => {
-  const [userCampaigns, setUserCampaigns] = useState([]);
+type CampaignCode = {
+  campaignName: string;
+  campaignCode: string;
+  ags: string;
+  successMessage: string;
+};
+
+type ProfileSignaturesProps = {
+  userId: string;
+  userData: User;
+};
+
+export const ProfileSignatures = ({
+  userId,
+  userData,
+}: ProfileSignaturesProps) => {
+  const [userCampaigns, setUserCampaigns] = useState<CampaignCode[]>([]);
 
   useEffect(() => {
-    if (userData && 'municipalities' in userData) {
-      const activeCampaigns = [];
+    if (userData && userData.municipalities) {
+      const activeCampaigns: CampaignCode[] = [];
       userData.municipalities.forEach(mun => {
         campaignCodes.forEach(campCode => {
           if (mun.ags === campCode.ags) {
@@ -30,17 +45,16 @@ export const ProfileSignatures = ({ userId, userData, path }) => {
   return (
     <section className={gS.profilePageGrid}>
       <EditProfileSection>
-        <div className={gS.backToProfile}>
-          <Link to={`/mensch/${userId}/`}>Zurück zum Profil</Link>
-        </div>
+        <BackToProfile />
 
         <section className={s.signatureSection}>
-          <Helmet>
+          {/* <Helmet>
             <title>Selbsteingabe Unterschriftsliste</title>
-          </Helmet>
+          </Helmet> */}
 
-          <SectionWrapper>
+          <section>
             <SelfScan
+              className={''}
               successMessage={
                 'Danke! Bitte schicke die Listen möglichst schnell an: Expedition Grundeinkommen, Gneisenaustraße 63, 10961 Berlin'
               }
@@ -50,9 +64,9 @@ export const ProfileSignatures = ({ userId, userData, path }) => {
                 return (
                   <div className={s.signatureContainer} key={index}>
                     <h2>Eingegangene Unterschriften {scan.campaignName}</h2>
-                    <CampainScanVisualisation
+                    {/* <CampainScanVisualisation
                       campaignCode={scan.campaignCode}
-                    />
+                    /> */}
                   </div>
                 );
               })
@@ -62,7 +76,7 @@ export const ProfileSignatures = ({ userId, userData, path }) => {
                 sammelt.
               </h3>
             )}
-          </SectionWrapper>
+          </section>
         </section>
       </EditProfileSection>
     </section>

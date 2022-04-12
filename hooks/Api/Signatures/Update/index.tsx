@@ -4,8 +4,9 @@
  *  qr code)
  */
 
-import { useState } from 'react';
-import CONFIG from '../../../../../backend-config';
+import React, { SetStateAction, useState } from 'react';
+import CONFIG from '../../../Authentication/backend-config';
+import { Request } from '../../../Authentication/Verification';
 
 /*
   States:
@@ -16,27 +17,47 @@ import CONFIG from '../../../../../backend-config';
   - noListFound
 */
 
-export const useUpdateSignatureListByUser = () => {
-  const [state, setState] = useState(null);
+export type RequestState =
+  | 'saving'
+  | 'saved'
+  | 'error'
+  | 'listNotFound'
+  | 'userNotFound'
+  | 'listAndUserNotFound'
+  | null;
+
+export const useUpdateSignatureListByUser = (): [
+  RequestState,
+  (data: any) => Promise<void>,
+  () => void
+] => {
+  const [state, setState] = useState<RequestState>(null);
   return [
     state,
-    data => updateSignatureListByUser(data, setState),
+    (data: any) => updateSignatureListByUser(data, setState),
     () => {
       setState(null);
     },
   ];
 };
 
+type updateSignatureListByUserProps = {
+  listId: string;
+  userId: string;
+  email: string;
+  count: number;
+};
+
 // function, which makes an api call to set the signature count
 // for a specific list after user has scanned the qr code
 const updateSignatureListByUser = async (
-  { listId, userId, email, count },
-  setState
+  { listId, userId, email, count }: updateSignatureListByUserProps,
+  setState: React.Dispatch<SetStateAction<RequestState>>
 ) => {
   // make api call to create new singature list and get pdf
   setState('saving');
 
-  const body = { count };
+  const body = { count, userId: '', email: '' };
 
   // Depending on whether a user id or email was provided
   // we either send only list id or with user id or email
@@ -48,7 +69,7 @@ const updateSignatureListByUser = async (
   }
 
   try {
-    const request = {
+    const request: Request = {
       method: 'PATCH',
       mode: 'cors',
       headers: {
