@@ -1,7 +1,13 @@
 import React, { ReactElement } from 'react';
 import s from './style.module.scss';
 import cN from 'classnames';
-import { LinkButton, Button, LinkButtonLocal, ButtonType } from '../Button';
+import {
+  LinkButton,
+  Button,
+  LinkButtonLocal,
+  ButtonType,
+  ButtonSize,
+} from '../Button';
 import POINT_LEFT_YELLOW from './figure_point_left_yellow.svg';
 import POINT_LEFT_MOBILE_YELLOW from './figure_point_left_mobile_yellow.svg';
 import POINT_LEFT_RED from './figure_point_left_red.svg';
@@ -89,12 +95,14 @@ type CTAButtonProps = {
   onClick?: () => void;
   type?: ButtonType;
   other?: any;
+  size?: ButtonSize;
 };
 
 export function CTAButton({
   children,
   className,
   onClick,
+  size,
   ...other
 }: CTAButtonProps) {
   return (

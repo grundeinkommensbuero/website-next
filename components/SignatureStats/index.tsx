@@ -9,7 +9,7 @@ export type SignatureCount = {
 
 type SignatureStatsProps = {
   signatureCount: SignatureCount;
-  layout: 'horizontal' | 'vertical';
+  layout?: 'horizontal' | 'vertical';
   className?: string;
 };
 

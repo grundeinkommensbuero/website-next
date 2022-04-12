@@ -1,5 +1,3 @@
-@import '../../style/vars.less';
-
 .countField {
   width: 5rem;
 }
@@ -10,8 +8,8 @@
 
 .countField,
 .listIdField {
-  @media (max-width: @breakPointS) {
-    font-size: @DesktopFontSizeS;
+  @media (max-width: $breakPointS) {
+    font-size: $DesktopFontSizeS;
     width: 100%;
   }
 }
@@ -25,7 +23,7 @@
   grid-template-columns: 1fr 2fr;
   grid-gap: 1rem;
 
-  @media (max-width: @breakPointS) {
+  @media (max-width: $breakPointS) {
     grid-template-columns: 1fr 3fr;
   }
 }
@@ -40,8 +38,8 @@
 }
 
 .label {
-  @media (max-width: @breakPointS) {
-    font-size: @DesktopFontSizeXS;
+  @media (max-width: $breakPointS) {
+    font-size: $DesktopFontSizeXS;
     hyphens: auto;
   }
 }
@@ -50,7 +48,7 @@
   display: flex;
   justify-content: space-between;
 
-  @media (max-width: @breakPointM) {
+  @media (max-width: $breakPointM) {
     grid-column: wide-start / wide-end;
     grid-row: 2;
     grid-template-columns: 1fr 1fr;
@@ -61,14 +59,14 @@
 .visualisation {
   grid-column: 5 / wide-end;
 
-  @media (max-width: @breakPointM) {
+  @media (max-width: $breakPointM) {
     grid-column: wide-start / wide-end;
   }
 }
 
 .headingSelfScan {
   margin: 0 0 1rem;
-  font-size: @DesktopFontSizeL;
+  font-size: $DesktopFontSizeL;
 }
 
 .campaignVisualisations {
@@ -82,11 +80,11 @@
 .fieldLabel {
   //min-height: 3rem;
 
-  @media (max-width: @breakPointM) {
+  @media (max-width: $breakPointM) {
     font-size: 18px;
   }
 
-  @media (max-width: @breakPointS) {
+  @media (max-width: $breakPointS) {
     font-size: 15px;
   }
 }

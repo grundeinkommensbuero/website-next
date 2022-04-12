@@ -1,13 +1,15 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, SetStateAction } from 'react';
 import { Form, Field } from 'react-final-form';
 import cN from 'classnames';
 import querystring from 'query-string';
 
-import { useUpdateSignatureListByUser } from '../../../hooks/Api/Signatures/Update';
+import {
+  RequestState,
+  useUpdateSignatureListByUser,
+} from '../../../hooks/Api/Signatures/Update';
 import { useSignatureCountOfUser } from '../../../hooks/Api/Signatures/Get';
 import AuthContext from '../../../context/Authentication';
 import { CTAButtonContainer, CTAButton } from '../CTAButton';
-import { validateEmail } from '../../utils';
 
 import SignatureStats from '../../SignatureStats';
 import SignUp from '../SignUp';
@@ -16,24 +18,30 @@ import FormSection from '../FormSection';
 import { FinallyMessage } from '../FinallyMessage';
 import { TextInputWrapped } from '../TextInput';
 import s from './style.module.scss';
+import { validateEmail } from '../../../hooks/Authentication/validateEmail';
 
-const SelfScan = ({ successMessage, className }) => {
+type SelfScanProps = { successMessage: string; className?: string };
+
+const SelfScan = ({ successMessage, className }: SelfScanProps) => {
   const [state, updateSignatureList, resetSignatureListState] =
     useUpdateSignatureListByUser();
   const [signatureCountOfUser, getSignatureCountOfUser, resetSignatureCount] =
     useSignatureCountOfUser();
 
   // Updating a list should be possible via list id or user id
-  const [listId, setListId] = useState(null);
-  const [eMail, setEMail] = useState(null);
+  const [listId, setListId] = useState<string>('');
+  const [eMail, setEMail] = useState<string>('');
 
   const { userId } = useContext(AuthContext);
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState<number>(0);
 
   useEffect(() => {
-    const urlParams = querystring.parse(window.location.search);
+    const urlParams = new URLSearchParams(window.location.search);
     // Will be null, if param does not exist
-    setListId(urlParams.listId);
+    const listIdFromParam = urlParams.get('listId');
+    if (listIdFromParam) {
+      setListId(listIdFromParam);
+    }
   }, []);
 
   useEffect(() => {
@@ -50,7 +58,7 @@ const SelfScan = ({ successMessage, className }) => {
     // eslint-disable-next-line
   }, [userId]);
 
-  const countSignaturesFormProps = {
+  const countSignaturesFormProps: CountSignatureFormProps = {
     state,
     updateSignatureList,
     listId,
@@ -81,6 +89,20 @@ const SelfScan = ({ successMessage, className }) => {
   );
 };
 
+type CountSignatureFormProps = {
+  state: RequestState;
+  updateSignatureList: (data: any) => Promise<void>;
+  listId: string;
+  userId: string;
+  setEMail: React.Dispatch<SetStateAction<string>>;
+  eMail: string;
+  successMessage: string;
+  count: number;
+  setCount: React.Dispatch<SetStateAction<number>>;
+  setListId: React.Dispatch<SetStateAction<string>>;
+  resetSignatureListState: () => void;
+};
+
 const CountSignaturesForm = ({
   state,
   updateSignatureList,
@@ -93,7 +115,7 @@ const CountSignaturesForm = ({
   setCount,
   setListId,
   resetSignatureListState,
-}) => {
+}: CountSignatureFormProps) => {
   const needsEMail = !userId && !eMail;
 
   if (state === 'saving') {
@@ -103,12 +125,12 @@ const CountSignaturesForm = ({
   if (state === 'saved') {
     return (
       <FinallyMessage>
-        {successMessage}
+        <>{successMessage}</>
         <CTAButtonContainer className={s.buttonContainer}>
           <CTAButton
             size="MEDIUM"
             onClick={() => {
-              setListId(null);
+              setListId('');
               resetSignatureListState();
             }}
           >
@@ -127,99 +149,100 @@ const CountSignaturesForm = ({
   ) {
     return (
       <FinallyMessage state="error">
-        {state === 'userNotFound' && (
-          <>
-            <h2>Hoppla!</h2>
-            <p>
-              Wir haben deine E-Mail-Adresse leider nicht gefunden. Hast du dich
-              vertippt? Dann versuche es erneut:
-            </p>
+        <>
+          {state === 'userNotFound' && (
+            <>
+              <h2>Hoppla!</h2>
+              <p>
+                Wir haben deine E-Mail-Adresse leider nicht gefunden. Hast du
+                dich vertippt? Dann versuche es erneut:
+              </p>
 
-            <CTAButtonContainer
-              className={cN(s.buttonContainer, s.buttonContainerMessage)}
-            >
-              <CTAButton
-                size="MEDIUM"
-                onClick={() => {
-                  setEMail(null);
-                  resetSignatureListState();
-                }}
+              <CTAButtonContainer
+                className={cN(s.buttonContainer, s.buttonContainerMessage)}
               >
-                Neuer Versuch
-              </CTAButton>
-            </CTAButtonContainer>
-            <p>
-              Oder registriere dich neu bei uns, um die Unterschriften
-              einzutragen:
-            </p>
-            <SignUp
-              initialValues={{
-                email: eMail,
-              }}
-              postSignupAction={async () => {
-                const data = {
-                  userId,
-                  listId,
-                  count,
-                };
-                setCount(parseInt(data.count));
-                await updateSignatureList(data);
-              }}
-              illustration={false}
-            />
-            <p>
-              Funktioniert auch das nicht? Dann schreib uns an{' '}
+                <CTAButton
+                  size="MEDIUM"
+                  onClick={() => {
+                    setEMail('');
+                    resetSignatureListState();
+                  }}
+                >
+                  Neuer Versuch
+                </CTAButton>
+              </CTAButtonContainer>
+              <p>
+                Oder registriere dich neu bei uns, um die Unterschriften
+                einzutragen:
+              </p>
+              <SignUp
+                initialValues={{
+                  email: eMail,
+                }}
+                postSignupAction={async () => {
+                  const data = {
+                    userId,
+                    listId,
+                    count,
+                  };
+                  setCount(parseInt(data.count.toString()));
+                  await updateSignatureList(data);
+                }}
+              />
+              <p>
+                Funktioniert auch das nicht? Dann schreib uns an{' '}
+                <a href="mailto:support@expedition-grundeinkommen.de">
+                  support@expedition-grundeinkommen.de
+                </a>
+                .
+              </p>
+            </>
+          )}
+          {state === 'error' && (
+            <>
+              Da ist was schief gegangen. Melde dich bitte bei{' '}
               <a href="mailto:support@expedition-grundeinkommen.de">
                 support@expedition-grundeinkommen.de
-              </a>
-              .
-            </p>
-          </>
-        )}
-        {state === 'error' && (
-          <>
-            Da ist was schief gegangen. Melde dich bitte bei{' '}
-            <a href="mailto:support@expedition-grundeinkommen.de">
-              support@expedition-grundeinkommen.de
-            </a>{' '}
-            und sende uns folgenden Text: listId={listId}.
-          </>
-        )}
-        {state === 'listNotFound' && (
-          <>
-            Die Liste mit dem Barcode {listId} konnten wir leider nicht finden.
-            Bitte probiere es noch ein Mal.
-            <CTAButtonContainer className={s.buttonContainer}>
-              <CTAButton
-                size="MEDIUM"
-                onClick={() => {
-                  setListId(null);
-                  resetSignatureListState();
-                }}
-              >
-                Neuer Versuch
-              </CTAButton>
-            </CTAButtonContainer>
-          </>
-        )}
-        {state === 'listAndUserNotFound' && (
-          <>
-            Die Liste mit dem Barcode {listId} und den Benutzer {eMail} konnten
-            wir leider nicht finden. Bitte probiere es noch ein Mal.
-            <CTAButtonContainer className={s.buttonContainer}>
-              <CTAButton
-                size="MEDIUM"
-                onClick={() => {
-                  setListId(null);
-                  setEMail(null);
-                  resetSignatureListState();
-                }}
-              >
-                Neuer Versuch
-              </CTAButton>
-            </CTAButtonContainer>
-          </>
-        )}
+              </a>{' '}
+              und sende uns folgenden Text: listId={listId}.
+            </>
+          )}
+          {state === 'listNotFound' && (
+            <>
+              Die Liste mit dem Barcode {listId} konnten wir leider nicht
+              finden. Bitte probiere es noch ein Mal.
+              <CTAButtonContainer className={s.buttonContainer}>
+                <CTAButton
+                  size="MEDIUM"
+                  onClick={() => {
+                    setListId('');
+                    resetSignatureListState();
+                  }}
+                >
+                  Neuer Versuch
+                </CTAButton>
+              </CTAButtonContainer>
+            </>
+          )}
+          {state === 'listAndUserNotFound' && (
+            <>
+              Die Liste mit dem Barcode {listId} und den Benutzer {eMail}{' '}
+              konnten wir leider nicht finden. Bitte probiere es noch ein Mal.
+              <CTAButtonContainer className={s.buttonContainer}>
+                <CTAButton
+                  size="MEDIUM"
+                  onClick={() => {
+                    setListId('');
+                    setEMail('');
+                    resetSignatureListState();
+                  }}
+                >
+                  Neuer Versuch
+                </CTAButton>
+              </CTAButtonContainer>
+            </>
+          )}
+        </>
       </FinallyMessage>
     );
   }
@@ -246,10 +269,10 @@ const CountSignaturesForm = ({
             data.email = eMail;
           }
 
-          setCount(parseInt(data.count));
+          setCount(parseInt(data.count.toString()));
           updateSignatureList(data);
         }}
-        validate={values => validate(values, needsEMail, !listId)}
+        validate={(values: Values) => validate(values, needsEMail, !listId)}
         render={({ handleSubmit }) => {
           return (
             <FinallyMessage>
@@ -264,7 +287,7 @@ const CountSignaturesForm = ({
                         name="email"
                         label="Bitte gib deine E-Mail-Adresse ein."
                         placeholder="E-Mail"
-                        component={TextInputWrapped}
+                        component={TextInputWrapped as any}
                         type="email"
                         className={s.label}
                       ></Field>
@@ -280,7 +303,7 @@ const CountSignaturesForm = ({
                         name="count"
                         label=""
                         placeholder="1"
-                        component={TextInputWrapped}
+                        component={TextInputWrapped as any}
                         type="number"
                         min={1}
                         className={s.label}
@@ -289,25 +312,27 @@ const CountSignaturesForm = ({
                         pattern="[0-9]*"
                       ></Field>
                     </div>
-                    {!listId && (
-                      <div className={s.fieldContainer}>
-                        <p className={s.fieldLabel}>
-                          Barcode auf der Unterschriftenliste
-                        </p>
-                        <Field
-                          name="listId"
-                          label=""
-                          placeholder=""
-                          component={TextInputWrapped}
-                          type="text"
-                          inputMode="numeric"
-                          pattern="[0-9]*"
-                          min={1}
-                          className={s.label}
-                          inputClassName={s.listIdField}
-                        ></Field>
-                      </div>
-                    )}
+                    <>
+                      {!listId && (
+                        <div className={s.fieldContainer}>
+                          <p className={s.fieldLabel}>
+                            Barcode auf der Unterschriftenliste
+                          </p>
+                          <Field
+                            name="listId"
+                            label=""
+                            placeholder=""
+                            component={TextInputWrapped as any}
+                            type="text"
+                            inputMode="numeric"
+                            pattern="[0-9]*"
+                            min={1}
+                            className={s.label}
+                            inputClassName={s.listIdField}
+                          ></Field>
+                        </div>
+                      )}
+                    </>
                   </FormSection>
 
                   <CTAButtonContainer className={s.buttonContainer}>
@@ -325,8 +350,23 @@ const CountSignaturesForm = ({
   );
 };
 
-const validate = (values, needsEMail, needsListId) => {
-  const errors = {};
+type Values = {
+  count: number;
+  listId: string;
+  email: string;
+  userId: string;
+};
+
+const validate = (
+  values: Values,
+  needsEMail: boolean,
+  needsListId: boolean
+) => {
+  const errors = {
+    count: '',
+    listId: '',
+    email: '',
+  };
 
   if (!values.count) {
     errors.count = 'Muss ausgefüllt sein';
