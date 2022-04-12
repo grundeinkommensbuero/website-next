@@ -101,6 +101,7 @@ const updatePageStructure = (fetchedPage: FetchedPage): Page => {
       return {
         id: section.item.id,
         title: section.item.title,
+        label: section.item.label,
         sort: section.item.sort,
         status: section.item.status,
         layout: section.item.layout,

@@ -90,10 +90,22 @@ export const EditSection = ({
 
           <EditIcon
             path={mdiContentSaveOutline}
-            action={() =>
-              customUserData?.directus?.token &&
-              updateSection(modifiedSection, customUserData.directus.token)
-            }
+            action={() => {
+              // Close open text editors
+              const closedEditors = {
+                ...modifiedSection,
+                render: modifiedSection.render.map(element => {
+                  if (element.collection === 'sectionsText') {
+                    element.edit = false;
+                  }
+                  return element;
+                }),
+              };
+              setModifiedSection(closedEditors);
+              // Save section to directus
+              if (customUserData?.directus?.token)
+                updateSection(modifiedSection, customUserData.directus.token);
+            }}
             size={1.25}
             rotate={0}
             tooltip="Speichern"

@@ -13,7 +13,7 @@ type XbgeAppProps = AppProps & { mainmenu: Mainmenu };
 function XbgeApp({ Component, pageProps, mainmenu }: XbgeAppProps) {
   return (
     <ProviderWrapper>
-      <Toaster />
+      <Toaster toastOptions={{ position: 'top-right' }} />
       <Layout mainmenu={mainmenu}>
         <Component {...pageProps} />
       </Layout>
