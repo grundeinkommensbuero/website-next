@@ -1,0 +1,307 @@
+.body {
+  font-weight: bold;
+  position: relative;
+
+  &.showCTA {
+    display: grid;
+    grid-template-columns: 1fr 16rem;
+    grid-gap: 2rem;
+    align-items: center;
+
+    @media (max-width: $breakPointM) {
+      grid-template-columns: 1fr;
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+.title {
+  margin-bottom: 0.5rem;
+}
+
+.cta {
+  text-align: center;
+}
+
+.bar {
+  position: relative;
+  height: 7.5rem;
+  line-height: 1;
+}
+
+.barGoal {
+  position: absolute;
+  border: var(--font-color);
+  height: 5rem;
+  width: 100%;
+  font-size: $DesktopFontSizeM;
+  display: flex;
+  justify-content: flex-end;
+
+  &.hasNotStarted {
+    background: var(--bg-color);
+    color: var(--font-color);
+  }
+}
+
+.barGoalBarInbetween {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  text-align: right;
+  padding: 0.5rem;
+}
+
+.goal {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  text-align: right;
+
+  @media (max-width: $breakPointS) {
+    font-size: $DesktopFontSizeS;
+  }
+
+  &.crowdfunding {
+    color: var(--secondary-color);
+  }
+}
+
+.barGoalBarInbetweenLabel {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+
+  &Outside {
+    right: auto;
+    left: calc(100% + 0.5rem);
+    color: var(--font-color);
+  }
+}
+
+.barGoalBar {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+  //transform: skewX(3.2deg) skewY(0.3deg) rotate(-0.2deg);
+  border: 1px solid $white;
+
+  .hasNotStarted & {
+    border: 1px solid var(--font-color);
+  }
+
+  &.onWhiteBackground {
+    border: 1px solid $violet;
+    background: $white;
+  }
+
+  &.crowdfunding {
+    border: 1px solid var(--secondary-color);
+  }
+}
+
+//  NOTE by Vali: Is this still needed?
+
+// .barGoalInbetween {
+
+//   position: absolute;
+//   height: 100%;
+//   border: 1px solid $white;
+
+//   &.onWhiteBackground {
+//     border: 1px solid $violet;
+//     background: $white;
+//   }
+
+//   &.crowdfunding {
+//     border: 1px solid var(--secondary-color);
+//   }
+// }
+
+.starts {
+  font-size: $DesktopFontSizeXL;
+  position: absolute;
+  width: 100%;
+  bottom: -0.3rem;
+  left: 1rem;
+
+  @media (max-width: $breakPointM) {
+    line-height: 0.9;
+  }
+}
+
+.barCurrent {
+  position: absolute;
+  bottom: 0;
+  height: 5rem;
+  font-size: $DesktopFontSizeXL;
+  color: var(--bg-color);
+  display: flex;
+  transition: width 1s ease;
+  z-index: 3;
+
+  @media (max-width: $breakPointS) {
+    font-size: $DesktopFontSizeXL;
+  }
+
+  @media (max-width: 360px) {
+    font-size: $DesktopFontSizeXL;
+  }
+
+  &::before {
+    content: '';
+    background: var(--secondary-color);
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+    // transform: skewX(-3.2deg) skewY(0.3deg) rotate(0.2deg);
+  }
+
+  &.onWhiteBackground {
+    color: $white;
+
+    &::before {
+      background: $violet;
+    }
+  }
+
+  .barCurrentLabel {
+    position: absolute;
+    z-index: 1;
+    bottom: -0.3rem;
+    right: 1rem;
+  }
+
+  &.outside {
+    .barCurrentLabel {
+      left: calc(100% + 1rem);
+      right: auto;
+      color: var(--font-color);
+      $w: 2px;
+      text-shadow: $w $w 0 var(--bg-color), -$w $w 0 var(--bg-color),
+        $w -$w 0 var(--bg-color), -$w -$w 0 var(--bg-color);
+    }
+  }
+
+  &.completed {
+    color: var(--bg-color);
+
+    &::before {
+      background: $white;
+      color: $aqua;
+    }
+  }
+}
+
+.eyeCatcher {
+  position: absolute;
+  left: 100%;
+  color: var(--text-on-secondary-color);
+  height: 13rem;
+  width: 13rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(-5deg);
+  top: -1rem;
+  margin-left: 1rem;
+
+  @media (max-width: 1350px) {
+    font-size: $DesktopFontSizeS;
+    height: 10rem;
+    width: 10rem;
+  }
+
+  @media (max-width: 1270px) {
+    font-size: $DesktopFontSizeS;
+    height: 10rem;
+    width: 10rem;
+    top: 6rem;
+    margin-left: -5rem;
+  }
+
+  @media (max-width: $breakPointM) {
+    top: auto;
+    bottom: 100%;
+    margin-bottom: -0.7rem;
+    width: 8rem;
+    height: 8rem;
+    margin-left: -6.5rem !important;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+.eyeCatcherWithCta {
+  top: -8rem;
+  margin-left: -3rem;
+
+  @media (max-width: 1150px) {
+    top: -6rem;
+    margin-left: -4rem;
+  }
+
+  @media (max-width: $breakPointM) {
+    top: auto;
+    bottom: 100%;
+    margin-left: -8.5rem;
+    margin-bottom: -1rem;
+  }
+}
+
+.eyeCatcherContent {
+  position: relative;
+  z-index: 1;
+  padding: 0.5rem;
+
+  p {
+    line-height: 1.3;
+  }
+
+  @media (max-width: $breakPointS) {
+    font-size: $DesktopFontSizeXS;
+  }
+}
+
+.eyeCatcherLink {
+  text-decoration: none;
+}
+
+.eyeCatcherBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  fill: var(--secondary-color);
+}
+
+.sectionInnerHasEyeCatcher {
+  @media (max-width: $breakPointM) and (min-width: $breakPointS) {
+    margin-top: 3rem !important;
+  }
+}
+
+.hint {
+  margin: 1rem 0;
+  font-weight: normal;
+  font-size: $DesktopFontSizeS;
+
+  @media (max-width: $breakPointM) {
+    .sectionInnerHasEyeCatcher & {
+      padding-right: 8rem;
+    }
+  }
+
+  @media (max-width: $breakPointS) {
+    .sectionInnerHasEyeCatcher & {
+      padding-right: 6rem;
+    }
+  }
+}
