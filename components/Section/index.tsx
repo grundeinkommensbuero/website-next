@@ -253,8 +253,6 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                         </div>
                       );
                     case 'sectionsCTAButton':
-                      console.log(element);
-
                       return (
                         <div key={'video-' + element.index}>
                           {pageBuilderActive && (
