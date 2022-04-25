@@ -28,11 +28,13 @@ export type Section = {
   title: string;
   label: string;
   sort: number | null;
-  status: string;
+  status: Status;
   layout: Layout;
   colorScheme: ColorScheme;
   render: SectionElement[];
 };
+
+export type Status = 'published' | 'draft' | 'archived';
 
 export type SectionElement =
   | SectionsText
@@ -172,6 +174,7 @@ export const Section = ({ section }: SectionProps): ReactElement => {
       <SectionWrapper
         colorScheme={modifiedSection.colorScheme}
         title={modifiedSection.title}
+        status={modifiedSection.status}
       >
         <div className="flexWrap">
           {groupedElements.map((elements, index) => {

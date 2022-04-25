@@ -121,3 +121,14 @@
 .flexLeft {
   margin-right: 50%;
 }
+
+.draftSection {
+  border: 5px dashed black;
+  position: relative;
+}
+
+.draftLabel {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+}
