@@ -7,6 +7,7 @@ import {
   SectionsComponent,
   SectionsText,
   SectionsVideo,
+  SectionsCTAButton,
 } from '../components/Section';
 import { PageProps } from '../pages/[id]';
 
@@ -43,7 +44,8 @@ type FetchedElement = {
     | 'sectionsText'
     | 'sectionsImage'
     | 'sectionsComponent'
-    | 'sectionsVideo';
+    | 'sectionsVideo'
+    | 'sectionsCTAButton';
   item: {
     id: string;
     status: string;
@@ -55,6 +57,7 @@ type FetchedElement = {
     content?: string;
     component?: string;
     embedId?: string;
+    buttonText?: string;
   };
 };
 
@@ -141,6 +144,12 @@ const updatePageStructure = (fetchedPage: FetchedPage): Page => {
                 collection: 'sectionsVideo',
                 embedId: element.item.embedId,
               } as SectionsVideo;
+            case 'sectionsCTAButton':
+              return {
+                ...baseElement,
+                collection: 'sectionsCTAButton',
+                buttonText: element.item.buttonText,
+              } as SectionsCTAButton;
           }
         }),
       };
