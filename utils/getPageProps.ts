@@ -58,6 +58,10 @@ type FetchedElement = {
     component?: string;
     embedId?: string;
     buttonText?: string;
+    type?: string;
+    action?: string;
+    href?: string;
+    slug?: string;
   };
 };
 
@@ -149,6 +153,10 @@ const updatePageStructure = (fetchedPage: FetchedPage): Page => {
                 ...baseElement,
                 collection: 'sectionsCTAButton',
                 buttonText: element.item.buttonText,
+                type: element.item.type,
+                action: element.item.action,
+                href: element.item.href,
+                slug: element.item.slug,
               } as SectionsCTAButton;
           }
         }),

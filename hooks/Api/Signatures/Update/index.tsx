@@ -8,15 +8,6 @@ import React, { SetStateAction, useState } from 'react';
 import CONFIG from '../../../Authentication/backend-config';
 import { Request } from '../../../Authentication/Verification';
 
-/*
-  States:
-  - null
-  - error
-  - saving
-  - saved
-  - noListFound
-*/
-
 export type RequestState =
   | 'saving'
   | 'saved'

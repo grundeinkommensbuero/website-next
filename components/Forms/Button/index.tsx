@@ -1,9 +1,8 @@
-import React, { ButtonHTMLAttributes, ReactElement, Ref } from 'react';
+import React, { ReactElement, Ref } from 'react';
 import s from './style.module.scss';
 import cN from 'classnames';
 import Link from 'next/link';
 import successIcon from './success.svg';
-import { MoveEvent } from 'sortablejs';
 
 export type ButtonSize = 'MEDIUM' | 'SMALL';
 
@@ -22,7 +21,6 @@ export function LinkButton({
   size,
   target,
   href,
-  onClick,
   ...other
 }: LinkButtonProps) {
   return (
@@ -46,15 +44,12 @@ export function LinkButtonLocal({
   children,
   className,
   size,
-  to,
+  to = '/',
   ...other
 }: LinkButtonLocalProps) {
   return (
-    <div
-      className={cN(s.linkButton, className, { [s.medium]: size === 'MEDIUM' })}
-      {...other}
-    >
-      <Link href="">{children}</Link>
+    <div className={cN(s.linkButton, className)} {...other}>
+      <Link href={to}>{children}</Link>
     </div>
   );
 }

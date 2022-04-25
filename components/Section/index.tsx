@@ -1,6 +1,8 @@
 import { ReactElement, useState, useEffect, useContext } from 'react';
 import { NoSsr } from '../Util/NoSsr';
 import ReactTooltip from 'react-tooltip';
+import * as action from './_actions';
+import { hasKey } from '../../utils/hasKey';
 
 import dynamic from 'next/dynamic';
 
@@ -18,6 +20,8 @@ import { SectionWrapper } from './SectionWrapper';
 import { SectionsTextEditable } from './SectionsTextEditable';
 import { YoutubeEmbed } from '../Video/YoutubeEmbed';
 import { XbgeAppContext } from '../../context/App';
+import { CTAButton } from '../Forms/CTAButton';
+import { useRouter } from 'next/router';
 
 export type Section = {
   id: string;
@@ -62,6 +66,10 @@ export type SectionsVideo = SectionElementBase & {
 export type SectionsCTAButton = SectionElementBase & {
   collection: 'sectionsCTAButton';
   buttonText: string;
+  type: 'action' | 'href' | 'slug';
+  action: string | null;
+  href: string | null;
+  slug: string | null;
 };
 
 export type SectionElementBase = {
@@ -94,6 +102,7 @@ export const Section = ({ section }: SectionProps): ReactElement => {
   const { pageBuilderActive } = useContext(XbgeAppContext);
   const [modifiedSection, setModifiedSection] = useState<Section>(section);
   const [groupedElements, setGroupedElements] = useState<GroupedElements>([]);
+  const router = useRouter();
 
   useEffect(() => {
     const elements: SectionElement[][] = [];
@@ -241,6 +250,50 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                             />
                           )}
                           <YoutubeEmbed embedId={element.embedId} />
+                        </div>
+                      );
+                    case 'sectionsCTAButton':
+                      console.log(element);
+
+                      return (
+                        <div key={'video-' + element.index}>
+                          {pageBuilderActive && (
+                            <EditElement
+                              modifiedSection={modifiedSection}
+                              setModifiedSection={setModifiedSection}
+                              element={element}
+                            />
+                          )}
+                          {element.type === 'action' && (
+                            <CTAButton
+                              onClick={() => {
+                                if (
+                                  element.action &&
+                                  hasKey(action, element.action)
+                                ) {
+                                  action[element.action]();
+                                }
+                              }}
+                            >
+                              {element.buttonText}
+                            </CTAButton>
+                          )}
+                          {element.type === 'href' && (
+                            <CTAButton
+                              onClick={() =>
+                                window.open(element.href || '', '_blank')
+                              }
+                            >
+                              {element.buttonText}
+                            </CTAButton>
+                          )}
+                          {element.type === 'slug' && (
+                            <CTAButton
+                              onClick={() => router.push(element.slug || '')}
+                            >
+                              {element.buttonText}
+                            </CTAButton>
+                          )}
                         </div>
                       );
                     default:

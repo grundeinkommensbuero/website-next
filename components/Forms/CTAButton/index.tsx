@@ -94,14 +94,13 @@ type CTAButtonProps = {
   className?: string;
   onClick?: () => void;
   type?: ButtonType;
-  other?: any;
   size?: ButtonSize;
+  other?: any;
 };
 
 export function CTAButton({
   children,
   className,
-  onClick,
   size,
   ...other
 }: CTAButtonProps) {
@@ -131,7 +130,7 @@ type CTALinkExternalProps = {
   children: ReactElement | string;
   href: string;
   className?: string;
-  onClick: () => void;
+  onClick?: () => void;
   other?: any;
 };
 
