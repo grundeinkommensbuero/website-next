@@ -34,7 +34,8 @@ export type SectionElement =
   | SectionsText
   | SectionsImage
   | SectionsComponent
-  | SectionsVideo;
+  | SectionsVideo
+  | SectionsCTAButton;
 
 export type SectionsText = SectionElementBase & {
   collection: 'sectionsText';
@@ -56,6 +57,11 @@ export type SectionsComponent = SectionElementBase & {
 export type SectionsVideo = SectionElementBase & {
   collection: 'sectionsVideo';
   embedId: string;
+};
+
+export type SectionsCTAButton = SectionElementBase & {
+  collection: 'sectionsCTAButton';
+  buttonText: string;
 };
 
 export type SectionElementBase = {
