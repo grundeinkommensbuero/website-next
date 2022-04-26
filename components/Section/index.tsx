@@ -68,6 +68,7 @@ export type SectionsVideo = SectionElementBase & {
 export type SectionsCTAButton = SectionElementBase & {
   collection: 'sectionsCTAButton';
   buttonText: string;
+  align: 'left' | 'center' | 'right';
   type: 'action' | 'href' | 'slug';
   action: string | null;
   href: string | null;
@@ -227,8 +228,8 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                       );
                     case 'sectionsComponent':
                       const Component = dynamic(
-                        () => import(`../_dynamic/${element.component}`),
-                        { ssr: false, loading: () => null }
+                        () => import(`../_dynamic/${element.component}`)
+                        // { ssr: false, loading: () => null }
                       );
                       return (
                         <div key={'component-' + element.index}>
@@ -256,8 +257,21 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                         </div>
                       );
                     case 'sectionsCTAButton':
+                      const getAlignment = () => {
+                        switch (element.align) {
+                          case 'left':
+                            return 'justify-start';
+                          case 'center':
+                            return 'justify-center';
+                          case 'right':
+                            return 'justify-end';
+                        }
+                      };
                       return (
-                        <div key={'video-' + element.index}>
+                        <div
+                          className={getAlignment()}
+                          key={'video-' + element.index}
+                        >
                           {pageBuilderActive && (
                             <EditElement
                               modifiedSection={modifiedSection}

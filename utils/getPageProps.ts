@@ -40,6 +40,8 @@ type FetchedSectionData = {
   };
 };
 
+type Align = 'left' | 'center' | 'right';
+
 type FetchedElement = {
   collection:
     | 'sectionsText'
@@ -63,6 +65,7 @@ type FetchedElement = {
     action?: string;
     href?: string;
     slug?: string;
+    align?: Align;
   };
 };
 
@@ -169,6 +172,7 @@ const updatePageStructure = (fetchedPage: FetchedPage): Page => {
                     action: element.item.action,
                     href: element.item.href,
                     slug: element.item.slug,
+                    align: element.item.align,
                   } as SectionsCTAButton;
               }
             }),
