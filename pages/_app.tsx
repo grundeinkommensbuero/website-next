@@ -7,8 +7,14 @@ import { NoSsr } from '../components/Util/NoSsr';
 import ReactTooltip from 'react-tooltip';
 import { ProviderWrapper } from '../components/Util/ProviderWrapper';
 import { Toaster } from 'react-hot-toast';
+import { TrackJS } from 'trackjs';
 
 type XbgeAppProps = AppProps & { mainmenu: Mainmenu };
+
+TrackJS.install({
+  token: process.env.NEXT_PUBLIC_TRACKJS_TOKEN || '',
+  application: 'expedition-grundeinkommen',
+});
 
 function XbgeApp({ Component, pageProps, mainmenu }: XbgeAppProps) {
   return (
