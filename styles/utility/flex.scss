@@ -22,6 +22,16 @@
   justify-content: center;
 }
 
+.justify-start {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.justify-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .flex-column {
   display: flex;
   flex-direction: column;
@@ -40,8 +50,17 @@
 .grow {
   flex-grow: 1;
 }
+.items-start {
+  display: flex;
+  align-items: flex-start;
+}
 
 .items-center {
   display: flex;
   align-items: center;
+}
+
+.items-end {
+  display: flex;
+  align-items: flex-end;
 }
