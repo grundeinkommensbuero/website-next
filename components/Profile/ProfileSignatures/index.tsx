@@ -5,10 +5,11 @@ import cN from 'classnames';
 import { Helmet } from 'react-helmet-async';
 import SelfScan from '../../../components/Forms/SelfScan';
 import campaignCodes from './campaignCodes.json';
-// import { CampainScanVisualisation } from '../../Forms/SelfScan/CampaignScanVisualisation';
+import { CampainScanVisualisation } from '../../Forms/SelfScan/CampaignScanVisualisation';
 import { EditProfileSection } from '../EditProfileSection';
 import { BackToProfile } from '../BackToProfile';
 import { User } from '../../../context/Authentication';
+import { CampaignVisualisation } from '../../../pages/mensch/[userId]/unterschriften-eintragen';
 
 type CampaignCode = {
   campaignName: string;
@@ -20,11 +21,13 @@ type CampaignCode = {
 type ProfileSignaturesProps = {
   userId: string;
   userData: User;
+  campaignVisualisations: CampaignVisualisation[];
 };
 
 export const ProfileSignatures = ({
   userId,
   userData,
+  campaignVisualisations,
 }: ProfileSignaturesProps) => {
   const [userCampaigns, setUserCampaigns] = useState<CampaignCode[]>([]);
 
@@ -64,9 +67,10 @@ export const ProfileSignatures = ({
                 return (
                   <div className={s.signatureContainer} key={index}>
                     <h2>Eingegangene Unterschriften {scan.campaignName}</h2>
-                    {/* <CampainScanVisualisation
+                    <CampainScanVisualisation
                       campaignCode={scan.campaignCode}
-                    /> */}
+                      campaignVisualisations={campaignVisualisations}
+                    />
                   </div>
                 );
               })

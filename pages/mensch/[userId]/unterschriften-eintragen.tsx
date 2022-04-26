@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import AuthContext from '../../../context/Authentication';
 import { ProfileSignatures } from '../../../components/Profile/ProfileSignatures';
 import fetchData from '../../blog/fetchData';
+import { CampaignVisualisation } from '../../../components/CampaignVisualisations';
 
 type UnterschriftenEintragenProps = {
   campaignVisualisations: CampaignVisualisation[];
@@ -11,22 +12,14 @@ const UnterschriftenEintragen = ({
   campaignVisualisations,
 }: UnterschriftenEintragenProps) => {
   const { userId, customUserData: userData } = useContext(AuthContext);
-  console.log(campaignVisualisations);
 
-  return <ProfileSignatures userData={userData} userId={userId} />;
-};
-
-export type CampaignVisualisation = {
-  id: string;
-  title: string;
-  startDate: string;
-  campainCode: string;
-  hint: string;
-  goal: number;
-  goalInbetween: number | null;
-  goalUnbuffered: number | null;
-  minimum: number | null;
-  addToSignatureCount: number | null;
+  return (
+    <ProfileSignatures
+      campaignVisualisations={campaignVisualisations}
+      userData={userData}
+      userId={userId}
+    />
+  );
 };
 
 const query = `query CampaignVisualisations {
@@ -39,8 +32,12 @@ const query = `query CampaignVisualisations {
     goal
     goalInbetween
     goalUnbuffered
+    maximum
     minimum
     addToSignatureCount
+    startnextId
+    ctaLink
+    project
   }
 }
 `;
@@ -52,10 +49,8 @@ const variables = {
 export const getServerSideProps = async () => {
   const campaignVisualisations: Promise<CampaignVisualisation[]> =
     await fetchData(query, variables).then(data => {
-      return data.data.campaignVisualisations;
+      return data.data.CampaignVisualisations;
     });
-  console.log(campaignVisualisations);
-
   return {
     props: {
       campaignVisualisations: campaignVisualisations || [],
