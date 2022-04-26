@@ -9,7 +9,7 @@ import { CampainScanVisualisation } from '../../Forms/SelfScan/CampaignScanVisua
 import { EditProfileSection } from '../EditProfileSection';
 import { BackToProfile } from '../BackToProfile';
 import { User } from '../../../context/Authentication';
-import { CampaignVisualisation } from '../../../pages/mensch/[userId]/unterschriften-eintragen';
+import { CampaignVisualisation } from '../../CampaignVisualisations';
 
 type CampaignCode = {
   campaignName: string;

@@ -1,8 +1,8 @@
 import React from 'react';
-import CampaignVisualisations from '../../CampaignVisualisations';
+import CampaignVisualisations, {
+  CampaignVisualisation,
+} from '../../CampaignVisualisations';
 import s from './style.module.scss';
-import { Directus } from '@directus/sdk';
-import { CampaignVisualisation } from '../../../pages/mensch/[userId]/unterschriften-eintragen';
 
 type CampainScanVisualisationProps = {
   campaignCode: string;
