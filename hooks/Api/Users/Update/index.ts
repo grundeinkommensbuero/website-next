@@ -36,6 +36,7 @@ export const updateUser = async ({
   confirmed?: boolean;
   code?: string;
   store?: any;
+  newsletterConsent?: boolean;
 }) => {
   const url = `${CONFIG.API.INVOKE_URL}/users/${userId}`;
 

@@ -3,21 +3,40 @@
  *  in the backend
  */
 
-import { useState, useContext } from 'react';
-import CONFIG from '../../../../../backend-config';
+import React, { useState, useContext, SetStateAction } from 'react';
+import CONFIG from '../../../Authentication/backend-config';
 import { updateUser } from '../../Users/Update';
 import AuthContext from '../../../../context/Authentication';
+import { Request } from '../../../Authentication/Verification';
 
-/*
-  States:
-  - error
-  - creating
-  - created
-*/
+type States = 'error' | 'creating' | 'created' | 'unauthorized' | undefined;
 
-export const useCreateSignatureList = () => {
-  const [state, setState] = useState();
-  const [pdf, setPdf] = useState({});
+type Pdf = { id: string; url: string };
+
+type InputData = {
+  campaignCode: string;
+  anonymous?: boolean;
+  email?: string;
+  userExists?: boolean;
+  shouldNotUpdateUser?: boolean;
+};
+
+type Data = {
+  token: string;
+  userId: string;
+} & InputData;
+
+export const useCreateSignatureList = (): [
+  States,
+  Pdf,
+  boolean,
+  (data: InputData) => void
+] => {
+  const [state, setState] = useState<States>();
+  const [pdf, setPdf] = useState<Pdf>({
+    id: '',
+    url: '',
+  });
   const [anonymous, setAnonymous] = useState(false);
 
   //get auth token from global context
@@ -27,17 +46,22 @@ export const useCreateSignatureList = () => {
     state,
     pdf,
     anonymous,
-    data => {
+    (inputData: InputData) => {
       // If non-anonymous download
-      if (!data.anonymous && userId) {
-        data.token = token;
-        data.userId = userId;
-
-        return createSignatureList(data, setState, setPdf);
+      if (!inputData.anonymous && userId) {
+        return createSignatureList(
+          {
+            token,
+            userId,
+            ...inputData,
+          },
+          setState,
+          setPdf
+        );
       }
       // If anonymous download
       setAnonymous(true);
-      return createSignatureListAnonymous(data, setState, setPdf);
+      return createSignatureListAnonymous(inputData, setState, setPdf);
     },
   ];
 };
@@ -45,13 +69,13 @@ export const useCreateSignatureList = () => {
 //Function to create (or get) a signature list for anonymous user
 //formData does not have to hold email or userId
 const createSignatureListAnonymous = async (
-  { campaignCode },
-  setState,
-  setPdf
+  { campaignCode }: InputData,
+  setState: React.Dispatch<SetStateAction<States>>,
+  setPdf: React.Dispatch<SetStateAction<Pdf>>
 ) => {
   try {
     setState('creating');
-    //handle campaign code
+    // handle campaign code
     const data = { campaignCode };
 
     //call function to make api request, returns signature list if successful (null otherwise)
@@ -68,9 +92,9 @@ const createSignatureListAnonymous = async (
 // Function to create (or get) a signature list
 // userId is passed
 const createSignatureList = async (
-  { userId, email, campaignCode, userExists, token, shouldNotUpdateUser },
-  setState,
-  setPdf
+  { userId, email, campaignCode, userExists, token, shouldNotUpdateUser }: Data,
+  setState: React.Dispatch<SetStateAction<States>>,
+  setPdf: React.Dispatch<SetStateAction<Pdf>>
 ) => {
   try {
     setState('creating');
@@ -89,7 +113,7 @@ const createSignatureList = async (
 
     setState('created');
     setPdf(signatureList);
-  } catch (error) {
+  } catch (error: any) {
     if (error.status === 401) {
       setState('unauthorized');
     } else {
@@ -104,9 +128,13 @@ const createSignatureList = async (
 // /users/{userId}/signatures for personalized lists
 
 // Returns the list {id, url} or null
-const makeApiCall = async (data, userId, token) => {
+const makeApiCall = async (
+  data: { campaignCode: string },
+  userId?: string,
+  token?: string
+) => {
   // Make api call to create new singature list and get pdf
-  const request = {
+  const request: Request = {
     method: 'POST',
     mode: 'cors',
     headers: {

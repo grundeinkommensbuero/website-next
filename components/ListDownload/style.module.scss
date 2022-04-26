@@ -1,0 +1,61 @@
+.directDownloadButton {
+  margin-top: 3rem;
+  display: block;
+}
+
+.textInputContainer {
+  margin-bottom: 2rem;
+}
+
+.form {
+  font-size: $DesktopFontSizeS;
+  position: relative;
+}
+.emailInput {
+  width: 50%;
+
+  @media (max-width: $breakPointL) {
+    width: 75%;
+  }
+
+  @media (max-width: $breakPointM) {
+    width: 100%;
+  }
+}
+
+.hint {
+  margin-top: 0;
+  margin-bottom: 3rem;
+  font-size: $DesktopFontSizeM;
+}
+
+.iconParagraphContainer {
+  margin-top: 2rem;
+}
+
+.iconParagraph {
+  display: flex;
+  align-items: center;
+  font-size: $DesktopFontSizeM;
+
+  // this is needed to get the icons to scale correctly
+  p {
+    width: 90%;
+
+    @media (max-width: $breakPointS) {
+      width: 80%;
+    }
+  }
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  width: 10%;
+  max-width: 5rem;
+  margin-right: 2rem;
+
+  @media (max-width: $breakPointS) {
+    width: 20%;
+  }
+}
