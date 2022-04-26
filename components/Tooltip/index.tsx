@@ -8,7 +8,7 @@ type TooltipProps = {
   children: ReactElement | string;
   style?: CSSProperties;
   className?: string;
-  content: string;
+  content: ReactElement | string;
   /* TODO: Find out, how PopperJS types work */
   placement?: any;
   popupClassName?: string;

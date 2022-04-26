@@ -14,7 +14,16 @@ import { Request } from '../../../Authentication/Verification';
   - stats
 */
 
-export const useSignatureCount = () => {
+export const useSignatureCount = (): {
+  [key: string]: {
+    withoutMixed: number;
+    withMixed: number;
+    scannedByUser: number;
+    computed: number;
+    withoutAnonymous: number;
+    withContentful: number;
+  };
+} | void => {
   const [stats, setStats] = useState(() => {
     if (typeof window !== 'undefined') {
       getSignatureCount().then(data => setStats(data));

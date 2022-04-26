@@ -1,16 +1,40 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, ReactElement } from 'react';
 import s from './style.module.scss';
 import cN from 'classnames';
-// import { formatDateMonthYear } from '../utils';
 import { LinkButtonLocal, LinkButton } from '../Forms/Button';
 import { useSignatureCount } from '../../hooks/Api/Signatures/Get';
 import eyeCatcherBackground from '!svg-inline-loader!./eye_catcher.svg';
 import { Tooltip } from '../Tooltip';
 import VisualCounter from '../VisualCounter';
+import { formatDateMonthYear } from './formatDateMonthYear';
+import { Link } from '@reach/router';
 // import { useGetCrowdfundingDirectly } from '../../hooks/Api/Crowdfunding';
-// import { contentfulJsonToHtml } from '../utils/contentfulJsonToHtml';
+import parseHTML from 'html-react-parser';
 
-const CampaignVisualisations = ({ visualisations }: any) => {
+export type CampaignVisualisation = {
+  id: string;
+  title: string;
+  startDate: string;
+  campainCode: string;
+  hint: string;
+  goal: number;
+  goalInbetween: number | null;
+  goalUnbuffered: number | null;
+  maximum: number | null;
+  minimum: number | null;
+  addToSignatureCount: number | null;
+  startnextId?: string;
+  ctaLink?: string;
+  project?: string;
+};
+
+type CampaignVisualisationsProps = {
+  visualisations: CampaignVisualisation[];
+};
+
+const CampaignVisualisations = ({
+  visualisations,
+}: CampaignVisualisationsProps) => {
   const currentCounts = useSignatureCount();
 
   return (
@@ -31,85 +55,110 @@ const CampaignVisualisations = ({ visualisations }: any) => {
                 currentCounts[visualisation.campainCode] &&
                 currentCounts[visualisation.campainCode].withMixed
               }
-              showCTA={visualisations.length !== 1 && visualisation.ctaLink}
+              showCTA={!!(visualisations.length !== 1 && visualisation.ctaLink)}
               labels={{
                 NEEDED: () => <>Benötigte Unterschriften</>,
-                GOAL_INBETWEEN_TOOLTIP: count => (
+                GOAL_INBETWEEN_TOOLTIP: (count: string) => (
                   <>
                     Insgesamt benötigt:
                     <br />
                     {count} Unterschriften
                   </>
                 ),
-                GOAL_INBETWEEN: count => (
+                GOAL_INBETWEEN: (count: string) => (
                   <>Nächstes Ziel: {count} Unterschriften</>
                 ),
                 CURRENT_COUNT: () => <>Gesammelte Unterschriften</>,
                 CTA: () => <>Mitmachen</>,
               }}
-              currency="Unterschriften"
               onWhiteBackground={visualisation.campainCode === 'democracy-1'}
               {...visualisation}
             />
           );
         }
-        if (visualisation.startnextId) {
-          return <CrowdFundingVisualistation key={index} {...visualisation} />;
-        }
+        // if (visualisation.startnextId) {
+        //   return <CrowdFundingVisualistation key={index} {...props} />;
+        // }
         return null;
       })}
     </>
   );
 };
 
-export const CrowdFundingVisualistation = ({ startnextId, ...props }) => {
-  // Check props includes a project key
-  const hasProjectProp = props.hasOwnProperty('project');
+// type CrowdFundingVisualistationProps = {
+//   startnextId?: string;
+//   visualisation: CampaignVisualisation;
+// };
 
-  // If props does not include project key, query startnext
-  const [crowdFunding] = !hasProjectProp
-    ? useGetCrowdfundingDirectly(startnextId)
-    : [];
+// export const CrowdFundingVisualistation = ({
+//   startnextId,
+//   ...props
+// }: CrowdFundingVisualistationProps) => {
+//   // Check visualisation includes a project key
+//   const hasProjectProp = visualisation.hasOwnProperty('project');
 
-  // If data is loading
-  if (
-    // Has project property but no value
-    (hasProjectProp && props.project == null) ||
-    // Startnext query in progress in this component
-    (!hasProjectProp && !crowdFunding)
-  ) {
-    return <SectionInner>lade...</SectionInner>;
-  }
+//   // If visualisation does not include project key, query startnext
+//   const [crowdFunding] = !hasProjectProp
+//     ? useGetCrowdfundingDirectly(startnextId)
+//     : [];
 
-  // Use the correct project object
-  const crowdfundingProject = hasProjectProp
-    ? props.project
-    : crowdFunding.project;
+//   // If data is loading
+//   if (
+//     // Has project property but no value
+//     (hasProjectProp && visualisation.project == null) ||
+//     // Startnext query in progress in this component
+//     (!hasProjectProp && !crowdFunding)
+//   ) {
+//     return <section>lade...</section>;
+//   }
 
-  return (
-    <Visualisation
-      goal={crowdfundingProject.funding_target}
-      count={Math.round(crowdfundingProject.funding_status || 0)}
-      startDate={crowdfundingProject.start_date}
-      currency="€"
-      currencyShort="€"
-      showCTA={props.ctaLink}
-      labels={{
-        NEEDED: () => <>Benötigte Summe</>,
-        GOAL_INBETWEEN_TOOLTIP: count => (
-          <>
-            Insgesamt benötigt:
-            <br />
-            {count} €
-          </>
-        ),
-        GOAL_INBETWEEN: count => <>Nächstes Ziel: {count} €</>,
-        CURRENT_COUNT: () => <>Bereits gespendet</>,
-        CTA: () => <>Spenden!</>,
-      }}
-      {...props}
-    />
-  );
+//   // Use the correct project object
+//   const crowdfundingProject = hasProjectProp
+//     ? visualisation.project
+//     : crowdFunding.project;
+
+//   return (
+//     <Visualisation
+//       goal={crowdfundingProject.funding_target}
+//       count={Math.round(crowdfundingProject.funding_status || 0)}
+//       startDate={crowdfundingProject.start_date}
+//       currency="€"
+//       currencyShort="€"
+//       showCTA={visualisation.ctaLink}
+//       labels={{
+//         NEEDED: () => <>Benötigte Summe</>,
+//         GOAL_INBETWEEN_TOOLTIP: (count: string) => (
+//           <>
+//             Insgesamt benötigt:
+//             <br />
+//             {count} €
+//           </>
+//         ),
+//         GOAL_INBETWEEN: count => <>Nächstes Ziel: {count} €</>,
+//         CURRENT_COUNT: () => <>Bereits gespendet</>,
+//         CTA: () => <>Spenden!</>,
+//       }}
+//       {...props}
+//     />
+//   );
+// };
+
+type CampainVisualisationProps = {
+  index: number;
+  key: number;
+  minimum: number | null;
+  maximum: number | null;
+  addToSignatureCount: number | null;
+  currentCount: number | void;
+  receivedCount: number | void;
+  isCrowdfunding?: boolean;
+  onWhiteBackground: boolean;
+  showCTA: boolean;
+  labels: Labels;
+  goal: number;
+  startDate: string;
+  currency?: string;
+  currencyShort?: string;
 };
 
 export const CampainVisualisation = ({
@@ -117,10 +166,12 @@ export const CampainVisualisation = ({
   maximum,
   addToSignatureCount,
   currentCount,
+  receivedCount,
   isCrowdfunding = false,
   onWhiteBackground = false,
+  showCTA,
   ...props
-}) => {
+}: CampainVisualisationProps) => {
   let count = currentCount || 0;
 
   if (addToSignatureCount) {
@@ -140,9 +191,39 @@ export const CampainVisualisation = ({
       count={count}
       isCrowdfunding={isCrowdfunding}
       onWhiteBackground={onWhiteBackground}
+      showCTA={showCTA}
       {...props}
     />
   );
+};
+
+type Labels = {
+  NEEDED: () => ReactElement;
+  GOAL_INBETWEEN_TOOLTIP: (count: string) => ReactElement;
+  GOAL_INBETWEEN: (count: string) => ReactElement;
+  CURRENT_COUNT: () => ReactElement;
+  CTA: () => ReactElement;
+};
+
+type VisualisationProps = {
+  goal: number;
+  startDate: string;
+  title?: string;
+  receivedCount?: number;
+  showCTA: boolean;
+  ctaLink?: string;
+  eyeCatcher?: string;
+  eyeCatcherLink?: string;
+  goalUnbuffered?: number;
+  index?: number;
+  hint?: string;
+  goalInbetweenMultiple?: number[];
+  count: number;
+  currency?: string;
+  currencyShort?: string;
+  labels: Labels;
+  isCrowdfunding?: boolean;
+  onWhiteBackground?: boolean;
 };
 
 export const Visualisation = ({
@@ -164,14 +245,14 @@ export const Visualisation = ({
   labels,
   isCrowdfunding,
   onWhiteBackground,
-}) => {
+}: VisualisationProps) => {
   const barEl = useRef(null);
   const [isInView, setIsInView] = useState(false);
   let goalInbetween;
 
   if (goalInbetweenMultiple) {
     const goalInbetweenMultipleSorted = goalInbetweenMultiple
-      .map(goal => parseInt(goal))
+      .map(goal => (typeof goal === 'string' ? parseInt(goal) : goal))
       .sort((next, prev) => next - prev)
       .reverse();
 
@@ -182,7 +263,7 @@ export const Visualisation = ({
       return count < goal && count > goalInbetweenMultipleSorted[index + 1];
     });
   }
-  const EyeCatcherContent = eyeCatcher && contentfulJsonToHtml(eyeCatcher);
+  const EyeCatcherContent = eyeCatcher && parseHTML(eyeCatcher);
 
   // const goalInbetweenPercentage = goalInbetween && (goalInbetween / goal) * 100;
 
@@ -201,7 +282,7 @@ export const Visualisation = ({
         }
       );
 
-      observer.observe(barEl.current);
+      if (barEl.current) observer.observe(barEl.current);
     } else {
       setIsInView(true);
     }
@@ -211,11 +292,11 @@ export const Visualisation = ({
     ? formatDateMonthYear(new Date(startDate))
     : undefined;
   const hasStarted = startDate
-    ? new Date().getTime() > new Date(startDate)
+    ? new Date().getTime() > new Date(startDate).getTime()
     : true;
 
   const hintWithVariables = replaceVariablesHintText({
-    hint: hint && hint.hint,
+    hint: hint || '',
     goal,
     goalInbetween,
     count,
@@ -237,8 +318,7 @@ export const Visualisation = ({
     : showCTA && ctaLink;
 
   return (
-    <SectionInner
-      wide={true}
+    <section
       className={cN({ [s.sectionInnerHasEyeCatcher]: !!EyeCatcherContent })}
     >
       {/* Not currently needed */}
@@ -249,7 +329,7 @@ export const Visualisation = ({
         style={{ zIndex: index }}
       >
         <div className={s.bar} ref={barEl}>
-          <WrapInLink link={showCTA && ctaLink}>
+          <WrapInLink link={showCTA && ctaLink ? ctaLink : ''}>
             <span
               className={cN(s.barGoal, { [s.hasNotStarted]: !hasStarted })}
               aria-hidden="true"
@@ -280,8 +360,10 @@ export const Visualisation = ({
                   className={cN(s.goal, { [s.crowdfunding]: isCrowdfunding })}
                   content={labels.NEEDED()}
                 >
-                  {goal.toLocaleString('de')}
-                  {currencyShort}
+                  <>
+                    {goal.toLocaleString('de')}
+                    {currencyShort}
+                  </>
                 </Tooltip>
               )}
               {goalInbetween && (
@@ -295,37 +377,43 @@ export const Visualisation = ({
                 </Tooltip>
               )}
             </span>
-            {hasStarted && (
-              <>
-                <span
-                  className={cN(
-                    s.barCurrent,
-                    { [s.onWhiteBackground]: onWhiteBackground },
-                    { [s.outside]: countOutside },
-                    { [s.completed]: goalHasBeenReached && !onWhiteBackground }
-                  )}
-                  style={{ width: `${percentage}%` }}
-                  aria-label={`${count} von ${goal} ${currency}`}
-                >
-                  <Tooltip
-                    content={labels.CURRENT_COUNT()}
-                    className={s.barCurrentLabel}
-                    placement="bottom"
+            <>
+              {hasStarted && (
+                <>
+                  <span
+                    className={cN(
+                      s.barCurrent,
+                      { [s.onWhiteBackground]: onWhiteBackground },
+                      { [s.outside]: countOutside },
+                      {
+                        [s.completed]: goalHasBeenReached && !onWhiteBackground,
+                      }
+                    )}
+                    style={{ width: `${percentage}%` }}
+                    aria-label={`${count} von ${goal} ${currency}`}
                   >
-                    {count && <VisualCounter end={isInView ? count : 0} />}
-                    {currencyShort}
-                  </Tooltip>
+                    <Tooltip
+                      content={labels.CURRENT_COUNT()}
+                      className={s.barCurrentLabel}
+                      placement="bottom"
+                    >
+                      <>
+                        {count && <VisualCounter end={isInView ? count : 0} />}
+                        {currencyShort}
+                      </>
+                    </Tooltip>
+                  </span>
+                </>
+              )}
+              {startDate && !hasStarted && (
+                <span
+                  aria-label={`Noch nicht gestartet. Ziel: ${goal}${currency}. Startet ${dateString}.`}
+                  className={s.starts}
+                >
+                  {dateString}
                 </span>
-              </>
-            )}
-            {startDate && !hasStarted && (
-              <span
-                aria-label={`Noch nicht gestartet. Ziel: ${goal}${currency}. Startet ${dateString}.`}
-                className={s.starts}
-              >
-                {dateString}
-              </span>
-            )}
+              )}
+            </>
           </WrapInLink>
         </div>
         {showCTA && ctaLink && !ctaLink.startsWith('http') && (
@@ -350,7 +438,7 @@ export const Visualisation = ({
             })}
           >
             <WrapInLink
-              link={eyeCatcherLinkToDisplay}
+              link={eyeCatcherLinkToDisplay || ''}
               className={s.eyeCatcherLink}
             >
               <div
@@ -364,8 +452,17 @@ export const Visualisation = ({
         )}
       </div>
       {hintWithVariables && <div className={s.hint}>{hintWithVariables}</div>}
-    </SectionInner>
+    </section>
   );
+};
+
+type ReplaceVariablesHintTextArgs = {
+  hint: string;
+  goal: number;
+  count: number;
+  receivedCount?: number;
+  goalInbetween?: number;
+  goalUnbuffered?: number;
 };
 
 function replaceVariablesHintText({
@@ -375,23 +472,23 @@ function replaceVariablesHintText({
   receivedCount,
   goalInbetween,
   goalUnbuffered,
-}) {
+}: ReplaceVariablesHintTextArgs) {
   if (!hint) return undefined;
-  const buffer = goal - goalUnbuffered;
-  const expectedToArrive = count - receivedCount;
+  const buffer = goal - (goalUnbuffered || 0);
+  const expectedToArrive = count - (receivedCount || 0);
 
   return hint
     .replace(
       /\$GOAL_INBETWEEN/gi,
-      goalInbetween && goalInbetween.toLocaleString('de')
+      goalInbetween ? goalInbetween.toLocaleString('de') : ''
     )
     .replace(
       /\$GOAL_UNBUFFERED/gi,
-      goalUnbuffered && goalUnbuffered.toLocaleString('de')
+      goalUnbuffered ? goalUnbuffered.toLocaleString('de') : ''
     )
-    .replace(/\$GOAL/gi, goal && goal.toLocaleString('de'))
-    .replace(/\$BUFFER/gi, buffer && buffer.toLocaleString('de'))
-    .replace(/\$COLLECTED/gi, count && count.toLocaleString('de'))
+    .replace(/\$GOAL/gi, goal ? goal.toLocaleString('de') : '')
+    .replace(/\$BUFFER/gi, buffer ? buffer.toLocaleString('de') : '')
+    .replace(/\$COLLECTED/gi, count ? count.toLocaleString('de') : '')
     .replace(
       /\$RECEIVED/gi,
       receivedCount ? receivedCount.toLocaleString('de') : ''
@@ -402,17 +499,17 @@ function replaceVariablesHintText({
     );
 }
 
-const WrapInLink = ({ link, children, className }) => {
+type WrapLinkProps = {
+  link: string;
+  children: ReactElement | ReactElement[];
+  className?: string;
+};
+
+const WrapInLink = ({ link, children, className }: WrapLinkProps) => {
   if (link) {
     if (link.startsWith('http')) {
       return (
-        <a
-          href={link}
-          target="_blank"
-          without="true"
-          rel="noreferrer"
-          className={className}
-        >
+        <a href={link} target="_blank" rel="noreferrer" className={className}>
           {children}
         </a>
       );
