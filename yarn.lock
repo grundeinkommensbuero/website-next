@@ -1862,10 +1862,10 @@
     node-fetch "^2.0.0"
     web3 "^1.7.1"
 
-"@circles-pink/web-client@^1.0.22":
-  version "1.0.22"
-  resolved "https://registry.yarnpkg.com/@circles-pink/web-client/-/web-client-1.0.22.tgz#3cb561ae12f81d41317ea07978553c9a0f088106"
-  integrity sha512-wrwG6BMiJQD5iJw3kOXmHYb7ltTkShSjKWAF/Ll14LtDl+tLN4detB4rUA9xcypsineyRsfIevN9vhLVRqL2ZA==
+"@circles-pink/web-client@^1.0.23":
+  version "1.0.23"
+  resolved "https://registry.yarnpkg.com/@circles-pink/web-client/-/web-client-1.0.23.tgz#479503fcca3cf961a74bb1b2eb03f40c238f4c6b"
+  integrity sha512-Ib9RkBProuvzoMdgg62SWNfL5vcOBIVd9k/ufobDyPSDvmAxobu0T7MJVnY8wc96QKv5BVZ7LUVfkmylqnrXkQ==
   dependencies:
     "@babel/preset-env" "^7.17.10"
     "@babel/preset-react" "^7.16.7"
