@@ -44,6 +44,8 @@ type FetchedSectionData = {
     label: string;
     layout: Layout;
     colorScheme: ColorScheme;
+    includeAgs?: string[];
+    excludeAgs?: string[];
     elements: FetchedElement[];
   };
 };
@@ -99,6 +101,8 @@ export const getPageProps = async (slug: string): Promise<PageProps> => {
         'sections.item.label',
         'sections.item.layout',
         'sections.item.colorScheme',
+        'sections.item.includeAgs',
+        'sections.item.excludeAgs',
         'sections.item.elements.collection',
         'sections.item.elements.item.*',
       ],
@@ -138,6 +142,8 @@ const updatePageStructure = (fetchedPage: FetchedPage): Page => {
           status: section.item.status,
           layout: section.item.layout,
           colorScheme: section.item.colorScheme,
+          includeAgs: section.item.includeAgs || [],
+          excludeAgs: section.item.excludeAgs || [],
           render: section.item.elements
             .filter(
               e =>
