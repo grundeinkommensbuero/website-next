@@ -30,6 +30,8 @@ export type Section = {
   status: Status;
   layout: Layout;
   colorScheme: ColorScheme;
+  includeAgs: string[];
+  excludeAgs: string[];
   render: SectionElement[];
 };
 
