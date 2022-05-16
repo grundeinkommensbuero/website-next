@@ -124,7 +124,7 @@ export const PersonalSettings = ({
             <p className={s.optionHeading}>Name</p>
             <div className={s.editTextInput}>
               <TextInput
-                onChange={setTempName}
+                onChange={e => setTempName(e.target.value)}
                 placeholder="Name"
                 value={tempName || ''}
                 className={cN({
@@ -135,7 +135,7 @@ export const PersonalSettings = ({
             <p className={s.optionHeading}>Postleitzahl</p>
             <div className={s.editTextInput}>
               <TextInput
-                onChange={setTempZIP}
+                onChange={e => setTempZIP(e.target.value)}
                 placeholder="Postleitzahl"
                 value={tempZIP || ''}
                 className={cN({
@@ -146,7 +146,7 @@ export const PersonalSettings = ({
             <p className={s.optionHeading}>Ort</p>
             <div className={s.editTextInput}>
               <TextInput
-                onChange={setTempCity}
+                onChange={e => setTempCity(e.target.value)}
                 placeholder="Ort"
                 value={tempCity || ''}
                 className={cN({

@@ -14,7 +14,7 @@ import { SignUpFlow } from './SignUpFlow';
 // import { EngagementLevel } from './EngagementLevel';
 // import { QuestionUBI } from './QuestionUBI';
 import { SharingFeature } from './Share';
-// import { Donate } from './Donate';
+import { Donate } from './Donate';
 import { SetupProfile } from './SetupProfile';
 import { FinalNote } from './FinalNote';
 import { hasKey } from '../../utils/hasKey';
@@ -39,25 +39,35 @@ export const Onboarding = () => {
     if (isAuthenticated) {
       updateCustomUserData && updateCustomUserData();
     }
-    // eslint-disable-next-line
+    console.log('Fetch initial userData');
   }, [isAuthenticated]);
 
   // TODO: use state of updateUser for improvement (Vali: comment still relevant? I removed some stuff)
+  // TODO: Reactive, once municipality pages are ready
+  // useEffect(() => {
+  //   if (municipality) {
+  //     if (
+  //       userData?.municipalities?.map(el => el.ags).includes(municipality.ags)
+  //     ) {
+  //       setIsForMunicipalityAuthenticated(true);
+  //     }
+  //   }
+  // }, [userData, municipality]);
+
+  // TODO: delete once municipality pages are ready
   useEffect(() => {
-    if (municipality) {
-      if (
-        userData?.municipalities?.map(el => el.ags).includes(municipality.ags)
-      ) {
-        setIsForMunicipalityAuthenticated(true);
-      }
+    if (isAuthenticated) {
+      setIsForMunicipalityAuthenticated(true);
     }
-  }, [userData, municipality]);
+  }, [isAuthenticated]);
 
   const setCurrentElementByIndex = (index: number) => {
     setCurrentElement(menuElements[index].name);
   };
 
   const CurrentComponent = (): ReactElement => {
+    console.log(currentElement);
+
     switch (currentElement) {
       case 'SetupProfile':
         return (
@@ -68,18 +78,18 @@ export const Onboarding = () => {
             setCurrentElementByIndex={setCurrentElementByIndex}
           />
         );
-      // case 'Donate':
-      //   return (
-      //     <Donate
-      //       userData={userData}
-      //       userId={userId}
-      //       compIndex={menuElements.findIndex(el => el.name === currentElement)}
-      //       setCurrentElementByIndex={setCurrentElementByIndex}
-      //       updateUser={updateUser}
-      //       updateCustomUserData={updateCustomUserData}
-      //       municipality={municipality}
-      //     />
-      //   );
+      case 'Donate':
+        return (
+          <Donate
+            userData={userData}
+            userId={userId}
+            compIndex={menuElements.findIndex(el => el.name === currentElement)}
+            setCurrentElementByIndex={setCurrentElementByIndex}
+            updateUser={updateUser}
+            updateCustomUserData={updateCustomUserData}
+            municipality={municipality}
+          />
+        );
       case 'SharingFeature':
         return (
           <SharingFeature

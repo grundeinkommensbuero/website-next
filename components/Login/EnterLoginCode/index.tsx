@@ -51,7 +51,7 @@ export const EnterLoginCode = ({
       if (onAnswerChallengeSuccess) {
         onAnswerChallengeSuccess();
       }
-      router.push('/');
+      // router.push('/');
     } else if (answerChallengeState === 'restartSignIn') {
       // We want to send a new code by starting sign in again
       startSignIn();
