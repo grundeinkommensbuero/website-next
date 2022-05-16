@@ -249,7 +249,7 @@ export const SearchPlaces = ({
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
     setQuery(value);
     const touched = false;

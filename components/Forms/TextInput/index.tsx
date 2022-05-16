@@ -14,7 +14,7 @@ type TextInputProps = {
   customRef?: RefObject<any>;
   name?: string;
   placeholder: string;
-  onChange?: (() => void) | React.Dispatch<React.SetStateAction<string>>;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   value?: string;
   onKeyDown?: any;
   onBlur?: any;
@@ -37,7 +37,7 @@ export function TextInput({
           e.target.autocomplete = 'none';
         }
       }}
-      onChange={e => onChange && onChange(e.target.value)}
+      onChange={e => onChange && onChange(e)}
       aria-label={label}
       type={'search'}
       value={value}

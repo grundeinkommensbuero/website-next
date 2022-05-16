@@ -152,10 +152,10 @@ const SignUp = ({
         postSignupAction();
       }
 
-      // Now set municipality in context
-      if (municipalityInForm) {
-        navigate(`/orte/${municipalityInForm.slug}`);
-      }
+      // Todo: Replace with good solution
+      // if (municipalityInForm) {
+      //   navigate(`/orte/${municipalityInForm.slug}`);
+      // }
 
       if (updateUserState === 'updated') {
         updateCustomUserData();
@@ -326,12 +326,7 @@ const SignUp = ({
         render={({ handleSubmit }) => {
           return (
             <FormWrapper>
-              <form
-                onSubmit={e => {
-                  console.log('submitting:', e);
-                  handleSubmit(e);
-                }}
-              >
+              <form onSubmit={handleSubmit}>
                 <FormSection>
                   {fields.map((field, i) => {
                     if (!hasKey(fieldData, field)) {
@@ -358,18 +353,15 @@ const SignUp = ({
 };
 
 type SignUpErrors = {
-  email: string;
-  newsletterConsent: string;
+  email?: string;
+  newsletterConsent?: string;
 };
 
 const validate = (
   values: SignUpFormValues,
   municipalityInForm: Municipality | null
 ) => {
-  const errors: SignUpErrors = {
-    email: '',
-    newsletterConsent: '',
-  };
+  const errors: SignUpErrors = {};
 
   if (values.email && values.email.includes('+')) {
     errors.email = 'Zurzeit unterstützen wir kein + in E-Mails';
@@ -395,6 +387,9 @@ const validate = (
   //   errors.zipCode =
   //     'Wir benötigen deine Postleitzahl, um dich dem korrekten Bundesland zuzuordnen';
   // }
+
+  console.log(errors);
+  console.log(values);
 
   return errors;
 };
