@@ -516,7 +516,7 @@ const WrapInLink = ({ link, children, className }: WrapLinkProps) => {
     } else {
       return (
         <Link to={link} className={className}>
-          {children}
+          <>{children}</>
         </Link>
       );
     }
