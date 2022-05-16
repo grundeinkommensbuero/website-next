@@ -39,7 +39,6 @@ export const Onboarding = () => {
     if (isAuthenticated) {
       updateCustomUserData && updateCustomUserData();
     }
-    console.log('Fetch initial userData');
   }, [isAuthenticated]);
 
   // TODO: use state of updateUser for improvement (Vali: comment still relevant? I removed some stuff)
@@ -66,8 +65,6 @@ export const Onboarding = () => {
   };
 
   const CurrentComponent = (): ReactElement => {
-    console.log(currentElement);
-
     switch (currentElement) {
       case 'SetupProfile':
         return (
