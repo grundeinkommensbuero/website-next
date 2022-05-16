@@ -43,7 +43,6 @@ export const EnterLoginCode = ({
     if (!preventSignIn) {
       startSignIn();
     }
-    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -51,12 +50,11 @@ export const EnterLoginCode = ({
       if (onAnswerChallengeSuccess) {
         onAnswerChallengeSuccess();
       }
-      // router.push('/');
+      router.push('/');
     } else if (answerChallengeState === 'restartSignIn') {
       // We want to send a new code by starting sign in again
       startSignIn();
     }
-    // eslint-disable-next-line
   }, [answerChallengeState, isAuthenticated]);
 
   useEffect(() => {

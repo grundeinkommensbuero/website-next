@@ -161,7 +161,6 @@ const SignUp = ({
         updateCustomUserData();
       }
     }
-    // eslint-disable-next-line
   }, [hasSubmitted, isAuthenticated, userId, updateUserState]);
 
   useEffect(() => {
@@ -290,8 +289,6 @@ const SignUp = ({
       <br />
       <Form
         onSubmit={e => {
-          console.log('onSubmit', formData);
-
           e.ags = municipalityInForm?.ags;
           if (!e.newsletterConsent) {
             e.newsletterConsent = false;
@@ -387,9 +384,6 @@ const validate = (
   //   errors.zipCode =
   //     'Wir benötigen deine Postleitzahl, um dich dem korrekten Bundesland zuzuordnen';
   // }
-
-  console.log(errors);
-  console.log(values);
 
   return errors;
 };
