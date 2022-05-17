@@ -14,6 +14,12 @@ import {
 import municipalities from '../../data/municipalitiesForMap.json';
 import { hasKey } from '../../utils/hasKey';
 
+type ChatGroup = {
+  medium: string;
+  link: string;
+  name: string;
+};
+
 export type Municipality = {
   ags: string;
   name: string;
@@ -29,6 +35,7 @@ export type Municipality = {
   population?: number;
   zipCodes?: string[];
   nameUnique?: string;
+  groups?: ChatGroup[];
 };
 
 type MunicipalitsStatsSummary = {};
@@ -156,7 +163,6 @@ export const MunicipalityProvider = ({
   // Get general municipality stats (of all munics)
   useEffect(() => {
     getAllMunicipalityStats();
-    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -188,7 +194,6 @@ export const MunicipalityProvider = ({
         setMunicipalityContentfulState('qualifying');
       }
     }
-    // eslint-disable-next-line
   }, [singleMunicipalityStats]);
 
   useEffect(() => {

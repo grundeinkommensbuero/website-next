@@ -1,20 +1,30 @@
 import { GetServerSideProps } from 'next';
 
 import Link from 'next/link';
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useContext, useEffect } from 'react';
 
 import { getPageProps, Page } from '../../utils/getPageProps';
 import { Section } from '../../components/Section';
 
 import municipalities from '../../content/municipalities.json';
-import { Municipality } from '../../context/Municipality';
+import { Municipality, MunicipalityContext } from '../../context/Municipality';
+import {
+  getMunicipalityData,
+  getMunicipalityStats,
+} from '../../hooks/Api/Municipalities';
 
 export type PageProps = {
   page: Page | null;
-  ags: string;
+  municipality: Municipality;
 };
 
-const PageWithSections = ({ page, ags }: PageProps): ReactElement => {
+const MunicipalityPage = ({ page, municipality }: PageProps): ReactElement => {
+  const { setMunicipality } = useContext(MunicipalityContext);
+
+  useEffect(() => {
+    setMunicipality(municipality);
+  }, [municipality]);
+
   if (!page) {
     return (
       <div className="text-center">
@@ -38,8 +48,8 @@ const PageWithSections = ({ page, ags }: PageProps): ReactElement => {
         // Check if section should be rendered for this municipality
         // depending on the includeAgs and excludeAgs arrays
         if (
-          section.includeAgs.includes(ags) ||
-          !section.excludeAgs.includes(ags)
+          section.includeAgs.includes(municipality.ags) ||
+          !section.excludeAgs.includes(municipality.ags)
         ) {
           return <Section key={section.id} section={section} />;
         }
@@ -73,12 +83,21 @@ export const getServerSideProps: GetServerSideProps = async ({
 
   const ags = municipality?.ags;
 
+  const [municipalityStats, municipalityData] = await Promise.all([
+    getMunicipalityStats(ags),
+    getMunicipalityData(ags),
+  ]);
+
   return {
     props: {
       ...pageProps,
-      ags,
+      municipality: {
+        ags,
+        ...municipalityData,
+        ...municipalityStats,
+      },
     },
   };
 };
 
-export default PageWithSections;
+export default MunicipalityPage;
