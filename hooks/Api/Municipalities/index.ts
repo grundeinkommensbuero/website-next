@@ -17,11 +17,7 @@ export type MunicipalityStats = {
   timePassed?: number;
 };
 
-type GetMunicipalityStats = [
-  string,
-  MunicipalityStats,
-  (ags?: null) => Promise<void>
-];
+type GetMunicipalityStats = [string, MunicipalityStats, () => void];
 
 export const useGetMunicipalityStats = (): GetMunicipalityStats => {
   const [state, setState] = useState('');
@@ -32,15 +28,21 @@ export const useGetMunicipalityStats = (): GetMunicipalityStats => {
   return [
     state,
     stats,
-    (ags = null) => getMunicipalityStats(ags, setState, setStats),
+    () => {
+      setState('loading');
+      getMunicipalityStats().then(stats => {
+        if (!stats) {
+          setState('error');
+        } else {
+          setStats(stats);
+          setState('success');
+        }
+      });
+    },
   ];
 };
 
-type GetSingleMunicipalityStats = [
-  string,
-  Municipality,
-  (ags?: null) => Promise<void>
-];
+type GetSingleMunicipalityStats = [string, Municipality, (ags?: null) => void];
 
 export const useGetSingleMunicipalityStats = (): GetSingleMunicipalityStats => {
   const [state, setState] = useState<string>('');
@@ -49,22 +51,24 @@ export const useGetSingleMunicipalityStats = (): GetSingleMunicipalityStats => {
   return [
     state,
     stats,
-    (ags = null) => getMunicipalityStats(ags, setState, setStats),
+    (ags = null) => {
+      setState('loading');
+      getMunicipalityStats(ags).then(stats => {
+        if (!stats) {
+          setState('error');
+        } else {
+          setStats(stats);
+          setState('success');
+        }
+      });
+    },
   ];
 };
 
 // This function fetches the municipality stats from the backend.
 // Depending on whether an ags is passed stats for just one munic. or for all is fetched.
-const getMunicipalityStats = async (
-  ags: string | null,
-  setState: React.Dispatch<SetStateAction<string>>,
-  setStats:
-    | React.Dispatch<SetStateAction<Municipality>>
-    | React.Dispatch<SetStateAction<{ municipalities: never[] }>>
-) => {
+export const getMunicipalityStats = async (ags?: string | null) => {
   try {
-    setState('loading');
-
     // Make request to api to save question
     const request: Request = {
       method: 'GET',
@@ -82,15 +86,14 @@ const getMunicipalityStats = async (
 
     if (response.status === 200) {
       const { data } = await response.json();
-      setState('success');
-      setStats(data);
+      return data;
     } else {
       console.log('Api response not 200');
-      setState('error');
+      return null;
     }
   } catch (error) {
     console.log('Error', error);
-    setState('error');
+    return null;
   }
 };
 
@@ -102,19 +105,24 @@ export const useGetMunicipalityData = () => {
   return [
     state,
     data,
-    (ags: string) => getMunicipalityData(ags, setState, setData),
+    (ags: string) => {
+      setState('loading');
+
+      getMunicipalityData(ags).then(data => {
+        if (!data) {
+          setState('error');
+        } else {
+          setData(data);
+          setState('success');
+        }
+      });
+    },
   ];
 };
 
 // This function fetches the municipality data (e.g. groups, not stats) from the backend.
-const getMunicipalityData = async (
-  ags: string,
-  setState: React.Dispatch<SetStateAction<string>>,
-  setData: React.Dispatch<SetStateAction<{}>>
-) => {
+export const getMunicipalityData = async (ags?: string | null) => {
   try {
-    setState('loading');
-
     // Make request to api to save question
     const request: Request = {
       method: 'GET',
@@ -130,14 +138,13 @@ const getMunicipalityData = async (
 
     if (response.status === 200) {
       const { data } = await response.json();
-      setState('success');
-      setData(data);
+      return data;
     } else {
       console.log('Api response not 200');
-      setState('error');
+      return null;
     }
   } catch (error) {
     console.log('Error', error);
-    setState('error');
+    return null;
   }
 };
