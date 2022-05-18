@@ -2,7 +2,7 @@ import { getRandomString } from './getRandomString';
 import { sleep, getReferral } from '../utils';
 import React, { SetStateAction, useContext, useState } from 'react';
 import querystring from 'query-string';
-import { navigate } from '@reach/router';
+import { NextRouter, useRouter } from 'next/router';
 import { TrackJS } from 'trackjs';
 import AuthContext, {
   SetCognitoUser,
@@ -75,8 +75,9 @@ export const useSignIn = (): [string | undefined, () => void] => {
 export const useSignOut = () => {
   //get global context
   const context = useContext(AuthContext);
+  const router = useRouter();
 
-  return () => signOut(context);
+  return () => signOut(context, router);
 };
 
 // This hook signs the user out of amplify session,
@@ -236,21 +237,24 @@ const signIn = async (
 };
 
 //Function, which uses the amplify api to sign out user
-export const signOut = async ({
-  setCognitoUser,
-  setUserId,
-  setIsAuthenticated,
-  setToken,
-  setTempEmail,
-  setPreviousAction,
-}: {
-  setCognitoUser: SetCognitoUser;
-  setUserId: SetUserId;
-  setIsAuthenticated: SetIsAuthenticated;
-  setToken: SetToken;
-  setTempEmail: SetTempEmail;
-  setPreviousAction: SetPreviousAction;
-}) => {
+export const signOut = async (
+  {
+    setCognitoUser,
+    setUserId,
+    setIsAuthenticated,
+    setToken,
+    setTempEmail,
+    setPreviousAction,
+  }: {
+    setCognitoUser: SetCognitoUser;
+    setUserId: SetUserId;
+    setIsAuthenticated: SetIsAuthenticated;
+    setToken: SetToken;
+    setTempEmail: SetTempEmail;
+    setPreviousAction: SetPreviousAction;
+  },
+  router: NextRouter
+) => {
   try {
     await Auth.signOut();
 
@@ -259,7 +263,7 @@ export const signOut = async ({
     if (params.userId) {
       params.userId = null;
       const newUrl = `?${querystring.stringify(params)}`;
-      navigate(newUrl, { replace: true });
+      router.replace(newUrl);
     }
 
     // Update user state
