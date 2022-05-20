@@ -8,6 +8,7 @@ import { CognitoUser } from '@aws-amplify/auth';
 import Amplify from '@aws-amplify/auth';
 import CONFIG from '../../hooks/Authentication/backend-config';
 import { Municipality } from '../Municipality';
+import { useRouter } from 'next/router';
 
 export interface UserAttributes {
   sub: string;
@@ -145,6 +146,7 @@ const AuthProvider = ({ children }: AuthProviderProps): ReactElement => {
   const [tempEmail, setTempEmail] = useState<string>('');
   const [previousAction, setPreviousAction] = useState<string>('');
   const [userId, setUserId] = useLocalStorageUser();
+  const router = useRouter();
 
   const clientId = process.env.NEXT_PUBLIC_DEV_COGNITO_APP_CLIENT_ID;
   if (clientId) {
@@ -161,14 +163,17 @@ const AuthProvider = ({ children }: AuthProviderProps): ReactElement => {
 
   const signUserOut = useCallback(
     async () =>
-      await signOut({
-        setCognitoUser,
-        setUserId,
-        setIsAuthenticated,
-        setToken,
-        setTempEmail,
-        setPreviousAction,
-      }),
+      await signOut(
+        {
+          setCognitoUser,
+          setUserId,
+          setIsAuthenticated,
+          setToken,
+          setTempEmail,
+          setPreviousAction,
+        },
+        router
+      ),
     [setUserId]
   );
 
