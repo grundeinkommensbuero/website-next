@@ -7,9 +7,9 @@ import eyeCatcherBackground from '!svg-inline-loader!./eye_catcher.svg';
 import { Tooltip } from '../Tooltip';
 import VisualCounter from '../VisualCounter';
 import { formatDateMonthYear } from './formatDateMonthYear';
-import { Link } from '@reach/router';
 // import { useGetCrowdfundingDirectly } from '../../hooks/Api/Crowdfunding';
 import parseHTML from 'html-react-parser';
+import Link from 'next/link';
 
 export type CampaignVisualisation = {
   id: string;
@@ -515,8 +515,8 @@ const WrapInLink = ({ link, children, className }: WrapLinkProps) => {
       );
     } else {
       return (
-        <Link to={link} className={className}>
-          <>{children}</>
+        <Link href={link} passHref>
+          <span className={className}>{children}</span>
         </Link>
       );
     }
