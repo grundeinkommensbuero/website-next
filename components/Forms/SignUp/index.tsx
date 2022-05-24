@@ -135,7 +135,7 @@ const SignUp = ({
   const [municipalityInForm, setMunicipalityInForm] =
     useState<Municipality | null>(municipality);
 
-    const router = useRouter();
+  const router = useRouter();
 
   let prefilledZip;
 
