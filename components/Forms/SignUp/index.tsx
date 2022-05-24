@@ -156,7 +156,7 @@ const SignUp = ({
 
       // Todo: Replace with good solution
       // if (municipalityInForm) {
-      //   router.replace(`/orte/${municipalityInForm.slug}`);
+      //   router.push(`/orte/${municipalityInForm.slug}`);
       // }
 
       if (updateUserState === 'updated') {
