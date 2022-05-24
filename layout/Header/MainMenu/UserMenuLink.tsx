@@ -19,7 +19,6 @@ export const UserMenuLink = ({
   const { togglePageBuilder } = useContext(XbgeAppContext);
   const router = useRouter();
 
-  console.log('isAuthenticated in menu', isAuthenticated);
   if (!isAuthenticated) {
     return <CustomMenuLink entry={entry} currentRoute={currentRoute} />;
   }

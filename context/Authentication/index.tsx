@@ -164,8 +164,6 @@ const AuthProvider = ({
   const [userId, setUserId] = useLocalStorageUser();
   const router = useRouter();
 
-  console.log('is authenitcated in context', isAuthenticated);
-
   const signUserOut = useCallback(
     async () =>
       await signOut(
