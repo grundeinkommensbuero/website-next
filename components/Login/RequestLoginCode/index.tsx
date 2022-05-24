@@ -103,7 +103,11 @@ export const RequestLoginCodeWithEmail = ({
               // a the current url to the browser history, so we go back
               // to email form after user presses back button in login code form.
               // If the hash was already #code we want to replace the current page in the stack.
-              router.replace('#code');
+              if (window.location.hash === '#code') {
+                router.replace('#code');
+              } else {
+                router.push('#code');
+              }
             }}
             validate={e => {
               let errors: {
