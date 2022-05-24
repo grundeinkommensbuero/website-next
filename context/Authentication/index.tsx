@@ -5,8 +5,8 @@ import { getCurrentUser, getUser } from '../../hooks/Api/Users/Get';
 import { useLocalStorageUser, signOut } from '../../hooks/Authentication';
 import { updateUser } from '../../hooks/Api/Users/Update';
 import { CognitoUser } from '@aws-amplify/auth';
-import Amplify from '@aws-amplify/auth';
-import CONFIG from '../../hooks/Authentication/backend-config';
+import { Auth } from 'aws-amplify';
+import CONFIG from '../../backend-config';
 import { Municipality } from '../Municipality';
 import { useRouter } from 'next/router';
 
@@ -85,6 +85,7 @@ export type SetIsAuthenticated = React.Dispatch<boolean>;
 export type SetToken = React.Dispatch<string>;
 export type SetTempEmail = React.Dispatch<string>;
 export type SetPreviousAction = React.Dispatch<string>;
+export type SetCustomUserData = React.Dispatch<User>;
 
 export type AuthContextType = {
   setTempEmail: SetTempEmail;
@@ -98,6 +99,7 @@ export type AuthContextType = {
   isAuthenticated: boolean;
   setIsAuthenticated: SetIsAuthenticated;
   customUserData: User;
+  setCustomUserData: SetCustomUserData;
   previousAction: any;
   setPreviousAction: SetPreviousAction;
   signUserOut: () => void;
@@ -128,6 +130,7 @@ const initAuth = {
   isAuthenticated: false,
   setIsAuthenticated: () => {},
   customUserData: initUser,
+  setCustomUserData: () => {},
   previousAction: '',
   setPreviousAction: () => {},
   signUserOut: () => {},
@@ -136,30 +139,32 @@ const initAuth = {
 
 export const AuthContext = React.createContext<AuthContextType>(initAuth);
 
-type AuthProviderProps = { children: ReactElement };
+type AuthProviderProps = {
+  children: ReactElement;
+  defaultUserData: User;
+  defaultIsAuthenticated: boolean;
+};
 
-const AuthProvider = ({ children }: AuthProviderProps): ReactElement => {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+const AuthProvider = ({
+  children,
+  defaultUserData,
+  defaultIsAuthenticated,
+}: AuthProviderProps): ReactElement => {
+  console.log({ defaultUserData, defaultIsAuthenticated });
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(
+    defaultIsAuthenticated || false
+  );
   const [cognitoUser, setCognitoUser] = useState<CognitoUserExt | null>(null);
-  const [customUserData, setCustomUserData] = useState<User>(initUser);
+  const [customUserData, setCustomUserData] = useState<User>(
+    defaultUserData || initUser
+  );
   const [token, setToken] = useState<string>('');
   const [tempEmail, setTempEmail] = useState<string>('');
   const [previousAction, setPreviousAction] = useState<string>('');
   const [userId, setUserId] = useLocalStorageUser();
   const router = useRouter();
 
-  const clientId = process.env.NEXT_PUBLIC_DEV_COGNITO_APP_CLIENT_ID;
-  if (clientId) {
-    if (typeof window !== `undefined`) {
-      Amplify.configure({
-        region: CONFIG.COGNITO.REGION,
-        userPoolId: CONFIG.COGNITO.USER_POOL_ID,
-        userPoolWebClientId: clientId,
-      });
-    }
-  } else {
-    console.log('no userPoolWebClientId provided');
-  }
+  console.log('is authenitcated in context', isAuthenticated)
 
   const signUserOut = useCallback(
     async () =>
@@ -213,7 +218,7 @@ const AuthProvider = ({ children }: AuthProviderProps): ReactElement => {
     else {
       if (typeof window !== `undefined`) {
         // Check if the user is already signed in
-        Amplify.currentAuthenticatedUser()
+        Auth.currentAuthenticatedUser()
           .then(user => {
             if (user) {
               setCognitoUser(user);
@@ -288,6 +293,7 @@ const AuthProvider = ({ children }: AuthProviderProps): ReactElement => {
         tempEmail,
         setTempEmail,
         customUserData,
+        setCustomUserData,
         previousAction,
         setPreviousAction,
         signUserOut,

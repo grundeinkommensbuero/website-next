@@ -5,7 +5,7 @@
  */
 
 import { useState } from 'react';
-import CONFIG from '../../../Authentication/backend-config';
+import CONFIG from '../../../../backend-config';
 import { Request } from '../../../Authentication/Verification';
 
 /*

@@ -1,5 +1,4 @@
 import { ReactElement } from 'react';
-import { AuthProvider } from '../../context/Authentication';
 import { OnboardingModalProvider } from '../../context/OnboardingModal';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { XbgeAppProvider } from '../../context/App';
@@ -15,13 +14,11 @@ export const ProviderWrapper = ({
 }: ProviderWrapperProps): ReactElement => {
   return (
     <XbgeAppProvider>
-      <AuthProvider>
-        <OnboardingModalProvider>
-          <QueryClientProvider client={queryClient}>
-            {children}
-          </QueryClientProvider>
-        </OnboardingModalProvider>
-      </AuthProvider>
+      <OnboardingModalProvider>
+        <QueryClientProvider client={queryClient}>
+          {children}
+        </QueryClientProvider>
+      </OnboardingModalProvider>
     </XbgeAppProvider>
   );
 };

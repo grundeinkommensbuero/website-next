@@ -8,6 +8,8 @@ import ReactTooltip from 'react-tooltip';
 import { ProviderWrapper } from '../components/Util/ProviderWrapper';
 import { Toaster } from 'react-hot-toast';
 import { TrackJS } from 'trackjs';
+import { Amplify } from 'aws-amplify';
+import CONFIG from '../backend-config';
 
 type XbgeAppProps = AppProps & { mainmenu: Mainmenu };
 
@@ -16,13 +18,24 @@ TrackJS.install({
   application: 'expedition-grundeinkommen',
 });
 
+const clientId = process.env.NEXT_PUBLIC_DEV_COGNITO_APP_CLIENT_ID;
+
+if (clientId) {
+  Amplify.configure({
+    region: CONFIG.COGNITO.REGION,
+    userPoolId: CONFIG.COGNITO.USER_POOL_ID,
+    userPoolWebClientId: clientId,
+    ssr: true,
+  });
+} else {
+  console.log('no userPoolWebClientId provided');
+}
+
 function XbgeApp({ Component, pageProps, mainmenu }: XbgeAppProps) {
   return (
     <ProviderWrapper>
       <Toaster toastOptions={{ position: 'top-right' }} />
-      <Layout mainmenu={mainmenu}>
-        <Component {...pageProps} />
-      </Layout>
+      <Component {...pageProps} mainmenu={mainmenu} />
       <NoSsr>
         <ReactTooltip backgroundColor={'black'} />
       </NoSsr>

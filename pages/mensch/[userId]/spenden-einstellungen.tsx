@@ -1,8 +1,10 @@
 import { useContext } from 'react';
 import { ProfileDonationSettings } from '../../../components/Profile/ProfileDonationSettings';
 import AuthContext from '../../../context/Authentication';
+import { Layout } from '../../../layout';
+import { Mainmenu } from '../../../utils/getMenus';
 
-const SpendenEinstellungen = () => {
+const SpendenEinstellungen = ({ mainmenu }: { mainmenu: Mainmenu }) => {
   const {
     userId,
     customUserData: userData,
@@ -14,11 +16,13 @@ const SpendenEinstellungen = () => {
   };
 
   return (
-    <ProfileDonationSettings
-      userData={userData}
-      updateCustomUserData={triggerUpdateCustomUserData}
-      userId={userId}
-    />
+    <Layout mainmenu={mainmenu}>
+      <ProfileDonationSettings
+        userData={userData}
+        updateCustomUserData={triggerUpdateCustomUserData}
+        userId={userId}
+      />
+    </Layout>
   );
 };
 

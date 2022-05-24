@@ -1,4 +1,4 @@
-import CONFIG from '../../../Authentication/backend-config';
+import CONFIG from '../../../../backend-config';
 import { useState, useContext } from 'react';
 import { saveUser } from '../shared';
 import AuthContext from '../../../../context/Authentication';

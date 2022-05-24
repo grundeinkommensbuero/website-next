@@ -3,18 +3,23 @@ import { ReactElement } from 'react';
 import { Blogpost } from '.';
 import fetchData from './fetchData';
 import { PostFull } from '../../components/Blog/PostFull';
+import { Mainmenu } from '../../utils/getMenus';
+import { Layout } from '../../layout';
 
 type PostProps = {
   blogpost: Blogpost;
+  mainmenu: Mainmenu;
 };
 
-const PostPage = ({ blogpost }: PostProps): ReactElement => {
+const PostPage = ({ blogpost, mainmenu }: PostProps): ReactElement => {
   return (
-    <PostFull
-      title={blogpost.title}
-      content={blogpost.content}
-      assetId={blogpost.featured_image.id}
-    />
+    <Layout mainmenu={mainmenu}>
+      <PostFull
+        title={blogpost.title}
+        content={blogpost.content}
+        assetId={blogpost.featured_image.id}
+      />
+    </Layout>
   );
 };
 

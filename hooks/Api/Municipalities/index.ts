@@ -5,7 +5,7 @@
 import React, { SetStateAction, useState } from 'react';
 import { State } from 'react-overlays/cjs/usePopper';
 import { Municipality } from '../../../context/Municipality';
-import CONFIG from '../../../hooks/Authentication/backend-config';
+import CONFIG from '../../../backend-config';
 import { Request } from '../../Authentication/Verification';
 
 export type MunicipalityStats = {

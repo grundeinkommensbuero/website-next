@@ -13,7 +13,7 @@ import AuthContext, {
   SetUserId,
 } from '../../context/Authentication';
 import { createUser } from '../Api/Users/Create';
-import CONFIG from './backend-config';
+import CONFIG from '../../backend-config';
 import Auth, { CognitoUser } from '@aws-amplify/auth';
 import { Request } from './Verification';
 export { useAnswerChallenge } from './AnswerChallenge';

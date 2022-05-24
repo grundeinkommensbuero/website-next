@@ -1,8 +1,10 @@
 import { useContext } from 'react';
 import { PersonalSettings } from '../../../components/Profile/PersonalSettings';
 import AuthContext from '../../../context/Authentication';
+import { Layout } from '../../../layout';
+import { Mainmenu } from '../../../utils/getMenus';
 
-const Stammdaten = () => {
+const Stammdaten = ({ mainmenu }: { mainmenu: Mainmenu }) => {
   const {
     userId,
     customUserData: userData,
@@ -14,11 +16,13 @@ const Stammdaten = () => {
   };
 
   return (
-    <PersonalSettings
-      userData={userData}
-      updateCustomUserData={triggerUpdateCustomUserData}
-      userId={userId}
-    />
+    <Layout mainmenu={mainmenu}>
+      <PersonalSettings
+        userData={userData}
+        updateCustomUserData={triggerUpdateCustomUserData}
+        userId={userId}
+      />
+    </Layout>
   );
 };
 
