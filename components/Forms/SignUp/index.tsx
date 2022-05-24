@@ -19,8 +19,8 @@ import {
 } from '../../../context/Municipality';
 import { SearchPlaces } from '../SearchPlaces';
 import { validateEmail } from '../../../hooks/Authentication/validateEmail';
-import { navigate } from '@reach/router';
 import { hasKey } from '../../../utils/hasKey';
+import { useRouter } from 'next/router';
 
 // Not needed at the moment
 /* const AuthenticatedDialogDefault = () => {
@@ -135,6 +135,8 @@ const SignUp = ({
   const [municipalityInForm, setMunicipalityInForm] =
     useState<Municipality | null>(municipality);
 
+  const router = useRouter();
+
   let prefilledZip;
 
   if (municipalityInForm?.zipCodes?.length === 1) {
@@ -154,7 +156,7 @@ const SignUp = ({
 
       // Todo: Replace with good solution
       // if (municipalityInForm) {
-      //   navigate(`/orte/${municipalityInForm.slug}`);
+      //   router.replace(`/orte/${municipalityInForm.slug}`);
       // }
 
       if (updateUserState === 'updated') {
