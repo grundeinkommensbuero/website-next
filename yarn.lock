@@ -1597,9 +1597,9 @@
     to-fast-properties "^2.0.0"
 
 "@circles-pink/state-machine@*":
-  version "1.0.27"
-  resolved "https://registry.yarnpkg.com/@circles-pink/state-machine/-/state-machine-1.0.27.tgz#f1a9e4b09484b07af02a049685f796287d41c2f0"
-  integrity sha512-aRr/JQ/nCNph41tm2aKEUgiyPsodnVQ+iK6hiKMizHorT+pshvD6ydmufmjpLYBWbd1SYSqW04R5qOjav73hYw==
+  version "1.0.28"
+  resolved "https://registry.yarnpkg.com/@circles-pink/state-machine/-/state-machine-1.0.28.tgz#9a5d3fc6d35b2a5e30356e0042ed8606a287fc8e"
+  integrity sha512-Piz+VPX7p5qgoQWIhG6JEV6rrsTBCFux1/udj9L9mwQdUCE4+4CPVCiwU1a1sy9d7eti1YP8UBV69bMbUw4mPw==
   dependencies:
     "@circles/core" "2.10.10"
     bip39 "^3.0.4"
@@ -1611,10 +1611,10 @@
     node-fetch "^2.0.0"
     web3 "^1.7.1"
 
-"@circles-pink/web-client@^1.0.26":
-  version "1.0.27"
-  resolved "https://registry.yarnpkg.com/@circles-pink/web-client/-/web-client-1.0.27.tgz#b494179edbe83e7074198a4f30b4bf1f3b37267d"
-  integrity sha512-2VlKqp0kUvHpImPJNGvNUlwUc4lIr8A/FHa0YiorSwkUQ6nye+duT+M9w6ziLkGqc+tHzWjb4bRGXT/JNyHEag==
+"@circles-pink/web-client@^1.0.27":
+  version "1.0.28"
+  resolved "https://registry.yarnpkg.com/@circles-pink/web-client/-/web-client-1.0.28.tgz#b639037cb719fe72218e6298989466c9f43b3ce4"
+  integrity sha512-iIv+o9x027Oi4+fw4SRgl8qZR+7psBM5o8GRZo5UeVfnG6iIkDSIJAhN1b7CRFDCXhu+OqVKjNQstMuabB5RVQ==
   dependencies:
     "@babel/preset-env" "^7.17.10"
     "@babel/preset-react" "^7.16.7"
