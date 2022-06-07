@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import { Dropdown, Menu, MenuEntry } from '../../../utils/getMenus';
 import { MenuLink } from './MenuLink';
-import { UserMenuLink } from './UserMenuLink';
+import { UserMenuLink, UserMenuLinkMobile } from './UserMenuLink';
 import s from './style.module.scss';
 
 type MainMenuProps = {
@@ -41,7 +41,52 @@ export const MainMenu = ({
           />
         );
       })}
-      <UserMenuLink
+      <div className="ml-4">
+        <UserMenuLink
+          entry={{ id: 'login', slug: 'login', label: 'Einloggen' }}
+          currentRoute={currentRoute}
+        />
+      </div>
+    </div>
+  );
+};
+
+export const MainMenuMobile = ({
+  mainmenu,
+  currentRoute,
+}: MainMenuProps): ReactElement => {
+  return (
+    <div className="flex-column items-start">
+      {mainmenu.map(entry => {
+        if ((entry as Dropdown).entries)
+          return (
+            <>
+              <span className="my-2 text-xl nowrap">{entry.label}</span>
+              <div className="mx-4">
+                {(entry as Dropdown).entries.map(entry => {
+                  return (
+                    <div className="my-4" key={entry.slug}>
+                      <MenuLink
+                        entry={entry}
+                        currentRoute={currentRoute}
+                        isMobile={true}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+            </>
+          );
+        return (
+          <MenuLink
+            entry={entry as MenuEntry}
+            key={(entry as MenuEntry).slug}
+            currentRoute={currentRoute}
+            isMobile={true}
+          />
+        );
+      })}
+      <UserMenuLinkMobile
         entry={{ id: 'login', slug: 'login', label: 'Einloggen' }}
         currentRoute={currentRoute}
       />
