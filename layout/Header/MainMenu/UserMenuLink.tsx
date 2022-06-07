@@ -81,7 +81,13 @@ export const UserMenuLinkMobile = ({
   const router = useRouter();
 
   if (!isAuthenticated) {
-    return <CustomMenuLink entry={entry} currentRoute={currentRoute} />;
+    return (
+      <CustomMenuLink
+        isMobile={true}
+        entry={entry}
+        currentRoute={currentRoute}
+      />
+    );
   }
 
   return (

@@ -41,12 +41,10 @@ export const MainMenu = ({
           />
         );
       })}
-      <div className="ml-4">
-        <UserMenuLink
-          entry={{ id: 'login', slug: 'login', label: 'Einloggen' }}
-          currentRoute={currentRoute}
-        />
-      </div>
+      <UserMenuLink
+        entry={{ id: 'login', slug: 'login', label: 'Einloggen' }}
+        currentRoute={currentRoute}
+      />
     </div>
   );
 };
@@ -57,10 +55,10 @@ export const MainMenuMobile = ({
 }: MainMenuProps): ReactElement => {
   return (
     <div className="flex-column items-start">
-      {mainmenu.map(entry => {
+      {mainmenu.map((entry, index) => {
         if ((entry as Dropdown).entries)
           return (
-            <>
+            <div key={index}>
               <span className="my-2 text-xl nowrap">{entry.label}</span>
               <div className="mx-4">
                 {(entry as Dropdown).entries.map(entry => {
@@ -75,7 +73,7 @@ export const MainMenuMobile = ({
                   );
                 })}
               </div>
-            </>
+            </div>
           );
         return (
           <MenuLink
