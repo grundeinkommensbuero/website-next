@@ -1,21 +1,21 @@
 import { ReactElement } from 'react';
-import { Dropdown, Mainmenu, MenuEntry } from '../../../utils/getMenus';
+import { Dropdown, Menu, MenuEntry } from '../../../utils/getMenus';
 import { MenuLink } from './MenuLink';
 import { UserMenuLink } from './UserMenuLink';
 import s from './style.module.scss';
 
 type MainMenuProps = {
-  mainmenu: Mainmenu;
+  mainMenu: Menu;
   currentRoute: string;
 };
 
 export const MainMenu = ({
-  mainmenu,
+  mainMenu,
   currentRoute,
 }: MainMenuProps): ReactElement => {
   return (
     <div className="flex-row items-center">
-      {mainmenu.map(entry => {
+      {mainMenu.map(entry => {
         if ((entry as Dropdown).entries)
           return (
             <div key={entry.id} className={s.dropdown}>
