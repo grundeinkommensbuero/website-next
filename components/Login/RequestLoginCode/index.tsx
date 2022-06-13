@@ -18,7 +18,7 @@ import {
   CTAButtonContainer,
   CTAButton,
 } from '../../Forms/CTAButton';
-import { navigate } from '@reach/router';
+import { useRouter } from 'next/router';
 
 type RequestLoginProps = {
   children: ReactElement;
@@ -78,6 +78,7 @@ export const RequestLoginCodeWithEmail = ({
   buttonText = 'Einloggen',
 }: RequestLoginProps) => {
   const { tempEmail, setTempEmail } = useContext(AuthContext);
+  const router = useRouter();
 
   // Add event listener on url hash change
   useEffect(() => {
@@ -102,7 +103,11 @@ export const RequestLoginCodeWithEmail = ({
               // a the current url to the browser history, so we go back
               // to email form after user presses back button in login code form.
               // If the hash was already #code we want to replace the current page in the stack.
-              navigate('#code', { replace: window.location.hash === '#code' });
+              if (window.location.hash === '#code') {
+                router.replace('#code');
+              } else {
+                router.push('#code');
+              }
             }}
             validate={e => {
               let errors: {
