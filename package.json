@@ -14,7 +14,7 @@
     "@types/react": "^17.0.38"
   },
   "dependencies": {
-    "@circles-pink/web-client": "^1.0.27",
+    "@circles-pink/web-client": "^1.0.28",
     "@directus/sdk": "^9.4.3",
     "@mdi/font": "^6.5.95",
     "@mdi/js": "^6.5.95",
