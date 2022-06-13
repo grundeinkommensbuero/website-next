@@ -34,7 +34,9 @@ const ProfilePage = ({ id: slugId }: ProfilePageProps) => {
 
   const bounceToIdentifiedState = useBounceToIdentifiedState();
 
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(
+    typeof isAuthenticated === 'undefined'
+  );
 
   // Get user data on page load and handle redirects
   useEffect(() => {
