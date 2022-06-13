@@ -1,0 +1,49 @@
+@import '../../styles/vars.scss';
+
+.titles {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.title {
+  top: 3rem;
+  --heading-color: black;
+
+  @media (min-width: $breakPointXXL) {
+    font-size: $DesktopFontSizeXXL;
+    top: 6rem;
+  }
+
+  @media (max-width: $breakPointM) {
+    top: 1rem;
+  }
+}
+
+.subTitle {
+  bottom: 1rem;
+  --heading-color: white;
+
+  @media (min-width: $breakPointXXL) {
+    font-size: $DesktopFontSizeXL;
+  }
+
+  @media (max-width: $breakPointM) {
+    bottom: -0.5rem;
+  }
+}
+
+.imageZoom {
+  transition: transform 10s !important;
+  transform: scale(1.05) !important;
+}
+
+.image {
+  height: 91vh;
+
+  @media (max-width: $breakPointM) {
+    height: 50vh;
+  }
+}

@@ -28,6 +28,7 @@ export type Section = {
   title: string;
   label: string;
   sort: number | null;
+  className: string;
   status: Status;
   layout: Layout;
   colorScheme: ColorScheme;
