@@ -36,6 +36,8 @@
   white-space: nowrap;
 }
 
+// Default hover underline
+
 .underline {
   border-bottom: 2px solid black;
 }
@@ -45,7 +47,49 @@
 }
 
 .hoverUnderline {
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid rgba(255, 255, 255, 0);
+}
+
+// Black hover underline
+
+.underlineBLACK {
+  border-bottom: 2px solid black;
+}
+
+.hoverUnderlineBLACK:hover {
+  border-bottom: 2px solid black;
+}
+
+.hoverUnderlineBLACK {
+  border-bottom: 2px solid rgba(255, 255, 255, 0);
+}
+
+// White hover underline
+
+.underlineWHITE {
+  border-bottom: 2px solid $white;
+}
+
+.hoverUnderlineWHITE:hover {
+  border-bottom: 2px solid $white;
+}
+
+.hoverUnderlineWHITE {
+  border-bottom: 2px solid rgba(255, 255, 255, 0);
+}
+
+// Red hover underline
+
+.underlineRED {
+  border-bottom: 2px solid $red;
+}
+
+.hoverUnderlineRED:hover {
+  border-bottom: 2px solid $red;
+}
+
+.hoverUnderlineRED {
+  border-bottom: 2px solid rgba(255, 255, 255, 0);
 }
 
 .boderBox {
