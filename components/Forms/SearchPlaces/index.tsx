@@ -7,7 +7,10 @@ import cN from 'classnames';
 import { Button, ButtonSize } from '../Button';
 
 import Fuse from 'fuse.js';
-import { Municipality } from '../../../context/Municipality';
+import {
+  Municipality,
+  MunicipalityFromJson,
+} from '../../../context/Municipality';
 
 import municipalities from '../../../data/municipalities.json';
 
@@ -26,7 +29,7 @@ import municipalities from '../../../data/municipalities.json';
 //   }
 // };
 
-export type MunicipalityWithScore = Municipality & { score: number };
+export type MunicipalityWithScore = MunicipalityFromJson & { score: number };
 
 const initPlace = {
   name: '',
@@ -35,6 +38,8 @@ const initPlace = {
   score: 0,
   nameUnique: '',
   zipCodes: [],
+  goal: 0,
+  population: 0,
 };
 
 type SearchPlacesProps = {
