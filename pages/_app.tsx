@@ -37,6 +37,7 @@ XbgeApp.getInitialProps = async (appContext: AppContext) => {
   return {
     ...appProps,
     mainMenu: menus.mainMenu,
+    footerMenu: menus.footerMenu,
   };
 };
 
