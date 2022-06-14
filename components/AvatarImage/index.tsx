@@ -20,7 +20,7 @@ const AvatarImage = ({ user, className, sizes = '500' }: AvatarImageProps) => {
     : null;
 
   if (!src) {
-    return <Avatar1 />;
+    return <Avatar1 className={cN(s.image, className)} />;
   }
 
   return (
