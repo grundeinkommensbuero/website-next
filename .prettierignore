@@ -1,5 +1,4 @@
 # Ignore next folder
 /.next
 README.md
-municipalitiesForSearch.json
-municipalitiesForMap.json
+municipalities.json
