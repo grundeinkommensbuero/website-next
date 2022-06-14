@@ -20,7 +20,15 @@ const AvatarImage = ({ user, className, sizes = '500' }: AvatarImageProps) => {
     : null;
 
   if (!src) {
-    return <Avatar1 className={cN(s.image, className)} />;
+    let Placeholder;
+    // Choose random placeholder avatar
+    if (Math.round(Math.random() * 1) === 0) {
+      Placeholder = Avatar1;
+    } else {
+      Placeholder = Avatar2;
+    }
+
+    return <Placeholder className={cN(s.image, className)} />;
   }
 
   return (
