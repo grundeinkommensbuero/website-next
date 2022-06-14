@@ -3,6 +3,7 @@ import { AuthProvider } from '../../context/Authentication';
 import { OnboardingModalProvider } from '../../context/OnboardingModal';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { XbgeAppProvider } from '../../context/App';
+import { MunicipalityProvider } from '../../context/Municipality';
 
 type ProviderWrapperProps = {
   children: ReactElement | ReactElement[] | string;
@@ -16,11 +17,13 @@ export const ProviderWrapper = ({
   return (
     <XbgeAppProvider>
       <AuthProvider>
-        <OnboardingModalProvider>
-          <QueryClientProvider client={queryClient}>
-            {children}
-          </QueryClientProvider>
-        </OnboardingModalProvider>
+        <MunicipalityProvider>
+          <OnboardingModalProvider>
+            <QueryClientProvider client={queryClient}>
+              {children}
+            </QueryClientProvider>
+          </OnboardingModalProvider>
+        </MunicipalityProvider>
       </AuthProvider>
     </XbgeAppProvider>
   );

@@ -9,7 +9,7 @@ import CONFIG from '../../../hooks/Authentication/backend-config';
 import { Request } from '../../Authentication/Verification';
 
 export type MunicipalityStats = {
-  municipalities: Municipality[];
+  municipalities: { ags: string; signups: number }[];
   summary?: {
     timestamp: string;
   };

@@ -9,7 +9,7 @@ import { Button, ButtonSize } from '../Button';
 import Fuse from 'fuse.js';
 import { Municipality } from '../../../context/Municipality';
 
-import MunicipalitiesForSearch from './municipalitiesForSearch.json';
+import municipalities from '../../../data/municipalities.json';
 
 // const handleButtonClickDefault = ({
 //   validate,
@@ -80,7 +80,7 @@ export const SearchPlaces = ({
 
   useEffect(() => {
     setFuse(
-      new Fuse(MunicipalitiesForSearch, {
+      new Fuse(municipalities, {
         keys: ['nameUnique', 'zipCodes'],
         includeScore: true,
         threshold: 0.2,

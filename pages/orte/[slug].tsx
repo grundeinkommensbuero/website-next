@@ -6,8 +6,12 @@ import React, { ReactElement, useContext, useEffect } from 'react';
 import { getPageProps, Page } from '../../utils/getPageProps';
 import { Section } from '../../components/Section';
 
-import municipalities from '../../content/municipalities.json';
-import { Municipality, MunicipalityContext } from '../../context/Municipality';
+import municipalities from '../../data/municipalities.json';
+import {
+  Municipality,
+  MunicipalityContext,
+  MunicipalityFromJson,
+} from '../../context/Municipality';
 import {
   getMunicipalityData,
   getMunicipalityStats,
@@ -44,6 +48,7 @@ const MunicipalityPage = ({ page, municipality }: PageProps): ReactElement => {
       <div className="pageWidth">
         {page.title && <h2 className="text-violet my-8">{page.title}</h2>}
       </div>
+
       {page.sections.map((section: Section) => {
         // Check if section should be rendered for this municipality
         // depending on the includeAgs and excludeAgs arrays
@@ -77,7 +82,7 @@ export const getServerSideProps: GetServerSideProps = async ({
 
   const pageProps = await getPageProps('orte');
 
-  const municipality: Municipality | undefined = municipalities.find(
+  const municipality: MunicipalityFromJson | undefined = municipalities.find(
     ({ slug }) => params.slug === slug
   );
 
