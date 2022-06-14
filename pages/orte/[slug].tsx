@@ -1,3 +1,4 @@
+import s from '../style.module.scss';
 import { GetServerSideProps } from 'next';
 
 import Link from 'next/link';
@@ -16,6 +17,7 @@ import {
   getMunicipalityData,
   getMunicipalityStats,
 } from '../../hooks/Api/Municipalities';
+import Image from 'next/image';
 
 export type PageProps = {
   page: Page | null;
@@ -45,10 +47,29 @@ const MunicipalityPage = ({ page, municipality }: PageProps): ReactElement => {
   }
   return (
     <section>
-      <div className="pageWidth">
-        {page.title && <h2 className="text-violet my-8">{page.title}</h2>}
+      <div className="flex mt-16 relative">
+        <div className="w-half">
+          <Image
+            priority={true}
+            src={`${process.env.NEXT_PUBLIC_DIRECTUS}assets/3e2ffd09-a09e-42ab-b234-19288361d727`}
+            alt="Logo der Expedition Grundeinkommen"
+            height={728}
+            width={1153}
+            layout="responsive"
+            className="z-10"
+          />
+        </div>
+        <div className="w-half pr-16 pl-6 pt-16">
+          <h2 className={`z-10 text-violet ${s.keyVisualClaim}`}>
+            {municipality.name ? (
+              <b>Hol das Grundeinkommen jetzt nach {municipality.name}</b>
+            ) : (
+              <b>Hol das Grundeinkommen jetzt in deinen Wohnort!</b>
+            )}
+          </h2>
+        </div>
+        <div className="bg-violet w-full h-10percent absolute bottom-0 z-0"></div>
       </div>
-
       {page.sections.map((section: Section) => {
         // Check if section should be rendered for this municipality
         // depending on the includeAgs and excludeAgs arrays
@@ -82,8 +103,10 @@ export const getServerSideProps: GetServerSideProps = async ({
 
   const pageProps = await getPageProps('orte');
 
+  const paramsSlug = params.slug.toLowerCase();
+
   const municipality: MunicipalityFromJson | undefined = municipalities.find(
-    ({ slug }) => params.slug === slug
+    ({ slug }) => paramsSlug === slug
   );
 
   const ags = municipality?.ags;
