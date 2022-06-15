@@ -1,0 +1,112 @@
+@import '../../styles/utility/colors.scss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.stepContainer {
+  @extend .colorSchemeRoseOnWhite;
+
+  width: 100%;
+  padding: 2rem;
+
+  &.disabled {
+    color: $greyMedium;
+    --heading-color: $greyMedium;
+    --secondary-color: $greyMedium;
+
+    pointer-events: none;
+
+    .breadcrumbs .filled {
+      --secondary-color: $greyDark;
+    }
+  }
+
+  @media (min-width: $breakPointM) {
+    width: 80%;
+    padding: 3rem;
+    margin-bottom: 5rem;
+  }
+
+  @media (min-width: $breakPointL) {
+    width: 60%;
+  }
+
+  @media (max-width: $breakPointM) {
+    padding-bottom: 7rem;
+  }
+}
+
+.icon {
+  margin-bottom: 1.5rem;
+  height: 3.75rem;
+}
+
+.ctaContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.secondaryCta {
+  text-align: center;
+  font-size: $DesktopFontSizeS;
+  margin-top: 1rem;
+
+  @media (max-width: $breakPointM) {
+    font-size: 0.875rem;
+  }
+}
+
+.successIcon {
+  display: flex;
+  justify-content: center;
+}
+
+.scrollTo {
+  position: relative;
+  top: -2rem;
+}
+
+.scrollToNext {
+  position: relative;
+  top: -6rem;
+}
+
+.breadcrumbs {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4rem;
+
+  div {
+    flex-grow: 1;
+    height: 0.62rem;
+    // height: 0.7rem;
+
+    background-color: $greyMedium;
+    margin-right: 0.9rem;
+
+    @media (max-width: $breakPointM) {
+      margin-right: 0.7rem;
+    }
+
+    @media (max-width: $breakPointXS) {
+      margin-right: 0.5rem;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &.filled {
+      background-color: var(--secondary-color);
+    }
+  }
+}
+
+.modal {
+  padding: 0 3rem 2rem 3rem;
+}

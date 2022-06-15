@@ -1,5 +1,4 @@
-import Auth, { CognitoUser } from '@aws-amplify/auth';
-import { UsernamePasswordOpts } from '@aws-amplify/auth/lib-esm/types';
+import { Auth } from '@aws-amplify/auth';
 import { useContext, useState, Dispatch, SetStateAction } from 'react';
 import { TrackJS } from 'trackjs';
 import AuthContext, { AuthContextType } from '../../../context/Authentication';

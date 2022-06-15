@@ -1,0 +1,5 @@
+.section {
+  @media (max-width: $breakPointM) {
+    padding: 0 !important;
+  }
+}

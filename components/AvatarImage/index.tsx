@@ -28,7 +28,7 @@ const AvatarImage = ({ user, className, sizes = '500' }: AvatarImageProps) => {
       Placeholder = Avatar2;
     }
 
-    return <Placeholder className={cN(s.image, className)} />;
+    return <Placeholder className={cN(s.image, className)} alt="Avatarbild" />;
   }
 
   return (
