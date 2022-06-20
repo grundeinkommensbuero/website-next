@@ -27,7 +27,7 @@
 
 .title {
   top: 3rem;
-  --heading-color: black;
+  --heading-color: #{$black};
 
   @media (min-width: $breakPointXXL) {
     font-size: $DesktopFontSizeXXL;
@@ -41,7 +41,7 @@
 
 .subTitle {
   bottom: 1rem;
-  --heading-color: white;
+  --heading-color: #{$white};
 
   @media (min-width: $breakPointXXL) {
     font-size: $DesktopFontSizeXL;

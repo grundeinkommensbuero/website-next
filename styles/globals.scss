@@ -97,6 +97,12 @@ h2 {
   }
 }
 
+h1,
+h2,
+h3 {
+  color: var(--heading-color);
+}
+
 h3 {
   @apply text-d-lg;
   margin: 0 0 1rem 0;

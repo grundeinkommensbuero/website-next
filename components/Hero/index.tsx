@@ -1,4 +1,4 @@
-import React, { CSSProperties, ReactElement } from 'react';
+import React, { useState } from 'react';
 import s from './style.module.scss';
 import cN from 'classnames';
 import { DirectusImage } from '../Util/DirectusImage';
@@ -10,10 +10,15 @@ type HeroProps = {
 };
 
 export const Hero = ({ heroTitle, heroSubTitle, heroImage }: HeroProps) => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   return (
     <section className={s.heroContainer}>
       <DirectusImage
-        className={s.heroImage}
+        onLoad={() => {
+          setImageLoaded(true);
+        }}
+        className={cN(s.heroImage, { [s.imageZoom]: imageLoaded })}
         parentClassName={s.imageContainer}
         assetId={heroImage}
         alt={'Bild der Expedition Grundeinkommen'}
