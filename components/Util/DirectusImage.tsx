@@ -19,6 +19,8 @@ type DirectusImageProps = {
   overrideHeight?: number;
   overrideWidth?: number;
   layout?: Layout;
+  parentClassName?: string;
+  priority?: boolean;
   [other: string]: any;
 };
 
@@ -29,6 +31,8 @@ export const DirectusImage = ({
   overrideHeight,
   overrideWidth,
   layout,
+  parentClassName,
+  priority,
   ...other
 }: DirectusImageProps): ReactElement => {
   const [imageMeta, setImageMeta] = useState<ImageMeta | null>(null);
@@ -43,18 +47,23 @@ export const DirectusImage = ({
   }, []);
 
   return (
-    <>
+    <div className={parentClassName}>
       {imageMeta?.height && imageMeta?.width && (
         <Image
           src={assetURL}
           alt={alt}
-          height={overrideHeight || imageMeta.height}
-          width={overrideWidth || imageMeta.width}
+          height={
+            layout !== 'fill' ? overrideHeight || imageMeta.height : undefined
+          }
+          width={
+            layout !== 'fill' ? overrideWidth || imageMeta.width : undefined
+          }
           className={className}
           layout={layout}
+          priority={priority}
           {...other}
         />
       )}
-    </>
+    </div>
   );
 };

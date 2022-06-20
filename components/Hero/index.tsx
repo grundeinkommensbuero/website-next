@@ -14,9 +14,11 @@ export const Hero = ({ heroTitle, heroSubTitle, heroImage }: HeroProps) => {
     <section className={s.heroContainer}>
       <DirectusImage
         className={s.heroImage}
+        parentClassName={s.heroContainer}
         assetId={heroImage}
         alt={'Bild der Expedition Grundeinkommen'}
         layout={'fill'}
+        priority={true}
       />
       <h1 className={cN(s.title, s.titles)}>{heroTitle}</h1>
       <h3 className={cN(s.subTitle, s.titles)}>{heroSubTitle}</h3>
