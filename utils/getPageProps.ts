@@ -16,6 +16,10 @@ export type Page = {
   slug: string;
   title: string;
   status: Status;
+  hasHero: boolean;
+  heroTitle: string | null;
+  heroSubTitle: string | null;
+  heroImage: string | null;
   sections: Section[];
 };
 
@@ -23,6 +27,10 @@ type FetchedPage = {
   slug: string;
   title: string;
   status: Status;
+  hasHero: boolean;
+  heroTitle: string | null;
+  heroSubTitle: string | null;
+  heroImage: string | null;
   sections: FetchedSectionData[];
 };
 
@@ -79,6 +87,10 @@ export const getPageProps = async (slug: string): Promise<PageProps> => {
         'slug',
         'title',
         'status',
+        'hasHero',
+        'heroTitle',
+        'heroSubTitle',
+        'heroImage',
         'sections.sort',
         'sections.item.id',
         'sections.item.status',
@@ -108,6 +120,10 @@ const updatePageStructure = (fetchedPage: FetchedPage): Page => {
     slug: fetchedPage.slug,
     title: fetchedPage.title,
     status: fetchedPage.status,
+    hasHero: fetchedPage.hasHero,
+    heroTitle: fetchedPage.heroTitle,
+    heroSubTitle: fetchedPage.heroSubTitle,
+    heroImage: fetchedPage.heroImage,
     sections: fetchedPage.sections
       .filter(
         s =>

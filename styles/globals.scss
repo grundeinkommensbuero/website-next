@@ -97,6 +97,12 @@ h2 {
   }
 }
 
+h1,
+h2,
+h3 {
+  color: var(--heading-color);
+}
+
 h3 {
   @apply text-d-lg;
   margin: 0 0 1rem 0;
@@ -147,6 +153,10 @@ p {
   /* padding-left: calc(calc(100vw - #{$headerWidth}) / 2); */
   margin: 0 auto;
   width: $headerWidth;
+}
+
+.fullWidth {
+  width: 100%;
 }
 
 .sections {

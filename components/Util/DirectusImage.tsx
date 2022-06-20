@@ -3,6 +3,8 @@ import { ReactElement, useState, useEffect, ReactNode } from 'react';
 import { getAssetURL } from './getAssetURL';
 import { fetchFileMetadata } from './fetchFileMetadata';
 
+type Layout = 'fill' | 'intrinsic' | 'fixed' | 'responsive';
+
 type ImageMeta = {
   width: number | null;
   height: number | null;
@@ -16,6 +18,10 @@ type DirectusImageProps = {
   className: string;
   overrideHeight?: number;
   overrideWidth?: number;
+  layout?: Layout;
+  parentClassName?: string;
+  priority?: boolean;
+  [other: string]: any;
 };
 
 export const DirectusImage = ({
@@ -24,6 +30,10 @@ export const DirectusImage = ({
   alt,
   overrideHeight,
   overrideWidth,
+  layout,
+  parentClassName,
+  priority,
+  ...other
 }: DirectusImageProps): ReactElement => {
   const [imageMeta, setImageMeta] = useState<ImageMeta | null>(null);
 
@@ -37,16 +47,23 @@ export const DirectusImage = ({
   }, []);
 
   return (
-    <>
+    <div className={parentClassName}>
       {imageMeta?.height && imageMeta?.width && (
         <Image
           src={assetURL}
           alt={alt}
-          height={overrideHeight || imageMeta.height}
-          width={overrideWidth || imageMeta.width}
+          height={
+            layout !== 'fill' ? overrideHeight || imageMeta.height : undefined
+          }
+          width={
+            layout !== 'fill' ? overrideWidth || imageMeta.width : undefined
+          }
           className={className}
+          layout={layout}
+          priority={priority}
+          {...other}
         />
       )}
-    </>
+    </div>
   );
 };

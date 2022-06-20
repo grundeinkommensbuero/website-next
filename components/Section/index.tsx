@@ -3,7 +3,6 @@ import { NoSsr } from '../Util/NoSsr';
 import ReactTooltip from 'react-tooltip';
 import * as action from './_actions';
 import { hasKey } from '../../utils/hasKey';
-
 import dynamic from 'next/dynamic';
 
 import cN from 'classnames';
@@ -108,7 +107,7 @@ export const Section = ({ section }: SectionProps): ReactElement => {
   const router = useRouter();
 
   useEffect(() => {
-    const elements: SectionElement[][] = [];
+    const elements: Array<Array<SectionElement>> = [];
     let groupId = 0;
     const increment = () => {
       groupId = groupId + 1;
