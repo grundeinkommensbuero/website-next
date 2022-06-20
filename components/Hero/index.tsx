@@ -4,8 +4,8 @@ import cN from 'classnames';
 import { DirectusImage } from '../Util/DirectusImage';
 
 type HeroProps = {
-  heroTitle: string;
-  heroSubTitle: string;
+  heroTitle: string | null;
+  heroSubTitle: string | null;
   heroImage: string;
 };
 
@@ -25,8 +25,10 @@ export const Hero = ({ heroTitle, heroSubTitle, heroImage }: HeroProps) => {
         layout={'fill'}
         priority={true}
       />
-      <h1 className={cN(s.title, s.titles)}>{heroTitle}</h1>
-      <h3 className={cN(s.subTitle, s.titles)}>{heroSubTitle}</h3>
+      {heroTitle && <h1 className={cN(s.title, s.titles)}>{heroTitle}</h1>}
+      {heroSubTitle && (
+        <h3 className={cN(s.subTitle, s.titles)}>{heroSubTitle}</h3>
+      )}
     </section>
   );
 };

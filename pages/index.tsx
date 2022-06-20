@@ -12,7 +12,7 @@ const Start = ({ page }: PageProps): ReactElement => {
     <div className={styles.container}>
       {page && (
         <>
-          {page.hasHero && (
+          {page.hasHero && page.heroImage && (
             <Hero
               heroTitle={page.heroTitle}
               heroSubTitle={page.heroSubTitle}

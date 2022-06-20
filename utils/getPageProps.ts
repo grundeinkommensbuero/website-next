@@ -17,9 +17,9 @@ export type Page = {
   title: string;
   status: Status;
   hasHero: boolean;
-  heroTitle: string;
-  heroSubTitle: string;
-  heroImage: string;
+  heroTitle: string | null;
+  heroSubTitle: string | null;
+  heroImage: string | null;
   sections: Section[];
 };
 
@@ -28,9 +28,9 @@ type FetchedPage = {
   title: string;
   status: Status;
   hasHero: boolean;
-  heroTitle: string;
-  heroSubTitle: string;
-  heroImage: string;
+  heroTitle: string | null;
+  heroSubTitle: string | null;
+  heroImage: string | null;
   sections: FetchedSectionData[];
 };
 

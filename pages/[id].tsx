@@ -28,7 +28,7 @@ const PageWithSections = ({ page }: PageProps): ReactElement => {
   }
   return (
     <section>
-      {page.hasHero && (
+      {page.hasHero && page.heroImage && (
         <Hero
           heroTitle={page.heroTitle}
           heroSubTitle={page.heroSubTitle}
