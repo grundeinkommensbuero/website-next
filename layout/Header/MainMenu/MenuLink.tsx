@@ -8,6 +8,7 @@ type MenuLinkProps = {
   currentRoute?: string;
   underlineColor?: UnderlineColor;
   hoverUnderlineColor?: UnderlineColor;
+  isMobile?: boolean;
 };
 
 export const MenuLink = ({
@@ -15,6 +16,7 @@ export const MenuLink = ({
   currentRoute,
   underlineColor = 'BLACK',
   hoverUnderlineColor = 'BLACK',
+  isMobile = false,
 }: MenuLinkProps) => {
   const prefixedSlug =
     entry.slug.substring(0, 1) === '/' ? entry.slug : `/${entry.slug}`;
@@ -22,7 +24,7 @@ export const MenuLink = ({
   return (
     <Link key={entry.id} href={prefixedSlug}>
       <a
-        className={`mx-2 text-xl nowrap ${
+        className={`${isMobile ? 'my-2' : 'mx-2'} text-xl nowrap ${
           prefixedSlug === currentRoute
             ? `underline${underlineColor}`
             : `hoverUnderline${hoverUnderlineColor}`

@@ -50,12 +50,12 @@ export const MainMenu = ({
 };
 
 export const MainMenuMobile = ({
-  mainmenu,
+  mainMenu,
   currentRoute,
 }: MainMenuProps): ReactElement => {
   return (
     <div className="flex-column items-start">
-      {mainmenu.map((entry, index) => {
+      {mainMenu.map((entry, index) => {
         if ((entry as Dropdown).entries)
           return (
             <div key={index}>

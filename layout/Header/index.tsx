@@ -1,5 +1,5 @@
 import cN from 'classnames';
-import { ReactElement, useState } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 import { useWindowDimensions } from '../../hooks/useWindowDimensions';
 import { Menu } from '../../utils/getMenus';
 import { MainMenu, MainMenuMobile } from './MainMenu';
@@ -17,8 +17,12 @@ export const Header = ({
   currentRoute,
 }: HeaderProps): ReactElement => {
   const [mobileMenuActive, setMobileMenuActive] = useState<boolean>(false);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
   const { width } = useWindowDimensions();
-  const isMobile = width < 900;
+
+  useEffect(() => {
+    setIsMobile(width < 900);
+  }, [width]);
 
   return (
     <>
