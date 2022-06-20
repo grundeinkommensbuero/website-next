@@ -16,6 +16,7 @@ export const Hero = ({ heroTitle, heroSubTitle, heroImage }: HeroProps) => {
         className={s.heroImage}
         assetId={heroImage}
         alt={'Bild der Expedition Grundeinkommen'}
+        layout={'fill'}
       />
       <h1 className={cN(s.title, s.titles)}>{heroTitle}</h1>
       <h3 className={cN(s.subTitle, s.titles)}>{heroSubTitle}</h3>

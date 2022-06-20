@@ -20,16 +20,16 @@
 }
 
 .title {
-  top: 3rem;
+  top: 15%;
   --heading-color: black;
 
   @media (min-width: $breakPointXXL) {
     font-size: $DesktopFontSizeXXL;
-    top: 6rem;
+    //top: 6rem;
   }
 
   @media (max-width: $breakPointM) {
-    top: 1rem;
+    //top: 1rem;
   }
 }
 
