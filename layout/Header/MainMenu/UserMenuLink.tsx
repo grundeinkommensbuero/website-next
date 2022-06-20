@@ -24,7 +24,7 @@ export const UserMenuLink = ({
   }
 
   return (
-    <>
+    <div className="mx-2">
       {customUserData ? (
         <div className={s.dropdown}>
           <div className="items-center">
@@ -64,7 +64,7 @@ export const UserMenuLink = ({
       ) : (
         <span className="text-xl nowrap ml-2">Lade...</span>
       )}
-    </>
+    </div>
   );
 };
 
