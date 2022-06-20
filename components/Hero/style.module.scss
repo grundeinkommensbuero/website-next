@@ -1,4 +1,8 @@
 .heroContainer {
+  position: relative;
+}
+
+.imageContainer {
   width: 100%;
   height: calc(100vh - $headerHeight);
   position: relative;
@@ -22,16 +26,16 @@
 }
 
 .title {
-  top: 15%;
+  top: 3rem;
   --heading-color: black;
 
   @media (min-width: $breakPointXXL) {
     font-size: $DesktopFontSizeXXL;
-    //top: 6rem;
+    top: 6rem;
   }
 
   @media (max-width: $breakPointM) {
-    //top: 1rem;
+    top: 1rem;
   }
 }
 

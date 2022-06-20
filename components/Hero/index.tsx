@@ -14,7 +14,7 @@ export const Hero = ({ heroTitle, heroSubTitle, heroImage }: HeroProps) => {
     <section className={s.heroContainer}>
       <DirectusImage
         className={s.heroImage}
-        parentClassName={s.heroContainer}
+        parentClassName={s.imageContainer}
         assetId={heroImage}
         alt={'Bild der Expedition Grundeinkommen'}
         layout={'fill'}
