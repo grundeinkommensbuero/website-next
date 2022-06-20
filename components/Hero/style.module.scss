@@ -29,7 +29,7 @@
   top: 3rem;
   --heading-color: #{$black};
 
-  @media (min-width: $breakPointXXL) {
+  @media (min-width: $breakPointXL) {
     font-size: $DesktopFontSizeXXL;
     top: 6rem;
   }
@@ -43,7 +43,7 @@
   bottom: 1rem;
   --heading-color: #{$white};
 
-  @media (min-width: $breakPointXXL) {
+  @media (min-width: $breakPointXL) {
     font-size: $DesktopFontSizeXL;
   }
 
