@@ -149,6 +149,10 @@ p {
   width: $headerWidth;
 }
 
+.fullWidth {
+  width: 100%;
+}
+
 .sections {
   max-width: $headerWidth;
   margin: 0 auto;

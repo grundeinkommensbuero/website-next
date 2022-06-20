@@ -16,6 +16,7 @@ type DirectusImageProps = {
   className: string;
   overrideHeight?: number;
   overrideWidth?: number;
+  [other: string]: any;
 };
 
 export const DirectusImage = ({
@@ -24,6 +25,7 @@ export const DirectusImage = ({
   alt,
   overrideHeight,
   overrideWidth,
+  ...other
 }: DirectusImageProps): ReactElement => {
   const [imageMeta, setImageMeta] = useState<ImageMeta | null>(null);
 
@@ -45,6 +47,7 @@ export const DirectusImage = ({
           height={overrideHeight || imageMeta.height}
           width={overrideWidth || imageMeta.width}
           className={className}
+          {...other}
         />
       )}
     </>
