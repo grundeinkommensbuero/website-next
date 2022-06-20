@@ -8,7 +8,6 @@ import { getPageProps } from '../utils/getPageProps';
 import { Hero } from '../components/Hero';
 
 const Start = ({ page }: PageProps): ReactElement => {
-  console.log(page);
   return (
     <div className={styles.container}>
       {page && (

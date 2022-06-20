@@ -3,6 +3,8 @@ import { ReactElement, useState, useEffect, ReactNode } from 'react';
 import { getAssetURL } from './getAssetURL';
 import { fetchFileMetadata } from './fetchFileMetadata';
 
+type Layout = 'fill' | 'intrinsic' | 'fixed' | 'responsive';
+
 type ImageMeta = {
   width: number | null;
   height: number | null;
@@ -16,6 +18,7 @@ type DirectusImageProps = {
   className: string;
   overrideHeight?: number;
   overrideWidth?: number;
+  layout?: Layout;
   [other: string]: any;
 };
 
@@ -25,6 +28,7 @@ export const DirectusImage = ({
   alt,
   overrideHeight,
   overrideWidth,
+  layout,
   ...other
 }: DirectusImageProps): ReactElement => {
   const [imageMeta, setImageMeta] = useState<ImageMeta | null>(null);
@@ -47,6 +51,7 @@ export const DirectusImage = ({
           height={overrideHeight || imageMeta.height}
           width={overrideWidth || imageMeta.width}
           className={className}
+          layout={layout}
           {...other}
         />
       )}

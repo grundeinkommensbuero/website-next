@@ -4,6 +4,8 @@
 
   @media (max-width: $breakPointM) {
     height: 50vh;
+    overflow: hidden;
+    position: relative;
   }
 }
 
