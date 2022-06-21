@@ -8,6 +8,7 @@ import {
   SectionsText,
   SectionsVideo,
   SectionsCTAButton,
+  SectionsFAQ,
   Status,
 } from '../components/Section';
 import { PageProps } from '../pages/[id]';
@@ -58,7 +59,8 @@ type FetchedElement = {
     | 'sectionsImage'
     | 'sectionsComponent'
     | 'sectionsVideo'
-    | 'sectionsCTAButton';
+    | 'sectionsCTAButton'
+    | 'sectionsFAQ';
   item: {
     id: string;
     status: Status;
@@ -76,6 +78,14 @@ type FetchedElement = {
     href?: string;
     slug?: string;
     align?: Align;
+    title?: string;
+    questionAnswerPair?: Array<{
+      questionAnswerPair_id: {
+        question: string | null;
+        answer: string | null;
+        openInitially: boolean;
+      };
+    }>;
   };
 };
 
@@ -104,7 +114,7 @@ export const getPageProps = async (slug: string): Promise<PageProps> => {
         'sections.item.includeAgs',
         'sections.item.excludeAgs',
         'sections.item.elements.collection',
-        'sections.item.elements.item.*',
+        'sections.item.elements.item.*.*.*',
       ],
     })) as FetchedPage;
 
@@ -196,6 +206,26 @@ const updatePageStructure = (fetchedPage: FetchedPage): Page => {
                     slug: element.item.slug,
                     align: element.item.align,
                   } as SectionsCTAButton;
+                case 'sectionsFAQ':
+                  console.log(element.item);
+
+                  return {
+                    ...baseElement,
+                    collection: 'sectionsFAQ',
+                    title: element.item.title,
+                    questionAnswerPair: element.item.questionAnswerPair
+                      ? element.item.questionAnswerPair.map(questionAnswer => {
+                          return {
+                            question:
+                              questionAnswer.questionAnswerPair_id.question,
+                            answer: questionAnswer.questionAnswerPair_id.answer,
+                            openInitially:
+                              questionAnswer.questionAnswerPair_id
+                                .openInitially,
+                          };
+                        })
+                      : [],
+                  } as SectionsFAQ;
               }
             }),
         };
