@@ -22,7 +22,7 @@ import { XbgeAppContext } from '../../context/App';
 import { CTAButton } from '../Forms/CTAButton';
 import { useRouter } from 'next/router';
 import { OnboardingModalContext } from '../../context/OnboardingModal';
-import { FAQ } from './FAQ';
+import { FAQ } from '../FAQ';
 
 export type Section = {
   id: string;
