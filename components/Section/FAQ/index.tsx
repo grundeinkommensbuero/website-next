@@ -1,7 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { usePrevious } from '../../hooks/utils';
+import { usePrevious } from '../../../hooks/utils';
+import parseHTML from 'html-react-parser';
 import s from './style.module.scss';
 import cN from 'classnames';
+import MinusIcon from './minus-icon.svg';
+import PlusIcon from './plus-icon.svg';
 
 type FAQProps = {
   question: string | null;
@@ -12,16 +15,16 @@ type FAQProps = {
 export const FAQ = ({ question, answer, openInitially = false }: FAQProps) => {
   const [isOpen, setIsOpen] = useState(openInitially);
   const [isAnimating, setIsAnimating] = useState(false);
-  const [containerHeight, setContainerHeight] = useState();
-  const answerEl = useRef(null);
+  const [containerHeight, setContainerHeight] = useState<string | undefined>();
+  const answerEl = useRef<HTMLDivElement>(null);
   const prevIsOpen = usePrevious(isOpen);
 
   useEffect(() => {
     if (isOpen && prevIsOpen !== undefined) {
       setIsAnimating(true);
-      setContainerHeight(0);
+      setContainerHeight('0');
       setTimeout(() => {
-        setContainerHeight(answerEl.current.offsetHeight + 'px');
+        setContainerHeight(answerEl.current?.offsetHeight + 'px');
 
         setTimeout(() => {
           setContainerHeight(undefined);
@@ -32,9 +35,9 @@ export const FAQ = ({ question, answer, openInitially = false }: FAQProps) => {
     if (!isOpen && prevIsOpen !== undefined) {
       setIsAnimating(true);
       setTimeout(() => {
-        setContainerHeight(answerEl.current.offsetHeight + 'px');
+        setContainerHeight(answerEl.current?.offsetHeight + 'px');
         setTimeout(() => {
-          setContainerHeight(0);
+          setContainerHeight('0');
           setTimeout(() => {
             setContainerHeight(undefined);
             setIsAnimating(false);
@@ -51,7 +54,8 @@ export const FAQ = ({ question, answer, openInitially = false }: FAQProps) => {
           className={cN(s.question, { [s.open]: isOpen })}
           onClick={() => setIsOpen(!isOpen)}
         >
-          {question.question}
+          {question}
+          {isOpen ? <MinusIcon /> : <PlusIcon />}
         </button>
         <div
           className={cN(s.answerContainer, {
@@ -62,7 +66,7 @@ export const FAQ = ({ question, answer, openInitially = false }: FAQProps) => {
           style={{ height: containerHeight }}
         >
           <div className={s.answer} ref={answerEl}>
-            {contentfulJsonToHtml(answer)}
+            {parseHTML(answer)}
           </div>
         </div>
       </div>

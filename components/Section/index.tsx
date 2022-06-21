@@ -21,6 +21,7 @@ import { YoutubeEmbed } from '../Video/YoutubeEmbed';
 import { XbgeAppContext } from '../../context/App';
 import { CTAButton } from '../Forms/CTAButton';
 import { useRouter } from 'next/router';
+import { FAQ } from './FAQ';
 
 export type Section = {
   id: string;
@@ -42,7 +43,8 @@ export type SectionElement =
   | SectionsImage
   | SectionsComponent
   | SectionsVideo
-  | SectionsCTAButton;
+  | SectionsCTAButton
+  | SectionsFAQ;
 
 export type SectionsText = SectionElementBase & {
   collection: 'sectionsText';
@@ -74,6 +76,16 @@ export type SectionsCTAButton = SectionElementBase & {
   action: string | null;
   href: string | null;
   slug: string | null;
+};
+
+export type SectionsFAQ = SectionElementBase & {
+  collection: 'sectionsFAQ';
+  title?: string;
+  questionAnswerPair: Array<{
+    question: string | null;
+    answer: string | null;
+    openInitially: boolean;
+  }>;
 };
 
 export type SectionElementBase = {
@@ -310,6 +322,29 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                               {element.buttonText}
                             </CTAButton>
                           )}
+                        </div>
+                      );
+                    case 'sectionsFAQ':
+                      return (
+                        <div key={'component-' + element.index}>
+                          {pageBuilderActive && (
+                            <EditElement
+                              modifiedSection={modifiedSection}
+                              setModifiedSection={setModifiedSection}
+                              element={element}
+                            />
+                          )}
+                          {element.title && <h2>{element.title}</h2>}
+                          {element.questionAnswerPair.map(questionAnswer => {
+                            return (
+                              <FAQ
+                                key={element.id}
+                                question={questionAnswer.question}
+                                answer={questionAnswer.answer}
+                                openInitially={questionAnswer.openInitially}
+                              />
+                            );
+                          })}
                         </div>
                       );
                     default:
