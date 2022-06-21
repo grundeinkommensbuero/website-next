@@ -1,7 +1,7 @@
 import { ReactElement, useState, useEffect, useContext } from 'react';
 import { NoSsr } from '../Util/NoSsr';
 import ReactTooltip from 'react-tooltip';
-import * as action from './_actions';
+import * as _actions from './_actions';
 import { hasKey } from '../../utils/hasKey';
 import dynamic from 'next/dynamic';
 
@@ -21,6 +21,7 @@ import { YoutubeEmbed } from '../Video/YoutubeEmbed';
 import { XbgeAppContext } from '../../context/App';
 import { CTAButton } from '../Forms/CTAButton';
 import { useRouter } from 'next/router';
+import { OnboardingModalContext } from '../../context/OnboardingModal';
 
 export type Section = {
   id: string;
@@ -104,9 +105,20 @@ type SectionProps = {
 
 export const Section = ({ section }: SectionProps): ReactElement => {
   const { pageBuilderActive } = useContext(XbgeAppContext);
+  const { setShowModal } = useContext(OnboardingModalContext);
   const [modifiedSection, setModifiedSection] = useState<Section>(section);
   const [groupedElements, setGroupedElements] = useState<GroupedElements>([]);
   const router = useRouter();
+
+  // Some actions might be imported from the _actions.ts file,
+  // but others need react hooks, so we define them here and
+  // combine both in one accessible object.
+  // Note that naming of the following functions have to match
+  // the action entries in directus.
+  const actions = {
+    openOnboardingFlow: () => setShowModal(true),
+    ..._actions,
+  };
 
   useEffect(() => {
     const elements: Array<Array<SectionElement>> = [];
@@ -117,7 +129,7 @@ export const Section = ({ section }: SectionProps): ReactElement => {
 
     modifiedSection.render.forEach((element, index) => {
       // We want to add the orig index to the element,
-      // to target a specific update
+      // to target a specific update in a directus section.
       const addIndex = (element: SectionElement) => {
         return {
           ...element,
@@ -269,10 +281,7 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                         }
                       };
                       return (
-                        <div
-                          className={getAlignment()}
-                          key={'video-' + element.index}
-                        >
+                        <div key={'button-' + element.index}>
                           {pageBuilderActive && (
                             <EditElement
                               modifiedSection={modifiedSection}
@@ -280,36 +289,38 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                               element={element}
                             />
                           )}
-                          {element.type === 'action' && (
-                            <CTAButton
-                              onClick={() => {
-                                if (
-                                  element.action &&
-                                  hasKey(action, element.action)
-                                ) {
-                                  action[element.action]();
+                          <div className={getAlignment()}>
+                            {element.type === 'action' && (
+                              <CTAButton
+                                onClick={() => {
+                                  if (
+                                    element.action &&
+                                    hasKey(actions, element.action)
+                                  ) {
+                                    actions[element.action]();
+                                  }
+                                }}
+                              >
+                                {element.buttonText}
+                              </CTAButton>
+                            )}
+                            {element.type === 'href' && (
+                              <CTAButton
+                                onClick={() =>
+                                  window.open(element.href || '', '_blank')
                                 }
-                              }}
-                            >
-                              {element.buttonText}
-                            </CTAButton>
-                          )}
-                          {element.type === 'href' && (
-                            <CTAButton
-                              onClick={() =>
-                                window.open(element.href || '', '_blank')
-                              }
-                            >
-                              {element.buttonText}
-                            </CTAButton>
-                          )}
-                          {element.type === 'slug' && (
-                            <CTAButton
-                              onClick={() => router.push(element.slug || '')}
-                            >
-                              {element.buttonText}
-                            </CTAButton>
-                          )}
+                              >
+                                {element.buttonText}
+                              </CTAButton>
+                            )}
+                            {element.type === 'slug' && (
+                              <CTAButton
+                                onClick={() => router.push(element.slug || '')}
+                              >
+                                {element.buttonText}
+                              </CTAButton>
+                            )}
+                          </div>
                         </div>
                       );
                     default:
