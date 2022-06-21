@@ -115,12 +115,12 @@ export const Onboarding = () => {
       ) : (
         <>
           {/* Show onboarding content */}
-          <nav className={s.breadcrumbContainer}>
+          <div className={s.breadcrumbContainer}>
             <BreadcrumbLinks
               setCurrentElement={setCurrentElement}
               currentElement={currentElement}
             />
-          </nav>
+          </div>
           <div className={s.onboardingContent}>
             <CurrentComponent />
           </div>
