@@ -80,11 +80,7 @@ type FetchedElement = {
     align?: Align;
     title?: string;
     questionAnswerPair?: Array<{
-      questionAnswerPair_id: {
-        question: string | null;
-        answer: string | null;
-        openInitially: boolean;
-      };
+      questionAnswerPair_id: QuestionAnswerPair;
     }>;
   };
 };
@@ -114,7 +110,27 @@ export const getPageProps = async (slug: string): Promise<PageProps> => {
         'sections.item.includeAgs',
         'sections.item.excludeAgs',
         'sections.item.elements.collection',
-        'sections.item.elements.item.*.*.*',
+        'sections.item.elements.item.id',
+        'sections.item.elements.item.status',
+        'sections.item.elements.item.sort',
+        'sections.item.elements.item.overrideLayout',
+        'sections.item.elements.item.groupElement',
+        'sections.item.elements.item.image',
+        'sections.item.elements.item.alt',
+        'sections.item.elements.item.content',
+        'sections.item.elements.item.component',
+        'sections.item.elements.item.embedId',
+        'sections.item.elements.item.buttonText',
+        'sections.item.elements.item.type',
+        'sections.item.elements.item.action',
+        'sections.item.elements.item.href',
+        'sections.item.elements.item.slug',
+        'sections.item.elements.item.align',
+        'sections.item.elements.item.title',
+        'sections.item.elements.item.questionAnswerPair.questionAnswerPair_id.title',
+        'sections.item.elements.item.questionAnswerPair.questionAnswerPair_id.question',
+        'sections.item.elements.item.questionAnswerPair.questionAnswerPair_id.answer',
+        'sections.item.elements.item.questionAnswerPair.questionAnswerPair_id.openInitially',
       ],
     })) as FetchedPage;
 
@@ -207,8 +223,6 @@ const updatePageStructure = (fetchedPage: FetchedPage): Page => {
                     align: element.item.align,
                   } as SectionsCTAButton;
                 case 'sectionsFAQ':
-                  console.log(element.item);
-
                   return {
                     ...baseElement,
                     collection: 'sectionsFAQ',
@@ -231,4 +245,28 @@ const updatePageStructure = (fetchedPage: FetchedPage): Page => {
         };
       }),
   };
+};
+
+export type QuestionAnswerPair = {
+  question: string | null;
+  answer: string | null;
+  openInitially: boolean;
+};
+
+const fetchManyToAllRelation = async (
+  collection: string,
+  ids: Array<number>,
+  fields: Array<string>
+): Promise<Array<{ [key: string]: string }>> => {
+  const directus = new Directus(process.env.DIRECTUS || '');
+  try {
+    const m2a = (await directus.items(collection).readMany(ids, {
+      fields,
+    })) as [];
+    console.log(m2a);
+    return m2a;
+  } catch (error) {
+    console.log(error);
+  }
+  return [];
 };
