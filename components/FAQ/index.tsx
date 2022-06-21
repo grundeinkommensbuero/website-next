@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { usePrevious } from '../../../hooks/utils';
+import { usePrevious } from '../../hooks/utils';
 import parseHTML from 'html-react-parser';
 import s from './style.module.scss';
 import cN from 'classnames';
@@ -55,7 +55,11 @@ export const FAQ = ({ question, answer, openInitially = false }: FAQProps) => {
           onClick={() => setIsOpen(!isOpen)}
         >
           {question}
-          {isOpen ? <MinusIcon /> : <PlusIcon />}
+          {isOpen ? (
+            <MinusIcon />
+          ) : (
+            <PlusIcon />
+          )}
         </button>
         <div
           className={cN(s.answerContainer, {
