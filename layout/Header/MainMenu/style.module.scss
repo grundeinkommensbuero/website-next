@@ -30,3 +30,14 @@
     min-width: 2rem;
   }
 }
+
+.mobileMenuContainer {
+  // Set a max height of 100vh - headerHeight and mobileMenu padding
+  max-height: calc(100vh - $headerHeight - 1rem);
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  // move the scrollbar out of view
+  padding-right: 3rem;
+  box-sizing: content-box;
+}

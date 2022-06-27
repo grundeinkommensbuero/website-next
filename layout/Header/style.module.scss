@@ -20,6 +20,8 @@
   background-color: white;
   position: fixed;
   width: 100%;
+  max-height: calc(100vh - $headerHeight);
+  overflow: hidden;
   top: $headerHeight;
   z-index: 45;
   transform-origin: top;
