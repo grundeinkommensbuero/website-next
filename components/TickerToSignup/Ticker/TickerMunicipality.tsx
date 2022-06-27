@@ -2,9 +2,14 @@ import React, { useContext, useState, useEffect } from 'react';
 import cN from 'classnames';
 import Reel from 'react-reel';
 import s from './style.module.scss';
+import rs from './reelstyle.module.scss';
 import { MunicipalityContext } from '../../../context/Municipality';
 
-import './reelstyle.scss';
+const reelTheme = {
+  reel: rs.reactReel__reel,
+  group: rs.reactReel__group,
+  number: rs.reactReel__number,
+};
 
 export const TickerMunicipality = () => {
   const { municipality } = useContext(MunicipalityContext);
@@ -68,7 +73,7 @@ const TickerDisplay = ({
           )}
 
           <div className={s.numbersContainer}>
-            <Reel text={numberWithDots(highlight1)} />
+            <Reel text={numberWithDots(highlight1)} theme={reelTheme} />
           </div>
 
           {inBetween1 && (
@@ -97,7 +102,7 @@ const TickerDisplay = ({
                 </h2>
               )}
               <div className={s.numbersContainer}>
-                <Reel text={numberWithDots(highlight2)} />
+                <Reel text={numberWithDots(highlight2)} theme={reelTheme} />
               </div>
 
               {suffixHighlight2 && (

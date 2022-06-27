@@ -8,10 +8,8 @@ import {
   UserMunicipalityState,
   useUserMunicipalityState,
 } from '../../../hooks/Municipality/UserMunicipalityState';
-
 import s from './style.module.scss';
 import cN from 'classnames';
-
 import { SignUpButton } from '../SignupButton';
 
 type SignupButtonAndTileProps = { className?: string };
@@ -45,7 +43,7 @@ export const SignupButtonAndTile = ({
     return (
       <>
         <p>Komm dazu.</p>
-        <div className={s.tileContainer}>
+        <div className={cN(s.tileContainer, 'colorSchemeWhite')}>
           <h3>Willkommen zurück!</h3>
           <p>{welcomeExistingMessage}</p>
           <SignUpButton className={cN(className, s.signUpCTA)}>

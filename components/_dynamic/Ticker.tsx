@@ -1,7 +1,8 @@
 import { ReactElement } from 'react';
+import TickerToSignup from '../TickerToSignup';
 
 const Ticker = (): ReactElement => {
-  return <h1>It&apos;s me. the Ticker... :D</h1>;
+  return <TickerToSignup tickerDescription={{ tickerDescription: 'Hello' }} />;
 };
 
 export default Ticker;
