@@ -10,6 +10,11 @@
   min-width: 75%;
   padding: 1rem;
   transition: all 0.25s ease-out;
+
+  @media (max-width: $breakPointS) {
+    max-width: 100%;
+    min-width: 100%;
+  }
 }
 
 .flexItem50 {
@@ -17,6 +22,11 @@
   min-width: 50%;
   padding: 1rem;
   transition: all 0.25s ease-out;
+
+  @media (max-width: $breakPointS) {
+    max-width: 100%;
+    min-width: 100%;
+  }
 }
 
 .flexItem25 {
@@ -24,6 +34,11 @@
   min-width: 25%;
   padding: 1rem;
   transition: all 0.25s ease-out;
+
+  @media (max-width: $breakPointS) {
+    max-width: 100%;
+    min-width: 100%;
+  }
 }
 
 .flexItem2 {
@@ -31,6 +46,11 @@
   min-width: 50%;
   padding: 1rem;
   transition: all 0.25s ease-out;
+
+  @media (max-width: $breakPointS) {
+    max-width: 100%;
+    min-width: 100%;
+  }
 }
 
 .flexItem3 {
@@ -38,6 +58,11 @@
   min-width: 50%;
   padding: 1rem;
   transition: all 0.25s ease-out;
+
+  @media (max-width: $breakPointS) {
+    max-width: 100%;
+    min-width: 100%;
+  }
 }
 
 .editSection {
