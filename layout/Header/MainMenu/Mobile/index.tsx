@@ -2,6 +2,8 @@ import { ReactElement } from 'react';
 import { Dropdown, Menu, MenuEntry } from '../../../../utils/getMenus';
 import { MenuLink } from '../MenuLink';
 import { UserMenuLinkMobile } from './UserMenuLinkMobile';
+import cN from 'classnames';
+import s from '../style.module.scss';
 
 type MainMenuMobileProps = {
   mainMenu: Menu;
@@ -15,7 +17,7 @@ export const MainMenuMobile = ({
   closeMenu,
 }: MainMenuMobileProps): ReactElement => {
   return (
-    <div className="flex-column items-start">
+    <div className={cN('flex-column', 'items-start', s.mobileMenuContainer)}>
       {mainMenu.map((entry, index) => {
         if ((entry as Dropdown).entries)
           return (
