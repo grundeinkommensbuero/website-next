@@ -1,0 +1,114 @@
+.contentContainer {
+  margin: auto;
+}
+
+.counterContainerReel {
+  display: block;
+}
+
+.counterContainer {
+  margin-bottom: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.slotMachine {
+  font-size: 4rem;
+  margin-bottom: 2.5rem;
+  text-align: center;
+
+  @media (max-width: $breakPointM) {
+    font-size: 1.5rem;
+  }
+}
+
+.numbersContainer {
+  margin: 0 auto;
+}
+
+.counterLabelSlotMachine {
+  font-size: 2rem;
+  letter-spacing: 0.04px;
+  margin-top: 0.85rem;
+  margin-bottom: 0;
+  line-height: 8rem;
+  width: 100%;
+  line-height: 2;
+  margin-right: 0;
+
+  @media (max-width: $breakPointS) {
+    font-size: $MobileFontSizeXL;
+    margin-top: 1rem;
+  }
+}
+
+.counterLabelMarginRight {
+  margin-right: 0.75rem;
+
+  @media (max-width: $breakPointS) {
+    margin-right: 0;
+  }
+}
+
+.counterLabelMarginLeft {
+  margin-left: 0.5rem;
+
+  @media (max-width: $breakPointS) {
+    margin-left: 0;
+  }
+}
+
+.counterLabelLongText {
+  line-height: 1.5;
+}
+
+.actionTextBig {
+  font-size: 2.25rem;
+  letter-spacing: 0.04px;
+  line-height: 1.2em;
+
+  @media (max-width: $breakPointS) {
+    font-size: $MobileFontSizeXL;
+    line-height: 2.25rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.actionText {
+  font-size: $DesktopFontSizeM;
+
+  @media (max-width: $breakPointS) {
+    font-size: $MobileFontSizeL;
+    line-height: 1.625rem;
+    margin-bottom: 4rem;
+  }
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.noMarginTop {
+  margin-top: -1rem;
+}
+
+.highlightHeadline {
+  font-size: $DesktopFontSizeXXL;
+  font-weight: 600;
+  line-height: 1.1em;
+
+  @media (max-width: 1600px) {
+    font-size: 3.5rem;
+  }
+
+  @media (max-width: $breakPointM) {
+    font-size: 5rem;
+  }
+}
+
+.inviteHeadline {
+  margin: 1rem 0 0 0;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+}

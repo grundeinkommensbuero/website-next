@@ -57,7 +57,7 @@ export function LinkButtonLocal({
 export type ButtonType = 'button' | 'submit' | 'reset' | undefined;
 
 type ButtonProps = {
-  children: ReactElement | string;
+  children: ReactElement | ReactElement[] | string;
   className?: string;
   disabled?: boolean;
   size?: ButtonSize;
@@ -153,19 +153,23 @@ export function InlineButton({
 }
 
 type InlineLinkButtonProps = {
-  children: ReactElement;
+  children: ReactElement | ReactElement[] | string;
   className?: string;
+  href?: string;
+  other?: any;
 };
 
 export function InlineLinkButton({
   children,
   className,
+  href,
   ...other
 }: InlineLinkButtonProps) {
   return (
     <a
       tabIndex={0}
       role="button"
+      href={href}
       className={cN(s.inlineButton, className)}
       {...other}
     >

@@ -36,7 +36,16 @@ export type Municipality = MunicipalityFromJson & {
   groups?: ChatGroup[];
 };
 
-type MunicipalitsStatsSummary = {};
+type MunicipalitsStatsSummary = {
+  timestamp: string;
+  users: number;
+  municiplaities: number;
+  previous: {
+    timestamp: string;
+    users: number;
+    municiplaities: number;
+  };
+};
 
 type MunicipalityContentfulState =
   | 'noMunicipality'
@@ -75,7 +84,16 @@ export const MunicipalityContext = React.createContext<MunicipalityContext>({
     municipalities: [],
   },
   allMunicipalityStatsState: '',
-  statsSummary: {},
+  statsSummary: {
+    timestamp: '',
+    users: 0,
+    municiplaities: 0,
+    previous: {
+      users: 0,
+      municiplaities: 0,
+      timestamp: '',
+    },
+  },
   municipalities: [],
   leaderboardSegments: {},
   statsInDays: 0,
@@ -86,10 +104,6 @@ type MunicipalityProviderProps = {
   children: ReactElement | ReactElement[];
 };
 
-type Summary = {
-  timestamp: string;
-};
-
 export const MunicipalityProvider = ({
   children,
 }: MunicipalityProviderProps) => {
@@ -97,7 +111,8 @@ export const MunicipalityProvider = ({
   const [municipality, setMunicipalityState] = useState<Municipality | null>(
     null
   );
-  const [statsSummary, setStatsSummary] = useState<Summary | null>(null);
+  const [statsSummary, setStatsSummary] =
+    useState<MunicipalitsStatsSummary | null>(null);
   const [municipalities, setMunicipalities] = useState<Municipality[]>([]);
   // Only needed for mapping
   const [municipalitiesInObject, setMunicipalitiesInObject] = useState<{
