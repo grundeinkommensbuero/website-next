@@ -12,6 +12,13 @@ export type MunicipalityStats = {
   municipalities: { ags: string; signups: number }[];
   summary?: {
     timestamp: string;
+    users: number;
+    municiplaities: number;
+    previous: {
+      timestamp: string;
+      users: number;
+      municiplaities: number;
+    };
   };
   events?: [];
   timePassed?: number;

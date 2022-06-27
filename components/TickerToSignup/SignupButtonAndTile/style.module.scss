@@ -1,0 +1,32 @@
+.signUpCTA {
+  font-size: $DesktopFontSizeM;
+  padding-top: 1rem;
+  padding-bottom: 0.7rem;
+
+  // @media (max-width: $breakPointM) {
+  //   width: 100%;
+  // }
+}
+
+.tileContainer {
+  margin: auto;
+  // display: flex;
+  // justify-content: space-around;
+  // flex-wrap: wrap;
+  margin-top: 2rem;
+  padding: 3rem;
+
+  @include colorSchemeWhite;
+
+  p {
+    font-size: $DesktopFontSizeM;
+    @media (max-width: $breakPointM) {
+      font-size: $MobileFontSizeM;
+      margin-bottom: 1.5rem;
+    }
+    @media (max-width: $breakPointS) {
+      font-size: $MobileFontSizeM;
+      line-height: 1.625rem;
+    }
+  }
+}
