@@ -1,5 +1,6 @@
 .header {
   max-height: $headerHeight;
+  min-height: $headerHeight;
   background: white;
   position: sticky;
   padding: 0 1rem;
