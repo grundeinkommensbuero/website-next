@@ -1,4 +1,4 @@
-import { Directus } from '@directus/sdk';
+import { Directus, RelationItem } from '@directus/sdk';
 import {
   Section,
   Layout,
@@ -35,6 +35,16 @@ type FetchedPage = {
   sections: FetchedSectionData[];
 };
 
+const pageFields = [
+  'slug',
+  'title',
+  'status',
+  'hasHero',
+  'heroTitle',
+  'heroSubTitle',
+  'heroImage',
+];
+
 type FetchedSectionData = {
   sort: number;
   item: {
@@ -50,6 +60,16 @@ type FetchedSectionData = {
     elements: FetchedElement[];
   };
 };
+
+const sectionFields = [
+  'id',
+  'status',
+  'sort',
+  'title',
+  'label',
+  'layout',
+  'colorScheme',
+];
 
 type Align = 'left' | 'center' | 'right';
 
@@ -85,53 +105,66 @@ type FetchedElement = {
   };
 };
 
+const elementFields = [
+  'id',
+  'status',
+  'sort',
+  'overrideLayout',
+  'groupElement',
+  'image',
+  'alt',
+  'content',
+  'component',
+  'embedId',
+  'buttonText',
+  'type',
+  'action',
+  'href',
+  'slug',
+  'align',
+  'title',
+];
+
+const faqFields = ['title', 'question', 'answer', 'openInitially'];
+
+type Relation = 'MANY-TO-ALL' | 'MANY-TO-MANY' | 'ROOT';
+
+const getFields = (
+  basepath: string,
+  relation: Relation,
+  fields: Array<string>
+): Array<string> => {
+  switch (relation) {
+    case 'ROOT':
+      return fields.map(x => basepath + x);
+    case 'MANY-TO-ALL':
+      return fields.map(x => basepath + 'item.' + x);
+    case 'MANY-TO-MANY': {
+      const xs = basepath.split('.');
+      return fields.map(x => `${basepath}${xs[xs.length - 2]}_id.${x}`);
+    }
+  }
+};
+
+const fields = [
+  ...getFields('', 'ROOT', pageFields),
+  ...getFields('sections.', 'MANY-TO-ALL', sectionFields),
+  'sections.item.elements.collection',
+  ...getFields('sections.item.elements.', 'MANY-TO-ALL', elementFields),
+  ...getFields(
+    'sections.item.elements.item.questionAnswerPair.',
+    'MANY-TO-MANY',
+    faqFields
+  ),
+];
+
 export const getPageProps = async (slug: string): Promise<PageProps> => {
   const directus = new Directus(process.env.DIRECTUS || '');
 
   try {
     // Get the current page from directus by slug (ID)
     const _page = (await directus.items('pages').readOne(slug, {
-      fields: [
-        'slug',
-        'title',
-        'status',
-        'hasHero',
-        'heroTitle',
-        'heroSubTitle',
-        'heroImage',
-        'sections.sort',
-        'sections.item.id',
-        'sections.item.status',
-        'sections.item.sort',
-        'sections.item.title',
-        'sections.item.label',
-        'sections.item.layout',
-        'sections.item.colorScheme',
-        'sections.item.includeAgs',
-        'sections.item.excludeAgs',
-        'sections.item.elements.collection',
-        'sections.item.elements.item.id',
-        'sections.item.elements.item.status',
-        'sections.item.elements.item.sort',
-        'sections.item.elements.item.overrideLayout',
-        'sections.item.elements.item.groupElement',
-        'sections.item.elements.item.image',
-        'sections.item.elements.item.alt',
-        'sections.item.elements.item.content',
-        'sections.item.elements.item.component',
-        'sections.item.elements.item.embedId',
-        'sections.item.elements.item.buttonText',
-        'sections.item.elements.item.type',
-        'sections.item.elements.item.action',
-        'sections.item.elements.item.href',
-        'sections.item.elements.item.slug',
-        'sections.item.elements.item.align',
-        'sections.item.elements.item.title',
-        'sections.item.elements.item.questionAnswerPair.questionAnswerPair_id.title',
-        'sections.item.elements.item.questionAnswerPair.questionAnswerPair_id.question',
-        'sections.item.elements.item.questionAnswerPair.questionAnswerPair_id.answer',
-        'sections.item.elements.item.questionAnswerPair.questionAnswerPair_id.openInitially',
-      ],
+      fields,
     })) as FetchedPage;
 
     return {
