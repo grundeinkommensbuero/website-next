@@ -55,11 +55,7 @@ export const FAQ = ({ question, answer, openInitially = false }: FAQProps) => {
           onClick={() => setIsOpen(!isOpen)}
         >
           {question}
-          {isOpen ? (
-            <MinusIcon />
-          ) : (
-            <PlusIcon />
-          )}
+          {isOpen ? <MinusIcon /> : <PlusIcon />}
         </button>
         <div
           className={cN(s.answerContainer, {
