@@ -1,67 +1,56 @@
 .flexItem100 {
-  max-width: 100%;
-  min-width: 100%;
+  width: 100%;
   padding: 1rem;
   transition: all 0.25s ease-out;
 }
 
 .flexItem75 {
-  max-width: 75%;
-  min-width: 75%;
+  width: 75%;
   padding: 1rem;
   transition: all 0.25s ease-out;
 
   @media (max-width: $breakPointM) {
-    max-width: 100%;
-    min-width: 100%;
+    width: 100%;
   }
 }
 
 .flexItem50 {
-  max-width: 50%;
-  min-width: 50%;
+  width: 50%;
   padding: 1rem;
   transition: all 0.25s ease-out;
 
   @media (max-width: $breakPointM) {
-    max-width: 100%;
-    min-width: 100%;
+    width: 100%;
   }
 }
 
 .flexItem25 {
-  max-width: 25%;
-  min-width: 25%;
+  width: 25%;
   padding: 1rem;
   transition: all 0.25s ease-out;
 
   @media (max-width: $breakPointM) {
-    max-width: 100%;
-    min-width: 100%;
+    width: 100%;
   }
 }
 
 .flexItem2 {
-  max-width: 50%;
-  min-width: 50%;
+  width: 50%;
   padding: 1rem;
   transition: all 0.25s ease-out;
 
   @media (max-width: $breakPointM) {
-    max-width: 100%;
-    min-width: 100%;
+    width: 100%;
   }
 }
 
 .flexItem3 {
-  max-width: 50%;
-  min-width: 50%;
+  width: 50%;
   padding: 1rem;
   transition: all 0.25s ease-out;
 
   @media (max-width: $breakPointM) {
-    max-width: 100%;
-    min-width: 100%;
+    width: 100%;
   }
 }
 
