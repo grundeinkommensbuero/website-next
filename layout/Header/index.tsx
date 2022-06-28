@@ -18,7 +18,7 @@ export const Header = ({
   currentRoute,
 }: HeaderProps): ReactElement => {
   const [mobileMenuActive, setMobileMenuActive] = useState<boolean>(false);
-  const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [isMobile, setIsMobile] = useState<boolean>(true);
   const { width } = useWindowDimensions();
 
   useEffect(() => {
