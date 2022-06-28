@@ -16,8 +16,6 @@
   margin-top: 2rem;
   padding: 3rem;
 
-  @extend colorSchemeWhite;
-
   p {
     font-size: $DesktopFontSizeM;
     @media (max-width: $breakPointM) {
