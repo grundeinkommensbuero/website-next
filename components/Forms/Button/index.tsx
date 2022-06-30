@@ -2,9 +2,14 @@ import React, { ReactElement, Ref } from 'react';
 import s from './style.module.scss';
 import cN from 'classnames';
 import Link from 'next/link';
-import successIcon from './success.svg';
+import SuccessIconStandard from './success.svg';
+import SuccessIconBerlin from './success-rosa.svg';
 
 export type ButtonSize = 'MEDIUM' | 'SMALL';
+
+const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
+
+const SuccessIcon = IS_BERLIN_PROJECT ? SuccessIconBerlin : SuccessIconStandard;
 
 type LinkButtonProps = {
   children: ReactElement | string;
@@ -107,11 +112,11 @@ export function Button({
         id={id}
       >
         <div className={s.buttonText}>{children}</div>
-        {/* <div className={s.progressBar}></div>
+        <div className={s.progressBar}></div>
 
         <div className={s.successIcon}>
-          <img alt="Illustration des Erfolgs" src={successIcon} />
-        </div> */}
+          <SuccessIcon alt="Illustration des Erfolgs" />
+        </div>
       </button>
     </>
   );
@@ -153,10 +158,10 @@ export function InlineButton({
 }
 
 type InlineLinkButtonProps = {
-  children: ReactElement | ReactElement[] | string;
+  children: ReactElement | string;
   className?: string;
   href?: string;
-  other?: any;
+  [other: string]: any;
 };
 
 export function InlineLinkButton({

@@ -4,8 +4,7 @@ import querystring from 'query-string';
 import { getCurrentUser, getUser } from '../../hooks/Api/Users/Get';
 import { useLocalStorageUser, signOut } from '../../hooks/Authentication';
 import { updateUser } from '../../hooks/Api/Users/Update';
-import { CognitoUser } from '@aws-amplify/auth';
-import Amplify from '@aws-amplify/auth';
+import { Auth, CognitoUser } from '@aws-amplify/auth';
 import CONFIG from '../../hooks/Authentication/backend-config';
 import { Municipality } from '../Municipality';
 import { useRouter } from 'next/router';
@@ -57,6 +56,14 @@ export type CustomNewsletterConsent = {
   value: boolean;
 };
 
+export type ListFlow = {
+  downloadedList?: { value: boolean; timestamp: string };
+  printedList?: { value: boolean; timestamp: string };
+  sentList?: { value: boolean; timestamp: string };
+  signedList?: { value: boolean; timestamp: string };
+  sharedList?: { value: boolean; timestamp: string };
+};
+
 export type User = {
   username: string;
   email: string;
@@ -77,6 +84,7 @@ export type User = {
   store?: {
     donationOnboardingReaction: [];
   };
+  listFlow?: ListFlow;
 };
 
 export type SetCognitoUser = React.Dispatch<CognitoUserExt | null> | null;
@@ -95,7 +103,7 @@ export type AuthContextType = {
   setUserId: SetUserId;
   token: string;
   setToken: SetToken;
-  isAuthenticated: boolean;
+  isAuthenticated?: boolean;
   setIsAuthenticated: SetIsAuthenticated;
   customUserData: User;
   previousAction: any;
@@ -125,7 +133,7 @@ const initAuth = {
   setUserId: () => {},
   token: '',
   setToken: () => {},
-  isAuthenticated: false,
+  isAuthenticated: undefined,
   setIsAuthenticated: () => {},
   customUserData: initUser,
   previousAction: '',
@@ -139,7 +147,7 @@ export const AuthContext = React.createContext<AuthContextType>(initAuth);
 type AuthProviderProps = { children: ReactElement };
 
 const AuthProvider = ({ children }: AuthProviderProps): ReactElement => {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | undefined>();
   const [cognitoUser, setCognitoUser] = useState<CognitoUserExt | null>(null);
   const [customUserData, setCustomUserData] = useState<User>(initUser);
   const [token, setToken] = useState<string>('');
@@ -151,7 +159,7 @@ const AuthProvider = ({ children }: AuthProviderProps): ReactElement => {
   const clientId = process.env.NEXT_PUBLIC_DEV_COGNITO_APP_CLIENT_ID;
   if (clientId) {
     if (typeof window !== `undefined`) {
-      Amplify.configure({
+      Auth.configure({
         region: CONFIG.COGNITO.REGION,
         userPoolId: CONFIG.COGNITO.USER_POOL_ID,
         userPoolWebClientId: clientId,
@@ -213,7 +221,7 @@ const AuthProvider = ({ children }: AuthProviderProps): ReactElement => {
     else {
       if (typeof window !== `undefined`) {
         // Check if the user is already signed in
-        Amplify.currentAuthenticatedUser()
+        Auth.currentAuthenticatedUser()
           .then(user => {
             if (user) {
               setCognitoUser(user);
@@ -307,7 +315,7 @@ const AuthProvider = ({ children }: AuthProviderProps): ReactElement => {
 };
 
 type UpdateCustomUserDataArgs = {
-  isAuthenticated: boolean;
+  isAuthenticated?: boolean;
   token: string;
   setCustomUserData: React.Dispatch<User>;
   userId: string | ((userId: string) => void);

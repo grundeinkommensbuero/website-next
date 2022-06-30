@@ -95,7 +95,7 @@ type CTAButtonProps = {
   onClick?: () => void;
   type?: ButtonType;
   size?: ButtonSize;
-  other?: any;
+  [other: string]: any;
 };
 
 export function CTAButton({

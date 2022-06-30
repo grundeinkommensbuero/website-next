@@ -14,7 +14,7 @@ import AuthContext, {
 } from '../../context/Authentication';
 import { createUser } from '../Api/Users/Create';
 import CONFIG from './backend-config';
-import Auth, { CognitoUser } from '@aws-amplify/auth';
+import { Auth, CognitoUser } from '@aws-amplify/auth';
 import { Request } from './Verification';
 export { useAnswerChallenge } from './AnswerChallenge';
 export { useVerification } from './Verification';

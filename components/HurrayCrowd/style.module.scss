@@ -1,0 +1,86 @@
+.savedStage {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: $contentWidthL;
+  max-width: 90vw;
+  transform: translateX(-50%);
+  pointer-events: none;
+
+  &.small {
+    width: 35rem;
+  }
+
+  &:before {
+    content: '';
+    padding-top: 50%;
+    width: 100%;
+    display: block;
+  }
+
+  > * {
+    position: absolute;
+  }
+}
+
+.savedStageCrowd1,
+.savedStageCrowd2 {
+  bottom: -30%;
+  left: 0;
+  right: 0;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-name: gentleCheer;
+}
+
+.savedStageCrowd1 {
+  animation-delay: -1.5s;
+}
+
+.savedStageHat,
+.savedStageFlowers {
+  height: 40%;
+  bottom: 40%;
+  animation-duration: 4s;
+  animation-fill-mode: forwards;
+}
+
+.savedStageFlowers {
+  left: -16%;
+  animation-name: throwLeft;
+}
+
+.savedStageHat {
+  right: -2%;
+  animation-name: throwRight;
+}
+
+@keyframes throwRight {
+  0% {
+    transform: translateY(0) rotate(-10deg);
+  }
+  to {
+    transform: translateY(-10%) rotate(10deg);
+  }
+}
+
+@keyframes throwLeft {
+  0% {
+    transform: translateY(0) rotate(10deg);
+  }
+  to {
+    transform: translateY(-10%) rotate(-10deg);
+  }
+}
+
+@keyframes gentleCheer {
+  0% {
+    transform: translateY(-5%);
+  }
+  50% {
+    transform: translateY(5%);
+  }
+  100% {
+    transform: translateY(-5%);
+  }
+}

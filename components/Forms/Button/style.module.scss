@@ -69,9 +69,10 @@
     // Needs to stay zero even when rendered because of spacing issues
     height: 0rem;
 
-    img {
+    svg {
       height: 0rem;
-      width: 0rem;
+      // Don't animate width, because it looks weird with svg
+      width: 0px;
       transition: all 0.5s ease 0.4s;
     }
   }
@@ -117,7 +118,7 @@
     }
 
     .successIcon {
-      img {
+      svg {
         width: 73px;
         height: 73px;
       }
