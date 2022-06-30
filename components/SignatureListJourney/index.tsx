@@ -35,11 +35,7 @@ type UrlParams = {
   success?: boolean;
 };
 
-export const SignatureListJourney = ({
-  pdfUrl,
-}: {
-  pdfUrl?: string | string[];
-}) => {
+export const SignatureListJourney = ({ pdfUrl }: { pdfUrl?: string }) => {
   const { customUserData, isAuthenticated, updateCustomUserData } =
     useContext(AuthContext);
   const [urlParams, setUrlParams] = useState<UrlParams>();

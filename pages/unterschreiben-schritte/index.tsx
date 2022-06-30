@@ -8,9 +8,12 @@ import s from './style.module.scss';
 const JourneyPage = () => {
   const router = useRouter();
 
+  const pdfUrl =
+    typeof router.query?.pdfUrl == 'string' ? router.query.pdfUrl : undefined;
+
   return (
     <SectionWrapper colorScheme="colorSchemeViolet">
-      <SignatureListJourney pdfUrl={router.query?.pdfUrl} />
+      <SignatureListJourney pdfUrl={pdfUrl} />
     </SectionWrapper>
   );
 };
