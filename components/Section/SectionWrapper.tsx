@@ -23,6 +23,7 @@ export const SectionWrapper = ({
       }`}
     >
       {status === 'draft' && <h3 className={s.draftLabel}>Entwurf</h3>}
+      {/* TODO: maybe don't nest two sections? */}
       <section className="sections">
         {title && (
           <h2
