@@ -8,7 +8,7 @@ import { scrollIntoView } from '../../../utils/scrollIntoView';
 type Color = 'white' | 'red' | 'aqua' | 'violet';
 
 type FinallyMessageProps = {
-  state?: string;
+  loading?: boolean;
   children: ReactElement | ReactElement[] | string;
   className?: string;
   preventScrolling?: boolean;
@@ -16,7 +16,7 @@ type FinallyMessageProps = {
 };
 
 export const FinallyMessage = ({
-  state,
+  loading,
   children,
   className,
   preventScrolling,
@@ -47,10 +47,9 @@ export const FinallyMessage = ({
 
   return (
     <div className={className}>
-      {/* {state === 'success' && <HurrayCrowd />} */}
       <div className={cN(s.message, getColorSchmeme(color))} ref={messageRef}>
         <div className={cN(s.messageInner)}>
-          {state === 'progress' && <div className={s.savingIndicator} />}
+          {loading && <div className={s.loadingIndicator} />}
           <div className={s.children}>{children}</div>
         </div>
       </div>
