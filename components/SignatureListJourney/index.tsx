@@ -54,8 +54,8 @@ export const SignatureListJourney = ({
 
     const params: UrlParams = {};
 
-    if (step) {
-      params.step = step as string;
+    if (step && typeof step === 'string') {
+      params.step = step;
     }
 
     if (success) {
