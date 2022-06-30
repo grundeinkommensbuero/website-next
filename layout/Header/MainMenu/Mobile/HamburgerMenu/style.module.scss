@@ -1,0 +1,49 @@
+.hamburger {
+  width: 2.25rem;
+  height: 2rem;
+  margin-left: 0.5rem;
+  border: none;
+  position: relative;
+  background: linear-gradient(to bottom, black, black);
+  background-size: 100% 10%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  transition: background-size 0.2s 0.25s ease;
+  cursor: pointer;
+  transition: background-size 0.3s 0.2s ease;
+  outline: none;
+  float: right;
+}
+.hamburger:before,
+.hamburger:after {
+  height: 10%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  background-color: black;
+  content: '';
+  transition: transform 0.3s ease;
+}
+.hamburger:before {
+  top: 0;
+}
+.hamburger:after {
+  bottom: 0;
+}
+.hamburger:before,
+.hamburger:after {
+  transition: 0.3s ease;
+}
+.hamburger.isActive {
+  background-size: 0 0;
+}
+.hamburger.isActive:before,
+.hamburger.isActive:after {
+  transition-delay: 0.3s;
+}
+.hamburger.isActive:before {
+  transform: translateY(450%) rotate(45deg);
+}
+.hamburger.isActive:after {
+  transform: translateY(-450%) rotate(-45deg);
+}

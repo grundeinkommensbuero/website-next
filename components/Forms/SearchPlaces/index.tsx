@@ -7,26 +7,37 @@ import cN from 'classnames';
 import { Button, ButtonSize } from '../Button';
 
 import Fuse from 'fuse.js';
-import { Municipality } from '../../../context/Municipality';
+import {
+  Municipality,
+  MunicipalityFromJson,
+} from '../../../context/Municipality';
 
-import MunicipalitiesForSearch from './municipalitiesForSearch.json';
+import municipalities from '../../../data/municipalities.json';
+import { Router } from 'express';
+import { NextRouter, useRouter } from 'next/router';
 
-// const handleButtonClickDefault = ({
-//   validate,
-// }: {
-//   validate: () => { status: 'success' };
-// }) => {
-//   // If no place was selected, we check if the top result
-//   // has a very good score, if yes -> navigate to the page
-//   // of that place
-//   // --> validate function
-//   const validation = validate();
-//   if (validation.status === 'success') {
-//     navigate(validation.slug);
-//   }
-// };
+const handleButtonClickDefault = ({
+  validate,
+  router,
+}: {
+  validate: () => ValidationResult;
+  router: NextRouter;
+}) => {
+  // If no place was selected, we check if the top result
+  // has a very good score, if yes -> navigate to the page
+  // of that place
+  // --> validate function
+  const validation = validate();
+  if (validation.status === 'success') {
+    router.push(validation.slug);
+  }
+};
 
-export type MunicipalityWithScore = Municipality & { score: number };
+type ValidationResult =
+  | { status: 'failed' }
+  | { status: 'success'; slug: string };
+
+export type MunicipalityWithScore = MunicipalityFromJson & { score: number };
 
 const initPlace = {
   name: '',
@@ -35,6 +46,8 @@ const initPlace = {
   score: 0,
   nameUnique: '',
   zipCodes: [],
+  goal: 0,
+  population: 0,
 };
 
 type SearchPlacesProps = {
@@ -50,7 +63,13 @@ type SearchPlacesProps = {
   profileButtonStyle?: boolean;
   isInsideForm?: boolean;
   fullWidthInput?: boolean;
-  handleButtonClick: (arg: any) => void;
+  handleButtonClick: ({
+    validate,
+    router,
+  }: {
+    validate: () => ValidationResult;
+    router: NextRouter;
+  }) => void;
   initialPlace?: MunicipalityWithScore;
 };
 
@@ -67,7 +86,7 @@ export const SearchPlaces = ({
   profileButtonStyle,
   isInsideForm,
   fullWidthInput = false,
-  handleButtonClick = () => {},
+  handleButtonClick = handleButtonClickDefault,
   initialPlace = initPlace,
 }: SearchPlacesProps) => {
   const [query, setQuery] = useState(initialPlace.name || '');
@@ -77,10 +96,11 @@ export const SearchPlaces = ({
   const [formState, setFormState] = useState<any>({});
   const [fuse, setFuse] = useState<Fuse<any>>();
   const [focusedResult, setFocusedResult] = useState<number>(0);
+  const router = useRouter();
 
   useEffect(() => {
     setFuse(
-      new Fuse(MunicipalitiesForSearch, {
+      new Fuse(municipalities, {
         keys: ['nameUnique', 'zipCodes'],
         includeScore: true,
         threshold: 0.2,
@@ -219,7 +239,7 @@ export const SearchPlaces = ({
     // eslint-disable-next-line
   }, [query, fuse]);
 
-  const validate = () => {
+  const validate = (): ValidationResult => {
     let slug;
     if (selectedPlace.ags) {
       slug = `/orte/${selectedPlace.slug}`;
@@ -374,7 +394,7 @@ export const SearchPlaces = ({
               { [s.sideButton]: !profileButtonStyle },
               { [s.profileSideButton]: profileButtonStyle }
             )}
-            onClick={event => handleButtonClick({ event, validate })}
+            onClick={() => handleButtonClick({ validate, router })}
           >
             {buttonLabel}
           </Button>

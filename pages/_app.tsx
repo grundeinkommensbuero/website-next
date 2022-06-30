@@ -2,25 +2,25 @@ import '../styles/globals.scss';
 import type { AppContext, AppProps } from 'next/app';
 import { Layout } from '../layout';
 import App from 'next/app';
-import { getMenus, Mainmenu } from '../utils/getMenus';
+import { getMenus, Menu } from '../utils/getMenus';
 import { NoSsr } from '../components/Util/NoSsr';
 import ReactTooltip from 'react-tooltip';
 import { ProviderWrapper } from '../components/Util/ProviderWrapper';
 import { Toaster } from 'react-hot-toast';
 import { TrackJS } from 'trackjs';
 
-type XbgeAppProps = AppProps & { mainmenu: Mainmenu };
+type XbgeAppProps = AppProps & { mainMenu: Menu; footerMenu: Menu };
 
 TrackJS.install({
   token: process.env.NEXT_PUBLIC_TRACKJS_TOKEN || '',
   application: 'expedition-grundeinkommen',
 });
 
-function XbgeApp({ Component, pageProps, mainmenu }: XbgeAppProps) {
+function XbgeApp({ Component, pageProps, mainMenu, footerMenu }: XbgeAppProps) {
   return (
     <ProviderWrapper>
       <Toaster toastOptions={{ position: 'top-right' }} />
-      <Layout mainmenu={mainmenu}>
+      <Layout mainMenu={mainMenu} footerMenu={footerMenu}>
         <Component {...pageProps} />
       </Layout>
       <NoSsr>
@@ -36,7 +36,8 @@ XbgeApp.getInitialProps = async (appContext: AppContext) => {
 
   return {
     ...appProps,
-    mainmenu: menus.mainmenu,
+    mainMenu: menus.mainMenu,
+    footerMenu: menus.footerMenu,
   };
 };
 

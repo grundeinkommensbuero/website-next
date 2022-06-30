@@ -16,6 +16,10 @@ export type Page = {
   slug: string;
   title: string;
   status: Status;
+  hasHero: boolean;
+  heroTitle: string | null;
+  heroSubTitle: string | null;
+  heroImage: string | null;
   sections: Section[];
 };
 
@@ -23,6 +27,10 @@ type FetchedPage = {
   slug: string;
   title: string;
   status: Status;
+  hasHero: boolean;
+  heroTitle: string | null;
+  heroSubTitle: string | null;
+  heroImage: string | null;
   sections: FetchedSectionData[];
 };
 
@@ -36,6 +44,8 @@ type FetchedSectionData = {
     label: string;
     layout: Layout;
     colorScheme: ColorScheme;
+    includeAgs?: string[];
+    excludeAgs?: string[];
     elements: FetchedElement[];
   };
 };
@@ -79,6 +89,10 @@ export const getPageProps = async (slug: string): Promise<PageProps> => {
         'slug',
         'title',
         'status',
+        'hasHero',
+        'heroTitle',
+        'heroSubTitle',
+        'heroImage',
         'sections.sort',
         'sections.item.id',
         'sections.item.status',
@@ -87,6 +101,8 @@ export const getPageProps = async (slug: string): Promise<PageProps> => {
         'sections.item.label',
         'sections.item.layout',
         'sections.item.colorScheme',
+        'sections.item.includeAgs',
+        'sections.item.excludeAgs',
         'sections.item.elements.collection',
         'sections.item.elements.item.*',
       ],
@@ -108,6 +124,10 @@ const updatePageStructure = (fetchedPage: FetchedPage): Page => {
     slug: fetchedPage.slug,
     title: fetchedPage.title,
     status: fetchedPage.status,
+    hasHero: fetchedPage.hasHero,
+    heroTitle: fetchedPage.heroTitle,
+    heroSubTitle: fetchedPage.heroSubTitle,
+    heroImage: fetchedPage.heroImage,
     sections: fetchedPage.sections
       .filter(
         s =>
@@ -122,6 +142,8 @@ const updatePageStructure = (fetchedPage: FetchedPage): Page => {
           status: section.item.status,
           layout: section.item.layout,
           colorScheme: section.item.colorScheme,
+          includeAgs: section.item.includeAgs || [],
+          excludeAgs: section.item.excludeAgs || [],
           render: section.item.elements
             .filter(
               e =>

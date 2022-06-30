@@ -1,5 +1,5 @@
 .header {
-  max-height: $headerHeight;
+  height: $headerHeight;
   background: white;
   position: sticky;
   padding: 0 1rem;
@@ -10,6 +10,29 @@
 .headerContent {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   max-width: $headerWidth;
   margin: 0 auto;
+}
+
+.mobileMenu {
+  padding: 1rem 2rem;
+  background-color: white;
+  position: fixed;
+  width: 100%;
+  max-height: calc(100vh - $headerHeight);
+  overflow: hidden;
+  top: $headerHeight;
+  z-index: 45;
+  transform-origin: top;
+  animation: 0.25s ease-in-out 0s 1 expandMenu;
+}
+
+@keyframes expandMenu {
+  0% {
+    transform: scaleY(0);
+  }
+  100% {
+    transform: scaleY(1);
+  }
 }

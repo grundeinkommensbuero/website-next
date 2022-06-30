@@ -58,3 +58,14 @@
 .partnerLogos {
   margin: 1rem 0 0;
 }
+
+.footerMenuRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  @media (max-width: $breakPointM) {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}

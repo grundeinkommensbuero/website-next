@@ -1,0 +1,40 @@
+.reactReel__group {
+  transition-delay: 0ms;
+  transition-timing-function: ease-in-out;
+  transform: translate(0, 0);
+}
+
+.reactReel__group .reactReel__number {
+  height: 1em;
+}
+
+.reactReel__reel {
+  height: 1em;
+  display: flex;
+  align-items: flex-end;
+  overflow-y: hidden;
+
+  /** CUSTOMISE BELOW */
+  font-size: $DesktopFontSizeXXL;
+  font-weight: bold;
+  border-bottom: 0px solid $white;
+  line-height: 1.2em;
+
+  @media (max-width: 1000px) {
+    font-size: 5rem;
+    border-bottom: 0px solid $white;
+    line-height: 1.3em;
+  }
+
+  @media (max-width: $breakPointM) {
+    font-size: $DesktopFontSizeXXL;
+    border-bottom: 0px solid $white;
+    line-height: 1.3em;
+  }
+
+  @media (max-width: 530px) {
+    font-size: $MobileFontSizeXXL;
+    border-bottom: 0px solid $white;
+    line-height: 1.3em;
+  }
+}

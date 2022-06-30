@@ -81,15 +81,26 @@ h1 {
 
 h1,
 h2 {
-  @apply text-d-2xl;
+  font-size: 3.375rem;
   letter-spacing: 0.15px;
   margin: 0 0 1rem 0;
   font-weight: bold;
 
-  @media md {
-    @apply text-m-xl;
+  @media (max-width: $breakPointM) {
+    font-size: 2.5rem;
     hyphens: auto;
   }
+
+  @media (max-width: $breakPointS) {
+    font-size: 2rem;
+    hyphens: auto;
+  }
+}
+
+h1,
+h2,
+h3 {
+  color: var(--heading-color);
 }
 
 h3 {
@@ -142,6 +153,10 @@ p {
   /* padding-left: calc(calc(100vw - #{$headerWidth}) / 2); */
   margin: 0 auto;
   width: $headerWidth;
+}
+
+.fullWidth {
+  width: 100%;
 }
 
 .sections {

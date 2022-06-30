@@ -13,6 +13,7 @@ const nextConfig = {
     prependData: `@import "./styles/vars.scss";`,
   },
   webpack(config) {
+    // config.module.noParse = /(gun|scrypt)\.js$/;
     config.module.rules.push({
       test: /\.svg$/,
       use: ['@svgr/webpack'],

@@ -2,15 +2,20 @@ import { ReactElement, useContext } from 'react';
 import Head from 'next/head';
 import { Header } from './Header';
 import { Footer } from './Footer';
-import { Mainmenu } from '../utils/getMenus';
+import { Menu, MenuEntry } from '../utils/getMenus';
 import { XbgeAppContext } from '../context/App/index';
 
 type LayoutProps = {
   children: ReactElement;
-  mainmenu: Mainmenu;
+  mainMenu: Menu;
+  footerMenu: Menu;
 };
 
-export const Layout = ({ children, mainmenu }: LayoutProps): ReactElement => {
+export const Layout = ({
+  children,
+  mainMenu,
+  footerMenu,
+}: LayoutProps): ReactElement => {
   const { currentRoute } = useContext(XbgeAppContext);
 
   return (
@@ -24,9 +29,9 @@ export const Layout = ({ children, mainmenu }: LayoutProps): ReactElement => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header mainmenu={mainmenu} currentRoute={currentRoute} />
+      <Header mainMenu={mainMenu} currentRoute={currentRoute} />
       {children}
-      <Footer />
+      <Footer footerMenu={footerMenu} />
       <div className="grow bg-red" />
     </div>
   );

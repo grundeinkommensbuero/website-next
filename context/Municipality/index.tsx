@@ -6,32 +6,46 @@ import React, {
 } from 'react';
 import {
   useGetMunicipalityStats,
-  useGetMunicipalityData,
   MunicipalityStats,
-  useGetSingleMunicipalityStats,
 } from '../../hooks/Api/Municipalities';
 
-import municipalities from '../../data/municipalitiesForMap.json';
+import municipalitiesJson from '../../data/municipalities.json';
 import { hasKey } from '../../utils/hasKey';
 
-export type Municipality = {
+type ChatGroup = {
+  medium: string;
+  link: string;
+  name: string;
+};
+
+export type MunicipalityFromJson = {
   ags: string;
   name: string;
   slug: string;
-  signups?: number;
-  percent?: number;
-  goal?: number;
-  isQualifying?: boolean;
-  isQualified?: boolean;
-  isCollecting?: boolean;
-  event?: { signups: [number, number] };
-  grewByPercent?: number;
-  population?: number;
-  zipCodes?: string[];
-  nameUnique?: string;
+  goal: number;
+  population: number;
+  nameUnique: string;
+  zipCodes: string[];
 };
 
-type MunicipalitsStatsSummary = {};
+export type Municipality = MunicipalityFromJson & {
+  signups?: number;
+  percent?: number;
+  event?: { signups: [number, number] };
+  grewByPercent?: number;
+  groups?: ChatGroup[];
+};
+
+type MunicipalitsStatsSummary = {
+  timestamp: string;
+  users: number;
+  municiplaities: number;
+  previous: {
+    timestamp: string;
+    users: number;
+    municiplaities: number;
+  };
+};
 
 type MunicipalityContentfulState =
   | 'noMunicipality'
@@ -44,13 +58,10 @@ type MunicipalityContext = {
   setIsMunicipality: React.Dispatch<SetStateAction<boolean>>;
   municipality: Municipality | null;
   setMunicipality: (municipality: Municipality) => void;
-  municipalityContentfulState: MunicipalityContentfulState;
   allMunicipalityStats: MunicipalityStats;
   allMunicipalityStatsState: string;
-  singleMunicipalityStats: {};
-  singleMunicipalityStatsState: string;
   statsSummary: MunicipalitsStatsSummary | null;
-  municipalitiesGoalSignup: Municipality[];
+  municipalities: Municipality[];
   leaderboardSegments: {};
   statsInDays: number;
   refreshContextStats: () => void;
@@ -63,19 +74,27 @@ export const MunicipalityContext = React.createContext<MunicipalityContext>({
     ags: '',
     name: '',
     slug: '',
+    nameUnique: '',
+    population: 0,
+    goal: 0,
+    zipCodes: [],
   },
   setMunicipality: () => {},
-  municipalityContentfulState: 'noMunicipality',
   allMunicipalityStats: {
     municipalities: [],
   },
   allMunicipalityStatsState: '',
-  singleMunicipalityStats: {
-    municipalities: [],
+  statsSummary: {
+    timestamp: '',
+    users: 0,
+    municiplaities: 0,
+    previous: {
+      users: 0,
+      municiplaities: 0,
+      timestamp: '',
+    },
   },
-  singleMunicipalityStatsState: '',
-  statsSummary: {},
-  municipalitiesGoalSignup: [],
+  municipalities: [],
   leaderboardSegments: {},
   statsInDays: 0,
   refreshContextStats: () => {},
@@ -85,10 +104,6 @@ type MunicipalityProviderProps = {
   children: ReactElement | ReactElement[];
 };
 
-type Summary = {
-  timestamp: string;
-};
-
 export const MunicipalityProvider = ({
   children,
 }: MunicipalityProviderProps) => {
@@ -96,12 +111,12 @@ export const MunicipalityProvider = ({
   const [municipality, setMunicipalityState] = useState<Municipality | null>(
     null
   );
-  const [statsSummary, setStatsSummary] = useState<Summary | null>(null);
-  const [municipalitiesGoalSignup, setMunicipalitiesGoalSignup] = useState<
-    Municipality[]
-  >([]);
+  const [statsSummary, setStatsSummary] =
+    useState<MunicipalitsStatsSummary | null>(null);
+  const [municipalities, setMunicipalities] = useState<Municipality[]>([]);
+  // Only needed for mapping
   const [municipalitiesInObject, setMunicipalitiesInObject] = useState<{
-    [key: string]: MunicipalityWithEvent;
+    [key: string]: Municipality;
   }>({});
   const [leaderboardSegments, setLeaderboardSegments] = useState({});
   const [statsInDays, setStatsInDays] = useState<number>(0);
@@ -111,7 +126,7 @@ export const MunicipalityProvider = ({
     let municipalityForContext = municipality;
     if (allMunicipalityStats?.municipalities && municipality?.ags) {
       const foundMunicipality = allMunicipalityStats.municipalities.find(
-        (m: Municipality) => m.ags === municipality.ags
+        ({ ags }) => ags === municipality.ags
       );
       if (foundMunicipality?.signups && municipality?.goal) {
         municipalityForContext = {
@@ -139,57 +154,10 @@ export const MunicipalityProvider = ({
     getAllMunicipalityStats,
   ] = useGetMunicipalityStats();
 
-  // Stats for just one municipality, will be set if a municipality is set
-  const [
-    singleMunicipalityStatsState,
-    singleMunicipalityStats,
-    getSingleMunicipalityStats,
-  ] = useGetSingleMunicipalityStats();
-
-  // Data for just one municipality, will be set if a municipality is set
-  const [, singleMunicipalityData, getSingleMunicipalityData] =
-    useGetMunicipalityData();
-
-  const [municipalityContentfulState, setMunicipalityContentfulState] =
-    useState<MunicipalityContentfulState>('noMunicipality');
-
   // Get general municipality stats (of all munics)
   useEffect(() => {
     getAllMunicipalityStats();
-    // eslint-disable-next-line
   }, []);
-
-  useEffect(() => {
-    if (
-      municipality &&
-      singleMunicipalityStats?.signups &&
-      singleMunicipalityStats?.goal
-    ) {
-      const isQualifying =
-        singleMunicipalityStats.signups < singleMunicipalityStats.goal;
-      const isQualified =
-        singleMunicipalityStats.signups >= singleMunicipalityStats.goal;
-      // TODO: API Call
-      const isCollecting = false;
-
-      setMunicipality({
-        ...municipality,
-        ...singleMunicipalityStats,
-        isQualifying,
-        isQualified,
-        isCollecting,
-      });
-
-      if (isCollecting) {
-        setMunicipalityContentfulState('collecting');
-      } else if (isQualified) {
-        setMunicipalityContentfulState('qualified');
-      } else if (isQualifying) {
-        setMunicipalityContentfulState('qualifying');
-      }
-    }
-    // eslint-disable-next-line
-  }, [singleMunicipalityStats]);
 
   useEffect(() => {
     if (allMunicipalityStats?.summary?.timestamp) {
@@ -197,40 +165,26 @@ export const MunicipalityProvider = ({
     }
   }, [allMunicipalityStats]);
 
-  type MunicipalityWithEvent = {
-    name: string;
-    goal: number;
-    population: number;
-    slug: string;
-    event?: {
-      ags: string;
-      signups: [number, number];
-    };
-  };
-
+  // The following is only needed for consolidation of data afterwards
   useEffect(() => {
     // Create Object with raw municipality data for faster reference
-    const municipalityObject: { [key: string]: MunicipalityWithEvent } =
-      municipalities.reduce(
+    const municipalityObject: { [key: string]: Municipality } =
+      municipalitiesJson.reduce(
         (
           muniObj: {
-            [key: string]: MunicipalityWithEvent;
+            [key: string]: Municipality;
           },
-          municipality
+          municipality: MunicipalityFromJson
         ) => {
-          const objKey = municipality.ags.toString();
+          const objKey: string = municipality.ags.toString();
           if (hasKey(muniObj, objKey)) {
-            muniObj[objKey] = {
-              name: municipality.name,
-              goal: municipality.goal,
-              population: municipality.population,
-              slug: municipality.slug,
-            };
+            muniObj[objKey] = { ...municipality };
           }
           return muniObj;
         },
         {}
       );
+
     // When there are events, add them to municipality key
     if (allMunicipalityStats.events) {
       allMunicipalityStats.events.forEach(
@@ -245,42 +199,38 @@ export const MunicipalityProvider = ({
     setMunicipalitiesInObject(municipalityObject);
   }, [allMunicipalityStats]);
 
-  useEffect(() => {
-    if (municipality) {
-      setMunicipality({ ...municipality, ...singleMunicipalityData });
-    }
-    // eslint-disable-next-line
-  }, [singleMunicipalityData]);
-
+  // Add signups to municipalities for leaderboard
   useEffect(() => {
     // Find all municipalities with signups and goal
-    const municipalitiesWithGoalAndSignups: Municipality[] = [];
+    const municipalitiesWithSignups: Municipality[] = [];
     if ('municipalities' in allMunicipalityStats) {
       allMunicipalityStats.municipalities.forEach(municipality => {
         if (
           municipality.ags.toString() in municipalitiesInObject &&
+          'goal' in municipalitiesInObject[municipality.ags.toString()] &&
           municipality?.signups
         ) {
           const fullMunicipality = {
-            ags: municipality.ags,
             signups: municipality.signups,
             percent: Math.round(
               (municipality.signups /
-                municipalitiesInObject[municipality.ags.toString()].goal) *
+                municipalitiesInObject[municipality.ags.toString()].goal!) *
                 100
             ),
             ...municipalitiesInObject[municipality.ags.toString()],
           };
-          municipalitiesWithGoalAndSignups.push(fullMunicipality);
+          municipalitiesWithSignups.push(fullMunicipality);
         }
       });
-      municipalitiesWithGoalAndSignups.sort((a, b) => {
+
+      municipalitiesWithSignups.sort((a, b) => {
         if (a.percent && b.percent) {
           return b.percent - a.percent;
         }
         return 0;
       });
-      setMunicipalitiesGoalSignup(municipalitiesWithGoalAndSignups);
+
+      setMunicipalities(municipalitiesWithSignups);
     }
     // eslint-disable-next-line
   }, [municipalitiesInObject]);
@@ -297,7 +247,7 @@ export const MunicipalityProvider = ({
       largeMunicipalities: [],
       qualified: [],
     };
-    municipalitiesGoalSignup.forEach(municipality => {
+    municipalities.forEach(municipality => {
       if (
         'event' in municipality &&
         municipality?.event?.signups &&
@@ -337,7 +287,7 @@ export const MunicipalityProvider = ({
       return 0;
     });
     setLeaderboardSegments(segments);
-  }, [municipalitiesGoalSignup]);
+  }, [municipalities]);
 
   useEffect(() => {
     if (allMunicipalityStats?.timePassed) {
@@ -354,13 +304,10 @@ export const MunicipalityProvider = ({
         setIsMunicipality,
         municipality,
         setMunicipality,
-        municipalityContentfulState,
         allMunicipalityStats,
         allMunicipalityStatsState,
-        singleMunicipalityStats,
-        singleMunicipalityStatsState,
         statsSummary,
-        municipalitiesGoalSignup,
+        municipalities,
         leaderboardSegments,
         statsInDays,
         refreshContextStats: () => getAllMunicipalityStats(),
