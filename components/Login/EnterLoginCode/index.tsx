@@ -74,9 +74,7 @@ export const EnterLoginCode = ({
   };
 
   if (answerChallengeState === 'loading' || signInState === 'loading') {
-    return (
-      <FinallyMessage state="progress">Einen Moment bitte...</FinallyMessage>
-    );
+    return <FinallyMessage loading>Einen Moment bitte...</FinallyMessage>;
   }
 
   if (answerChallengeState === 'success') {
@@ -85,7 +83,7 @@ export const EnterLoginCode = ({
 
   if (signInState === 'userNotConfirmed') {
     return (
-      <FinallyMessage state="error">
+      <FinallyMessage>
         <>
           Diese E-Mail-Adresse kennen wir schon, sie wurde aber nie bestätigt -
           Hast du unsere Antwort-Mail bekommen? Dann fehlt nur noch der letzte
@@ -105,7 +103,7 @@ export const EnterLoginCode = ({
 
   if (signInState === 'userNotFound') {
     return (
-      <FinallyMessage state="error">
+      <FinallyMessage>
         <p>
           Oh! Es scheint, diese Email-Addresse ist noch nicht bei uns
           registriert.{' '}
@@ -133,7 +131,7 @@ export const EnterLoginCode = ({
   }
 
   return (
-    <FinallyMessage state="error">
+    <FinallyMessage>
       <>
         {answerChallengeState === 'wrongCode' && (
           <p>

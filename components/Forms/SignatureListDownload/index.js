@@ -80,7 +80,7 @@ const SignatureDownloadList = ({ signaturesId }) => {
     signUpState === 'loading'
   ) {
     return (
-      <FinallyMessage state="progress">
+      <FinallyMessage loading>
         Liste wird generiert, bitte einen Moment Geduld...
       </FinallyMessage>
     );
@@ -93,7 +93,7 @@ const SignatureDownloadList = ({ signaturesId }) => {
     });
 
     return (
-      <FinallyMessage state="error">
+      <FinallyMessage>
         Da ist was schief gegangen. Melde dich bitte bei uns{' '}
         <a href="mailto:support@expedition-grundeinkommen.de">
           support@expedition-grundeinkommen.de
@@ -105,7 +105,7 @@ const SignatureDownloadList = ({ signaturesId }) => {
 
   if (state === 'created' && anonymous) {
     return (
-      <FinallyMessage state="success">
+      <FinallyMessage>
         <p>
           Juhu!{' '}
           <a target="_blank" rel="noreferrer" href={pdf.url}>

@@ -30,7 +30,7 @@ const SignUpFeedbackMessage = ({
   }
   return (
     <div className={className}>
-      <FinallyMessage state={finallyState}>
+      <FinallyMessage loading={finallyState === 'progress'}>
         {finallyState === 'progress' && 'Wird abgeschickt...'}
 
         {(state === 'saved' || state === 'success') && (

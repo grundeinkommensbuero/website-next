@@ -119,7 +119,7 @@ const CountSignaturesForm = ({
   const needsEMail = !userId && !eMail;
 
   if (state === 'saving') {
-    return <FinallyMessage state="progress">Speichere...</FinallyMessage>;
+    return <FinallyMessage loading>Speichere...</FinallyMessage>;
   }
 
   if (state === 'saved') {
@@ -148,7 +148,7 @@ const CountSignaturesForm = ({
     state === 'listAndUserNotFound'
   ) {
     return (
-      <FinallyMessage state="error">
+      <FinallyMessage>
         <>
           {state === 'userNotFound' && (
             <>
