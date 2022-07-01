@@ -98,7 +98,10 @@ export const CreateMeetup = ({
     }
 
     return (
-      <FinallyMessage state={messageState} className={s.message}>
+      <FinallyMessage
+        loading={messageState === 'progress'}
+        className={s.message}
+      >
         {createMeetupState === 'saving' && 'Wird gespeichert...'}
         {createMeetupState === 'saved' && (
           <>

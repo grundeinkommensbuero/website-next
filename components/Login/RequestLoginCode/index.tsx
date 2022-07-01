@@ -35,7 +35,7 @@ export const RequestLoginCode = ({
 
   if (!confirmSendCode) {
     return (
-      <FinallyMessage state="success">
+      <FinallyMessage>
         {children ? (
           children
         ) : (
@@ -90,7 +90,7 @@ export const RequestLoginCodeWithEmail = ({
 
   if (!tempEmail) {
     return (
-      <FinallyMessage state="success">
+      <FinallyMessage>
         <>
           {/* Custom text */}
           {children}
