@@ -15,7 +15,6 @@ import { ChangeEmail } from './ChangeEmail';
 import { EditProfileSection } from '../EditProfileSection';
 import { User } from '../../../context/Authentication';
 import { formatDate } from '../../../utils/formatDate';
-import Link from 'next/link';
 import { BackToProfile } from '../BackToProfile';
 
 type PersonalSettingsProps = {
@@ -90,7 +89,6 @@ export const PersonalSettings = ({
         <section className={s.userInfo}>
           <div className={gS.avatarContainer}>
             <ImageUpload
-              className={gS.avatar}
               userData={userData}
               userId={userId}
               buttonOnAquaBackground={true}
