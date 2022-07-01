@@ -11,11 +11,18 @@ const MePage = () => {
 
   useEffect(() => {
     // Get path after me/ to redirect to a specifc subpage of profile
-    const splitPath = router.pathname.split('me/');
-    const profilePath =
-      splitPath.length <= 1 ? '' : splitPath[splitPath.length - 1];
+    // See: https://nextjs.org/docs/routing/dynamic-routes#optional-catch-all-routes
+    // The slug in query should usually only be empty or an array, but theoretically
+    // could also be a string
+    let profilePath = '';
 
-    console.log('search', location.search);
+    if (typeof router.query.slug === 'string') {
+      profilePath = router.query.slug;
+    } else if (typeof router.query.slug !== 'undefined') {
+      // Should only have 1 element in the array, but maybe
+      // in the future we will have profile sub pages with more nesting
+      profilePath = router.query.slug.join('/');
+    }
 
     if (userId) {
       router.push(`/mensch/${userId}/${profilePath}${location.search}`);
