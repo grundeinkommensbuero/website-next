@@ -20,12 +20,9 @@ type ImageUploadProps = {
   userId: string;
   onUploadDone: () => void;
   onImageChosen?: () => void;
-  showUploadLabel?: boolean;
-  showEditLabel?: boolean;
   size: Size;
-  buttonOnAquaBackground: boolean;
-  smallSubmitButton: boolean;
-  className?: string;
+  buttonOnAquaBackground?: boolean;
+  smallSubmitButton?: boolean;
 };
 
 const ImageUpload = ({
@@ -33,12 +30,9 @@ const ImageUpload = ({
   userId,
   onUploadDone,
   onImageChosen,
-  showUploadLabel,
-  showEditLabel,
   size = 'default',
   buttonOnAquaBackground = false,
   smallSubmitButton = false,
-  className,
 }: ImageUploadProps) => {
   const [uploadImageState, uploadImage] = useUploadImage();
   const [unsavedChanges, setUnsavedChanges] = useState(false);
@@ -185,7 +179,7 @@ export const ImageInput = ({
   unsavedChanges,
   showUploadLabel,
 }: ImageInputProps) => {
-  const [avatarImage, setAvatarImage] = useState<string | ArrayBuffer>('');
+  const [avatarImage, setAvatarImage] = useState<string | ArrayBuffer>();
 
   const handleChange = ({ target }: { target: HTMLInputElement }) => {
     if (target.files && target.files[0]) {
@@ -209,7 +203,7 @@ export const ImageInput = ({
       aria-label="Lade ein Bild hoch"
     >
       <AvatarImage
-        // srcOverwrite={avatarImage}
+        srcOverwrite={avatarImage}
         aria-label="Lade ein Bild hoch"
         className={cN(
           s.avatarImage,

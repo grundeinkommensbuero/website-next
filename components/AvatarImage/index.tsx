@@ -9,11 +9,17 @@ export type Sizes = '200' | '500' | '900' | '1200' | 'original';
 
 type AvatarImageProps = {
   user: User;
+  srcOverwrite?: string | ArrayBuffer | null;
   className?: string;
   sizes?: Sizes;
 };
 
-const AvatarImage = ({ user, className, sizes = '500' }: AvatarImageProps) => {
+const AvatarImage = ({
+  user,
+  srcOverwrite,
+  className,
+  sizes = '500',
+}: AvatarImageProps) => {
   const src = user?.profilePictures
     ? // @ts-ignore
       user?.profilePictures[sizes]
@@ -34,7 +40,7 @@ const AvatarImage = ({ user, className, sizes = '500' }: AvatarImageProps) => {
   return (
     <img
       className={cN(s.image, className)}
-      src={src}
+      src={srcOverwrite || src}
       alt={user && user.username && `Avatarbild von ${user.username}`}
     />
   );
