@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  max-width: 25rem;
+
+  @media (max-width: $breakPointS) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}

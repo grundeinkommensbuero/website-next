@@ -65,3 +65,9 @@ $inputWidth: 25rem;
   max-width: 100%;
   width: $inputWidth;
 }
+
+.disabled {
+  border-color: $greyDark;
+  background: $greyBright;
+  color: $greyDark;
+}

@@ -25,6 +25,8 @@ const uploadImage = async (
 
     const uploadUrl = await requestPresignedUrl(userId, contentType);
 
+    console.log({ image, uploadUrl });
+
     await uploadToS3(uploadUrl, image, contentType);
 
     setState('success');

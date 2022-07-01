@@ -1,0 +1,44 @@
+.container {
+  display: flex;
+  justify-content: space-around;
+
+  @media (max-width: $breakPointS) {
+    flex-direction: column;
+  }
+}
+
+.avatarContainer {
+  width: 33%;
+  display: flex;
+  justify-content: center;
+
+  @media (max-width: $breakPointS) {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}
+
+.avatar {
+  width: 150px;
+  height: 150px;
+
+  @media (max-width: $breakPointM) {
+    width: 120px;
+    height: 120px;
+  }
+
+  @media (max-width: $breakPointS) {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+.content {
+  width: 66%;
+
+  @media (max-width: $breakPointS) {
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}

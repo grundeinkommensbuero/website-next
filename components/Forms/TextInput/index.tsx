@@ -28,6 +28,7 @@ export function TextInput({
   customRef,
   onChange,
   value,
+  disabled,
   ...input
 }: TextInputProps) {
   return (
@@ -44,6 +45,7 @@ export function TextInput({
       className={cN(
         s.textInput,
         { [s.textInputSmall]: size === 'SMALL' },
+        { [s.disabled]: disabled },
         className,
         {
           [s.hideNumberArrows]:
@@ -52,6 +54,7 @@ export function TextInput({
       )}
       ref={customRef}
       {...input}
+      disabled={disabled}
     />
   );
 }
@@ -61,6 +64,7 @@ export function Textarea({
   className,
   label,
   customRef,
+  disabled,
   ...input
 }: any) {
   let charLeft;
@@ -72,9 +76,10 @@ export function Textarea({
     <div>
       <textarea
         aria-label={label}
-        className={cN(s.textarea, className)}
+        className={cN(s.textarea, className, { [s.disabled]: disabled })}
         {...input}
         ref={customRef}
+        disabled={disabled}
       />
       {input.maxLength && charLeft && charLeft < 100 && (
         <div className={s.charLeftDisplay}>
@@ -116,6 +121,7 @@ type InputProps = {
   autoComplete?: string;
   customRef?: RefObject<any>;
   errorClassName?: string;
+  disabled?: boolean;
 };
 
 type WrappedTextInputProps = {
@@ -142,6 +148,7 @@ export const TextInputWrapped = ({
   autoComplete,
   customRef,
   errorClassName,
+  disabled,
 }: WrappedTextInputProps) => {
   if (hide) {
     return null;
@@ -165,6 +172,7 @@ export const TextInputWrapped = ({
           label={outputLabel}
           autoComplete={autoComplete}
           customRef={customRef}
+          disabled={disabled}
         />
       ) : (
         <TextInput
@@ -180,6 +188,7 @@ export const TextInputWrapped = ({
           inputMode={inputMode}
           autoComplete={autoComplete}
           customRef={customRef}
+          disabled={disabled}
         />
       )}
     </LabelInputErrorWrapper>
