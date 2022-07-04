@@ -13,6 +13,10 @@ import {
 } from '../components/Section';
 import { PageProps } from '../pages/[id]';
 
+// -----------------------------------------------------------------------------
+// Target Page Type
+// -----------------------------------------------------------------------------
+
 export type Page = {
   slug: string;
   title: string;
@@ -23,6 +27,10 @@ export type Page = {
   heroImage: string | null;
   sections: Section[];
 };
+
+// -----------------------------------------------------------------------------
+// Api Request Result Types
+// -----------------------------------------------------------------------------
 
 type FetchedPage = {
   slug: string;
@@ -128,6 +136,41 @@ const elementFields = [
 const faqFields = ['title', 'question', 'answer', 'openInitially'];
 
 type Relation = 'MANY-TO-ALL' | 'MANY-TO-MANY' | 'ROOT';
+
+// -----------------------------------------------------------------------------
+// Request Utils
+// -----------------------------------------------------------------------------
+
+interface CollectionDescriptor {
+  relation: Relation;
+  rootFields?: Array<string>;
+  relationFields?: Array<string>;
+  nestedFields?: { [key: string]: CollectionDescriptor };
+}
+
+const requestPage: CollectionDescriptor = {
+  relation: 'ROOT',
+  rootFields: pageFields,
+  nestedFields: {
+    sections: {
+      relation: 'MANY-TO-ALL',
+      relationFields: sectionFields,
+      nestedFields: {
+        elements: {
+          relation: 'MANY-TO-ALL',
+          rootFields: ['collection'],
+          relationFields: elementFields,
+          nestedFields: {
+            questionAnswerPair: {
+              relation: 'MANY-TO-MANY',
+              relationFields: faqFields,
+            },
+          },
+        },
+      },
+    },
+  },
+};
 
 const getFields = (
   basepath: string,
