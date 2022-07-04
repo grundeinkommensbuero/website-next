@@ -10,6 +10,9 @@ import {
   SectionsCTAButton,
   SectionsFAQ,
   Status,
+  Align,
+  QuestionAnswerPair,
+  CTAType,
 } from '../components/Section';
 import { PageProps } from '../pages/[id]';
 
@@ -79,33 +82,67 @@ const sectionFields = [
   'colorScheme',
 ];
 
-type Align = 'left' | 'center' | 'right';
+type FetchedElement =
+  | FetchedSectionsText
+  | FetchedSectionsImage
+  | FetchedSectionsComponent
+  | FetchedSectionsVideo
+  | FetchedSectionsCTAButton
+  | FetchedSectionsFAQ;
 
-type FetchedElement = {
-  collection:
-    | 'sectionsText'
-    | 'sectionsImage'
-    | 'sectionsComponent'
-    | 'sectionsVideo'
-    | 'sectionsCTAButton'
-    | 'sectionsFAQ';
-  item: {
-    id: string;
-    status: Status;
-    sort: number;
-    overrideLayout: string | null;
-    groupElement: boolean;
-    image?: string;
-    alt?: string;
-    content?: string;
-    component?: string;
-    embedId?: string;
-    buttonText?: string;
-    type?: string;
-    action?: string;
-    href?: string;
-    slug?: string;
-    align?: Align;
+type FetchedElementBase = {
+  overrideLayout: string | null;
+  groupElement: boolean;
+  id: string;
+  status: Status;
+  sort: number | null;
+};
+
+type FetchedSectionsText = {
+  collection: 'sectionsText';
+  item: FetchedElementBase & {
+    content: string;
+    edit?: boolean;
+  };
+};
+
+type FetchedSectionsImage = {
+  collection: 'sectionsImage';
+  item: FetchedElementBase & {
+    image: string;
+    alt: string;
+  };
+};
+
+type FetchedSectionsComponent = {
+  collection: 'sectionsComponent';
+  item: FetchedElementBase & {
+    component: string;
+  };
+};
+
+type FetchedSectionsVideo = {
+  collection: 'sectionsVideo';
+  item: FetchedElementBase & {
+    embedId: string;
+  };
+};
+
+type FetchedSectionsCTAButton = {
+  collection: 'sectionsCTAButton';
+  item: FetchedElementBase & {
+    buttonText: string;
+    align: Align;
+    type: CTAType;
+    action: string | null;
+    href: string | null;
+    slug: string | null;
+  };
+};
+
+type FetchedSectionsFAQ = {
+  collection: 'sectionsFAQ';
+  item: FetchedElementBase & {
     title?: string;
     questionAnswerPair?: Array<{
       questionAnswerPair_id: QuestionAnswerPair;
@@ -321,12 +358,6 @@ const updatePageStructure = (fetchedPage: FetchedPage): Page => {
         };
       }),
   };
-};
-
-export type QuestionAnswerPair = {
-  question: string | null;
-  answer: string | null;
-  openInitially: boolean;
 };
 
 const fetchManyToAllRelation = async (

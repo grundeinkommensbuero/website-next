@@ -71,8 +71,8 @@ export type SectionsVideo = SectionElementBase & {
 export type SectionsCTAButton = SectionElementBase & {
   collection: 'sectionsCTAButton';
   buttonText: string;
-  align: 'left' | 'center' | 'right';
-  type: 'action' | 'href' | 'slug';
+  align: Align;
+  type: CTAType;
   action: string | null;
   href: string | null;
   slug: string | null;
@@ -81,11 +81,7 @@ export type SectionsCTAButton = SectionElementBase & {
 export type SectionsFAQ = SectionElementBase & {
   collection: 'sectionsFAQ';
   title?: string;
-  questionAnswerPair: Array<{
-    question: string | null;
-    answer: string | null;
-    openInitially: boolean;
-  }>;
+  questionAnswerPair: Array<QuestionAnswerPair>;
 };
 
 export type SectionElementBase = {
@@ -102,11 +98,19 @@ export type OverrideLayout = '100' | '75' | '50' | '25' | null;
 
 export type Align = 'left' | 'right' | 'center' | null;
 
+export type CTAType = 'action' | 'href' | 'slug';
+
 export type ColorScheme =
   | 'colorSchemeAqua'
   | 'colorSchemeViolet'
   | 'colorSchemeWhite'
   | 'colorSchemeRed';
+
+export type QuestionAnswerPair = {
+  question: string | null;
+  answer: string | null;
+  openInitially: boolean;
+};
 
 type GroupedElements = Array<Array<SectionElement>>;
 
