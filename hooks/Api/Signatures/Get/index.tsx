@@ -70,7 +70,6 @@ export const useSignatureCountOfUser = (): [
           signatureData.mostRecentCampaign =
             getMostRecentCampaign(signatureData);
         }
-
         setStats(signatureData);
       });
     },
