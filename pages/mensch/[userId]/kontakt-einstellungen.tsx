@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import AuthContext from '../../../context/Authentication';
 import { ProfileNotifications } from '../../../components/Profile/ProfileNotifications';
+import { ProfileWrapper } from '../../../components/Profile/ProfileWrapper';
 
 const KonataktEinstellungen = () => {
   const {
@@ -14,11 +15,13 @@ const KonataktEinstellungen = () => {
   };
 
   return (
-    <ProfileNotifications
-      userData={userData}
-      updateCustomUserData={triggerUpdateCustomUserData}
-      userId={userId}
-    />
+    <ProfileWrapper id={userId}>
+      <ProfileNotifications
+        userData={userData}
+        updateCustomUserData={triggerUpdateCustomUserData}
+        userId={userId}
+      />
+    </ProfileWrapper>
   );
 };
 

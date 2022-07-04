@@ -33,14 +33,37 @@ export const useSignatureCount = (): {
   return stats;
 };
 
+export type ScannedByUser = {
+  count: number;
+  listId: string;
+  campaign: {
+    round: number;
+    state: string;
+    code: string;
+  };
+  timestamp: string;
+};
+
+export type SignatureCount = {
+  received: number;
+  scannedByUser: number;
+  receivedList: [];
+  scannedByUserList: Array<ScannedByUser>;
+  mostRecentCampaign: null | string;
+};
+
 // Hook to get signature count of a user
 // Data can have either listId, userId or email
-export const useSignatureCountOfUser = (): [any, any, () => void] => {
-  const [stats, setStats] = useState('');
+export const useSignatureCountOfUser = (): [
+  SignatureCount | null,
+  (data: getSignatureCountOfUserArgs) => void,
+  () => void
+] => {
+  const [stats, setStats] = useState<SignatureCount | null>(null);
 
   return [
     stats,
-    (data: any) => {
+    (data: getSignatureCountOfUserArgs) => {
       getSignatureCountOfUser(data).then(data => {
         // get the most recent relevant campaing
         data.mostRecentCampaign = getMostRecentCampaign(data);
@@ -49,7 +72,7 @@ export const useSignatureCountOfUser = (): [any, any, () => void] => {
       });
     },
     () => {
-      setStats('');
+      setStats(null);
     },
   ];
 };
@@ -108,9 +131,9 @@ const getSignatureCount = async () => {
 // For list id it will return the count for all lists of the user
 // If no param was passed, return null
 type getSignatureCountOfUserArgs = {
-  listId: string;
-  userId: string;
-  email: string;
+  listId?: string;
+  userId?: string;
+  email?: string;
 };
 const getSignatureCountOfUser = async ({
   listId,
