@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import AvatarImage from '../../AvatarImage';
-import SignatureStats, { SignatureCount } from '../../SignatureStats';
+import SignatureStats from '../../SignatureStats';
 import { formatDate } from '../../../utils/date';
 import s from './style.module.scss';
 import gS from '../style.module.scss';
@@ -10,13 +10,14 @@ import { getCustomNewsletterEnumeration } from '../utils/customNewsletterEnumera
 import { User } from '../../../context/Authentication';
 import Link from 'next/link';
 import { stateToAgs } from '../../../utils/stateToAgs';
+import { SignatureCount } from '../../../hooks/Api/Signatures/Get';
 
 const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
 
 type ProfileOverviewProps = {
   userData: User;
   userId: string;
-  signatureCountOfUser: SignatureCount;
+  signatureCountOfUser: SignatureCount | null;
 };
 
 export const ProfileOverview = ({

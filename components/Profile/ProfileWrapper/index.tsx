@@ -1,16 +1,21 @@
 import { useRouter } from 'next/router';
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, ReactElement } from 'react';
 import AuthContext from '../../../context/Authentication';
 import { useSignatureCountOfUser } from '../../../hooks/Api/Signatures/Get';
 import { useBounceToIdentifiedState } from '../../../hooks/Authentication';
 import { LinkButtonLocal } from '../../Forms/Button';
 import { FinallyMessage } from '../../Forms/FinallyMessage';
 import { EnterLoginCode } from '../../Login/EnterLoginCode';
-import { ProfileOverview } from '../ProfileOverview';
 
-type ProfilePageProps = { id: string };
+type ProfileWrapperProps = {
+  children?: ReactElement | ReactElement[] | string;
+  id: string;
+};
 
-const ProfilePage = ({ id: slugId }: ProfilePageProps) => {
+export const ProfileWrapper = ({
+  children,
+  id: slugId,
+}: ProfileWrapperProps) => {
   const {
     userId,
     isAuthenticated,
@@ -18,13 +23,11 @@ const ProfilePage = ({ id: slugId }: ProfilePageProps) => {
     customUserData: userData,
     previousAction,
     setPreviousAction,
-    updateCustomUserData,
   } = useContext(AuthContext);
 
   const router = useRouter();
 
-  const [signatureCountOfUser, getSignatureCountOfUser] =
-    useSignatureCountOfUser();
+  const [, getSignatureCountOfUser] = useSignatureCountOfUser();
 
   const bounceToIdentifiedState = useBounceToIdentifiedState();
 
@@ -73,10 +76,6 @@ const ProfilePage = ({ id: slugId }: ProfilePageProps) => {
     // eslint-disable-next-line
   }, [previousAction]);
 
-  const triggerUpdateCustomUserData = () => {
-    updateCustomUserData();
-  };
-
   return (
     <>
       {isLoading && (
@@ -86,14 +85,7 @@ const ProfilePage = ({ id: slugId }: ProfilePageProps) => {
           </div>
         </section>
       )}
-      {!isLoading && isAuthenticated && (
-        <ProfileOverview
-          userData={userData}
-          userId={userId}
-          signatureCountOfUser={signatureCountOfUser}
-        />
-      )}
-
+      {!isLoading && isAuthenticated && <>{children}</>}
       {/* If not authenticated and trying to access different profile show option to go to own user page */}
       {!isLoading && slugId !== userId && (
         <section>
@@ -128,7 +120,6 @@ const ProfilePage = ({ id: slugId }: ProfilePageProps) => {
         <section>
           <EnterLoginCode>
             <p>
-              {' '}
               Du bist mit der E-Mail-Adresse {userData.email} eingeloggt. Um
               dich zu identifizieren, haben wir dir einen Code per E-Mail
               geschickt. Bitte gib diesen ein, um dein Profil zu sehen:
@@ -139,5 +130,3 @@ const ProfilePage = ({ id: slugId }: ProfilePageProps) => {
     </>
   );
 };
-
-export default ProfilePage;

@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { ProfileDonationSettings } from '../../../components/Profile/ProfileDonationSettings';
+import { ProfileWrapper } from '../../../components/Profile/ProfileWrapper';
 import AuthContext from '../../../context/Authentication';
 
 const SpendenEinstellungen = () => {
@@ -14,11 +15,13 @@ const SpendenEinstellungen = () => {
   };
 
   return (
-    <ProfileDonationSettings
-      userData={userData}
-      updateCustomUserData={triggerUpdateCustomUserData}
-      userId={userId}
-    />
+    <ProfileWrapper id={userId}>
+      <ProfileDonationSettings
+        userData={userData}
+        updateCustomUserData={triggerUpdateCustomUserData}
+        userId={userId}
+      />
+    </ProfileWrapper>
   );
 };
 
