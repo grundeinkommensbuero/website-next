@@ -1,4 +1,5 @@
-import { Directus, RelationItem } from '@directus/sdk';
+import { Directus } from '@directus/sdk';
+import { PageProps } from '../pages/[id]';
 import {
   Section,
   Layout,
@@ -14,7 +15,6 @@ import {
   QuestionAnswerPair,
   CTAType,
 } from '../components/Section';
-import { PageProps } from '../pages/[id]';
 
 // -----------------------------------------------------------------------------
 // Target Page Type
@@ -28,14 +28,14 @@ export type Page = {
   heroTitle: string | null;
   heroSubTitle: string | null;
   heroImage: string | null;
-  sections: Section[];
+  sections: Array<Section>;
 };
 
 // -----------------------------------------------------------------------------
-// Api Request Result Types
+// Api Result Type - Page
 // -----------------------------------------------------------------------------
 
-type FetchedPage = {
+type DirectusPage = {
   slug: string;
   title: string;
   status: Status;
@@ -43,7 +43,7 @@ type FetchedPage = {
   heroTitle: string | null;
   heroSubTitle: string | null;
   heroImage: string | null;
-  sections: FetchedSectionData[];
+  sections: Array<DirectusSection>;
 };
 
 const pageFields = [
@@ -56,7 +56,11 @@ const pageFields = [
   'heroImage',
 ];
 
-type FetchedSectionData = {
+// -----------------------------------------------------------------------------
+// Api Result Type - Section
+// -----------------------------------------------------------------------------
+
+type DirectusSection = {
   sort: number;
   item: {
     id: string;
@@ -66,12 +70,13 @@ type FetchedSectionData = {
     label: string;
     layout: Layout;
     colorScheme: ColorScheme;
-    includeAgs?: string[];
-    excludeAgs?: string[];
-    elements: FetchedElement[];
+    includeAgs?: Array<string>;
+    excludeAgs?: Array<string>;
+    elements: Array<DirectusElement>;
   };
 };
 
+// Fields we want to fetch from Directus
 const sectionFields = [
   'id',
   'status',
@@ -82,15 +87,21 @@ const sectionFields = [
   'colorScheme',
 ];
 
-type FetchedElement =
-  | FetchedSectionsText
-  | FetchedSectionsImage
-  | FetchedSectionsComponent
-  | FetchedSectionsVideo
-  | FetchedSectionsCTAButton
-  | FetchedSectionsFAQ;
+// -----------------------------------------------------------------------------
+// Api Result Types - Section Elements
+// -----------------------------------------------------------------------------
 
-type FetchedElementBase = {
+// Combine all sub-types to a larger union type
+type DirectusElement =
+  | DirectusSectionsText
+  | DirectusSectionsImage
+  | DirectusSectionsComponent
+  | DirectusSectionsVideo
+  | DirectusSectionsCTAButton
+  | DirectusSectionsFAQ;
+
+// Type and fields that all elements have in common
+type DirectusElementBase = {
   overrideLayout: string | null;
   groupElement: boolean;
   id: string;
@@ -98,39 +109,74 @@ type FetchedElementBase = {
   sort: number | null;
 };
 
-type FetchedSectionsText = {
+const elementBaseFields = [
+  'id',
+  'status',
+  'sort',
+  'overrideLayout',
+  'groupElement',
+];
+
+// -----------------------------------------------------------------------------
+// Api Result Type - SectionsText
+// -----------------------------------------------------------------------------
+
+type DirectusSectionsText = {
   collection: 'sectionsText';
-  item: FetchedElementBase & {
+  item: DirectusElementBase & {
     content: string;
-    edit?: boolean;
-  };
+  }; // basetype extended with custom fields
 };
 
-type FetchedSectionsImage = {
+const sectionsTextFields = ['content'];
+
+// -----------------------------------------------------------------------------
+// Api Result Type - SectionsImage
+// -----------------------------------------------------------------------------
+
+type DirectusSectionsImage = {
   collection: 'sectionsImage';
-  item: FetchedElementBase & {
+  item: DirectusElementBase & {
     image: string;
     alt: string;
   };
 };
 
-type FetchedSectionsComponent = {
+const sectionsImageFields = ['image', 'alt'];
+
+// -----------------------------------------------------------------------------
+// Api Result Type - SectionsComponent
+// -----------------------------------------------------------------------------
+
+type DirectusSectionsComponent = {
   collection: 'sectionsComponent';
-  item: FetchedElementBase & {
+  item: DirectusElementBase & {
     component: string;
   };
 };
 
-type FetchedSectionsVideo = {
+const sectionsComponentFields = ['component'];
+
+// -----------------------------------------------------------------------------
+// Api Result Type - SectionsVideo
+// -----------------------------------------------------------------------------
+
+type DirectusSectionsVideo = {
   collection: 'sectionsVideo';
-  item: FetchedElementBase & {
+  item: DirectusElementBase & {
     embedId: string;
   };
 };
 
-type FetchedSectionsCTAButton = {
+const sectionsVideoFields = ['embedId'];
+
+// -----------------------------------------------------------------------------
+// Api Result Type - SectionsCTAButton
+// -----------------------------------------------------------------------------
+
+type DirectusSectionsCTAButton = {
   collection: 'sectionsCTAButton';
-  item: FetchedElementBase & {
+  item: DirectusElementBase & {
     buttonText: string;
     align: Align;
     type: CTAType;
@@ -140,9 +186,22 @@ type FetchedSectionsCTAButton = {
   };
 };
 
-type FetchedSectionsFAQ = {
+const sectionsCTAButtonFields = [
+  'buttonText',
+  'align',
+  'type',
+  'action',
+  'href',
+  'slug',
+];
+
+// -----------------------------------------------------------------------------
+// Api Result Type - SectionsFAQ
+// -----------------------------------------------------------------------------
+
+type DirectusSectionsFAQ = {
   collection: 'sectionsFAQ';
-  item: FetchedElementBase & {
+  item: DirectusElementBase & {
     title?: string;
     questionAnswerPair?: Array<{
       questionAnswerPair_id: QuestionAnswerPair;
@@ -150,24 +209,18 @@ type FetchedSectionsFAQ = {
   };
 };
 
+const sectionsFAQFields = ['title'];
+
+const questionAnswerPairFields = ['question', 'answer', 'openInitially'];
+
 const elementFields = [
-  'id',
-  'status',
-  'sort',
-  'overrideLayout',
-  'groupElement',
-  'image',
-  'alt',
-  'content',
-  'component',
-  'embedId',
-  'buttonText',
-  'type',
-  'action',
-  'href',
-  'slug',
-  'align',
-  'title',
+  ...elementBaseFields,
+  ...sectionsTextFields,
+  ...sectionsImageFields,
+  ...sectionsComponentFields,
+  ...sectionsVideoFields,
+  ...sectionsCTAButtonFields,
+  ...sectionsFAQFields,
 ];
 
 const faqFields = ['title', 'question', 'answer', 'openInitially'];
@@ -245,7 +298,7 @@ export const getPageProps = async (slug: string): Promise<PageProps> => {
     // Get the current page from directus by slug (ID)
     const _page = (await directus.items('pages').readOne(slug, {
       fields,
-    })) as FetchedPage;
+    })) as DirectusPage;
 
     return {
       page: updatePageStructure(_page),
@@ -258,7 +311,7 @@ export const getPageProps = async (slug: string): Promise<PageProps> => {
   }
 };
 
-const updatePageStructure = (fetchedPage: FetchedPage): Page => {
+const updatePageStructure = (fetchedPage: DirectusPage): Page => {
   return {
     slug: fetchedPage.slug,
     title: fetchedPage.title,
