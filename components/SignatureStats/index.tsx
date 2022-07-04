@@ -1,11 +1,7 @@
 import React from 'react';
+import { SignatureCount } from '../../hooks/Api/Signatures/Get';
 import VisualCounter from '../VisualCounter';
 import s from './style.module.scss';
-
-export type SignatureCount = {
-  scannedByUser: number;
-  received: number;
-};
 
 type SignatureStatsProps = {
   signatureCount: SignatureCount;

@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
-import React, { useState, useContext, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import React, { useState, useContext, useEffect, ReactElement } from 'react';
 import AuthContext from '../../../context/Authentication';
 import { useSignatureCountOfUser } from '../../../hooks/Api/Signatures/Get';
 import { useBounceToIdentifiedState } from '../../../hooks/Authentication';
@@ -8,15 +7,16 @@ import { LinkButtonLocal } from '../../Forms/Button';
 import { FinallyMessage } from '../../Forms/FinallyMessage';
 import { EnterLoginCode } from '../../Login/EnterLoginCode';
 import { ProfileOverview } from '../ProfileOverview';
-import { PersonalSettings } from '../PersonalSettings';
-// import { ProfileNotifications } from '../ProfileNotifications';
-// import { ProfileSignatures } from '../ProfileSignatures';
-// import { ProfilePledgePackage } from '../ProfilePledgePackage';
-// import { ProfileDonationSettings } from '../ProfileDonationSettings';
 
-type ProfilePageProps = { id: string };
+type ProfileWrapperProps = {
+  children?: ReactElement | ReactElement[] | string;
+  id: string;
+};
 
-const ProfilePage = ({ id: slugId }: ProfilePageProps) => {
+export const ProfileWrapper = ({
+  children,
+  id: slugId,
+}: ProfileWrapperProps) => {
   const {
     userId,
     isAuthenticated,
@@ -24,13 +24,11 @@ const ProfilePage = ({ id: slugId }: ProfilePageProps) => {
     customUserData: userData,
     previousAction,
     setPreviousAction,
-    updateCustomUserData,
   } = useContext(AuthContext);
 
   const router = useRouter();
 
-  const [signatureCountOfUser, getSignatureCountOfUser] =
-    useSignatureCountOfUser();
+  const [, getSignatureCountOfUser] = useSignatureCountOfUser();
 
   const bounceToIdentifiedState = useBounceToIdentifiedState();
 
@@ -79,10 +77,6 @@ const ProfilePage = ({ id: slugId }: ProfilePageProps) => {
     // eslint-disable-next-line
   }, [previousAction]);
 
-  const triggerUpdateCustomUserData = () => {
-    updateCustomUserData();
-  };
-
   return (
     <>
       {isLoading && (
@@ -92,60 +86,7 @@ const ProfilePage = ({ id: slugId }: ProfilePageProps) => {
           </div>
         </section>
       )}
-      {!isLoading && isAuthenticated && (
-        <ProfileOverview
-          userData={userData}
-          userId={userId}
-          signatureCountOfUser={signatureCountOfUser}
-        />
-        // <Router basename={`/mensch/${userId}`}>
-        //   <Routes>
-        //     <Route
-        //       path="/"
-        //       element={
-        //         <ProfileOverview
-        //           userData={userData}
-        //           signatureCountOfUser={signatureCountOfUser}
-        //         />
-        //       }
-        //     />
-
-        //     <Route
-        //       path="/stammdaten"
-        //       element={
-        //         <PersonalSettings
-        //           userData={userData}
-        //           updateCustomUserData={triggerUpdateCustomUserData}
-        //           userId={userId}
-        //         />
-        //       }
-        //     />
-        //     {/* <ProfileSignatures
-        //     userData={userData}
-        //     path="unterschriften-eintragen"
-        //     userId={userId}
-        //   />
-        //   <ProfileNotifications
-        //     userData={userData}
-        //     updateCustomUserData={triggerUpdateCustomUserData}
-        //     path="kontakt-einstellungen"
-        //     userId={userId}
-        //   />
-        //   <ProfilePledgePackage
-        //     userData={userData}
-        //     updateCustomUserData={triggerUpdateCustomUserData}
-        //     path="paket-nehmen"
-        //     userId={userId}
-        //   />
-        //   <ProfileDonationSettings
-        //     userData={userData}
-        //     updateCustomUserData={triggerUpdateCustomUserData}
-        //     path="spenden-einstellungen"
-        //     userId={userId}
-        //   /> */}
-        //   </Routes>
-        // </Router>
-      )}
+      {!isLoading && isAuthenticated && <>{children}</>}
 
       {/* If not authenticated and trying to access different profile show option to go to own user page */}
       {!isLoading && slugId !== userId && (
@@ -181,7 +122,6 @@ const ProfilePage = ({ id: slugId }: ProfilePageProps) => {
         <section>
           <EnterLoginCode>
             <p>
-              {' '}
               Du bist mit der E-Mail-Adresse {userData.email} eingeloggt. Um
               dich zu identifizieren, haben wir dir einen Code per E-Mail
               geschickt. Bitte gib diesen ein, um dein Profil zu sehen:
@@ -192,5 +132,3 @@ const ProfilePage = ({ id: slugId }: ProfilePageProps) => {
     </>
   );
 };
-
-export default ProfilePage;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import AvatarImage from '../../AvatarImage';
-import SignatureStats, { SignatureCount } from '../../SignatureStats';
+import SignatureStats from '../../SignatureStats';
 import { formatDate } from '../../../utils/formatDate';
 import s from './style.module.scss';
 import gS from '../style.module.scss';
@@ -9,11 +9,12 @@ import { getReferredUserMessage } from '../utils/referredUserMessage';
 import { getCustomNewsletterEnumeration } from '../utils/customNewsletterEnumeration';
 import { User } from '../../../context/Authentication';
 import Link from 'next/link';
+import { SignatureCount } from '../../../hooks/Api/Signatures/Get';
 
 type ProfileOverviewProps = {
   userData: User;
   userId: string;
-  signatureCountOfUser: SignatureCount;
+  signatureCountOfUser: SignatureCount | null;
 };
 
 export const ProfileOverview = ({

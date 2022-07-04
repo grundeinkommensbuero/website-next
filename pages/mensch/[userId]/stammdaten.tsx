@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { PersonalSettings } from '../../../components/Profile/PersonalSettings';
+import { ProfileWrapper } from '../../../components/Profile/ProfileWrapper';
 import AuthContext from '../../../context/Authentication';
 
 const Stammdaten = () => {
@@ -14,11 +15,13 @@ const Stammdaten = () => {
   };
 
   return (
-    <PersonalSettings
-      userData={userData}
-      updateCustomUserData={triggerUpdateCustomUserData}
-      userId={userId}
-    />
+    <ProfileWrapper id={userId}>
+      <PersonalSettings
+        userData={userData}
+        updateCustomUserData={triggerUpdateCustomUserData}
+        userId={userId}
+      />
+    </ProfileWrapper>
   );
 };
 
