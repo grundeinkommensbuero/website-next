@@ -33,7 +33,6 @@ const MePage = () => {
 
   return (
     <SectionWrapper colorScheme="colorSchemeWhite">
-      {/* TODO: refactor all the other FinallyMessages */}
       <FinallyMessage loading>Lade...</FinallyMessage>
     </SectionWrapper>
   );
