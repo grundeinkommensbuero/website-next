@@ -1,4 +1,4 @@
-import { Directus } from '@directus/sdk';
+import { Directus, RelationItem } from '@directus/sdk';
 import {
   Section,
   Layout,
@@ -8,6 +8,7 @@ import {
   SectionsText,
   SectionsVideo,
   SectionsCTAButton,
+  SectionsFAQ,
   Status,
 } from '../components/Section';
 import { PageProps } from '../pages/[id]';
@@ -34,6 +35,16 @@ type FetchedPage = {
   sections: FetchedSectionData[];
 };
 
+const pageFields = [
+  'slug',
+  'title',
+  'status',
+  'hasHero',
+  'heroTitle',
+  'heroSubTitle',
+  'heroImage',
+];
+
 type FetchedSectionData = {
   sort: number;
   item: {
@@ -50,6 +61,16 @@ type FetchedSectionData = {
   };
 };
 
+const sectionFields = [
+  'id',
+  'status',
+  'sort',
+  'title',
+  'label',
+  'layout',
+  'colorScheme',
+];
+
 type Align = 'left' | 'center' | 'right';
 
 type FetchedElement = {
@@ -58,7 +79,8 @@ type FetchedElement = {
     | 'sectionsImage'
     | 'sectionsComponent'
     | 'sectionsVideo'
-    | 'sectionsCTAButton';
+    | 'sectionsCTAButton'
+    | 'sectionsFAQ';
   item: {
     id: string;
     status: Status;
@@ -76,8 +98,65 @@ type FetchedElement = {
     href?: string;
     slug?: string;
     align?: Align;
+    title?: string;
+    questionAnswerPair?: Array<{
+      questionAnswerPair_id: QuestionAnswerPair;
+    }>;
   };
 };
+
+const elementFields = [
+  'id',
+  'status',
+  'sort',
+  'overrideLayout',
+  'groupElement',
+  'image',
+  'alt',
+  'content',
+  'component',
+  'embedId',
+  'buttonText',
+  'type',
+  'action',
+  'href',
+  'slug',
+  'align',
+  'title',
+];
+
+const faqFields = ['title', 'question', 'answer', 'openInitially'];
+
+type Relation = 'MANY-TO-ALL' | 'MANY-TO-MANY' | 'ROOT';
+
+const getFields = (
+  basepath: string,
+  relation: Relation,
+  fields: Array<string>
+): Array<string> => {
+  switch (relation) {
+    case 'ROOT':
+      return fields.map(x => basepath + x);
+    case 'MANY-TO-ALL':
+      return fields.map(x => basepath + 'item.' + x);
+    case 'MANY-TO-MANY': {
+      const xs = basepath.split('.');
+      return fields.map(x => `${basepath}${xs[xs.length - 2]}_id.${x}`);
+    }
+  }
+};
+
+const fields = [
+  ...getFields('', 'ROOT', pageFields),
+  ...getFields('sections.', 'MANY-TO-ALL', sectionFields),
+  'sections.item.elements.collection',
+  ...getFields('sections.item.elements.', 'MANY-TO-ALL', elementFields),
+  ...getFields(
+    'sections.item.elements.item.questionAnswerPair.',
+    'MANY-TO-MANY',
+    faqFields
+  ),
+];
 
 export const getPageProps = async (slug: string): Promise<PageProps> => {
   const directus = new Directus(process.env.DIRECTUS || '');
@@ -85,27 +164,7 @@ export const getPageProps = async (slug: string): Promise<PageProps> => {
   try {
     // Get the current page from directus by slug (ID)
     const _page = (await directus.items('pages').readOne(slug, {
-      fields: [
-        'slug',
-        'title',
-        'status',
-        'hasHero',
-        'heroTitle',
-        'heroSubTitle',
-        'heroImage',
-        'sections.sort',
-        'sections.item.id',
-        'sections.item.status',
-        'sections.item.sort',
-        'sections.item.title',
-        'sections.item.label',
-        'sections.item.layout',
-        'sections.item.colorScheme',
-        'sections.item.includeAgs',
-        'sections.item.excludeAgs',
-        'sections.item.elements.collection',
-        'sections.item.elements.item.*',
-      ],
+      fields,
     })) as FetchedPage;
 
     return {
@@ -196,9 +255,51 @@ const updatePageStructure = (fetchedPage: FetchedPage): Page => {
                     slug: element.item.slug,
                     align: element.item.align,
                   } as SectionsCTAButton;
+                case 'sectionsFAQ':
+                  return {
+                    ...baseElement,
+                    collection: 'sectionsFAQ',
+                    title: element.item.title,
+                    questionAnswerPair: element.item.questionAnswerPair
+                      ? element.item.questionAnswerPair.map(questionAnswer => {
+                          return {
+                            question:
+                              questionAnswer.questionAnswerPair_id.question,
+                            answer: questionAnswer.questionAnswerPair_id.answer,
+                            openInitially:
+                              questionAnswer.questionAnswerPair_id
+                                .openInitially,
+                          };
+                        })
+                      : [],
+                  } as SectionsFAQ;
               }
             }),
         };
       }),
   };
+};
+
+export type QuestionAnswerPair = {
+  question: string | null;
+  answer: string | null;
+  openInitially: boolean;
+};
+
+const fetchManyToAllRelation = async (
+  collection: string,
+  ids: Array<number>,
+  fields: Array<string>
+): Promise<Array<{ [key: string]: string }>> => {
+  const directus = new Directus(process.env.DIRECTUS || '');
+  try {
+    const m2a = (await directus.items(collection).readMany(ids, {
+      fields,
+    })) as [];
+    console.log(m2a);
+    return m2a;
+  } catch (error) {
+    console.log(error);
+  }
+  return [];
 };
