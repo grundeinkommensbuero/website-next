@@ -134,7 +134,7 @@ const SignUp = ({
   overwriteMandatoryFields = [],
   // This can be used to not render a specific field if user already has attribute
   fieldsToHideIfValueExists = [],
-  // Data which should be saved during creation o fuser
+  // Data which should be saved during creation of user
   additionalData,
   showHeading = true,
   smallFormMargin = false,
