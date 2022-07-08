@@ -250,10 +250,6 @@ const SignUp = ({
               ? 'error'
               : 'loading'
           }
-          trackingId={'sign-up'}
-          trackingCategory="SignUp"
-          // TODO: maybe not needed anymore, it was remoded in the gatsby project
-          className={s.adjustFinallyMessage}
         />
       </>
     );
