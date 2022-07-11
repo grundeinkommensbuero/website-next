@@ -8,7 +8,10 @@ const nextConfig = {
   },
   images: {
     dangerouslyAllowSVG: true,
-    domains: [process.env.DIRECTUS_DOMAIN],
+    domains: [
+      'next.expedition-grundeinkommen.de',
+      'next.volksentscheid-grundeinkommen.de',
+    ],
   },
   sassOptions: {
     prependData: `@import "./styles/vars.scss";`,
