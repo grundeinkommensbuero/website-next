@@ -20,6 +20,15 @@
   }
 }
 
+.avatar {
+  width: 120px;
+  height: 120px;
+
+  @media (max-width: $breakPointS) {
+    margin-bottom: 1.5rem;
+  }
+}
+
 .avatarContainer {
   margin-right: 4rem;
 }
