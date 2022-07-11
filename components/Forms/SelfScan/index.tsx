@@ -123,7 +123,7 @@ const CountSignaturesForm = ({
   if (state === 'saving') {
     return (
       <FinallyMessage
-        color={IS_BERLIN_PROJECT ? 'roseOnWhite' : undefined}
+        colorScheme={IS_BERLIN_PROJECT ? 'colorSchemeRoseOnWhite' : undefined}
         loading
       >
         Speichere...
