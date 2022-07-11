@@ -22,6 +22,8 @@ import { validateEmail } from '../../../hooks/Authentication/validateEmail';
 import { hasKey } from '../../../utils/hasKey';
 import { useRouter } from 'next/router';
 
+const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
+
 // Not needed at the moment
 /* const AuthenticatedDialogDefault = () => {
   return (
@@ -189,7 +191,14 @@ const SignUp = ({
   }, [isAuthenticated, hasSubmitted, formData, userId]);
 
   if (signUpState === 'success') {
-    return <EnterLoginCode preventSignIn={true} />;
+    return (
+      <EnterLoginCode
+        preventSignIn={true}
+        colorScheme={
+          IS_BERLIN_PROJECT ? 'colorSchemeRoseOnWhite' : 'colorSchemeWhite'
+        }
+      />
+    );
   }
 
   // TODO: clean up, most of the stuff is not used here anymore

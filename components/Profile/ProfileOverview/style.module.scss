@@ -1,3 +1,5 @@
+@import '../../../styles/utility/colors.scss';
+
 .profilePageSection {
   position: relative;
   background-color: $aqua;
@@ -11,9 +13,17 @@
   &:focus {
     background-color: lighten($aqua, 5%);
 
+    &.rose {
+      background-color: lighten($rose, 5%);
+    }
+
     h2 {
       text-decoration: underline;
     }
+  }
+
+  &.rose {
+    @extend .colorSchemeRose;
   }
 
   @media (max-width: $breakPointS) {

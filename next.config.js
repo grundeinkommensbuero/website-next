@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   reactStrictMode: true,
   i18n: {
@@ -7,7 +8,7 @@ const nextConfig = {
   },
   images: {
     dangerouslyAllowSVG: true,
-    domains: ['xbge-directus.frac.tools'],
+    domains: [process.env.DIRECTUS_DOMAIN],
   },
   sassOptions: {
     prependData: `@import "./styles/vars.scss";`,

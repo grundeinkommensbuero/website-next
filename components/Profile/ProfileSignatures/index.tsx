@@ -11,6 +11,8 @@ import { BackToProfile } from '../BackToProfile';
 import { User } from '../../../context/Authentication';
 import { CampaignVisualisation } from '../../CampaignVisualisations';
 
+const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
+
 type CampaignCode = {
   campaignName: string;
   campaignCode: string;
@@ -29,10 +31,12 @@ export const ProfileSignatures = ({
   userData,
   campaignVisualisations,
 }: ProfileSignaturesProps) => {
-  const [userCampaigns, setUserCampaigns] = useState<CampaignCode[]>([]);
+  const [userCampaigns, setUserCampaigns] = useState<CampaignCode[]>(
+    IS_BERLIN_PROJECT ? [campaignCodes[0]] : []
+  );
 
   useEffect(() => {
-    if (userData && userData.municipalities) {
+    if (userData && userData.municipalities && !IS_BERLIN_PROJECT) {
       const activeCampaigns: CampaignCode[] = [];
       userData.municipalities.forEach(mun => {
         campaignCodes.forEach(campCode => {
@@ -51,6 +55,7 @@ export const ProfileSignatures = ({
         <BackToProfile />
 
         <section className={s.signatureSection}>
+          {/* TODO: is this still needed? */}
           {/* <Helmet>
             <title>Selbsteingabe Unterschriftsliste</title>
           </Helmet> */}
