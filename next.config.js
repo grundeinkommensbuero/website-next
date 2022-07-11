@@ -9,8 +9,8 @@ const nextConfig = {
   images: {
     dangerouslyAllowSVG: true,
     domains: [
-      'next.expedition-grundeinkommen.de',
-      'next.volksentscheid-grundeinkommen.de',
+      'directus.expedition-grundeinkommen.de',
+      'directus.volksentscheid-grundeinkommen.de',
     ],
   },
   sassOptions: {
