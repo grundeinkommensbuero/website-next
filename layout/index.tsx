@@ -2,7 +2,7 @@ import { ReactElement, useContext } from 'react';
 import Head from 'next/head';
 import { Header } from './Header';
 import { Footer } from './Footer';
-import { Menu, MenuEntry } from '../utils/getMenus';
+import { Menu } from '../utils/getMenus';
 import { XbgeAppContext } from '../context/App/index';
 
 type LayoutProps = {
