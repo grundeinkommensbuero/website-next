@@ -7,7 +7,7 @@ const nextConfig = {
   },
   images: {
     dangerouslyAllowSVG: true,
-    domains: ['xbge-directus.frac.tools'],
+    domains: ['directus.expedition-grundeinkommen.de'],
   },
   sassOptions: {
     prependData: `@import "./styles/vars.scss";`,
