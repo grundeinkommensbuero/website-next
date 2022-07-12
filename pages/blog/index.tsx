@@ -1,12 +1,14 @@
 import type { GetServerSideProps } from 'next';
 import { ReactElement } from 'react';
 import { PostExcerpt } from '../../components/Blog/PostExcerpt';
+import { BlogList } from '../../components/LegacyBlog/BlogList';
 import fetchData from './fetchData';
 
 export type Blogpost = {
   id: string;
   title: string;
   content: string;
+  date: string;
   featured_image: {
     id: string;
   };
@@ -20,6 +22,7 @@ const query = `query Blogposts {
       id
     }
     content
+    date
   }
 }
 `;
@@ -49,8 +52,9 @@ const Blog = ({ blogposts }: SSProps): ReactElement => {
   return (
     <>
       <h2 className="mx-8">Expeditionsblog:</h2>
-      <div className="flex flex-wrap xs:flex-column justify-around">
-        {blogposts &&
+      <BlogList posts={blogposts} />
+      {/* <div className="flex flex-wrap xs:flex-column justify-around">
+        {blogposts && blogposts.length > 0 ? (
           blogposts.map(post => {
             return (
               <PostExcerpt
@@ -61,8 +65,11 @@ const Blog = ({ blogposts }: SSProps): ReactElement => {
                 id={post.id}
               />
             );
-          })}
-      </div>
+          })
+        ) : (
+          <h2 className="text-center my-8 text-violet">Keine Einträge</h2>
+        )}
+      </div> */}
     </>
   );
 };

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { ReactElement, useState, useEffect, ReactNode } from 'react';
+import { ReactElement, useState, useEffect } from 'react';
 import { getAssetURL } from './getAssetURL';
 import { fetchFileMetadata } from './fetchFileMetadata';
 
