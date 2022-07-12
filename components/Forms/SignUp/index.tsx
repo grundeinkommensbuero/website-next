@@ -21,6 +21,9 @@ import { SearchPlaces } from '../SearchPlaces';
 import { validateEmail } from '../../../hooks/Authentication/validateEmail';
 import { hasKey } from '../../../utils/hasKey';
 import { useRouter } from 'next/router';
+
+const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
+
 import { Modal } from '../../Modal';
 import { validatePhoneNumber } from '../../../hooks/Authentication/validatePhoneNumber';
 
@@ -221,8 +224,11 @@ const SignUp = ({
           <div className={s.modalContent}>
             <EnterLoginCode
               preventSignIn={true}
-              // TODO: reactivate one berlin setup is done
-              // color={IS_BERLIN_PROJECT ? 'roseOnWhite' : 'white'}
+              colorScheme={
+                IS_BERLIN_PROJECT
+                  ? 'colorSchemeRoseOnWhite'
+                  : 'colorSchemeWhite'
+              }
             />
           </div>
         </Modal>

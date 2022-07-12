@@ -1,0 +1,46 @@
+/**
+  @license
+  
+  This is an agreement between you, the purchaser and/or licensee, and
+  Grilli Type AG (hereafter Grilli Type). By purchasing, or downloading, or
+  installing, or using, or otherwise handling the digital typeface software
+  (hereafter Font or Fonts), you accept the terms of this agreement. In
+  accepting the terms of this agreement, you acknowledge understanding
+  and complying with its terms.
+  If you do not wish to enter into this Agreement, do not purchase,
+  access, download and/or install or otherwise use the Fonts.
+  Outside of their legal use as described in this license, you may not
+  distribute, lend, rent, sell, give away, publicly or privately share any
+  modified or unmodified version of the Fonts.
+  This agreement replaces and supersedes any previously made oral or
+  written proposal or agreement between you and Grilli Type.
+  You are purchasing the rights, meaning a non-exclusive, non-transferable,
+  perpetual, and worldwide license, to use the Fonts as specified in this
+  agreement. You are not purchasing the copyright to the design or any
+  other part of the Fonts. The copyright lies with its original designer and
+  will remain so, even if Grilli Type customized the Fonts.
+  If you, the purchaser, are acting on behalf of the end user, you must ensure
+  that the end user accepts this EULA as it is, i.e. without any alterations
+  and/or amendments. You are not allowed to ask the end user any other
+  price than the one offered by Grilli Type. By purchasing licensing for a
+  third party you are not allowed to use the respective software yourself.
+*/
+
+@font-face {
+  font-family: 'Maru';
+  font-weight: normal bold;
+  src: url('../../webfonts/maru/maru-bold.woff2') format('woff2'),
+    url('../../webfonts/maru/maru-bold.woff') format('woff'),
+    url('../../webfonts/maru/maru-bold.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Maru';
+  font-weight: normal bold;
+  font-style: italic;
+  src: url('../../webfonts/maru/maru-bold-italic.woff2') format('woff2'),
+    url('../../webfonts/maru/maru-bold-italic.woff') format('woff'),
+    url('../../webfonts/maru/maru-bold-italic.ttf') format('truetype');
+  font-display: swap;
+}

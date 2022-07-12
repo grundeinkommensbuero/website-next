@@ -107,7 +107,9 @@ export type ColorScheme =
   | 'colorSchemeAqua'
   | 'colorSchemeViolet'
   | 'colorSchemeWhite'
-  | 'colorSchemeRed';
+  | 'colorSchemeRed'
+  | 'colorSchemeRose'
+  | 'colorSchemeRoseOnWhite';
 
 type GroupedElements = Array<Array<SectionElement>>;
 

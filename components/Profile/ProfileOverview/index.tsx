@@ -9,6 +9,9 @@ import { getReferredUserMessage } from '../utils/referredUserMessage';
 import { getCustomNewsletterEnumeration } from '../utils/customNewsletterEnumeration';
 import { User } from '../../../context/Authentication';
 import Link from 'next/link';
+import { stateToAgs } from '../../../utils/stateToAgs';
+
+const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
 
 type ProfileOverviewProps = {
   userData: User;
@@ -21,7 +24,7 @@ export const ProfileOverview = ({
   userId,
   signatureCountOfUser,
 }: ProfileOverviewProps) => {
-  const [, setPledgePackages] = useState<any>([]);
+  const [pledgePackages, setPledgePackages] = useState<any>([]);
 
   // list newsletters of current user as human readable string
   const customNewsletterEnumeration = getCustomNewsletterEnumeration({
@@ -30,17 +33,17 @@ export const ProfileOverview = ({
   // list referred users, if any
   const referredUserMessage = getReferredUserMessage({ userData });
 
-  // NOTE: not needed for now, reactivate as soon as pledge packages are used for berlin
-  // const isSignedUpForBerlin =
-  //   userData.municipalities?.findIndex(
-  //     ({ ags }) => ags === stateToAgs['berlin']
-  //   ) !== -1;
+  const isSignedUpForBerlin =
+    userData.municipalities?.findIndex(
+      ({ ags }) => ags === stateToAgs['berlin']
+    ) !== -1;
 
   // const isSignedUpForBremen =
   //   userData.municipalities?.findIndex(
   //     ({ ags }) => ags === stateToAgs['bremen']
   //   ) !== -1;
 
+  const showPackageSection = IS_BERLIN_PROJECT || isSignedUpForBerlin;
   // Filter interactions to only use interactions which were created
   // as pledge package
   useEffect(() => {
@@ -60,7 +63,10 @@ export const ProfileOverview = ({
           className={cN(
             s.profilePageSection,
             s.profilePageSectionLarge,
-            gS.userInfo
+            gS.userInfo,
+            {
+              [s.rose]: IS_BERLIN_PROJECT,
+            }
           )}
         >
           <AvatarImage user={userData} className={gS.avatar} />
@@ -86,7 +92,11 @@ export const ProfileOverview = ({
       </Link>
 
       <Link href={`/mensch/${userId}/spenden-einstellungen`} passHref>
-        <section className={s.profilePageSection}>
+        <section
+          className={cN(s.profilePageSection, {
+            [s.rose]: IS_BERLIN_PROJECT,
+          })}
+        >
           <h2 className={s.profileHeadline}>Spenden-Einstellungen</h2>
           {userData?.donations?.recurringDonation?.amount > 0 ? (
             <h4>
@@ -104,7 +114,11 @@ export const ProfileOverview = ({
       </Link>
 
       <Link href={`/mensch/${userId}/kontakt-einstellungen`} passHref>
-        <section className={s.profilePageSection}>
+        <section
+          className={cN(s.profilePageSection, {
+            [s.rose]: IS_BERLIN_PROJECT,
+          })}
+        >
           <h2 className={s.profileHeadline}>Newsletter & Kontakt</h2>
           {customNewsletterEnumeration.length > 0 ? (
             <>
@@ -125,7 +139,10 @@ export const ProfileOverview = ({
           className={cN(
             s.profilePageSection,
             s.profilePageSectionLarge,
-            s.signaturesSection
+            s.signaturesSection,
+            {
+              [s.rose]: IS_BERLIN_PROJECT,
+            }
           )}
         >
           <h2 className={s.profileHeadline}>Eingegangene Unterschriften</h2>
@@ -143,6 +160,55 @@ export const ProfileOverview = ({
           )}
         </section>
       </Link>
+
+      {/* Only show this section if user is signed up for berlin or if berlin page */}
+      {showPackageSection && (
+        <Link href={`/mensch/${userId}/unterschriften-eintragen`} passHref>
+          <section
+            className={cN(
+              s.profilePageSection,
+              s.profilePageSectionLarge,
+              s.signaturesSection,
+              {
+                [s.rose]: IS_BERLIN_PROJECT,
+              }
+            )}
+          >
+            <h2>Dein Sammelpaket</h2>
+            <p>
+              {pledgePackages.length ? (
+                <>
+                  Du hast dir {pledgePackages.length} Paket
+                  {pledgePackages.length > 1 && 'e'} geschnappt und somit
+                  versprochen, {pledgePackages.length * 25} Unterschriften zu
+                  sammeln.
+                  <br />
+                  <br />
+                  {/* TODO: design package */}
+                  {/* Find package with message if exists to show this package (maybe in the future
+                    show most recent (was kinda in a hurry) */}
+                  &quot;
+                  {
+                    pledgePackages.find(
+                      (pledgePackage: any) => pledgePackage.body
+                    )?.body
+                  }
+                  &quot;
+                </>
+              ) : (
+                <>Du hast noch kein Sammelpaket genommen.</>
+              )}
+            </p>
+            <div className={s.sectionLink}>
+              <span>
+                {pledgePackages.length
+                  ? 'Weiteres Paket nehmen'
+                  : 'Nimm dein Paket'}
+              </span>
+            </div>
+          </section>
+        </Link>
+      )}
 
       {/* {signatureCountOfUser && (
         <a className={cN(s.profilePageSection, s.profilePageSectionLarge)}
