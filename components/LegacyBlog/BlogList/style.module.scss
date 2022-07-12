@@ -1,0 +1,32 @@
+.article {
+  margin-top: 2rem;
+
+  & + & {
+    margin-top: 8rem;
+  }
+
+  @media (max-width: $breakPointS) {
+    margin-top: 4rem;
+  }
+}
+
+.title {
+  margin: 1rem 0;
+
+  a {
+    text-decoration: none;
+
+    &:hover {
+      @extend .linkUnderlined;
+    }
+  }
+}
+
+.body {
+  font-weight: normal;
+}
+
+.image {
+  max-height: 17rem;
+  filter: saturate(120%);
+}
