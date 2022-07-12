@@ -42,23 +42,15 @@ export const Onboarding = () => {
   }, [isAuthenticated]);
 
   // TODO: use state of updateUser for improvement (Vali: comment still relevant? I removed some stuff)
-  // TODO: Reactive, once municipality pages are ready
-  // useEffect(() => {
-  //   if (municipality) {
-  //     if (
-  //       userData?.municipalities?.map(el => el.ags).includes(municipality.ags)
-  //     ) {
-  //       setIsForMunicipalityAuthenticated(true);
-  //     }
-  //   }
-  // }, [userData, municipality]);
-
-  // TODO: delete once municipality pages are ready
   useEffect(() => {
-    if (isAuthenticated) {
-      setIsForMunicipalityAuthenticated(true);
+    if (municipality) {
+      if (
+        userData?.municipalities?.map(el => el.ags).includes(municipality.ags)
+      ) {
+        setIsForMunicipalityAuthenticated(true);
+      }
     }
-  }, [isAuthenticated]);
+  }, [userData, municipality]);
 
   const setCurrentElementByIndex = (index: number) => {
     setCurrentElement(menuElements[index].name);
