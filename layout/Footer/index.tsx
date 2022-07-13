@@ -5,7 +5,7 @@ import { ReactElement } from 'react';
 import { Menu } from '../../utils/getMenus';
 import { FooterMenu } from './FooterMenu';
 import cN from 'classnames';
-import { LogoExpedition } from '../LogoExpedition';
+import LogoExpedition from '../logo-expedition.svg';
 
 const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
 
