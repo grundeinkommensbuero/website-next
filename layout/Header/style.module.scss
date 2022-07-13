@@ -12,6 +12,7 @@
   justify-content: space-between;
   align-items: center;
   max-width: $headerWidth;
+  height: $headerHeight;
   margin: 0 auto;
 }
 
@@ -35,4 +36,9 @@
   100% {
     transform: scaleY(1);
   }
+}
+
+.pageLogo {
+  cursor: pointer;
+  height: 1rem;
 }
