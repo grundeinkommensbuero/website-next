@@ -4,8 +4,8 @@ import { Follow } from '../SocialMedia/Follow';
 import { ReactElement } from 'react';
 import { Menu } from '../../utils/getMenus';
 import { FooterMenu } from './FooterMenu';
-import LogoExpedition from './logo-expedition.svg';
 import cN from 'classnames';
+import { LogoExpedition } from '../LogoExpedition';
 
 const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
 
@@ -24,6 +24,7 @@ export const Footer = ({ footerMenu }: FooterProps): ReactElement => (
               <LogoExpedition
                 className={s.logo}
                 alt={'Expedition Grundeinkommen'}
+                color={'white'}
               />
             </div>
             <span>
