@@ -42,7 +42,7 @@ export const EventsListed = ({
   const groupByDate = (locations: Location[]) => {
     const grEvents: GroupedEvents = {};
     locations.forEach(location => {
-      const eventDate = dsm.getGermanDateFormat(location.startTime);
+      const eventDate = dsm.getGermanDateFormat(location.startTime!);
       if (!(eventDate in grEvents)) grEvents[eventDate] = [];
       grEvents[eventDate].push(location);
     });
@@ -63,7 +63,7 @@ export const EventsListed = ({
               return (
                 <div key={key} className={s.eventDay}>
                   <h3 className={s.descriptionHeading}>
-                    {dsm.getDateWithWeekday(groupedEvents[key][0].startTime)}
+                    {dsm.getDateWithWeekday(groupedEvents[key][0].startTime!)}
                   </h3>
                   {groupedEvents[key].map((event, index) => {
                     return (
@@ -75,8 +75,8 @@ export const EventsListed = ({
 
                         <p>
                           <b>
-                            {dsm.localeTime(event.startTime)}-
-                            {dsm.localeTime(event.endTime)}
+                            {dsm.localeTime(event.startTime!)}-
+                            {dsm.localeTime(event.endTime!)}
                             {' Uhr, '}
                             {event.address || event.locationName}
                           </b>
