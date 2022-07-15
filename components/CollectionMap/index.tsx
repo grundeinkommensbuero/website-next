@@ -10,23 +10,8 @@ export type MapConfig = {
   maxBounds: [Coordinates, Coordinates];
 };
 
-const CollectionMap = ({ maps }: { maps: MapConfig[] }) => {
-  return (
-    <>
-      {maps.map((mapConfig, i) => {
-        return (
-          <ShowMeetups
-            key={i}
-            mapConfig={mapConfig}
-            // Needed for overflowing popup if there is two maps (e.g. in Bremen)
-            className={cN({
-              [s.mapSection]: maps.length > 1 && i === 0,
-            })}
-          />
-        );
-      })}
-    </>
-  );
+const CollectionMap = ({ mapConfig }: { mapConfig: MapConfig }) => {
+  return <ShowMeetups mapConfig={mapConfig} />;
 };
 
 export default CollectionMap;

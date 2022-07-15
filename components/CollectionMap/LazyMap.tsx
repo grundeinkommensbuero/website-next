@@ -121,11 +121,6 @@ const LazyMap = ({
           'top-left'
         );
 
-        // console.log([
-        //   ...mapboxConfig.maxBounds[0],
-        //   ...mapboxConfig.maxBounds[1],
-        // ]);
-
         if (withSearch) {
           // Initialize geo coder
           const geocoder = new MapboxGeocoder({
