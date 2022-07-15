@@ -3,6 +3,22 @@ import s from './style.module.scss';
 import { ValidationError } from '../ValidationError';
 import cN from 'classnames';
 
+type CheckboxProps = {
+  input?: any;
+  label: string;
+  className?: string;
+  labelClassName?: string;
+  checked: boolean;
+  type?: string;
+  meta?: {
+    error: string;
+    touched: boolean;
+  };
+  onChange?: () => void;
+  hide?: boolean;
+  theme?: string;
+};
+
 export const Checkbox = ({
   input,
   label,
@@ -14,7 +30,7 @@ export const Checkbox = ({
   onChange,
   className,
   labelClassName,
-}) => {
+}: CheckboxProps) => {
   if (hide) {
     return null;
   }

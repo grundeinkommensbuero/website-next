@@ -4,40 +4,52 @@
  */
 
 import React, { useEffect, useRef, useState } from 'react';
-import { SectionInner } from '../../Layout/Sections';
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
-import Map from '../../Maps/Map';
+import Map, { LocationType } from '../CollectionMap/Map';
 import { Field, Form } from 'react-final-form';
-import FormWrapper from '../FormWrapper';
-import { TextInputWrapped } from '../TextInput';
-import FormSection from '../FormSection';
+import FormWrapper from '../Forms/FormWrapper';
+import { TextInputWrapped } from '../Forms/TextInput';
+import FormSection from '../Forms/FormSection';
 import s from './style.module.scss';
 import cN from 'classnames';
-import { DateInputWrapped, TimeInputWrapped } from '../DateTimeInput';
-import { CTAButton, CTAButtonContainer } from '../CTAButton';
-import { useCreateMeetup } from '../../../hooks/Api/Meetups/Create';
-import { FinallyMessage } from '../FinallyMessage';
+import { DateInputWrapped, TimeInputWrapped } from '../Forms/DateTimeInput';
+import { CTAButton, CTAButtonContainer } from '../Forms/CTAButton';
+import {
+  CreateMeetupData,
+  useCreateMeetup,
+} from '../../hooks/Api/Meetups/Create';
+import { FinallyMessage } from '../Forms/FinallyMessage';
+import { MapConfig } from '../CollectionMap';
+import { GeocoderEvent } from '../CollectionMap/LazyMap';
+import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+
+type CreateMeetupProps = {
+  mapConfig: MapConfig;
+  type: LocationType;
+  onCreatedMeetup: () => void;
+  setShowModal: (showModal: boolean) => void;
+};
 
 // Type can be either collect or lists
-export const CreateMeetup = ({
+const CreateMeetup = ({
   mapConfig,
   type = 'collect',
   onCreatedMeetup,
   setShowModal,
-}) => {
-  const [location, setLocation] = useState();
+}: CreateMeetupProps) => {
+  const [location, setLocation] = useState<MapboxGeocoder.Result>();
   const [createMeetupState, createMeetup] = useCreateMeetup();
 
   const [overlayCloseTimer, setOverlayCloseTimer] = useState(0);
 
-  const scrollToRef = useRef(null);
+  const scrollToRef = useRef<HTMLDivElement>(null);
 
   // Date input element is only available in form of type collect
-  const dateInputEl = useRef(null);
+  const dateInputEl = useRef<HTMLInputElement>(null);
   // Name input element is only available in form of type lists
-  const nameInputEl = useRef(null);
+  const nameInputEl = useRef<HTMLInputElement>(null);
 
-  const handleLocationChosen = e => {
+  const handleLocationChosen = (e: GeocoderEvent) => {
     setLocation(e.result);
     // Scroll to form
     if (scrollToRef?.current) {
@@ -102,35 +114,38 @@ export const CreateMeetup = ({
         loading={messageState === 'progress'}
         className={s.message}
       >
-        {createMeetupState === 'saving' && 'Wird gespeichert...'}
-        {createMeetupState === 'saved' && (
-          <>
-            <p>
-              Dein Eintrag wurde gespeichert. Vielen Dank! Du kannst dieses
-              Fenster jetzt schließen. Es schließt sich automatisch in{' '}
-              {overlayCloseTimer}
-            </p>
-          </>
-        )}
-        {createMeetupState === 'error' && (
-          <>
-            Da ist was schief gegangen. Melde dich bitte bei{' '}
-            <a href="mailto:support@expedition-grundeinkommen.de">
-              support@expedition-grundeinkommen.de
-            </a>
-          </>
-        )}
+        <>
+          {createMeetupState === 'saving' && 'Wird gespeichert...'}
+          {createMeetupState === 'saved' && (
+            <>
+              <p>
+                Dein Eintrag wurde gespeichert. Vielen Dank! Du kannst dieses
+                Fenster jetzt schließen. Es schließt sich automatisch in{' '}
+                {overlayCloseTimer}
+              </p>
+            </>
+          )}
+          {createMeetupState === 'error' && (
+            <>
+              Da ist was schief gegangen. Melde dich bitte bei{' '}
+              <a href="mailto:support@expedition-grundeinkommen.de">
+                support@expedition-grundeinkommen.de
+              </a>
+            </>
+          )}
+        </>
       </FinallyMessage>
     );
   }
 
   return (
-    <SectionInner className={s.section}>
+    <section className={s.section}>
       <h3>Wähle einen Ort aus!</h3>
       <Map
         onLocationChosen={handleLocationChosen}
         withSearch={true}
         mapConfig={mapConfig}
+        hideLegend={true}
       />
       {location && (
         <>
@@ -141,7 +156,7 @@ export const CreateMeetup = ({
 
           <Form
             onSubmit={e => {
-              const data = {
+              const data: CreateMeetupData = {
                 locationName: e.name,
                 description: e.description,
                 contact: e.contact,
@@ -183,7 +198,7 @@ export const CreateMeetup = ({
                           <Field
                             name="date"
                             label="Datum"
-                            component={DateInputWrapped}
+                            component={DateInputWrapped as any}
                             customRef={dateInputEl}
                           ></Field>
                         </div>
@@ -193,7 +208,7 @@ export const CreateMeetup = ({
                             <Field
                               name="start"
                               label="Start"
-                              component={TimeInputWrapped}
+                              component={TimeInputWrapped as any}
                             ></Field>
                           </div>
                           <div className={s.timeInput}>
@@ -201,7 +216,7 @@ export const CreateMeetup = ({
                             <Field
                               name="end"
                               label="Ende"
-                              component={TimeInputWrapped}
+                              component={TimeInputWrapped as any}
                             ></Field>
                           </div>
                         </div>
@@ -216,7 +231,7 @@ export const CreateMeetup = ({
                         placeholder="Name"
                         type="text"
                         inputClassName={s.textInput}
-                        component={TextInputWrapped}
+                        component={TextInputWrapped as any}
                         customRef={nameInputEl}
                       ></Field>
                     </FormSection>
@@ -235,7 +250,7 @@ export const CreateMeetup = ({
                       placeholder="Sag ein paar Sätze zum geplanten Event..."
                       type="textarea"
                       inputClassName={s.textarea}
-                      component={TextInputWrapped}
+                      component={TextInputWrapped as any}
                     ></Field>
                     <p>
                       Gib ein paar Infos über dich an: Woran erkennt man dich
@@ -249,7 +264,7 @@ export const CreateMeetup = ({
                       placeholder="Beschreibung"
                       type="textarea"
                       inputClassName={cN(s.textarea, s.shortTextarea)}
-                      component={TextInputWrapped}
+                      component={TextInputWrapped as any}
                     ></Field>
                   </FormSection>
 
@@ -264,12 +279,22 @@ export const CreateMeetup = ({
           />
         </>
       )}
-    </SectionInner>
+    </section>
   );
 };
 
-const validate = (values, type) => {
-  const errors = {};
+type FormValues = {
+  description?: string;
+  name?: string;
+  date?: string;
+  start?: string;
+  end?: string;
+};
+
+type FormErrors = FormValues;
+
+const validate = (values: FormValues, type: LocationType) => {
+  const errors: FormErrors = {};
 
   if (!values.description) {
     errors.description = 'Bitte gib eine kurze Beschreibung an';
@@ -295,3 +320,5 @@ const validate = (values, type) => {
 
   return errors;
 };
+
+export default CreateMeetup;

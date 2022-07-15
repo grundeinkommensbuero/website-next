@@ -5,7 +5,7 @@ import { getCurrentUser, getUser } from '../../hooks/Api/Users/Get';
 import { useLocalStorageUser, signOut } from '../../hooks/Authentication';
 import { updateUser } from '../../hooks/Api/Users/Update';
 import { Auth, CognitoUser } from '@aws-amplify/auth';
-import CONFIG from '../../hooks/Authentication/backend-config';
+import CONFIG from '../../backend-config';
 import { Municipality } from '../Municipality';
 import { useRouter } from 'next/router';
 

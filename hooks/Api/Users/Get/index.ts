@@ -4,7 +4,7 @@
  */
 
 import { useState, useContext } from 'react';
-import CONFIG from '../../../Authentication/backend-config';
+import CONFIG from '../../../../backend-config';
 import AuthContext from '../../../../context/Authentication';
 import { Request } from '../../../Authentication/Verification';
 

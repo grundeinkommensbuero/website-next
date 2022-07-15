@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { Ref } from 'react';
 import s from './style.module.scss';
 import cN from 'classnames';
 import LabelInputErrorWrapper from '../LabelInputErrorWrapper';
 
-export const DateInput = ({ className, label, size, customRef, ...input }) => {
+export const DateInput = ({
+  className,
+  label,
+  customRef,
+  ...input
+}: {
+  className?: string;
+  label: string;
+  customRef?: Ref<any>;
+  input?: any;
+}) => {
   return (
     <input
       aria-label={label}
@@ -15,7 +25,15 @@ export const DateInput = ({ className, label, size, customRef, ...input }) => {
   );
 };
 
-export const TimeInput = ({ className, label, size, ...input }) => {
+export const TimeInput = ({
+  className,
+  label,
+  ...input
+}: {
+  className?: string;
+  label: string;
+  input?: any;
+}) => {
   return (
     <input
       aria-label={label}
@@ -24,6 +42,23 @@ export const TimeInput = ({ className, label, size, ...input }) => {
       className={cN(s.input, className)}
     />
   );
+};
+
+type DateInputeWrappedProps = {
+  input?: any;
+  label: string;
+  className?: string;
+  inputClassName?: string;
+  meta?: {
+    error: string;
+    touched: boolean;
+  };
+  description?: string;
+  hideLabel?: boolean;
+  explanation?: string;
+  customRef?: Ref<any>;
+  hide?: boolean;
+  theme?: string;
 };
 
 export const DateInputWrapped = ({
@@ -38,14 +73,14 @@ export const DateInputWrapped = ({
   hideLabel,
   explanation,
   customRef,
-}) => {
+}: DateInputeWrappedProps) => {
   if (hide) {
     return null;
   }
   const outputLabel = description ? `${label} (${description})` : label;
   return (
     <LabelInputErrorWrapper
-      label={!hideLabel && outputLabel}
+      label={!hideLabel ? outputLabel : undefined}
       meta={meta}
       className={className}
       explanation={explanation}
@@ -61,6 +96,22 @@ export const DateInputWrapped = ({
   );
 };
 
+type TimeInputeWrappedProps = {
+  input?: any;
+  label: string;
+  className?: string;
+  inputClassName?: string;
+  meta?: {
+    error: string;
+    touched: boolean;
+  };
+  description?: string;
+  hideLabel?: boolean;
+  explanation?: string;
+  hide?: boolean;
+  theme?: string;
+};
+
 export const TimeInputWrapped = ({
   input,
   label,
@@ -72,14 +123,14 @@ export const TimeInputWrapped = ({
   inputClassName,
   hideLabel,
   explanation,
-}) => {
+}: TimeInputeWrappedProps) => {
   if (hide) {
     return null;
   }
   const outputLabel = description ? `${label} (${description})` : label;
   return (
     <LabelInputErrorWrapper
-      label={!hideLabel && outputLabel}
+      label={!hideLabel ? outputLabel : undefined}
       meta={meta}
       className={className}
       explanation={explanation}

@@ -1,0 +1,286 @@
+// Needed for overflowing popup if there is two maps (e.g. in Bremen)
+.mapSection {
+  position: relative;
+  z-index: 1;
+}
+
+.container {
+  height: 40rem;
+  max-height: 60vh;
+  color: $violet;
+}
+
+.tooltip {
+  padding: 1rem;
+  color: $black;
+  font-family: 'Ideal', Tahoma, Arial, Helvetica, sans-serif;
+  font-size: $DesktopFontSizeS;
+
+  hr {
+    border: 0;
+    background: currentColor;
+    height: 1px;
+  }
+}
+
+.tooltipDescription {
+  p {
+    margin: 0.2em 0;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.tooltipTitle {
+  font-weight: bold;
+  font-size: $DesktopFontSizeM;
+  margin-bottom: 1rem;
+  margin-top: 0;
+  color: $violet;
+}
+
+.tooltipHeading {
+  color: $violet;
+  font-size: $DesktopFontSizeS;
+  font-weight: normal;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.tooltipTimeAndPlace {
+  display: flex;
+  font-size: $DesktopFontSizeXS;
+}
+
+.tooltipInfoWithIcon {
+  width: 50%;
+  display: flex;
+  align-items: center;
+}
+
+.tooltipIconPin {
+  height: 35px;
+  width: 35px;
+  overflow: visible;
+}
+
+.tooltipIconCalender {
+  height: 30px;
+  width: 30px;
+  overflow: visible;
+}
+
+.tooltipDate,
+.tooltipLocation {
+  margin-left: 0.5rem;
+}
+
+.tooltipDay,
+.tooltipAddress {
+  font-weight: bold;
+}
+
+.tooltipTime,
+.tooltipZipCode {
+  opacity: 0.5;
+}
+
+.popUpOutside {
+  @media (min-width: $breakPointS) {
+    display: none;
+  }
+}
+
+.marker {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  top: -25px !important;
+  width: 3rem;
+  height: 3rem;
+
+  &.collect {
+    background-image: url('marker-collect.png');
+  }
+
+  &.sign {
+    background-image: url('marker-sign.png');
+  }
+
+  &.storage {
+    background-image: url('marker-storage.png');
+  }
+
+  &.collectBerlin {
+    background-image: url('marker-collect-berlin.png');
+  }
+
+  &.signBerlin {
+    background-image: url('marker-sign-berlin.png');
+  }
+
+  &.storageBerlin {
+    background-image: url('marker-storage-berlin.png');
+  }
+}
+
+.eventContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.eventDay {
+  width: 100%;
+}
+
+.moduleHeading {
+  margin-top: 6rem;
+  margin-bottom: 4rem;
+  color: $violet;
+  font-size: $DesktopFontSizeXL;
+
+  @media (max-width: $breakPointM) {
+    font-size: $DesktopFontSizeL;
+  }
+}
+
+.descriptionHeading {
+  margin: 0;
+  color: $violet;
+  font-size: 2.25rem;
+
+  @media (max-width: $breakPointM) {
+    font-size: $DesktopFontSizeM;
+  }
+}
+
+.eventDescription {
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+  font-size: 1.5rem;
+
+  @media (max-width: $breakPointM) {
+    font-size: 1rem;
+    padding-right: 0rem;
+  }
+}
+
+.descriptionText {
+  margin: 0;
+  font-size: 1.5rem;
+
+  @media (max-width: $breakPointM) {
+    font-size: 1rem;
+  }
+}
+
+.filter {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 7rem;
+
+  @media (max-width: $breakPointS) {
+    height: auto;
+  }
+}
+
+.flexRow {
+  display: flex;
+  flex-direction: row;
+  height: 2rem;
+
+  @media (max-width: $breakPointS) {
+    height: auto;
+    flex-direction: column;
+  }
+}
+
+.inlineCheckbox {
+  margin-right: 1.5rem;
+
+  @media (max-width: $breakPointS) {
+    margin-bottom: 1rem;
+  }
+}
+
+.inlineCheckboxLabel {
+  margin-top: 0;
+}
+
+.dropdown {
+  margin-right: 1.5rem;
+}
+
+.dropdownButton {
+  margin-top: -0.3rem;
+
+  @media (max-width: $breakPointL) {
+    min-width: 13rem;
+  }
+
+  @media (max-width: $breakPointS) {
+    margin-bottom: 1rem;
+    margin-top: 0;
+  }
+}
+
+.dropdownContent {
+  background-color: white;
+  position: relative;
+  z-index: 9;
+  padding: 0.5rem;
+  margin-bottom: 0;
+
+  @media (max-width: $breakPointS) {
+    margin-bottom: 1rem;
+  }
+}
+
+.legend,
+.legendBerlin {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+
+  @media (max-width: $breakPointXS) {
+    justify-content: start;
+  }
+
+  svg {
+    position: relative;
+    top: 0.8rem;
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+}
+
+.legendBerlin {
+  > div {
+    margin-left: 1rem;
+  }
+
+  svg {
+    margin-right: 0.3rem;
+  }
+}
+
+.jumpToAnchorWrapper {
+  position: relative;
+}
+
+.jumpToAnchor {
+  position: absolute;
+  top: calc(-#{$headerHeight} - 2rem);
+}
+
+.ctasUnderMap {
+  display: flex;
+
+  @media (max-width: $breakPointS) {
+    flex-direction: column;
+  }
+}

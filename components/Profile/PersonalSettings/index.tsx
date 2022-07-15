@@ -14,7 +14,8 @@ import { useUpdateUser } from '../../../hooks/Api/Users/Update';
 import { ChangeEmail } from './ChangeEmail';
 import { EditProfileSection } from '../EditProfileSection';
 import { User } from '../../../context/Authentication';
-import { formatDate } from '../../../utils/formatDate';
+import { formatDate } from '../../../utils/date';
+import Link from 'next/link';
 import { BackToProfile } from '../BackToProfile';
 
 type PersonalSettingsProps = {

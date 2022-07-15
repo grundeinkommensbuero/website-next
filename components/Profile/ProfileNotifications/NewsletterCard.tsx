@@ -99,7 +99,7 @@ export const NewsletterCard = ({
                     name="extraInfoConsent"
                     label={`Für ${newsletterSettings.name} zusätzliche Sammelinfos erhalten`}
                     type="checkbox"
-                    component={Checkbox}
+                    component={Checkbox as any}
                   ></Field>
                 );
               }}
