@@ -6,6 +6,7 @@ import { Blogpost } from '../../../pages/blog';
 import { getAssetURL } from '../../Util/getAssetURL';
 import Link from 'next/link';
 import { DirectusImage } from '../../Util/DirectusImage';
+import Image from 'next/image';
 
 type BlogListProps = { posts: Array<Blogpost> };
 
@@ -35,16 +36,16 @@ export const BlogSnippet = ({ title, id, date, featured_image }: Blogpost) => {
         </time>
         <h2 className={s.title}>
           <Link href={`/blog/${id}`} passHref>
-            <h2>{title}</h2>
+            {title}
           </Link>
         </h2>
       </header>
       {featured_image && (
         <Link href={`/blog/${id}`} passHref>
-          <DirectusImage
-            className={s.image}
+          <img
+            src={getAssetURL(featured_image.id)}
             alt="Titelbild des Blogeintrags"
-            assetId={featured_image.id}
+            className={s.image}
           />
         </Link>
       )}
