@@ -3,8 +3,9 @@
  * multiple timmes) to use within the hooks or as hooks
  */
 
+import { resolveAny } from 'dns/promises';
 import querystring from 'query-string';
-// import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 export const sleep = (milliseconds: number) => {
   return new Promise(resolve => setTimeout(resolve, milliseconds));
@@ -24,12 +25,12 @@ export const getSocialMediaReferral = (): string | (string | null)[] | null => {
   return urlParams.referredByUser;
 };
 
-// export const usePrevious = value => {
-//   const ref = useRef();
+export const usePrevious = (value: any) => {
+  const ref = useRef();
 
-//   useEffect(() => {
-//     ref.current = value;
-//   }, [value]);
+  useEffect(() => {
+    ref.current = value;
+  }, [value]);
 
-//   return ref.current;
-// };
+  return ref.current;
+};

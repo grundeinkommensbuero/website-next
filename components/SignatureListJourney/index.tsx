@@ -354,7 +354,6 @@ const Step = ({
 
   const Icon = disabled ? iconDisabled : icon;
 
-  console.log({ updateUserState, done });
   return (
     <>
       <div className={cN(s.stepContainer, { [s.disabled]: disabled })}>

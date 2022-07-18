@@ -15,13 +15,13 @@
 
   &.disabled {
     color: $greyMedium;
-    --heading-color: $greyMedium;
-    --secondary-color: $greyMedium;
+    --heading-color: #{$greyMedium};
+    --secondary-color: #{$greyMedium};
 
     pointer-events: none;
 
     .breadcrumbs .filled {
-      --secondary-color: $greyDark;
+      --secondary-color: #{$greyDark};
     }
   }
 

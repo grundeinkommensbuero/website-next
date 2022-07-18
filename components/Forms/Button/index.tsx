@@ -30,6 +30,8 @@ export function LinkButton({
 }: LinkButtonProps) {
   return (
     <a
+      href={href}
+      target={target}
       className={cN(s.linkButton, className, { [s.medium]: size === 'MEDIUM' })}
       {...other}
     >

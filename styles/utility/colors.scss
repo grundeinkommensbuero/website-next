@@ -106,3 +106,22 @@ $bgColors: (
   --input-border-color: #{$black};
   --input-font-color: #{$red};
 }
+
+.colorSchemeRose {
+  background-color: $rose;
+  color: $black;
+  --primary-color: #{$rose};
+  --secondary-color: #{$white};
+  --bg-color: #{$rose};
+  --font-color: #{$black};
+  --heading-color: #{$black};
+  --text-on-secondary-color: #{$black};
+  --button-font-color: #{$black};
+  --button-bg-color: #{$white};
+  --button-hover-bg-color: #{$black};
+  --button-hover-font-color: #{$white};
+  --button-focus-bg-color: lighten(#{$black}, 20%);
+  --button-focus-font-color: #{$white};
+  --input-border-color: #{$black};
+  --input-font-color: #{$black};
+}

@@ -19,6 +19,8 @@ import {
 } from '../../hooks/Api/Municipalities';
 import Image from 'next/image';
 
+const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
+
 export type PageProps = {
   page: Page | null;
   municipality: Municipality;
@@ -51,7 +53,7 @@ const MunicipalityPage = ({ page, municipality }: PageProps): ReactElement => {
         <div className="w-half">
           <Image
             priority={true}
-            src={`${process.env.NEXT_PUBLIC_DIRECTUS}assets/3e2ffd09-a09e-42ab-b234-19288361d727`}
+            src={`${process.env.NEXT_PUBLIC_DIRECTUS}assets/ca61a987-1b56-4f7a-903b-f2767b41fbe4`}
             alt="Logo der Expedition Grundeinkommen"
             height={728}
             width={1153}
@@ -92,6 +94,16 @@ export const getServerSideProps: GetServerSideProps = async ({
     'Cache-Control',
     `public, s-maxage=${60 * 60}, stale-while-revalidate=${59}`
   );
+
+  // We don't want to render municipality pages for berlin project
+  if (IS_BERLIN_PROJECT) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: '/',
+      },
+    };
+  }
 
   if (typeof params?.slug !== 'string') {
     return {

@@ -20,6 +20,8 @@ import { TextInputWrapped } from '../TextInput';
 import s from './style.module.scss';
 import { validateEmail } from '../../../hooks/Authentication/validateEmail';
 
+const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
+
 type SelfScanProps = { successMessage: string; className?: string };
 
 const SelfScan = ({ successMessage, className }: SelfScanProps) => {
@@ -119,7 +121,14 @@ const CountSignaturesForm = ({
   const needsEMail = !userId && !eMail;
 
   if (state === 'saving') {
-    return <FinallyMessage state="progress">Speichere...</FinallyMessage>;
+    return (
+      <FinallyMessage
+        colorScheme={IS_BERLIN_PROJECT ? 'colorSchemeRoseOnWhite' : undefined}
+        loading
+      >
+        Speichere...
+      </FinallyMessage>
+    );
   }
 
   if (state === 'saved') {
@@ -148,7 +157,7 @@ const CountSignaturesForm = ({
     state === 'listAndUserNotFound'
   ) {
     return (
-      <FinallyMessage state="error">
+      <FinallyMessage>
         <>
           {state === 'userNotFound' && (
             <>

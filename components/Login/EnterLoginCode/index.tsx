@@ -13,12 +13,14 @@ import { CTAButtonContainer, CTAButton } from '../../Forms/CTAButton';
 import s from '../style.module.scss';
 import { OnboardingModalContext } from '../../../context/OnboardingModal';
 import { useRouter } from 'next/router';
+import { ColorScheme } from '../../Section';
 
 type EnterLoginCodeProps = {
   children?: ReactElement | ReactElement[] | string;
   preventSignIn?: boolean;
   buttonText?: string;
   onAnswerChallengeSuccess?: () => void;
+  colorScheme?: ColorScheme;
 };
 
 export const EnterLoginCode = ({
@@ -26,6 +28,7 @@ export const EnterLoginCode = ({
   preventSignIn,
   buttonText,
   onAnswerChallengeSuccess,
+  colorScheme,
 }: EnterLoginCodeProps) => {
   const { setShowModal } = useContext(OnboardingModalContext);
 
@@ -75,17 +78,23 @@ export const EnterLoginCode = ({
 
   if (answerChallengeState === 'loading' || signInState === 'loading') {
     return (
-      <FinallyMessage state="progress">Einen Moment bitte...</FinallyMessage>
+      <FinallyMessage colorScheme={colorScheme} loading>
+        Einen Moment bitte...
+      </FinallyMessage>
     );
   }
 
   if (answerChallengeState === 'success') {
-    return <FinallyMessage>Erfolgreich identifiziert.</FinallyMessage>;
+    return (
+      <FinallyMessage colorScheme={colorScheme}>
+        Erfolgreich identifiziert.
+      </FinallyMessage>
+    );
   }
 
   if (signInState === 'userNotConfirmed') {
     return (
-      <FinallyMessage state="error">
+      <FinallyMessage colorScheme={colorScheme}>
         <>
           Diese E-Mail-Adresse kennen wir schon, sie wurde aber nie bestätigt -
           Hast du unsere Antwort-Mail bekommen? Dann fehlt nur noch der letzte
@@ -105,7 +114,7 @@ export const EnterLoginCode = ({
 
   if (signInState === 'userNotFound') {
     return (
-      <FinallyMessage state="error">
+      <FinallyMessage colorScheme={colorScheme}>
         <p>
           Oh! Es scheint, diese Email-Addresse ist noch nicht bei uns
           registriert.{' '}
@@ -133,7 +142,7 @@ export const EnterLoginCode = ({
   }
 
   return (
-    <FinallyMessage state="error">
+    <FinallyMessage colorScheme={colorScheme}>
       <>
         {answerChallengeState === 'wrongCode' && (
           <p>

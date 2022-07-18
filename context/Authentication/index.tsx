@@ -76,6 +76,7 @@ export type User = {
   srcOverwrite?: string;
   municipalities?: Municipality[];
   zipCode?: string;
+  phoneNumber?: string;
   directus?: {
     token: string;
   };

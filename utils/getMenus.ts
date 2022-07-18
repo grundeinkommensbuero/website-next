@@ -51,8 +51,8 @@ type Menus = {
   footerMenu: Menu;
 };
 
-const MAINMENU_ID = 1;
-const FOOTERMENU_ID = 2;
+const MAINMENU_ID = 2;
+const FOOTERMENU_ID = 3;
 
 const menuFields = [
   'id',

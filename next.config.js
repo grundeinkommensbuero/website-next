@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   reactStrictMode: true,
   i18n: {
@@ -7,7 +8,10 @@ const nextConfig = {
   },
   images: {
     dangerouslyAllowSVG: true,
-    domains: ['xbge-directus.frac.tools'],
+    domains: [
+      'directus.expedition-grundeinkommen.de',
+      'directus.volksentscheid-grundeinkommen.de',
+    ],
   },
   sassOptions: {
     prependData: `@import "./styles/vars.scss";`,
@@ -16,7 +20,20 @@ const nextConfig = {
     // config.module.noParse = /(gun|scrypt)\.js$/;
     config.module.rules.push({
       test: /\.svg$/,
-      use: ['@svgr/webpack'],
+      use: [
+        {
+          loader: '@svgr/webpack',
+          options: {
+            typescript: true,
+            ext: 'tsx',
+            replaceAttrValues: {
+              // This way for all fill="black" attibutes the "black" will be
+              // replaced with the "color" prop we set, for the imported SVG
+              '#000': '{props.color}',
+            },
+          },
+        },
+      ],
     });
 
     return config;

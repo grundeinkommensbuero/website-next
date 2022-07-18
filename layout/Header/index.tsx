@@ -5,8 +5,11 @@ import { Menu } from '../../utils/getMenus';
 import { MainMenu } from './MainMenu/Desktop';
 import { MainMenuMobile } from './MainMenu/Mobile';
 import { HamburgerMenu } from './MainMenu/Mobile/HamburgerMenu';
-import { PageLogo } from './PageLogo';
+// import { PageLogo } from './PageLogo';
 import s from './style.module.scss';
+
+import PageLogo from '../logo-expedition.svg';
+import { useRouter } from 'next/router';
 
 type HeaderProps = {
   mainMenu: Menu;
@@ -20,6 +23,7 @@ export const Header = ({
   const [mobileMenuActive, setMobileMenuActive] = useState<boolean>(false);
   const [isMobile, setIsMobile] = useState<boolean>(true);
   const { width } = useWindowDimensions();
+  const router = useRouter();
 
   useEffect(() => {
     setIsMobile(width < 900);
@@ -29,7 +33,12 @@ export const Header = ({
     <>
       <div className={s.header}>
         <div className={s.headerContent}>
-          <PageLogo />
+          <PageLogo
+            className="cursor-pointer h-12"
+            color="black"
+            alt={'Expedition Grundeinkommen Home'}
+            onClick={() => router.push('/')}
+          />
           {!isMobile ? (
             <MainMenu mainMenu={mainMenu} currentRoute={currentRoute} />
           ) : (

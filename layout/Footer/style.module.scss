@@ -12,6 +12,11 @@
   @media sm {
     padding: 3rem;
   }
+
+  &.black {
+    background: $black;
+    color: $white;
+  }
 }
 
 .itemContainer {
@@ -68,4 +73,22 @@
     flex-direction: column;
     gap: 1rem;
   }
+}
+
+.berlinInfos {
+  margin: 0 auto 1rem;
+  width: 13rem;
+  text-align: left;
+}
+
+.logo {
+  display: block;
+  width: 100%;
+  margin: 1rem 0;
+  max-width: 13rem;
+}
+
+.expeditionsLink {
+  display: block;
+  margin-bottom: 1rem;
 }

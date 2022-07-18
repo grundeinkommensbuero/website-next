@@ -90,7 +90,7 @@ const ListDownload = ({ signaturesId }: ListDownloadProps) => {
     signUpState === 'loading'
   ) {
     return (
-      <FinallyMessage state="progress">
+      <FinallyMessage loading>
         Liste wird generiert, bitte einen Moment Geduld...
       </FinallyMessage>
     );
@@ -98,7 +98,7 @@ const ListDownload = ({ signaturesId }: ListDownloadProps) => {
 
   if (state === 'error') {
     return (
-      <FinallyMessage state="error">
+      <FinallyMessage>
         <>
           Da ist was schief gegangen. Melde dich bitte bei{' '}
           <a href="mailto:support@expedition-grundeinkommen.de">
@@ -112,7 +112,7 @@ const ListDownload = ({ signaturesId }: ListDownloadProps) => {
 
   if (state === 'created' && anonymous) {
     return (
-      <FinallyMessage state="success">
+      <FinallyMessage>
         <p>
           Juhu!{' '}
           <a target="_blank" rel="noreferrer" href={pdf.url}>

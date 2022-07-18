@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  max-width: 50%;
+
+  @media (max-width: $breakPointS) {
+    max-width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+.buttonContainer {
+  margin-top: 4.5rem;
+
+  div {
+    display: flex;
+    justify-content: center;
+  }
+
+  .button {
+    margin-bottom: 1rem;
+  }
+}

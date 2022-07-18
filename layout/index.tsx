@@ -2,8 +2,11 @@ import { ReactElement, useContext } from 'react';
 import Head from 'next/head';
 import { Header } from './Header';
 import { Footer } from './Footer';
-import { Menu, MenuEntry } from '../utils/getMenus';
+import { Menu } from '../utils/getMenus';
 import { XbgeAppContext } from '../context/App/index';
+import cN from 'classnames';
+
+const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
 
 type LayoutProps = {
   children: ReactElement;
@@ -19,7 +22,11 @@ export const Layout = ({
   const { currentRoute } = useContext(XbgeAppContext);
 
   return (
-    <div className="flex-column container">
+    <div
+      className={cN('flex-column', 'container', {
+        fontBerlin: IS_BERLIN_PROJECT,
+      })}
+    >
       <Head>
         <title>Expedition Grundeinkommen</title>
         <meta

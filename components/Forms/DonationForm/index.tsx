@@ -680,7 +680,7 @@ const DonationForm = ({ onboardingNextPage }: DonationFormProps) => {
         <FinallyMessage
           className={s.adjustFinallyMessage}
           preventScrolling={true}
-          state="progress"
+          loading
         >
           Sichere Datenübertragung, bitte einen Moment Geduld...
         </FinallyMessage>
