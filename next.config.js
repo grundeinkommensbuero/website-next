@@ -20,7 +20,20 @@ const nextConfig = {
     // config.module.noParse = /(gun|scrypt)\.js$/;
     config.module.rules.push({
       test: /\.svg$/,
-      use: ['@svgr/webpack'],
+      use: [
+        {
+          loader: '@svgr/webpack',
+          options: {
+            typescript: true,
+            ext: 'tsx',
+            replaceAttrValues: {
+              // This way for all fill="black" attibutes the "black" will be
+              // replaced with the "color" prop we set, for the imported SVG
+              '#000': '{props.color}',
+            },
+          },
+        },
+      ],
     });
 
     return config;
