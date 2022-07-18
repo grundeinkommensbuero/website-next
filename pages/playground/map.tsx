@@ -1,10 +1,6 @@
-import { useRouter } from 'next/router';
 import React from 'react';
 import CollectionMap from '../../components/CollectionMap';
 import { SectionWrapper } from '../../components/Section/SectionWrapper';
-
-import { SignatureListJourney } from '../../components/SignatureListJourney';
-import s from './style.module.scss';
 
 const MapPlaygroundPage = () => {
   return (
