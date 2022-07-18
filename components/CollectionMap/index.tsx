@@ -7,7 +7,7 @@ export type Coordinates = [number, number];
 
 export type MapConfig = {
   state: string;
-  maxBounds: [Coordinates, Coordinates];
+  maxBounds?: [Coordinates, Coordinates];
 };
 
 const CollectionMap = ({ mapConfig }: { mapConfig: MapConfig }) => {

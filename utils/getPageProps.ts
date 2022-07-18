@@ -106,7 +106,7 @@ type FetchedElement = {
       questionAnswerPair_id: QuestionAnswerPair;
     }>;
     state?: string;
-    maxBounds?: any; // string as json
+    maxBounds?: [Coordinates, Coordinates]; // json
   };
 };
 
@@ -285,7 +285,7 @@ const updatePageStructure = (fetchedPage: FetchedPage): Page => {
                     ...baseElement,
                     collection: 'sectionsCollectionMap',
                     state: element.item.state,
-                    maxBounds: JSON.parse(element.item.maxBounds!),
+                    maxBounds: element.item.maxBounds,
                   } as SectionsCollectionMap;
               }
             }),
