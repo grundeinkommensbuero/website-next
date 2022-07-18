@@ -10,15 +10,13 @@ const MapPlaygroundPage = () => {
   return (
     <SectionWrapper colorScheme="colorSchemeRoseOnWhite">
       <CollectionMap
-        maps={[
-          {
-            state: 'berlin',
-            maxBounds: [
-              [13.05, 52.2],
-              [13.8, 52.8],
-            ],
-          },
-        ]}
+        mapConfig={{
+          state: 'berlin',
+          maxBounds: [
+            [13.05, 52.2],
+            [13.8, 52.8],
+          ],
+        }}
       />
     </SectionWrapper>
   );
