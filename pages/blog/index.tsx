@@ -50,8 +50,8 @@ type SSProps = {
 
 const Blog = ({ blogposts }: SSProps): ReactElement => {
   return (
-    <>
-      <h2 className="mx-8">Expeditionsblog:</h2>
+    <div className="sections">
+      <h2 className="my-8">Expeditionsblog:</h2>
       <BlogList posts={blogposts} />
       {/* <div className="flex flex-wrap xs:flex-column justify-around">
         {blogposts && blogposts.length > 0 ? (
@@ -70,7 +70,7 @@ const Blog = ({ blogposts }: SSProps): ReactElement => {
           <h2 className="text-center my-8 text-violet">Keine Einträge</h2>
         )}
       </div> */}
-    </>
+    </div>
   );
 };
 

@@ -15,9 +15,10 @@
 
   a {
     text-decoration: none;
+    color: $violet;
 
     &:hover {
-      @extend .linkUnderlined;
+      text-decoration: underline;
     }
   }
 }
@@ -27,6 +28,10 @@
 }
 
 .image {
-  max-height: 17rem;
+  max-height: 20rem;
+  width: 100%;
   filter: saturate(120%);
+  object-fit: cover;
+  object-position: 0 25%;
+  cursor: pointer;
 }
