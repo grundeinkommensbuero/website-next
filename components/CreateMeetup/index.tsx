@@ -19,6 +19,7 @@ import {
   useCreateMeetup,
 } from '../../hooks/Api/Meetups/Create';
 import { FinallyMessage } from '../Forms/FinallyMessage';
+import { useMapDistricts } from '../../hooks/Districts';
 import { MapConfig } from '../CollectionMap';
 import { GeocoderEvent } from '../CollectionMap/LazyMap';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
@@ -39,6 +40,7 @@ const CreateMeetup = ({
 }: CreateMeetupProps) => {
   const [location, setLocation] = useState<MapboxGeocoder.Result>();
   const [createMeetupState, createMeetup] = useCreateMeetup();
+  const [district, mapLocationToDistrict] = useMapDistricts();
 
   const [overlayCloseTimer, setOverlayCloseTimer] = useState(0);
 
@@ -51,6 +53,8 @@ const CreateMeetup = ({
 
   const handleLocationChosen = (e: GeocoderEvent) => {
     setLocation(e.result);
+    mapLocationToDistrict(e.result.center);
+
     // Scroll to form
     if (scrollToRef?.current) {
       scrollToRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
@@ -147,7 +151,14 @@ const CreateMeetup = ({
         mapConfig={mapConfig}
         hideLegend={true}
       />
-      {location && (
+      {location && !district && (
+        <p>
+          Der ausgewählte Ort konnte keinem Kiez zugeordnet werden. Bitte wähle
+          einen anderen Ort oder melde dich beim{' '}
+          <a href="mailto:support@expedition-grundeinkommen.de">Support</a>.
+        </p>
+      )}
+      {location && district && (
         <>
           <p className={s.chosenLocation}>
             <span className={s.coloredText}>Gewählter Ort:</span>
@@ -156,7 +167,25 @@ const CreateMeetup = ({
 
           <Form
             onSubmit={e => {
+              // Depending on the type of the location a location has its street in the text property
+              // or not (if not, we have to extract it from place name)
+              let street;
+              let number;
+              if (location.place_type?.[0] === 'address') {
+                street = location.text;
+                number = location.address;
+              } else {
+                // split by "," to get address and then split " " to remove number
+                const addressArray = location.place_name
+                  .split(',')[1]
+                  .slice(1)
+                  .split(' ');
+                number = addressArray.pop();
+                street = addressArray.join(' ');
+              }
+
               const data: CreateMeetupData = {
+                district,
                 locationName: e.name,
                 description: e.description,
                 contact: e.contact,
@@ -164,6 +193,8 @@ const CreateMeetup = ({
                 address: location.address
                   ? `${location.text} ${location.address}`
                   : location.text,
+                street,
+                number,
                 city: location.context.find(({ id }) => id.startsWith('place'))
                   ?.text,
                 zipCode: location.context.find(({ id }) =>
@@ -177,8 +208,8 @@ const CreateMeetup = ({
 
               // Only had dates if type is collect
               if (type === 'collect') {
-                data.startTime = new Date(`${e.date}T${e.start}`).toISOString();
-                data.endTime = new Date(`${e.date}T${e.end}`).toISOString();
+                data.startTime = `${e.date}T${e.start}:00`;
+                data.endTime = `${e.date}T${e.end}:00`;
               }
 
               createMeetup(data, mapConfig.state === 'berlin');
@@ -238,35 +269,68 @@ const CreateMeetup = ({
                   )}
                   <div ref={scrollToRef}></div>
 
-                  <FormSection>
-                    <p>
-                      Bitte gib ein paar zusätzliche Infos an. Wo willst du
-                      sammeln? Sollen die anderen Sammler*innen etwas
-                      mitbringen? Wie findet ihr zueinander?
-                    </p>
-                    <Field
-                      name="description"
-                      label="Beschreibung"
-                      placeholder="Sag ein paar Sätze zum geplanten Event..."
-                      type="textarea"
-                      inputClassName={s.textarea}
-                      component={TextInputWrapped as any}
-                    ></Field>
-                    <p>
-                      Gib ein paar Infos über dich an: Woran erkennt man dich
-                      vor Ort und wie kann man dich kontaktieren? Bitte beachte,
-                      dass diese Angaben öffentlich auf der Karte zu sehen sein
-                      werden.
-                    </p>
-                    <Field
-                      name="contact"
-                      label="Informationen über dich"
-                      placeholder="Beschreibung"
-                      type="textarea"
-                      inputClassName={cN(s.textarea, s.shortTextarea)}
-                      component={TextInputWrapped as any}
-                    ></Field>
-                  </FormSection>
+                  {type === 'collect' && (
+                    <FormSection>
+                      <p>
+                        Bitte gib ein paar zusätzliche Infos an. Wo willst du
+                        sammeln? Sollen die anderen Sammler*innen etwas
+                        mitbringen? Wie findet ihr zueinander?
+                      </p>
+                      <Field
+                        name="description"
+                        label="Beschreibung"
+                        placeholder="Sag ein paar Sätze zum geplanten Event..."
+                        type="textarea"
+                        inputClassName={s.textarea}
+                        component={TextInputWrapped as any}
+                      ></Field>
+                      <p>
+                        Gib ein paar Infos über dich an: Woran erkennt man dich
+                        vor Ort und wie kann man dich kontaktieren? Bitte
+                        beachte, dass diese Angaben öffentlich auf der Karte zu
+                        sehen sein werden.
+                      </p>
+                      <Field
+                        name="contact"
+                        label="Informationen über dich"
+                        placeholder="Kontakt"
+                        type="textarea"
+                        inputClassName={cN(s.textarea, s.shortTextarea)}
+                        component={TextInputWrapped as any}
+                      ></Field>
+                    </FormSection>
+                  )}
+
+                  {type === 'lists' && (
+                    <FormSection>
+                      <p>
+                        Gib optional eine Beschreibung oder ein paar zusätzliche
+                        Infos zum Ort an.
+                      </p>
+                      <Field
+                        name="description"
+                        label="Beschreibung"
+                        placeholder="Sag ein paar Sätze zum Ort..."
+                        type="textarea"
+                        inputClassName={s.textarea}
+                        component={TextInputWrapped as any}
+                      ></Field>
+                      <p>
+                        Gib optional ein paar Infos über dich als
+                        Ansprechpartner*in an: Wie kann man dich kontaktieren?
+                        Bitte beachte, dass diese Angaben öffentlich auf der
+                        Karte zu sehen sein werden.
+                      </p>
+                      <Field
+                        name="contact"
+                        label="Informationen über dich"
+                        placeholder="Kontakt"
+                        type="textarea"
+                        inputClassName={cN(s.textarea, s.shortTextarea)}
+                        component={TextInputWrapped as any}
+                      ></Field>
+                    </FormSection>
+                  )}
 
                   <CTAButtonContainer className={s.buttonContainer}>
                     <CTAButton type="submit" size="MEDIUM">
@@ -289,16 +353,13 @@ type FormValues = {
   date?: string;
   start?: string;
   end?: string;
+  contact?: string;
 };
 
 type FormErrors = FormValues;
 
 const validate = (values: FormValues, type: LocationType) => {
   const errors: FormErrors = {};
-
-  if (!values.description) {
-    errors.description = 'Bitte gib eine kurze Beschreibung an';
-  }
 
   if (type === 'lists' && !values.name) {
     errors.name = 'Bitte gib einen Namen des Sammelortes an';
@@ -315,6 +376,14 @@ const validate = (values: FormValues, type: LocationType) => {
 
     if (!values.end) {
       errors.end = 'Bitte gib ein Ende an';
+    }
+
+    if (!values.description) {
+      errors.description = 'Bitte gib eine kurze Beschreibung an';
+    }
+
+    if (!values.contact) {
+      errors.contact = 'Bitte gib einen Kontakt an';
     }
   }
 
