@@ -51,8 +51,6 @@ export const useSignIn = (): [string | undefined, () => void] => {
     () => {
       setState('loading');
 
-      if (!tempEmail) return;
-
       signIn({ email: tempEmail }, context)
         .then(() => {
           setState('success');
