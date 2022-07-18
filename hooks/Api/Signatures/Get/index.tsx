@@ -64,11 +64,14 @@ export const useSignatureCountOfUser = (): [
   return [
     stats,
     (data: getSignatureCountOfUserArgs) => {
-      getSignatureCountOfUser(data).then(data => {
-        // get the most recent relevant campaing
-        data.mostRecentCampaign = getMostRecentCampaign(data);
+      getSignatureCountOfUser(data).then(signatureData => {
+        if (signatureData) {
+          // get the most recent relevant campaing
+          signatureData.mostRecentCampaign =
+            getMostRecentCampaign(signatureData);
+        }
 
-        setStats(data);
+        setStats(signatureData);
       });
     },
     () => {
@@ -90,9 +93,9 @@ const getMostRecentCampaign = (data: any) => {
     } else {
       return data.receivedList[data.receivedList.length - 1].campaign;
     }
-  } else if (data.scannedByUserList > 0) {
+  } else if (data.scannedByUserList.length > 0) {
     return data.scannedByUserList[data.scannedByUserList.length - 1].campaign;
-  } else if (data.receivedList > 0) {
+  } else if (data.receivedList.length > 0) {
     return data.receivedList[data.receivedList.length - 1].campaign;
   }
 
