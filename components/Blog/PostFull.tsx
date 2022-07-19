@@ -1,26 +1,38 @@
 import parseHTML from 'html-react-parser';
 import { DirectusImage } from '../Util/DirectusImage';
+import s from './style.module.scss';
+import classNames from 'classnames';
+import { getAssetURL } from '../Util/getAssetURL';
 
 type BlogProps = {
   title: string;
   content: string;
   assetId: string;
+  date: string;
 };
 
-export const PostFull = ({ title, content, assetId }: BlogProps) => {
+export const PostFull = ({ title, content, assetId, date }: BlogProps) => {
   return (
-    <div className={`m-4 overflow-hidden shadow-lg relative`}>
-      <DirectusImage
-        assetId={assetId}
-        alt="Bild zum Blogpost"
-        className="object-cover h-full w-full"
-        overrideHeight={600}
-        overrideWidth={2000}
-      />
-      <div className="px-6 py-4">
-        <h2 className="text-d-xl mb-2">{title}</h2>
-        {parseHTML(content)}
+    <div className={`overflow-hidden relative`}>
+      <div>
+        <img
+          src={getAssetURL(assetId)}
+          // assetId={assetId}
+          alt="Bild zum Blogpost"
+          className={'object-cover h-128 w-full'}
+          // overrideHeight={1200}
+          // overrideWidth={3000}
+        />
+        <div className={classNames(s.blogPostHeader, 'h-128')}>
+          <div className={classNames('sections', s.blogPostTitle)}>
+            <div className={s.postTitleText}>
+              <h2 className="text-d-3xl">{title}</h2>
+              <p>{new Date(date).toLocaleDateString('de-DE')}</p>
+            </div>
+          </div>
+        </div>
       </div>
+      <div className="px-6 py-8 sections">{parseHTML(content)}</div>
     </div>
   );
 };
