@@ -2,7 +2,7 @@ import { GetServerSideProps } from 'next';
 import { ReactElement } from 'react';
 import { Blogpost } from '.';
 import fetchData from './fetchData';
-import { PostFull } from '../../components/Blog/PostFull';
+import { PostFull } from '../../components/Blog/BlogPost';
 
 type PostProps = {
   blogpost: Blogpost;
