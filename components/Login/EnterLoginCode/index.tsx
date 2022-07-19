@@ -21,6 +21,7 @@ type EnterLoginCodeProps = {
   buttonText?: string;
   onAnswerChallengeSuccess?: () => void;
   colorScheme?: ColorScheme;
+  wrongCodeMessage?: ReactElement | string;
 };
 
 export const EnterLoginCode = ({
@@ -29,6 +30,7 @@ export const EnterLoginCode = ({
   buttonText,
   onAnswerChallengeSuccess,
   colorScheme,
+  wrongCodeMessage,
 }: EnterLoginCodeProps) => {
   const { setShowModal } = useContext(OnboardingModalContext);
 
@@ -124,12 +126,13 @@ export const EnterLoginCode = ({
   return (
     <FinallyMessage colorScheme={colorScheme}>
       <>
-        {answerChallengeState === 'wrongCode' && (
-          <p>
-            Der eingegebene Code ist falsch oder bereits abgelaufen. Bitte
-            überprüfe die Email erneut oder fordere unten einen neuen Code an.
-          </p>
-        )}
+        {answerChallengeState === 'wrongCode' &&
+          (wrongCodeMessage || (
+            <p>
+              Der eingegebene Code ist falsch oder bereits abgelaufen. Bitte
+              überprüfe die Email erneut oder fordere unten einen neuen Code an.
+            </p>
+          ))}
 
         {(answerChallengeState === 'resentCode' ||
           answerChallengeState === 'restartSignIn') && (

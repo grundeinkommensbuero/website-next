@@ -13,14 +13,24 @@ import { useCreateSignatureList } from '../../hooks/Api/Signatures/Create/index'
 import { useSignUp } from '../../hooks/Authentication';
 import { EnterLoginCode } from '../Login/EnterLoginCode';
 import { validateEmail } from '../../hooks/Authentication/validateEmail';
+import IncognitoIcon from './incognito_violet.svg';
+import IncognitoIconBerlin from './incognito-berlin.svg';
+import MailIcon from './mail_violet.svg';
+import MailIconBerlin from './mail-berlin.svg';
 
-const trackingCategory = 'ListDownload';
+const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
+
+const IncognitoIconComponent = IS_BERLIN_PROJECT
+  ? IncognitoIconBerlin
+  : IncognitoIcon;
+
+const MailIconComponent = IS_BERLIN_PROJECT ? MailIconBerlin : MailIcon;
 
 type ListDownloadProps = { signaturesId: string };
 
 type FormValues = { email: string };
 
-type FormErrors = { email: string };
+type FormErrors = { email?: string };
 
 const ListDownload = ({ signaturesId }: ListDownloadProps) => {
   const [state, pdf, anonymous, createPdf] = useCreateSignatureList();
@@ -29,8 +39,6 @@ const ListDownload = ({ signaturesId }: ListDownloadProps) => {
     boolean | undefined
   >();
   const { isAuthenticated, userId } = useContext(AuthContext);
-  const iconIncognito = require('!svg-inline-loader!./incognito_violet.svg');
-  const iconMail = require('!svg-inline-loader!./mail_violet.svg');
   const router = useRouter();
 
   useEffect(() => {
@@ -65,7 +73,29 @@ const ListDownload = ({ signaturesId }: ListDownloadProps) => {
     !anonymous
   ) {
     return (
-      <EnterLoginCode preventSignIn={signUpState === 'success'}>
+      <EnterLoginCode
+        preventSignIn={signUpState === 'success'}
+        wrongCodeMessage={
+          <>
+            <p>
+              Der eingegebene Code ist falsch oder bereits abgelaufen. Bitte
+              überprüfe die Email erneut oder fordere unten einen neuen Code an.
+            </p>
+            <p>
+              Du kannst auch eine Liste{' '}
+              <InlineButton
+                onClick={() => {
+                  createPdf({ campaignCode: signaturesId, anonymous: true });
+                }}
+                type="button"
+              >
+                hier
+              </InlineButton>{' '}
+              anonym herunterladen.
+            </p>
+          </>
+        }
+      >
         <p>
           Zur Verifizierung gib bitte den Code ein, den wir dir gerade in einer
           E-Mail geschickt haben. Alternativ kannst du auch eine Liste{' '}
@@ -147,6 +177,7 @@ const ListDownload = ({ signaturesId }: ListDownloadProps) => {
             setLoginCodeRequested(false);
           }
 
+          console.log('about to signup');
           // If user is not identified
           signUp({ newsletterConsent: true, ...e });
         }}
@@ -187,10 +218,7 @@ const ListDownload = ({ signaturesId }: ListDownloadProps) => {
                 {!isAuthenticated && (
                   <>
                     <div className={s.iconParagraph}>
-                      <div
-                        className={cN(s.icon)}
-                        dangerouslySetInnerHTML={{ __html: iconIncognito }}
-                      ></div>
+                      <IncognitoIconComponent className={cN(s.icon)} />
                       <p>
                         Du willst deine E-Mail-Adresse nicht angeben? Du kannst
                         die Liste{' '}
@@ -211,20 +239,19 @@ const ListDownload = ({ signaturesId }: ListDownloadProps) => {
               </div>
 
               <div className={s.iconParagraph}>
-                <div
-                  className={s.icon}
-                  dangerouslySetInnerHTML={{ __html: iconMail }}
-                ></div>
+                <MailIconComponent className={s.icon} />
                 <p>
-                  Kein Drucker? Bei{' '}
+                  Kein Drucker? Lade Dir deine Unterschriftenliste mit einem
+                  Briefumschlag zum Selbstfalten auf{' '}
                   <a
+                    href={'https://innn.it/Volksentscheid-Grundeinkommen'}
                     target="_blank"
                     rel="noreferrer"
-                    href="https://innn.it/demokratiefueralle"
                   >
                     innn.it
                   </a>{' '}
-                  könnt ihr euch die Liste per Post schicken lassen.
+                  herunter. Einfach ausfüllen, unterschreiben und zurücksenden.
+                  Das Porto wird übernommen.
                 </p>
               </div>
             </form>
@@ -236,9 +263,7 @@ const ListDownload = ({ signaturesId }: ListDownloadProps) => {
 };
 
 const validate = (values: FormValues, userId: string) => {
-  const errors: FormErrors = {
-    email: '',
-  };
+  const errors: FormErrors = {};
 
   if (!userId) {
     if (values.email && values.email.includes('+')) {
