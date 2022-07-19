@@ -201,8 +201,10 @@ const signIn = async (
 
   if (email) {
     body.email = email.toLowerCase();
+  } else if (userId) {
+    // body.userId = userId;
   } else {
-    body.userId = userId;
+    return;
   }
 
   const request: Request = {
