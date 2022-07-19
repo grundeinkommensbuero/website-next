@@ -9,6 +9,7 @@ export type Blogpost = {
   title: string;
   content: string;
   date: string;
+  teaser: string;
   featured_image: {
     id: string;
   };
@@ -23,6 +24,7 @@ const query = `query Blogposts {
     }
     content
     date
+    teaser
   }
 }
 `;

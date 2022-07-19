@@ -10,6 +10,22 @@
   object-fit: cover;
 }
 
+.object-fill {
+  object-fit: fill;
+}
+
+.object-contain {
+  object-fit: contain;
+}
+
+.object-none {
+  object-fit: none;
+}
+
+.object-scale-down {
+  object-fit: scale-down;
+}
+
 .shadow-lg {
   --shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --shadow-colored: 0 10px 15px -3px var(--shadow-color),

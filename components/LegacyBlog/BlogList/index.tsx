@@ -5,8 +5,6 @@ import { formatDate } from '../../../utils/formatDate';
 import { Blogpost } from '../../../pages/blog';
 import { getAssetURL } from '../../Util/getAssetURL';
 import Link from 'next/link';
-import { DirectusImage } from '../../Util/DirectusImage';
-import Image from 'next/image';
 
 type BlogListProps = { posts: Array<Blogpost> };
 
@@ -26,7 +24,13 @@ export const BlogList = ({ posts }: BlogListProps) => {
   );
 };
 
-export const BlogSnippet = ({ title, id, date, featured_image }: Blogpost) => {
+export const BlogSnippet = ({
+  title,
+  id,
+  date,
+  teaser,
+  featured_image,
+}: Blogpost) => {
   const dateObject = new Date(date);
   return (
     <article className={s.article}>
@@ -49,17 +53,12 @@ export const BlogSnippet = ({ title, id, date, featured_image }: Blogpost) => {
           />
         </Link>
       )}
-      {/* <div
-        className={s.body}
-        dangerouslySetInnerHTML={{
-          __html: excerpt,
-        }}
-      />
+      <p className={'pt-4'}>{teaser}</p>
       <p>
         <Link href={`/blog/${id}`} passHref>
           Mehr...
         </Link>
-      </p> */}
+      </p>
     </article>
   );
 };

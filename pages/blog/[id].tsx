@@ -14,6 +14,7 @@ const PostPage = ({ blogpost }: PostProps): ReactElement => {
       title={blogpost.title}
       content={blogpost.content}
       assetId={blogpost.featured_image.id}
+      date={blogpost.date}
     />
   );
 };
@@ -27,6 +28,8 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
         id
       }
       content
+      date
+      teaser
     }
   }`;
 
