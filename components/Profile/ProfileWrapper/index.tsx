@@ -33,17 +33,24 @@ export const ProfileWrapper = ({
   const bounceToIdentifiedState = useBounceToIdentifiedState();
 
   const [isLoading, setIsLoading] = useState(true);
+  console.log({ slugId });
 
   // Get user data on page load and handle redirects
   useEffect(() => {
     // If user isn't authenticated
     if (isAuthenticated === false) {
-      setIsLoading(false);
+      // If we don't check if the previousAction was signOut
+      // we trigger a sign in after user signed out
+      console.log('goes here', { previousAction, slugId });
+      if (previousAction !== 'signOut' && slugId) {
+        setIsLoading(false);
 
-      // Set user id to slug id, so people get immediately sent the login code.
-      // This is relevant if people click a link in a newsletter to update contact settings.
-      setUserId(slugId);
+        // Set user id to slug id, so people get immediately sent the login code.
+        // This is relevant if people click a link in a newsletter to update contact settings.
+        setUserId(slugId);
+      }
     } else if (isAuthenticated) {
+      console.log('goes there', isAuthenticated);
       if (userId !== slugId) {
         // We want to tell the user that they are trying to view the page
         // of a different user. Furthermore we want to bounce the user back
@@ -55,22 +62,18 @@ export const ProfileWrapper = ({
 
       setIsLoading(false);
     }
-    // eslint-disable-next-line
   }, [userId, isAuthenticated]);
 
   // If the user signed out (e.g. through the menu, we want to navigate to homepage)
   useEffect(() => {
     if (previousAction === 'signOut') {
+      setIsLoading(true);
       router.push('/');
     }
 
     // We want to reset previous action in a clean up function
-    // so that we can set the userId to undefined, which might have been
-    // set to slugId after signout in the useEffect above.
-    // It was a bit complicated to work around that
     return () => {
       if (previousAction === 'signOut') {
-        setUserId('');
         setPreviousAction('');
       }
     };
