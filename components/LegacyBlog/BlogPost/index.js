@@ -1,5 +1,4 @@
 import React from 'react';
-import { graphql } from 'gatsby';
 import Layout from '../Layout';
 import { Helmet } from 'react-helmet-async';
 import {
@@ -108,41 +107,3 @@ const BlogPost = ({
 };
 
 export default BlogPost;
-
-export const pageQuery = graphql`
-  query WordpressPostByPath($path: String!) {
-    wpPost(uri: { eq: $path }) {
-      title
-      content
-      excerpt
-      date
-      featuredImage {
-        node {
-          localFile {
-            childImageSharp {
-              hero: gatsbyImageData(placeholder: NONE, layout: FULL_WIDTH)
-              og: gatsbyImageData(
-                width: 1200
-                quality: 90
-                placeholder: BLURRED
-                layout: FIXED
-              )
-            }
-          }
-          uri
-        }
-      }
-    }
-    allWpTag {
-      edges {
-        node {
-          id
-          name
-        }
-      }
-    }
-    contentfulGlobalStuff(contentful_id: { eq: "3mMymrVLEHYrPI9b6wgBzg" }) {
-      siteTitle
-    }
-  }
-`;
