@@ -15,7 +15,7 @@ type ImageMeta = {
 type DirectusImageProps = {
   assetId: string;
   alt: string;
-  className: string;
+  className?: string;
   overrideHeight?: number;
   overrideWidth?: number;
   layout?: Layout;

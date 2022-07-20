@@ -1,7 +1,13 @@
 import ListDownload from '../ListDownload';
 
-const ListDownloadDynamic = () => {
-  return <ListDownload signaturesId="berlin-2" />;
+type ListDownloadDynamicProps = {
+  signaturesId?: string;
+};
+
+const ListDownloadDynamic = ({
+  signaturesId = 'berlin-2',
+}: ListDownloadDynamicProps) => {
+  return <ListDownload signaturesId={signaturesId} />;
 };
 
 export default ListDownloadDynamic;
