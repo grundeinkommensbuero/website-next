@@ -99,6 +99,7 @@ type FetchedElement = {
     slug?: string;
     align?: Align;
     title?: string;
+    props?: string;
     questionAnswerPair?: Array<{
       questionAnswerPair_id: QuestionAnswerPair;
     }>;
@@ -123,6 +124,7 @@ const elementFields = [
   'slug',
   'align',
   'title',
+  'props',
 ];
 
 const faqFields = ['title', 'question', 'answer', 'openInitially'];
@@ -237,6 +239,7 @@ const updatePageStructure = (fetchedPage: FetchedPage): Page => {
                     ...baseElement,
                     collection: 'sectionsComponent',
                     component: element.item.component,
+                    props: element.item.props,
                   } as SectionsComponent;
                 case 'sectionsVideo':
                   return {
