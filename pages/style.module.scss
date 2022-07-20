@@ -1,23 +1,23 @@
 .keyVisualClaim {
-  @apply text-xl;
+  font-size: $DesktopFontSizeM;
 
-  @screen sm {
-    @apply text-xl;
+  @media (max-width: $breakPointXS) {
+    font-size: $DesktopFontSizeM;
   }
 
-  @screen md {
-    @apply text-2xl;
+  @media (max-width: $breakPointS) {
+    font-size: 1.5rem;
   }
 
-  @screen lg {
-    @apply text-3xl;
+  @media (max-width: $breakPointL) {
+    font-size: 1.875rem;
   }
 
-  @screen xl {
-    @apply text-4xl;
+  @media (max-width: $breakPointXL) {
+    font-size: 2.25rem;
   }
 
-  @screen 2xl {
-    @apply text-5xl;
+  @media (max-width: $breakPointXXL) {
+    font-size: 3rem;
   }
 }
