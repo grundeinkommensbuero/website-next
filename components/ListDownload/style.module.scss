@@ -58,4 +58,9 @@
   @media (max-width: $breakPointS) {
     width: 20%;
   }
+
+  //bugfix for Safari
+  svg {
+    width: 200px;
+  }
 }
