@@ -33,7 +33,6 @@ export const ProfileWrapper = ({
   const bounceToIdentifiedState = useBounceToIdentifiedState();
 
   const [isLoading, setIsLoading] = useState(true);
-  console.log({ slugId });
 
   // Get user data on page load and handle redirects
   useEffect(() => {
@@ -41,7 +40,6 @@ export const ProfileWrapper = ({
     if (isAuthenticated === false) {
       // If we don't check if the previousAction was signOut
       // we trigger a sign in after user signed out
-      console.log('goes here', { previousAction, slugId });
       if (previousAction !== 'signOut' && slugId) {
         setIsLoading(false);
 
@@ -50,7 +48,6 @@ export const ProfileWrapper = ({
         setUserId(slugId);
       }
     } else if (isAuthenticated) {
-      console.log('goes there', isAuthenticated);
       if (userId !== slugId) {
         // We want to tell the user that they are trying to view the page
         // of a different user. Furthermore we want to bounce the user back
