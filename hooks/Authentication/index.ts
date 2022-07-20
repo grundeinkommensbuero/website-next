@@ -202,7 +202,7 @@ const signIn = async (
   if (email) {
     body.email = email.toLowerCase();
   } else if (userId) {
-    // body.userId = userId;
+    body.userId = userId;
   } else {
     return;
   }
