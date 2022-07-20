@@ -23,6 +23,7 @@ import { CTAButton } from '../Forms/CTAButton';
 import { useRouter } from 'next/router';
 import { OnboardingModalContext } from '../../context/OnboardingModal';
 import { FAQ } from '../FAQ';
+import CollectionMap, { MapConfig } from '../CollectionMap';
 
 export type Section = {
   id: string;
@@ -45,7 +46,8 @@ export type SectionElement =
   | SectionsComponent
   | SectionsVideo
   | SectionsCTAButton
-  | SectionsFAQ;
+  | SectionsFAQ
+  | SectionsCollectionMap;
 
 export type SectionsText = SectionElementBase & {
   collection: 'sectionsText';
@@ -89,6 +91,11 @@ export type SectionsFAQ = SectionElementBase & {
     openInitially: boolean;
   }>;
 };
+
+export type SectionsCollectionMap = SectionElementBase &
+  MapConfig & {
+    collection: 'sectionsCollectionMap';
+  };
 
 export type SectionElementBase = {
   id: string;
@@ -360,6 +367,24 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                               />
                             );
                           })}
+                        </div>
+                      );
+                    case 'sectionsCollectionMap':
+                      return (
+                        <div key={'map-' + element.index}>
+                          {pageBuilderActive && (
+                            <EditElement
+                              modifiedSection={modifiedSection}
+                              setModifiedSection={setModifiedSection}
+                              element={element}
+                            />
+                          )}
+                          <CollectionMap
+                            mapConfig={{
+                              state: element.state,
+                              maxBounds: element.maxBounds,
+                            }}
+                          />
                         </div>
                       );
                     default:

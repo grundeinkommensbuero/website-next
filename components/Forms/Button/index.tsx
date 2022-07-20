@@ -45,6 +45,7 @@ type LinkButtonLocalProps = {
   className?: string;
   size?: ButtonSize;
   to?: string;
+  [other: string]: any;
 };
 
 export function LinkButtonLocal({
@@ -205,7 +206,7 @@ export function PrimarySecondaryButtonContainer({
 }
 
 type DropdownButtonProps = {
-  children: ReactElement;
+  children: ReactElement | string;
   className?: string;
   isActive?: boolean;
   isOpen?: boolean;

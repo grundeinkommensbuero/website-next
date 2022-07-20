@@ -1,4 +1,4 @@
-@import '../../style/vars.less';
+@import '../../styles/utility/colors.scss';
 
 .section {
   width: 100%;
@@ -14,6 +14,8 @@
   &::-webkit-scrollbar {
     display: none;
   }
+
+  @extend .colorSchemeWhite;
 }
 
 .message {
@@ -26,7 +28,7 @@
 }
 
 .coloredText {
-  color: @violet;
+  color: $violet;
 }
 
 .formSection {
@@ -47,7 +49,7 @@
 }
 
 .eventText {
-  font-size: @DesktopFontSizeM;
+  font-size: $DesktopFontSizeM;
   margin-top: 0;
   margin-bottom: 0.5rem;
 }
