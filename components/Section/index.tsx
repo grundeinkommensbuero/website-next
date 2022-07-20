@@ -64,6 +64,7 @@ export type SectionsImage = SectionElementBase & {
 export type SectionsComponent = SectionElementBase & {
   collection: 'sectionsComponent';
   component: string;
+  props?: { [key: string]: any };
 };
 
 export type SectionsVideo = SectionElementBase & {
@@ -254,7 +255,6 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                             />
                           )}
                           <DirectusImage
-                            className=""
                             assetId={element.image}
                             alt={element.alt}
                           />
@@ -265,6 +265,8 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                         () => import(`../_dynamic/${element.component}`)
                         // { ssr: false, loading: () => null }
                       );
+                      const props = element.props || {};
+
                       return (
                         <div key={'component-' + element.index}>
                           {pageBuilderActive && (
@@ -274,7 +276,7 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                               element={element}
                             />
                           )}
-                          <Component key={element.id} />
+                          <Component key={element.id} {...props} />
                         </div>
                       );
                     case 'sectionsVideo':
