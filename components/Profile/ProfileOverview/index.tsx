@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import AvatarImage from '../../AvatarImage';
 import SignatureStats from '../../SignatureStats';
-import { formatDate } from '../../../utils/formatDate';
+import { formatDate } from '../../../utils/date';
 import s from './style.module.scss';
 import gS from '../style.module.scss';
 import cN from 'classnames';

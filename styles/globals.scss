@@ -12,10 +12,6 @@
 @import 'fonts/obviouslyWebfont.scss';
 @import 'fonts/idealWebfont.scss';
 
-// @tailwind base;
-// @tailwind components;
-// @tailwind utilities;
-
 html,
 body {
   font-family: 'Ideal', Tahoma, Arial, Helvetica, sans-serif;
@@ -76,21 +72,21 @@ h3 {
 }
 
 h3 {
-  @apply text-d-lg;
+  font-size: $DesktopFontSizeM;
   margin: 0 0 1rem 0;
 
-  @media md {
-    @apply text-m-lg;
+  @media (max-width: $breakPointM) {
+    font-size: $DesktopFontSizeM;
     hyphens: auto;
   }
 }
 
 h4 {
-  @apply text-d-base;
+  font-size: $DesktopFontSizeS;
   margin: 0 0 1rem 0;
 
-  @media md {
-    @apply text-m-base;
+  @media (max-width: $breakPointM) {
+    font-size: $DesktopFontSizeS;
     hyphens: auto;
   }
 }
@@ -101,10 +97,10 @@ a {
 
 p {
   line-height: 1.5;
-  @apply text-d-lg;
+  font-size: $DesktopFontSizeM;
 
-  @media md {
-    @apply text-m-base;
+  @media (max-width: $breakPointM) {
+    font-size: $DesktopFontSizeS;
   }
 
   a {
@@ -164,4 +160,91 @@ p {
       text-decoration: none;
     }
   }
+}
+
+// Mapbox styles
+.mapboxgl-map {
+  overflow: visible !important;
+  z-index: 2;
+}
+
+.mapboxgl-canvas-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.mapboxgl-canvas {
+  position: static !important;
+}
+
+.mapboxgl-ctrl-geocoder {
+  color: $violet !important;
+  border: 2px solid $violet;
+  font-family: inherit !important;
+  border-radius: 25px !important;
+
+  @media (max-width: $breakPointM) {
+    width: 70% !important;
+  }
+
+  .mapboxgl-ctrl-geocoder--icon-search {
+    width: 25px !important;
+    height: 25px !important;
+    fill: $violet !important;
+
+    // Specific breakpoint of mapbox stylesheet
+    @media (min-width: 640px) {
+      top: 6px !important;
+    }
+
+    @media (max-width: 640px) {
+      top: 13px !important;
+    }
+  }
+
+  .mapboxgl-ctrl-geocoder--input {
+    color: $violet !important;
+
+    &::placeholder {
+      color: $greyMedium !important;
+    }
+
+    &:focus {
+      @media (min-width: $breakPointM) {
+        top: 13px !important;
+        border-radius: 25px !important;
+        outline: none;
+        box-shadow: inset 0 0 0 $borderWidthThick $violet;
+      }
+    }
+  }
+}
+
+.mapboxgl-popup-close-button {
+  margin: 0.5rem;
+  color: $violet;
+  background: #f0f0f0;
+  position: fixed !important;
+  top: 1rem !important;
+  right: -13.75rem !important;
+
+  &:hover {
+    color: $violetLight;
+  }
+}
+
+.mapboxgl-popup-content {
+  overflow: auto;
+  border: 1px solid $violet;
+  border-radius: 2px !important;
+  width: 30rem;
+  max-height: 25rem;
+
+  @media (max-width: $breakPointM) {
+    width: 20rem;
+  }
+}
+
+.mapboxgl-ctrl-bottom-right {
+  z-index: 0 !important;
 }

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import SignUp from '../../../components/Forms/SignUp';
 import querystring from 'query-string';
 import { SectionWrapper } from '../../../components/Section/SectionWrapper';
-import { formatDate } from '../../../utils/formatDate';
+import { formatDate } from '../../../utils/date';
 import { useRouter } from 'next/router';
 import s from './style.module.scss';
 import { stateToAgs } from '../../../utils/stateToAgs';

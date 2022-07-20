@@ -1,4 +1,5 @@
 import { Directus, RelationItem } from '@directus/sdk';
+import { Coordinates } from '../components/CollectionMap';
 import {
   Section,
   Layout,
@@ -9,6 +10,7 @@ import {
   SectionsVideo,
   SectionsCTAButton,
   SectionsFAQ,
+  SectionsCollectionMap,
   Status,
 } from '../components/Section';
 import { PageProps } from '../pages/[id]';
@@ -80,7 +82,8 @@ type FetchedElement = {
     | 'sectionsComponent'
     | 'sectionsVideo'
     | 'sectionsCTAButton'
-    | 'sectionsFAQ';
+    | 'sectionsFAQ'
+    | 'sectionsCollectionMap';
   item: {
     id: string;
     status: Status;
@@ -99,9 +102,12 @@ type FetchedElement = {
     slug?: string;
     align?: Align;
     title?: string;
+    props?: string;
     questionAnswerPair?: Array<{
       questionAnswerPair_id: QuestionAnswerPair;
     }>;
+    state?: string;
+    maxBounds?: [Coordinates, Coordinates]; // json
   };
 };
 
@@ -123,6 +129,9 @@ const elementFields = [
   'slug',
   'align',
   'title',
+  'state',
+  'maxBounds',
+  'props',
 ];
 
 const faqFields = ['title', 'question', 'answer', 'openInitially'];
@@ -237,6 +246,7 @@ const updatePageStructure = (fetchedPage: FetchedPage): Page => {
                     ...baseElement,
                     collection: 'sectionsComponent',
                     component: element.item.component,
+                    props: element.item.props,
                   } as SectionsComponent;
                 case 'sectionsVideo':
                   return {
@@ -273,6 +283,13 @@ const updatePageStructure = (fetchedPage: FetchedPage): Page => {
                         })
                       : [],
                   } as SectionsFAQ;
+                case 'sectionsCollectionMap':
+                  return {
+                    ...baseElement,
+                    collection: 'sectionsCollectionMap',
+                    state: element.item.state,
+                    maxBounds: element.item.maxBounds,
+                  } as SectionsCollectionMap;
               }
             }),
         };
@@ -286,6 +303,7 @@ export type QuestionAnswerPair = {
   openInitially: boolean;
 };
 
+// TODO: not used?
 const fetchManyToAllRelation = async (
   collection: string,
   ids: Array<number>,

@@ -398,7 +398,7 @@ const DonationForm = ({ onboardingNextPage }: DonationFormProps) => {
                                 </>
                               }
                               type="checkbox"
-                              component={Checkbox}
+                              component={Checkbox as any}
                               theme="christmas"
                             ></Field>
                             <Overlay
@@ -445,7 +445,7 @@ const DonationForm = ({ onboardingNextPage }: DonationFormProps) => {
                                 </>
                               }
                               type="checkbox"
-                              component={Checkbox}
+                              component={Checkbox as any}
                               theme="christmas"
                             ></Field>
 

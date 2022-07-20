@@ -23,6 +23,7 @@ import { CTAButton } from '../Forms/CTAButton';
 import { useRouter } from 'next/router';
 import { OnboardingModalContext } from '../../context/OnboardingModal';
 import { FAQ } from '../FAQ';
+import CollectionMap, { MapConfig } from '../CollectionMap';
 
 export type Section = {
   id: string;
@@ -45,7 +46,8 @@ export type SectionElement =
   | SectionsComponent
   | SectionsVideo
   | SectionsCTAButton
-  | SectionsFAQ;
+  | SectionsFAQ
+  | SectionsCollectionMap;
 
 export type SectionsText = SectionElementBase & {
   collection: 'sectionsText';
@@ -62,6 +64,7 @@ export type SectionsImage = SectionElementBase & {
 export type SectionsComponent = SectionElementBase & {
   collection: 'sectionsComponent';
   component: string;
+  props?: { [key: string]: any };
 };
 
 export type SectionsVideo = SectionElementBase & {
@@ -88,6 +91,11 @@ export type SectionsFAQ = SectionElementBase & {
     openInitially: boolean;
   }>;
 };
+
+export type SectionsCollectionMap = SectionElementBase &
+  MapConfig & {
+    collection: 'sectionsCollectionMap';
+  };
 
 export type SectionElementBase = {
   id: string;
@@ -247,7 +255,6 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                             />
                           )}
                           <DirectusImage
-                            className=""
                             assetId={element.image}
                             alt={element.alt}
                           />
@@ -258,6 +265,8 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                         () => import(`../_dynamic/${element.component}`)
                         // { ssr: false, loading: () => null }
                       );
+                      const props = element.props || {};
+
                       return (
                         <div key={'component-' + element.index}>
                           {pageBuilderActive && (
@@ -267,7 +276,7 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                               element={element}
                             />
                           )}
-                          <Component key={element.id} />
+                          <Component key={element.id} {...props} />
                         </div>
                       );
                     case 'sectionsVideo':
@@ -358,6 +367,24 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                               />
                             );
                           })}
+                        </div>
+                      );
+                    case 'sectionsCollectionMap':
+                      return (
+                        <div key={'map-' + element.index}>
+                          {pageBuilderActive && (
+                            <EditElement
+                              modifiedSection={modifiedSection}
+                              setModifiedSection={setModifiedSection}
+                              element={element}
+                            />
+                          )}
+                          <CollectionMap
+                            mapConfig={{
+                              state: element.state,
+                              maxBounds: element.maxBounds,
+                            }}
+                          />
                         </div>
                       );
                     default:

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import CONFIG from '../backend-config';
+import CONFIG from '../../../backend-config';
 
 export const useVerification = () => {
   const [verificationState, setVerificationState] = useState('verifying');

@@ -17,13 +17,12 @@ export const SectionWrapper = ({
   status,
 }: SectionWrapperProps) => {
   return (
-    <section
+    <div
       className={`py-16 ${colorScheme} ${
         status === 'draft' ? s.draftSection : ''
       }`}
     >
       {status === 'draft' && <h3 className={s.draftLabel}>Entwurf</h3>}
-      {/* TODO: maybe don't nest two sections? */}
       <section className="sections">
         {title && (
           <h2
@@ -38,6 +37,6 @@ export const SectionWrapper = ({
         )}
         {children}
       </section>
-    </section>
+    </div>
   );
 };
