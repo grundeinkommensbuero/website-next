@@ -3,6 +3,7 @@ import AuthContext from '../../../context/Authentication';
 import { ProfileSignatures } from '../../../components/Profile/ProfileSignatures';
 import fetchData from '../../blog/fetchData';
 import { CampaignVisualisation } from '../../../components/CampaignVisualisations';
+import { ProfileWrapper } from '../../../components/Profile/ProfileWrapper';
 
 type UnterschriftenEintragenProps = {
   campaignVisualisations: CampaignVisualisation[];
@@ -14,11 +15,13 @@ const UnterschriftenEintragen = ({
   const { userId, customUserData: userData } = useContext(AuthContext);
 
   return (
-    <ProfileSignatures
-      campaignVisualisations={campaignVisualisations}
-      userData={userData}
-      userId={userId}
-    />
+    <ProfileWrapper id={userId}>
+      <ProfileSignatures
+        campaignVisualisations={campaignVisualisations}
+        userData={userData}
+        userId={userId}
+      />
+    </ProfileWrapper>
   );
 };
 

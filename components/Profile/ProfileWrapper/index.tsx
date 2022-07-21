@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, ReactElement } from 'react';
 import AuthContext from '../../../context/Authentication';
 import { useSignatureCountOfUser } from '../../../hooks/Api/Signatures/Get';
 import { useBounceToIdentifiedState } from '../../../hooks/Authentication';
@@ -8,9 +8,15 @@ import { FinallyMessage } from '../../Forms/FinallyMessage';
 import { EnterLoginCode } from '../../Login/EnterLoginCode';
 import { ProfileOverview } from '../ProfileOverview';
 
-type ProfilePageProps = { id: string };
+type ProfileWrapperProps = {
+  children?: ReactElement | ReactElement[] | string;
+  id: string;
+};
 
-const ProfilePage = ({ id: slugId }: ProfilePageProps) => {
+export const ProfileWrapper = ({
+  children,
+  id: slugId,
+}: ProfileWrapperProps) => {
   const {
     userId,
     isAuthenticated,
@@ -18,13 +24,11 @@ const ProfilePage = ({ id: slugId }: ProfilePageProps) => {
     customUserData: userData,
     previousAction,
     setPreviousAction,
-    updateCustomUserData,
   } = useContext(AuthContext);
 
   const router = useRouter();
 
-  const [signatureCountOfUser, getSignatureCountOfUser] =
-    useSignatureCountOfUser();
+  const [, getSignatureCountOfUser] = useSignatureCountOfUser();
 
   const bounceToIdentifiedState = useBounceToIdentifiedState();
 
@@ -34,11 +38,15 @@ const ProfilePage = ({ id: slugId }: ProfilePageProps) => {
   useEffect(() => {
     // If user isn't authenticated
     if (isAuthenticated === false) {
-      setIsLoading(false);
+      // If we don't check if the previousAction was signOut
+      // we trigger a sign in after user signed out
+      if (previousAction !== 'signOut' && slugId) {
+        setIsLoading(false);
 
-      // Set user id to slug id, so people get immediately sent the login code.
-      // This is relevant if people click a link in a newsletter to update contact settings.
-      setUserId(slugId);
+        // Set user id to slug id, so people get immediately sent the login code.
+        // This is relevant if people click a link in a newsletter to update contact settings.
+        setUserId(slugId);
+      }
     } else if (isAuthenticated) {
       if (userId !== slugId) {
         // We want to tell the user that they are trying to view the page
@@ -51,31 +59,23 @@ const ProfilePage = ({ id: slugId }: ProfilePageProps) => {
 
       setIsLoading(false);
     }
-    // eslint-disable-next-line
   }, [userId, isAuthenticated]);
 
   // If the user signed out (e.g. through the menu, we want to navigate to homepage)
   useEffect(() => {
     if (previousAction === 'signOut') {
+      setIsLoading(true);
       router.push('/');
     }
 
     // We want to reset previous action in a clean up function
-    // so that we can set the userId to undefined, which might have been
-    // set to slugId after signout in the useEffect above.
-    // It was a bit complicated to work around that
     return () => {
       if (previousAction === 'signOut') {
-        setUserId('');
         setPreviousAction('');
       }
     };
     // eslint-disable-next-line
   }, [previousAction]);
-
-  const triggerUpdateCustomUserData = () => {
-    updateCustomUserData();
-  };
 
   return (
     <>
@@ -86,13 +86,7 @@ const ProfilePage = ({ id: slugId }: ProfilePageProps) => {
           </div>
         </section>
       )}
-      {!isLoading && isAuthenticated && (
-        <ProfileOverview
-          userData={userData}
-          userId={userId}
-          signatureCountOfUser={signatureCountOfUser}
-        />
-      )}
+      {!isLoading && isAuthenticated && <>{children}</>}
 
       {/* If not authenticated and trying to access different profile show option to go to own user page */}
       {!isLoading && slugId !== userId && (
@@ -128,7 +122,6 @@ const ProfilePage = ({ id: slugId }: ProfilePageProps) => {
         <section>
           <EnterLoginCode>
             <p>
-              {' '}
               Du bist mit der E-Mail-Adresse {userData.email} eingeloggt. Um
               dich zu identifizieren, haben wir dir einen Code per E-Mail
               geschickt. Bitte gib diesen ein, um dein Profil zu sehen:
@@ -139,5 +132,3 @@ const ProfilePage = ({ id: slugId }: ProfilePageProps) => {
     </>
   );
 };
-
-export default ProfilePage;

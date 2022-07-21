@@ -51,8 +51,6 @@ export const useSignIn = (): [string | undefined, () => void] => {
     () => {
       setState('loading');
 
-      if (!tempEmail) return;
-
       signIn({ email: tempEmail }, context)
         .then(() => {
           setState('success');
@@ -203,8 +201,10 @@ const signIn = async (
 
   if (email) {
     body.email = email.toLowerCase();
-  } else {
+  } else if (userId) {
     body.userId = userId;
+  } else {
+    return;
   }
 
   const request: Request = {
