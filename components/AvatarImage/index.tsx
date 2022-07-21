@@ -5,24 +5,24 @@ import Avatar1 from './avatar1.svg';
 import Avatar2 from './avatar2.svg';
 import { User } from '../../context/Authentication';
 
-export type Sizes = '200' | '500' | '900' | '1200' | 'original';
+export type Size = '200' | '500' | '900' | '1200' | 'original';
 
 type AvatarImageProps = {
   user: User;
   srcOverwrite?: string | ArrayBuffer | null;
   className?: string;
-  sizes?: Sizes;
+  size?: Size;
 };
 
 const AvatarImage = ({
   user,
   srcOverwrite,
   className,
-  sizes = '500',
+  size = '500',
 }: AvatarImageProps) => {
   const src = user?.profilePictures
     ? // @ts-ignore
-      user?.profilePictures[sizes]
+      user?.profilePictures[size]
     : null;
 
   if (!src) {
