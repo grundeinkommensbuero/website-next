@@ -164,7 +164,7 @@ export const ProfileOverview = ({
 
       {/* Only show this section if user is signed up for berlin or if berlin page */}
       {showPackageSection && (
-        <Link href={`/mensch/${userId}/unterschriften-eintragen`} passHref>
+        <Link href={`/mensch/${userId}/paket-nehmen`} passHref>
           <section
             className={cN(
               s.profilePageSection,

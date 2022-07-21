@@ -1,0 +1,56 @@
+.container {
+  position: relative;
+  color: var(--text-on-secondary-color);
+}
+
+.body {
+  padding: 0 0 2rem;
+  position: relative;
+  z-index: 1;
+
+  .small & {
+    padding-bottom: 1rem;
+  }
+
+  @media (max-width: $breakPointS) {
+    padding-bottom: 1rem;
+  }
+}
+
+.svg {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.svgTop {
+  top: 0;
+  bottom: 2rem;
+  left: 0;
+  right: 0;
+  height: 82%;
+
+  @media (max-width: $breakPointS) {
+    bottom: 1rem;
+    height: 87%;
+  }
+
+  .small & {
+    bottom: 1rem;
+  }
+}
+
+.svgBottom {
+  bottom: 0;
+  height: 2.1rem;
+  left: 0;
+  right: 0;
+
+  @media (max-width: $breakPointS) {
+    height: 1rem;
+  }
+
+  .small & {
+    height: 1rem;
+  }
+}

@@ -1,0 +1,162 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 3rem;
+  font-size: $DesktopFontSizeS;
+
+  @media (max-width: $breakPointS) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: scroll;
+    scroll-snap-type: x mandatory;
+  }
+}
+
+.flexContainer {
+  display: flex;
+  justify-content: space-between;
+
+  @media (max-width: $breakPointM) {
+    flex-direction: column;
+  }
+}
+
+.flexItem {
+  width: 45%;
+
+  @media (max-width: $breakPointM) {
+    width: 100%;
+  }
+}
+
+.fullPackage {
+  display: flex;
+  flex: 1 1 0px;
+  margin-bottom: 2rem;
+  margin-right: 1.5rem;
+  max-width: 21rem;
+}
+
+.extraBottomMargin {
+  margin-bottom: 4rem;
+}
+
+.packageIconContainer {
+  position: relative;
+  width: 9.5rem;
+  height: 7.5rem;
+  margin-right: 1.5rem;
+}
+
+.packageTextContainer {
+  width: 10rem;
+}
+
+.packageIcon {
+  position: absolute;
+}
+
+.checkIcon {
+  height: 0.8rem;
+  margin: 0rem 0.5rem 0 0;
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  top: 3.5rem;
+  left: 5.5rem;
+}
+
+.setDone {
+  position: absolute;
+  top: 7.75rem;
+  font-size: 0.9rem;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+}
+
+.isDone {
+  position: absolute;
+  top: 7.75rem;
+  font-size: 0.95rem;
+  line-height: 1;
+  text-align: center;
+  margin: 0;
+  padding: 0.5rem 0.5rem 0.35rem;
+  background: $aqua;
+  color: white;
+  width: 100%;
+}
+
+.loadingPackageUpdate {
+  position: absolute;
+  top: 6rem;
+}
+
+.belowSpeechBubble {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.name {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: $DesktopFontSizeS;
+  margin-top: 0;
+  margin-bottom: 0.25rem;
+}
+
+.createdAt {
+  font-size: $DesktopFontSizeXS;
+  color: gray;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.quote {
+  font-size: $DesktopFontSizeS;
+  margin: 0;
+}
+
+.justSent {
+  animation-name: bounce;
+  animation-duration: 0.7s;
+  animation-iteration-count: 2;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY(0.5rem);
+  }
+  85% {
+    transform: translateY(-0.1rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.violet {
+  color: $violet;
+}
+
+.CTA {
+  margin: 2rem 0;
+}
+
+.packagesColumnLeft {
+  margin: 2rem 0 5rem;
+}
+
+.packagesColumnRight {
+  margin: 2rem 0;
+}
