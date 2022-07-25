@@ -2,7 +2,7 @@ import { GetServerSideProps } from 'next';
 import { ReactElement } from 'react';
 import { Blogpost } from '.';
 import fetchData from './fetchData';
-import { PostFull } from '../../components/Blog/PostFull';
+import { PostFull } from '../../components/Blog/BlogPost';
 
 type PostProps = {
   blogpost: Blogpost;
@@ -14,6 +14,7 @@ const PostPage = ({ blogpost }: PostProps): ReactElement => {
       title={blogpost.title}
       content={blogpost.content}
       assetId={blogpost.featured_image.id}
+      date={blogpost.date}
     />
   );
 };
@@ -27,6 +28,8 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
         id
       }
       content
+      date
+      teaser
     }
   }`;
 

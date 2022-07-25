@@ -1,0 +1,37 @@
+.article {
+  margin-top: 2rem;
+
+  & + & {
+    margin-top: 8rem;
+  }
+
+  @media (max-width: $breakPointS) {
+    margin-top: 4rem;
+  }
+}
+
+.title {
+  margin: 1rem 0;
+
+  a {
+    text-decoration: none;
+    color: $violet;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.body {
+  font-weight: normal;
+}
+
+.image {
+  max-height: 20rem;
+  width: 100%;
+  filter: saturate(120%);
+  object-fit: cover;
+  object-position: 0 25%;
+  cursor: pointer;
+}

@@ -1,4 +1,10 @@
-const graphQLAPI = process.env.NEXT_PUBLIC_GRAPHQL || '';
+// Get the directus url from env
+const directusInstance = process.env.NEXT_PUBLIC_DIRECTUS_ROOT
+  ? process.env.NEXT_PUBLIC_DIRECTUS_ROOT
+  : process.env.NEXT_PUBLIC_DIRECTUS;
+
+// Get graphql endpoint url
+const graphQLAPI = directusInstance ? `${directusInstance}graphql/` : '';
 
 const fetchData = async (query: string, { variables = {} }) => {
   const headers = { 'Content-Type': 'application/json' };

@@ -6,7 +6,6 @@ import { useBounceToIdentifiedState } from '../../../hooks/Authentication';
 import { LinkButtonLocal } from '../../Forms/Button';
 import { FinallyMessage } from '../../Forms/FinallyMessage';
 import { EnterLoginCode } from '../../Login/EnterLoginCode';
-import { ProfileOverview } from '../ProfileOverview';
 
 type ProfileWrapperProps = {
   children?: ReactElement | ReactElement[] | string;
