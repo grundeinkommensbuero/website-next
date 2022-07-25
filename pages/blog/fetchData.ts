@@ -1,4 +1,6 @@
-const graphQLAPI = process.env.NEXT_PUBLIC_GRAPHQL || '';
+const graphQLAPI = process.env.NEXT_PUBLIC_DIRECTUS
+  ? `${process.env.NEXT_PUBLIC_DIRECTUS}graphql/`
+  : '';
 
 const fetchData = async (query: string, { variables = {} }) => {
   const headers = { 'Content-Type': 'application/json' };
