@@ -1,8 +1,8 @@
 import parseHTML from 'html-react-parser';
 import s from './style.module.scss';
 import classNames from 'classnames';
-import { getAssetURL } from '../../Util/getAssetURL';
 import { formatDate } from '../../../utils/date';
+import { getRootAssetURL } from '../../Util/getRootAssetURL';
 
 type BlogProps = {
   title: string;
@@ -53,7 +53,7 @@ export const PostFull = ({ title, content, assetId, date }: BlogProps) => {
       <div className={`overflow-hidden relative`}>
         <div>
           <img
-            src={getAssetURL(assetId)}
+            src={getRootAssetURL(assetId)}
             alt="Bild zum Blogpost"
             className={'object-cover h-128 w-full'}
           />
