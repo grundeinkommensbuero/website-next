@@ -211,7 +211,7 @@ export const ImageInput = ({
           { [s.large]: size === 'large' }
         )}
         user={user}
-        sizes="200"
+        size="200"
       />
       {showUploadLabel ? (
         <>

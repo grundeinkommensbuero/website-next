@@ -86,6 +86,7 @@ export const ProfileWrapper = ({
         </section>
       )}
       {!isLoading && isAuthenticated && <>{children}</>}
+
       {/* If not authenticated and trying to access different profile show option to go to own user page */}
       {!isLoading && slugId !== userId && (
         <section>

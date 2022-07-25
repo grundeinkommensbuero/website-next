@@ -42,7 +42,7 @@ export const UserMenuLinkMobile = ({
             <AvatarImage
               className={s.loginParentAvatar}
               user={customUserData}
-              sizes="500"
+              size="500"
             />
             <span className="text-xl nowrap">{customUserData.username}</span>
           </div>
