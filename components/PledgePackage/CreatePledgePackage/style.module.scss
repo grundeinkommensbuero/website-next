@@ -1,0 +1,119 @@
+.belowBubble {
+  display: grid;
+  grid-template-columns: 5rem 1fr 1fr;
+  grid-gap: 0 2rem;
+  margin-bottom: 2rem;
+
+  @media (max-width: $breakPointM) {
+    grid-template-columns: 4rem 1fr;
+    grid-gap: 0 1rem;
+  }
+}
+
+.flexContainer {
+  display: flex;
+
+  @media (max-width: $breakPointL) {
+    display: block;
+  }
+}
+
+.bubbleElement {
+  margin: 1rem;
+  min-width: 45%;
+
+  @media (max-width: $breakPointL) {
+    margin: 0;
+    min-width: 100%;
+  }
+}
+
+.descriptionTextElement {
+  margin: 0 0 0 2rem;
+  padding-right: 3rem;
+  min-width: 55%;
+
+  @media (max-width: $breakPointL) {
+    margin: 0;
+    padding: 0;
+    min-width: 100%;
+  }
+}
+
+.submitButtonContainer {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.textInput {
+  @media (max-width: $breakPointM) {
+    grid-column: 2;
+  }
+}
+
+.submitButton {
+  height: 100%;
+  margin-top: 1.5rem;
+  margin-right: 1rem;
+  padding: 0.75rem 2rem 0.5rem;
+
+  @media (max-width: 600px) {
+    margin-right: 0;
+  }
+}
+
+.submitButtonDirty {
+  visibility: visible;
+}
+
+.bodyInput {
+  color: inherit;
+  background: transparent;
+  padding: 2rem;
+  font-size: inherit;
+  font-weight: inherit;
+  width: 100%;
+  border: none;
+
+  &:focus {
+    box-shadow: none;
+  }
+
+  @media (max-width: $breakPointM) {
+    padding: 1rem;
+  }
+}
+
+.nameInput {
+  width: 100%;
+}
+
+.usernameDisplay {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin-top: 1rem;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+}
+
+.packageIcon {
+  width: 7.5rem;
+  margin-right: 2rem;
+
+  @media (max-width: $breakPointM) {
+    width: 6rem;
+  }
+
+  @media (max-width: 600px) {
+    display: none;
+  }
+}
+
+.error {
+  margin-left: 1rem;
+  margin-bottom: 0.5rem;
+}

@@ -81,7 +81,7 @@ export function Textarea({
         ref={customRef}
         disabled={disabled}
       />
-      {input.maxLength && charLeft && charLeft < 100 && (
+      {input.maxLength && typeof charLeft !== 'undefined' && charLeft < 100 && (
         <div className={s.charLeftDisplay}>
           {charCount} / {input.maxLength}
         </div>
