@@ -1,9 +1,8 @@
 import parseHTML from 'html-react-parser';
-import { DirectusImage } from '../../Util/DirectusImage';
 import s from './style.module.scss';
 import classNames from 'classnames';
 import { getAssetURL } from '../../Util/getAssetURL';
-import { formatDate } from '../../../utils/formatDate';
+import { formatDate } from '../../../utils/date';
 
 type BlogProps = {
   title: string;
@@ -55,11 +54,8 @@ export const PostFull = ({ title, content, assetId, date }: BlogProps) => {
         <div>
           <img
             src={getAssetURL(assetId)}
-            // assetId={assetId}
             alt="Bild zum Blogpost"
             className={'object-cover h-128 w-full'}
-            // overrideHeight={1200}
-            // overrideWidth={3000}
           />
           <div className={classNames(s.blogPostHeader, 'h-128')}>
             <div className={classNames('sections', s.blogPostTitle)}>

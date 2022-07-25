@@ -15,7 +15,9 @@ export type Blogpost = {
 };
 
 const query = `query Blogposts {
-  blogposts {
+  blogposts(
+    sort: [ "-date" ]
+  ) {
     id
     title
     featured_image {

@@ -1,10 +1,10 @@
 import React from 'react';
 import s from './style.module.scss';
-import { Helmet } from 'react-helmet-async';
-import { formatDate } from '../../../utils/formatDate';
+// import { Helmet } from 'react-helmet-async';
 import { Blogpost } from '../../../pages/blog';
 import { getAssetURL } from '../../Util/getAssetURL';
 import Link from 'next/link';
+import { formatDate } from '../../../utils/date';
 
 type BlogListProps = { posts: Array<Blogpost> };
 
