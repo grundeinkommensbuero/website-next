@@ -9,7 +9,6 @@ import { getReferredUserMessage } from '../utils/referredUserMessage';
 import { getCustomNewsletterEnumeration } from '../utils/customNewsletterEnumeration';
 import { User } from '../../../context/Authentication';
 import Link from 'next/link';
-import { SignatureCount } from '../../../hooks/Api/Signatures/Get';
 import { stateToAgs } from '../../../utils/stateToAgs';
 import { SignatureCount } from '../../../hooks/Api/Signatures/Get';
 
