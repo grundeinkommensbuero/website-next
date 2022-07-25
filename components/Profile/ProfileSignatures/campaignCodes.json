@@ -1,15 +1,15 @@
 [
   {
     "campaignName": "Berlin",
-    "campaignCode": "berlin-1",
+    "campaignCode": "berlin-2",
     "ags": "11000000",
-    "successMessage": "Danke! Bitte schicke die Listen möglichst schnell an: Expedition Grundeinkommen, Karl-Marx-Straße 50, 12043 Berlin"
+    "successMessage": "Danke! Bitte schicke die Listen möglichst schnell an: Expedition Grundeinkommen, Gneisenaustraße 63, 10961 Berlin."
   },
   {
     "campaignName": "Brandenburg",
     "campaignCode": "brandenburg-1",
     "ags": "brandenburg",
-    "successMessage": "Danke! Bitte schicke die Listen möglichst schnell an: Expedition Grundeinkommen, Karl-Marx-Straße 50, 12043 Berlin."
+    "successMessage": "Danke! Bitte schicke die Listen möglichst schnell an: Expedition Grundeinkommen, Gneisenaustraße 63, 10961 Berlin."
   },
   {
     "campaignName": "Bremen",

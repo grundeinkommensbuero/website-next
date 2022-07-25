@@ -86,7 +86,7 @@
   width: 100%;
   z-index: 0;
   //transform: skewX(3.2deg) skewY(0.3deg) rotate(-0.2deg);
-  border: 1px solid $white;
+  border: 1px solid var(--font-color);
 
   .hasNotStarted & {
     border: 1px solid var(--font-color);

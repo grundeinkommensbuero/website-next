@@ -15,10 +15,10 @@ export type CampaignVisualisation = {
   id: string;
   title: string;
   startDate: string;
-  campainCode: string;
+  campaignCode: string;
   hint: string;
   goal: number;
-  goalInbetween: number | null;
+  goalInbetweenMultiple: number[] | null;
   goalUnbuffered: number | null;
   maximum: number | null;
   minimum: number | null;
@@ -29,7 +29,7 @@ export type CampaignVisualisation = {
 };
 
 type CampaignVisualisationsProps = {
-  visualisations: CampaignVisualisation[];
+  visualisations?: CampaignVisualisation[];
 };
 
 const CampaignVisualisations = ({
@@ -37,23 +37,27 @@ const CampaignVisualisations = ({
 }: CampaignVisualisationsProps) => {
   const currentCounts = useSignatureCount();
 
+  if (!visualisations) {
+    return null;
+  }
+
   return (
     <>
       {visualisations.map((visualisation, index) => {
-        if (visualisation.campainCode) {
+        if (visualisation.campaignCode) {
           return (
-            <CampainVisualisation
+            <CampaignVisualisation
               key={index}
               index={index}
               currentCount={
                 currentCounts &&
-                currentCounts[visualisation.campainCode] &&
-                currentCounts[visualisation.campainCode].computed
+                currentCounts[visualisation.campaignCode] &&
+                currentCounts[visualisation.campaignCode].computed
               }
               receivedCount={
                 currentCounts &&
-                currentCounts[visualisation.campainCode] &&
-                currentCounts[visualisation.campainCode].withMixed
+                currentCounts[visualisation.campaignCode] &&
+                currentCounts[visualisation.campaignCode].withMixed
               }
               showCTA={!!(visualisations.length !== 1 && visualisation.ctaLink)}
               labels={{
@@ -71,7 +75,7 @@ const CampaignVisualisations = ({
                 CURRENT_COUNT: () => <>Gesammelte Unterschriften</>,
                 CTA: () => <>Mitmachen</>,
               }}
-              onWhiteBackground={visualisation.campainCode === 'democracy-1'}
+              onWhiteBackground={visualisation.campaignCode === 'democracy-1'}
               {...visualisation}
             />
           );
@@ -143,7 +147,7 @@ const CampaignVisualisations = ({
 //   );
 // };
 
-type CampainVisualisationProps = {
+type CampaignVisualisationProps = {
   index: number;
   key: number;
   minimum: number | null;
@@ -161,7 +165,7 @@ type CampainVisualisationProps = {
   currencyShort?: string;
 };
 
-export const CampainVisualisation = ({
+export const CampaignVisualisation = ({
   minimum,
   maximum,
   addToSignatureCount,
@@ -171,7 +175,7 @@ export const CampainVisualisation = ({
   onWhiteBackground = false,
   showCTA,
   ...props
-}: CampainVisualisationProps) => {
+}: CampaignVisualisationProps) => {
   let count = currentCount || 0;
 
   if (addToSignatureCount) {

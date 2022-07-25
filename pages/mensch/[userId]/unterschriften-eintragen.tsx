@@ -4,6 +4,7 @@ import { ProfileSignatures } from '../../../components/Profile/ProfileSignatures
 import fetchData from '../../blog/fetchData';
 import { CampaignVisualisation } from '../../../components/CampaignVisualisations';
 import { ProfileWrapper } from '../../../components/Profile/ProfileWrapper';
+import { getCampaignVisualisations } from '../../../utils/getCampaignVisualisations';
 
 type UnterschriftenEintragenProps = {
   campaignVisualisations: CampaignVisualisation[];
@@ -25,35 +26,8 @@ const UnterschriftenEintragen = ({
   );
 };
 
-const query = `query CampaignVisualisations {
-  CampaignVisualisations {
-    id
-    title
-    startDate
-    campainCode
-    hint
-    goal
-    goalInbetween
-    goalUnbuffered
-    maximum
-    minimum
-    addToSignatureCount
-    startnextId
-    ctaLink
-    project
-  }
-}
-`;
-
-const variables = {
-  variables: {},
-};
-
 export const getServerSideProps = async () => {
-  const campaignVisualisations: Promise<CampaignVisualisation[]> =
-    await fetchData(query, variables).then(data => {
-      return data.data.CampaignVisualisations;
-    });
+  const campaignVisualisations = await getCampaignVisualisations();
   return {
     props: {
       campaignVisualisations: campaignVisualisations || [],
