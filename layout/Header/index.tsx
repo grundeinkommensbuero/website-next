@@ -40,33 +40,33 @@ export const Header = ({
 
   // Updates the Menu when userData is loaded
   useEffect(() => {
+    const updateMenu = [...modifiedMainMenu];
     const municipalityMenuItems = createMunicipalityMenuItems();
 
-    const indexDropdown = mainMenu.findIndex(el => el.label === 'Mitmachen');
-    const indexEntry = (mainMenu[indexDropdown] as Dropdown).entries.findIndex(
-      e => e.label === 'Mein Ort'
-    );
+    const indexDropdown = updateMenu.findIndex(el => el.label === 'Mitmachen');
+    const indexEntry = (
+      updateMenu[indexDropdown] as Dropdown
+    ).entries.findIndex(e => e.label === 'Mein Ort');
 
     if (
       indexDropdown !== -1 &&
       indexEntry !== -1 &&
       municipalityMenuItems.length > 0
     ) {
-      // (mainMenu[indexDropdown] as Dropdown).entries.splice(indexEntry, 1);
-      const a = (mainMenu[indexDropdown] as Dropdown).entries.slice(
+      const a = (updateMenu[indexDropdown] as Dropdown).entries.slice(
         0,
         indexEntry
       );
-      const b = (mainMenu[indexDropdown] as Dropdown).entries.slice(
+      const b = (updateMenu[indexDropdown] as Dropdown).entries.slice(
         indexEntry + 1
       );
-      (mainMenu[indexDropdown] as Dropdown).entries = [
+      (updateMenu[indexDropdown] as Dropdown).entries = [
         ...a,
         ...municipalityMenuItems,
         ...b,
       ];
     }
-    setModifiedMainMenu(mainMenu);
+    setModifiedMainMenu(updateMenu);
   }, [customUserData, isAuthenticated]);
 
   // Helpers
@@ -77,11 +77,13 @@ export const Header = ({
     // so we check for isAuthenticated here too
     if (!IS_BERLIN_PROJECT) {
       if (customUserData.municipalities && isAuthenticated) {
-        sortedMunicipalities = customUserData.municipalities.sort((a, b) => {
-          return (
-            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-          );
-        });
+        sortedMunicipalities = [...customUserData.municipalities].sort(
+          (a, b) => {
+            return (
+              new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+            );
+          }
+        );
         sortedMunicipalities
           .slice(0, maxEntries)
           .forEach((item: MunicipalityUserData) => {
