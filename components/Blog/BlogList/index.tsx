@@ -2,9 +2,9 @@ import React from 'react';
 import s from './style.module.scss';
 // import { Helmet } from 'react-helmet-async';
 import { Blogpost } from '../../../pages/blog';
-import { getAssetURL } from '../../Util/getAssetURL';
 import Link from 'next/link';
 import { formatDate } from '../../../utils/date';
+import { getRootAssetURL } from '../../Util/getRootAssetURL';
 
 type BlogListProps = { posts: Array<Blogpost> };
 
@@ -14,7 +14,7 @@ export const BlogList = ({ posts }: BlogListProps) => {
       {/* <Helmet>
         <meta
           property="og:image"
-          media={getAssetURL('6beccb07-2ea1-4f30-ab86-a99e05a59785')}
+          media={getRootAssetURL('6beccb07-2ea1-4f30-ab86-a99e05a59785')}
         />
       </Helmet> */}
       {posts.map((post, index) => (
@@ -47,7 +47,7 @@ export const BlogSnippet = ({
       {featured_image && (
         <Link href={`/blog/${id}`} passHref>
           <img
-            src={getAssetURL(featured_image.id)}
+            src={getRootAssetURL(featured_image.id)}
             alt="Titelbild des Blogeintrags"
             className={s.image}
           />
