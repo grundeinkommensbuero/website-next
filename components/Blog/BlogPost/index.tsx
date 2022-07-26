@@ -3,53 +3,56 @@ import s from './style.module.scss';
 import classNames from 'classnames';
 import { formatDate } from '../../../utils/date';
 import { getRootAssetURL } from '../../Util/getRootAssetURL';
+import Head from 'next/head';
 
 type BlogProps = {
   title: string;
   content: string;
+  teaser: string;
   assetId: string;
   date: string;
 };
 
-export const PostFull = ({ title, content, assetId, date }: BlogProps) => {
+export const PostFull = ({
+  title,
+  content,
+  teaser,
+  assetId,
+  date,
+}: BlogProps) => {
   return (
     <>
-      {/* <Helmet>
+      <Head>
         <title>{title}</title>
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@exbeditionbge" />
         <meta name="twitter:title" content={title} />
-        <meta name="twitter:description" content={htmlToText(excerpt)} />
+        <meta name="twitter:description" content={teaser} />
 
-        {featuredImage && (
-          <meta
-            property="og:image"
-            content={
-              featuredImage.node.localFile.childImageSharp.og.images.fallback
-                .src
-            }
-          />
+        {assetId && (
+          <meta property="og:image" content={getRootAssetURL(assetId)} />
         )}
-        {featuredImage && (
-          <meta
-            name="twitter:image"
-            content={
-              featuredImage.node.localFile.childImageSharp.og.images.fallback
-                .src
-            }
-          />
+        {assetId && (
+          <meta name="twitter:image" content={getRootAssetURL(assetId)} />
         )}
-        {!featuredImage && <meta property="og:image" content={OGImage} />}
-        {!featuredImage && <meta name="twitter:image" content={OGImage} />}
+        {!assetId && (
+          <meta property="og:image" content={getRootAssetURL(assetId)} />
+        )}
+        {!assetId && (
+          <meta name="twitter:image" content={getRootAssetURL(assetId)} />
+        )}
 
-        <meta name="description" content={htmlToText(excerpt)} />
-        <meta property="og:description" content={htmlToText(excerpt)} />
+        <meta name="description" content={teaser} />
+        <meta property="og:description" content={teaser} />
         <meta property="og:title" content={title} />
-        <meta property="og:site_name" content={siteTitle} />
+        <meta
+          property="og:site_name"
+          content={'Blogpost der Expedition Grundeinkommen'}
+        />
         <meta property="article:published_time" content={date} />
         <meta property="og:type" content="article" />
-      </Helmet> */}
+      </Head>
       <div className={`overflow-hidden relative`}>
         <div>
           <img

@@ -6,7 +6,22 @@ import { Menu } from '../utils/getMenus';
 import { XbgeAppContext } from '../context/App/index';
 import cN from 'classnames';
 
+// This could also be fetched from directus, if frequently edited
+import projects from './projects.json';
+import { getRootAssetURL } from '../components/Util/getRootAssetURL';
+
 const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
+
+type Project = {
+  siteTitle: string;
+  siteDescription: string;
+  ogimage: string;
+  footerText: string;
+};
+
+const project: Project = IS_BERLIN_PROJECT
+  ? projects.BERLIN_SITE
+  : projects.DEFAULT_SITE;
 
 type LayoutProps = {
   children: ReactElement;
@@ -28,12 +43,36 @@ export const Layout = ({
       })}
     >
       <Head>
-        <title>Expedition Grundeinkommen</title>
+        <title>{project?.siteTitle || 'Expedition Grundeinkommen'}</title>
         <meta
           name="description"
-          content="Modellversuch zum Grundeinkommen jetzt!"
+          content={
+            project?.siteDescription ||
+            'Modellversuch zum Grundeinkommen jetzt!'
+          }
         />
-        <link rel="icon" href="/favicon.ico" />
+        <meta
+          property="og:title"
+          content={project?.siteTitle || 'Expedition Grundeinkommen'}
+        />
+        <meta
+          property="og:description"
+          content={
+            project?.siteDescription ||
+            'Modellversuch zum Grundeinkommen jetzt!'
+          }
+        />
+        <meta
+          property="og:image"
+          content={getRootAssetURL(
+            project?.ogimage || '57331286-2406-4f11-a523-dda6a2166c2e'
+          )}
+        />
+        {IS_BERLIN_PROJECT ? (
+          <link rel="icon" href="/favicon-berlin.ico" />
+        ) : (
+          <link rel="icon" href="/favicon.ico" />
+        )}
       </Head>
 
       <Header mainMenu={mainMenu} currentRoute={currentRoute} />
