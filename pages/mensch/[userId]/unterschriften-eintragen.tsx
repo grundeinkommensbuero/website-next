@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import AuthContext from '../../../context/Authentication';
 import { ProfileSignatures } from '../../../components/Profile/ProfileSignatures';
-import fetchData from '../../blog/fetchData';
+import fetchData from '../../../utils/fetchData';
 import { CampaignVisualisation } from '../../../components/CampaignVisualisations';
 import { ProfileWrapper } from '../../../components/Profile/ProfileWrapper';
 import { getCampaignVisualisations } from '../../../utils/getCampaignVisualisations';

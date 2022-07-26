@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next';
 import { ReactElement } from 'react';
 import { Blogpost } from '.';
-import fetchData from './fetchData';
+import fetchData from '../../utils/fetchData';
 import { PostFull } from '../../components/Blog/BlogPost';
 
 type PostProps = {
@@ -37,11 +37,13 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     variables: {},
   };
 
-  const blogpost: Promise<Blogpost> = await fetchData(query, variables).then(
-    data => {
-      return data.data.blogposts_by_id;
-    }
-  );
+  const blogpost: Promise<Blogpost> = await fetchData(
+    query,
+    variables,
+    true
+  ).then(data => {
+    return data.data.blogposts_by_id;
+  });
 
   return {
     props: {

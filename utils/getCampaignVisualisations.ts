@@ -1,5 +1,5 @@
-import fetchData from '../pages/blog/fetchData';
 import { CampaignVisualisation } from './../components/CampaignVisualisations/index';
+import fetchData from './fetchData';
 
 const query = `query CampaignVisualisations {
   CampaignVisualisations {
