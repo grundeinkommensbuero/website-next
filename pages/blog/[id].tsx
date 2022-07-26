@@ -13,6 +13,7 @@ const PostPage = ({ blogpost }: PostProps): ReactElement => {
     <PostFull
       title={blogpost.title}
       content={blogpost.content}
+      teaser={blogpost.teaser}
       assetId={blogpost.featured_image.id}
       date={blogpost.date}
     />
