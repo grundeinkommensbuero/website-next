@@ -25,33 +25,62 @@ export const PostFull = ({
       <Head>
         <title>{title}</title>
 
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@exbeditionbge" />
-        <meta name="twitter:title" content={title} />
-        <meta name="twitter:description" content={teaser} />
-
-        {assetId && (
-          <meta property="og:image" content={getRootAssetURL(assetId)} />
-        )}
-        {assetId && (
-          <meta name="twitter:image" content={getRootAssetURL(assetId)} />
-        )}
-        {!assetId && (
-          <meta property="og:image" content={getRootAssetURL(assetId)} />
-        )}
-        {!assetId && (
-          <meta name="twitter:image" content={getRootAssetURL(assetId)} />
-        )}
-
-        <meta name="description" content={teaser} />
-        <meta property="og:description" content={teaser} />
-        <meta property="og:title" content={title} />
         <meta
+          key="twitter:card"
+          name="twitter:card"
+          content="summary_large_image"
+        />
+        <meta key="twitter:site" name="twitter:site" content="@exbeditionbge" />
+        <meta key="twitter:title" name="twitter:title" content={title} />
+        <meta
+          key="twitter:description"
+          name="twitter:description"
+          content={teaser}
+        />
+
+        {assetId && (
+          <meta
+            key="og:image"
+            property="og:image"
+            content={getRootAssetURL(assetId)}
+          />
+        )}
+        {assetId && (
+          <meta
+            key="twitter:image"
+            name="twitter:image"
+            content={getRootAssetURL(assetId)}
+          />
+        )}
+        {!assetId && (
+          <meta
+            key="og:image"
+            property="og:image"
+            content={getRootAssetURL(assetId)}
+          />
+        )}
+        {!assetId && (
+          <meta
+            key="twitter:image"
+            name="twitter:image"
+            content={getRootAssetURL(assetId)}
+          />
+        )}
+
+        <meta key="description" name="description" content={teaser} />
+        <meta key="og:description" property="og:description" content={teaser} />
+        <meta key="og:title" property="og:title" content={title} />
+        <meta
+          key="og:site_name"
           property="og:site_name"
           content={'Blogpost der Expedition Grundeinkommen'}
         />
-        <meta property="article:published_time" content={date} />
-        <meta property="og:type" content="article" />
+        <meta
+          key="article:published_time"
+          property="article:published_time"
+          content={date}
+        />
+        <meta key="og:type" property="og:type" content="article" />
       </Head>
       <div className={`overflow-hidden relative`}>
         <div>

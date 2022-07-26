@@ -57,8 +57,8 @@ export const ProfileSignatures = ({
 
         <section className={s.signatureSection}>
           <Head>
-            <title>{pageTitle}</title>
-            <meta property="og:title" content={pageTitle} key="title" />
+            <title key="title">{pageTitle}</title>
+            <meta key="og:title" property="og:title" content={pageTitle} />
           </Head>
 
           <section>
