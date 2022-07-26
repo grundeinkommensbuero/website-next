@@ -1,10 +1,11 @@
-import { ReactElement, useContext } from 'react';
+import { ReactElement, useContext, useEffect } from 'react';
 import Head from 'next/head';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { Menu } from '../utils/getMenus';
 import { XbgeAppContext } from '../context/App/index';
 import cN from 'classnames';
+import { MunicipalityContext } from '../context/Municipality';
 
 // This could also be fetched from directus, if frequently edited
 import projects from './projects.json';
@@ -35,6 +36,15 @@ export const Layout = ({
   footerMenu,
 }: LayoutProps): ReactElement => {
   const { currentRoute } = useContext(XbgeAppContext);
+  const { resetMunicipality } = useContext(MunicipalityContext);
+
+  useEffect(() => {
+    // on every route change we check, if we are still on a
+    // municipality page, if not: reset the municipality context.
+    if (!currentRoute.includes('orte')) {
+      resetMunicipality();
+    }
+  }, [currentRoute]);
 
   return (
     <div
