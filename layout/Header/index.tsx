@@ -9,10 +9,9 @@ import s from './style.module.scss';
 import PageLogo from '../logo-expedition.svg';
 import { useRouter } from 'next/router';
 import AuthContext, {
-  MunicipalityUserData,
+  MunicipalityOfUser,
 } from '../../context/Authentication/index';
 import { stateToAgs } from '../../utils/stateToAgs';
-import { useActions } from '../../hooks/DirectusAction/useActions';
 
 const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
 
@@ -86,7 +85,7 @@ export const Header = ({
         );
         sortedMunicipalities
           .slice(0, maxEntries)
-          .forEach((item: MunicipalityUserData) => {
+          .forEach((item: MunicipalityOfUser) => {
             menuItems.push({
               id: Math.random().toString(),
               status: 'published',
