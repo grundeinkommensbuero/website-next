@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 import AuthContext from '../../../context/Authentication';
-import { ProfileNotifications } from '../../../components/Profile/ProfileNotifications';
 import { ProfileWrapper } from '../../../components/Profile/ProfileWrapper';
+import { ProfilePledgePackage } from '../../../components/Profile/ProfilePledgePackage';
 
-const KontaktEinstellungen = () => {
+const CreatePackagePage = () => {
   const {
     userId,
     customUserData: userData,
@@ -16,13 +16,12 @@ const KontaktEinstellungen = () => {
 
   return (
     <ProfileWrapper id={userId}>
-      <ProfileNotifications
+      <ProfilePledgePackage
         userData={userData}
         updateCustomUserData={triggerUpdateCustomUserData}
-        userId={userId}
       />
     </ProfileWrapper>
   );
 };
 
-export default KontaktEinstellungen;
+export default CreatePackagePage;

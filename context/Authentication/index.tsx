@@ -64,7 +64,8 @@ export type ListFlow = {
   sharedList?: { value: boolean; timestamp: string };
 };
 
-export type MunicipalityUserData = Municipality & { createdAt: string };
+// The municipalities a user signed up for (therefore we have a createdAt attribute)
+export type MunicipalityOfUser = Municipality & { createdAt: string };
 
 export type User = {
   username: string;
@@ -76,7 +77,7 @@ export type User = {
   reminderMails?: NewsletterConsent;
   customNewsletters?: CustomNewsletterConsent[];
   srcOverwrite?: string;
-  municipalities?: MunicipalityUserData[];
+  municipalities?: MunicipalityOfUser[];
   zipCode?: string;
   phoneNumber?: string;
   directus?: {
