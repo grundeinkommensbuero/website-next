@@ -13,6 +13,7 @@ export const BlogList = ({ posts }: BlogListProps) => {
     <div>
       <Head>
         <meta
+          key="og:image"
           property="og:image"
           media={getRootAssetURL('6beccb07-2ea1-4f30-ab86-a99e05a59785')}
         />

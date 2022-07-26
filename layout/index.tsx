@@ -43,8 +43,11 @@ export const Layout = ({
       })}
     >
       <Head>
-        <title>{project?.siteTitle || 'Expedition Grundeinkommen'}</title>
+        <title key="title">
+          {project?.siteTitle || 'Expedition Grundeinkommen'}
+        </title>
         <meta
+          key="description"
           name="description"
           content={
             project?.siteDescription ||
@@ -52,10 +55,12 @@ export const Layout = ({
           }
         />
         <meta
+          key="og:title"
           property="og:title"
           content={project?.siteTitle || 'Expedition Grundeinkommen'}
         />
         <meta
+          key="og:description"
           property="og:description"
           content={
             project?.siteDescription ||
@@ -63,15 +68,16 @@ export const Layout = ({
           }
         />
         <meta
+          key="og:image"
           property="og:image"
           content={getRootAssetURL(
             project?.ogimage || '57331286-2406-4f11-a523-dda6a2166c2e'
           )}
         />
         {IS_BERLIN_PROJECT ? (
-          <link rel="icon" href="/favicon-berlin.ico" />
+          <link key="favicon" rel="icon" href="/favicon-berlin.ico" />
         ) : (
-          <link rel="icon" href="/favicon.ico" />
+          <link key="favicon" rel="icon" href="/favicon.ico" />
         )}
       </Head>
 
