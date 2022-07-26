@@ -1,7 +1,7 @@
 import ListPledgePackages from '../PledgePackage/ListPledgePackages';
 
-const Ticker = () => {
+const PledgePackagesDynamic = () => {
   return <ListPledgePackages />;
 };
 
-export default Ticker;
+export default PledgePackagesDynamic;
