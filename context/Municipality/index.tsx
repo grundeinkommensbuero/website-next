@@ -58,6 +58,7 @@ type MunicipalityContext = {
   setIsMunicipality: React.Dispatch<SetStateAction<boolean>>;
   municipality: Municipality | null;
   setMunicipality: (municipality: Municipality) => void;
+  resetMunicipality: () => void;
   allMunicipalityStats: MunicipalityStats;
   allMunicipalityStatsState: string;
   statsSummary: MunicipalitsStatsSummary | null;
@@ -80,6 +81,7 @@ export const MunicipalityContext = React.createContext<MunicipalityContext>({
     zipCodes: [],
   },
   setMunicipality: () => {},
+  resetMunicipality: () => {},
   allMunicipalityStats: {
     municipalities: [],
   },
@@ -146,6 +148,9 @@ export const MunicipalityProvider = ({
     }
     setMunicipalityState(municipalityForContext);
   };
+
+  // Reset the municipality context
+  const resetMunicipality = (): void => setMunicipalityState(null);
 
   // Stats for all municipalities
   const [
@@ -304,6 +309,7 @@ export const MunicipalityProvider = ({
         setIsMunicipality,
         municipality,
         setMunicipality,
+        resetMunicipality,
         allMunicipalityStats,
         allMunicipalityStatsState,
         statsSummary,
