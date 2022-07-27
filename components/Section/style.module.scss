@@ -146,3 +146,37 @@
   top: 0.5rem;
   right: 0.5rem;
 }
+
+.sectionHero {
+  height: 400px;
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+
+  @media (max-width: $breakPointM) {
+    height: 200px;
+  }
+}
+
+.sectionHeroImageOverlay {
+  background: $white;
+  background: linear-gradient(0deg, $white, transparent);
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 400px;
+  width: 100%;
+
+  @media (max-width: $breakPointM) {
+    height: 200px;
+  }
+}
+
+.sectionHeroTitle {
+  position: relative;
+  max-width: $headerWidth;
+  margin: 0 auto;
+  z-index: 2;
+  padding: 2rem 1rem;
+}

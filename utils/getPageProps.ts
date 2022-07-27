@@ -59,6 +59,9 @@ type FetchedSectionData = {
     colorScheme: ColorScheme;
     includeAgs?: string[];
     excludeAgs?: string[];
+    hasHero: boolean;
+    heroTitle?: string;
+    heroImage?: string;
     elements: FetchedElement[];
   };
 };
@@ -71,6 +74,9 @@ const sectionFields = [
   'label',
   'layout',
   'colorScheme',
+  'hasHero',
+  'heroTitle',
+  'heroImage',
 ];
 
 type Align = 'left' | 'center' | 'right';
@@ -212,6 +218,9 @@ const updatePageStructure = (fetchedPage: FetchedPage): Page => {
           colorScheme: section.item.colorScheme,
           includeAgs: section.item.includeAgs || [],
           excludeAgs: section.item.excludeAgs || [],
+          hasHero: section.item.hasHero,
+          heroTitle: section.item.heroTitle,
+          heroImage: section.item.heroImage,
           render: section.item.elements
             .filter(
               e =>
