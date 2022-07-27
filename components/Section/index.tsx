@@ -1,7 +1,6 @@
 import { ReactElement, useState, useEffect, useContext } from 'react';
 import { NoSsr } from '../Util/NoSsr';
 import ReactTooltip from 'react-tooltip';
-import * as _actions from './_actions';
 import { hasKey } from '../../utils/hasKey';
 import dynamic from 'next/dynamic';
 
@@ -21,9 +20,9 @@ import { YoutubeEmbed } from '../Video/YoutubeEmbed';
 import { XbgeAppContext } from '../../context/App';
 import { CTAButton } from '../Forms/CTAButton';
 import { useRouter } from 'next/router';
-import { OnboardingModalContext } from '../../context/OnboardingModal';
 import { FAQ } from '../FAQ';
 import CollectionMap, { MapConfig } from '../CollectionMap';
+import { useActions } from '../../hooks/DirectusAction/useActions';
 
 export type Section = {
   id: string;
@@ -127,20 +126,10 @@ type SectionProps = {
 
 export const Section = ({ section }: SectionProps): ReactElement => {
   const { pageBuilderActive } = useContext(XbgeAppContext);
-  const { setShowModal } = useContext(OnboardingModalContext);
   const [modifiedSection, setModifiedSection] = useState<Section>(section);
   const [groupedElements, setGroupedElements] = useState<GroupedElements>([]);
   const router = useRouter();
-
-  // Some actions might be imported from the _actions.ts file,
-  // but others need react hooks, so we define them here and
-  // combine both in one accessible object.
-  // Note that naming of the following functions have to match
-  // the action entries in directus.
-  const actions = {
-    openOnboardingFlow: () => setShowModal(true),
-    ..._actions,
-  };
+  const [actions] = useActions();
 
   useEffect(() => {
     const elements: Array<Array<SectionElement>> = [];

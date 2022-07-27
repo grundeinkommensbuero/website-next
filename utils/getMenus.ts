@@ -7,7 +7,9 @@ export type MenuEntry = {
   status: string;
   sort: number | null;
   label: string;
-  slug: string;
+  slug: string | null;
+  useAction: boolean;
+  action: string | null;
 };
 
 export type Dropdown = {
@@ -32,6 +34,8 @@ type FetchedEntries = {
     sort: number | null;
     label: string;
     slug?: string;
+    useAction: boolean;
+    action: string;
     entries?: NestedFetchedEntries[];
   };
 };
@@ -43,6 +47,8 @@ type NestedFetchedEntries = {
     sort: number | null;
     label: string;
     slug: string;
+    useAction: boolean;
+    action: string;
   };
 };
 
@@ -68,6 +74,8 @@ const menuFields = [
   'elements.item.entries.menuentry_id.sort',
   'elements.item.entries.menuentry_id.label',
   'elements.item.entries.menuentry_id.slug',
+  'elements.item.entries.menuentry_id.useAction',
+  'elements.item.entries.menuentry_id.action',
 ];
 
 export const getMenus = async (): Promise<Menus> => {
@@ -103,6 +111,8 @@ const updateMenuStructure = (fetchedMenu: FetchedMenu): Menu => {
       status: element.item.status,
       sort: element.item.sort,
       label: element.item.label,
+      useAction: element.item.useAction,
+      action: element.item.action,
     };
     if (element.item.slug) {
       return {
@@ -112,15 +122,19 @@ const updateMenuStructure = (fetchedMenu: FetchedMenu): Menu => {
     } else {
       return {
         ...entryBase,
-        entries: element.item.entries?.map(entry => {
-          return {
-            id: entry.menuentry_id.id,
-            status: entry.menuentry_id.status,
-            sort: entry.menuentry_id.sort,
-            label: entry.menuentry_id.label,
-            slug: entry.menuentry_id.slug,
-          };
-        }),
+        entries: element.item.entries
+          ?.map(entry => {
+            return {
+              id: entry.menuentry_id.id,
+              status: entry.menuentry_id.status,
+              sort: entry.menuentry_id.sort,
+              label: entry.menuentry_id.label,
+              slug: entry.menuentry_id.slug,
+              useAction: entry.menuentry_id.useAction,
+              action: entry.menuentry_id.action,
+            };
+          })
+          .sort((a, b) => (a.sort || 0) - (b.sort || 0)),
       } as Dropdown;
     }
   });
