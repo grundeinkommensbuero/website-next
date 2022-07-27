@@ -33,6 +33,7 @@ export const DirectusImage = ({
   layout,
   parentClassName,
   priority,
+  objectFit,
   ...other
 }: DirectusImageProps): ReactElement => {
   const [imageMeta, setImageMeta] = useState<ImageMeta | null>(null);
@@ -61,6 +62,7 @@ export const DirectusImage = ({
           className={className}
           layout={layout}
           priority={priority}
+          objectFit={objectFit}
           {...other}
         />
       )}
