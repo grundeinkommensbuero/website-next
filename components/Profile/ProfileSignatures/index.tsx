@@ -4,7 +4,7 @@ import gS from '../style.module.scss';
 import Head from 'next/head';
 import SelfScan from '../../../components/Forms/SelfScan';
 import campaignCodes from './campaignCodes.json';
-import { CampainScanVisualisation } from '../../Forms/SelfScan/CampaignScanVisualisation';
+import { CampaignScanVisualisation } from '../../Forms/SelfScan/CampaignScanVisualisation';
 import { EditProfileSection } from '../EditProfileSection';
 import { BackToProfile } from '../BackToProfile';
 import { User } from '../../../context/Authentication';
@@ -14,7 +14,7 @@ const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
 
 const pageTitle = 'Selbsteingabe Unterschriftsliste';
 
-type CampaignCode = {
+type Campaign = {
   campaignName: string;
   campaignCode: string;
   ags: string;
@@ -32,13 +32,13 @@ export const ProfileSignatures = ({
   userData,
   campaignVisualisations,
 }: ProfileSignaturesProps) => {
-  const [userCampaigns, setUserCampaigns] = useState<CampaignCode[]>(
+  const [userCampaigns, setUserCampaigns] = useState<Campaign[]>(
     IS_BERLIN_PROJECT ? [campaignCodes[0]] : []
   );
 
   useEffect(() => {
     if (userData && userData.municipalities && !IS_BERLIN_PROJECT) {
-      const activeCampaigns: CampaignCode[] = [];
+      const activeCampaigns: Campaign[] = [];
       userData.municipalities.forEach(mun => {
         campaignCodes.forEach(campCode => {
           if (mun.ags === campCode.ags) {
@@ -73,7 +73,7 @@ export const ProfileSignatures = ({
                 return (
                   <div className={s.signatureContainer} key={index}>
                     <h2>Eingegangene Unterschriften {scan.campaignName}</h2>
-                    <CampainScanVisualisation
+                    <CampaignScanVisualisation
                       campaignCode={scan.campaignCode}
                       campaignVisualisations={campaignVisualisations}
                     />

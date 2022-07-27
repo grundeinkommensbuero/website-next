@@ -66,7 +66,7 @@ export const useSignatureCountOfUser = (): [
     (data: getSignatureCountOfUserArgs) => {
       getSignatureCountOfUser(data).then(signatureData => {
         if (signatureData) {
-          // get the most recent relevant campaing
+          // get the most recent relevant campaign
           signatureData.mostRecentCampaign =
             getMostRecentCampaign(signatureData);
         }

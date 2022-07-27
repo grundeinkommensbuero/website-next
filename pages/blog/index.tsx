@@ -1,7 +1,7 @@
 import type { GetServerSideProps } from 'next';
 import { ReactElement } from 'react';
 import { BlogList } from '../../components/Blog/BlogList';
-import fetchData from './fetchData';
+import fetchData from '../../utils/fetchData';
 
 export type Blogpost = {
   id: string;
@@ -35,11 +35,13 @@ const variables = {
 };
 
 export const getServerSideProps: GetServerSideProps = async context => {
-  const blogposts: Promise<Blogpost[]> = await fetchData(query, variables).then(
-    data => {
-      return data.data.blogposts;
-    }
-  );
+  const blogposts: Promise<Blogpost[]> = await fetchData(
+    query,
+    variables,
+    true
+  ).then(data => {
+    return data.data.blogposts;
+  });
   return {
     props: {
       blogposts,

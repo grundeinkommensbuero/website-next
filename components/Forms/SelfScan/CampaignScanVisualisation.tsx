@@ -9,12 +9,12 @@ type CampainScanVisualisationProps = {
   campaignVisualisations: any;
 };
 
-export const CampainScanVisualisation = ({
+export const CampaignScanVisualisation = ({
   campaignCode,
   campaignVisualisations,
 }: CampainScanVisualisationProps) => {
   const campaignVisualisationsMapped = campaignVisualisations.filter(
-    (c: CampaignVisualisation) => c.campainCode === campaignCode
+    (c: CampaignVisualisation) => c.campaignCode === campaignCode
   );
 
   return (
@@ -28,6 +28,4 @@ export const CampainScanVisualisation = ({
       )}
     </>
   );
-
-  return <h2>Hello</h2>;
 };
