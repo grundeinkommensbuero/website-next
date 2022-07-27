@@ -99,8 +99,6 @@ const Confetti = ({ className, componentTheme = 'default' }: any) => {
                 ],
                 ticks: theme.ticks,
               };
-              console.log({ options });
-              confetti.confetti(options);
               confetti.confetti({
                 disableForReducedMotion: true,
                 particleCount: 1,
