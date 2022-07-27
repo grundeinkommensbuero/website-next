@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import s from './style.module.scss';
 import gS from '../style.module.scss';
-import cN from 'classnames';
-import { Helmet } from 'react-helmet-async';
+import Head from 'next/head';
 import SelfScan from '../../../components/Forms/SelfScan';
 import campaignCodes from './campaignCodes.json';
 import { CampaignScanVisualisation } from '../../Forms/SelfScan/CampaignScanVisualisation';
@@ -12,6 +11,8 @@ import { User } from '../../../context/Authentication';
 import { CampaignVisualisation } from '../../CampaignVisualisations';
 
 const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
+
+const pageTitle = 'Selbsteingabe Unterschriftsliste';
 
 type Campaign = {
   campaignName: string;
@@ -55,10 +56,10 @@ export const ProfileSignatures = ({
         <BackToProfile />
 
         <section className={s.signatureSection}>
-          {/* TODO: is this still needed? */}
-          {/* <Helmet>
-            <title>Selbsteingabe Unterschriftsliste</title>
-          </Helmet> */}
+          <Head>
+            <title key="title">{pageTitle}</title>
+            <meta key="og:title" property="og:title" content={pageTitle} />
+          </Head>
 
           <section>
             <SelfScan

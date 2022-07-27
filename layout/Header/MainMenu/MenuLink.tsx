@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import { ActionType } from 'react-hot-toast/dist/core/store';
+import { useActions } from '../../../hooks/DirectusAction/useActions';
 import { MenuEntry } from '../../../utils/getMenus';
 
 type UnderlineColor = 'BLACK' | 'WHITE' | 'RED';
@@ -20,23 +22,32 @@ export const MenuLink = ({
   isMobile = false,
   extraCallback,
 }: MenuLinkProps) => {
-  const prefixedSlug =
-    entry.slug.substring(0, 1) === '/' ? entry.slug : `/${entry.slug}`;
+  const [actions] = useActions();
+
+  const slug = entry.slug || '';
+  const prefixedSlug = slug.substring(0, 1) === '/' ? slug : `/${slug}`;
+  const action = entry.useAction && entry.action ? actions[entry.action] : null;
 
   return (
-    <Link key={entry.id} href={prefixedSlug}>
+    <Link
+      key={entry.id}
+      href={entry.useAction && entry.action ? '' : prefixedSlug}
+    >
       <a
         onClick={() => {
           if (extraCallback) extraCallback();
+          if (action) action();
         }}
         className={`${isMobile ? 'my-2' : 'mx-2'} text-xl nowrap ${
           prefixedSlug === currentRoute
             ? `underline${underlineColor}`
             : `hoverUnderline${hoverUnderlineColor}`
         }`}
-        aria-label={`Zu ${
-          entry.slug === '/' ? 'Start' : entry.slug
-        } navigieren`}
+        aria-label={
+          slug !== ''
+            ? `Zu ${slug === '/' ? 'Start' : entry.slug} navigieren`
+            : ''
+        }
       >
         {entry.label}
       </a>

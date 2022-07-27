@@ -3,53 +3,85 @@ import s from './style.module.scss';
 import classNames from 'classnames';
 import { formatDate } from '../../../utils/date';
 import { getRootAssetURL } from '../../Util/getRootAssetURL';
+import Head from 'next/head';
 
 type BlogProps = {
   title: string;
   content: string;
+  teaser: string;
   assetId: string;
   date: string;
 };
 
-export const PostFull = ({ title, content, assetId, date }: BlogProps) => {
+export const PostFull = ({
+  title,
+  content,
+  teaser,
+  assetId,
+  date,
+}: BlogProps) => {
   return (
     <>
-      {/* <Helmet>
+      <Head>
         <title>{title}</title>
 
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@exbeditionbge" />
-        <meta name="twitter:title" content={title} />
-        <meta name="twitter:description" content={htmlToText(excerpt)} />
+        <meta
+          key="twitter:card"
+          name="twitter:card"
+          content="summary_large_image"
+        />
+        <meta key="twitter:site" name="twitter:site" content="@exbeditionbge" />
+        <meta key="twitter:title" name="twitter:title" content={title} />
+        <meta
+          key="twitter:description"
+          name="twitter:description"
+          content={teaser}
+        />
 
-        {featuredImage && (
+        {assetId && (
           <meta
+            key="og:image"
             property="og:image"
-            content={
-              featuredImage.node.localFile.childImageSharp.og.images.fallback
-                .src
-            }
+            content={getRootAssetURL(assetId)}
           />
         )}
-        {featuredImage && (
+        {assetId && (
           <meta
+            key="twitter:image"
             name="twitter:image"
-            content={
-              featuredImage.node.localFile.childImageSharp.og.images.fallback
-                .src
-            }
+            content={getRootAssetURL(assetId)}
           />
         )}
-        {!featuredImage && <meta property="og:image" content={OGImage} />}
-        {!featuredImage && <meta name="twitter:image" content={OGImage} />}
+        {!assetId && (
+          <meta
+            key="og:image"
+            property="og:image"
+            content={getRootAssetURL(assetId)}
+          />
+        )}
+        {!assetId && (
+          <meta
+            key="twitter:image"
+            name="twitter:image"
+            content={getRootAssetURL(assetId)}
+          />
+        )}
 
-        <meta name="description" content={htmlToText(excerpt)} />
-        <meta property="og:description" content={htmlToText(excerpt)} />
-        <meta property="og:title" content={title} />
-        <meta property="og:site_name" content={siteTitle} />
-        <meta property="article:published_time" content={date} />
-        <meta property="og:type" content="article" />
-      </Helmet> */}
+        <meta key="description" name="description" content={teaser} />
+        <meta key="og:description" property="og:description" content={teaser} />
+        <meta key="og:title" property="og:title" content={title} />
+        <meta
+          key="og:site_name"
+          property="og:site_name"
+          content={'Blogpost der Expedition Grundeinkommen'}
+        />
+        <meta
+          key="article:published_time"
+          property="article:published_time"
+          content={date}
+        />
+        <meta key="og:type" property="og:type" content="article" />
+      </Head>
       <div className={`overflow-hidden relative`}>
         <div>
           <img

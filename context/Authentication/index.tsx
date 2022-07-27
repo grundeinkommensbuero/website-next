@@ -65,7 +65,7 @@ export type ListFlow = {
 };
 
 // The municipalities a user signed up for (therefore we have a createdAt attribute)
-type MunicipalityOfUser = Municipality & { createdAt: string };
+export type MunicipalityOfUser = Municipality & { createdAt: string };
 
 export type User = {
   username: string;

@@ -1,22 +1,23 @@
 import React from 'react';
 import s from './style.module.scss';
-// import { Helmet } from 'react-helmet-async';
 import { Blogpost } from '../../../pages/blog';
 import Link from 'next/link';
 import { formatDate } from '../../../utils/date';
 import { getRootAssetURL } from '../../Util/getRootAssetURL';
+import Head from 'next/head';
 
 type BlogListProps = { posts: Array<Blogpost> };
 
 export const BlogList = ({ posts }: BlogListProps) => {
   return (
     <div>
-      {/* <Helmet>
+      <Head>
         <meta
+          key="og:image"
           property="og:image"
           media={getRootAssetURL('6beccb07-2ea1-4f30-ab86-a99e05a59785')}
         />
-      </Helmet> */}
+      </Head>
       {posts.map((post, index) => (
         <BlogSnippet key={index} {...post} />
       ))}
