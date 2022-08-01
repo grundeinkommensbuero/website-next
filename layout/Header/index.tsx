@@ -43,27 +43,26 @@ export const Header = ({
     const municipalityMenuItems = createMunicipalityMenuItems();
 
     const indexDropdown = updateMenu.findIndex(el => el.label === 'Mitmachen');
-    const indexEntry = (
-      updateMenu[indexDropdown] as Dropdown
-    ).entries.findIndex(e => e.label === 'Mein Ort');
 
-    if (
-      indexDropdown !== -1 &&
-      indexEntry !== -1 &&
-      municipalityMenuItems.length > 0
-    ) {
-      const a = (updateMenu[indexDropdown] as Dropdown).entries.slice(
-        0,
-        indexEntry
-      );
-      const b = (updateMenu[indexDropdown] as Dropdown).entries.slice(
-        indexEntry + 1
-      );
-      (updateMenu[indexDropdown] as Dropdown).entries = [
-        ...a,
-        ...municipalityMenuItems,
-        ...b,
-      ];
+    if (indexDropdown !== -1) {
+      const indexEntry = (
+        updateMenu[indexDropdown] as Dropdown
+      ).entries.findIndex(e => e.label === 'Mein Ort');
+
+      if (indexEntry !== -1 && municipalityMenuItems.length > 0) {
+        const a = (updateMenu[indexDropdown] as Dropdown).entries.slice(
+          0,
+          indexEntry
+        );
+        const b = (updateMenu[indexDropdown] as Dropdown).entries.slice(
+          indexEntry + 1
+        );
+        (updateMenu[indexDropdown] as Dropdown).entries = [
+          ...a,
+          ...municipalityMenuItems,
+          ...b,
+        ];
+      }
     }
     setModifiedMainMenu(updateMenu);
   }, [customUserData, isAuthenticated]);
