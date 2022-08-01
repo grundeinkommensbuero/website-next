@@ -8,6 +8,12 @@ import { Button, InlineButton } from '../../Forms/Button';
 import { Municipality } from '../../../context/Municipality';
 import { User } from '../../../context/Authentication';
 
+export type Channel = {
+  name: string;
+  label: string;
+  channelIdentifier: string;
+};
+
 type SharingFeatureProps = {
   compIndex: number;
   setCurrentElementByIndex: (index: number) => void;
@@ -32,13 +38,17 @@ export const SharingFeature = ({
   scrollToRef,
 }: SharingFeatureProps) => {
   const [sharePreviewActive, setSharePreviewActive] = useState(false);
-  const [shareChannel, setShareChannel] = useState();
+  const [shareChannel, setShareChannel] = useState<Channel>();
 
   const executeScroll = () => {
     if (scrollToRef?.current) {
       scrollToRef.current.scrollIntoView();
     }
   };
+
+  if (!municipality) {
+    return null;
+  }
 
   const SharingHandsPreviewElement = () => {
     return (
