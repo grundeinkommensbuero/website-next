@@ -91,8 +91,6 @@ export const Header = ({
               status: 'published',
               sort: 0,
               label: `Mein Ort: ${item.name}`,
-              // Because netlify redirect does not work at this stage, we pass the volksentscheid page
-              // as external link if "Mein Ort" is berlin
               slug: `orte/${item.slug}`,
               useAction: item.ags === stateToAgs.berlin,
               action: 'redirectToBerlinPage',
