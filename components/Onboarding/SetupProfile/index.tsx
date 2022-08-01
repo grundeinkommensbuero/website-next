@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import s from './style.module.scss';
 import gS from '../style.module.scss';
-// import ImageUpload from '../../Forms/ImageUpload';
+import ImageUpload from '../../Forms/ImageUpload';
 import { Button, InlineButton } from '../../Forms/Button';
 import { User } from '../../../context/Authentication';
 import { PageContainer } from '../PageContainer';
@@ -31,17 +31,15 @@ export const SetupProfile = ({
         ausprobieren willst.
       </p>
 
-      {/* <div className={s.imageUploadContainer}>
+      <div className={s.imageUploadContainer}>
         <ImageUpload
           userData={userData}
           userId={userId}
-          showUploadLabel={false}
-          showEditLabel={true}
           size={'large'}
           onUploadDone={() => setButtonIsDisabled(false)}
           onImageChosen={() => setButtonIsDisabled(true)}
         />
-      </div> */}
+      </div>
 
       <div className={gS.fullWidthFlex}>
         <Button
