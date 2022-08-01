@@ -180,3 +180,8 @@
   z-index: 2;
   padding: 2rem 1rem;
 }
+
+.jumpToAnchor {
+  position: absolute;
+  top: -$headerHeight;
+}
