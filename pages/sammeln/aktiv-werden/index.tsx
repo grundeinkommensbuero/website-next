@@ -6,11 +6,17 @@ import AuthContext from '../../../context/Authentication';
 import { CTALink, CTALinkExternal } from '../../../components/Forms/CTAButton';
 import { SectionWrapper } from '../../../components/Section/SectionWrapper';
 
+const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
+
 const CollectorNextStepsPage = () => {
   const { customUserData } = useContext(AuthContext);
 
   return (
-    <SectionWrapper colorScheme="colorSchemeWhite">
+    <SectionWrapper
+      colorScheme={
+        IS_BERLIN_PROJECT ? 'colorSchemeRoseOnWhite' : 'colorSchemeWhite'
+      }
+    >
       <div className={s.container}>
         <div className={s.avatarContainer}>
           <AvatarImage user={customUserData} className={s.avatar} />

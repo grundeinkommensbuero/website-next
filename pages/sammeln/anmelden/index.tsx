@@ -7,6 +7,8 @@ import { useRouter } from 'next/router';
 import s from './style.module.scss';
 import { stateToAgs } from '../../../utils/stateToAgs';
 
+const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
+
 const CollectorSignUpPage = () => {
   // Date and location of collection event, can be passed through query params
   const [date, setDate] = useState<string>();
@@ -29,7 +31,11 @@ const CollectorSignUpPage = () => {
   }, []);
 
   return (
-    <SectionWrapper colorScheme="colorSchemeWhite">
+    <SectionWrapper
+      colorScheme={
+        IS_BERLIN_PROJECT ? 'colorSchemeRoseOnWhite' : 'colorSchemeWhite'
+      }
+    >
       <div className={s.container}>
         <div className={s.content}>
           <h3>Sei dabei!</h3>
