@@ -48,7 +48,7 @@
     "react-hot-toast": "^2.2.0",
     "react-overlays": "^5.1.1",
     "react-popper": "^2.2.5",
-    "react-query": "^4.0.0",
+    "react-query": "^3.34.12",
     "react-reel": "^1.2.3",
     "react-router-dom": "^6.3.0",
     "react-share": "^4.4.0",
