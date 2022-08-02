@@ -33,7 +33,7 @@ export type Section = {
   excludeAgs: string[];
   hasHero: boolean;
   heroTitle?: string;
-  heroImage?: string;
+  heroImage?: DirectusImage;
   render: SectionElement[];
 };
 
