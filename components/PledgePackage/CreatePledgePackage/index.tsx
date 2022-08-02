@@ -16,7 +16,7 @@ import {
 } from '../../../utils/mapCampaignCode';
 import { User } from '../../../context/Authentication';
 
-const IS_BERLIN_PROJECT = process.env.GATSBY_PROJECT === 'Berlin';
+const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
 
 type PledgePackage = {
   body: string;
