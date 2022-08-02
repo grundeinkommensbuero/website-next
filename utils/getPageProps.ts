@@ -1,3 +1,4 @@
+import { DirectusImage } from './../components/Section/index';
 import { Directus, RelationItem } from '@directus/sdk';
 import { Coordinates } from '../components/CollectionMap';
 import {
@@ -101,7 +102,7 @@ type FetchedElement = {
     status: Status;
     sort: number;
     groupElement: boolean;
-    image?: string;
+    image?: DirectusImage;
     alt?: string;
     content?: string;
     component?: string;

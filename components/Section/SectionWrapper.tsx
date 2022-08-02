@@ -12,7 +12,7 @@ type SectionWrapperProps = {
   status?: Status;
   hasHero?: boolean;
   heroTitle?: string;
-  heroImage?: DirectusImage;
+  heroImage?: string;
 };
 
 export const SectionWrapper = ({
@@ -29,7 +29,7 @@ export const SectionWrapper = ({
       {hasHero && heroImage && (
         <div className={s.sectionHero}>
           <Image
-            src={getAssetURL(heroImage.id)}
+            src={getAssetURL(heroImage)}
             alt={'Bild der Expedition Grundeinkommen'}
             layout="fill"
             objectFit="cover"
