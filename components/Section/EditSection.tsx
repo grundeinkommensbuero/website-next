@@ -46,41 +46,6 @@ export const EditSection = ({
     <>
       <div className={s.editSection}>
         <div className="sections flex">
-          <EditIcon
-            path={mdiDockLeft}
-            action={() => updateSectionLayout('25-75')}
-            size={1.25}
-            tooltip="Layout 25%-75%"
-            isActive={modifiedSection.layout === '25-75'}
-          />
-
-          <EditIcon
-            path={mdiPageLayoutHeaderFooter}
-            action={() => updateSectionLayout('50-50')}
-            size={1.25}
-            rotate={90}
-            tooltip="Layout 50%-50%"
-            isActive={modifiedSection.layout === '50-50'}
-          />
-
-          <EditIcon
-            path={mdiPageLayoutHeader}
-            action={() => updateSectionLayout('75-25')}
-            size={1.25}
-            rotate={90}
-            tooltip="Layout 75%-25%"
-            isActive={modifiedSection.layout === '75-25'}
-          />
-
-          <EditIcon
-            path={mdiTablet}
-            action={() => updateSectionLayout('100')}
-            size={1.25}
-            rotate={0}
-            tooltip="Layout 100%"
-            isActive={modifiedSection.layout === '100'}
-          />
-
           <SelectColor
             currentColorScheme={currentColorScheme}
             updateColorScheme={updateColorScheme}

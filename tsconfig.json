@@ -16,6 +16,12 @@
     "incremental": true,
     "downlevelIteration": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "components/Onboarding/Share/SharePreview.js",
+    "components/Onboarding/Share/ShareButtonRow.js"
+  ],
   "exclude": ["node_modules"]
 }

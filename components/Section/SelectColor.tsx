@@ -14,6 +14,12 @@ const options: Option[] = [
   { value: 'colorSchemeViolet', label: 'Violet', fontColor: 'text-white' },
   { value: 'colorSchemeWhite', label: 'White', fontColor: 'text-black' },
   { value: 'colorSchemeRed', label: 'Red', fontColor: 'text-white' },
+  { value: 'colorSchemeRose', label: 'Rose', fontColor: 'text-black' },
+  {
+    value: 'colorSchemeRoseOnWhite',
+    label: 'Rose on white',
+    fontColor: 'text-black',
+  },
 ];
 
 export const SelectColor = ({

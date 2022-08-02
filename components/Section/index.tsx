@@ -5,11 +5,6 @@ import { hasKey } from '../../utils/hasKey';
 import dynamic from 'next/dynamic';
 
 import cN from 'classnames';
-import {
-  getLeftLayout,
-  getRightLayout,
-  getOverrideLayout,
-} from './style.utlis';
 
 import { EditSection } from './EditSection';
 import { EditElement } from './EditElement';
@@ -23,6 +18,8 @@ import { useRouter } from 'next/router';
 import { FAQ } from '../FAQ';
 import CollectionMap, { MapConfig } from '../CollectionMap';
 import { useActions } from '../../hooks/DirectusAction/useActions';
+import { Align, Column } from '../../utils/getPageProps';
+import s from './style.module.scss';
 
 export type Section = {
   id: string;
@@ -30,7 +27,6 @@ export type Section = {
   label: string;
   sort: number | null;
   status: Status;
-  layout: Layout;
   colorScheme: ColorScheme;
   includeAgs: string[];
   excludeAgs: string[];
@@ -77,7 +73,7 @@ export type SectionsVideo = SectionElementBase & {
 export type SectionsCTAButton = SectionElementBase & {
   collection: 'sectionsCTAButton';
   buttonText: string;
-  align: 'left' | 'center' | 'right';
+  align: Align;
   type: 'action' | 'href' | 'slug';
   action: string | null;
   href: string | null;
@@ -102,16 +98,9 @@ export type SectionsCollectionMap = SectionElementBase &
 export type SectionElementBase = {
   id: string;
   sort: number | null;
-  overrideLayout: string | null;
   index: number;
-  groupElement: boolean;
+  column: Column;
 };
-
-export type Layout = '100' | '75-25' | '50-50' | '25-75';
-
-export type OverrideLayout = '100' | '75' | '50' | '25' | null;
-
-export type Align = 'left' | 'right' | 'center' | null;
 
 export type ColorScheme =
   | 'colorSchemeAqua'
@@ -121,8 +110,6 @@ export type ColorScheme =
   | 'colorSchemeRose'
   | 'colorSchemeRoseOnWhite';
 
-type GroupedElements = Array<Array<SectionElement>>;
-
 type SectionProps = {
   section: Section;
 };
@@ -130,39 +117,8 @@ type SectionProps = {
 export const Section = ({ section }: SectionProps): ReactElement => {
   const { pageBuilderActive } = useContext(XbgeAppContext);
   const [modifiedSection, setModifiedSection] = useState<Section>(section);
-  const [groupedElements, setGroupedElements] = useState<GroupedElements>([]);
   const router = useRouter();
   const [actions] = useActions();
-
-  useEffect(() => {
-    const elements: Array<Array<SectionElement>> = [];
-    let groupId = 0;
-    const increment = () => {
-      groupId = groupId + 1;
-    };
-
-    modifiedSection.render.forEach((element, index) => {
-      // We want to add the orig index to the element,
-      // to target a specific update in a directus section.
-      const addIndex = (element: SectionElement) => {
-        return {
-          ...element,
-          index,
-        };
-      };
-
-      if (element.overrideLayout || (!element.groupElement && index !== 0)) {
-        increment();
-      }
-
-      if (!elements[groupId]) {
-        elements[groupId] = [addIndex(element)];
-      } else {
-        elements[groupId].push(addIndex(element));
-      }
-    });
-    setGroupedElements(elements);
-  }, [modifiedSection]);
 
   // Should be moved to a "EditText" component
   const updateContent = (index: number, content: string): void => {
@@ -208,189 +164,185 @@ export const Section = ({ section }: SectionProps): ReactElement => {
         heroTitle={modifiedSection.heroTitle}
       >
         <>
-          <div className="flexWrap">
-            {groupedElements.map((elements, index) => {
-              const flexItemClass =
-                index % 2 == 0
-                  ? getLeftLayout(modifiedSection.layout)
-                  : getRightLayout(modifiedSection.layout);
+          <div className={s.elementContainer}>
+            {modifiedSection.render.map((element, index) => {
+              const { column, collection } = element;
 
-              const overrideFlexItemClass =
-                elements.length === 1 && elements[0].overrideLayout
-                  ? getOverrideLayout(elements[0].overrideLayout || '')
-                  : null;
+              const renderElement = () => {
+                switch (collection) {
+                  case 'sectionsText':
+                    return (
+                      <SectionsTextEditable
+                        key={'text-' + element.index}
+                        element={element}
+                        modifiedSection={modifiedSection}
+                        pageBuilderActive={pageBuilderActive}
+                        updateContent={updateContent}
+                        setModifiedSection={setModifiedSection}
+                      />
+                    );
+                  case 'sectionsImage':
+                    return (
+                      <div key={'image-' + element.index}>
+                        {pageBuilderActive && (
+                          <EditElement
+                            modifiedSection={modifiedSection}
+                            setModifiedSection={setModifiedSection}
+                            element={element}
+                          />
+                        )}
+                        <DirectusImage
+                          assetId={element.image}
+                          alt={element.alt}
+                        />
+                      </div>
+                    );
+                  case 'sectionsComponent':
+                    const Component = dynamic(
+                      () => import(`../_dynamic/${element.component}`),
+                      { ssr: false, loading: () => null }
+                    );
+                    const props = element.props || {};
+
+                    return (
+                      <div key={'component-' + element.index}>
+                        {pageBuilderActive && (
+                          <EditElement
+                            modifiedSection={modifiedSection}
+                            setModifiedSection={setModifiedSection}
+                            element={element}
+                          />
+                        )}
+                        <Component key={element.id} {...props} />
+                      </div>
+                    );
+                  case 'sectionsVideo':
+                    return (
+                      <div key={'video-' + element.index}>
+                        {pageBuilderActive && (
+                          <EditElement
+                            modifiedSection={modifiedSection}
+                            setModifiedSection={setModifiedSection}
+                            element={element}
+                          />
+                        )}
+                        <YoutubeEmbed embedId={element.embedId} />
+                      </div>
+                    );
+                  case 'sectionsCTAButton':
+                    const getAlignment = () => {
+                      switch (element.align) {
+                        case 'left':
+                          return 'justify-start';
+                        case 'center':
+                          return 'justify-center';
+                        case 'right':
+                          return 'justify-end';
+                      }
+                    };
+                    return (
+                      <div key={'button-' + element.index}>
+                        {pageBuilderActive && (
+                          <EditElement
+                            modifiedSection={modifiedSection}
+                            setModifiedSection={setModifiedSection}
+                            element={element}
+                          />
+                        )}
+                        <div className={getAlignment()}>
+                          {element.type === 'action' && (
+                            <CTAButton
+                              onClick={() => {
+                                if (
+                                  element.action &&
+                                  hasKey(actions, element.action)
+                                ) {
+                                  actions[element.action]();
+                                }
+                              }}
+                            >
+                              {element.buttonText}
+                            </CTAButton>
+                          )}
+                          {element.type === 'href' && (
+                            <CTAButton
+                              onClick={() =>
+                                window.open(element.href || '', '_blank')
+                              }
+                            >
+                              {element.buttonText}
+                            </CTAButton>
+                          )}
+                          {element.type === 'slug' && (
+                            <CTAButton
+                              onClick={() => router.push(element.slug || '')}
+                            >
+                              {element.buttonText}
+                            </CTAButton>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  case 'sectionsFAQ':
+                    return (
+                      <div key={'component-' + element.index}>
+                        {pageBuilderActive && (
+                          <EditElement
+                            modifiedSection={modifiedSection}
+                            setModifiedSection={setModifiedSection}
+                            element={element}
+                          />
+                        )}
+                        {element.title && <h2>{element.title}</h2>}
+                        {element.questionAnswerPair.map(questionAnswer => {
+                          return (
+                            <FAQ
+                              key={element.id}
+                              question={questionAnswer.question}
+                              answer={questionAnswer.answer}
+                              openInitially={questionAnswer.openInitially}
+                            />
+                          );
+                        })}
+                      </div>
+                    );
+                  case 'sectionsCollectionMap':
+                    return (
+                      <div key={'map-' + element.index}>
+                        {pageBuilderActive && (
+                          <EditElement
+                            modifiedSection={modifiedSection}
+                            setModifiedSection={setModifiedSection}
+                            element={element}
+                          />
+                        )}
+                        <CollectionMap
+                          mapConfig={{
+                            state: element.state,
+                            maxBounds: element.maxBounds,
+                          }}
+                        />
+                      </div>
+                    );
+                  default:
+                    return null;
+                }
+              };
 
               return (
                 <div
                   key={index}
-                  className={cN(
-                    overrideFlexItemClass
-                      ? overrideFlexItemClass
-                      : flexItemClass
-                  )}
-                >
-                  {elements.map(element => {
-                    switch (element.collection) {
-                      case 'sectionsText':
-                        return (
-                          <SectionsTextEditable
-                            key={'text-' + element.index}
-                            element={element}
-                            modifiedSection={modifiedSection}
-                            pageBuilderActive={pageBuilderActive}
-                            updateContent={updateContent}
-                            setModifiedSection={setModifiedSection}
-                          />
-                        );
-                      case 'sectionsImage':
-                        return (
-                          <div key={'image-' + element.index}>
-                            {pageBuilderActive && (
-                              <EditElement
-                                modifiedSection={modifiedSection}
-                                setModifiedSection={setModifiedSection}
-                                element={element}
-                              />
-                            )}
-                            <DirectusImage
-                              assetId={element.image}
-                              alt={element.alt}
-                            />
-                          </div>
-                        );
-                      case 'sectionsComponent':
-                        const Component = dynamic(
-                          () => import(`../_dynamic/${element.component}`),
-                          { ssr: false, loading: () => null }
-                        );
-                        const props = element.props || {};
-
-                        return (
-                          <div key={'component-' + element.index}>
-                            {pageBuilderActive && (
-                              <EditElement
-                                modifiedSection={modifiedSection}
-                                setModifiedSection={setModifiedSection}
-                                element={element}
-                              />
-                            )}
-                            <Component key={element.id} {...props} />
-                          </div>
-                        );
-                      case 'sectionsVideo':
-                        return (
-                          <div key={'video-' + element.index}>
-                            {pageBuilderActive && (
-                              <EditElement
-                                modifiedSection={modifiedSection}
-                                setModifiedSection={setModifiedSection}
-                                element={element}
-                              />
-                            )}
-                            <YoutubeEmbed embedId={element.embedId} />
-                          </div>
-                        );
-                      case 'sectionsCTAButton':
-                        const getAlignment = () => {
-                          switch (element.align) {
-                            case 'left':
-                              return 'justify-start';
-                            case 'center':
-                              return 'justify-center';
-                            case 'right':
-                              return 'justify-end';
-                          }
-                        };
-                        return (
-                          <div key={'button-' + element.index}>
-                            {pageBuilderActive && (
-                              <EditElement
-                                modifiedSection={modifiedSection}
-                                setModifiedSection={setModifiedSection}
-                                element={element}
-                              />
-                            )}
-                            <div className={getAlignment()}>
-                              {element.type === 'action' && (
-                                <CTAButton
-                                  onClick={() => {
-                                    if (
-                                      element.action &&
-                                      hasKey(actions, element.action)
-                                    ) {
-                                      actions[element.action]();
-                                    }
-                                  }}
-                                >
-                                  {element.buttonText}
-                                </CTAButton>
-                              )}
-                              {element.type === 'href' && (
-                                <CTAButton
-                                  onClick={() =>
-                                    window.open(element.href || '', '_blank')
-                                  }
-                                >
-                                  {element.buttonText}
-                                </CTAButton>
-                              )}
-                              {element.type === 'slug' && (
-                                <CTAButton
-                                  onClick={() =>
-                                    router.push(element.slug || '')
-                                  }
-                                >
-                                  {element.buttonText}
-                                </CTAButton>
-                              )}
-                            </div>
-                          </div>
-                        );
-                      case 'sectionsFAQ':
-                        return (
-                          <div key={'component-' + element.index}>
-                            {pageBuilderActive && (
-                              <EditElement
-                                modifiedSection={modifiedSection}
-                                setModifiedSection={setModifiedSection}
-                                element={element}
-                              />
-                            )}
-                            {element.title && <h2>{element.title}</h2>}
-                            {element.questionAnswerPair.map(questionAnswer => {
-                              return (
-                                <FAQ
-                                  key={element.id}
-                                  question={questionAnswer.question}
-                                  answer={questionAnswer.answer}
-                                  openInitially={questionAnswer.openInitially}
-                                />
-                              );
-                            })}
-                          </div>
-                        );
-                      case 'sectionsCollectionMap':
-                        return (
-                          <div key={'map-' + element.index}>
-                            {pageBuilderActive && (
-                              <EditElement
-                                modifiedSection={modifiedSection}
-                                setModifiedSection={setModifiedSection}
-                                element={element}
-                              />
-                            )}
-                            <CollectionMap
-                              mapConfig={{
-                                state: element.state,
-                                maxBounds: element.maxBounds,
-                              }}
-                            />
-                          </div>
-                        );
-                      default:
-                        return null;
-                    }
+                  className={cN(s.element, {
+                    [s.elementLeft]: column === 'left',
+                    [s.elementRight]: column === 'right',
+                    [s.elementLeftThird]: column === 'leftThird',
+                    [s.elementCenterThird]: column === 'centerThird',
+                    [s.elementRightThird]: column === 'rightThird',
+                    [s.elementCenterWide]: column === 'centerWide',
+                    [s.elementCenterNarrow]: column === 'centerNarrow',
                   })}
+                >
+                  {renderElement()}
                 </div>
               );
             })}

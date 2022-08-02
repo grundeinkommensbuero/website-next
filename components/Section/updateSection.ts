@@ -5,9 +5,8 @@ import { SectionElement, Section } from '.';
 export const updateSection = async (section: Section, token: string) => {
   const directus = new Directus(process.env.NEXT_PUBLIC_DIRECTUS || '');
   const auth = await directus.auth.static(token);
-  // console.log('Directus authenticated:', auth);
 
-  const updated = await directus
+  await directus
     .items('sections')
     .updateOne(section.id, section)
     .then(() => toast.success(`Section "${section.label}" gespeichert!`))
@@ -17,10 +16,9 @@ export const updateSection = async (section: Section, token: string) => {
         err
       )
     );
-  // console.log('Updated:', updated);
 
   section.render.forEach(async (element: SectionElement) => {
-    const updated = await directus
+    await directus
       .items(element.collection)
       .updateOne(element.id, element)
       .then(() => toast.success(`Element "${element.collection}" gespeichert!`))
@@ -30,6 +28,5 @@ export const updateSection = async (section: Section, token: string) => {
           err
         )
       );
-    // console.log('Updated:', updated);
   });
 };
