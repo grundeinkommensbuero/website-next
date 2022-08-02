@@ -18,6 +18,3 @@ jobs:
 
       - name: Check linting
         run: yarn run lint
-
-      - name: Production build
-        run: yarn build
