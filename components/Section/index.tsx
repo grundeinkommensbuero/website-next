@@ -8,7 +8,6 @@ import cN from 'classnames';
 
 import { EditSection } from './EditSection';
 import { EditElement } from './EditElement';
-import { DirectusImage } from '../Util/DirectusImage';
 import { SectionWrapper } from './SectionWrapper';
 import { SectionsTextEditable } from './SectionsTextEditable';
 import { YoutubeEmbed } from '../Video/YoutubeEmbed';
@@ -20,6 +19,8 @@ import CollectionMap, { MapConfig } from '../CollectionMap';
 import { useActions } from '../../hooks/DirectusAction/useActions';
 import { Align, Column } from '../../utils/getPageProps';
 import s from './style.module.scss';
+import Image from 'next/image';
+import { getAssetURL } from '../Util/getAssetURL';
 
 export type Section = {
   id: string;
@@ -53,9 +54,15 @@ export type SectionsText = SectionElementBase & {
   edit?: boolean;
 };
 
+export type DirectusImage = {
+  id: string;
+  width: number;
+  height: number;
+};
+
 export type SectionsImage = SectionElementBase & {
   collection: 'sectionsImage';
-  image: string;
+  image: DirectusImage;
   alt: string;
 };
 
@@ -191,8 +198,10 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                             element={element}
                           />
                         )}
-                        <DirectusImage
-                          assetId={element.image}
+                        <Image
+                          src={getAssetURL(element.image.id)}
+                          width={element.image.width}
+                          height={element.image.height}
                           alt={element.alt}
                         />
                       </div>
