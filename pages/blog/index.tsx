@@ -1,4 +1,4 @@
-import type { GetServerSideProps } from 'next';
+import type { GetServerSideProps, GetStaticProps } from 'next';
 import { ReactElement } from 'react';
 import { BlogList } from '../../components/Blog/BlogList';
 import fetchData from '../../utils/fetchData';
@@ -34,7 +34,7 @@ const variables = {
   variables: {},
 };
 
-export const getServerSideProps: GetServerSideProps = async context => {
+export const getStaticProps: GetStaticProps = async () => {
   const blogposts: Promise<Blogpost[]> = await fetchData(
     query,
     variables,

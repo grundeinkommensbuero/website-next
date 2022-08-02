@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { ActionType } from 'react-hot-toast/dist/core/store';
 import { useActions } from '../../../hooks/DirectusAction/useActions';
 import { MenuEntry } from '../../../utils/getMenus';
 
