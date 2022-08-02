@@ -3,6 +3,7 @@ import s from './style.module.scss';
 import cN from 'classnames';
 import { DirectusImage } from '../Section';
 import Image from 'next/image';
+import { getAssetURL } from '../Util/getAssetURL';
 
 type HeroProps = {
   heroTitle: string | null;
@@ -21,7 +22,7 @@ export const Hero = ({ heroTitle, heroSubTitle, heroImage }: HeroProps) => {
             setImageLoaded(true);
           }}
           className={cN(s.heroImage, { [s.imageZoom]: imageLoaded })}
-          src={heroImage}
+          src={getAssetURL(heroImage)}
           alt={'Bild der Expedition Grundeinkommen'}
           layout={'fill'}
           priority={true}
