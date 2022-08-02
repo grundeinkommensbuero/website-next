@@ -7,7 +7,7 @@ import Image from 'next/image';
 type HeroProps = {
   heroTitle: string | null;
   heroSubTitle: string | null;
-  heroImage: DirectusImage;
+  heroImage: string;
 };
 
 export const Hero = ({ heroTitle, heroSubTitle, heroImage }: HeroProps) => {
@@ -21,7 +21,7 @@ export const Hero = ({ heroTitle, heroSubTitle, heroImage }: HeroProps) => {
             setImageLoaded(true);
           }}
           className={cN(s.heroImage, { [s.imageZoom]: imageLoaded })}
-          src={heroImage.id}
+          src={heroImage}
           alt={'Bild der Expedition Grundeinkommen'}
           layout={'fill'}
           priority={true}
