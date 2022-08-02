@@ -7,6 +7,8 @@ import s from './style.module.scss';
 import { SectionWrapper } from '../../../components/Section/SectionWrapper';
 import { useRouter } from 'next/router';
 
+const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
+
 const CollectorImageUploadPage = () => {
   const { customUserData, userId, isAuthenticated } = useContext(AuthContext);
 
@@ -30,7 +32,11 @@ const CollectorImageUploadPage = () => {
   }, [isAuthenticated]);
 
   return (
-    <SectionWrapper colorScheme="colorSchemeWhite">
+    <SectionWrapper
+      colorScheme={
+        IS_BERLIN_PROJECT ? 'colorSchemeRoseOnWhite' : 'colorSchemeWhite'
+      }
+    >
       <div className={s.container}>
         <div className={s.content}>
           <FinallyMessage>
