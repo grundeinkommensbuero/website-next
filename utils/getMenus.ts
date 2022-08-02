@@ -41,7 +41,7 @@ type FetchedEntries = {
 };
 
 type NestedFetchedEntries = {
-  menuentry_id: {
+  submenuentry_id: {
     id: string;
     status: string;
     sort: number | null;
@@ -69,13 +69,13 @@ const menuFields = [
   'elements.item.sort',
   'elements.item.label',
   'elements.item.slug',
-  'elements.item.entries.menuentry_id.id',
-  'elements.item.entries.menuentry_id.status',
-  'elements.item.entries.menuentry_id.sort',
-  'elements.item.entries.menuentry_id.label',
-  'elements.item.entries.menuentry_id.slug',
-  'elements.item.entries.menuentry_id.useAction',
-  'elements.item.entries.menuentry_id.action',
+  'elements.item.entries.submenuentry_id.id',
+  'elements.item.entries.submenuentry_id.status',
+  'elements.item.entries.submenuentry_id.sort',
+  'elements.item.entries.submenuentry_id.label',
+  'elements.item.entries.submenuentry_id.slug',
+  'elements.item.entries.submenuentry_id.useAction',
+  'elements.item.entries.submenuentry_id.action',
 ];
 
 export const getMenus = async (): Promise<Menus> => {
@@ -125,13 +125,13 @@ const updateMenuStructure = (fetchedMenu: FetchedMenu): Menu => {
         entries: element.item.entries
           ?.map(entry => {
             return {
-              id: entry.menuentry_id.id,
-              status: entry.menuentry_id.status,
-              sort: entry.menuentry_id.sort,
-              label: entry.menuentry_id.label,
-              slug: entry.menuentry_id.slug,
-              useAction: entry.menuentry_id.useAction,
-              action: entry.menuentry_id.action,
+              id: entry.submenuentry_id.id,
+              status: entry.submenuentry_id.status,
+              sort: entry.submenuentry_id.sort,
+              label: entry.submenuentry_id.label,
+              slug: entry.submenuentry_id.slug,
+              useAction: entry.submenuentry_id.useAction,
+              action: entry.submenuentry_id.action,
             };
           })
           .sort((a, b) => (a.sort || 0) - (b.sort || 0)),
