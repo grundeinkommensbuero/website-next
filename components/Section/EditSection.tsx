@@ -1,14 +1,8 @@
 import { ReactElement, useContext } from 'react';
 import s from './style.module.scss';
 import { SelectColor } from './SelectColor';
-import { Layout, ColorScheme, Section } from '.';
-import {
-  mdiPageLayoutHeader,
-  mdiPageLayoutHeaderFooter,
-  mdiDockLeft,
-  mdiTablet,
-  mdiContentSaveOutline,
-} from '@mdi/js';
+import { ColorScheme, Section } from '.';
+import { mdiContentSaveOutline } from '@mdi/js';
 import { updateSection } from './updateSection';
 import { EditIcon } from './EditIcon';
 import AuthContext from '../../context/Authentication';
@@ -25,14 +19,6 @@ export const EditSection = ({
   currentColorScheme,
 }: EditSectionProps): ReactElement => {
   const { customUserData } = useContext(AuthContext);
-
-  const updateSectionLayout = (layout: Layout): void => {
-    const updated = {
-      ...modifiedSection,
-      layout,
-    };
-    setModifiedSection(updated);
-  };
 
   const updateColorScheme = (colorScheme: ColorScheme): void => {
     const updated = {
