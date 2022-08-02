@@ -13,12 +13,12 @@ export const CustomMenuAction = ({
   entry,
 }: CustomMenuActionProps): ReactElement => {
   return (
-    <a
+    <button
       className={`mx-2 text-xl nowrap cursor-pointer hoverUnderline`}
       aria-label={entry.label}
       onClick={() => entry.action()}
     >
       {entry.label}
-    </a>
+    </button>
   );
 };
