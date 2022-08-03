@@ -32,6 +32,7 @@ export type Section = {
   status: Status;
   layout: Layout;
   colorScheme: ColorScheme;
+  anchor?: string;
   includeAgs: string[];
   excludeAgs: string[];
   hasHero: boolean;
@@ -206,6 +207,7 @@ export const Section = ({ section }: SectionProps): ReactElement => {
         hasHero={modifiedSection.hasHero}
         heroImage={modifiedSection.heroImage}
         heroTitle={modifiedSection.heroTitle}
+        anchor={modifiedSection.anchor}
       >
         <>
           <div className="flexWrap">

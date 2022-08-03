@@ -10,6 +10,8 @@ import { MunicipalityContext } from '../context/Municipality';
 // This could also be fetched from directus, if frequently edited
 import projects from './projects.json';
 import { getRootAssetURL } from '../components/Util/getRootAssetURL';
+import { useRouter } from 'next/router';
+import { jumpToHash } from '../utils/jumpToHash';
 
 const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
 
@@ -35,6 +37,7 @@ export const Layout = ({
   mainMenu,
   footerMenu,
 }: LayoutProps): ReactElement => {
+  const router = useRouter();
   const { currentRoute } = useContext(XbgeAppContext);
   const { resetMunicipality } = useContext(MunicipalityContext);
 
@@ -43,6 +46,11 @@ export const Layout = ({
     // municipality page, if not: reset the municipality context.
     if (!currentRoute.includes('orte')) {
       resetMunicipality();
+    }
+
+    const hash = window.location.hash;
+    if (hash) {
+      jumpToHash(hash);
     }
   }, [currentRoute]);
 

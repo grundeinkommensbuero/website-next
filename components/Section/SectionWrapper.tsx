@@ -1,6 +1,7 @@
 import cN from 'classnames';
 import { ReactElement } from 'react';
 import { ColorScheme, Status } from '.';
+import { stringToId } from '../../utils/stringToId';
 import { DirectusImage } from '../Util/DirectusImage';
 import s from './style.module.scss';
 
@@ -12,6 +13,7 @@ type SectionWrapperProps = {
   hasHero?: boolean;
   heroTitle?: string;
   heroImage?: string;
+  anchor?: string;
 };
 
 export const SectionWrapper = ({
@@ -22,7 +24,10 @@ export const SectionWrapper = ({
   hasHero,
   heroTitle,
   heroImage,
+  anchor,
 }: SectionWrapperProps) => {
+  const anchorId = anchor && stringToId(anchor);
+
   return (
     <>
       {hasHero && heroImage && (
@@ -58,6 +63,12 @@ export const SectionWrapper = ({
           )}
           {children}
         </section>
+
+        {anchorId && (
+          <div id={anchorId} className={s.jumpToAnchor}>
+            <div id={anchorId.toLowerCase()} />
+          </div>
+        )}
       </div>
     </>
   );
