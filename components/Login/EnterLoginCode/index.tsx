@@ -12,8 +12,10 @@ import { InlineButton } from '../../Forms/Button';
 import { CTAButtonContainer, CTAButton } from '../../Forms/CTAButton';
 import s from '../style.module.scss';
 import { OnboardingModalContext } from '../../../context/OnboardingModal';
-import { useRouter } from 'next/router';
 import { ColorScheme } from '../../Section';
+import PsstIcon from '../icon-psst.svg';
+
+const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
 
 type EnterLoginCodeProps = {
   children?: ReactElement | ReactElement[] | string;
@@ -22,6 +24,7 @@ type EnterLoginCodeProps = {
   onAnswerChallengeSuccess?: () => void;
   colorScheme?: ColorScheme;
   wrongCodeMessage?: ReactElement | string;
+  inputClassName?: string;
 };
 
 export const EnterLoginCode = ({
@@ -31,6 +34,7 @@ export const EnterLoginCode = ({
   onAnswerChallengeSuccess,
   colorScheme,
   wrongCodeMessage,
+  inputClassName,
 }: EnterLoginCodeProps) => {
   const { setShowModal } = useContext(OnboardingModalContext);
 
@@ -40,7 +44,6 @@ export const EnterLoginCode = ({
   const [signInState, startSignIn] = useSignIn();
   const [triggerMinuteTimer, setTriggerOneMinuteTimer] = useState(0);
   const [timerCounter, setTimerCounter] = useState(0);
-  const router = useRouter();
 
   useEffect(() => {
     // We don't want to start sign in again, if flag is set
@@ -147,13 +150,15 @@ export const EnterLoginCode = ({
               children
             ) : (
               <>
-                <h3 className={s.headingWhite}>Schön, dass du an Bord bist.</h3>
+                {IS_BERLIN_PROJECT && (
+                  <PsstIcon alt="Illustration eines Geheimnisses" />
+                )}
+                <h2>Psst... Ein Geheimnis!</h2>
                 <p>
-                  Um dich zu identifizieren, haben wir dir einen Code per E-Mail
-                  {tempEmail ? ` (${tempEmail})` : ''} geschickt.
-                  <br />
-                  <b>Dein Code ist 20 Minuten lang gültig. </b>
+                  Zu deiner Sicherheit haben wir dir per E-Mail einen geheimen
+                  Code geschickt. Schau mal in dein Postfach!{' '}
                 </p>
+                {tempEmail && <p>Deine Email: {tempEmail}</p>}
               </>
             )}{' '}
           </>
@@ -179,6 +184,7 @@ export const EnterLoginCode = ({
                       type="text"
                       autoComplete="off"
                       component={TextInputWrapped as any}
+                      inputClassName={inputClassName}
                     ></Field>
                   </FormSection>
 
@@ -186,28 +192,40 @@ export const EnterLoginCode = ({
                     <CTAButton type="submit">
                       {buttonText ? buttonText : 'Abschicken'}
                     </CTAButton>
-                    {timerCounter === 0 ? (
-                      <InlineButton
-                        type="button"
-                        onClick={() => {
-                          setAnswerChallengeState(undefined);
-                          setCode('resendCode');
-                          setTriggerOneMinuteTimer(triggerMinuteTimer + 1);
-                        }}
-                      >
-                        Code erneut senden
-                      </InlineButton>
-                    ) : (
-                      <div className={s.counterDescriptionContainer}>
-                        <p className={s.counterDescription}>
-                          Wenn du den Code nicht erhalten hast, kannst du in{' '}
-                          {timerCounter}{' '}
-                          {timerCounter !== 1 ? 'Sekunden' : 'Sekunde'} den Code
-                          erneut anfordern.
-                        </p>
-                      </div>
-                    )}
                   </CTAButtonContainer>
+
+                  <p>
+                    Falls wir dich schon kennen, können wir dich damit
+                    identifizieren. Und falls du neu bei uns bist, brauchen wir
+                    den Code als Bestätigung, dass du wirklich E-Mails an die
+                    angegebene Adresse erhalten möchtest.
+                  </p>
+
+                  {timerCounter === 0 ? (
+                    <InlineButton
+                      type="button"
+                      onClick={() => {
+                        setAnswerChallengeState(undefined);
+                        setCode('resendCode');
+                        setTriggerOneMinuteTimer(triggerMinuteTimer + 1);
+                      }}
+                    >
+                      Code erneut senden
+                    </InlineButton>
+                  ) : (
+                    <div>
+                      <p className={s.counterDescription}>
+                        Wenn du den Code nicht erhalten hast, kannst du in{' '}
+                        {timerCounter}{' '}
+                        {timerCounter !== 1 ? 'Sekunden' : 'Sekunde'} den Code
+                        erneut anfordern.
+                      </p>
+                    </div>
+                  )}
+                  <br />
+                  <p>
+                    <b>Dein Code ist 20 Minuten lang gültig. </b>
+                  </p>
                 </form>
               </FormWrapper>
             );

@@ -12,6 +12,7 @@ import { TextInputWrapped } from '../../Forms/TextInput';
 
 import { validateEmail } from '../../../hooks/Authentication/validateEmail';
 import s from '../style.module.scss';
+import HandIcon from '../icon-hand.svg';
 
 import {
   CTAButtons,
@@ -20,9 +21,12 @@ import {
 } from '../../Forms/CTAButton';
 import { useRouter } from 'next/router';
 
+const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
+
 type RequestLoginProps = {
-  children: ReactElement;
+  children?: ReactElement;
   buttonText?: string;
+  inputClassName?: string;
 };
 
 export const RequestLoginCode = ({
@@ -76,6 +80,7 @@ export const RequestLoginCode = ({
 export const RequestLoginCodeWithEmail = ({
   children,
   buttonText = 'Einloggen',
+  inputClassName,
 }: RequestLoginProps) => {
   const { tempEmail, setTempEmail } = useContext(AuthContext);
   const router = useRouter();
@@ -93,7 +98,20 @@ export const RequestLoginCodeWithEmail = ({
       <FinallyMessage>
         <>
           {/* Custom text */}
-          {children}
+          {children ? (
+            children
+          ) : (
+            <>
+              {IS_BERLIN_PROJECT && <HandIcon alt="Illustration einer Hand" />}
+              <h2>Hey! Schön, dass du da bist.</h2>
+              <p>
+                Wenn du einen Account bei der Expedition Grundeinkommen hast,
+                kannst du dich damit auch hier einloggen. Gib dafür einfach
+                deine E-Mail-Adresse ein, und wir schicken dir dann einen
+                Login-Code.
+              </p>
+            </>
+          )}
           {/* Form for getting email */}
           <Form
             onSubmit={e => {
@@ -130,6 +148,7 @@ export const RequestLoginCodeWithEmail = ({
                         type="text"
                         autoComplete="on"
                         component={TextInputWrapped as any}
+                        inputClassName={inputClassName}
                       ></Field>
                     </FormSection>
 
@@ -149,5 +168,5 @@ export const RequestLoginCodeWithEmail = ({
   }
 
   // If there is a temporary email, show EnterLoginCode
-  return <EnterLoginCode />;
+  return <EnterLoginCode inputClassName={inputClassName} />;
 };

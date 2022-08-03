@@ -5,10 +5,8 @@
 }
 
 .buttonContainer > div {
-  display: flex;
   margin-top: 1rem;
   max-width: 25rem;
-  justify-content: center;
 
   span {
     margin: 0.5rem 0;
@@ -22,13 +20,8 @@
 .loginForm {
   margin-bottom: 0;
 }
-.counterDescriptionContainer {
-  max-width: 22rem;
-}
 
 .counterDescription {
-  margin: 0;
-  text-align: center;
   font-size: $DesktopFontSizeS;
 }
 

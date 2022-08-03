@@ -1,0 +1,19 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 3rem 0;
+  min-height: 35rem;
+}
+
+.content {
+  width: 50%;
+  max-width: 45rem;
+
+  @media (max-width: $breakPointM) {
+    width: 100%;
+  }
+}
+
+.input {
+  width: 100%;
+}
