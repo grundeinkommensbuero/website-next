@@ -20,10 +20,7 @@ const AvatarImage = ({
   className,
   size = '500',
 }: AvatarImageProps) => {
-  const src = user?.profilePictures
-    ? // @ts-ignore
-      user?.profilePictures[size]
-    : null;
+  const src = user?.profilePictures ? user.profilePictures[size] : null;
 
   if (!src) {
     let Placeholder;
@@ -40,7 +37,7 @@ const AvatarImage = ({
   return (
     <img
       className={cN(s.image, className)}
-      src={srcOverwrite || src}
+      src={(srcOverwrite as string) || src}
       alt={user && user.username && `Avatarbild von ${user.username}`}
     />
   );

@@ -2,13 +2,21 @@ import React from 'react';
 import s from './style.module.scss';
 import ShareButtons from './ShareButtons.json';
 import cN from 'classnames';
+import { Channel } from '.';
+
+type ShareButtonRowProps = {
+  setShareChannel: (shareChannel: Channel) => void;
+  setSharePreviewActive: (active: boolean) => void;
+  isInOnboarding: boolean;
+  executeScroll: () => void;
+};
 
 export const ShareButtonRow = ({
   setShareChannel,
   setSharePreviewActive,
   isInOnboarding,
   executeScroll,
-}) => {
+}: ShareButtonRowProps) => {
   const iconInstagram = require('!svg-inline-loader!./icons/Instagram.svg');
   const iconTwitter = require('!svg-inline-loader!./icons/twitter.svg');
   const iconFacebook = require('!svg-inline-loader!./icons/facebook.svg');
@@ -16,7 +24,7 @@ export const ShareButtonRow = ({
   const iconWhatsApp = require('!svg-inline-loader!./icons/whatsapp.svg');
   const iconMail = require('!svg-inline-loader!./icons/mail.svg');
 
-  const activatePreview = channel => {
+  const activatePreview = (channel: string) => {
     const i = ShareButtons.findIndex(el => el.channelIdentifier === channel);
     // console.log(ShareButtons[i]);
     setShareChannel(ShareButtons[i]);
@@ -42,7 +50,7 @@ export const ShareButtonRow = ({
               className={cN(s.shareIcon)}
               dangerouslySetInnerHTML={{ __html: iconTwitter }}
             ></div>
-            <p>Twitter</p>
+            <span>Twitter</span>
           </div>
         </button>
 
@@ -56,7 +64,7 @@ export const ShareButtonRow = ({
               className={cN(s.shareIcon)}
               dangerouslySetInnerHTML={{ __html: iconFacebook }}
             ></div>
-            <p>Facebook</p>
+            <span>Facebook</span>
           </div>
         </button>
 
@@ -70,7 +78,7 @@ export const ShareButtonRow = ({
               className={cN(s.shareIcon, s.iconInstagram)}
               dangerouslySetInnerHTML={{ __html: iconInstagram }}
             ></div>
-            <p>Instagram</p>
+            <span>Instagram</span>
           </div>
         </button>
 
@@ -84,7 +92,7 @@ export const ShareButtonRow = ({
               className={cN(s.shareIcon)}
               dangerouslySetInnerHTML={{ __html: iconTelegram }}
             ></div>
-            <p>Telegram</p>
+            <span>Telegram</span>
           </div>
         </button>
 
@@ -98,7 +106,7 @@ export const ShareButtonRow = ({
               className={cN(s.shareIcon)}
               dangerouslySetInnerHTML={{ __html: iconWhatsApp }}
             ></div>
-            <p>WhatsApp</p>
+            <span>WhatsApp</span>
           </div>
         </button>
 
@@ -112,7 +120,7 @@ export const ShareButtonRow = ({
               className={cN(s.shareIcon, s.iconMail)}
               dangerouslySetInnerHTML={{ __html: iconMail }}
             ></div>
-            <p>E-Mail</p>
+            <span>E-Mail</span>
           </div>
         </button>
       </section>
