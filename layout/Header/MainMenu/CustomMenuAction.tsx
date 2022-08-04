@@ -1,4 +1,5 @@
 import { ReactElement } from 'react';
+import s from './style.module.scss';
 
 export type CustomActionEntry = {
   action: () => void;
@@ -14,7 +15,7 @@ export const CustomMenuAction = ({
 }: CustomMenuActionProps): ReactElement => {
   return (
     <button
-      className={`mx-2 text-xl nowrap cursor-pointer hoverUnderline`}
+      className={`mx-2 text-xl nowrap cursor-pointer hoverUnderline ${s.button}`}
       aria-label={entry.label}
       onClick={() => entry.action()}
     >

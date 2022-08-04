@@ -7,7 +7,7 @@ import s from '../style.module.scss';
 import { XbgeAppContext } from '../../../../context/App';
 import { useRouter } from 'next/router';
 
-type UserMEnuLinkMobileProps = {
+type UserMenuLinkMobileProps = {
   entry: CustomEntry;
   currentRoute: string;
   extraCallback?: () => void;
@@ -17,7 +17,7 @@ export const UserMenuLinkMobile = ({
   entry,
   currentRoute,
   extraCallback,
-}: UserMEnuLinkMobileProps) => {
+}: UserMenuLinkMobileProps) => {
   const { isAuthenticated, customUserData, userId, signUserOut } =
     useContext(AuthContext);
   const { togglePageBuilder } = useContext(XbgeAppContext);

@@ -14,7 +14,7 @@ export const MainMenu = ({
   currentRoute,
 }: MainMenuProps): ReactElement => {
   return (
-    <div className="flex-row items-center">
+    <nav className="flex-row items-center">
       {mainMenu.map(entry => {
         if ((entry as Dropdown).entries)
           return (
@@ -45,6 +45,6 @@ export const MainMenu = ({
         entry={{ id: 'login', slug: 'login', label: 'Einloggen' }}
         currentRoute={currentRoute}
       />
-    </div>
+    </nav>
   );
 };

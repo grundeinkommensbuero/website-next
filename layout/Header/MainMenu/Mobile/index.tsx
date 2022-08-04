@@ -17,7 +17,7 @@ export const MainMenuMobile = ({
   closeMenu,
 }: MainMenuMobileProps): ReactElement => {
   return (
-    <div className={cN('flex-column', 'items-start', s.mobileMenuContainer)}>
+    <nav className={cN('flex-column', 'items-start', s.mobileMenuContainer)}>
       {mainMenu.map((entry, index) => {
         if ((entry as Dropdown).entries)
           return (
@@ -54,6 +54,6 @@ export const MainMenuMobile = ({
         currentRoute={currentRoute}
         extraCallback={closeMenu}
       />
-    </div>
+    </nav>
   );
 };
