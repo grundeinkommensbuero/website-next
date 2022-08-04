@@ -102,7 +102,7 @@ export const Header = ({
 
   return (
     <>
-      <div className={s.header}>
+      <header className={s.header}>
         <div className={s.headerContent}>
           <PageLogo
             className="cursor-pointer h-12"
@@ -119,7 +119,7 @@ export const Header = ({
             />
           )}
         </div>
-      </div>
+      </header>
       {isMobile && mobileMenuActive && (
         <div className={cN(s.mobileMenu)}>
           <MainMenuMobile

@@ -10,16 +10,16 @@ type FooterMenuProps = {
 export const FooterMenu = ({ footerMenu }: FooterMenuProps): ReactElement => {
   const entries = footerMenu.filter(e => 'slug' in e) as MenuEntry[];
   return (
-    <div className={s.footerMenuRow}>
+    <ul className={s.footerMenuRow}>
       {entries.map(entry => (
-        <div key={entry.slug}>
+        <li key={entry.slug}>
           <MenuLink
             entry={entry}
             hoverUnderlineColor="WHITE"
             underlineColor="WHITE"
           />
-        </div>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 };
