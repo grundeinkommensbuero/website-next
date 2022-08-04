@@ -48,12 +48,11 @@ export const UserMenuLinkMobile = ({
           </div>
           <div className="mx-2">
             <div className="my-4">
-              <CustomMenuAction
+              <CustomMenuLink
+                currentRoute={currentRoute}
                 entry={{
-                  action: () => {
-                    router.push(`/mensch/${userId}`);
-                    if (extraCallback) extraCallback();
-                  },
+                  id: '1',
+                  slug: `/mensch/${userId}`,
                   label: 'Zum Profil',
                 }}
               />

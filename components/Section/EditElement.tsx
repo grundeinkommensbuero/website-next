@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { OverrideLayout, Section, SectionElement, SectionsText } from '.';
+import { Section, SectionElement, SectionsText } from '.';
 import { EditIcon } from './EditIcon';
 
 import s from './style.module.scss';
@@ -8,17 +8,17 @@ import {
   mdiPageLayoutHeader,
   mdiPageLayoutHeaderFooter,
   mdiDockLeft,
+  mdiDockRight,
   mdiTablet,
   mdiBackspaceOutline,
   mdiPlaylistEdit,
-  mdiEjectOutline,
   mdiViewCompactOutline,
-  mdiDrag,
 } from '@mdi/js';
 
 import { NoSsr } from '../Util/NoSsr';
 import ReactTooltip from 'react-tooltip';
 import cN from 'classnames';
+import { Column } from '../../utils/getPageProps';
 
 type EditElementProps = {
   modifiedSection: Section;
@@ -31,38 +31,11 @@ export const EditElement = ({
   setModifiedSection,
   element,
 }: EditElementProps): ReactElement => {
-  const updateElementLayout = (
-    overrideLayout: OverrideLayout,
-    index: number
-  ): void => {
+  const updateElementLayout = (column: Column, index: number): void => {
     // Get and update the edited element
     const updatedElement: SectionElement = {
       ...modifiedSection.render[index],
-      overrideLayout,
-    };
-    // Replace it in render list
-    const updatedRender = modifiedSection.render.map((element, elIndex) => {
-      if (elIndex === index) {
-        return updatedElement;
-      }
-      return element;
-    });
-    // Update renderlist in section
-    const updated = {
-      ...modifiedSection,
-      render: updatedRender,
-    };
-    setModifiedSection(updated);
-  };
-
-  const updateElementGrouping = (
-    groupElement: boolean,
-    index: number
-  ): void => {
-    // Get and update the edited element
-    const updatedElement: SectionElement = {
-      ...modifiedSection.render[index],
-      groupElement,
+      column,
     };
     // Replace it in render list
     const updatedRender = modifiedSection.render.map((element, elIndex) => {
@@ -115,68 +88,74 @@ export const EditElement = ({
         tooltip="Sortieren"
       /> */}
 
-      <EditIcon
-        path={mdiEjectOutline}
-        action={() =>
-          updateElementGrouping(!element.groupElement, element.index)
-        }
-        size={1.25}
-        rotate={0}
-        tooltip="An letztes Element anheften"
-        isActive={element.groupElement}
-      />
-
       <div className={s.dropdownEditRow}>
         <EditIcon
           path={mdiViewCompactOutline}
           action={() => {}}
           size={1.25}
           rotate={0}
-          tooltip="Layout überschreiben"
-          isActive={!!element.overrideLayout}
+          tooltip="Spalte auswählen"
+          isActive={true}
         />
         <div className={cN(s.dropdownEditRowContent)}>
           <EditIcon
-            path={mdiDockLeft}
-            action={() => updateElementLayout('25', element.index)}
+            path={mdiDockRight}
+            action={() => updateElementLayout('left', element.index)}
             size={1.25}
-            tooltip="Layout überschreiben: 25%"
-            isActive={element.overrideLayout === '25'}
+            tooltip="Links"
+            isActive={element.column === 'left'}
           />
 
           <EditIcon
-            path={mdiPageLayoutHeaderFooter}
-            action={() => updateElementLayout('50', element.index)}
+            path={mdiDockRight}
+            action={() => updateElementLayout('leftThird', element.index)}
             size={1.25}
-            rotate={90}
-            tooltip="Layout überschreiben: 50%"
-            isActive={element.overrideLayout === '50'}
-          />
-
-          <EditIcon
-            path={mdiPageLayoutHeader}
-            action={() => updateElementLayout('75', element.index)}
-            size={1.25}
-            rotate={90}
-            tooltip="Layout überschreiben: 75%"
-            isActive={element.overrideLayout === '75'}
+            tooltip="Links drittel"
+            isActive={element.column === 'leftThird'}
           />
 
           <EditIcon
             path={mdiTablet}
-            action={() => updateElementLayout('100', element.index)}
+            action={() => updateElementLayout('centerWide', element.index)}
             size={1.25}
-            rotate={0}
-            tooltip="Layout überschreiben: 100%"
-            isActive={element.overrideLayout === '100'}
+            tooltip="Mitte weit"
+            isActive={element.column === 'centerWide'}
           />
 
           <EditIcon
-            path={mdiBackspaceOutline}
-            action={() => updateElementLayout(null, element.index)}
+            path={mdiPageLayoutHeaderFooter}
+            action={() => updateElementLayout('centerNarrow', element.index)}
+            size={1.25}
+            rotate={90}
+            tooltip="Mitte schmal"
+            isActive={element.column === 'centerNarrow'}
+          />
+
+          <EditIcon
+            path={mdiPageLayoutHeaderFooter}
+            action={() => updateElementLayout('centerThird', element.index)}
+            size={1.25}
+            rotate={90}
+            tooltip="Mitte drittel"
+            isActive={element.column === 'centerThird'}
+          />
+
+          <EditIcon
+            path={mdiDockLeft}
+            action={() => updateElementLayout('right', element.index)}
             size={1.25}
             rotate={0}
-            tooltip="Element Layout entfernen"
+            tooltip="Rechts"
+            isActive={element.column === 'right'}
+          />
+
+          <EditIcon
+            path={mdiDockLeft}
+            action={() => updateElementLayout('rightThird', element.index)}
+            size={1.25}
+            rotate={0}
+            tooltip="Rechts drittel"
+            isActive={element.column === 'rightThird'}
           />
         </div>
       </div>
