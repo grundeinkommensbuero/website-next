@@ -1,0 +1,141 @@
+.aboutUs {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+  grid-gap: 4rem;
+  font-size: $DesktopFontSizeM;
+  font-weight: bold;
+
+  @media (max-width: $breakPointM) {
+    grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+    grid-gap: 2rem;
+    font-size: $DesktopFontSizeS;
+    margin-top: 1rem;
+  }
+}
+
+.member {
+  margin: 0;
+  text-align: center;
+
+  .image {
+    mask-size: cover;
+  }
+
+  @media (max-width: $breakPointM) {
+    padding: 0 1rem;
+  }
+
+  &:nth-child(6n + 1) {
+    .socialMediaButtons {
+      transform: rotate(-45deg) translateY(-0.5rem);
+    }
+
+    .image {
+      mask-image: url('/shapes/1.svg');
+    }
+  }
+
+  &:nth-child(6n + 2) {
+    .socialMediaButtons {
+      left: 0;
+      right: auto;
+      transform: rotate(10deg) translateY(0.5rem);
+    }
+
+    .image {
+      mask-image: url('/shapes/2.svg');
+    }
+  }
+
+  &:nth-child(6n + 3) {
+    .socialMediaButtons {
+      transform: rotate(-45deg) translateY(-0.9rem);
+    }
+
+    .image {
+      mask-image: url('/shapes/3.svg');
+    }
+  }
+
+  &:nth-child(6n + 4) {
+    .socialMediaButtons {
+      left: 0;
+      right: auto;
+      transform: rotate(45deg) translateY(0.1rem);
+    }
+
+    .image {
+      mask-image: url('/shapes/4.svg');
+    }
+  }
+
+  &:nth-child(6n + 5) {
+    .socialMediaButtons {
+      transform: rotate(-10deg) translateY(0.5rem);
+    }
+
+    .image {
+      mask-image: url('/shapes/5.svg');
+    }
+  }
+
+  &:nth-child(6n + 6) {
+    .socialMediaButtons {
+      transform: rotate(-35deg) translateY(-0.4rem);
+    }
+
+    .image {
+      mask-image: url('/shapes/6.svg');
+    }
+  }
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  left: 0;
+  object-fit: cover;
+  filter: grayscale(1);
+}
+
+.imageContainer {
+  position: relative;
+  margin: 0 0 1rem;
+}
+
+.socialMediaButtons {
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  right: 0;
+  transform-origin: center;
+  text-align: center;
+}
+
+.socialMediaButton {
+  font-size: $DesktopFontSizeS;
+
+  &:hover {
+    color: var(--font-color-secondary);
+  }
+
+  svg {
+    height: 1em;
+    width: 1em;
+  }
+}
+
+.role {
+  font-weight: normal;
+}
+
+.label {
+  font-size: $DesktopFontSizeS;
+  hyphens: auto;
+
+  @media (max-width: $breakPointS) {
+    font-size: $DesktopFontSizeXS;
+  }
+}

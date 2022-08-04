@@ -1,9 +1,13 @@
 import { ReactElement, useContext, useEffect, useState } from 'react';
-import { RequestLoginCodeWithEmail } from '../components/Login/RequestLoginCode';
+import { RequestLoginCodeWithEmail } from '../../components/Login/RequestLoginCode';
 import querystring from 'query-string';
-import AuthContext from '../context/Authentication';
+import AuthContext from '../../context/Authentication';
 import { useRouter } from 'next/router';
-import { LoadingAnimation } from '../components/LoadingAnimation';
+import { LoadingAnimation } from '../../components/LoadingAnimation';
+import s from './style.module.scss';
+import cN from 'classnames';
+
+const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
 
 const Login = (): ReactElement => {
   const { isAuthenticated, setTempEmail } = useContext(AuthContext);
@@ -37,19 +41,22 @@ const Login = (): ReactElement => {
   }
 
   return (
-    <div className="pageWidth colorSchemeWhite">
-      <div className="m-16">
+    <section
+      className={cN(s.wrapper, {
+        colorSchemeRose: IS_BERLIN_PROJECT,
+        colorSchemeViolet: !IS_BERLIN_PROJECT,
+      })}
+    >
+      <div className={s.content}>
         {/* This condition is useful, if a user opens the /login page while
         authenticated, because then the login form would flash before navigating */}
         {isAuthenticated === false ? (
-          <RequestLoginCodeWithEmail>
-            <h3>Hey! Schön, dass du da bist. Hier geht&apos;s zum Login.</h3>
-          </RequestLoginCodeWithEmail>
+          <RequestLoginCodeWithEmail inputClassName={s.input} />
         ) : (
           <LoadingAnimation />
         )}
       </div>
-    </div>
+    </section>
   );
 };
 

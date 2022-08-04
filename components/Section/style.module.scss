@@ -225,3 +225,8 @@
     grid-column-end: last-line;
   }
 }
+
+.jumpToAnchor {
+  position: absolute;
+  top: -$headerHeight;
+}

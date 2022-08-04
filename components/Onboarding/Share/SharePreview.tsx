@@ -15,6 +15,17 @@ import {
   TwitterShareButton,
   WhatsappShareButton,
 } from 'react-share';
+import { Channel } from '.';
+import { User } from '../../../context/Authentication';
+import { Municipality } from '../../../context/Municipality';
+
+type SharePreviewProps = {
+  shareChannel?: Channel;
+  userData: User;
+  userId: string;
+  municipality: Municipality;
+  isInOnboarding: boolean;
+};
 
 export const SharePreview = ({
   shareChannel,
@@ -22,13 +33,13 @@ export const SharePreview = ({
   userId,
   municipality,
   isInOnboarding,
-}) => {
+}: SharePreviewProps) => {
   const [showProfileImageUpload] = useState(false);
-  const [useProfilePicture, setUseProfilePicture] = useState(
-    userData?.profilePictures?.original
+  const [useProfilePicture, setUseProfilePicture] = useState<boolean>(
+    !!userData?.profilePictures?.original
   );
 
-  const downloadImage = image => {
+  const downloadImage = (image: { url: string; filename: string }) => {
     fetch(image.url, {
       method: 'GET',
       headers: {},
@@ -120,7 +131,7 @@ export const SharePreview = ({
     );
   };
 
-  const Components = {
+  const Components: { [key: string]: any } = {
     EmailShareButton,
     FacebookShareButton,
     TelegramShareButton,
@@ -152,12 +163,15 @@ export const SharePreview = ({
   };
 
   const ShareButton = () => {
-    let CaseButton =
-      Components[
-        ShareButtons.find(
-          el => el.channelIdentifier === shareChannel?.channelIdentifier
-        )?.name
-      ];
+    const shareButton = ShareButtons.find(
+      el => el.channelIdentifier === shareChannel?.channelIdentifier
+    )?.name;
+
+    if (!shareButton) {
+      return null;
+    }
+
+    let CaseButton = Components[shareButton];
     const title = `Bring das Grundeinkommen mit mir an den Staat! Melde dich dafür bei der Expedition Grundeinkommen an. Ich bin schon in ${municipality.name} dabei :)`;
     const hashtags = [
       'ModellversuchJetzt',
@@ -165,7 +179,7 @@ export const SharePreview = ({
       'ExpeditionGrundeinkommen',
     ];
     const subject = `Gemeinsam bringen wir das Grundeinkommen nach ${municipality.name}`;
-    const body = mailBody(municipality);
+    const body = mailBody();
     const quote = `Bring das Grundeinkommen mit mir an den Staat! Melde dich dafür bei der Expedition Grundeinkommen an. Ich bin schon in ${municipality.name} dabei :)`;
     return (
       <>
@@ -191,7 +205,7 @@ export const SharePreview = ({
   };
 
   useEffect(() => {
-    setUseProfilePicture(userData?.profilePictures?.original);
+    setUseProfilePicture(!!userData?.profilePictures?.original);
   }, [userData]);
 
   return (
@@ -263,8 +277,6 @@ export const SharePreview = ({
               <ImageUpload
                 userData={userData}
                 userId={userId}
-                showUploadLabel={false}
-                showEditLabel={true}
                 size={'large'}
                 onUploadDone={() => {}}
                 smallSubmitButton={true}
