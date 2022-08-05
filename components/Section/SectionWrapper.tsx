@@ -1,8 +1,9 @@
 import cN from 'classnames';
+import Image from 'next/image';
 import { ReactElement } from 'react';
 import { ColorScheme, Status } from '.';
+import { getAssetURL } from '../Util/getAssetURL';
 import { stringToId } from '../../utils/stringToId';
-import { DirectusImage } from '../Util/DirectusImage';
 import s from './style.module.scss';
 
 type SectionWrapperProps = {
@@ -32,8 +33,8 @@ export const SectionWrapper = ({
     <>
       {hasHero && heroImage && (
         <div className={s.sectionHero}>
-          <DirectusImage
-            assetId={heroImage}
+          <Image
+            src={getAssetURL(heroImage)}
             alt={'Bild der Expedition Grundeinkommen'}
             layout="fill"
             objectFit="cover"

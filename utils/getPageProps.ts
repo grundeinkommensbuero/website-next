@@ -1,3 +1,4 @@
+import { DirectusImage } from './../components/Section/index';
 import { Directus, RelationItem } from '@directus/sdk';
 import { Coordinates } from '../components/CollectionMap';
 import {
@@ -103,7 +104,7 @@ type FetchedElement = {
     status: Status;
     sort: number;
     groupElement: boolean;
-    image?: string;
+    image?: DirectusImage;
     alt?: string;
     content?: string;
     component?: string;
@@ -131,7 +132,9 @@ const elementFields = [
   'sort',
   'overrideLayout',
   'groupElement',
-  'image',
+  'image.id',
+  'image.width',
+  'image.height',
   'alt',
   'content',
   'component',
@@ -175,6 +178,7 @@ const fields = [
   ...getFields('sections.', 'MANY-TO-ALL', sectionFields),
   'sections.item.elements.collection',
   ...getFields('sections.item.elements.', 'MANY-TO-ALL', elementFields),
+
   ...getFields(
     'sections.item.elements.item.questionAnswerPair.',
     'MANY-TO-MANY',
