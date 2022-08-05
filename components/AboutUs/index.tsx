@@ -33,8 +33,6 @@ const AboutUs = ({ members, className }: AboutUsProps) => {
     return null;
   }
 
-  console.log(members);
-
   return (
     <ul className={cN(s.aboutUs, className)}>
       {members.map(
