@@ -72,7 +72,13 @@ export type User = {
   email: string;
   createdAt: string;
   city: string;
-  profilePictures: string[];
+  profilePictures?: {
+    200: string;
+    500: string;
+    900: string;
+    1200: string;
+    original: string;
+  };
   newsletterConsent: NewsletterConsent;
   reminderMails?: NewsletterConsent;
   customNewsletters?: CustomNewsletterConsent[];
@@ -119,7 +125,6 @@ export type AuthContextType = {
 const initUser = {
   username: '',
   email: '',
-  profilePictures: [],
   createdAt: '',
   city: '',
   newsletterConsent: {

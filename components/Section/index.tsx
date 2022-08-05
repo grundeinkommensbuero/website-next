@@ -29,6 +29,7 @@ export type Section = {
   sort: number | null;
   status: Status;
   colorScheme: ColorScheme;
+  anchor?: string;
   includeAgs: string[];
   excludeAgs: string[];
   hasHero: boolean;
@@ -150,6 +151,8 @@ export const Section = ({ section }: SectionProps): ReactElement => {
     setModifiedSection(updated);
   };
 
+  let elementsToSkip: number[] = [];
+
   return (
     <>
       <NoSsr>
@@ -169,78 +172,108 @@ export const Section = ({ section }: SectionProps): ReactElement => {
         hasHero={modifiedSection.hasHero}
         heroImage={modifiedSection.heroImage}
         heroTitle={modifiedSection.heroTitle}
+        anchor={modifiedSection.anchor}
       >
         <>
           <div className={s.elementContainer}>
             {modifiedSection.render.map((element, index) => {
-              const { column, collection } = element;
+              const { column } = element;
 
-              const renderElement = () => {
+              if (elementsToSkip.includes(index)) {
+                return null;
+              }
+
+              const renderElement = (
+                elementToRender: SectionElement,
+                index: number
+              ): ReactElement | null => {
+                const { collection } = elementToRender;
+
+                // If Button is the next element we want to render text and button
+                // in same grid cell
+                const nextElement = modifiedSection.render[index + 1];
+                const groupElements =
+                  nextElement?.collection === 'sectionsCTAButton' &&
+                  nextElement.column === column;
+
+                // Because we render the next element recursively inside this cell,
+                // we want to skip it during the next iteration
+                if (groupElements) {
+                  elementsToSkip.push(index + 1);
+                }
+
                 switch (collection) {
                   case 'sectionsText':
                     return (
-                      <SectionsTextEditable
-                        key={'text-' + element.index}
-                        element={element}
-                        modifiedSection={modifiedSection}
-                        pageBuilderActive={pageBuilderActive}
-                        updateContent={updateContent}
-                        setModifiedSection={setModifiedSection}
-                      />
+                      <>
+                        <SectionsTextEditable
+                          key={'text-' + elementToRender.index}
+                          element={elementToRender}
+                          modifiedSection={modifiedSection}
+                          pageBuilderActive={pageBuilderActive}
+                          updateContent={updateContent}
+                          setModifiedSection={setModifiedSection}
+                        />
+                        {groupElements && (
+                          <div className={s.groupedButton}>
+                            {renderElement(nextElement, index + 1)}
+                          </div>
+                        )}
+                      </>
                     );
                   case 'sectionsImage':
                     return (
-                      <div key={'image-' + element.index}>
+                      <div key={'image-' + elementToRender.index}>
                         {pageBuilderActive && (
                           <EditElement
                             modifiedSection={modifiedSection}
                             setModifiedSection={setModifiedSection}
-                            element={element}
+                            element={elementToRender}
                           />
                         )}
                         <Image
-                          src={getAssetURL(element.image.id)}
-                          width={element.image.width}
-                          height={element.image.height}
-                          alt={element.alt}
+                          src={getAssetURL(elementToRender.image.id)}
+                          width={elementToRender.image.width}
+                          height={elementToRender.image.height}
+                          alt={elementToRender.alt}
                         />
                       </div>
                     );
                   case 'sectionsComponent':
                     const Component = dynamic(
-                      () => import(`../_dynamic/${element.component}`),
+                      () => import(`../_dynamic/${elementToRender.component}`),
                       { ssr: false, loading: () => null }
                     );
-                    const props = element.props || {};
+                    const props = elementToRender.props || {};
 
                     return (
-                      <div key={'component-' + element.index}>
+                      <div key={'component-' + elementToRender.index}>
                         {pageBuilderActive && (
                           <EditElement
                             modifiedSection={modifiedSection}
                             setModifiedSection={setModifiedSection}
-                            element={element}
+                            element={elementToRender}
                           />
                         )}
-                        <Component key={element.id} {...props} />
+                        <Component key={elementToRender.id} {...props} />
                       </div>
                     );
                   case 'sectionsVideo':
                     return (
-                      <div key={'video-' + element.index}>
+                      <div key={'video-' + elementToRender.index}>
                         {pageBuilderActive && (
                           <EditElement
                             modifiedSection={modifiedSection}
                             setModifiedSection={setModifiedSection}
-                            element={element}
+                            element={elementToRender}
                           />
                         )}
-                        <YoutubeEmbed embedId={element.embedId} />
+                        <YoutubeEmbed embedId={elementToRender.embedId} />
                       </div>
                     );
                   case 'sectionsCTAButton':
                     const getAlignment = () => {
-                      switch (element.align) {
+                      switch (elementToRender.align) {
                         case 'left':
                           return 'justify-start';
                         case 'center':
@@ -250,85 +283,101 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                       }
                     };
                     return (
-                      <div key={'button-' + element.index}>
-                        {pageBuilderActive && (
-                          <EditElement
-                            modifiedSection={modifiedSection}
-                            setModifiedSection={setModifiedSection}
-                            element={element}
-                          />
-                        )}
-                        <div className={getAlignment()}>
-                          {element.type === 'action' && (
-                            <CTAButton
-                              onClick={() => {
-                                if (
-                                  element.action &&
-                                  hasKey(actions, element.action)
-                                ) {
-                                  actions[element.action]();
+                      <>
+                        <div key={'button-' + elementToRender.index}>
+                          {pageBuilderActive && (
+                            <EditElement
+                              modifiedSection={modifiedSection}
+                              setModifiedSection={setModifiedSection}
+                              element={elementToRender}
+                            />
+                          )}
+                          <div className={getAlignment()}>
+                            {elementToRender.type === 'action' && (
+                              <CTAButton
+                                onClick={() => {
+                                  if (
+                                    elementToRender.action &&
+                                    hasKey(actions, elementToRender.action)
+                                  ) {
+                                    actions[elementToRender.action]();
+                                  }
+                                }}
+                              >
+                                {elementToRender.buttonText}
+                              </CTAButton>
+                            )}
+                            {elementToRender.type === 'href' && (
+                              <CTAButton
+                                onClick={() =>
+                                  window.open(
+                                    elementToRender.href || '',
+                                    '_blank'
+                                  )
                                 }
-                              }}
-                            >
-                              {element.buttonText}
-                            </CTAButton>
-                          )}
-                          {element.type === 'href' && (
-                            <CTAButton
-                              onClick={() =>
-                                window.open(element.href || '', '_blank')
-                              }
-                            >
-                              {element.buttonText}
-                            </CTAButton>
-                          )}
-                          {element.type === 'slug' && (
-                            <CTAButton
-                              onClick={() => router.push(element.slug || '')}
-                            >
-                              {element.buttonText}
-                            </CTAButton>
-                          )}
+                              >
+                                {elementToRender.buttonText}
+                              </CTAButton>
+                            )}
+                            {elementToRender.type === 'slug' && (
+                              <CTAButton
+                                onClick={() =>
+                                  router.push(elementToRender.slug || '')
+                                }
+                              >
+                                {elementToRender.buttonText}
+                              </CTAButton>
+                            )}
+                          </div>
                         </div>
-                      </div>
+                        {groupElements && (
+                          <div className={s.groupedButton}>
+                            {renderElement(nextElement, index + 1)}
+                          </div>
+                        )}
+                      </>
                     );
                   case 'sectionsFAQ':
                     return (
-                      <div key={'component-' + element.index}>
+                      <div key={'component-' + elementToRender.index}>
                         {pageBuilderActive && (
                           <EditElement
                             modifiedSection={modifiedSection}
                             setModifiedSection={setModifiedSection}
-                            element={element}
+                            element={elementToRender}
                           />
                         )}
-                        {element.title && <h2>{element.title}</h2>}
-                        {element.questionAnswerPair.map(questionAnswer => {
-                          return (
-                            <FAQ
-                              key={element.id}
-                              question={questionAnswer.question}
-                              answer={questionAnswer.answer}
-                              openInitially={questionAnswer.openInitially}
-                            />
-                          );
-                        })}
+                        {elementToRender.title && (
+                          <h2>{elementToRender.title}</h2>
+                        )}
+                        {elementToRender.questionAnswerPair.map(
+                          questionAnswer => {
+                            return (
+                              <FAQ
+                                key={elementToRender.id}
+                                question={questionAnswer.question}
+                                answer={questionAnswer.answer}
+                                openInitially={questionAnswer.openInitially}
+                              />
+                            );
+                          }
+                        )}
                       </div>
                     );
                   case 'sectionsCollectionMap':
                     return (
-                      <div key={'map-' + element.index}>
+                      <div key={'map-' + elementToRender.index}>
                         {pageBuilderActive && (
                           <EditElement
                             modifiedSection={modifiedSection}
                             setModifiedSection={setModifiedSection}
-                            element={element}
+                            element={elementToRender}
                           />
                         )}
                         <CollectionMap
                           mapConfig={{
-                            state: element.state,
-                            maxBounds: element.maxBounds,
+                            state: elementToRender.state,
+                            maxBounds: elementToRender.maxBounds,
                           }}
                         />
                       </div>
@@ -351,7 +400,7 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                     [s.elementCenterNarrow]: column === 'centerNarrow',
                   })}
                 >
-                  {renderElement()}
+                  {renderElement(element, index)}
                 </div>
               );
             })}

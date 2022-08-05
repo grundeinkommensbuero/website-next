@@ -55,6 +55,7 @@ type FetchedSectionData = {
     sort: null | number;
     title: string;
     label: string;
+    anchor?: string;
     colorScheme: ColorScheme;
     includeAgs?: string[];
     excludeAgs?: string[];
@@ -71,6 +72,7 @@ const sectionFields = [
   'sort',
   'title',
   'label',
+  'anchor',
   'colorScheme',
   'hasHero',
   'heroTitle',
@@ -226,6 +228,7 @@ const updatePageStructure = (fetchedPage: FetchedPage): Page => {
           sort: section.item.sort,
           status: section.item.status,
           colorScheme: section.item.colorScheme,
+          anchor: section.item.anchor,
           includeAgs: section.item.includeAgs || [],
           excludeAgs: section.item.excludeAgs || [],
           hasHero: section.item.hasHero,

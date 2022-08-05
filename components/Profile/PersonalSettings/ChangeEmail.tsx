@@ -165,8 +165,12 @@ export const ChangeEmail = ({
   );
 };
 
+type FormErrors = {
+  email?: string;
+};
+
 const validate = (values: { email: string }, oldEmail: string) => {
-  const errors = { email: '' };
+  const errors: FormErrors = {};
 
   if (values.email && values.email.includes('+')) {
     errors.email = 'Zurzeit unterstützen wir kein + in E-Mails';

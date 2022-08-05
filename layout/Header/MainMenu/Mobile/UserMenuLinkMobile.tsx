@@ -7,7 +7,7 @@ import s from '../style.module.scss';
 import { XbgeAppContext } from '../../../../context/App';
 import { useRouter } from 'next/router';
 
-type UserMEnuLinkMobileProps = {
+type UserMenuLinkMobileProps = {
   entry: CustomEntry;
   currentRoute: string;
   extraCallback?: () => void;
@@ -17,11 +17,10 @@ export const UserMenuLinkMobile = ({
   entry,
   currentRoute,
   extraCallback,
-}: UserMEnuLinkMobileProps) => {
+}: UserMenuLinkMobileProps) => {
   const { isAuthenticated, customUserData, userId, signUserOut } =
     useContext(AuthContext);
   const { togglePageBuilder } = useContext(XbgeAppContext);
-  const router = useRouter();
 
   if (!isAuthenticated) {
     return (
@@ -46,8 +45,8 @@ export const UserMenuLinkMobile = ({
             />
             <span className="text-xl nowrap">{customUserData.username}</span>
           </div>
-          <div className="mx-2">
-            <div className="my-4">
+          <ul className="mx-2">
+            <li className="my-4">
               <CustomMenuLink
                 currentRoute={currentRoute}
                 entry={{
@@ -56,9 +55,9 @@ export const UserMenuLinkMobile = ({
                   label: 'Zum Profil',
                 }}
               />
-            </div>
+            </li>
             {customUserData?.directus?.token && (
-              <div className="my-4">
+              <li className="my-4">
                 <CustomMenuAction
                   entry={{
                     action: () => {
@@ -68,9 +67,9 @@ export const UserMenuLinkMobile = ({
                     label: 'Page Builder',
                   }}
                 />
-              </div>
+              </li>
             )}
-            <div className="my-4">
+            <li className="my-4">
               <CustomMenuAction
                 entry={{
                   action: () => {
@@ -80,8 +79,8 @@ export const UserMenuLinkMobile = ({
                   label: 'Abmelden',
                 }}
               />
-            </div>
-          </div>
+            </li>
+          </ul>
         </>
       ) : (
         <span className="text-xl nowrap ml-2">Lade...</span>

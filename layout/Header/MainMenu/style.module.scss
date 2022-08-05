@@ -1,23 +1,36 @@
+.nav {
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+}
+
 .dropdown {
   position: relative;
   display: inline-block;
 }
 
 .dropdownContent {
-  display: none;
+  height: 1px;
+  width: 1px;
   position: absolute;
   text-align: right;
   right: -1rem;
-  min-width: 160px;
   // box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
   padding: 12px 16px;
   padding-top: 0.5rem;
   z-index: 1;
   background-color: white;
+  overflow: hidden;
 }
 
-.dropdown:hover .dropdownContent {
-  display: block;
+.dropdown:hover .dropdownContent,
+.dropdown:focus .dropdownContent,
+.dropdown:focus-within .dropdownContent {
+  height: auto;
+  width: auto;
+  min-width: 160px;
 }
 
 .loginParentAvatar {
@@ -40,4 +53,14 @@
   // move the scrollbar out of view
   padding-right: 3rem;
   box-sizing: content-box;
+}
+
+.button {
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-size: $DesktopFontSizeM;
+  border: none;
+  padding: 0;
+  cursor: pointer;
 }

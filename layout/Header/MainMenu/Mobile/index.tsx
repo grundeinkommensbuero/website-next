@@ -17,43 +17,50 @@ export const MainMenuMobile = ({
   closeMenu,
 }: MainMenuMobileProps): ReactElement => {
   return (
-    <div className={cN('flex-column', 'items-start', s.mobileMenuContainer)}>
-      {mainMenu.map((entry, index) => {
-        if ((entry as Dropdown).entries)
+    <nav
+      className={cN('flex-column', 'items-start', s.nav, s.mobileMenuContainer)}
+    >
+      <ul>
+        {mainMenu.map((entry, index) => {
+          if ((entry as Dropdown).entries)
+            return (
+              <li key={index}>
+                <span className="my-2 text-xl nowrap">{entry.label}</span>
+                <div className="mx-4">
+                  <ul>
+                    {(entry as Dropdown).entries.map(entry => {
+                      return (
+                        <li className="my-4" key={entry.slug}>
+                          <MenuLink
+                            entry={entry}
+                            currentRoute={currentRoute}
+                            isMobile={true}
+                            extraCallback={closeMenu}
+                          />
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              </li>
+            );
           return (
-            <div key={index}>
-              <span className="my-2 text-xl nowrap">{entry.label}</span>
-              <div className="mx-4">
-                {(entry as Dropdown).entries.map(entry => {
-                  return (
-                    <div className="my-4" key={entry.slug}>
-                      <MenuLink
-                        entry={entry}
-                        currentRoute={currentRoute}
-                        isMobile={true}
-                        extraCallback={closeMenu}
-                      />
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
+            <li className="my-2" key={(entry as MenuEntry).slug}>
+              <MenuLink
+                entry={entry as MenuEntry}
+                currentRoute={currentRoute}
+                isMobile={true}
+                extraCallback={closeMenu}
+              />
+            </li>
           );
-        return (
-          <MenuLink
-            entry={entry as MenuEntry}
-            key={(entry as MenuEntry).slug}
-            currentRoute={currentRoute}
-            isMobile={true}
-            extraCallback={closeMenu}
-          />
-        );
-      })}
-      <UserMenuLinkMobile
-        entry={{ id: 'login', slug: 'login', label: 'Einloggen' }}
-        currentRoute={currentRoute}
-        extraCallback={closeMenu}
-      />
-    </div>
+        })}
+        <UserMenuLinkMobile
+          entry={{ id: 'login', slug: 'login', label: 'Einloggen' }}
+          currentRoute={currentRoute}
+          extraCallback={closeMenu}
+        />
+      </ul>
+    </nav>
   );
 };

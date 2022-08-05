@@ -1,8 +1,9 @@
 import cN from 'classnames';
 import Image from 'next/image';
 import { ReactElement } from 'react';
-import { ColorScheme, DirectusImage, Status } from '.';
+import { ColorScheme, Status } from '.';
 import { getAssetURL } from '../Util/getAssetURL';
+import { stringToId } from '../../utils/stringToId';
 import s from './style.module.scss';
 
 type SectionWrapperProps = {
@@ -13,6 +14,7 @@ type SectionWrapperProps = {
   hasHero?: boolean;
   heroTitle?: string;
   heroImage?: string;
+  anchor?: string;
 };
 
 export const SectionWrapper = ({
@@ -23,7 +25,10 @@ export const SectionWrapper = ({
   hasHero,
   heroTitle,
   heroImage,
+  anchor,
 }: SectionWrapperProps) => {
+  const anchorId = anchor && stringToId(anchor);
+
   return (
     <>
       {hasHero && heroImage && (
@@ -59,6 +64,12 @@ export const SectionWrapper = ({
           )}
           {children}
         </section>
+
+        {anchorId && (
+          <div id={anchorId} className={s.jumpToAnchor}>
+            <div id={anchorId.toLowerCase()} />
+          </div>
+        )}
       </div>
     </>
   );

@@ -3,6 +3,7 @@ import { Dropdown, Menu, MenuEntry } from '../../../../utils/getMenus';
 import { MenuLink } from '../MenuLink';
 import { UserMenuLink } from '../UserMenuLink';
 import s from '../style.module.scss';
+import cN from 'classnames';
 
 type MainMenuProps = {
   mainMenu: Menu;
@@ -14,37 +15,47 @@ export const MainMenu = ({
   currentRoute,
 }: MainMenuProps): ReactElement => {
   return (
-    <div className="flex-row items-center">
-      {mainMenu.map(entry => {
-        if ((entry as Dropdown).entries)
+    <nav className={s.nav}>
+      <ul className={cN('flex-row', 'items-center')}>
+        {mainMenu.map(entry => {
+          if ((entry as Dropdown).entries)
+            return (
+              <li key={entry.id} className={s.dropdown} tabIndex={0}>
+                <span className="mx-2 text-xl nowrap">{entry.label}</span>
+                <div className={s.dropdownContent}>
+                  <ul>
+                    <>
+                      {(entry as Dropdown).entries.map(entry => {
+                        return (
+                          <li className="my-4" key={entry.slug}>
+                            <MenuLink
+                              entry={entry}
+                              currentRoute={currentRoute}
+                            />
+                          </li>
+                        );
+                      })}
+                    </>
+                  </ul>
+                </div>
+              </li>
+            );
           return (
-            <div key={entry.id} className={s.dropdown}>
-              <span className="mx-2 text-xl nowrap">{entry.label}</span>
-              <div className={s.dropdownContent}>
-                <>
-                  {(entry as Dropdown).entries.map(entry => {
-                    return (
-                      <div className="my-4" key={entry.slug}>
-                        <MenuLink entry={entry} currentRoute={currentRoute} />
-                      </div>
-                    );
-                  })}
-                </>
-              </div>
-            </div>
+            <li key={(entry as MenuEntry).slug}>
+              <MenuLink
+                entry={entry as MenuEntry}
+                currentRoute={currentRoute}
+              />
+            </li>
           );
-        return (
-          <MenuLink
-            entry={entry as MenuEntry}
-            key={(entry as MenuEntry).slug}
+        })}
+        <li>
+          <UserMenuLink
+            entry={{ id: 'login', slug: 'login', label: 'Einloggen' }}
             currentRoute={currentRoute}
           />
-        );
-      })}
-      <UserMenuLink
-        entry={{ id: 'login', slug: 'login', label: 'Einloggen' }}
-        currentRoute={currentRoute}
-      />
-    </div>
+        </li>
+      </ul>
+    </nav>
   );
 };
