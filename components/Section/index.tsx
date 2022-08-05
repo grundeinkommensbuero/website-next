@@ -233,8 +233,9 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                         )}
                         <Image
                           src={getAssetURL(elementToRender.image.id)}
-                          width={elementToRender.image.width}
-                          height={elementToRender.image.height}
+                          // We need to set a default width if an svg is used
+                          width={elementToRender.image.width || 500}
+                          height={elementToRender.image.height || 500}
                           alt={elementToRender.alt}
                         />
                       </div>
