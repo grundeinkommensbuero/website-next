@@ -4,7 +4,8 @@ import cN from 'classnames';
 import TwitterIcon from './icons/twitter-brands.svg';
 import LinkedinIcon from './icons/linkedin-brands.svg';
 import WebsiteIcon from './icons/globe-europe-solid.svg';
-import { DirectusImage } from '../Util/DirectusImage';
+import Image from 'next/image';
+import { getAssetURL } from '../Util/getAssetURL';
 
 const ICONS: any = {
   twitter: TwitterIcon,
@@ -49,11 +50,11 @@ const AboutUs = ({ members, className }: AboutUsProps) => {
             <li key={index} className={s.member}>
               {image && (
                 <div className={s.imageContainer}>
-                  <DirectusImage
-                    assetId={image.id}
+                  <Image
+                    src={getAssetURL(image.id)}
                     className={s.image}
-                    overrideHeight={200}
-                    overrideWidth={200}
+                    height={200}
+                    width={200}
                     alt="Foto eines Teammitglieds"
                   />
                   {!!links.length && (
