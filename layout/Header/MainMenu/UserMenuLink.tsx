@@ -33,8 +33,8 @@ export const UserMenuLink = ({
             />
             <span className="text-xl nowrap">{customUserData.username}</span>
           </div>
-          <div className={s.dropdownContent}>
-            <div className="my-4 mt-8">
+          <ul className={s.dropdownContent}>
+            <li className="my-4 mt-8">
               <CustomMenuLink
                 currentRoute={currentRoute}
                 entry={{
@@ -43,23 +43,23 @@ export const UserMenuLink = ({
                   label: 'Zum Profil',
                 }}
               />
-            </div>
+            </li>
             {customUserData?.directus?.token && (
-              <div className="my-4">
+              <li className="my-4">
                 <CustomMenuAction
                   entry={{
                     action: () => togglePageBuilder(),
                     label: 'Page Builder',
                   }}
                 />
-              </div>
+              </li>
             )}
-            <div className="my-4">
+            <li className="my-4">
               <CustomMenuAction
                 entry={{ action: signUserOut, label: 'Abmelden' }}
               />
-            </div>
-          </div>
+            </li>
+          </ul>
         </div>
       ) : (
         <span className="text-xl nowrap ml-2">Lade...</span>
