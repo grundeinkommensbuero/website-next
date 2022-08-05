@@ -118,7 +118,7 @@ const CountSignaturesForm = ({
   setListId,
   resetSignatureListState,
 }: CountSignatureFormProps) => {
-  const needsEMail = !userId && !eMail;
+  const needsEmail = !userId && !eMail;
 
   if (state === 'saving') {
     return (
@@ -281,7 +281,7 @@ const CountSignaturesForm = ({
           setCount(parseInt(data.count.toString()));
           updateSignatureList(data);
         }}
-        validate={(values: Values) => validate(values, needsEMail, !listId)}
+        validate={(values: Values) => validate(values, needsEmail, !listId)}
         render={({ handleSubmit }) => {
           return (
             <FinallyMessage>
@@ -290,7 +290,7 @@ const CountSignaturesForm = ({
               </h2>
               <FormWrapper>
                 <form onSubmit={handleSubmit}>
-                  {needsEMail && (
+                  {needsEmail && (
                     <FormSection className={s.formSection}>
                       <Field
                         name="email"
@@ -366,16 +366,18 @@ type Values = {
   userId: string;
 };
 
+type Errors = {
+  count?: string;
+  listId?: string;
+  email?: string;
+};
+
 const validate = (
   values: Values,
-  needsEMail: boolean,
+  needsEmail: boolean,
   needsListId: boolean
 ) => {
-  const errors = {
-    count: '',
-    listId: '',
-    email: '',
-  };
+  const errors: Errors = {};
 
   if (!values.count) {
     errors.count = 'Muss ausgefüllt sein';
@@ -389,7 +391,7 @@ const validate = (
     errors.count = 'Nix, es gibt keine negative Anzahl an Unterschriften!';
   }
 
-  if (needsEMail && !validateEmail(values.email)) {
+  if (needsEmail && !validateEmail(values.email)) {
     errors.email = 'Wir benötigen eine valide E-Mail Adresse';
   }
 

@@ -39,6 +39,12 @@ type updateSignatureListByUserProps = {
   count: number;
 };
 
+type Data = {
+  count: number;
+  userId?: string;
+  email?: string;
+};
+
 // function, which makes an api call to set the signature count
 // for a specific list after user has scanned the qr code
 const updateSignatureListByUser = async (
@@ -48,7 +54,7 @@ const updateSignatureListByUser = async (
   // make api call to create new singature list and get pdf
   setState('saving');
 
-  const body = { count, userId: '', email: '' };
+  const body: Data = { count };
 
   // Depending on whether a user id or email was provided
   // we either send only list id or with user id or email
