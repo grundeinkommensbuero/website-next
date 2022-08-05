@@ -45,6 +45,8 @@
 .button {
   background: none;
   color: inherit;
+  font: inherit;
+  font-size: $DesktopFontSizeM;
   border: none;
   padding: 0;
   cursor: pointer;

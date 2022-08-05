@@ -15,7 +15,7 @@ export const CustomMenuAction = ({
 }: CustomMenuActionProps): ReactElement => {
   return (
     <button
-      className={`mx-2 text-xl nowrap cursor-pointer hoverUnderline ${s.button}`}
+      className={`${s.button} mx-2 nowrap hoverUnderline`}
       aria-label={entry.label}
       onClick={() => entry.action()}
     >
