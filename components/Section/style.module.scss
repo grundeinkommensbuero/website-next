@@ -144,11 +144,12 @@
 
 .element {
   padding: 1rem;
+  margin-bottom: 1rem;
   transition: all 0.25s ease-out;
+  align-self: center;
 }
 
 .elementLeft {
-  margin-bottom: 2rem;
   grid-column-start: 1;
   grid-column-end: last-line;
 
@@ -156,14 +157,13 @@
     padding-right: 2.5rem;
     grid-column-start: 1;
     grid-column-end: 4;
-    margin-bottom: 0;
   }
 }
 
 .elementRight {
-  margin-bottom: 2rem;
   grid-column-start: 1;
   grid-column-end: last-line;
+
   @media (min-width: $breakPointL) {
     padding-left: 2.5rem;
     grid-column-start: 4;
