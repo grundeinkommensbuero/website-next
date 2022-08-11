@@ -37,7 +37,7 @@ export const BlogSnippet = ({
   const dateObject = new Date(date);
   return (
     <article
-      className={`s.article ${
+      className={`${s.article} ${
         IS_BERLIN_PROJECT ? 'colorSchemeRoseOnWhite' : 'colorSchemeWhite'
       }`}
     >
