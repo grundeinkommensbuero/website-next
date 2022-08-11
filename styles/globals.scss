@@ -49,7 +49,7 @@ h1 {
 
 h1,
 h2 {
-  font-size: 3.375rem;
+  font-size: $DesktopFontSizeXL;
   letter-spacing: 0.15px;
   margin: 0 0 1rem 0;
   font-weight: bold;
@@ -72,21 +72,21 @@ h3 {
 }
 
 h3 {
-  font-size: $DesktopFontSizeM;
+  font-size: $DesktopFontSizeL;
   margin: 0 0 1rem 0;
 
   @media (max-width: $breakPointM) {
-    font-size: $DesktopFontSizeM;
+    font-size: $MobileFontSizeL;
     hyphens: auto;
   }
 }
 
 h4 {
-  font-size: $DesktopFontSizeS;
+  font-size: $DesktopFontSizeM;
   margin: 0 0 1rem 0;
 
   @media (max-width: $breakPointM) {
-    font-size: $DesktopFontSizeS;
+    font-size: $MobileFontSizeM;
     hyphens: auto;
   }
 }
@@ -100,7 +100,7 @@ p {
   font-size: $DesktopFontSizeM;
 
   @media (max-width: $breakPointM) {
-    font-size: $DesktopFontSizeS;
+    font-size: $MobileFontSizeM;
   }
 
   a {
