@@ -72,17 +72,17 @@ export const Package = ({
             ) : (
               <>
                 {!done && pledgeUpdateState !== 'saved' ? (
-                  <InlineLinkButton
+                  <button
                     onClick={() =>
                       updatePledgePackage({
                         id: id,
                         done: true,
                       })
                     }
-                    className={s.setDone}
+                    className={cN(s.linkLikeFormattedButton, s.setDone)}
                   >
                     <b>Als erledigt markieren</b>
-                  </InlineLinkButton>
+                  </button>
                 ) : (
                   <p className={s.isDone}>
                     <CheckIcon className={s.checkIcon} alt="Häkchen-Icon" />

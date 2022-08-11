@@ -46,7 +46,7 @@ const ListPledgePackages = () => {
 
   return (
     <section>
-      <h2 className={s.violet}>Alle Sammelpakete</h2>
+      <h2>Alle Sammelpakete</h2>
       <p>
         Zeig deinen Einsatz für&apos;s Grundeinkommen und setze dir ein
         Sammelziel! Es gibt Pakete mit jeweils einem Ziel von 25 Unterschriften,
@@ -76,7 +76,7 @@ const ListPledgePackages = () => {
 
       {packagesOfUser.length > 0 && (
         <div>
-          <h3 className={s.violet}>Deine Pakete</h3>
+          <h3>Deine Pakete</h3>
           <p>
             Du hast dir {packagesOfUser.length} Paket
             {packagesOfUser.length > 1 && 'e'} geschnappt und somit versprochen,{' '}
@@ -108,11 +108,9 @@ const ListPledgePackages = () => {
       {state && state !== 'loading' ? (
         <>
           {pledgePackages.length > 0 ? (
-            <h3 className={s.violet}>
-              Diese Pakete hat sich schon jemand geschnappt
-            </h3>
+            <h3>Diese Pakete hat sich schon jemand geschnappt</h3>
           ) : (
-            <h3 className={s.violet}>Noch keine Pakete verteilt!</h3>
+            <h3>Noch keine Pakete verteilt!</h3>
           )}
 
           <div className={s.container}>
@@ -123,7 +121,7 @@ const ListPledgePackages = () => {
 
           {pledgePackagesDone.length > 0 && (
             <>
-              <h3 className={s.violet}>Diese Pakete wurden schon erledigt!</h3>
+              <h3>Diese Pakete wurden schon erledigt!</h3>
               <div className={s.container}>
                 {pledgePackagesDone.map((pledgePackage, index) => {
                   return (
