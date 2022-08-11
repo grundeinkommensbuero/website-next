@@ -44,17 +44,18 @@ export const ShowMeetups = ({
   // Type filters, depending on the slug we show different default filters
   const [showLists, setShowLists] = useState(
     router.pathname.includes('soli-orte') ||
-      router.pathname.includes('unterschreiben')
+      router.pathname.includes('unterschreiben') ||
+      isIframe
   );
   const [showCollectionEvents, setShowCollectionEvents] = useState(
-    router.pathname.includes('termine')
+    router.pathname.includes('termine') || router.pathname === '/' || isIframe
   );
   const [showStorages, setShowStorages] = useState(
-    router.pathname.includes('material')
+    router.pathname.includes('material') || isIframe
   );
 
   // Day filters
-  const [filterToday, setFilterToday] = useState(false);
+  const [filterToday, setFilterToday] = useState(router.pathname === '/');
   const [filterTomorrow, setFilterTomorrow] = useState(false);
 
   // Time filters
