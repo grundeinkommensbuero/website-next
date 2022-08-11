@@ -98,7 +98,9 @@ export const PostFull = ({
             </div>
           </div>
         </div>
-        <div className="px-6 py-8 sections">{parseHTML(content)}</div>
+        <div className="px-6 py-8 sections overflow-hidden">
+          {parseHTML(content)}
+        </div>
       </div>
     </>
   );

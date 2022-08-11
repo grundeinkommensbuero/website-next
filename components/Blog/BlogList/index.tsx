@@ -8,6 +8,8 @@ import Head from 'next/head';
 
 type BlogListProps = { posts: Array<Blogpost> };
 
+const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
+
 export const BlogList = ({ posts }: BlogListProps) => {
   return (
     <div>
@@ -34,7 +36,11 @@ export const BlogSnippet = ({
 }: Blogpost) => {
   const dateObject = new Date(date);
   return (
-    <article className={s.article}>
+    <article
+      className={`s.article ${
+        IS_BERLIN_PROJECT ? 'colorSchemeRoseOnWhite' : 'colorSchemeWhite'
+      }`}
+    >
       <header>
         <time dateTime={dateObject.toISOString()}>
           {formatDate(dateObject)}
