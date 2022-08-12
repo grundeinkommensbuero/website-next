@@ -70,6 +70,24 @@
   left: 5.5rem;
 }
 
+.linkLikeFormattedButton {
+  background-color: transparent;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+  margin: 0;
+  font-size: $DesktopFontSizeM;
+  &:hover {
+    background-color: transparent;
+    outline: none;
+    border: none;
+  }
+
+  &:hover {
+    color: $red;
+  }
+}
+
 .setDone {
   position: absolute;
   top: 7.75rem;
@@ -143,10 +161,6 @@
   100% {
     transform: translateY(0);
   }
-}
-
-.violet {
-  color: $violet;
 }
 
 .CTA {

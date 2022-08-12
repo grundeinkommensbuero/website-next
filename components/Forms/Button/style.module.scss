@@ -199,11 +199,11 @@ p a.linkButton {
   }
 
   &.active {
-    background-color: $aqua;
-    color: $white;
+    background-color: var(--secondary-color);
+    color: var(--text-on-secondary-color);
 
     .triangle {
-      border-left-color: $white;
+      border-left-color: var(--text-on-secondary-color);
     }
   }
 }

@@ -1,5 +1,5 @@
 .countField {
-  width: 5rem;
+  width: 8rem;
 }
 
 .listIdField {
@@ -14,6 +14,15 @@
   }
 }
 
+.idHint {
+  font-size: $DesktopFontSizeS;
+  margin-top: 1rem;
+
+  @media (max-width: $breakPointS) {
+    font-size: $DesktopFontSizeXS;
+  }
+}
+
 .formSection {
   margin-bottom: 2rem;
 }
@@ -24,7 +33,7 @@
   grid-gap: 1rem;
 
   @media (max-width: $breakPointS) {
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 1fr;
   }
 }
 
@@ -71,10 +80,6 @@
 
 .campaignVisualisations {
   margin-top: 0;
-}
-
-.fieldContainer {
-  width: 75%;
 }
 
 .fieldLabel {

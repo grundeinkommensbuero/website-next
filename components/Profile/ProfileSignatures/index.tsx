@@ -22,19 +22,19 @@ type Campaign = {
 };
 
 type ProfileSignaturesProps = {
-  userId: string;
   userData: User;
   campaignVisualisations: CampaignVisualisation[];
 };
 
 export const ProfileSignatures = ({
-  userId,
   userData,
   campaignVisualisations,
 }: ProfileSignaturesProps) => {
   const [userCampaigns, setUserCampaigns] = useState<Campaign[]>(
     IS_BERLIN_PROJECT ? [campaignCodes[0]] : []
   );
+
+  const [updated, setUpdated] = useState(0);
 
   useEffect(() => {
     if (userData && userData.municipalities && !IS_BERLIN_PROJECT) {
@@ -63,10 +63,17 @@ export const ProfileSignatures = ({
 
           <section>
             <SelfScan
-              className={''}
               successMessage={
                 'Danke! Bitte schicke die Listen möglichst schnell an: Expedition Grundeinkommen, Gneisenaustraße 63, 10961 Berlin'
               }
+              campaignCode={
+                userCampaigns.length === 1
+                  ? userCampaigns[0].campaignCode
+                  : undefined
+              }
+              onUpdate={() => {
+                setUpdated(updated + 1);
+              }}
             />
             {userCampaigns[0] ? (
               userCampaigns.map((scan, index) => {
@@ -76,6 +83,7 @@ export const ProfileSignatures = ({
                     <CampaignScanVisualisation
                       campaignCode={scan.campaignCode}
                       campaignVisualisations={campaignVisualisations}
+                      triggerUpdate={updated}
                     />
                   </div>
                 );

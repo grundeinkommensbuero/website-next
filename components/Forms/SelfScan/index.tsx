@@ -22,9 +22,19 @@ import { validateEmail } from '../../../hooks/Authentication/validateEmail';
 
 const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
 
-type SelfScanProps = { successMessage: string; className?: string };
+type SelfScanProps = {
+  successMessage: string;
+  className?: string;
+  onUpdate?: () => void;
+  campaignCode?: string;
+};
 
-const SelfScan = ({ successMessage, className }: SelfScanProps) => {
+const SelfScan = ({
+  campaignCode,
+  successMessage,
+  className,
+  onUpdate,
+}: SelfScanProps) => {
   const [state, updateSignatureList, resetSignatureListState] =
     useUpdateSignatureListByUser();
   const [signatureCountOfUser, getSignatureCountOfUser, resetSignatureCount] =
@@ -48,7 +58,11 @@ const SelfScan = ({ successMessage, className }: SelfScanProps) => {
 
   useEffect(() => {
     if (userId || eMail) {
-      getSignatureCountOfUser({ userId: userId, email: eMail });
+      getSignatureCountOfUser({ userId: userId, email: eMail, campaignCode });
+
+      if (state === 'saved' && onUpdate) {
+        onUpdate();
+      }
     }
     // eslint-disable-next-line
   }, [userId, eMail, state]);
@@ -120,12 +134,11 @@ const CountSignaturesForm = ({
 }: CountSignatureFormProps) => {
   const needsEmail = !userId && !eMail;
 
+  const colorScheme = IS_BERLIN_PROJECT ? 'colorSchemeRoseOnWhite' : undefined;
+
   if (state === 'saving') {
     return (
-      <FinallyMessage
-        colorScheme={IS_BERLIN_PROJECT ? 'colorSchemeRoseOnWhite' : undefined}
-        loading
-      >
+      <FinallyMessage colorScheme={colorScheme} loading>
         Speichere...
       </FinallyMessage>
     );
@@ -133,7 +146,7 @@ const CountSignaturesForm = ({
 
   if (state === 'saved') {
     return (
-      <FinallyMessage>
+      <FinallyMessage colorScheme={colorScheme}>
         <>{successMessage}</>
         <CTAButtonContainer className={s.buttonContainer}>
           <CTAButton
@@ -157,7 +170,7 @@ const CountSignaturesForm = ({
     state === 'listAndUserNotFound'
   ) {
     return (
-      <FinallyMessage>
+      <FinallyMessage colorScheme={colorScheme}>
         <>
           {state === 'userNotFound' && (
             <>
@@ -284,7 +297,7 @@ const CountSignaturesForm = ({
         validate={(values: Values) => validate(values, needsEmail, !listId)}
         render={({ handleSubmit }) => {
           return (
-            <FinallyMessage>
+            <FinallyMessage colorScheme={colorScheme}>
               <h2 className={s.headingSelfScan}>
                 Unterschriften selber eintragen
               </h2>
@@ -330,7 +343,7 @@ const CountSignaturesForm = ({
                           <Field
                             name="listId"
                             label=""
-                            placeholder=""
+                            placeholder="123456"
                             component={TextInputWrapped as any}
                             type="text"
                             inputMode="numeric"
@@ -339,6 +352,9 @@ const CountSignaturesForm = ({
                             className={s.label}
                             inputClassName={s.listIdField}
                           ></Field>
+                          <p className={s.idHint}>
+                            Wenn die Liste keinen Barcode hat, gib bitte 0 ein.
+                          </p>
                         </div>
                       )}
                     </>

@@ -20,7 +20,6 @@ const UnterschriftenEintragen = ({
       <ProfileSignatures
         campaignVisualisations={campaignVisualisations}
         userData={userData}
-        userId={userId}
       />
     </ProfileWrapper>
   );

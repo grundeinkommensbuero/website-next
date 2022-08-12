@@ -30,12 +30,20 @@ export type CampaignVisualisation = {
 
 type CampaignVisualisationsProps = {
   visualisations?: CampaignVisualisation[];
+  triggerUpdate?: number;
 };
 
 const CampaignVisualisations = ({
   visualisations,
+  triggerUpdate,
 }: CampaignVisualisationsProps) => {
-  const currentCounts = useSignatureCount();
+  const [currentCounts, refetchCount] = useSignatureCount();
+
+  useEffect(() => {
+    if (triggerUpdate) {
+      refetchCount();
+    }
+  }, [triggerUpdate]);
 
   if (!visualisations) {
     return null;

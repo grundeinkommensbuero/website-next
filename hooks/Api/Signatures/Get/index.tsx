@@ -14,23 +14,27 @@ import { Request } from '../../../Authentication/Verification';
   - stats
 */
 
-export const useSignatureCount = (): {
-  [key: string]: {
-    withoutMixed: number;
-    withMixed: number;
-    scannedByUser: number;
-    computed: number;
-    withoutAnonymous: number;
-    withContentful: number;
-  };
-} | void => {
+export const useSignatureCount = ():
+  | [
+      {
+        [key: string]: {
+          withoutMixed: number;
+          withMixed: number;
+          scannedByUser: number;
+          computed: number;
+          withoutAnonymous: number;
+          withContentful: number;
+        };
+      } | void,
+      () => void
+    ] => {
   const [stats, setStats] = useState(() => {
     if (typeof window !== 'undefined') {
       getSignatureCount().then(data => setStats(data));
     }
   });
 
-  return stats;
+  return [stats, () => getSignatureCount().then(data => setStats(data))];
 };
 
 export type ScannedByUser = {
@@ -137,11 +141,13 @@ type getSignatureCountOfUserArgs = {
   listId?: string;
   userId?: string;
   email?: string;
+  campaignCode?: string;
 };
 const getSignatureCountOfUser = async ({
   listId,
   userId,
   email,
+  campaignCode,
 }: getSignatureCountOfUserArgs) => {
   try {
     const request: Request = {
@@ -167,7 +173,9 @@ const getSignatureCountOfUser = async ({
     }
 
     const response = await fetch(
-      `${CONFIG.API.INVOKE_URL}/analytics/signatures?${queryParam}`,
+      `${CONFIG.API.INVOKE_URL}/analytics/signatures?${queryParam}${
+        campaignCode ? `&campaignCode=${campaignCode}` : ''
+      }`,
       request
     );
 

@@ -2,7 +2,7 @@
 <svg width="33px" height="3px" viewBox="0 0 33 3" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <title>Path 2 Copy</title>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="BGE_Desktop_Main" transform="translate(-1077.000000, -13248.000000)" stroke="black" stroke-width="3">
+        <g id="BGE_Desktop_Main" transform="translate(-1077.000000, -13248.000000)" stroke="#000001" stroke-width="3">
             <g id="Group-20" transform="translate(310.000000, 13037.000000)">
                 <line x1="795" y1="224" x2="772" y2="201" id="Path-2-Copy" transform="translate(783.500000, 212.500000) rotate(-45.000000) translate(-783.500000, -212.500000) "></line>
             </g>

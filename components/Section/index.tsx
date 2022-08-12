@@ -243,7 +243,7 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                   case 'sectionsComponent':
                     const Component = dynamic(
                       () => import(`../_dynamic/${elementToRender.component}`),
-                      { ssr: false, loading: () => null }
+                      { ssr: true }
                     );
                     const props = elementToRender.props || {};
 

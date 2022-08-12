@@ -2,7 +2,7 @@ import React from 'react';
 import { MapConfig } from './';
 import dynamic from 'next/dynamic';
 
-const LoadableMap = dynamic(() => import('./LazyMap'), { ssr: false });
+const LoadableMap = dynamic(() => import('./LazyMap'), { ssr: true });
 
 export type LocationType = 'collect' | 'lists' | 'storage';
 
