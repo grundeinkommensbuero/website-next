@@ -103,7 +103,6 @@ type FetchedElement = {
     id: string;
     status: Status;
     sort: number;
-    groupElement: boolean;
     image?: DirectusImage;
     alt?: string;
     content?: string;
@@ -123,6 +122,7 @@ type FetchedElement = {
     }>;
     state?: string;
     maxBounds?: [Coordinates, Coordinates]; // json
+    groupWithPrevious: boolean;
   };
 };
 
@@ -150,6 +150,7 @@ const elementFields = [
   'state',
   'maxBounds',
   'props',
+  'groupWithPrevious',
 ];
 
 const faqFields = ['title', 'question', 'answer', 'openInitially'];
@@ -246,6 +247,7 @@ const updatePageStructure = (fetchedPage: FetchedPage): Page => {
                 status: element.item.status,
                 sort: element.item.sort,
                 column: element.item.column || 'centerWide',
+                groupWithPrevious: element.item.groupWithPrevious,
                 index,
               };
               switch (element.collection) {
