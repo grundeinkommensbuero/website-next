@@ -1,9 +1,8 @@
 import s from './style.module.scss';
-import Image from 'next/image';
 import { PageProps } from './[id]';
 import { ReactElement } from 'react';
 import { Section } from '../components/Section';
-import { GetServerSideProps, GetStaticProps } from 'next';
+import { GetStaticProps } from 'next';
 import { getPageProps } from '../utils/getPageProps';
 import { Hero } from '../components/Hero';
 
