@@ -36,6 +36,7 @@ export const MenuLink = ({
         onClick={() => {
           if (extraCallback) extraCallback();
           if (action) action();
+          (document.activeElement as HTMLElement).blur();
         }}
         className={`${!isMobile ? 'mx-2' : ''} text-xl nowrap ${
           prefixedSlug === currentRoute
