@@ -47,6 +47,7 @@
 .statisticsOverall {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 4rem;
 
   @media (max-width: $breakPointM) {
     flex-wrap: wrap;

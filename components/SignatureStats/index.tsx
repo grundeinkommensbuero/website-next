@@ -26,7 +26,8 @@ const SignatureStats = ({
           von dir gemeldet
         </div>
       </div>{' '}
-      <div className={s.statisticsCountItem}>
+      {/* Deactivate for now because the count is hard to track */}
+      {/* <div className={s.statisticsCountItem}>
         <div className={s.statisticsCount}>
           <VisualCounter end={signatureCount.received} />
         </div>
@@ -37,7 +38,7 @@ const SignatureStats = ({
           {layout === 'horizontal' ? ' ' : <br />}
           angekommen
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
