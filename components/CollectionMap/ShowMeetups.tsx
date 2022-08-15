@@ -17,6 +17,7 @@ import dynamic from 'next/dynamic';
 import { List as Loader } from 'react-content-loader';
 import { useRouter } from 'next/router';
 import cN from 'classnames';
+import { CTALink } from '../Forms/CTAButton';
 
 const CreateMeetup = dynamic(() => import('../CreateMeetup'), {
   ssr: true,
@@ -252,7 +253,7 @@ export const ShowMeetups = ({
       />
       {(isBerlin || isHamburg || isDemocracy) && (
         <div>
-          {!isIframe && (
+          {!isIframe && router.asPath !== '/' && (
             <>
               {/* Jump to anchor */}
               <div className={s.jumpToAnchorWrapper}>
@@ -303,7 +304,7 @@ export const ShowMeetups = ({
               </section>
             </>
           )}
-          {!isIframe && (
+          {!isIframe && router.asPath !== '/' && (
             <>
               {/* Jump to anchor */}
               <div className={s.jumpToAnchorWrapper}>
@@ -312,6 +313,10 @@ export const ShowMeetups = ({
 
               <EventsListed locationsFiltered={locationsFiltered} />
             </>
+          )}
+
+          {router.asPath === '/' && (
+            <CTALink to="/termine">Weitere Events</CTALink>
           )}
         </div>
       )}
