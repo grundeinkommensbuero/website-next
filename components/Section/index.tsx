@@ -108,6 +108,7 @@ export type SectionElementBase = {
   sort: number | null;
   index: number;
   column: Column;
+  groupWithPrevious: boolean;
 };
 
 export type ColorScheme =
@@ -189,11 +190,11 @@ export const Section = ({ section }: SectionProps): ReactElement => {
               ): ReactElement | null => {
                 const { collection } = elementToRender;
 
-                // If Button is the next element we want to render text and button
+                // If next element should be grouped we want to render both
                 // in same grid cell
                 const nextElement = modifiedSection.render[index + 1];
                 const groupElements =
-                  nextElement?.collection === 'sectionsCTAButton' &&
+                  nextElement?.groupWithPrevious &&
                   nextElement.column === column;
 
                 // Because we render the next element recursively inside this cell,
@@ -202,9 +203,11 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                   elementsToSkip.push(index + 1);
                 }
 
+                let element;
+
                 switch (collection) {
                   case 'sectionsText':
-                    return (
+                    element = (
                       <>
                         <SectionsTextEditable
                           key={'text-' + elementToRender.index}
@@ -214,15 +217,11 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                           updateContent={updateContent}
                           setModifiedSection={setModifiedSection}
                         />
-                        {groupElements && (
-                          <div className={s.groupedButton}>
-                            {renderElement(nextElement, index + 1)}
-                          </div>
-                        )}
                       </>
                     );
+                    break;
                   case 'sectionsImage':
-                    return (
+                    element = (
                       <div key={'image-' + elementToRender.index}>
                         {pageBuilderActive && (
                           <EditElement
@@ -240,6 +239,7 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                         />
                       </div>
                     );
+                    break;
                   case 'sectionsComponent':
                     const Component = dynamic(
                       () => import(`../_dynamic/${elementToRender.component}`),
@@ -247,7 +247,7 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                     );
                     const props = elementToRender.props || {};
 
-                    return (
+                    element = (
                       <div key={'component-' + elementToRender.index}>
                         {pageBuilderActive && (
                           <EditElement
@@ -259,8 +259,9 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                         <Component key={elementToRender.id} {...props} />
                       </div>
                     );
+                    break;
                   case 'sectionsVideo':
-                    return (
+                    element = (
                       <div key={'video-' + elementToRender.index}>
                         {pageBuilderActive && (
                           <EditElement
@@ -272,6 +273,7 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                         <YoutubeEmbed embedId={elementToRender.embedId} />
                       </div>
                     );
+                    break;
                   case 'sectionsCTAButton':
                     const getAlignment = () => {
                       switch (elementToRender.align) {
@@ -283,7 +285,7 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                           return 'justify-end';
                       }
                     };
-                    return (
+                    element = (
                       <>
                         <div key={'button-' + elementToRender.index}>
                           {pageBuilderActive && (
@@ -331,15 +333,12 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                             )}
                           </div>
                         </div>
-                        {groupElements && (
-                          <div className={s.groupedButton}>
-                            {renderElement(nextElement, index + 1)}
-                          </div>
-                        )}
                       </>
                     );
+                    break;
+
                   case 'sectionsFAQ':
-                    return (
+                    element = (
                       <div key={'component-' + elementToRender.index}>
                         {pageBuilderActive && (
                           <EditElement
@@ -365,8 +364,9 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                         )}
                       </div>
                     );
+                    break;
                   case 'sectionsCollectionMap':
-                    return (
+                    element = (
                       <div key={'map-' + elementToRender.index}>
                         {pageBuilderActive && (
                           <EditElement
@@ -383,9 +383,21 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                         />
                       </div>
                     );
+                    break;
                   default:
                     return null;
                 }
+
+                return (
+                  <>
+                    {element}
+                    {groupElements && (
+                      <div className={s.groupedElement}>
+                        {renderElement(nextElement, index + 1)}
+                      </div>
+                    )}
+                  </>
+                );
               };
 
               return (
