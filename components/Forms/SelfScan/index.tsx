@@ -133,7 +133,7 @@ const CountSignaturesForm = ({
 
   if (state === 'saved') {
     return (
-      <FinallyMessage>
+      <FinallyMessage colorScheme={IS_BERLIN_PROJECT ? 'colorSchemeRoseOnWhite' : undefined}>
         <>{successMessage}</>
         <CTAButtonContainer className={s.buttonContainer}>
           <CTAButton
@@ -157,7 +157,7 @@ const CountSignaturesForm = ({
     state === 'listAndUserNotFound'
   ) {
     return (
-      <FinallyMessage>
+      <FinallyMessage colorScheme={IS_BERLIN_PROJECT ? 'colorSchemeRoseOnWhite' : undefined}>
         <>
           {state === 'userNotFound' && (
             <>
@@ -284,7 +284,7 @@ const CountSignaturesForm = ({
         validate={(values: Values) => validate(values, needsEmail, !listId)}
         render={({ handleSubmit }) => {
           return (
-            <FinallyMessage>
+            <FinallyMessage colorScheme={IS_BERLIN_PROJECT ? 'colorSchemeRoseOnWhite' : undefined}>
               <h2 className={s.headingSelfScan}>
                 Unterschriften selber eintragen
               </h2>
