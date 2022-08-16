@@ -55,7 +55,6 @@ export const SectionWrapper = ({
             <h2
               className={cN(
                 'mb-4',
-                'px-4',
                 `${colorScheme === 'colorSchemeWhite' ? 'text-violet' : ''}`
               )}
             >

@@ -30,6 +30,8 @@ body {
   --button-bg-color: #{$violetTransparent};
   --button-hover-bg-color: #{$violet};
   --button-hover-font-color: #{$white};
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 a {
@@ -130,6 +132,10 @@ p {
 .sections {
   max-width: $headerWidth;
   margin: 0 auto;
+
+  @media (max-width: $breakPointS) {
+    padding: 0 1rem;
+  }
 }
 
 .fontBerlin {
