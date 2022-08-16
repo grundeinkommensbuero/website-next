@@ -136,7 +136,7 @@
 .elementContainer {
   max-width: $headerWidth;
   margin: auto;
-  margin-top: 2rem;
+  margin-top: 3rem;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: auto;
@@ -146,12 +146,11 @@
     grid-template-columns: none;
     // Works for map section
     grid-template-columns: 1fr;
-    margin-top: 0;
+    margin-top: 2rem;
   }
 }
 
 .element {
-  padding: 1rem 0;
   margin-bottom: 1rem;
   transition: all 0.25s ease-out;
   align-self: center;
