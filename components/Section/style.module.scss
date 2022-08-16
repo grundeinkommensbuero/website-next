@@ -91,6 +91,14 @@
   right: 0.5rem;
 }
 
+.sectionWrapper {
+  padding: 4rem 0;
+
+  @media (max-width: $breakPointS) {
+    padding: 3rem 0;
+  }
+}
+
 .sectionHero {
   height: 400px;
   width: 100%;
