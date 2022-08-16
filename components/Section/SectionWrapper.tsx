@@ -45,7 +45,7 @@ export const SectionWrapper = ({
       )}
 
       <div
-        className={`py-16 ${colorScheme} ${
+        className={`${hasHero ? 'pb-16' : 'py-16'} ${colorScheme} ${
           status === 'draft' ? s.draftSection : ''
         } relative`}
       >
