@@ -1,11 +1,11 @@
 import { GetServerSideProps } from 'next';
 
-import Link from 'next/link';
 import React, { ReactElement } from 'react';
 
 import { getPageProps, Page } from '../utils/getPageProps';
 import { Section } from '../components/Section';
 import { Hero } from '../components/Hero';
+import PageNotFound from './404';
 
 export type PageProps = {
   page: Page | null;
@@ -13,18 +13,7 @@ export type PageProps = {
 
 const PageWithSections = ({ page }: PageProps): ReactElement => {
   if (!page) {
-    return (
-      <div className="text-center">
-        <h2 className="mt-16 mb-4 text-violet">
-          Diese Seite gibt es leider nicht.
-        </h2>
-        <Link href="/">
-          <a className="text-d-xl" aria-label="Zurück zur Startseite">
-            Zurück zur Startseite
-          </a>
-        </Link>
-      </div>
-    );
+    return <PageNotFound />;
   }
   return (
     <section>
