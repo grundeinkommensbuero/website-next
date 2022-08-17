@@ -132,7 +132,7 @@ p {
 .sections {
   max-width: $headerWidth;
   margin: 0 auto;
-  
+
   @media (max-width: $breakPointXL) {
     padding: 0 1rem;
   }
