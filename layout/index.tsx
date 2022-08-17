@@ -121,12 +121,7 @@ export const Layout = ({
         <Footer footerMenu={footerMenu} />
         <div className="grow bg-red" />
       </div>
-      {pageIsLoading && (
-        <>
-          <div className="backdrop" />
-          <LoadingAnimation fixed />
-        </>
-      )}
+      {pageIsLoading && <LoadingAnimation fixed />}
     </>
   );
 };
