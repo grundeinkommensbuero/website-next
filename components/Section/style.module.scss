@@ -182,12 +182,16 @@
 .elementRightThird,
 .elementCenterThird {
   align-self: center;
-  padding: 2rem 0;
+  
+  @media (max-width: $breakPointS) {
+    padding: 1rem 0;
+  }
 }
 
 .elementLeftThird {
   grid-column-start: 1;
   grid-column-end: last-line;
+  padding-top: 0;
 
   @media (min-width: $breakPointL) {
     padding: 0 2.5rem 0 0;
