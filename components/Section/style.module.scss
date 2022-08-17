@@ -97,6 +97,10 @@
   @media (max-width: $breakPointS) {
     padding: 3rem 0;
   }
+
+  &.hasHero {
+    padding-top: 0;
+  }
 }
 
 .sectionHero {
@@ -130,7 +134,7 @@
   max-width: $headerWidth;
   margin: 0 auto;
   z-index: 2;
-  padding: 2rem 1rem;
+  padding: 2rem 0;
 }
 
 .elementContainer {

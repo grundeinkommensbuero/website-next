@@ -45,7 +45,7 @@ export const SectionWrapper = ({
       )}
 
       <div
-        className={`${s.sectionWrapper} ${colorScheme} ${
+        className={`${hasHero ? s.hasHero : ''} ${s.sectionWrapper} ${colorScheme} ${
           status === 'draft' ? s.draftSection : ''
         } relative`}
       >
