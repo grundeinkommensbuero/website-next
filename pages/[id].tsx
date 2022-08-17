@@ -1,4 +1,4 @@
-import { GetServerSideProps } from 'next';
+import { GetStaticPaths, GetStaticProps } from 'next';
 
 import React, { ReactElement } from 'react';
 
@@ -6,6 +6,7 @@ import { getPageProps, Page } from '../utils/getPageProps';
 import { Section } from '../components/Section';
 import { Hero } from '../components/Hero';
 import PageNotFound from './404';
+import { Directus } from '@directus/sdk';
 
 export type PageProps = {
   page: Page | null;
@@ -34,15 +35,36 @@ const PageWithSections = ({ page }: PageProps): ReactElement => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async ({
-  params,
-  res,
-}) => {
-  res.setHeader(
-    'Cache-Control',
-    `public, s-maxage=${60 * 60}, stale-while-revalidate=${59}`
-  );
+export const getStaticPaths: GetStaticPaths = async () => {
+  const directus = new Directus(process.env.DIRECTUS || '');
 
+  try {
+    const pages = (await directus.items('pages').readByQuery({
+      fields: ['slug'],
+      filter: {
+        status: {
+          _eq: 'published',
+        },
+        slug: {
+          _eq: 'start',
+        },
+      },
+    })) as Page[];
+
+    return {
+      paths: pages.map(({ slug }) => ({ params: { id: slug } })),
+      fallback: false,
+    };
+  } catch (err) {
+    console.log(err);
+    return {
+      paths: [],
+      fallback: false,
+    };
+  }
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   if (!(typeof params?.id === 'string')) {
     return {
       props: {
