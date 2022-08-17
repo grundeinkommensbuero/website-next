@@ -14,5 +14,5 @@ https://expedition-grundeinkommen.de/gemeinde-teilen/_ https://ag5gu1z06h.execut
 /gemeinden/\* /orte/:splat
 /teilen/:userId /teilen/?userId=:userId
 
-/bürgerbegehren /buergerbegehren
+/b%C3%BCrgerbegehren /buergerbegehren
 /expedition_en /expedition-en
