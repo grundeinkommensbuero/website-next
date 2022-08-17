@@ -135,6 +135,10 @@
   margin: 0 auto;
   z-index: 2;
   padding: 2rem 0;
+
+  @media (max-width: $breakPointXL) {
+    padding: 0 1rem;
+  }
 }
 
 .elementContainer {
