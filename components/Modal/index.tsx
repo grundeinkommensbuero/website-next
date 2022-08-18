@@ -14,7 +14,7 @@ export const Modal = ({ children, showModal, setShowModal }: ModalProps) => {
     document.body.classList.toggle(s.bodyOverlayOpen, showModal);
   }, [showModal]);
 
-  const renderBackdrop = () => <div className={s.backdrop} />;
+  const renderBackdrop = () => <div className="backdrop" />;
 
   return (
     <ReactModal

@@ -1,5 +1,14 @@
 .loadingAnimationContainer {
   text-align: center;
+
+  &.fixed {
+    position: fixed;
+    z-index: 1050;
+    top: $headerHeight;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
 }
 
 .loadingAnimation {

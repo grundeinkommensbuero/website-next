@@ -254,3 +254,19 @@ p {
 .mapboxgl-ctrl-bottom-right {
   z-index: 0 !important;
 }
+
+.backdrop {
+  position: fixed;
+  z-index: 1040;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  -webkit-backdrop-filter: blur(30px) brightness(0.8);
+  backdrop-filter: blur(30px) brightness(0.8);
+
+  /* slightly transparent fallback for Firefox (not supporting backdrop-filter) */
+  @supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+}
