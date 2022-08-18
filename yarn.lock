@@ -1714,9 +1714,9 @@
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
 "@circles-pink/state-machine@*":
-  version "1.0.40"
-  resolved "https://registry.yarnpkg.com/@circles-pink/state-machine/-/state-machine-1.0.40.tgz#2648a2891c239e512c9fc158792b07b6543fff8e"
-  integrity sha512-AscwDXp5inox3K4mOeOvtF/PWGXnZRllNeTywzWKv11lQkgud7paCs13e7og6xg8gOn9kI0U5D6q9cA4KSPPbQ==
+  version "1.0.41"
+  resolved "https://registry.yarnpkg.com/@circles-pink/state-machine/-/state-machine-1.0.41.tgz#ea9fa7f85fc54384407120644845b2a3b711fd4d"
+  integrity sha512-DLzkDuI9o458PPRMl3YbUQOejRCyYGHU0M53zYDIHYyl92G5GcXKdymS8+GJH4jUZaHaK1mFYfSyI5HIqlhVBQ==
   dependencies:
     "@circles/core" "2.11.1"
     "@circles/timecircles" "^1.0.6"
@@ -1735,10 +1735,10 @@
     node-fetch "^2.0.0"
     web3 "^1.7.1"
 
-"@circles-pink/web-client@^1.0.40":
-  version "1.0.40"
-  resolved "https://registry.yarnpkg.com/@circles-pink/web-client/-/web-client-1.0.40.tgz#663b77af87d738a0f035183e64053b7489cb3663"
-  integrity sha512-NVpk2Pe5dd2IAwuMcGM6NE4MOYRXPDxwK99u9vRRf1SXDz+ItojnGmBrL+CtmGQFZS9zvaaJUIuRofDogL+LMg==
+"@circles-pink/web-client@^1.0.41":
+  version "1.0.41"
+  resolved "https://registry.yarnpkg.com/@circles-pink/web-client/-/web-client-1.0.41.tgz#44a03c4410ae364cd811521d43076a9efef3a0b4"
+  integrity sha512-nOvz1KLnBzvwBPyrev4a3V8hExsqQ/Usaqh1up5YuS4f0GHXHZdvcoSQUYUZeNh9Rm4HU4l6L6Z3YnEUfn1XVw==
   dependencies:
     "@babel/preset-env" "^7.17.10"
     "@babel/preset-react" "^7.16.7"
@@ -7987,7 +7987,7 @@ grid-index@^1.1.0:
   resolved "https://registry.yarnpkg.com/grid-index/-/grid-index-1.1.0.tgz#97f8221edec1026c8377b86446a7c71e79522ea7"
   integrity sha512-HZRwumpOGUrHyxO5bqKZL0B0GlUpwtCAzZ42sgxUPniu33R1LSFH5yrIcBCHjkctCAh3mtWKcKd9J4vDDdeVHA==
 
-"gun@github:nmauersberg/gun":
+gun@nmauersberg/gun.git:
   version "0.2020.1237"
   resolved "https://codeload.github.com/nmauersberg/gun/tar.gz/8067508a17649b69d3d9d9929fa9dca635d7f6b8"
   dependencies:
