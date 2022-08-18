@@ -55,11 +55,11 @@ export const Layout = ({
     if (hash) {
       jumpToHash(hash);
     }
+  }, [currentRoute]);
 
-    const handleStart = (url: string) =>
-      url !== currentRoute && setPageIsLoading(true);
-    const handleComplete = (url: string) =>
-      url === currentRoute && setPageIsLoading(false);
+  useEffect(() => {
+    const handleStart = (url: string) => setPageIsLoading(true);
+    const handleComplete = (url: string) => setPageIsLoading(false);
 
     router.events.on('routeChangeStart', handleStart);
     router.events.on('routeChangeComplete', handleComplete);
@@ -68,7 +68,7 @@ export const Layout = ({
       router.events.off('routeChangeStart', handleStart);
       router.events.off('routeChangeComplete', handleComplete);
     };
-  }, [currentRoute]);
+  }, []);
 
   return (
     <>
