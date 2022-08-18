@@ -260,8 +260,8 @@ export const ShowMeetups = ({
                 <div className={s.jumpToAnchor} id="eintragen" />
               </div>
 
-              <section className={cN(s.ctasUnderMap, 'py-16')}>
-                <div>
+              <section className={cN(s.ctasUnderMap)}>
+                <div className={s.cta}>
                   <h3>Plane eine Sammelaktion!</h3>
                   <p>
                     Du hast Lust vor Ort in der Expedition mitzumachen? Hier
@@ -277,7 +277,7 @@ export const ShowMeetups = ({
                     Event erstellen
                   </Button>
                 </div>
-                <div>
+                <div className={s.cta}>
                   <h3>Lege Listen an einem Soli-Ort aus</h3>
                   <p>
                     Markiere einen Ort, an dem du eine neue Unterschriftenliste
@@ -316,7 +316,9 @@ export const ShowMeetups = ({
           )}
 
           {router.asPath === '/' && (
-            <CTALink to="/termine">Weitere Events</CTALink>
+            <CTALink to="/termine" className="mt-8">
+              Weitere Events
+            </CTALink>
           )}
         </div>
       )}

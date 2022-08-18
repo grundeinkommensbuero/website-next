@@ -275,4 +275,12 @@
   @media (max-width: $breakPointS) {
     flex-direction: column;
   }
+
+  .cta {
+    margin-top: 4rem;
+
+    @media (max-width: $breakPointS) {
+      margin-top: 2rem;
+    }
+  }
 }
