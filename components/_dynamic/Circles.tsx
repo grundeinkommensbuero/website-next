@@ -11,12 +11,14 @@ const Circles = () => {
     <>
       {isAuthenticated ? (
         <NoSsr>
-          {window && <CirclesPink
-            lang="de"
-            baseColor="#FB8298"
-            email={`user-${userId}@xbge.de`}
-            voucherServerEnabled={false}
-          />}
+          {window && (
+            <CirclesPink
+              lang="de"
+              baseColor="#FB8298"
+              email={`user-${userId}@xbge.de`}
+              voucherServerEnabled={false}
+            />
+          )}
         </NoSsr>
       ) : (
         <p>Bitte melde dich an!</p>
