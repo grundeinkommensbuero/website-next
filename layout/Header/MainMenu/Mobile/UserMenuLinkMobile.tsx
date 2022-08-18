@@ -5,7 +5,7 @@ import { CustomMenuAction } from '../CustomMenuAction';
 import { CustomEntry, CustomMenuLink } from '../CustomMenuLink';
 import s from '../style.module.scss';
 import { XbgeAppContext } from '../../../../context/App';
-import { useRouter } from 'next/router';
+import LoginIcon from '../icon-login.svg';
 
 type UserMenuLinkMobileProps = {
   entry: CustomEntry;
@@ -29,7 +29,10 @@ export const UserMenuLinkMobile = ({
         entry={entry}
         currentRoute={currentRoute}
         extraCallback={extraCallback}
-      />
+        className={s.loginLink}
+      >
+        <LoginIcon className={s.loginIcon} alt="Login Illustration" />
+      </CustomMenuLink>
     );
   }
 

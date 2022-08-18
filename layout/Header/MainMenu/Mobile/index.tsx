@@ -55,11 +55,13 @@ export const MainMenuMobile = ({
             </li>
           );
         })}
-        <UserMenuLinkMobile
-          entry={{ id: 'login', slug: 'login', label: 'Einloggen' }}
-          currentRoute={currentRoute}
-          extraCallback={closeMenu}
-        />
+        <li>
+          <UserMenuLinkMobile
+            entry={{ id: 'login', slug: 'login', label: 'Einloggen' }}
+            currentRoute={currentRoute}
+            extraCallback={closeMenu}
+          />
+        </li>
       </ul>
     </nav>
   );

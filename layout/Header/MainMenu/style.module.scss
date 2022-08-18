@@ -63,3 +63,22 @@
   padding: 0;
   cursor: pointer;
 }
+
+.loginIcon {
+  width: 36px;
+  margin-left: -5px;
+
+  @media (max-width: $breakPointM) {
+    width: 28px;
+    margin-left: 0;
+  }
+}
+
+.loginLink {
+  display: inline-flex;
+  align-items: center;
+  // Needed because otherwise the underline would be partially invisible
+  // becaufe of dropdown of neighbour menu element
+  position: relative;
+  z-index: 1;
+}

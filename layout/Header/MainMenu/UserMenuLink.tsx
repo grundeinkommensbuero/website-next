@@ -5,6 +5,7 @@ import { CustomMenuAction } from './CustomMenuAction';
 import { CustomEntry, CustomMenuLink } from './CustomMenuLink';
 import s from './style.module.scss';
 import { XbgeAppContext } from '../../../context/App';
+import LoginIcon from './icon-login.svg';
 
 export const UserMenuLink = ({
   entry,
@@ -18,7 +19,15 @@ export const UserMenuLink = ({
   const { togglePageBuilder } = useContext(XbgeAppContext);
 
   if (!isAuthenticated) {
-    return <CustomMenuLink entry={entry} currentRoute={currentRoute} />;
+    return (
+      <CustomMenuLink
+        entry={entry}
+        currentRoute={currentRoute}
+        className={s.loginLink}
+      >
+        <LoginIcon className={s.loginIcon} alt="Login Illustration" />
+      </CustomMenuLink>
+    );
   }
 
   return (
