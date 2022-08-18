@@ -1,0 +1,7 @@
+[context.deploy-preview.environment]
+NEXT_PUBLIC_USE_DEV_BACKEND = "override"
+
+[[headers]]
+  for = "/iframes/*"
+  [headers.values]
+    X-Frame-Options = "ALLOWALL"

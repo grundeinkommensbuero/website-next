@@ -45,9 +45,9 @@ export const SectionWrapper = ({
       )}
 
       <div
-        className={`py-16 ${colorScheme} ${
-          status === 'draft' ? s.draftSection : ''
-        } relative`}
+        className={`${hasHero ? s.hasHero : ''} ${
+          s.sectionWrapper
+        } ${colorScheme} ${status === 'draft' ? s.draftSection : ''} relative`}
       >
         {status === 'draft' && <h3 className={s.draftLabel}>Entwurf</h3>}
         <section className="sections">
@@ -55,7 +55,6 @@ export const SectionWrapper = ({
             <h2
               className={cN(
                 'mb-4',
-                'px-4',
                 `${colorScheme === 'colorSchemeWhite' ? 'text-violet' : ''}`
               )}
             >

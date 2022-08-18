@@ -1,0 +1,18 @@
+https://www.expedition-grundeinkommen.com/_ https://expedition-grundeinkommen.de/:splat 301!
+http://www.expedition-grundeinkommen.com/_ https://expedition-grundeinkommen.de/:splat 301!
+www.expedition-grundeinkommen.com/* https://expedition-grundeinkommen.de/:splat 301!
+
+https://expedition-grundeinkommen.de/berlin https://www.volksentscheid-grundeinkommen.de 301!
+https://expedition-grundeinkommen.de/orte/berlin https://www.volksentscheid-grundeinkommen.de 301!
+
+https://expedition-grundeinkommen.de/gemeinde-teilen/_ https://ag5gu1z06h.execute-api.eu-central-1.amazonaws.com/prod/share-municipality/:splat 200
+/gemeinde-teilen/_ https://2j0bcp5tr9.execute-api.eu-central-1.amazonaws.com/dev/share-municipality/:splat 200
+/downloads /material
+/Briefkasten /briefkasten
+/hamburg /orte/hamburg
+/bremen /orte/bremen
+/gemeinden/\* /orte/:splat
+/teilen/:userId /teilen/?userId=:userId
+
+/b%C3%BCrgerbegehren /buergerbegehren
+/expedition_en /expedition-en

@@ -5,6 +5,7 @@ import { CustomMenuAction } from './CustomMenuAction';
 import { CustomEntry, CustomMenuLink } from './CustomMenuLink';
 import s from './style.module.scss';
 import { XbgeAppContext } from '../../../context/App';
+import LoginIcon from './icon-login.svg';
 
 export const UserMenuLink = ({
   entry,
@@ -18,7 +19,15 @@ export const UserMenuLink = ({
   const { togglePageBuilder } = useContext(XbgeAppContext);
 
   if (!isAuthenticated) {
-    return <CustomMenuLink entry={entry} currentRoute={currentRoute} />;
+    return (
+      <CustomMenuLink
+        entry={entry}
+        currentRoute={currentRoute}
+        className={s.loginLink}
+      >
+        <LoginIcon className={s.loginIcon} alt="Login Illustration" />
+      </CustomMenuLink>
+    );
   }
 
   return (
@@ -33,33 +42,35 @@ export const UserMenuLink = ({
             />
             <span className="text-xl nowrap">{customUserData.username}</span>
           </div>
-          <ul className={s.dropdownContent}>
-            <li className="my-4 mt-8">
-              <CustomMenuLink
-                currentRoute={currentRoute}
-                entry={{
-                  id: '1',
-                  slug: `/mensch/${userId}`,
-                  label: 'Zum Profil',
-                }}
-              />
-            </li>
-            {customUserData?.directus?.token && (
-              <li className="my-4">
-                <CustomMenuAction
+          <div className={s.dropdownContent}>
+            <ul>
+              <li className="my-4 mt-8">
+                <CustomMenuLink
+                  currentRoute={currentRoute}
                   entry={{
-                    action: () => togglePageBuilder(),
-                    label: 'Page Builder',
+                    id: '1',
+                    slug: `/mensch/${userId}`,
+                    label: 'Zum Profil',
                   }}
                 />
               </li>
-            )}
-            <li className="my-4">
-              <CustomMenuAction
-                entry={{ action: signUserOut, label: 'Abmelden' }}
-              />
-            </li>
-          </ul>
+              {customUserData?.directus?.token && (
+                <li className="my-4">
+                  <CustomMenuAction
+                    entry={{
+                      action: () => togglePageBuilder(),
+                      label: 'Page Builder',
+                    }}
+                  />
+                </li>
+              )}
+              <li className="my-4">
+                <CustomMenuAction
+                  entry={{ action: signUserOut, label: 'Abmelden' }}
+                />
+              </li>
+            </ul>
+          </div>
         </div>
       ) : (
         <span className="text-xl nowrap ml-2">Lade...</span>

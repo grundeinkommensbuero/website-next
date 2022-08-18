@@ -17,6 +17,7 @@ import dynamic from 'next/dynamic';
 import { List as Loader } from 'react-content-loader';
 import { useRouter } from 'next/router';
 import cN from 'classnames';
+import { CTALink } from '../Forms/CTAButton';
 
 const CreateMeetup = dynamic(() => import('../CreateMeetup'), {
   ssr: true,
@@ -252,15 +253,15 @@ export const ShowMeetups = ({
       />
       {(isBerlin || isHamburg || isDemocracy) && (
         <div>
-          {!isIframe && (
+          {!isIframe && router.asPath !== '/' && (
             <>
               {/* Jump to anchor */}
               <div className={s.jumpToAnchorWrapper}>
                 <div className={s.jumpToAnchor} id="eintragen" />
               </div>
 
-              <section className={cN(s.ctasUnderMap, 'py-16')}>
-                <div>
+              <section className={cN(s.ctasUnderMap)}>
+                <div className={s.cta}>
                   <h3>Plane eine Sammelaktion!</h3>
                   <p>
                     Du hast Lust vor Ort in der Expedition mitzumachen? Hier
@@ -276,7 +277,7 @@ export const ShowMeetups = ({
                     Event erstellen
                   </Button>
                 </div>
-                <div>
+                <div className={s.cta}>
                   <h3>Lege Listen an einem Soli-Ort aus</h3>
                   <p>
                     Markiere einen Ort, an dem du eine neue Unterschriftenliste
@@ -303,7 +304,7 @@ export const ShowMeetups = ({
               </section>
             </>
           )}
-          {!isIframe && (
+          {!isIframe && router.asPath !== '/' && (
             <>
               {/* Jump to anchor */}
               <div className={s.jumpToAnchorWrapper}>
@@ -312,6 +313,12 @@ export const ShowMeetups = ({
 
               <EventsListed locationsFiltered={locationsFiltered} />
             </>
+          )}
+
+          {router.asPath === '/' && (
+            <CTALink to="/termine" className="mt-8">
+              Weitere Events
+            </CTALink>
           )}
         </div>
       )}

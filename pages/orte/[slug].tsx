@@ -18,6 +18,7 @@ import {
   getMunicipalityStats,
 } from '../../hooks/Api/Municipalities';
 import Image from 'next/image';
+import NotFound from '../../components/NotFound';
 
 const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
 
@@ -34,18 +35,7 @@ const MunicipalityPage = ({ page, municipality }: PageProps): ReactElement => {
   }, [municipality]);
 
   if (!page) {
-    return (
-      <div className="text-center">
-        <h2 className="mt-16 mb-4 text-violet">
-          Diese Seite gibt es leider nicht.
-        </h2>
-        <Link href="/">
-          <a className="text-d-xl" aria-label="Zurück zur Startseite">
-            Zurück zur Startseite
-          </a>
-        </Link>
-      </div>
-    );
+    return <NotFound />;
   }
   return (
     <section>
