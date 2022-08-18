@@ -5,6 +5,10 @@
   padding: 0 1rem;
   top: 0;
   z-index: 50;
+
+  @media (max-width: $breakPointS) {
+    height: $headerHeightS;
+  }
 }
 
 .headerContent {
@@ -14,6 +18,10 @@
   max-width: $headerWidth;
   height: $headerHeight;
   margin: 0 auto;
+
+  @media (max-width: $breakPointS) {
+    height: $headerHeightS;
+  }
 }
 
 .mobileMenu {
@@ -38,7 +46,12 @@
   }
 }
 
-.pageLogo {
-  cursor: pointer;
-  height: 1rem;
+.logo {
+  height: 100%;
+  padding: 0.8rem 0;
+  width: 15rem;
+
+  @media (max-width: $breakPointS) {
+    width: 11rem;
+  }
 }

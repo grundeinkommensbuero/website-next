@@ -7,6 +7,7 @@ import { MainMenuMobile } from './MainMenu/Mobile';
 import { HamburgerMenu } from './MainMenu/Mobile/HamburgerMenu';
 import s from './style.module.scss';
 import PageLogo from '../logo-expedition.svg';
+import PageLogoBerlin from '../logo-berlin.svg';
 import { useRouter } from 'next/router';
 import AuthContext, {
   MunicipalityOfUser,
@@ -32,6 +33,8 @@ export const Header = ({
 
   const { width } = useWindowDimensions();
   const router = useRouter();
+
+  const Logo = IS_BERLIN_PROJECT ? PageLogoBerlin : PageLogo;
 
   useEffect(() => {
     setIsMobile(width < 900);
@@ -104,10 +107,14 @@ export const Header = ({
     <>
       <header className={s.header}>
         <div className={s.headerContent}>
-          <PageLogo
-            className="cursor-pointer h-12"
+          <Logo
+            className={`cursor-pointer h-12 ${s.logo}`}
             color="black"
-            alt={'Expedition Grundeinkommen Home'}
+            alt={
+              IS_BERLIN_PROJECT
+                ? 'Volksentscheid Grundeinkommen Home'
+                : 'Expedition Grundeinkommen Home'
+            }
             onClick={() => router.push('/')}
           />
           {!isMobile ? (
