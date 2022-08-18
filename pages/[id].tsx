@@ -39,20 +39,22 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const directus = new Directus(process.env.DIRECTUS || '');
 
   try {
-    const pages = (await directus.items('pages').readByQuery({
-      fields: ['slug'],
-      filter: {
-        status: {
-          _eq: 'published',
+    const pages = (
+      await directus.items('pages').readByQuery({
+        fields: ['slug'],
+        filter: {
+          status: {
+            _eq: 'published',
+          },
+          slug: {
+            _neq: 'start',
+          },
         },
-        slug: {
-          _eq: 'start',
-        },
-      },
-    })) as Page[];
+      })
+    ).data as Page[] | null | undefined;
 
     return {
-      paths: pages.map(({ slug }) => ({ params: { id: slug } })),
+      paths: pages?.map(({ slug }) => ({ params: { id: slug } })) || [],
       fallback: false,
     };
   } catch (err) {
