@@ -91,6 +91,18 @@
   right: 0.5rem;
 }
 
+.sectionWrapper {
+  padding: 4rem 0;
+
+  @media (max-width: $breakPointS) {
+    padding: 3rem 0;
+  }
+
+  &.hasHero {
+    padding-top: 0;
+  }
+}
+
 .sectionHero {
   height: 400px;
   width: 100%;
@@ -122,13 +134,17 @@
   max-width: $headerWidth;
   margin: 0 auto;
   z-index: 2;
-  padding: 2rem 1rem;
+  padding: 2rem 0;
+
+  @media (max-width: $breakPointXL) {
+    padding: 0 1rem;
+  }
 }
 
 .elementContainer {
   max-width: $headerWidth;
   margin: auto;
-  margin-top: 2rem;
+  margin-top: 3rem;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: auto;
@@ -138,12 +154,11 @@
     grid-template-columns: none;
     // Works for map section
     grid-template-columns: 1fr;
-    margin-top: 0;
+    margin-top: 2rem;
   }
 }
 
 .element {
-  padding: 1rem;
   margin-bottom: 1rem;
   transition: all 0.25s ease-out;
   align-self: center;
@@ -175,12 +190,16 @@
 .elementRightThird,
 .elementCenterThird {
   align-self: center;
-  padding: 2rem 0;
+
+  @media (max-width: $breakPointS) {
+    padding: 1rem 0;
+  }
 }
 
 .elementLeftThird {
   grid-column-start: 1;
   grid-column-end: last-line;
+  padding-top: 0;
 
   @media (min-width: $breakPointL) {
     padding: 0 2.5rem 0 0;
