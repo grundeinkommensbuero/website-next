@@ -165,7 +165,12 @@ const AuthProvider = ({ children }: AuthProviderProps): ReactElement => {
   const [userId, setUserId] = useLocalStorageUser();
   const router = useRouter();
 
-  const clientId = process.env.NEXT_PUBLIC_DEV_COGNITO_APP_CLIENT_ID;
+  const clientId =
+    process.env.NODE_ENV === 'development' ||
+    process.env.NEXT_PUBLIC_USE_DEV_BACKEND === 'override'
+      ? process.env.NEXT_PUBLIC_DEV_COGNITO_APP_CLIENT_ID
+      : process.env.NEXT_PUBLIC_PROD_COGNITO_APP_CLIENT_ID;
+
   if (clientId) {
     if (typeof window !== `undefined`) {
       Auth.configure({

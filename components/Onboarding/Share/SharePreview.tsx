@@ -146,7 +146,7 @@ export const SharePreview = ({
     let baseUrl = 'https://expedition-grundeinkommen.de/';
     if (
       process.env.NODE_ENV === 'development' ||
-      process.env.GATSBY_USE_DEV_BACKEND === 'override'
+      process.env.NEXT_PUBLIC_USE_DEV_BACKEND === 'override'
     ) {
       baseUrl =
         'https://campaign-launch--expedition-grundeinkommen.netlify.app/';
