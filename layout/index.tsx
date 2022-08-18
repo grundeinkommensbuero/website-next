@@ -70,6 +70,10 @@ export const Layout = ({
     };
   }, []);
 
+  if (currentRoute.includes('iframes')) {
+    return <>{children}</>;
+  }
+
   return (
     <>
       <div

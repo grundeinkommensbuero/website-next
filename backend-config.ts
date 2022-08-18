@@ -21,7 +21,7 @@ const cognitoConfig = {
   APP_API: {
     INVOKE_URL:
       process.env.NODE_ENV === 'development'
-        ? 'http://localhost:18080'
+        ? 'https://app-server.xbge.de'
         : 'https://app-server.xbge.de',
   },
 };
