@@ -71,10 +71,11 @@ export const ShowMeetups = ({
   const isBerlin = mapConfig.state === 'berlin';
   const isHamburg = mapConfig.state === 'hamburg';
   const isDemocracy = mapConfig.state === 'democracy';
+  const isClimate = mapConfig.state === 'climate';
 
   useEffect(() => {
     // We only need to fetch meetups from secondary API if it's the berlin or hamburg map
-    if (isBerlin || isHamburg || isDemocracy) {
+    if (isBerlin || isHamburg || isDemocracy || isClimate) {
       // We pass state to differentiate between APIs
 
       // The whole naming of meetups does not really make that much sense anymore, since
@@ -251,7 +252,7 @@ export const ShowMeetups = ({
         locations={locationsFiltered}
         className={className}
       />
-      {(isBerlin || isHamburg || isDemocracy) && (
+      {(isBerlin || isHamburg || isDemocracy || isClimate) && (
         <div>
           {!isIframe && router.asPath !== '/' && (
             <>

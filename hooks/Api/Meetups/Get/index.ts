@@ -50,6 +50,7 @@ type LocationFromAppApi = {
   // Only relevant for storage
   equipment?: string;
   type?: string;
+  initiativeId?: number;
 };
 
 export const useGetMeetups = (): [
@@ -69,14 +70,15 @@ const getMeetups = async (
 ) => {
   try {
     const isBerlin = state === 'berlin';
+    const isClimate = state === 'climate';
 
-    if (isBerlin) {
+    if (isBerlin || isClimate) {
       // In comparison to the way we handle events and list locations in our backend
       // those two types are two different api endpoints in the app backend
       const [eventsResponse, listLocationsResponse, storagesResponse] =
         await Promise.all([
-          getEventsFromAppApi(),
-          getListLocationsFromAppApi(),
+          getEventsFromAppApi(isClimate),
+          getListLocationsFromAppApi(isClimate),
           getStoragesFromAppApi(),
         ]);
 
@@ -93,7 +95,10 @@ const getMeetups = async (
         const listLocations = formatListLocations(
           await listLocationsResponse.json()
         );
-        const storages = formatStorages(await storagesResponse.json());
+        const storages = formatStorages(
+          await storagesResponse.json(),
+          isClimate
+        );
 
         setMeetups([...events, ...listLocations, ...storages]);
       } else {
@@ -125,7 +130,7 @@ const getMeetups = async (
   }
 };
 
-const getEventsFromAppApi = () => {
+const getEventsFromAppApi = (isClimate = false) => {
   // Endpoint is POST to optionally receive  a filter as body
   const request: RequestInit = {
     method: 'POST',
@@ -139,20 +144,23 @@ const getEventsFromAppApi = () => {
     },
     // Pass filter with attribute details to also fetch description
     // and pass filter to only show events for grundeinkommen
-    body: JSON.stringify({ details: true, initiativenIds: [1] }),
+    body: JSON.stringify({
+      details: true,
+      initiativenIds: [isClimate ? 2 : 1],
+    }),
   };
 
   return fetch(`${CONFIG.APP_API.INVOKE_URL}/service/termine`, request);
 };
 
-const getListLocationsFromAppApi = () => {
+const getListLocationsFromAppApi = (isClimate = false) => {
   const request: RequestInit = {
     method: 'POST',
     mode: 'cors',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ initiativenIds: [1] }),
+    body: JSON.stringify({ initiativenIds: [isClimate ? 2 : 1] }),
   };
 
   return fetch(
@@ -248,18 +256,25 @@ const formatListLocations = (
   }));
 };
 
-const formatStorages = (storages: LocationFromAppApi[]): Location[] => {
-  return storages.map(location => ({
-    ...location,
-    coordinates: { lon: location.longitude, lat: location.latitude },
-    locationName: location.name,
-    type: 'storage',
-    address:
-      location.street && location.number
-        ? `${location.street} ${location.number}`
-        : null,
-    title: 'Materiallager',
-    description: location.equipment,
-    typeOfStorage: location.type,
-  }));
+const formatStorages = (
+  storages: LocationFromAppApi[],
+  isClimate = false
+): Location[] => {
+  return storages
+    .filter(({ initiativeId }) =>
+      isClimate ? initiativeId === 2 : initiativeId === 1
+    )
+    .map(location => ({
+      ...location,
+      coordinates: { lon: location.longitude, lat: location.latitude },
+      locationName: location.name,
+      type: 'storage',
+      address:
+        location.street && location.number
+          ? `${location.street} ${location.number}`
+          : null,
+      title: 'Materiallager',
+      description: location.equipment,
+      typeOfStorage: location.type,
+    }));
 };
