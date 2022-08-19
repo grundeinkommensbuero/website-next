@@ -3,6 +3,7 @@
 import CirclesPink from '@circles-pink/web-client';
 import { useContext } from 'react';
 import AuthContext from '../../context/Authentication';
+import { SmallSignup } from '../Forms/SmallSignup';
 import { NoSsr } from '../Util/NoSsr';
 
 const xbgeTheme = {
@@ -27,7 +28,7 @@ const Circles = () => {
       />
     </NoSsr>
   ) : (
-    <p>Bitte melde dich an!</p>
+    <SmallSignup />
   );
 };
 
