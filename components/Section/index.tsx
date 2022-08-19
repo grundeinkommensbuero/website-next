@@ -21,6 +21,7 @@ import { Align, Column } from '../../utils/getPageProps';
 import s from './style.module.scss';
 import Image from 'next/image';
 import { getAssetURL } from '../Util/getAssetURL';
+import { LoadingAnimation } from '../LoadingAnimation';
 
 export type Section = {
   id: string;
@@ -243,7 +244,7 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                   case 'sectionsComponent':
                     const Component = dynamic(
                       () => import(`../_dynamic/${elementToRender.component}`),
-                      { ssr: true }
+                      { ssr: true, loading: () => <LoadingAnimation /> }
                     );
                     const props = elementToRender.props || {};
 
