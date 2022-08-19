@@ -33,6 +33,7 @@ const Circles = () => {
           theme={xbgeTheme}
           email={`user-${userId}@xbge.de`}
           voucherServerEnabled={false}
+          key={userId || 'Not-Authenticated'}
         />
       </>
     </NoSsr>
