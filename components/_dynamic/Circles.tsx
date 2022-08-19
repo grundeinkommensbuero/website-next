@@ -17,15 +17,24 @@ const xbgeTheme = {
 };
 
 const Circles = () => {
-  const { userId, isAuthenticated } = useContext(AuthContext);
+  const { userId, isAuthenticated, customUserData } = useContext(AuthContext);
   return isAuthenticated ? (
     <NoSsr>
-      <CirclesPink
-        lang="de"
-        theme={xbgeTheme}
-        email={`user-${userId}@xbge.de`}
-        voucherServerEnabled={false}
-      />
+      <>
+        {customUserData && (
+          <p>
+            Hallo{customUserData.username ? ` ${customUserData.username}` : ''}!
+            Du bist mit der E-Mail-Adresse {customUserData.email} bei uns
+            eingeloggt.{' '}
+          </p>
+        )}
+        <CirclesPink
+          lang="de"
+          theme={xbgeTheme}
+          email={`user-${userId}@xbge.de`}
+          voucherServerEnabled={false}
+        />
+      </>
     </NoSsr>
   ) : (
     <>
