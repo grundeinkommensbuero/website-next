@@ -188,39 +188,6 @@ export const EnterLoginCode = ({
                       {buttonText ? buttonText : 'Abschicken'}
                     </CTAButton>
                   </CTAButtonContainer>
-
-                  <p>
-                    Falls wir dich schon kennen, können wir dich damit
-                    identifizieren. Und falls du neu bei uns bist, brauchen wir
-                    den Code als Bestätigung, dass du wirklich E-Mails an die
-                    angegebene Adresse erhalten möchtest.
-                  </p>
-
-                  {timerCounter === 0 ? (
-                    <InlineButton
-                      type="button"
-                      onClick={() => {
-                        setAnswerChallengeState(undefined);
-                        setCode('resendCode');
-                        setTriggerOneMinuteTimer(triggerMinuteTimer + 1);
-                      }}
-                    >
-                      Code erneut senden
-                    </InlineButton>
-                  ) : (
-                    <div>
-                      <p className={s.counterDescription}>
-                        Wenn du den Code nicht erhalten hast, kannst du in{' '}
-                        {timerCounter}{' '}
-                        {timerCounter !== 1 ? 'Sekunden' : 'Sekunde'} den Code
-                        erneut anfordern.
-                      </p>
-                    </div>
-                  )}
-                  <br />
-                  <p>
-                    <b>Dein Code ist 20 Minuten lang gültig. </b>
-                  </p>
                 </form>
               </FormWrapper>
             );
@@ -235,6 +202,35 @@ export const EnterLoginCode = ({
             {tempEmail && <p>Deine Email: {tempEmail}</p>}
           </>
         )}
+        <p>
+          Falls wir dich schon kennen, können wir dich damit identifizieren. Und
+          falls du neu bei uns bist, brauchen wir den Code als Bestätigung, dass
+          du wirklich E-Mails an die angegebene Adresse erhalten möchtest.
+        </p>
+        {timerCounter === 0 ? (
+          <InlineButton
+            type="button"
+            onClick={() => {
+              setAnswerChallengeState(undefined);
+              setCode('resendCode');
+              setTriggerOneMinuteTimer(triggerMinuteTimer + 1);
+            }}
+          >
+            Code erneut senden
+          </InlineButton>
+        ) : (
+          <div>
+            <p className={s.counterDescription}>
+              Wenn du den Code nicht erhalten hast, kannst du in {timerCounter}{' '}
+              {timerCounter !== 1 ? 'Sekunden' : 'Sekunde'} den Code erneut
+              anfordern.
+            </p>
+          </div>
+        )}
+        <br />
+        <p>
+          <b>Dein Code ist 20 Minuten lang gültig. </b>
+        </p>
       </>
     </FinallyMessage>
   );
