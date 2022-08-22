@@ -44,7 +44,7 @@ const Circles = () => {
         Bitte gib deine E-Mail-Adresse an. Wenn du schon bei der Expedition
         angemeldet bist, nimm bitte deine Expeditions-Adresse.
       </p>
-      <SmallSignup />
+      <SmallSignup loginCodeInModal={false} />
     </>
   );
 };

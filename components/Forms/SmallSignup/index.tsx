@@ -4,7 +4,15 @@ import { stateToAgs } from '../../../utils/stateToAgs';
 import { FinallyMessage } from '../FinallyMessage';
 import SignUp from '../SignUp';
 
-export const SmallSignup = ({ ags, flag }: { ags?: string; flag?: string }) => {
+export const SmallSignup = ({
+  ags,
+  flag,
+  loginCodeInModal = true,
+}: {
+  ags?: string;
+  flag?: string;
+  loginCodeInModal?: boolean;
+}) => {
   if (!ags) {
     ags = stateToAgs.berlin;
   }
@@ -37,7 +45,7 @@ export const SmallSignup = ({ ags, flag }: { ags?: string; flag?: string }) => {
       showHeading={false}
       smallFormMargin={true}
       postSignupAction={() => setSuccess(true)}
-      loginCodeInModal={true}
+      loginCodeInModal={loginCodeInModal}
     />
   );
 };
