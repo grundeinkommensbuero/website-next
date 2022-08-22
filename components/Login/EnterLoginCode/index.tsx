@@ -144,7 +144,20 @@ export const EnterLoginCode = ({
           </p>
         )}
 
-        {!answerChallengeState && children}
+        {!answerChallengeState && (
+          <>
+            {children ? (
+              children
+            ) : (
+              <>
+                {IS_BERLIN_PROJECT && (
+                  <PsstIcon alt="Illustration eines Geheimnisses" />
+                )}
+                <h2>Psst... Ein Geheimnis!</h2>
+              </>
+            )}
+          </>
+        )}
         <Form
           onSubmit={e => {
             setCode(e.code);
@@ -215,10 +228,6 @@ export const EnterLoginCode = ({
         />
         {!answerChallengeState && !children && (
           <>
-            {IS_BERLIN_PROJECT && (
-              <PsstIcon alt="Illustration eines Geheimnisses" />
-            )}
-            <h2>Psst... Ein Geheimnis!</h2>
             <p>
               Zu deiner Sicherheit haben wir dir per E-Mail einen geheimen Code
               geschickt. Schau mal in dein Postfach!{' '}
