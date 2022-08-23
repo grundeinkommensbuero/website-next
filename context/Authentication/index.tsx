@@ -94,6 +94,7 @@ export type User = {
   store?: {
     donationOnboardingReaction: [];
     circlesResumee?: CirclesResumee;
+    voucherStoreEnabled?: boolean;
   };
   listFlow?: ListFlow;
 };

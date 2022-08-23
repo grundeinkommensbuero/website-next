@@ -1,11 +1,12 @@
 // TS declaration file will follow soon
 //@ts-ignore
 import CirclesPink from '@circles-pink/web-client';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import AuthContext, { CirclesResumee } from '../../context/Authentication';
 import { useUpdateUser } from '../../hooks/Api/Users/Update';
 import { SmallSignup } from '../Forms/SmallSignup';
 import { NoSsr } from '../Util/NoSsr';
+import { useEffect } from 'react';
 
 const xbgeTheme = {
   baseColor: '#FB8298',
@@ -20,7 +21,10 @@ const xbgeTheme = {
 const Circles = () => {
   const { userId, isAuthenticated, customUserData, updateCustomUserData } =
     useContext(AuthContext);
-  const [, updateUserStore] = useUpdateUser();
+  const [updateState, updateUserStore] = useUpdateUser();
+  const [resumee, setResumee] = useState<CirclesResumee | undefined>(
+    customUserData?.store?.circlesResumee
+  );
 
   const saveCirclesTracking = (circlesResumee: CirclesResumee) => {
     updateUserStore({
@@ -29,11 +33,17 @@ const Circles = () => {
         circlesResumee,
       },
     });
-    updateCustomUserData();
   };
 
-  const resumee: CirclesResumee | undefined =
-    customUserData?.store?.circlesResumee;
+  useEffect(() => {
+    if (updateState === 'updated') {
+      updateCustomUserData();
+    }
+  }, [updateState]);
+
+  useEffect(() => {
+    setResumee(customUserData?.store?.circlesResumee);
+  }, [customUserData]);
 
   return isAuthenticated ? (
     <NoSsr>
@@ -49,7 +59,9 @@ const Circles = () => {
           lang="de"
           theme={xbgeTheme}
           email={`user-${userId}@xbge.de`}
-          voucherServerEnabled={false}
+          voucherServerEnabled={
+            customUserData.store?.voucherStoreEnabled || false
+          }
           xbgeCampaign={true}
           key={userId || 'Not-Authenticated'}
           onTrackingResumee={(
