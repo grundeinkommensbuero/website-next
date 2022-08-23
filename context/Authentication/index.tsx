@@ -93,8 +93,21 @@ export type User = {
   donations?: any;
   store?: {
     donationOnboardingReaction: [];
+    circlesResumee?: CirclesResumee;
   };
   listFlow?: ListFlow;
+};
+
+export type CirclesResumee = {
+  triggeredUntrusts: number;
+  triggeredTrusts: number;
+  triggeredSends: number;
+  safeAddress: string;
+  lastState: {
+    values: [];
+    tag: string;
+  };
+  lastLogin: number;
 };
 
 export type SetCognitoUser = React.Dispatch<CognitoUserExt | null> | null;
