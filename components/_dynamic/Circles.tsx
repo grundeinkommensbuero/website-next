@@ -1,12 +1,12 @@
 // TS declaration file will follow soon
 //@ts-ignore
 import CirclesPink from '@circles-pink/web-client';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import AuthContext, { CirclesResumee } from '../../context/Authentication';
 import { useUpdateUser } from '../../hooks/Api/Users/Update';
 import { SmallSignup } from '../Forms/SmallSignup';
 import { NoSsr } from '../Util/NoSsr';
-import { useEffect } from 'react';
+import querystring from 'query-string';
 
 const xbgeTheme = {
   baseColor: '#FB8298',
@@ -44,6 +44,27 @@ const Circles = () => {
   useEffect(() => {
     setResumee(customUserData?.store?.circlesResumee);
   }, [customUserData]);
+
+  useEffect(() => {
+    // Only update user, if custom user data was loaded
+    // so existing referred safe addresses are not overwritten
+    if (isAuthenticated && customUserData.email) {
+      const { safeAddress } = querystring.parse(window.location.search);
+
+      if (typeof safeAddress === 'string') {
+        let safeAddresses = customUserData.store?.referredBySafeAddresses || [];
+
+        safeAddresses.push(safeAddress);
+
+        updateUserStore({
+          userId,
+          store: {
+            referredBySafeAddresses: safeAddresses,
+          },
+        });
+      }
+    }
+  }, [isAuthenticated, customUserData]);
 
   return isAuthenticated ? (
     <NoSsr>
