@@ -94,6 +94,7 @@ export type User = {
   store?: {
     donationOnboardingReaction: [];
     circlesResumee?: CirclesResumee;
+    referredBySafeAddresses?: string[];
   };
   listFlow?: ListFlow;
 };
@@ -103,6 +104,7 @@ export type CirclesResumee = {
   triggeredTrusts: number;
   triggeredSends: number;
   safeAddress: string;
+  referredBy: string[];
   lastState: {
     values: [];
     tag: string;
