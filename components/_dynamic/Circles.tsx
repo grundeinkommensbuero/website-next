@@ -1,7 +1,7 @@
 // TS declaration file will follow soon
 //@ts-ignore
 import CirclesPink from '@circles-pink/web-client';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import AuthContext, { CirclesResumee } from '../../context/Authentication';
 import { useUpdateUser } from '../../hooks/Api/Users/Update';
 import { SmallSignup } from '../Forms/SmallSignup';
