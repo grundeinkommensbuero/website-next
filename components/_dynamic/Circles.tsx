@@ -21,7 +21,10 @@ const xbgeTheme = {
 const Circles = () => {
   const { userId, isAuthenticated, customUserData, updateCustomUserData } =
     useContext(AuthContext);
-  const [, updateUserStore] = useUpdateUser();
+  const [updateState, updateUserStore] = useUpdateUser();
+  const [resumee, setResumee] = useState<CirclesResumee | undefined>(
+    customUserData?.store?.circlesResumee
+  );
 
   const saveCirclesTracking = (circlesResumee: CirclesResumee) => {
     updateUserStore({
@@ -30,11 +33,17 @@ const Circles = () => {
         circlesResumee,
       },
     });
-    updateCustomUserData();
   };
 
-  const resumee: CirclesResumee | undefined =
-    customUserData?.store?.circlesResumee;
+  useEffect(() => {
+    if (updateState === 'updated') {
+      updateCustomUserData();
+    }
+  }, [updateState]);
+
+  useEffect(() => {
+    setResumee(customUserData?.store?.circlesResumee);
+  }, [customUserData]);
 
   useEffect(() => {
     // Only update user, if custom user data was loaded
@@ -71,7 +80,9 @@ const Circles = () => {
           lang="de"
           theme={xbgeTheme}
           email={`user-${userId}@xbge.de`}
-          voucherServerEnabled={false}
+          voucherServerEnabled={
+            customUserData.store?.voucherStoreEnabled || false
+          }
           xbgeCampaign={true}
           key={userId || 'Not-Authenticated'}
           onTrackingResumee={(

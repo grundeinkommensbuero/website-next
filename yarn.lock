@@ -1744,9 +1744,9 @@
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
 "@circles-pink/state-machine@*":
-  version "1.0.46"
-  resolved "https://registry.yarnpkg.com/@circles-pink/state-machine/-/state-machine-1.0.46.tgz#182fcadfb9e44c4ba629db2f1e906103f942ca6a"
-  integrity sha512-p9aK/Ze7M829TS8pHAPJCDmqUHXMPK9KvRopG45nqbye4v1JeoUipGBblFJ23ywzdvBXcpQtOSgncnH94sQohw==
+  version "1.0.47"
+  resolved "https://registry.yarnpkg.com/@circles-pink/state-machine/-/state-machine-1.0.47.tgz#1b9089b73d93d7e24eec4a888c0ee8e12fb63497"
+  integrity sha512-t28HpofZ/wyHdbUEOFO5P+/0flhN7T/u0FIpdQfd0nXO9+GobwTnqRv0mGGWm8YtMfj5Hc8Fccuz9KUZKg+jIQ==
   dependencies:
     "@circles/core" "2.11.1"
     "@circles/timecircles" "^1.0.6"
@@ -1765,10 +1765,10 @@
     node-fetch "^2.0.0"
     web3 "^1.7.1"
 
-"@circles-pink/web-client@^1.0.46":
-  version "1.0.46"
-  resolved "https://registry.yarnpkg.com/@circles-pink/web-client/-/web-client-1.0.46.tgz#9910d5677c6490fadc2859fc3d7987592d343657"
-  integrity sha512-nBfiBZozI5gwdur2zhF8Svtl3aA5cg4ppuN2gkkhtReQaNjqPnXyp4YB+2wy6t66Z6d6LpMLAtfOnQNargT0ig==
+"@circles-pink/web-client@^1.0.47":
+  version "1.0.47"
+  resolved "https://registry.yarnpkg.com/@circles-pink/web-client/-/web-client-1.0.47.tgz#e2ed657c6b1ba57e7c99cea5a2ba81282c6cff4a"
+  integrity sha512-D/jFhhxjJ0Em0RM47tlrEkgcDA6UotizDtWKIepRhHdR+O83P6ycjXG49ZOQ9qOs3p1kMm6M6Q0Q1Aoc6DJ0rw==
   dependencies:
     "@babel/preset-env" "^7.17.10"
     "@babel/preset-react" "^7.16.7"
@@ -1946,9 +1946,9 @@
   integrity sha512-tKSSUf9BJEV+GJQAYGw5e+ouhEe2ZXE620S7BLKe3ZmpnjlNG9JqlnaBhkIMxKnNFkLY2BP/EARzw31AZnOv4g==
 
 "@cspell/dict-en_us@^2.2.5":
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/@cspell/dict-en_us/-/dict-en_us-2.3.2.tgz#18d2b7d83028b42feea97f8826431fafc1a0d2da"
-  integrity sha512-/jkx3Lwig34nDP8zMEP8IF7Nkni4ac63FlAeK/B4yvriaz7Pqe5XbwU20otlB+y+T0nf5GxvWacIEyTFnV9BKg==
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/@cspell/dict-en_us/-/dict-en_us-2.3.3.tgz#4b20b5aa91151a4fb6f40425436b3b4c54ddaef4"
+  integrity sha512-csyKeaNktfpvMkmE2GOPTwsrQm3wWhLKVaDRaGU0qTcIjDiCvqv/iYgrVrKRkoddA3kdNTZ8YNCcix7lb6VkOg==
 
 "@cspell/dict-filetypes@^2.0.1":
   version "2.1.1"
@@ -2001,9 +2001,9 @@
   integrity sha512-d1kTK6dJb5z6UcfASQWjqQlsjZvnoVOvMWxYtLpGksYf6gM4IgqoPVNMLYYK6xBS4T/uAnLIj975A6YuAeyZpg==
 
 "@cspell/dict-lorem-ipsum@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@cspell/dict-lorem-ipsum/-/dict-lorem-ipsum-2.0.0.tgz#47f2a9ec24808cdf8417457ae8f5a588f33c338c"
-  integrity sha512-jKogAKtqvgPMleL6usyj3rZ0m8sVUR6drrD+wMnWSfdx1BmUyTsYiuh/mPEfLAebaYHELWSLQG3rDZRvV9Riqg==
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@cspell/dict-lorem-ipsum/-/dict-lorem-ipsum-2.0.1.tgz#694ffe36ea9cdb7bce35066a850f9d4e4811c5d9"
+  integrity sha512-s7Ft8UiloUJwgz4z8uLeFvCkeTcZ43HQl7mSAlZd76eW+keLSsdeGmLDx2zaciqo+MftPGyzygVCwaJjTGxiew==
 
 "@cspell/dict-lua@^2.0.0":
   version "2.0.0"
@@ -2031,9 +2031,9 @@
   integrity sha512-6uvEhLiGmG3u9TFkM1TYcky6aL9Yk7Sk3KJwoTYBaQJY2KqrprgyQtW6yxIw9oU52VRHlq3KKvSAA9Q26+SIkQ==
 
 "@cspell/dict-public-licenses@^1.0.4":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@cspell/dict-public-licenses/-/dict-public-licenses-1.0.5.tgz#b4eeb08107b83966913689fcb09f495da249233d"
-  integrity sha512-N9bttzzhmCq/BN/TeP43075kj9TeaR8l9v0SPre05BRWsChVrWuMM1UvsT4ADXnsYJNl1xcn+q191S/fIzQhBg==
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@cspell/dict-public-licenses/-/dict-public-licenses-1.0.6.tgz#e296be04dfa8db9596ea1874d26dfd0ec3d62e80"
+  integrity sha512-Z9IUFPkkOpOsEdgPUfQOJNQ+qU6+iBAZWS/CR5sUqTX+s5VkPNVwQyVC2kdmgmE2U5qwzAPewG6nVKr2MVogwg==
 
 "@cspell/dict-python@^3.0.5":
   version "3.0.6"
@@ -6429,9 +6429,9 @@ ee-first@1.1.1:
   integrity sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==
 
 electron-to-chromium@^1.4.202:
-  version "1.4.226"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.226.tgz#837ea1d19b8305a913cd5f31d135681c4b6d63b1"
-  integrity sha512-CvevLaSiUp0u12K0e+QhMX1hn724nSUNO9ToBek+FMHk/5RofrQs5MChjrD0re0IwqxDFxFMSZD+uic05i2Z5w==
+  version "1.4.227"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.227.tgz#28e46e2a701fed3188db3ca7bf0a3a475e484046"
+  integrity sha512-I9VVajA3oswIJOUFg2PSBqrHLF5Y+ahIfjOV9+v6uYyBqFZutmPxA6fxocDUUmgwYevRWFu1VjLyVG3w45qa/g==
 
 elliptic@6.3.3:
   version "6.3.3"
