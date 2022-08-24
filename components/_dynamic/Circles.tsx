@@ -97,6 +97,7 @@ const Circles = () => {
             )}
             <CirclesPink
               lang="de" // app language
+              buyVoucherEurLimit={70} // limit of vouchers that can be bought in eur
               theme={xbgeTheme} // app color theme
               xbgeCampaign={true} // enable xbge special components
               strictMode={true} // only allow xbge linked safe address restore from localStorage
@@ -110,11 +111,29 @@ const Circles = () => {
                   circlesResumee?: CirclesResumee
                 ) => CirclesResumee
               ) => {
+                console.log('Resumee from api:', resumee);
+
                 const circlesResumee = updateResumee(resumee);
-                saveCirclesTracking(circlesResumee);
+                console.log('Resumee from app:', circlesResumee);
+
+                // Safely get username and safeAddress, from app first, then last known
+                const username =
+                  circlesResumee.username || resumee?.username || null;
+                console.log('username', username);
+
+                const safeAddress =
+                  circlesResumee.safeAddress || resumee?.safeAddress || null;
+                console.log('safeAddress', safeAddress);
+
+                saveCirclesTracking({
+                  ...circlesResumee,
+                  username,
+                  safeAddress,
+                });
               }} // get tracking resumee with app state
               translations={translations} // json with app text
               email={`user-${userId}@xbge.de`} // email to be send to circles garden
+
               // sharingFeature={
               //   <CirclesSharingFeature
               //     userData={customUserData}
@@ -122,6 +141,8 @@ const Circles = () => {
               //     introText={'Hello'}
               //   />
               // }
+
+              // shadowFriends={[]} // usernames of share link clicked users
             />
           </>
         </NoSsr>
