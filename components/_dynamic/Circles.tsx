@@ -66,41 +66,54 @@ const Circles = () => {
     }
   }, [isAuthenticated, customUserData]);
 
-  return isAuthenticated ? (
-    <NoSsr>
-      <>
-        {customUserData && (
-          <p>
-            Hallo{customUserData.username ? ` ${customUserData.username}` : ''}!
-            Du bist mit der E-Mail-Adresse {customUserData.email} bei uns
-            eingeloggt.{' '}
-          </p>
-        )}
-        <CirclesPink
-          lang="de"
-          theme={xbgeTheme}
-          email={`user-${userId}@xbge.de`}
-          voucherShopEnabled={
-            customUserData.store?.voucherStoreEnabled || false
-          }
-          xbgeCampaign={true}
-          key={userId || 'Not-Authenticated'}
-          onTrackingResumee={(
-            updateResumee: (circlesResumee?: CirclesResumee) => CirclesResumee
-          ) => {
-            const circlesResumee = updateResumee(resumee);
-            saveCirclesTracking(circlesResumee);
-          }}
-        />
-      </>
-    </NoSsr>
-  ) : (
+  return (
     <>
-      <p>
-        Bitte gib deine E-Mail-Adresse an. Wenn du schon bei der Expedition
-        angemeldet bist, nimm bitte deine Expeditions-Adresse.
-      </p>
-      <SmallSignup loginCodeInModal={false} />
+      {!isAuthenticated && (
+        <>
+          <p>
+            Bitte gib deine E-Mail-Adresse an. Wenn du schon bei der Expedition
+            angemeldet bist, nimm bitte deine Expeditions-Adresse.
+          </p>
+        </>
+      )}
+      <SmallSignup
+        loginCodeInModal={false}
+        showNewsletterConsent={true}
+        optionalNewsletterConsent={true}
+        hideIfAuthenticated={true}
+      />
+      {isAuthenticated && (
+        <NoSsr>
+          <>
+            {customUserData && (
+              <p>
+                Hallo
+                {customUserData.username ? ` ${customUserData.username}` : ''}!
+                Du bist mit der E-Mail-Adresse {customUserData.email} bei uns
+                eingeloggt.{' '}
+              </p>
+            )}
+            <CirclesPink
+              lang="de"
+              theme={xbgeTheme}
+              email={`user-${userId}@xbge.de`}
+              voucherShopEnabled={
+                customUserData.store?.voucherStoreEnabled || false
+              }
+              xbgeCampaign={true}
+              key={userId || 'Not-Authenticated'}
+              onTrackingResumee={(
+                updateResumee: (
+                  circlesResumee?: CirclesResumee
+                ) => CirclesResumee
+              ) => {
+                const circlesResumee = updateResumee(resumee);
+                saveCirclesTracking(circlesResumee);
+              }}
+            />
+          </>
+        </NoSsr>
+      )}
     </>
   );
 };
