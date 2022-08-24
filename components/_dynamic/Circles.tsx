@@ -111,25 +111,10 @@ const Circles = () => {
                   circlesResumee?: CirclesResumee
                 ) => CirclesResumee
               ) => {
-                console.log('Resumee from api:', resumee);
-
                 const circlesResumee = updateResumee(resumee);
-                console.log('Resumee from app:', circlesResumee);
-
-                // Safely get username and safeAddress, from app first, then last known
-                const username =
-                  circlesResumee.username || resumee?.username || null;
-                console.log('username', username);
-
-                const safeAddress =
-                  circlesResumee.safeAddress || resumee?.safeAddress || null;
-                console.log('safeAddress', safeAddress);
-
-                saveCirclesTracking({
-                  ...circlesResumee,
-                  username,
-                  safeAddress,
-                });
+                if (circlesResumee) {
+                  saveCirclesTracking(circlesResumee);
+                }
               }} // get tracking resumee with app state
               translations={translations} // json with app text
               email={`user-${userId}@xbge.de`} // email to be send to circles garden
