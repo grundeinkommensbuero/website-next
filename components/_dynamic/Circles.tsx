@@ -7,6 +7,8 @@ import { useUpdateUser } from '../../hooks/Api/Users/Update';
 import { SmallSignup } from '../Forms/SmallSignup';
 import { NoSsr } from '../Util/NoSsr';
 import querystring from 'query-string';
+import translations from '../../data/transaltions.json';
+import CirclesSharingFeature from '../CirclesShare';
 
 const xbgeTheme = {
   baseColor: '#FB8298',
@@ -77,20 +79,30 @@ const Circles = () => {
           </p>
         )}
         <CirclesPink
-          lang="de"
-          theme={xbgeTheme}
-          email={`user-${userId}@xbge.de`}
+          lang="de" // app language
+          theme={xbgeTheme} // app color theme
+          xbgeCampaign={true} // enable xbge special components
+          strictMode={true} // only allow xbge linked safe address restore from localStorage
+          safeAddress={customUserData?.store?.circlesResumee?.safeAddress}
+          // ^ linked safeAddress for strict mode check
           voucherShopEnabled={
             customUserData.store?.voucherStoreEnabled || false
-          }
-          xbgeCampaign={true}
-          key={userId || 'Not-Authenticated'}
+          } // enable voucher shop
           onTrackingResumee={(
             updateResumee: (circlesResumee?: CirclesResumee) => CirclesResumee
           ) => {
             const circlesResumee = updateResumee(resumee);
             saveCirclesTracking(circlesResumee);
-          }}
+          }} // get tracking resumee with app state
+          translations={translations} // json with app text
+          email={`user-${userId}@xbge.de`} // email to be send to circles garden
+          // sharingFeature={
+          //   <CirclesSharingFeature
+          //     userData={customUserData}
+          //     userId={userId}
+          //     introText={'Hello'}
+          //   />
+          // }
         />
       </>
     </NoSsr>

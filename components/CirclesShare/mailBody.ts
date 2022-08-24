@@ -1,0 +1,3 @@
+export const mailBody = () => {
+  return `Hallo,\t\n\t\nstell dir vor, in deinem Wohnort startet in Kürze der erste staatliche Modellversuch zum Bedingungslosen Grundeinkommen. Jeder tausendste Mensch in deinem Wohnort erhält für drei Jahre Grundeinkommen. Wäre das nicht großartig?\t\n\t\nHeute hast du die Chance, das möglich zu machen. Ich hab’s schon getan.\t\n\t\nDie Expedition Grundeinkommen startet heute den Qualifizierungsprozess für das Grundeinkommen an deinem Ort. Überall, wo 1% der Bevölkerung sich für den Modellversuch registrieren, startet ein Bürgerbegehren. Mit dem Ziel: Grundeinkommen in ganz Deutschland zu testen.\t\n\t\nBist du dabei?\t\n\t\nMelde dich dafür bei der Expedition Grundeinkommen an und spende 5€ für den Crowdfunding Contest.`;
+};
