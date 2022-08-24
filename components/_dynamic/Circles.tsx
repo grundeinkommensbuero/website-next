@@ -80,7 +80,7 @@ const Circles = () => {
           lang="de"
           theme={xbgeTheme}
           email={`user-${userId}@xbge.de`}
-          voucherServerEnabled={
+          voucherShopEnabled={
             customUserData.store?.voucherStoreEnabled || false
           }
           xbgeCampaign={true}
