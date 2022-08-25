@@ -309,7 +309,9 @@ const changeEmail = async (
 ) => {
   try {
     setState('loading');
-    await Auth.updateUserAttributes(cognitoUser, { email });
+    await Auth.updateUserAttributes(cognitoUser, {
+      email: email?.toLowerCase(),
+    });
     setState('success');
   } catch (error: any) {
     if (error.code === 'AliasExistsException') {
