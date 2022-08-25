@@ -111,7 +111,18 @@ const Circles = () => {
                   circlesResumee?: CirclesResumee
                 ) => CirclesResumee
               ) => {
+                console.log('resumee', resumee);
                 const circlesResumee = updateResumee(resumee);
+                console.log('circlesResumee', circlesResumee);
+                // Safely get username and safeAddress, from app first, then last known
+                const username =
+                  circlesResumee.username || resumee?.username || null;
+                console.log('username', username);
+
+                const safeAddress =
+                  circlesResumee.safeAddress || resumee?.safeAddress || null;
+                console.log('safeAddress', safeAddress);
+
                 if (circlesResumee) {
                   saveCirclesTracking(circlesResumee);
                 }
