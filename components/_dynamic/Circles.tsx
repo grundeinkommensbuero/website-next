@@ -104,7 +104,7 @@ const Circles = () => {
               safeAddress={customUserData?.store?.circlesResumee?.safeAddress}
               // ^ linked safeAddress for strict mode check
               voucherShopEnabled={
-                customUserData.store?.voucherStoreEnabled || false
+                false // customUserData.store?.voucherStoreEnabled || false
               } // enable voucher shop
               onTrackingResumee={(
                 updateResumee: (
