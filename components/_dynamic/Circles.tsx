@@ -27,14 +27,6 @@ const Circles = () => {
   const [resumee, setResumee] = useState<CirclesResumee | undefined>(
     customUserData?.store?.circlesResumee
   );
-  const [voucherShopEnabled, setVoucherShopEnabled] = useState<boolean>(
-    !customUserData.store?.voucherStoreEnabled ? false : true
-  );
-  const [savedSafeAddress, setSavedSaveAddress] = useState<string | null>(
-    !customUserData?.store?.circlesResumee?.safeAddress
-      ? null
-      : customUserData?.store?.circlesResumee?.safeAddress
-  );
 
   const saveCirclesTracking = (circlesResumee: CirclesResumee) => {
     updateUserStore({
@@ -53,14 +45,6 @@ const Circles = () => {
 
   useEffect(() => {
     setResumee(customUserData?.store?.circlesResumee);
-    setVoucherShopEnabled(
-      !customUserData.store?.voucherStoreEnabled ? false : true
-    );
-    setSavedSaveAddress(
-      !customUserData?.store?.circlesResumee?.safeAddress
-        ? null
-        : customUserData?.store?.circlesResumee?.safeAddress
-    );
   }, [customUserData]);
 
   useEffect(() => {
@@ -111,61 +95,40 @@ const Circles = () => {
                 eingeloggt.{' '}
               </p>
             )}
-            {customUserData &&
-              (console.log('VoucherStoreEnabled App:', voucherShopEnabled),
-              console.log('SafeAddress App:', savedSafeAddress),
-              console.log(
-                'API Resumee App:',
-                customUserData?.store?.circlesResumee
-              ))}
-            {customUserData && (
-              <CirclesPink
-                lang="de" // app language
-                buyVoucherEurLimit={70} // limit of vouchers that can be bought in eur
-                theme={xbgeTheme} // app color theme
-                xbgeCampaign={true} // enable xbge special components
-                strictMode={true} // only allow xbge linked safe address restore from localStorage
-                safeAddress={savedSafeAddress}
-                // ^ linked safeAddress for strict mode check
-                voucherShopEnabled={voucherShopEnabled} // enable voucher shop
-                onTrackingResumee={(
-                  updateResumee: (
-                    circlesResumee?: CirclesResumee
-                  ) => CirclesResumee
-                ) => {
-                  console.log('circlesResumee from Xbge:', resumee);
-                  const circlesResumee = updateResumee(resumee);
-                  console.log('circlesResumee from Pink:', circlesResumee);
+            <CirclesPink
+              lang="de" // app language
+              buyVoucherEurLimit={70} // limit of vouchers that can be bought in eur
+              theme={xbgeTheme} // app color theme
+              xbgeCampaign={true} // enable xbge special components
+              strictMode={false} // only allow xbge linked safe address restore from localStorage
+              safeAddress={customUserData?.store?.circlesResumee?.safeAddress}
+              // ^ linked safeAddress for strict mode check
+              voucherShopEnabled={
+                false // customUserData.store?.voucherStoreEnabled || false
+              } // enable voucher shop
+              onTrackingResumee={(
+                updateResumee: (
+                  circlesResumee?: CirclesResumee
+                ) => CirclesResumee
+              ) => {
+                const circlesResumee = updateResumee(resumee);
+                if (circlesResumee) {
+                  saveCirclesTracking(circlesResumee);
+                }
+              }} // get tracking resumee with app state
+              translations={translations} // json with app text
+              email={`user-${userId}@xbge.de`} // email to be send to circles garden
 
-                  if (circlesResumee) {
-                    const safeAddress =
-                      resumee?.safeAddress || circlesResumee.safeAddress;
-                    const username =
-                      resumee?.username || circlesResumee.username;
-                    const mergedResumee = {
-                      ...circlesResumee,
-                      username,
-                      safeAddress,
-                    };
-                    console.log('Saving Resumee for:', username, safeAddress);
-                    console.log('### MERGED RESUMEE:', circlesResumee);
-                    saveCirclesTracking(mergedResumee);
-                  }
-                }} // get tracking resumee with app state
-                translations={translations} // json with app text
-                email={`user-${userId}@xbge.de`} // email to be send to circles garden
+              // sharingFeature={
+              //   <CirclesSharingFeature
+              //     userData={customUserData}
+              //     userId={userId}
+              //     introText={'Hello'}
+              //   />
+              // }
 
-                // sharingFeature={
-                //   <CirclesSharingFeature
-                //     userData={customUserData}
-                //     userId={userId}
-                //     introText={'Hello'}
-                //   />
-                // }
-
-                // shadowFriends={[]} // usernames of share link clicked users
-              />
-            )}
+              // shadowFriends={[]} // usernames of share link clicked users
+            />
           </>
         </NoSsr>
       )}
