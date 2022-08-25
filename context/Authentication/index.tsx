@@ -104,7 +104,8 @@ export type CirclesResumee = {
   triggeredUntrusts: number;
   triggeredTrusts: number;
   triggeredSends: number;
-  safeAddress: string;
+  safeAddress: string | null;
+  username: string | null;
   lastState: {
     values: [];
     tag: string;

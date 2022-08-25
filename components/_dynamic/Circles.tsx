@@ -97,13 +97,14 @@ const Circles = () => {
             )}
             <CirclesPink
               lang="de" // app language
+              buyVoucherEurLimit={70} // limit of vouchers that can be bought in eur
               theme={xbgeTheme} // app color theme
               xbgeCampaign={true} // enable xbge special components
-              strictMode={true} // only allow xbge linked safe address restore from localStorage
+              strictMode={false} // only allow xbge linked safe address restore from localStorage
               safeAddress={customUserData?.store?.circlesResumee?.safeAddress}
               // ^ linked safeAddress for strict mode check
               voucherShopEnabled={
-                customUserData.store?.voucherStoreEnabled || false
+                false // customUserData.store?.voucherStoreEnabled || false
               } // enable voucher shop
               onTrackingResumee={(
                 updateResumee: (
@@ -111,10 +112,13 @@ const Circles = () => {
                 ) => CirclesResumee
               ) => {
                 const circlesResumee = updateResumee(resumee);
-                saveCirclesTracking(circlesResumee);
+                if (circlesResumee) {
+                  saveCirclesTracking(circlesResumee);
+                }
               }} // get tracking resumee with app state
               translations={translations} // json with app text
               email={`user-${userId}@xbge.de`} // email to be send to circles garden
+
               // sharingFeature={
               //   <CirclesSharingFeature
               //     userData={customUserData}
@@ -122,6 +126,8 @@ const Circles = () => {
               //     introText={'Hello'}
               //   />
               // }
+
+              // shadowFriends={[]} // usernames of share link clicked users
             />
           </>
         </NoSsr>
