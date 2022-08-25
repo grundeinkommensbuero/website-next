@@ -96,6 +96,10 @@ export type User = {
     circlesResumee?: CirclesResumee;
     referredBySafeAddresses?: string[];
     voucherStoreEnabled?: boolean;
+    clickedCirclesShare: {
+      timestamp: string;
+      channel: string;
+    };
   };
   listFlow?: ListFlow;
 };

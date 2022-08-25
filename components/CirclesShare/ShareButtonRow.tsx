@@ -1,38 +1,82 @@
 import React from 'react';
 import s from './style.module.scss';
-import ShareButtons from './ShareButtons.json';
 import cN from 'classnames';
-import { Channel } from '.';
+import {
+  EmailShareButton,
+  FacebookShareButton,
+  TelegramShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+} from 'react-share';
+import { mailBody } from './mailBody';
+import { User } from '../../context/Authentication';
+import { useUpdateUser } from '../../hooks/Api/Users/Update';
 
 type ShareButtonRowProps = {
-  setShareChannel: (shareChannel: Channel) => void;
-  setSharePreviewActive: (active: boolean) => void;
+  userData: User;
+  userId: string;
 };
 
-export const ShareButtonRow = ({
-  setShareChannel,
-  setSharePreviewActive,
-}: ShareButtonRowProps) => {
-  const iconInstagram = require('!svg-inline-loader!./icons/Instagram.svg');
+export const ShareButtonRow = ({ userData, userId }: ShareButtonRowProps) => {
+  const [, updateUser] = useUpdateUser();
+
+  // const iconInstagram = require('!svg-inline-loader!./icons/Instagram.svg');
   const iconTwitter = require('!svg-inline-loader!./icons/twitter.svg');
   const iconFacebook = require('!svg-inline-loader!./icons/facebook.svg');
   const iconTelegram = require('!svg-inline-loader!./icons/telegram.svg');
   const iconWhatsApp = require('!svg-inline-loader!./icons/whatsapp.svg');
   const iconMail = require('!svg-inline-loader!./icons/mail.svg');
 
-  const activatePreview = (channel: string) => {
-    const i = ShareButtons.findIndex(el => el.channelIdentifier === channel);
-    // console.log(ShareButtons[i]);
-    setShareChannel(ShareButtons[i]);
-    setSharePreviewActive(true);
+  const constructShareURL = () => {
+    const baseUrl = 'https://volksentscheid-grundeinkommen.de/meine-circles';
+    const safeAddress = userData?.store?.circlesResumee?.safeAddress;
+    const username = userData?.store?.circlesResumee?.username;
+
+    if (safeAddress) {
+      return `${baseUrl}?safeAddress=${safeAddress}${
+        username ? `&${username}` : ''
+      }`;
+    } else {
+      return baseUrl;
+    }
   };
+
+  const handleClick = (channel: string) => {
+    // Only safe first share
+    if (!userData?.store?.clickedCirclesShare) {
+      updateUser({
+        userId,
+        store: {
+          clickedCirclesShare: {
+            timestamp: new Date().toISOString(),
+            channel,
+          },
+        },
+      });
+    }
+  };
+
+  const title = `Bring das Grundeinkommen mit mir an den Staat! Melde dich dafür bei der Expedition Grundeinkommen an. Ich bin schon dabei :)`;
+  const hashtags = [
+    'ModellversuchJetzt',
+    'Grundeinkommen',
+    'ExpeditionGrundeinkommen',
+  ];
+  const subject = `Gemeinsam bringen wir das Grundeinkommen nach Hause`;
+  const body = mailBody();
+  const quote = `Bring das Grundeinkommen mit mir an den Staat! Melde dich dafür bei der Expedition Grundeinkommen an. Ich bin schon  dabei :)`;
 
   return (
     <>
       <section className={s.shareButtonRow}>
-        <button
+        <TwitterShareButton
+          title={title}
+          hashtags={hashtags}
+          url={constructShareURL()}
+          windowWidth={1200}
+          windowHeight={1000}
           className={s.shareItem}
-          onClick={() => activatePreview('twitter')}
+          beforeOnClick={() => handleClick('twitter')}
         >
           <div className={s.shareButtonContainer}>
             <div
@@ -42,11 +86,16 @@ export const ShareButtonRow = ({
             ></div>
             <span>Twitter</span>
           </div>
-        </button>
+        </TwitterShareButton>
 
-        <button
+        <FacebookShareButton
+          title={title}
+          quote={quote}
+          url={constructShareURL()}
+          windowWidth={1200}
+          windowHeight={1000}
           className={s.shareItem}
-          onClick={() => activatePreview('facebook')}
+          beforeOnClick={() => handleClick('facebook')}
         >
           <div className={s.shareButtonContainer}>
             <div
@@ -56,25 +105,15 @@ export const ShareButtonRow = ({
             ></div>
             <span>Facebook</span>
           </div>
-        </button>
+        </FacebookShareButton>
 
-        <button
+        <TelegramShareButton
+          title={title}
+          url={constructShareURL()}
+          windowWidth={1200}
+          windowHeight={1000}
           className={s.shareItem}
-          onClick={() => activatePreview('instagram')}
-        >
-          <div className={s.shareButtonContainer}>
-            <div
-              aria-hidden="true"
-              className={cN(s.shareIcon, s.iconInstagram)}
-              dangerouslySetInnerHTML={{ __html: iconInstagram }}
-            ></div>
-            <span>Instagram</span>
-          </div>
-        </button>
-
-        <button
-          className={s.shareItem}
-          onClick={() => activatePreview('telegram')}
+          beforeOnClick={() => handleClick('telegram')}
         >
           <div className={s.shareButtonContainer}>
             <div
@@ -84,11 +123,15 @@ export const ShareButtonRow = ({
             ></div>
             <span>Telegram</span>
           </div>
-        </button>
+        </TelegramShareButton>
 
-        <button
+        <WhatsappShareButton
+          title={title}
+          url={constructShareURL()}
+          windowWidth={1200}
+          windowHeight={1000}
           className={s.shareItem}
-          onClick={() => activatePreview('whatsapp')}
+          beforeOnClick={() => handleClick('whatsapp')}
         >
           <div className={s.shareButtonContainer}>
             <div
@@ -98,11 +141,17 @@ export const ShareButtonRow = ({
             ></div>
             <span>WhatsApp</span>
           </div>
-        </button>
+        </WhatsappShareButton>
 
-        <button
+        <EmailShareButton
+          title={title}
+          subject={subject}
+          body={body}
+          url={constructShareURL()}
+          windowWidth={1200}
+          windowHeight={1000}
           className={s.shareItem}
-          onClick={() => activatePreview('email')}
+          beforeOnClick={() => handleClick('email')}
         >
           <div className={s.shareButtonContainer}>
             <div
@@ -112,7 +161,7 @@ export const ShareButtonRow = ({
             ></div>
             <span>E-Mail</span>
           </div>
-        </button>
+        </EmailShareButton>
       </section>
     </>
   );

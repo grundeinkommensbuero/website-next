@@ -1,5 +1,6 @@
+@import '../../styles/utility/colors.scss';
+
 .shareButtonRow {
-  background-color: white;
   margin-top: 1rem;
   margin-bottom: 1rem;
   padding: 1rem;
@@ -8,18 +9,21 @@
   justify-content: space-between;
 
   @media (min-width: $breakPointM) {
-    padding: 1rem 3rem;
+    padding: 1rem 0;
   }
 }
 
 .shareItem {
   margin-bottom: 1rem;
   margin-right: 1rem;
-  flex-grow: 1;
-  flex-basis: 45%;
+  flex-basis: 48%;
   cursor: pointer;
   background-color: transparent;
   border: 0px;
+
+  @media (max-width: $breakPointM) {
+    flex-basis: 45%;
+  }
 
   @media (max-width: $breakPointS) {
     flex-basis: 100%;
@@ -27,7 +31,7 @@
 }
 
 .shareButtonContainer {
-  background-color: $aqua;
+  background-color: #fb8298;
   color: $white;
   display: flex;
   flex-wrap: wrap;
@@ -43,7 +47,7 @@
   }
 
   &:hover {
-    background-color: darken($aqua, 10%);
+    background-color: darken(#fb8298, 10%);
   }
 
   @media (max-width: $breakPointM) {
@@ -231,9 +235,25 @@
   justify-content: space-between;
 }
 
-.municipalityShareContainer {
+.shareContainer {
   margin-bottom: 0;
-  padding: 0;
+  padding: 0 2rem;
+  font-family: 'Arial';
+
+  @extend .colorSchemeRose;
+
+  @media (max-width: $breakPointM) {
+    padding: 0 1rem;
+  }
+
+  h2 {
+    color: rgb(101, 101, 94);
+    font-size: 2.25rem;
+
+    @media (max-width: $breakPointM) {
+      font-size: 1.875rem;
+    }
+  }
 }
 
 .municipalityShare {
