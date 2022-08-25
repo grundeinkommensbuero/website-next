@@ -8,8 +8,12 @@ import ReactTooltip from 'react-tooltip';
 import { ProviderWrapper } from '../components/Util/ProviderWrapper';
 import { Toaster } from 'react-hot-toast';
 import { TrackJS } from 'trackjs';
+import { init } from '@socialgouv/matomo-next';
+import { useEffect } from 'react';
 
 type XbgeAppProps = AppProps & { mainMenu: Menu; footerMenu: Menu };
+
+const MATOMO_SITE_ID = process.env.NEXT_PUBLIC_MATOMO_SITE_ID;
 
 TrackJS.install({
   token: process.env.NEXT_PUBLIC_TRACKJS_TOKEN || '',
@@ -17,6 +21,13 @@ TrackJS.install({
 });
 
 function XbgeApp({ Component, pageProps, mainMenu, footerMenu }: XbgeAppProps) {
+  useEffect(() => {
+    init({
+      url: 'https://expeditiongrundeinkommen.matomo.cloud',
+      siteId: MATOMO_SITE_ID || '1',
+    });
+  }, []);
+
   return (
     <ProviderWrapper>
       <Toaster toastOptions={{ position: 'top-right' }} />
