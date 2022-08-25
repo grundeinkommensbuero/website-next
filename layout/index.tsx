@@ -13,6 +13,7 @@ import { getRootAssetURL } from '../components/Util/getRootAssetURL';
 import { useRouter } from 'next/router';
 import { jumpToHash } from '../utils/jumpToHash';
 import { LoadingAnimation } from '../components/LoadingAnimation';
+import Script from 'next/script';
 
 const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
 
@@ -58,7 +59,15 @@ export const Layout = ({
   }, [currentRoute]);
 
   useEffect(() => {
-    const handleStart = (url: string) => setPageIsLoading(true);
+    const handleStart = (url: string) => {
+      if (window && window._paq) {
+        window._paq.push(['setCustomUrl', url]);
+        window._paq.push(['setDocumentTitle', document.title]);
+        window._paq.push(['trackPageView']);
+      }
+
+      setPageIsLoading(true);
+    };
     const handleComplete = (url: string) => setPageIsLoading(false);
 
     router.events.on('routeChangeStart', handleStart);
@@ -126,6 +135,21 @@ export const Layout = ({
         <div className="grow bg-red" />
       </div>
       {pageIsLoading && <LoadingAnimation fixed />}
+      <Script id="matomo">
+        {`  
+        var _paq = window._paq = window._paq || [];
+        _paq.push(['disableCookies']);
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+          const u="//https://expeditiongrundeinkommen.matomo.cloud/";
+          _paq.push(['setTrackerUrl', u+'matomo.php']);
+          _paq.push(['setSiteId', ${process.env.NEXT_PUBLIC_MATOMO_SITE_ID}]);
+          var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+          g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+        })();
+  `}
+      </Script>
     </>
   );
 };
