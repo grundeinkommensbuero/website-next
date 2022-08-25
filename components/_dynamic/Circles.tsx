@@ -104,7 +104,7 @@ const Circles = () => {
               buyVoucherEurLimit={70} // limit of vouchers that can be bought in eur
               theme={xbgeTheme} // app color theme
               xbgeCampaign={true} // enable xbge special components
-              strictMode={true} // only allow xbge linked safe address restore from localStorage
+              strictMode={false} // only allow xbge linked safe address restore from localStorage
               safeAddress={customUserData?.store?.circlesResumee?.safeAddress}
               // ^ linked safeAddress for strict mode check
               voucherShopEnabled={
@@ -115,18 +115,7 @@ const Circles = () => {
                   circlesResumee?: CirclesResumee
                 ) => CirclesResumee
               ) => {
-                console.log('resumee', resumee);
                 const circlesResumee = updateResumee(resumee);
-                console.log('circlesResumee', circlesResumee);
-                // Safely get username and safeAddress, from app first, then last known
-                const username =
-                  circlesResumee?.username || resumee?.username || null;
-                console.log('username', username);
-
-                const safeAddress =
-                  circlesResumee?.safeAddress || resumee?.safeAddress || null;
-                console.log('safeAddress', safeAddress);
-
                 if (circlesResumee) {
                   saveCirclesTracking(circlesResumee);
                 }
