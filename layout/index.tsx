@@ -148,7 +148,7 @@ export const Layout = ({
         _paq.push(['trackPageView']);
         _paq.push(['enableLinkTracking']);
         (function() {
-          const u="//https://expeditiongrundeinkommen.matomo.cloud/";
+          const u="//expeditiongrundeinkommen.matomo.cloud/";
           _paq.push(['setTrackerUrl', u+'matomo.php']);
           _paq.push(['setSiteId', ${process.env.NEXT_PUBLIC_MATOMO_SITE_ID}]);
           var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
