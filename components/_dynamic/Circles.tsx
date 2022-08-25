@@ -95,10 +95,6 @@ const Circles = () => {
                 eingeloggt.{' '}
               </p>
             )}
-            {console.log(
-              'Component safeAddress',
-              customUserData?.store?.circlesResumee?.safeAddress
-            )}
             <CirclesPink
               lang="de" // app language
               buyVoucherEurLimit={70} // limit of vouchers that can be bought in eur
