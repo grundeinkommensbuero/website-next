@@ -95,6 +95,10 @@ const Circles = () => {
                 eingeloggt.{' '}
               </p>
             )}
+            {console.log(
+              'Component safeAddress',
+              customUserData?.store?.circlesResumee?.safeAddress
+            )}
             <CirclesPink
               lang="de" // app language
               buyVoucherEurLimit={70} // limit of vouchers that can be bought in eur
@@ -116,11 +120,11 @@ const Circles = () => {
                 console.log('circlesResumee', circlesResumee);
                 // Safely get username and safeAddress, from app first, then last known
                 const username =
-                  circlesResumee.username || resumee?.username || null;
+                  circlesResumee?.username || resumee?.username || null;
                 console.log('username', username);
 
                 const safeAddress =
-                  circlesResumee.safeAddress || resumee?.safeAddress || null;
+                  circlesResumee?.safeAddress || resumee?.safeAddress || null;
                 console.log('safeAddress', safeAddress);
 
                 if (circlesResumee) {
