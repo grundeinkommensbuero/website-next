@@ -40,7 +40,7 @@ export const UserMenuLink = ({
               user={customUserData}
               size="500"
             />
-            <span className="text-xl nowrap">{customUserData.username}</span>
+            <span className="nowrap">{customUserData.username}</span>
           </div>
           <div className={s.dropdownContent}>
             <ul>
@@ -73,7 +73,7 @@ export const UserMenuLink = ({
           </div>
         </div>
       ) : (
-        <span className="text-xl nowrap ml-2">Lade...</span>
+        <span className="nowrap ml-2">Lade...</span>
       )}
     </div>
   );

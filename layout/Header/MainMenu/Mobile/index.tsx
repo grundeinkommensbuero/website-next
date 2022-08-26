@@ -25,7 +25,7 @@ export const MainMenuMobile = ({
           if ((entry as Dropdown).entries)
             return (
               <li key={index}>
-                <span className="my-2 text-xl nowrap">{entry.label}</span>
+                <span className="my-2 nowrap">{entry.label}</span>
                 <div className="mx-4">
                   <ul>
                     {(entry as Dropdown).entries.map(entry => {

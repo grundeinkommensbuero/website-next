@@ -38,7 +38,7 @@ export const MenuLink = ({
           if (action) action();
           (document.activeElement as HTMLElement).blur();
         }}
-        className={`${!isMobile ? 'mx-2' : ''} text-xl nowrap ${
+        className={`${!isMobile ? 'mx-2' : ''} nowrap ${
           prefixedSlug === currentRoute
             ? `underline${underlineColor}`
             : `hoverUnderline${hoverUnderlineColor}`

@@ -21,7 +21,7 @@ export const MainMenu = ({
           if ((entry as Dropdown).entries)
             return (
               <li key={entry.id} className={s.dropdown}>
-                <span className="mx-2 text-xl nowrap">{entry.label}</span>
+                <span className="mx-2 nowrap">{entry.label}</span>
                 <div className={s.dropdownContent}>
                   <ul>
                     <>
