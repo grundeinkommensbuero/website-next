@@ -131,7 +131,7 @@ export const Layout = ({
           {IS_BERLIN_PROJECT ? (
             <link key="favicon" rel="icon" href="/favicon-berlin.ico" />
           ) : (
-            <link key="favicon" rel="icon" href="/favicon.ico" />
+            <link key="favicon" rel="icon" href="/favicon-expedition.ico" />
           )}
         </Head>
 
