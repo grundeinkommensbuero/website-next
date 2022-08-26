@@ -4,6 +4,7 @@ import { MenuLink } from '../MenuLink';
 import { UserMenuLinkMobile } from './UserMenuLinkMobile';
 import cN from 'classnames';
 import s from '../style.module.scss';
+import { getLoginNextPageParam } from '../Desktop';
 
 type MainMenuMobileProps = {
   mainMenu: Menu;
@@ -57,7 +58,11 @@ export const MainMenuMobile = ({
         })}
         <li>
           <UserMenuLinkMobile
-            entry={{ id: 'login', slug: 'login', label: 'Einloggen' }}
+            entry={{
+              id: 'login',
+              slug: `login${getLoginNextPageParam(currentRoute)}`,
+              label: 'Einloggen',
+            }}
             currentRoute={currentRoute}
             extraCallback={closeMenu}
           />
