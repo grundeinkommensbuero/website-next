@@ -134,7 +134,10 @@ export const SharingFeature = ({
               <div className={gS.fullWidthFlex}>
                 <Button
                   className={gS.nextButton}
-                  onClick={() => setCurrentElementByIndex(compIndex + 1)}
+                  onClick={() =>
+                    setCurrentElementByIndex &&
+                    setCurrentElementByIndex((compIndex || 0) + 1)
+                  }
                 >
                   Weiter
                 </Button>
