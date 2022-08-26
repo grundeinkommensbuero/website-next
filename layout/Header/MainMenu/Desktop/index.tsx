@@ -51,11 +51,25 @@ export const MainMenu = ({
         })}
         <li>
           <UserMenuLink
-            entry={{ id: 'login', slug: 'login', label: 'Einloggen' }}
+            entry={{
+              id: 'login',
+              slug: `login${getLoginNextPageParam(currentRoute)}`,
+              label: 'Einloggen',
+            }}
             currentRoute={currentRoute}
           />
         </li>
       </ul>
     </nav>
   );
+};
+
+export const getLoginNextPageParam = (currentRoute: string) => {
+  return currentRoute !== '/'
+    ? `/?nextPage=${encodeURIComponent(
+        currentRoute.slice(-1) === '/'
+          ? currentRoute.slice(1, -1)
+          : currentRoute.slice(1)
+      )}`
+    : '';
 };
