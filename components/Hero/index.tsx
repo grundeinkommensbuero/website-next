@@ -26,7 +26,6 @@ export const Hero = ({ heroTitle, heroSubTitle, heroImage }: HeroProps) => {
           alt={'Bild der Expedition Grundeinkommen'}
           layout={'fill'}
           priority={true}
-          quality={65}
         />
       </div>
       {heroTitle && <h1 className={cN(s.title, s.titles)}>{heroTitle}</h1>}
