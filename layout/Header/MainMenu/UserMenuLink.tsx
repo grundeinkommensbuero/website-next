@@ -31,7 +31,7 @@ export const UserMenuLink = ({
   }
 
   return (
-    <div className="mx-2">
+    <div className="mx-2 items-center">
       {customUserData ? (
         <div className={s.dropdown}>
           <div className="items-center">
