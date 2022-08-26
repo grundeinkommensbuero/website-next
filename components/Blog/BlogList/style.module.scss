@@ -26,9 +26,13 @@
   font-weight: normal;
 }
 
-.image {
-  max-height: 20rem;
+.imageContainer {
+  height: 20rem;
   width: 100%;
+  position: relative;
+}
+
+.image {
   filter: saturate(120%);
   object-fit: cover;
   object-position: 0 25%;

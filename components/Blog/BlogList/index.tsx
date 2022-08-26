@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { formatDate } from '../../../utils/date';
 import { getRootAssetURL } from '../../Util/getRootAssetURL';
 import Head from 'next/head';
+import Image from 'next/image';
 
 type BlogListProps = { posts: Array<Blogpost> };
 
@@ -53,11 +54,14 @@ export const BlogSnippet = ({
       </header>
       {featured_image && (
         <Link href={`/blog/${id}`} passHref>
-          <img
-            src={getRootAssetURL(featured_image.id)}
-            alt="Titelbild des Blogeintrags"
-            className={s.image}
-          />
+          <div className={s.imageContainer}>
+            <Image
+              src={getRootAssetURL(featured_image.id)}
+              alt="Titelbild des Blogeintrags"
+              className={s.image}
+              layout="fill"
+            />
+          </div>
         </Link>
       )}
       <p className={'pt-4'}>{teaser}</p>
