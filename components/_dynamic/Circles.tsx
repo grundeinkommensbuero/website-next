@@ -136,8 +136,13 @@ const Circles = () => {
                     circlesResumee?: CirclesResumee
                   ) => CirclesResumee
                 ) => {
-                  console.log('circlesResumee from Xbge:', resumee);
-                  const circlesResumee = updateResumee(resumee);
+                  console.log(
+                    'circlesResumee from Xbge:',
+                    JSON.parse(JSON.stringify(resumee))
+                  );
+                  const circlesResumee = updateResumee(
+                    JSON.parse(JSON.stringify(resumee))
+                  );
                   console.log('circlesResumee from Pink:', circlesResumee);
 
                   if (circlesResumee) {
