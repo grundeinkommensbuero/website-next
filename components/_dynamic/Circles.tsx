@@ -26,6 +26,14 @@ const Circles = () => {
 
   const [updateState, updateUserStore] = useUpdateUser();
 
+  const [initPhase, setInitPhase] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setInitPhase(false);
+    }, 5000);
+  });
+
   const resumee = customUserData?.store?.circlesResumee;
   const voucherShopEnabled = !customUserData.store?.voucherStoreEnabled
     ? false
@@ -69,6 +77,15 @@ const Circles = () => {
   //     }
   //   }
   // }, [isAuthenticated, customUserData]);
+
+  if (initPhase) {
+    return (
+      <>
+        <h2>Initializing Circles App...</h2>
+        <p>{customUserData?.store?.circlesResumee?.safeAddress}</p>
+      </>
+    );
+  }
 
   return (
     <>
