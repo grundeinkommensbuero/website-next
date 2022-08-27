@@ -23,18 +23,16 @@ const xbgeTheme = {
 const Circles = () => {
   const { userId, isAuthenticated, customUserData, updateCustomUserData } =
     useContext(AuthContext);
+
   const [updateState, updateUserStore] = useUpdateUser();
-  const [resumee, setResumee] = useState<CirclesResumee | undefined>(
-    customUserData?.store?.circlesResumee
-  );
-  const [voucherShopEnabled, setVoucherShopEnabled] = useState<boolean>(
-    !customUserData.store?.voucherStoreEnabled ? false : true
-  );
-  const [savedSafeAddress, setSavedSaveAddress] = useState<string | null>(
-    !customUserData?.store?.circlesResumee?.safeAddress
-      ? null
-      : customUserData?.store?.circlesResumee?.safeAddress
-  );
+
+  const resumee = customUserData?.store?.circlesResumee;
+  const voucherShopEnabled = !customUserData.store?.voucherStoreEnabled
+    ? false
+    : true;
+  const savedSafeAddress = !customUserData?.store?.circlesResumee?.safeAddress
+    ? null
+    : customUserData?.store?.circlesResumee?.safeAddress;
 
   const saveCirclesTracking = (circlesResumee: CirclesResumee) => {
     updateUserStore({
@@ -51,38 +49,26 @@ const Circles = () => {
     }
   }, [updateState]);
 
-  useEffect(() => {
-    setResumee(customUserData?.store?.circlesResumee);
-    setVoucherShopEnabled(
-      !customUserData.store?.voucherStoreEnabled ? false : true
-    );
-    setSavedSaveAddress(
-      !customUserData?.store?.circlesResumee?.safeAddress
-        ? null
-        : customUserData?.store?.circlesResumee?.safeAddress
-    );
-  }, [customUserData]);
+  // useEffect(() => {
+  //   // Only update user, if custom user data was loaded
+  //   // so existing referred safe addresses are not overwritten
+  //   if (isAuthenticated && customUserData.email) {
+  //     const { safeAddress } = querystring.parse(window.location.search);
 
-  useEffect(() => {
-    // Only update user, if custom user data was loaded
-    // so existing referred safe addresses are not overwritten
-    if (isAuthenticated && customUserData.email) {
-      const { safeAddress } = querystring.parse(window.location.search);
+  //     if (typeof safeAddress === 'string') {
+  //       let safeAddresses = customUserData.store?.referredBySafeAddresses || [];
 
-      if (typeof safeAddress === 'string') {
-        let safeAddresses = customUserData.store?.referredBySafeAddresses || [];
+  //       safeAddresses.push(safeAddress);
 
-        safeAddresses.push(safeAddress);
-
-        updateUserStore({
-          userId,
-          store: {
-            referredBySafeAddresses: safeAddresses,
-          },
-        });
-      }
-    }
-  }, [isAuthenticated, customUserData]);
+  //       updateUserStore({
+  //         userId,
+  //         store: {
+  //           referredBySafeAddresses: safeAddresses,
+  //         },
+  //       });
+  //     }
+  //   }
+  // }, [isAuthenticated, customUserData]);
 
   return (
     <>
