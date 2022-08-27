@@ -9,6 +9,7 @@ import { NoSsr } from '../Util/NoSsr';
 import querystring from 'query-string';
 import translations from '../../data/transaltions.json';
 import CirclesSharingFeature from '../CirclesShare';
+import { LoadingAnimation } from '../LoadingAnimation';
 
 const xbgeTheme = {
   baseColor: '#FB8298',
@@ -30,8 +31,9 @@ const Circles = () => {
 
   useEffect(() => {
     setTimeout(() => {
+      // To wait for the safeAddress this timeout is a workaround
       setInitPhase(false);
-    }, 5000);
+    }, 1000);
   });
 
   const resumee = customUserData?.store?.circlesResumee;
@@ -57,34 +59,29 @@ const Circles = () => {
     }
   }, [updateState]);
 
-  // useEffect(() => {
-  //   // Only update user, if custom user data was loaded
-  //   // so existing referred safe addresses are not overwritten
-  //   if (isAuthenticated && customUserData.email) {
-  //     const { safeAddress } = querystring.parse(window.location.search);
+  useEffect(() => {
+    // Only update user, if custom user data was loaded
+    // so existing referred safe addresses are not overwritten
+    if (isAuthenticated && customUserData.email) {
+      const { safeAddress } = querystring.parse(window.location.search);
 
-  //     if (typeof safeAddress === 'string') {
-  //       let safeAddresses = customUserData.store?.referredBySafeAddresses || [];
+      if (typeof safeAddress === 'string') {
+        let safeAddresses = customUserData.store?.referredBySafeAddresses || [];
 
-  //       safeAddresses.push(safeAddress);
+        safeAddresses.push(safeAddress);
 
-  //       updateUserStore({
-  //         userId,
-  //         store: {
-  //           referredBySafeAddresses: safeAddresses,
-  //         },
-  //       });
-  //     }
-  //   }
-  // }, [isAuthenticated, customUserData]);
+        updateUserStore({
+          userId,
+          store: {
+            referredBySafeAddresses: safeAddresses,
+          },
+        });
+      }
+    }
+  }, [isAuthenticated, customUserData]);
 
   if (initPhase) {
-    return (
-      <>
-        <h2>Initializing Circles App...</h2>
-        <p>{customUserData?.store?.circlesResumee?.safeAddress}</p>
-      </>
-    );
+    return <LoadingAnimation />;
   }
 
   return (
@@ -114,13 +111,13 @@ const Circles = () => {
                 eingeloggt.{' '}
               </p>
             )}
-            {customUserData &&
+            {/* {customUserData &&
               (console.log('VoucherStoreEnabled App:', voucherShopEnabled),
               console.log('SafeAddress App:', savedSafeAddress),
               console.log(
                 'API Resumee App:',
                 customUserData?.store?.circlesResumee
-              ))}
+              ))} */}
             {customUserData && (
               <CirclesPink
                 lang="de" // app language
@@ -136,14 +133,14 @@ const Circles = () => {
                     circlesResumee?: CirclesResumee
                   ) => CirclesResumee
                 ) => {
-                  console.log(
-                    'circlesResumee from Xbge:',
-                    JSON.parse(JSON.stringify(resumee))
-                  );
+                  // console.log(
+                  //   'circlesResumee from Xbge:',
+                  //   JSON.parse(JSON.stringify(resumee))
+                  // );
                   const circlesResumee = updateResumee(
                     JSON.parse(JSON.stringify(resumee))
                   );
-                  console.log('circlesResumee from Pink:', circlesResumee);
+                  // console.log('circlesResumee from Pink:', circlesResumee);
 
                   if (circlesResumee) {
                     const safeAddress =
@@ -155,8 +152,8 @@ const Circles = () => {
                       username,
                       safeAddress,
                     };
-                    console.log('Saving Resumee for:', username, safeAddress);
-                    console.log('### MERGED RESUMEE:', circlesResumee);
+                    // console.log('Saving Resumee for:', username, safeAddress);
+                    // console.log('### MERGED RESUMEE:', circlesResumee);
                     saveCirclesTracking(mergedResumee);
                   }
                 }} // get tracking resumee with app state
