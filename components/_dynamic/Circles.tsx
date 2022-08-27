@@ -127,7 +127,10 @@ const Circles = () => {
                 strictMode={true} // only allow xbge linked safe address restore from localStorage
                 safeAddress={savedSafeAddress}
                 // ^ linked safeAddress for strict mode check
-                voucherShopEnabled={voucherShopEnabled} // enable voucher shop
+                voucherShopEnabled={
+                  false
+                  // voucherShopEnabled
+                } // enable voucher shop
                 onTrackingResumee={(
                   updateResumee: (
                     circlesResumee?: CirclesResumee
