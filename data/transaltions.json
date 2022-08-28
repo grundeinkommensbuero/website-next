@@ -83,8 +83,8 @@
           "welcomeGeneral": "Damit du dein Grundeinkommen bekommen kannst, muss deine Wallet aktiviert werden.",
           "howToActivateWallet": "Um deine Wallet zu aktivieren und mit Circles bezahlen zu können, musst du mindestens 3 Circles-User:innen finden, die dich in ihr Vertrauensnetzwerk aufnehmen.",
           "howToGetTrusts": "Du kannst auch bei einer {{collectionAction}} vorbeikommen - dort sind immer Menschen von der Expedition vor Ort, die deinen Account verifizieren. Dazu brauchst du nur deinen Usernamen.",
-          "collectSignaturesForVouchers": "Im Endspurt des Volksentscheid Grundeinkommen tauschen wir deine Circles in Einkaufsgutscheine um. Was du dafür tun musst? Unterschriften sammeln! Für 10 gesammelte Unterschriften kannst du einen Gutschein im Wert von 33 € bekommen. Und das bis zu 5 Mal, also 5 x 33 € bei 50 Unterschriften.",
-          "youWillGetCircles": "Sobald deine Wallet aktiviert ist, beginnt dein Grundeinkommen zu fließen, und du erhältst jeden Tag 24 Circles, die du ausgeben oder in Gutscheine eintauschen kannst. Hier kannst du sehen, wie viele Menschen dir schon vertrauen.",
+          "collectSignaturesForVouchers": "Im Endspurt des Volksentscheid Grundeinkommen tauschen wir deine Circles in Einkaufsgutscheine um. Was du dafür tun musst? Unterschriften sammeln! Für 10 gesammelte Unterschriften kannst du einen Gutschein im Wert von 33 € bekommen. Und das bis zu 5 Mal, also bis zu 5 x 33 € bei 50 Unterschriften.",
+          "youWillGetCircles": "Sobald deine Wallet aktiviert ist, beginnt dein Grundeinkommen zu fließen. Du erhältst dann jeden Tag 24 Circles, die du ausgeben oder in Gutscheine eintauschen kannst. Hier kannst du sehen, wie viele Menschen dir schon vertrauen.",
           "collectionAction": "Sammelaktion",
           "collectionActionLink": "https://www.volksentscheid-grundeinkommen.de/"
         }
