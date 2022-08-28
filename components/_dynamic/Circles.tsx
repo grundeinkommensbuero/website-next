@@ -126,9 +126,7 @@ const Circles = () => {
                     circlesResumee?: CirclesResumee
                   ) => CirclesResumee
                 ) => {
-                  const circlesResumee = updateResumee(
-                    JSON.parse(JSON.stringify(resumee))
-                  );
+                  const circlesResumee = updateResumee(resumee);
                   if (circlesResumee) {
                     const safeAddress =
                       resumee?.safeAddress || circlesResumee.safeAddress;
