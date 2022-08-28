@@ -86,7 +86,10 @@
           "collectSignaturesForVouchers": "Im Endspurt des Volksentscheid Grundeinkommen tauschen wir deine Circles in Einkaufsgutscheine um. Was du dafür tun musst? Unterschriften sammeln! Für 10 gesammelte Unterschriften kannst du einen Gutschein im Wert von 33 € bekommen. Und das bis zu 5 Mal, also bis zu 5 x 33 € bei 50 Unterschriften.",
           "youWillGetCircles": "Sobald deine Wallet aktiviert ist, beginnt dein Grundeinkommen zu fließen. Du erhältst dann jeden Tag 24 Circles, die du ausgeben oder in Gutscheine eintauschen kannst. Hier kannst du sehen, wie viele Menschen dir schon vertrauen.",
           "collectionAction": "Sammelaktion",
-          "collectionActionLink": "https://www.volksentscheid-grundeinkommen.de/"
+          "collectionActionLink": "https://www.volksentscheid-grundeinkommen.de/",
+          "getHelp": "Wenn du Hilfe brauchst, komm einfach in unsere {{telegramOnboardingGroup}}.",
+          "telegramOnboardingGroup": "Telegram-Onboarding-Gruppe",
+          "telegramOnboardingGroupLink": "https://bit.ly/3KoOXMI"
         }
       },
       "dashboard": {

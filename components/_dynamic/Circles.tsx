@@ -129,9 +129,11 @@ const Circles = () => {
                   const circlesResumee = updateResumee(resumee);
                   if (circlesResumee) {
                     const safeAddress =
-                      resumee?.safeAddress || circlesResumee.safeAddress;
+                      circlesResumee.safeAddress ||
+                      resumee?.safeAddress ||
+                      null;
                     const username =
-                      resumee?.username || circlesResumee.username;
+                      circlesResumee.username || resumee?.username || null;
                     const mergedResumee = {
                       ...circlesResumee,
                       username,
