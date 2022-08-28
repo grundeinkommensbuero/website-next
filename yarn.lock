@@ -1744,9 +1744,9 @@
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
 "@circles-pink/state-machine@*":
-  version "1.0.50"
-  resolved "https://registry.yarnpkg.com/@circles-pink/state-machine/-/state-machine-1.0.50.tgz#5e4244b451ee5fcc32876ca81c8563f27b3d71e5"
-  integrity sha512-lR4Z94det7nNjOXlelmL2R2yd8Ql8TVmui19NE/jlfHg2wTr2C9j1DV6z6I/V/vNx0E1BnM3aF8YNcwLcpCJeg==
+  version "1.0.51"
+  resolved "https://registry.yarnpkg.com/@circles-pink/state-machine/-/state-machine-1.0.51.tgz#b75e89b8684d569579881bfd37e764f5e9592586"
+  integrity sha512-X2flnega9vIeyDGqSQPiI4p2yCLMd5/O0X10X4qCbL63UcNZg421fdQR2cJIp6y1aOw1Eh94KlRLAxqfMcFKfw==
   dependencies:
     "@circles/core" "2.11.1"
     "@circles/timecircles" "^1.0.6"
@@ -1765,10 +1765,10 @@
     node-fetch "^2.0.0"
     web3 "^1.7.1"
 
-"@circles-pink/web-client@^1.0.50":
-  version "1.0.50"
-  resolved "https://registry.yarnpkg.com/@circles-pink/web-client/-/web-client-1.0.50.tgz#d977d18fa94e95e8ae8c7d3c47d282ec36dcf65d"
-  integrity sha512-DNfJi5IQLnaDOjZnC/s8iZJViEUqY2gRTJAf99ULvtXI+jyeePpj9US8wsX7JY5t5Po3O2Du71fMOK75177EXQ==
+"@circles-pink/web-client@^1.0.51":
+  version "1.0.51"
+  resolved "https://registry.yarnpkg.com/@circles-pink/web-client/-/web-client-1.0.51.tgz#bdb5e6d16985b522aa7969785f90a2e720693524"
+  integrity sha512-yws32uI9aIWtAxX24UKn+pJYnO7PckAgWPpuRTEswBr6Fvv0COMpOb9y09zyRBhlefpTmnzW64QcxOhnfwdEkw==
   dependencies:
     "@babel/preset-env" "^7.17.10"
     "@babel/preset-react" "^7.16.7"

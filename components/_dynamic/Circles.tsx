@@ -63,17 +63,17 @@ const Circles = () => {
     // Only update user, if custom user data was loaded
     // so existing referred safe addresses are not overwritten
     if (isAuthenticated && customUserData.email) {
-      const { safeAddress } = querystring.parse(window.location.search);
+      const { username } = querystring.parse(window.location.search);
 
-      if (typeof safeAddress === 'string') {
-        let safeAddresses = customUserData.store?.referredBySafeAddresses || [];
+      if (typeof username === 'string') {
+        let usernames = customUserData.store?.referredByCirclesUsername || [];
 
-        safeAddresses.push(safeAddress);
+        usernames.push(username);
 
         updateUserStore({
           userId,
           store: {
-            referredBySafeAddresses: safeAddresses,
+            referredByCirclesUsername: usernames,
           },
         });
       }
@@ -168,7 +168,7 @@ const Circles = () => {
                 //   />
                 // }
 
-                // shadowFriends={[]} // usernames of share link clicked users
+                shadowFriends={customUserData.store?.referredByCirclesUsername || []} // usernames of share link clicked users
               />
             )}
           </>
