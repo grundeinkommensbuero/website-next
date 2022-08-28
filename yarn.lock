@@ -1744,9 +1744,9 @@
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
 "@circles-pink/state-machine@*":
-  version "1.0.49"
-  resolved "https://registry.yarnpkg.com/@circles-pink/state-machine/-/state-machine-1.0.49.tgz#50ed9aca8f816b1fd7575310ed5a0c0ff521ea1d"
-  integrity sha512-EdgCydsEeGpvYUc41sXutUFVrGKixdYtu7SaKK9WHAQS7868xQ2T+NAmx+Dgth4tjDSX4fCKRgK7SGT+jSAtzQ==
+  version "1.0.50"
+  resolved "https://registry.yarnpkg.com/@circles-pink/state-machine/-/state-machine-1.0.50.tgz#5e4244b451ee5fcc32876ca81c8563f27b3d71e5"
+  integrity sha512-lR4Z94det7nNjOXlelmL2R2yd8Ql8TVmui19NE/jlfHg2wTr2C9j1DV6z6I/V/vNx0E1BnM3aF8YNcwLcpCJeg==
   dependencies:
     "@circles/core" "2.11.1"
     "@circles/timecircles" "^1.0.6"
@@ -1765,10 +1765,10 @@
     node-fetch "^2.0.0"
     web3 "^1.7.1"
 
-"@circles-pink/web-client@^1.0.49":
-  version "1.0.49"
-  resolved "https://registry.yarnpkg.com/@circles-pink/web-client/-/web-client-1.0.49.tgz#ef8bd59dc7a1eaeeb0cc869eac1a0b3b635cf11c"
-  integrity sha512-MCTX5EzbrjZqA4iXk6dWaGbvxV2DcGac/F97vItD1LEYdgfmboyHHV3541BjlnnR0vE+z0jq0aZ1gXKlbOt0Dg==
+"@circles-pink/web-client@^1.0.50":
+  version "1.0.50"
+  resolved "https://registry.yarnpkg.com/@circles-pink/web-client/-/web-client-1.0.50.tgz#d977d18fa94e95e8ae8c7d3c47d282ec36dcf65d"
+  integrity sha512-DNfJi5IQLnaDOjZnC/s8iZJViEUqY2gRTJAf99ULvtXI+jyeePpj9US8wsX7JY5t5Po3O2Du71fMOK75177EXQ==
   dependencies:
     "@babel/preset-env" "^7.17.10"
     "@babel/preset-react" "^7.16.7"
@@ -2061,9 +2061,9 @@
   integrity sha512-MUwA2YKpqaQOSR4V1/CVGRNk8Ii5kf6I8Ch+4/BhRZRQXuwWbi21rDRYWPqdQWps7VNzAbbMA+PQDWsD5YY38g==
 
 "@cspell/dict-software-terms@^2.1.7":
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/@cspell/dict-software-terms/-/dict-software-terms-2.2.3.tgz#b40dc861fefff05da40c417b092a6e7e1afb3530"
-  integrity sha512-hpiYrjnGcrSw2q/CiT2bzsB5/OVaK/aOgQvvI6MVnvOk3XzfpAeOr24frrnXTURbuD8pktiRPvAmrTlHrAGCXQ==
+  version "2.2.5"
+  resolved "https://registry.yarnpkg.com/@cspell/dict-software-terms/-/dict-software-terms-2.2.5.tgz#1bec09778ab24331800cb5f73ec3c4321a7ea689"
+  integrity sha512-EZBVd0v1iLPvYZeBpjF8SG2kixCaqGYgEvxG37+0aZwRXaJdu4G3W98mwrvmIDyC8LulvUi2FSPEgRP+UP0EMw==
 
 "@cspell/dict-swift@^1.0.2":
   version "1.0.3"
@@ -5197,9 +5197,9 @@ caniuse-lite@^1.0.30001332:
   integrity sha512-pJYArGHrPp3TUqQzFYRmP/lwJlj8RCbVe3Gd3eJQkAV8SAC6b19XS9BjMvRdvaS8RMkaTN8ZhoHP6S1y8zzwEQ==
 
 caniuse-lite@^1.0.30001370, caniuse-lite@^1.0.30001373:
-  version "1.0.30001382"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001382.tgz#4d37f0d0b6fffb826c8e5e1c0f4bf8ce592db949"
-  integrity sha512-2rtJwDmSZ716Pxm1wCtbPvHtbDWAreTPxXbkc5RkKglow3Ig/4GNGazDI9/BVnXbG/wnv6r3B5FEbkfg9OcTGg==
+  version "1.0.30001383"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001383.tgz#aecf317ccd940690725ae3ae4f28293c5fb8050e"
+  integrity sha512-swMpEoTp5vDoGBZsYZX7L7nXHe6dsHxi9o6/LKf/f0LukVtnrxly5GVb/fWdCDTqi/yw6Km6tiJ0pmBacm0gbg==
 
 canvas-confetti@^1.5.1:
   version "1.5.1"
@@ -6430,9 +6430,9 @@ ee-first@1.1.1:
   integrity sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==
 
 electron-to-chromium@^1.4.202:
-  version "1.4.229"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.229.tgz#506107e357a59e3241f69cdd1a179626164ddd86"
-  integrity sha512-kdye32s/padLGpiLzhrMraBBs/M5hDspB8PCdCP6L11AJ6dw3Gg3xdvT4b4pqWaW5tc5oAwCfKCS+PAsZM3ipw==
+  version "1.4.233"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.233.tgz#aa142e45468bda111b88abc9cc59d573b75d6a60"
+  integrity sha512-ejwIKXTg1wqbmkcRJh9Ur3hFGHFDZDw1POzdsVrB2WZjgRuRMHIQQKNpe64N/qh3ZtH2otEoRoS+s6arAAuAAw==
 
 elliptic@6.3.3:
   version "6.3.3"
@@ -11147,9 +11147,9 @@ react-hot-toast@^2.2.0:
     goober "^2.1.10"
 
 react-i18next@^11.15.6:
-  version "11.18.4"
-  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-11.18.4.tgz#b3c35ac4c4657b05d599b036536d7b2c0331e248"
-  integrity sha512-gK/AylAQC5DvCD5YLNCHW4PNzpCfrWIyVAXbSMl+/5QXzlDP8VdBoqE2s2niGHB+zIXwBV9hRXbDrVuupbgHcg==
+  version "11.18.5"
+  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-11.18.5.tgz#985e87bc66ed1316381b464a4ecfd35a2c951357"
+  integrity sha512-cKcyuuzIv0YUZ4l9WORflVNuhISPAqQShOAsxwFyYuJoCA7HlLmHm7XnvO6hfAGmGpDNRhJHoBX8hG49Cb2xZQ==
   dependencies:
     "@babel/runtime" "^7.14.5"
     html-parse-stringify "^3.0.1"
@@ -12892,7 +12892,12 @@ typedarray-to-buffer@^3.1.5:
   dependencies:
     is-typedarray "^1.0.0"
 
-typescript@^4.6.4, typescript@^4.7.4:
+typescript@^4.6.4:
+  version "4.8.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.8.2.tgz#e3b33d5ccfb5914e4eeab6699cf208adee3fd790"
+  integrity sha512-C0I1UsrrDHo2fYI5oaCGbSejwX4ch+9Y5jTQELvovfmFkK3HHSZJB8MSJcWLmCUBzQBchCrZ9rMRV6GuNrvGtw==
+
+typescript@^4.7.4:
   version "4.7.4"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.7.4.tgz#1a88596d1cf47d59507a1bcdfb5b9dfe4d488235"
   integrity sha512-C0WQT0gezHuw6AdY1M2jxUO83Rjf0HP7Sk1DtXj6j1EwkQNZrHAg2XPWlq62oqEhYvONq5pkC2Y9oPljWToLmQ==
