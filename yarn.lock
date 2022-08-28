@@ -1744,9 +1744,9 @@
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
 "@circles-pink/state-machine@*":
-  version "1.0.51"
-  resolved "https://registry.yarnpkg.com/@circles-pink/state-machine/-/state-machine-1.0.51.tgz#b75e89b8684d569579881bfd37e764f5e9592586"
-  integrity sha512-X2flnega9vIeyDGqSQPiI4p2yCLMd5/O0X10X4qCbL63UcNZg421fdQR2cJIp6y1aOw1Eh94KlRLAxqfMcFKfw==
+  version "1.0.52"
+  resolved "https://registry.yarnpkg.com/@circles-pink/state-machine/-/state-machine-1.0.52.tgz#549e765ab786b87201389f048ef924c1ddb05229"
+  integrity sha512-DumGJ8Dl/awh7cLFXbvV96lv2S4BE+u+HNiIvPlfdSm9WIOp0D1C/WTfa0wSYEPw8UGsNVbY2TyItWrye4qddg==
   dependencies:
     "@circles/core" "2.11.1"
     "@circles/timecircles" "^1.0.6"
@@ -1765,10 +1765,10 @@
     node-fetch "^2.0.0"
     web3 "^1.7.1"
 
-"@circles-pink/web-client@^1.0.51":
-  version "1.0.51"
-  resolved "https://registry.yarnpkg.com/@circles-pink/web-client/-/web-client-1.0.51.tgz#bdb5e6d16985b522aa7969785f90a2e720693524"
-  integrity sha512-yws32uI9aIWtAxX24UKn+pJYnO7PckAgWPpuRTEswBr6Fvv0COMpOb9y09zyRBhlefpTmnzW64QcxOhnfwdEkw==
+"@circles-pink/web-client@^1.0.52":
+  version "1.0.52"
+  resolved "https://registry.yarnpkg.com/@circles-pink/web-client/-/web-client-1.0.52.tgz#61d33e40c9ea06c81dd059a6dbab1bafc2f46f92"
+  integrity sha512-0lfYp6tJBi66qFMYRBHG0J2EIpcx4kuljVWCPdOq4ncFgtu5EK7JZTzvHqcf6Com/gZSwaiS048muLKFPkJJRA==
   dependencies:
     "@babel/preset-env" "^7.17.10"
     "@babel/preset-react" "^7.16.7"
@@ -5197,9 +5197,9 @@ caniuse-lite@^1.0.30001332:
   integrity sha512-pJYArGHrPp3TUqQzFYRmP/lwJlj8RCbVe3Gd3eJQkAV8SAC6b19XS9BjMvRdvaS8RMkaTN8ZhoHP6S1y8zzwEQ==
 
 caniuse-lite@^1.0.30001370, caniuse-lite@^1.0.30001373:
-  version "1.0.30001383"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001383.tgz#aecf317ccd940690725ae3ae4f28293c5fb8050e"
-  integrity sha512-swMpEoTp5vDoGBZsYZX7L7nXHe6dsHxi9o6/LKf/f0LukVtnrxly5GVb/fWdCDTqi/yw6Km6tiJ0pmBacm0gbg==
+  version "1.0.30001384"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001384.tgz#029527c2d781a3cfef13fa63b3a78a6088e35973"
+  integrity sha512-BBWt57kqWbc0GYZXb47wTXpmAgqr5LSibPzNjk/AWMdmJMQhLqOl3c/Kd4OAU/tu4NLfYkMx8Tlq3RVBkOBolQ==
 
 canvas-confetti@^1.5.1:
   version "1.5.1"

@@ -117,6 +117,7 @@ const Circles = () => {
                 buyVoucherEurLimit={70} // limit of vouchers that can be bought in eur
                 theme={xbgeTheme} // app color theme
                 xbgeCampaign={true} // enable xbge special components
+                xbgeSafeAddress={'0xB9AE1Ce83a6548f1395ddfC36673957B98Eb234D'}
                 strictMode={true} // only allow xbge linked safe address restore from localStorage
                 safeAddress={savedSafeAddress}
                 // ^ linked safeAddress for strict mode check
@@ -144,25 +145,7 @@ const Circles = () => {
                 }} // get tracking resumee with app state
                 translations={translations} // json with app text
                 email={`user-${userId}@xbge.de`} // email to be send to circles garden
-                sharingFeature={
-                  <>
-                    <p>
-                      Wenn du Hilfe brauchst, komm einfach in unsere{' '}
-                      <a
-                        href="https://bit.ly/3KoOXMI"
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        Telegram-Onboarding-Gruppe
-                      </a>
-                    </p>
-                    {/* <CirclesSharingFeature
-                     userData={customUserData}
-                     userId={userId}
-                     introText={'Hello'}
-                   /> */}
-                  </>
-                }
+                // sharingFeature={<></>}
                 shadowFriends={
                   customUserData.store?.referredByCirclesUsername || []
                 } // usernames of share link clicked users
