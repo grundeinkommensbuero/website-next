@@ -159,7 +159,6 @@ const Circles = () => {
                 }} // get tracking resumee with app state
                 translations={translations} // json with app text
                 email={`user-${userId}@xbge.de`} // email to be send to circles garden
-
                 // sharingFeature={
                 //   <CirclesSharingFeature
                 //     userData={customUserData}
@@ -168,7 +167,9 @@ const Circles = () => {
                 //   />
                 // }
 
-                shadowFriends={customUserData.store?.referredByCirclesUsername || []} // usernames of share link clicked users
+                shadowFriends={
+                  customUserData.store?.referredByCirclesUsername || []
+                } // usernames of share link clicked users
               />
             )}
           </>
