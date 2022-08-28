@@ -144,14 +144,25 @@ const Circles = () => {
                 }} // get tracking resumee with app state
                 translations={translations} // json with app text
                 email={`user-${userId}@xbge.de`} // email to be send to circles garden
-                // sharingFeature={
-                //   <CirclesSharingFeature
-                //     userData={customUserData}
-                //     userId={userId}
-                //     introText={'Hello'}
-                //   />
-                // }
-
+                sharingFeature={
+                  <>
+                    <p>
+                      Wenn du Hilfe brauchst, komm einfach in unsere{' '}
+                      <a
+                        href="https://bit.ly/3KoOXMI"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        Telegram-Onboarding-Gruppe
+                      </a>
+                    </p>
+                    {/* <CirclesSharingFeature
+                     userData={customUserData}
+                     userId={userId}
+                     introText={'Hello'}
+                   /> */}
+                  </>
+                }
                 shadowFriends={
                   customUserData.store?.referredByCirclesUsername || []
                 } // usernames of share link clicked users
