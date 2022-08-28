@@ -111,13 +111,6 @@ const Circles = () => {
                 eingeloggt.{' '}
               </p>
             )}
-            {/* {customUserData &&
-              (console.log('VoucherStoreEnabled App:', voucherShopEnabled),
-              console.log('SafeAddress App:', savedSafeAddress),
-              console.log(
-                'API Resumee App:',
-                customUserData?.store?.circlesResumee
-              ))} */}
             {customUserData && (
               <CirclesPink
                 lang="de" // app language
@@ -133,15 +126,9 @@ const Circles = () => {
                     circlesResumee?: CirclesResumee
                   ) => CirclesResumee
                 ) => {
-                  console.log(
-                    'circlesResumee from Xbge:',
-                    JSON.parse(JSON.stringify(resumee))
-                  );
                   const circlesResumee = updateResumee(
                     JSON.parse(JSON.stringify(resumee))
                   );
-                  console.log('circlesResumee from Pink:', circlesResumee);
-
                   if (circlesResumee) {
                     const safeAddress =
                       resumee?.safeAddress || circlesResumee.safeAddress;
@@ -152,8 +139,6 @@ const Circles = () => {
                       username,
                       safeAddress,
                     };
-                    console.log('Saving Resumee for:', username, safeAddress);
-                    console.log('### MERGED RESUMEE:', circlesResumee);
                     saveCirclesTracking(mergedResumee);
                   }
                 }} // get tracking resumee with app state
