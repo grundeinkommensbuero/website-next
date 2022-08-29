@@ -85,11 +85,11 @@ export const CirclesSharingFeature = ({
           <div className={s.sharePreviewElement}>
             <Image
               src={
-                'https://directus.volksentscheid-grundeinkommen.de/assets/c094224b-a5d0-4911-899d-67019e7b2a0a'
+                'https://directus.volksentscheid-grundeinkommen.de/assets/134b420a-f6a6-4f9f-b65c-d3b53010d7ac'
               }
               alt={'Teilen Vorschau'}
-              width={440}
-              height={337}
+              width={803}
+              height={549}
             />
           </div>
         </div>

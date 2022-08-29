@@ -53,27 +53,26 @@ export const ShareButtonRow = ({ userData, userId }: ShareButtonRowProps) => {
     }
   };
 
-  const title = `Tada! @CirclesUBI & @expeditionbge gönnen Grundeinkommen. Sobald mich 3 Menschen verifizieren, bekomm ich jeden Monat Circles im Wert von 72 €. Bitte verifiziert mich auf ${constructShareURL()}!
-  
+  const title = `Tada! @CirclesUBI & @expeditionbge gönnen Grundeinkommen. Sobald mich 3 Menschen verifizieren, bekomm ich jeden Monat Circles im Wert von 72 €. Bitte verifiziert mich!
   Wenn ihr noch keinen Circles-Account habt, könnt ihr euch dort einen anlegen.
 `;
   const subject =
     'Bitte bestätige mich bei Circles – und probiere mit mir schon heute Grundeinkommen aus.';
   const body = mailBody(constructShareURL());
-  const quote = `Oh là là! Circles & Expedition Grundeinkommen gönnen uns ein kleines Grundeinkommen. Ich hab mich gerade angemeldet. Sobald mich 3 Menschen verifizieren, bekomme ich jeden Monat ein Grundeinkommen in der Kryptowährung Circles im Wert von 72 € – ein Leben lang. Wenn du schon einen Account bei Circles hast - könntest du meinen Account dann bitte verifizieren? Dann fängt mein Grundeinkommen an zu fließen :) Bitte verifiziere meinen Account, dann fängt mein Grundeinkommen an zu fließen. Wenn du noch keinen Account hast, kannst du dir natürlich auch einen für dich anlegen. Beides geht auf ${constructShareURL()}`;
-  const messengerText = `Hi!
- 
-  Ich hab mir gerade einen Account bei Circles geholt. Das ist eine neue Grundeinkommens-Kryptowährung. 
-   
-  Sobald mich 3 Menschen verifizieren, bekomme ich jeden Monat Circles im Wert von 72 € – ein Leben lang. 
-   
-  Wenn du schon einen Account bei Circles hast - könntest du meinen Account dann bitte verifizieren?
-   
-  Dann fängt mein Grundeinkommen an zu fließen :)
-   
-  Wenn du noch keinen Account hast, kannst du dir natürlich auch einen für dich anlegen.
-   
-  Beides geht auf ${constructShareURL()}
+  const quote = `Oh là là! Circles & Expedition Grundeinkommen gönnen uns ein kleines Grundeinkommen. Ich hab mich gerade angemeldet. 
+  
+Sobald mich 3 Menschen verifizieren, bekomme ich jeden Monat ein Grundeinkommen in der Kryptowährung Circles im Wert von 72 € – ein Leben lang.
+
+Wenn du schon einen Account bei Circles hast - könntest du meinen Account dann bitte verifizieren? Dann fängt mein Grundeinkommen an zu fließen :) Bitte verifiziere meinen Account, dann fängt mein Grundeinkommen an zu fließen. 
+
+Wenn du noch keinen Account hast, kannst du dir natürlich auch einen für dich anlegen. Beides geht auf ${constructShareURL()}`;
+  const messengerText = `Hi! Ich hab mir gerade einen Account bei Circles geholt. Das ist eine neue Grundeinkommens-Kryptowährung.
+  
+  Sobald mich 3 Menschen verifizieren, bekomme ich jeden Monat Circles im Wert von 72 € – ein Leben lang.
+  
+  Wenn du schon einen Account bei Circles hast - könntest du meinen Account dann bitte verifizieren? Dann fängt mein Grundeinkommen an zu fließen :)
+  
+  Wenn du noch keinen Account hast, kannst du dir natürlich auch einen für dich anlegen. Beides geht auf ${constructShareURL()}
    
   Danke dir herzlich!
   `;
