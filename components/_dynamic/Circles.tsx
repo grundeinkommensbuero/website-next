@@ -92,6 +92,16 @@ const Circles = () => {
             Bitte gib deine E-Mail-Adresse an. Wenn du schon bei der Expedition
             angemeldet bist, nimm bitte deine Expeditions-Adresse.
           </p>
+          <p>
+            Wenn du Hilfe brauchst, komm in unsere{' '}
+            <a href="https://bit.ly/3KoOXMI" target="_blank" rel="noreferrer">
+              Onboarding-Gruppe auf Telegram
+            </a>{' '}
+            oder schreib und an{' '}
+            <a href="mailto:circles@expedition-grundeinkommen.de">
+              circles@expedition-grundeinkommen.de
+            </a>
+          </p>
         </>
       )}
       <SmallSignup
@@ -145,12 +155,18 @@ const Circles = () => {
                 }} // get tracking resumee with app state
                 translations={translations} // json with app text
                 email={`user-${userId}@xbge.de`} // email to be send to circles garden
-                // sharingFeature={<></>}
+                sharingFeature={
+                  <CirclesSharingFeature
+                    userData={customUserData}
+                    userId={userId}
+                  />
+                }
                 shadowFriends={
                   customUserData.store?.referredByCirclesUsername || []
                 } // usernames of share link clicked users
               />
             )}
+            <CirclesSharingFeature userData={customUserData} userId={userId} />
           </>
         </NoSsr>
       )}

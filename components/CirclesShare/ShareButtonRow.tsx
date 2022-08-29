@@ -29,13 +29,10 @@ export const ShareButtonRow = ({ userData, userId }: ShareButtonRowProps) => {
 
   const constructShareURL = () => {
     const baseUrl = 'https://volksentscheid-grundeinkommen.de/meine-circles';
-    const safeAddress = userData?.store?.circlesResumee?.safeAddress;
     const username = userData?.store?.circlesResumee?.username;
 
-    if (safeAddress) {
-      return `${baseUrl}?safeAddress=${safeAddress}${
-        username ? `&${username}` : ''
-      }`;
+    if (username) {
+      return `${baseUrl}?username=${username}`;
     } else {
       return baseUrl;
     }
