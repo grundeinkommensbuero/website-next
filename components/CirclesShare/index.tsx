@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import s from './style.module.scss';
 import { ShareButtonRow } from './ShareButtonRow';
 import { User } from '../../context/Authentication';
+import Image from 'next/image';
+import Head from 'next/head';
 
 export type Channel = {
   name: string;
@@ -12,24 +14,89 @@ export type Channel = {
 type CirclesSharingFeatureProps = {
   userData: User;
   userId: string;
-  introText?: string;
 };
 
 export const CirclesSharingFeature = ({
   userData,
   userId,
-  introText,
 }: CirclesSharingFeatureProps) => {
-  const [sharePreviewActive, setSharePreviewActive] = useState(false);
-  const [shareChannel, setShareChannel] = useState<Channel>();
-
   return (
-    <section className={s.municipalityShareContainer}>
-      <ShareButtonRow
-        setShareChannel={setShareChannel}
-        setSharePreviewActive={setSharePreviewActive}
-      />
-    </section>
+    <>
+      <Head>
+        <title key="title">{'Volksentscheid Grundeinkommen'}</title>
+        <meta
+          key="description"
+          name="description"
+          content={'Modellversuch zum Grundeinkommen jetzt!'}
+        />
+        <meta
+          key="og:title"
+          property="og:title"
+          content={'Grundeinkommen ausprobieren - mit Circles'}
+        />
+        <meta
+          key="og:description"
+          property="og:description"
+          content={'Modellversuch zum Grundeinkommen jetzt!'}
+        />
+      </Head>
+      <section className={s.shareContainer}>
+        <div className={s.previewCalloutContainer}>
+          <div className={s.previewElement}>
+            <h2>Wallet aktivieren</h2>
+            <p>
+              Um deine Wallet zu aktivieren und mit Circles bezahlen zu können,
+              musst du mindestens 3 Circles-User:innen finden, die dich in ihr
+              Vertrauensnetzwerk aufnehmen.
+            </p>{' '}
+            <p>
+              Dafür haben wir für dich Nachrichten vorbereitet, die du in deinen
+              Social Media Accounts teilen kannst. So findest du schnell die
+              Menschen, die dir vertrauen.
+            </p>
+            <p>
+              {' '}
+              Du kannst auch bei einer{' '}
+              <a
+                href="https://volksentscheid-grundeinkommen.de#karte"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Sammelaktion
+              </a>{' '}
+              vorbeikommen - dort sind immer Menschen von der Expedition vor
+              Ort, die deinen Account verifizieren. Dazu brauchst du nur deinen
+              Usernamen.
+            </p>
+            <p>
+              {' '}
+              Oder du fragst in unserer{' '}
+              <a href="https://bit.ly/3KoOXMI" target="_blank" rel="noreferrer">
+                Telegram-Gruppe
+              </a>{' '}
+              nach Menschen, die dich freischalten.
+            </p>
+            <p>
+              {' '}
+              Sobald deine Wallet aktiviert ist, beginnt dein Grundeinkommen zu
+              fließen. Du erhältst dann jeden Tag 24 Circles, die du ausgeben
+              oder in Gutscheine eintauschen kannst.
+            </p>
+          </div>
+          <div className={s.sharePreviewElement}>
+            <Image
+              src={
+                'https://directus.volksentscheid-grundeinkommen.de/assets/c094224b-a5d0-4911-899d-67019e7b2a0a'
+              }
+              alt={'Teilen Vorschau'}
+              width={440}
+              height={337}
+            />
+          </div>
+        </div>
+        <ShareButtonRow userData={userData} userId={userId} />
+      </section>
+    </>
   );
 };
 

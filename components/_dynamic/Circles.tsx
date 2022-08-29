@@ -104,12 +104,35 @@ const Circles = () => {
         <NoSsr>
           <>
             {customUserData && (
-              <p>
-                Hallo
-                {customUserData.username ? ` ${customUserData.username}` : ''}!
-                Du bist mit der E-Mail-Adresse {customUserData.email} bei uns
-                eingeloggt.{' '}
-              </p>
+              <>
+                <p>
+                  Hier kannst du dir eine Geldbörse in der
+                  Grundeinkommens-Kryptowährung Circles anlegen und deine
+                  Freund:innen freischalten. Sobald 3 Menschen deinen Account
+                  bestätigt haben, bekommst du Circles im Wert 72 € – ein Leben
+                  lang.
+                </p>
+                <p>
+                  Hallo
+                  {customUserData.username ? ` ${customUserData.username}` : ''}
+                  ! Du bist mit der E-Mail-Adresse {customUserData.email} bei
+                  uns eingeloggt.{' '}
+                </p>
+                <p>
+                  Wenn du Hilfe brauchst, komm in unsere{' '}
+                  <a
+                    href="https://bit.ly/3KoOXMI"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Onboarding-Gruppe auf Telegram
+                  </a>{' '}
+                  oder schreib und an{' '}
+                  <a href="mailto:circles@expedition-grundeinkommen.de">
+                    circles@expedition-grundeinkommen.de
+                  </a>
+                </p>
+              </>
             )}
             {customUserData && (
               <CirclesPink
@@ -145,7 +168,12 @@ const Circles = () => {
                 }} // get tracking resumee with app state
                 translations={translations} // json with app text
                 email={`user-${userId}@xbge.de`} // email to be send to circles garden
-                // sharingFeature={<></>}
+                sharingFeature={
+                  <CirclesSharingFeature
+                    userData={customUserData}
+                    userId={userId}
+                  />
+                }
                 shadowFriends={
                   customUserData.store?.referredByCirclesUsername || []
                 } // usernames of share link clicked users
