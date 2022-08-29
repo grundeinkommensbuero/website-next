@@ -520,7 +520,8 @@ const validate = (
     !values.nudgeBox &&
     !values.newsletterConsent
   ) {
-    errors.newsletterConsent = 'Bitte bestätige, dass du dabei sein willst';
+    errors.newsletterConsent =
+      'Bitte bestätige, dass du dich bei der Expedition anmelden willst.';
   }
 
   // If fields do not include municipality, we don't need to validate
