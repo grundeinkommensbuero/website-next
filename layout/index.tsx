@@ -89,6 +89,10 @@ export const Layout = ({
     return <>{children}</>;
   }
 
+  const circlesTitle = 'Probier das Grundeinkommen jetzt schon aus';
+  const circlesDescription =
+    'Lass dir ab sofort ein Grundeinkommen ausbezahlen - in der Kryptowährung Circles. Ab dem Zeitpunkt deiner Anmeldung erhältst du jeden Tag 24 neue Circles als Grundeinkommen – das entspricht 72 € im Monat.';
+
   return (
     <>
       <div
@@ -97,44 +101,72 @@ export const Layout = ({
         })}
       >
         <Head>
-          <title key="title">
-            {project?.siteTitle || 'Expedition Grundeinkommen'}
-          </title>
-          <meta
-            key="description"
-            name="description"
-            content={
-              project?.siteDescription ||
-              'Modellversuch zum Grundeinkommen jetzt!'
-            }
-          />
-          <meta
-            key="og:title"
-            property="og:title"
-            content={project?.siteTitle || 'Expedition Grundeinkommen'}
-          />
-          <meta
-            key="og:description"
-            property="og:description"
-            content={
-              project?.siteDescription ||
-              'Modellversuch zum Grundeinkommen jetzt!'
-            }
-          />
-          <meta
-            key="og:image"
-            property="og:image"
-            content={getRootAssetURL(
-              project?.ogimage || '57331286-2406-4f11-a523-dda6a2166c2e'
-            )}
-          />
+          {/* TODO: this is kinda hacky, we need to make og stuff editable in directus like
+          before in the gatsby project */}
+          {currentRoute.includes('meine-circles') ? (
+            <>
+              <title>{circlesTitle}</title>
+
+              <meta
+                key="og:image"
+                property="og:image"
+                content={
+                  'https://directus.volksentscheid-grundeinkommen.de/assets/d188a364-3e7c-4da2-b69d-98d024021350'
+                }
+              />
+              <meta
+                key="description"
+                name="description"
+                content={circlesDescription}
+              />
+              <meta
+                key="og:description"
+                property="og:description"
+                content={circlesDescription}
+              />
+              <meta key="og:title" property="og:title" content={circlesTitle} />
+            </>
+          ) : (
+            <>
+              <title key="title">
+                {project?.siteTitle || 'Expedition Grundeinkommen'}
+              </title>
+              <meta
+                key="description"
+                name="description"
+                content={
+                  project?.siteDescription ||
+                  'Modellversuch zum Grundeinkommen jetzt!'
+                }
+              />
+              <meta
+                key="og:title"
+                property="og:title"
+                content={project?.siteTitle || 'Expedition Grundeinkommen'}
+              />
+              <meta
+                key="og:description"
+                property="og:description"
+                content={
+                  project?.siteDescription ||
+                  'Modellversuch zum Grundeinkommen jetzt!'
+                }
+              />
+              <meta
+                key="og:image"
+                property="og:image"
+                content={getRootAssetURL(
+                  project?.ogimage || '57331286-2406-4f11-a523-dda6a2166c2e'
+                )}
+              />
+            </>
+          )}
           {IS_BERLIN_PROJECT ? (
             <link key="favicon" rel="icon" href="/favicon-berlin.ico" />
           ) : (
             <link key="favicon" rel="icon" href="/favicon.ico" />
           )}
         </Head>
-
         <Header mainMenu={mainMenu} currentRoute={currentRoute} />
         {children}
         <Footer footerMenu={footerMenu} />

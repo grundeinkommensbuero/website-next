@@ -86,30 +86,8 @@ const Circles = () => {
     return <LoadingAnimation />;
   }
 
-  const title = 'Probier das Grundeinkommen jetzt schon aus';
-  const description =
-    'Lass dir ab sofort ein Grundeinkommen ausbezahlen - in der Kryptowährung Circles. Ab dem Zeitpunkt deiner Anmeldung erhältst du jeden Tag 24 neue Circles als Grundeinkommen – das entspricht 72 € im Monat.';
-
   return (
     <>
-      <Head>
-        <title>{title}</title>
-
-        <meta
-          key="og:image"
-          property="og:image"
-          content={
-            'https://directus.volksentscheid-grundeinkommen.de/assets/d188a364-3e7c-4da2-b69d-98d024021350'
-          }
-        />
-        <meta key="description" name="description" content={description} />
-        <meta
-          key="og:description"
-          property="og:description"
-          content={description}
-        />
-        <meta key="og:title" property="og:title" content={title} />
-      </Head>
       {!isAuthenticated && (
         <>
           <p>
