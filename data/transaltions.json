@@ -145,8 +145,8 @@
         "voucherShop": {
           "shopTitle": "Circles einlösen",
           "buyTitle": "Gutscheine kaufen:",
-          "buyDescription": "Bis zu einem Betrag von {{limit}} kannst du Gutscheine für Circles kaufen. Davon hast du bisher {{amount}}€ ausgegeben.",
-          "buyLimitReached": "Du hast das Limit von {{limit}} erreicht und kannst derzeit keine Gutscheine mehr kaufen.",
+          "buyDescription": "Wenn du 10 Unterschriften gesammelt hast, kannst du bis zu einem Betrag von {{limit}} Gutscheine für Circles kaufen. Davon hast du bisher {{amount}}€ ausgegeben. Wenn du mehrfach Unterschriften abgibst, schalten wir dich bis zu 5 Mal für 35 € frei. Bitte hab dafür etwas Geduld, da wir gerade sehr mit dem Sammel-Endspurt beschäftigt sind.",
+          "buyLimitReached": "Du hast das Limit von {{limit}} erreicht und kannst derzeit keine Gutscheine mehr kaufen. Wenn du mehrfach Unterschriften abgibst, schalten wir dich bis zu 5 Mal für 35 € frei. Bitte hab dafür etwas Geduld, da wir gerade sehr mit dem Sammel-Endspurt beschäftigt sind.",
           "buyLimitReachedHint": "Limit erreicht",
           "buyNoVouchers": "Im Moment gibt es keine Gutscheine, versuche es später nochmal!",
           "listDescription": "Deine Gutscheine:",
