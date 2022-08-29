@@ -153,7 +153,7 @@ const Circles = () => {
                   >
                     Onboarding-Gruppe auf Telegram
                   </a>{' '}
-                  oder schreib und an{' '}
+                  oder schreib uns an{' '}
                   <a href="mailto:circles@expedition-grundeinkommen.de">
                     circles@expedition-grundeinkommen.de
                   </a>
