@@ -179,7 +179,6 @@ const Circles = () => {
                 } // usernames of share link clicked users
               />
             )}
-            <CirclesSharingFeature userData={customUserData} userId={userId} />
           </>
         </NoSsr>
       )}
