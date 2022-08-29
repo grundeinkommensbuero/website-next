@@ -43,7 +43,6 @@ export const CirclesSharingFeature = ({
       <section className={s.shareContainer}>
         <div className={s.previewCalloutContainer}>
           <div className={s.previewElement}>
-            <h2>Wallet aktivieren</h2>
             <p>
               Um deine Wallet zu aktivieren und mit Circles bezahlen zu können,
               musst du mindestens 3 Circles-User:innen finden, die dich in ihr
