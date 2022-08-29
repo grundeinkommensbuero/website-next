@@ -65,8 +65,7 @@ Sobald mich 3 Menschen verifizieren, bekomme ich jeden Monat ein Grundeinkommen 
 Wenn du schon einen Account bei Circles hast - könntest du meinen Account dann bitte verifizieren? Dann fängt mein Grundeinkommen an zu fließen :) Bitte verifiziere meinen Account, dann fängt mein Grundeinkommen an zu fließen. 
 
 Wenn du noch keinen Account hast, kannst du dir natürlich auch einen für dich anlegen. Beides geht auf ${constructShareURL()}`;
-  const messengerText = `Hi!\n\nIch hab mir gerade einen Account bei Circles geholt. Das ist eine neue Grundeinkommens-Kryptowährung.\n\nSobald mich 3 Menschen verifizieren, bekomme ich jeden Monat Circles im Wert von 72 € – ein Leben lang.\n\nWenn du schon einen Account bei Circles hast - könntest du meinen Account dann bitte verifizieren? Dann fängt mein Grundeinkommen an zu fließen :)\n\nWenn du noch keinen Account hast, kannst du dir natürlich auch einen für dich anlegen.\n\nDanke dir herzlich!
-  `;
+  const messengerText = `Hi!\n\nIch hab mir gerade einen Account bei Circles geholt. Das ist eine neue Grundeinkommens-Kryptowährung.\n\nSobald mich 3 Menschen verifizieren, bekomme ich jeden Monat Circles im Wert von 72 € – ein Leben lang.\n\nWenn du schon einen Account bei Circles hast - könntest du meinen Account dann bitte verifizieren? Dann fängt mein Grundeinkommen an zu fließen :)\n\nWenn du noch keinen Account hast, kannst du dir natürlich auch einen für dich anlegen.\n\nDanke dir herzlich!\n`;
 
   return (
     <>
@@ -109,7 +108,7 @@ Wenn du noch keinen Account hast, kannst du dir natürlich auch einen für dich 
         </FacebookShareButton>
 
         <TelegramShareButton
-          title={`${messengerText}\n\n${constructShareURL()}`}
+          title={`${messengerText}${constructShareURL()}`}
           url={constructShareURL()}
           windowWidth={1200}
           windowHeight={1000}
