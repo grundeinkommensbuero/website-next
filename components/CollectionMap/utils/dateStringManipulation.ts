@@ -46,6 +46,13 @@ export const checkIfDateIsTomorrow = (date: string | Date) => {
   return false;
 };
 
+export const checkIfDateIsDayAfterTomorrow = (date: string | Date) => {
+  if (checkIfInRangeOfDaysX(date, 2)) {
+    return true;
+  }
+  return false;
+};
+
 export const checkIfInRangeOfDaysX = (dateStr: string | Date, num: number) => {
   const date = new Date(dateStr);
   const dateToCheck = new Date(

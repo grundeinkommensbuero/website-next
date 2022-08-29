@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { formatDate } from '../../../utils/date';
 import { getRootAssetURL } from '../../Util/getRootAssetURL';
 import Head from 'next/head';
+import Image from 'next/image';
 
 type BlogProps = {
   title: string;
@@ -84,11 +85,14 @@ export const PostFull = ({
       </Head>
       <div className={`overflow-hidden relative`}>
         <div>
-          <img
-            src={getRootAssetURL(assetId)}
-            alt="Bild zum Blogpost"
-            className={'object-cover h-128 w-full'}
-          />
+          <div className={s.imageContainer}>
+            <Image
+              src={getRootAssetURL(assetId)}
+              alt="Bild zum Blogpost"
+              className={'object-cover'}
+              layout="fill"
+            />
+          </div>
           <div className={classNames(s.blogPostHeader, 'h-128')}>
             <div className={classNames('sections', s.blogPostTitle)}>
               <div className={s.postTitleText}>

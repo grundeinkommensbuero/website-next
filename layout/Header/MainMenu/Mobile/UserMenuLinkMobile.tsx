@@ -46,7 +46,7 @@ export const UserMenuLinkMobile = ({
               user={customUserData}
               size="500"
             />
-            <span className="text-xl nowrap">{customUserData.username}</span>
+            <span className="nowrap">{customUserData.username}</span>
           </div>
           <ul className="mx-2">
             <li className="my-4">
@@ -86,7 +86,7 @@ export const UserMenuLinkMobile = ({
           </ul>
         </>
       ) : (
-        <span className="text-xl nowrap ml-2">Lade...</span>
+        <span className="nowrap ml-2">Lade...</span>
       )}
     </>
   );

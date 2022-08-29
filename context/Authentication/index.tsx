@@ -94,7 +94,7 @@ export type User = {
   store?: {
     donationOnboardingReaction: [];
     circlesResumee?: CirclesResumee;
-    referredBySafeAddresses?: string[];
+    referredByCirclesUsername?: string[];
     voucherStoreEnabled?: boolean;
     clickedCirclesShare: {
       timestamp: string;

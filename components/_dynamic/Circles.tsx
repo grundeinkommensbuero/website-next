@@ -1,5 +1,5 @@
 // TS declaration file will follow soon
-//@ts-ignore
+// @ts-ignore
 import CirclesPink from '@circles-pink/web-client';
 import { useContext, useEffect, useState } from 'react';
 import AuthContext, { CirclesResumee } from '../../context/Authentication';
@@ -9,6 +9,7 @@ import { NoSsr } from '../Util/NoSsr';
 import querystring from 'query-string';
 import translations from '../../data/transaltions.json';
 import CirclesSharingFeature from '../CirclesShare';
+import { LoadingAnimation } from '../LoadingAnimation';
 
 const xbgeTheme = {
   baseColor: '#FB8298',
@@ -23,10 +24,25 @@ const xbgeTheme = {
 const Circles = () => {
   const { userId, isAuthenticated, customUserData, updateCustomUserData } =
     useContext(AuthContext);
+
   const [updateState, updateUserStore] = useUpdateUser();
-  const [resumee, setResumee] = useState<CirclesResumee | undefined>(
-    customUserData?.store?.circlesResumee
-  );
+
+  const [initPhase, setInitPhase] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      // To wait for the safeAddress this timeout is a workaround
+      setInitPhase(false);
+    }, 1000);
+  });
+
+  const resumee = customUserData?.store?.circlesResumee;
+  const voucherShopEnabled = !customUserData.store?.voucherStoreEnabled
+    ? false
+    : true;
+  const savedSafeAddress = !customUserData?.store?.circlesResumee?.safeAddress
+    ? null
+    : customUserData?.store?.circlesResumee?.safeAddress;
 
   const saveCirclesTracking = (circlesResumee: CirclesResumee) => {
     updateUserStore({
@@ -44,29 +60,29 @@ const Circles = () => {
   }, [updateState]);
 
   useEffect(() => {
-    setResumee(customUserData?.store?.circlesResumee);
-  }, [customUserData]);
-
-  useEffect(() => {
     // Only update user, if custom user data was loaded
     // so existing referred safe addresses are not overwritten
     if (isAuthenticated && customUserData.email) {
-      const { safeAddress } = querystring.parse(window.location.search);
+      const { username } = querystring.parse(window.location.search);
 
-      if (typeof safeAddress === 'string') {
-        let safeAddresses = customUserData.store?.referredBySafeAddresses || [];
+      if (typeof username === 'string') {
+        let usernames = customUserData.store?.referredByCirclesUsername || [];
 
-        safeAddresses.push(safeAddress);
+        usernames.push(username);
 
         updateUserStore({
           userId,
           store: {
-            referredBySafeAddresses: safeAddresses,
+            referredByCirclesUsername: usernames,
           },
         });
       }
     }
   }, [isAuthenticated, customUserData]);
+
+  if (initPhase) {
+    return <LoadingAnimation />;
+  }
 
   return (
     <>
@@ -95,38 +111,46 @@ const Circles = () => {
                 eingeloggt.{' '}
               </p>
             )}
-            <CirclesPink
-              lang="de" // app language
-              buyVoucherEurLimit={70} // limit of vouchers that can be bought in eur
-              theme={xbgeTheme} // app color theme
-              xbgeCampaign={true} // enable xbge special components
-              strictMode={false} // only allow xbge linked safe address restore from localStorage
-              safeAddress={customUserData?.store?.circlesResumee?.safeAddress}
-              // ^ linked safeAddress for strict mode check
-              voucherShopEnabled={
-                false // customUserData.store?.voucherStoreEnabled || false
-              } // enable voucher shop
-              onTrackingResumee={(
-                updateResumee: (
-                  circlesResumee?: CirclesResumee
-                ) => CirclesResumee
-              ) => {
-                const circlesResumee = updateResumee(resumee);
-                if (circlesResumee) {
-                  saveCirclesTracking(circlesResumee);
-                }
-              }} // get tracking resumee with app state
-              translations={translations} // json with app text
-              email={`user-${userId}@xbge.de`} // email to be send to circles garden
-              sharingFeature={
-                <CirclesSharingFeature
-                  userData={customUserData}
-                  userId={userId}
-                />
-              }
-
-              // shadowFriends={[]} // usernames of share link clicked users
-            />
+            {customUserData && (
+              <CirclesPink
+                lang="de" // app language
+                buyVoucherEurLimit={35} // limit of vouchers that can be bought in eur
+                theme={xbgeTheme} // app color theme
+                xbgeCampaign={true} // enable xbge special components
+                xbgeSafeAddress={'0xB9AE1Ce83a6548f1395ddfC36673957B98Eb234D'}
+                strictMode={true} // only allow xbge linked safe address restore from localStorage
+                safeAddress={savedSafeAddress}
+                // ^ linked safeAddress for strict mode check
+                voucherShopEnabled={voucherShopEnabled} // enable voucher shop
+                onTrackingResumee={(
+                  updateResumee: (
+                    circlesResumee?: CirclesResumee
+                  ) => CirclesResumee
+                ) => {
+                  const circlesResumee = updateResumee(resumee);
+                  if (circlesResumee) {
+                    const safeAddress =
+                      circlesResumee.safeAddress ||
+                      resumee?.safeAddress ||
+                      null;
+                    const username =
+                      circlesResumee.username || resumee?.username || null;
+                    const mergedResumee = {
+                      ...circlesResumee,
+                      username,
+                      safeAddress,
+                    };
+                    saveCirclesTracking(mergedResumee);
+                  }
+                }} // get tracking resumee with app state
+                translations={translations} // json with app text
+                email={`user-${userId}@xbge.de`} // email to be send to circles garden
+                // sharingFeature={<></>}
+                shadowFriends={
+                  customUserData.store?.referredByCirclesUsername || []
+                } // usernames of share link clicked users
+              />
+            )}
           </>
         </NoSsr>
       )}

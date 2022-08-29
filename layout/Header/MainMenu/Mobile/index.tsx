@@ -4,6 +4,7 @@ import { MenuLink } from '../MenuLink';
 import { UserMenuLinkMobile } from './UserMenuLinkMobile';
 import cN from 'classnames';
 import s from '../style.module.scss';
+import { getLoginNextPageParam } from '../Desktop';
 
 type MainMenuMobileProps = {
   mainMenu: Menu;
@@ -25,7 +26,7 @@ export const MainMenuMobile = ({
           if ((entry as Dropdown).entries)
             return (
               <li key={index}>
-                <span className="my-2 text-xl nowrap">{entry.label}</span>
+                <span className="my-2 nowrap">{entry.label}</span>
                 <div className="mx-4">
                   <ul>
                     {(entry as Dropdown).entries.map(entry => {
@@ -57,7 +58,11 @@ export const MainMenuMobile = ({
         })}
         <li>
           <UserMenuLinkMobile
-            entry={{ id: 'login', slug: 'login', label: 'Einloggen' }}
+            entry={{
+              id: 'login',
+              slug: `login${getLoginNextPageParam(currentRoute)}`,
+              label: 'Einloggen',
+            }}
             currentRoute={currentRoute}
             extraCallback={closeMenu}
           />

@@ -5,7 +5,7 @@ import { InlineLinkButton } from '../Forms/Button';
 import s from './style.module.scss';
 import dynamic from 'next/dynamic';
 import { List as Loader } from 'react-content-loader';
-import { useUserMunicipalityState } from '../../hooks/Municipality/UserMunicipalityState';
+// import { useUserMunicipalityState } from '../../hooks/Municipality/UserMunicipalityState';
 
 const Ticker = dynamic(() => import('./Ticker'), {
   ssr: true,
@@ -25,12 +25,13 @@ export const TickerToSignup = ({
   };
 }) => {
   const { municipality } = useContext(MunicipalityContext);
-  const userMunicipalityState = useUserMunicipalityState();
+  // I deactivated this behaviour for now until it's clear
+  // const userMunicipalityState = useUserMunicipalityState();
 
-  // Don't render this component if user has signed up for this municipality
-  if (userMunicipalityState === 'loggedInThisMunicipalitySignup') {
-    return null;
-  }
+  // // Don't render this component if user has signed up for this municipality
+  // if (userMunicipalityState === 'loggedInThisMunicipalitySignup') {
+  //   return null;
+  // }
 
   const tickerDescription: string = tickerDescriptionObject?.tickerDescription;
 
