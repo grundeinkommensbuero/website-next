@@ -103,7 +103,7 @@ export const Layout = ({
         <Head>
           {/* TODO: this is kinda hacky, we need to make og stuff editable in directus like
           before in the gatsby project */}
-          {currentRoute.includes('meine-circles') ? (
+          {router.asPath.includes('meine-circles') ? (
             <>
               <title>{circlesTitle}</title>
 
