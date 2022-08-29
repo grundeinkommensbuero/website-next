@@ -22,24 +22,6 @@ export const CirclesSharingFeature = ({
 }: CirclesSharingFeatureProps) => {
   return (
     <>
-      <Head>
-        <title key="title">{'Volksentscheid Grundeinkommen'}</title>
-        <meta
-          key="description"
-          name="description"
-          content={'Modellversuch zum Grundeinkommen jetzt!'}
-        />
-        <meta
-          key="og:title"
-          property="og:title"
-          content={'Grundeinkommen ausprobieren - mit Circles'}
-        />
-        <meta
-          key="og:description"
-          property="og:description"
-          content={'Modellversuch zum Grundeinkommen jetzt!'}
-        />
-      </Head>
       <section className={s.shareContainer}>
         <div className={s.previewCalloutContainer}>
           <div className={s.previewElement}>
