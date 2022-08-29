@@ -114,7 +114,7 @@ const Circles = () => {
             {customUserData && (
               <CirclesPink
                 lang="de" // app language
-                buyVoucherEurLimit={70} // limit of vouchers that can be bought in eur
+                buyVoucherEurLimit={35} // limit of vouchers that can be bought in eur
                 theme={xbgeTheme} // app color theme
                 xbgeCampaign={true} // enable xbge special components
                 xbgeSafeAddress={'0xB9AE1Ce83a6548f1395ddfC36673957B98Eb234D'}
