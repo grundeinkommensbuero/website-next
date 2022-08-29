@@ -35,34 +35,6 @@ export const CirclesSharingFeature = ({
               Social Media Accounts teilen kannst. So findest du schnell die
               Menschen, die dir vertrauen.
             </p>
-            <p>
-              {' '}
-              Du kannst auch bei einer{' '}
-              <a
-                href="https://volksentscheid-grundeinkommen.de#karte"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Sammelaktion
-              </a>{' '}
-              vorbeikommen - dort sind immer Menschen von der Expedition vor
-              Ort, die deinen Account verifizieren. Dazu brauchst du nur deinen
-              Usernamen.
-            </p>
-            <p>
-              {' '}
-              Oder du fragst in unserer{' '}
-              <a href="https://bit.ly/3KoOXMI" target="_blank" rel="noreferrer">
-                Telegram-Gruppe
-              </a>{' '}
-              nach Menschen, die dich freischalten.
-            </p>
-            <p>
-              {' '}
-              Sobald deine Wallet aktiviert ist, beginnt dein Grundeinkommen zu
-              fließen. Du erhältst dann jeden Tag 24 Circles, die du ausgeben
-              oder in Gutscheine eintauschen kannst.
-            </p>
           </div>
           <div className={s.sharePreviewElement}>
             <Image
@@ -76,6 +48,34 @@ export const CirclesSharingFeature = ({
           </div>
         </div>
         <ShareButtonRow userData={userData} userId={userId} />
+        <p>
+          {' '}
+          Du kannst auch bei einer{' '}
+          <a
+            href="https://volksentscheid-grundeinkommen.de#karte"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Sammelaktion
+          </a>{' '}
+          vorbeikommen - dort sind immer Menschen von der Expedition vor Ort,
+          die deinen Account verifizieren. Dazu brauchst du nur deinen
+          Usernamen.
+        </p>
+        <p>
+          {' '}
+          Oder du fragst in unserer{' '}
+          <a href="https://bit.ly/3KoOXMI" target="_blank" rel="noreferrer">
+            Telegram-Gruppe
+          </a>{' '}
+          nach Menschen, die dich freischalten.
+        </p>
+        <p>
+          {' '}
+          Sobald deine Wallet aktiviert ist, beginnt dein Grundeinkommen zu
+          fließen. Du erhältst dann jeden Tag 24 Circles, die du ausgeben oder
+          in Gutscheine eintauschen kannst.
+        </p>
       </section>
     </>
   );
