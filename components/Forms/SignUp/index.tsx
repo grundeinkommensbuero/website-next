@@ -128,6 +128,7 @@ type SignUpProps = {
   loginCodeInModal?: boolean;
   optionalNewsletterConsent?: boolean;
   hideIfAuthenticated?: boolean;
+  nudgeBoxText?: string;
 };
 
 const SignUp = ({
@@ -146,6 +147,7 @@ const SignUp = ({
   loginCodeInModal = false,
   optionalNewsletterConsent = false,
   hideIfAuthenticated = false,
+  nudgeBoxText,
 }: SignUpProps) => {
   const [signUpState, userExists, signUp, setSignUpState] = useSignUp();
   const [updateUserState, updateUser] = useUpdateUser();
@@ -367,7 +369,7 @@ const SignUp = ({
     },
     nudgeBox: {
       name: 'nudgeBox',
-      label: getNudgeBoxLabel(municipalityInForm),
+      label: nudgeBoxText || getNudgeBoxLabel(municipalityInForm),
       type: 'checkbox',
       component: Checkbox,
     },

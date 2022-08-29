@@ -97,8 +97,8 @@ const Circles = () => {
       <SmallSignup
         loginCodeInModal={false}
         showNewsletterConsent={true}
-        optionalNewsletterConsent={true}
         hideIfAuthenticated={true}
+        nudgeBoxText={'Ja, ich will mir eine Circles Wallet erstellen'}
       />
       {isAuthenticated && (
         <NoSsr>
