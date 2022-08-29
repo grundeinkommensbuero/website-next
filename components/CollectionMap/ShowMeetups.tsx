@@ -50,17 +50,17 @@ export const ShowMeetups = ({
       isIframe
   );
   const [showCollectionEvents, setShowCollectionEvents] = useState(
-    router.asPath.includes('termine') || router.asPath === '/' || isIframe
+    router.asPath.includes('termine') || router.pathname === '/' || isIframe
   );
   const [showStorages, setShowStorages] = useState(
     router.asPath.includes('material') || isIframe
   );
 
   // Day filters
-  const [filterToday, setFilterToday] = useState(router.asPath === '/');
-  const [filterTomorrow, setFilterTomorrow] = useState(router.asPath === '/');
+  const [filterToday, setFilterToday] = useState(router.pathname === '/');
+  const [filterTomorrow, setFilterTomorrow] = useState(router.pathname === '/');
   const [filterDayAfterTomorrow, setFilterDayAfterTomorrow] = useState(
-    router.asPath === '/'
+    router.pathname === '/'
   );
 
   // Time filters
@@ -291,7 +291,7 @@ export const ShowMeetups = ({
       />
       {(isBerlin || isHamburg || isDemocracy || isClimate) && (
         <div>
-          {!isIframe && router.asPath !== '/' && (
+          {!isIframe && router.pathname !== '/' && (
             <>
               {/* Jump to anchor */}
               <div className={s.jumpToAnchorWrapper}>
@@ -342,7 +342,7 @@ export const ShowMeetups = ({
               </section>
             </>
           )}
-          {!isIframe && router.asPath !== '/' && (
+          {!isIframe && router.pathname !== '/' && (
             <>
               {/* Jump to anchor */}
               <div className={s.jumpToAnchorWrapper}>
@@ -353,7 +353,7 @@ export const ShowMeetups = ({
             </>
           )}
 
-          {router.asPath === '/' && (
+          {router.pathname === '/' && (
             <CTALink to="/termine" className="mt-8">
               Weitere Events
             </CTALink>

@@ -78,17 +78,16 @@
         "fundMySafeManually": "Ich weiß was ich tue und möchte meinen Safe selbst funden.",
         "xbgeSpecial": {
           "myWalletTitle": "Meine Circles-Wallet",
-
+          "youWillGetCircles": "",
           "welcomeUser": "Willkommen @{{user}}! Deine Wallet wurde erfolgreich angelegt!",
           "welcomeGeneral": "Damit du dein Grundeinkommen bekommen kannst, muss deine Wallet aktiviert werden.",
-          "howToActivateWallet": "Um deine Wallet zu aktivieren und mit Circles bezahlen zu können, musst du mindestens 3 Circles-User:innen finden, die dich in ihr Vertrauensnetzwerk aufnehmen.",
-          "howToGetTrusts": "Du kannst auch bei einer {{collectionAction}} vorbeikommen - dort sind immer Menschen von der Expedition vor Ort, die deinen Account verifizieren. Dazu brauchst du nur deinen Usernamen.",
-          "collectSignaturesForVouchers": "Im Endspurt des Volksentscheid Grundeinkommen tauschen wir deine Circles in Einkaufsgutscheine um. Was du dafür tun musst? Unterschriften sammeln! Für 10 gesammelte Unterschriften kannst du einen Gutschein im Wert von 33 € bekommen. Und das bis zu 5 Mal, also bis zu 5 x 33 € bei 50 Unterschriften.",
-          "youWillGetCircles": "Sobald deine Wallet aktiviert ist, beginnt dein Grundeinkommen zu fließen. Du erhältst dann jeden Tag 24 Circles, die du ausgeben oder in Gutscheine eintauschen kannst. Hier kannst du sehen, wie viele Menschen dir schon vertrauen.",
-          "collectionAction": "Sammelaktion",
-          "collectionActionLink": "https://www.volksentscheid-grundeinkommen.de/",
-          "getHelp": "Wenn du Hilfe brauchst, komm einfach in unsere {{telegramOnboardingGroup}}.",
-          "telegramOnboardingGroup": "Telegram-Onboarding-Gruppe",
+          "howToActivateWallet": "",
+          "howToGetTrusts": "Hier kannst du sehen, wie viele Menschen dir schon vertrauen. Teile deine Willkommensnachricht auf deinen {{collectionAction}}, um mehr Menschen zu finden, die deinen Account bestätigen.",
+          "collectSignaturesForVouchers": "",
+          "collectionAction": "Social-Media-Kanälen",
+          "collectionActionLink": "#teilen",
+          "getHelp": "Wenn du nach 2 Tagen noch nicht genügend Menschen gefunden hast, kannst du dich in unserer {{telegramOnboardingGroup}} melden, um freigeschaltet zu werden.",
+          "telegramOnboardingGroup": "Support-Gruppe",
           "telegramOnboardingGroupLink": "https://bit.ly/3KoOXMI"
         }
       },
@@ -145,8 +144,8 @@
         "voucherShop": {
           "shopTitle": "Circles einlösen",
           "buyTitle": "Gutscheine kaufen:",
-          "buyDescription": "Bis zu einem Betrag von {{limit}} kannst du Gutscheine für Circles kaufen. Davon hast du bisher {{amount}}€ ausgegeben.",
-          "buyLimitReached": "Du hast das Limit von {{limit}} erreicht und kannst derzeit keine Gutscheine mehr kaufen.",
+          "buyDescription": "Wenn du 10 Unterschriften gesammelt hast, kannst du bis zu einem Betrag von {{limit}} Gutscheine für Circles kaufen. Davon hast du bisher {{amount}}€ ausgegeben. Wenn du mehrfach Unterschriften abgibst, schalten wir dich bis zu 5 Mal für 35 € frei. Bitte hab dafür etwas Geduld, da wir gerade sehr mit dem Sammel-Endspurt beschäftigt sind.",
+          "buyLimitReached": "Du hast das Limit von {{limit}} erreicht und kannst derzeit keine Gutscheine mehr kaufen. Wenn du mehrfach Unterschriften abgibst, schalten wir dich bis zu 5 Mal für 35 € frei. Bitte hab dafür etwas Geduld, da wir gerade sehr mit dem Sammel-Endspurt beschäftigt sind.",
           "buyLimitReachedHint": "Limit erreicht",
           "buyNoVouchers": "Im Moment gibt es keine Gutscheine, versuche es später nochmal!",
           "listDescription": "Deine Gutscheine:",

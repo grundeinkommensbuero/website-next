@@ -11,6 +11,7 @@ export const SmallSignup = ({
   showNewsletterConsent = false,
   optionalNewsletterConsent = false,
   hideIfAuthenticated = false,
+  nudgeBoxText,
 }: {
   ags?: string;
   flag?: string;
@@ -18,6 +19,7 @@ export const SmallSignup = ({
   showNewsletterConsent?: boolean;
   optionalNewsletterConsent?: boolean;
   hideIfAuthenticated?: boolean;
+  nudgeBoxText?: string;
 }) => {
   if (!ags) {
     ags = stateToAgs.berlin;
@@ -48,7 +50,7 @@ export const SmallSignup = ({
   const fields: Fields[] = ['email'];
 
   if (showNewsletterConsent) {
-    fields.push('newsletterConsent');
+    fields.push('nudgeBox', 'newsletterConsent');
   }
 
   return (
@@ -63,6 +65,7 @@ export const SmallSignup = ({
       loginCodeInModal={loginCodeInModal}
       optionalNewsletterConsent={optionalNewsletterConsent}
       hideIfAuthenticated={hideIfAuthenticated}
+      nudgeBoxText={nudgeBoxText}
     />
   );
 };
