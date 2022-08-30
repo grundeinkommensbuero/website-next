@@ -57,9 +57,9 @@ export const ShowMeetups = ({
   );
 
   // Day filters
-  const [filterToday, setFilterToday] = useState();
-  const [filterTomorrow, setFilterTomorrow] = useState();
-  const [filterDayAfterTomorrow, setFilterDayAfterTomorrow] = useState();
+  const [filterToday, setFilterToday] = useState(false);
+  const [filterTomorrow, setFilterTomorrow] = useState(false);
+  const [filterDayAfterTomorrow, setFilterDayAfterTomorrow] = useState(false);
 
   // Time filters
   const [filterBefore12, setFilterBefore12] = useState(true);
