@@ -92,6 +92,8 @@ export const Layout = ({
   const circlesTitle = 'Probier das Grundeinkommen jetzt schon aus';
   const circlesDescription =
     'Lass dir ab sofort ein Grundeinkommen ausbezahlen - in der Kryptowährung Circles. Ab dem Zeitpunkt deiner Anmeldung erhältst du jeden Tag 24 neue Circles als Grundeinkommen – das entspricht 72 € im Monat.';
+  const circlesImage =
+    'https://directus.volksentscheid-grundeinkommen.de/assets/d188a364-3e7c-4da2-b69d-98d024021350';
 
   return (
     <>
@@ -107,13 +109,7 @@ export const Layout = ({
             <>
               <title>{circlesTitle}</title>
 
-              <meta
-                key="og:image"
-                property="og:image"
-                content={
-                  'https://directus.volksentscheid-grundeinkommen.de/assets/d188a364-3e7c-4da2-b69d-98d024021350'
-                }
-              />
+              <meta key="og:image" property="og:image" content={circlesImage} />
               <meta
                 key="description"
                 name="description"
@@ -125,6 +121,32 @@ export const Layout = ({
                 content={circlesDescription}
               />
               <meta key="og:title" property="og:title" content={circlesTitle} />
+
+              <meta
+                key="twitter:card"
+                name="twitter:card"
+                content="summary_large_image"
+              />
+              <meta
+                key="twitter:site"
+                name="twitter:site"
+                content="@exbeditionbge"
+              />
+              <meta
+                key="twitter:title"
+                name="twitter:title"
+                content={circlesTitle}
+              />
+              <meta
+                key="twitter:description"
+                name="twitter:description"
+                content={circlesDescription}
+              />
+              <meta
+                key="twitter:image"
+                name="twitter:image"
+                content={circlesImage}
+              />
             </>
           ) : (
             <>
