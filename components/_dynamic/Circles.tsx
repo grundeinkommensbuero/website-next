@@ -71,7 +71,7 @@ const Circles = () => {
         let usernames = customUserData.store?.referredByCirclesUsername || [];
 
         usernames.push(username);
-        const cleanedUsernames = [... new Set(usernames)];
+        const cleanedUsernames = [...new Set(usernames)];
 
         updateUserStore({
           userId,
