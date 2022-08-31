@@ -65,20 +65,37 @@ const Circles = () => {
     // Only update user, if custom user data was loaded
     // so existing referred safe addresses are not overwritten
     if (isAuthenticated && customUserData.email) {
+      let usernames = customUserData.store?.referredByCirclesUsername || [];
       const { username } = querystring.parse(window.location.search);
 
       if (typeof username === 'string') {
-        let usernames = customUserData.store?.referredByCirclesUsername || [];
+        if (!usernames.includes(username)) {
+          usernames.push(username);
+          const uniqueUsernames = [...new Set(usernames)];
 
-        usernames.push(username);
-        const cleanedUsernames = [...new Set(usernames)];
+          updateUserStore({
+            userId,
+            store: {
+              referredByCirclesUsername: uniqueUsernames,
+            },
+          });
+        }
+      }
 
-        updateUserStore({
-          userId,
-          store: {
-            referredByCirclesUsername: cleanedUsernames,
-          },
-        });
+      // If usernames were saved as duplicates du to a bug, clear them from store
+      // when authenticated user visits the page, without clicking a share link again.
+      // This can be removed in a week or so :)
+      if (usernames.length > 0) {
+        const uniqueUsernames = [...new Set(usernames)];
+        // If length from set is not the same, save unique values to db
+        if (uniqueUsernames.length !== usernames.length) {
+          updateUserStore({
+            userId,
+            store: {
+              referredByCirclesUsername: uniqueUsernames,
+            },
+          });
+        }
       }
     }
   }, [isAuthenticated, customUserData]);
@@ -174,10 +191,13 @@ const Circles = () => {
                 translations={translations} // json with app text
                 email={`user-${userId}@xbge.de`} // email to be send to circles garden
                 sharingFeature={
-                  <CirclesSharingFeature
-                    userData={customUserData}
-                    userId={userId}
-                  />
+                  customUserData?.store?.circlesResumee?.lastState.tag !==
+                  'Dashboard' ? (
+                    <CirclesSharingFeature
+                      userData={customUserData}
+                      userId={userId}
+                    />
+                  ) : undefined
                 }
                 shadowFriends={
                   customUserData.store?.referredByCirclesUsername || []
