@@ -114,8 +114,8 @@ const Circles = () => {
                   Hier kannst du dir eine Geldbörse in der
                   Grundeinkommens-Kryptowährung Circles anlegen und deine
                   Freund:innen freischalten. Sobald 3 Menschen deinen Account
-                  bestätigt haben, bekommst du Circles im Wert 72 € – ein Leben
-                  lang.
+                  bestätigt haben, bekommst du 720 Circles pro Monat ein Leben
+                  lang. Das enspricht heute einem Wert von 72 €.
                 </p>
                 <p>
                   Hallo
