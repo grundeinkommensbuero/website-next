@@ -146,6 +146,14 @@ const LazyMap = ({
         markers.forEach(marker => marker.remove());
 
         const markerArray: Marker[] = [];
+        // Sort locations, so the next events are added last, so they are on top
+        // if it is the same location
+        locations.sort((a, b) =>
+          a.startTime && b.startTime
+            ? new Date(b.startTime).getTime() - new Date(a.startTime).getTime()
+            : 0
+        );
+
         locations.forEach(meetup => {
           if (meetup.coordinates) {
             const element = document.createElement('div');
