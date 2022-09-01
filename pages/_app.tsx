@@ -20,7 +20,13 @@ function XbgeApp({ Component, pageProps, mainMenu, footerMenu }: XbgeAppProps) {
   return (
     <ProviderWrapper>
       <Toaster toastOptions={{ position: 'top-right' }} />
-      <Layout mainMenu={mainMenu} footerMenu={footerMenu}>
+      <Layout
+        mainMenu={mainMenu}
+        footerMenu={footerMenu}
+        title={pageProps.page.metaTitle}
+        description={pageProps.page.metaDescription}
+        ogImage={pageProps.page.ogImage}
+      >
         <Component {...pageProps} />
       </Layout>
       <NoSsr>

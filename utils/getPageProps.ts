@@ -23,6 +23,9 @@ export type Page = {
   heroTitle: string | null;
   heroSubTitle: string | null;
   heroImage: string | null;
+  metaTitle: string | null;
+  metaDescription: string | null;
+  ogImage: string | null;
   sections: Section[];
 };
 
@@ -34,6 +37,9 @@ type FetchedPage = {
   heroTitle: string | null;
   heroSubTitle: string | null;
   heroImage: string | null;
+  metaTitle: string | null;
+  metaDescription: string | null;
+  ogImage: string | null;
   sections: FetchedSectionData[];
 };
 
@@ -45,6 +51,9 @@ const pageFields = [
   'heroTitle',
   'heroSubTitle',
   'heroImage',
+  'metaTitle',
+  'metaDescription',
+  'ogImage',
 ];
 
 type FetchedSectionData = {
@@ -218,6 +227,9 @@ const updatePageStructure = (fetchedPage: FetchedPage): Page => {
     heroTitle: fetchedPage.heroTitle,
     heroSubTitle: fetchedPage.heroSubTitle,
     heroImage: fetchedPage.heroImage,
+    metaTitle: fetchedPage.metaTitle,
+    metaDescription: fetchedPage.metaDescription,
+    ogImage: fetchedPage.ogImage,
     sections: fetchedPage.sections
       .filter(
         s =>
