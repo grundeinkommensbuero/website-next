@@ -12,7 +12,7 @@ import { SectionWrapper } from './SectionWrapper';
 import { SectionsTextEditable } from './SectionsTextEditable';
 import { YoutubeEmbed } from '../Video/YoutubeEmbed';
 import { XbgeAppContext } from '../../context/App';
-import { CTAButton } from '../Forms/CTAButton';
+import { CTAButton, CTALink, CTALinkExternal } from '../Forms/CTAButton';
 import { useRouter } from 'next/router';
 import { FAQ } from '../FAQ';
 import CollectionMap, { MapConfig } from '../CollectionMap';
@@ -312,25 +312,16 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                               </CTAButton>
                             )}
                             {elementToRender.type === 'href' && (
-                              <CTAButton
-                                onClick={() =>
-                                  window.open(
-                                    elementToRender.href || '',
-                                    '_blank'
-                                  )
-                                }
+                              <CTALinkExternal
+                                href={elementToRender.href || ''}
                               >
                                 {elementToRender.buttonText}
-                              </CTAButton>
+                              </CTALinkExternal>
                             )}
                             {elementToRender.type === 'slug' && (
-                              <CTAButton
-                                onClick={() =>
-                                  router.push(elementToRender.slug || '')
-                                }
-                              >
+                              <CTALink to={elementToRender.slug || ''}>
                                 {elementToRender.buttonText}
-                              </CTAButton>
+                              </CTALink>
                             )}
                           </div>
                         </div>
