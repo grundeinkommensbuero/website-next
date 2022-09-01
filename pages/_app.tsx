@@ -17,16 +17,15 @@ TrackJS.install({
 });
 
 function XbgeApp({ Component, pageProps, mainMenu, footerMenu }: XbgeAppProps) {
-  console.log('page props', pageProps);
   return (
     <ProviderWrapper>
       <Toaster toastOptions={{ position: 'top-right' }} />
       <Layout
         mainMenu={mainMenu}
         footerMenu={footerMenu}
-        title={pageProps.page.metaTitle}
-        description={pageProps.page.metaDescription}
-        ogImage={pageProps.page.ogImage}
+        title={pageProps.page?.metaTitle}
+        description={pageProps.page?.metaDescription}
+        ogImage={pageProps.page?.ogImage}
       >
         <Component {...pageProps} />
       </Layout>
@@ -40,8 +39,6 @@ function XbgeApp({ Component, pageProps, mainMenu, footerMenu }: XbgeAppProps) {
 XbgeApp.getInitialProps = async (appContext: AppContext) => {
   const appProps = await App.getInitialProps(appContext);
   const menus = await getMenus();
-
-  console.log('app props', appProps);
 
   return {
     ...appProps,
