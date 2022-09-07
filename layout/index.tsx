@@ -14,6 +14,7 @@ import { useRouter } from 'next/router';
 import { jumpToHash } from '../utils/jumpToHash';
 import { LoadingAnimation } from '../components/LoadingAnimation';
 import Script from 'next/script';
+import { getAssetURL } from '../components/Util/getAssetURL';
 
 const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
 
@@ -32,6 +33,9 @@ type LayoutProps = {
   children: ReactElement;
   mainMenu: Menu;
   footerMenu: Menu;
+  title?: string;
+  description?: string;
+  ogImage?: string;
 };
 
 declare global {
@@ -44,6 +48,9 @@ export const Layout = ({
   children,
   mainMenu,
   footerMenu,
+  title,
+  description,
+  ogImage,
 }: LayoutProps): ReactElement => {
   const router = useRouter();
   const { currentRoute } = useContext(XbgeAppContext);
@@ -89,11 +96,16 @@ export const Layout = ({
     return <>{children}</>;
   }
 
-  const circlesTitle = 'Probier das Grundeinkommen jetzt schon aus';
-  const circlesDescription =
-    'Lass dir ab sofort ein Grundeinkommen ausbezahlen - in der Kryptowährung Circles. Ab dem Zeitpunkt deiner Anmeldung erhältst du jeden Tag 24 neue Circles als Grundeinkommen – das entspricht 72 € im Monat.';
-  const circlesImage =
-    'https://directus.volksentscheid-grundeinkommen.de/assets/d188a364-3e7c-4da2-b69d-98d024021350';
+  const metaDescription =
+    description ||
+    project?.siteDescription ||
+    'Modellversuch zum Grundeinkommen jetzt!';
+  const metaTitle = title || project?.siteTitle || 'Expedition Grundeinkommen';
+  const metaImage = ogImage
+    ? getAssetURL(ogImage)
+    : getRootAssetURL(
+        project?.ogimage || '57331286-2406-4f11-a523-dda6a2166c2e'
+      );
 
   return (
     <>
@@ -103,86 +115,52 @@ export const Layout = ({
         })}
       >
         <Head>
-          {/* TODO: this is kinda hacky, we need to make og stuff editable in directus like
-          before in the gatsby project */}
-          {router.asPath.includes('meine-circles') ? (
-            <>
-              <title>{circlesTitle}</title>
+          <>
+            <title key="title">
+              {`${title ? `${title} - ` : ''}${
+                project?.siteTitle || 'Expedition Grundeinkommen'
+              }`}
+            </title>
+            <meta
+              key="description"
+              name="description"
+              content={metaDescription}
+            />
+            <meta key="og:title" property="og:title" content={metaTitle} />
+            <meta
+              key="og:description"
+              property="og:description"
+              content={metaDescription}
+            />
+            <meta key="og:image" property="og:image" content={metaImage} />
 
-              <meta key="og:image" property="og:image" content={circlesImage} />
-              <meta
-                key="description"
-                name="description"
-                content={circlesDescription}
-              />
-              <meta
-                key="og:description"
-                property="og:description"
-                content={circlesDescription}
-              />
-              <meta key="og:title" property="og:title" content={circlesTitle} />
+            <meta
+              key="twitter:card"
+              name="twitter:card"
+              content="summary_large_image"
+            />
+            <meta
+              key="twitter:site"
+              name="twitter:site"
+              content="@exbeditionbge"
+            />
+            <meta
+              key="twitter:title"
+              name="twitter:title"
+              content={metaTitle}
+            />
+            <meta
+              key="twitter:description"
+              name="twitter:description"
+              content={metaDescription}
+            />
+            <meta
+              key="twitter:image"
+              name="twitter:image"
+              content={metaImage}
+            />
+          </>
 
-              <meta
-                key="twitter:card"
-                name="twitter:card"
-                content="summary_large_image"
-              />
-              <meta
-                key="twitter:site"
-                name="twitter:site"
-                content="@exbeditionbge"
-              />
-              <meta
-                key="twitter:title"
-                name="twitter:title"
-                content={circlesTitle}
-              />
-              <meta
-                key="twitter:description"
-                name="twitter:description"
-                content={circlesDescription}
-              />
-              <meta
-                key="twitter:image"
-                name="twitter:image"
-                content={circlesImage}
-              />
-            </>
-          ) : (
-            <>
-              <title key="title">
-                {project?.siteTitle || 'Expedition Grundeinkommen'}
-              </title>
-              <meta
-                key="description"
-                name="description"
-                content={
-                  project?.siteDescription ||
-                  'Modellversuch zum Grundeinkommen jetzt!'
-                }
-              />
-              <meta
-                key="og:title"
-                property="og:title"
-                content={project?.siteTitle || 'Expedition Grundeinkommen'}
-              />
-              <meta
-                key="og:description"
-                property="og:description"
-                content={
-                  project?.siteDescription ||
-                  'Modellversuch zum Grundeinkommen jetzt!'
-                }
-              />
-              <meta
-                key="og:image"
-                property="og:image"
-                content={getRootAssetURL(
-                  project?.ogimage || '57331286-2406-4f11-a523-dda6a2166c2e'
-                )}
-              />
-            </>
-          )}
           {IS_BERLIN_PROJECT ? (
             <link key="favicon" rel="icon" href="/favicon-berlin.ico" />
           ) : (

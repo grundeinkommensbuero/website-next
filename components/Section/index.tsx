@@ -110,6 +110,7 @@ export type SectionElementBase = {
   index: number;
   column: Column;
   groupWithPrevious: boolean;
+  alignTop?: boolean;
 };
 
 export type ColorScheme =
@@ -179,7 +180,7 @@ export const Section = ({ section }: SectionProps): ReactElement => {
         <>
           <div className={s.elementContainer}>
             {modifiedSection.render.map((element, index) => {
-              const { column } = element;
+              const { column, alignTop } = element;
 
               if (elementsToSkip.includes(index)) {
                 return null;
@@ -405,6 +406,7 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                 <div
                   key={index}
                   className={cN(s.element, {
+                    [s.centerVertically]: !alignTop,
                     [s.elementLeft]: column === 'left',
                     [s.elementRight]: column === 'right',
                     [s.elementLeftThird]: column === 'leftThird',

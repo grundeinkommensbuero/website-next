@@ -161,7 +161,10 @@
 .element {
   margin-bottom: 1rem;
   transition: all 0.25s ease-out;
-  align-self: center;
+
+  &.centerVertically {
+    align-self: center;
+  }
 }
 
 .elementLeft {
