@@ -48,7 +48,6 @@ export const ProfileOverview = ({
   const showPackageSection = false;
   const showSignatureScan = false;
 
-
   // Filter interactions to only use interactions which were created
   // as pledge package
   useEffect(() => {
@@ -139,7 +138,7 @@ export const ProfileOverview = ({
         </section>
       </Link>
 
-      {showPackageSection && (
+      {showSignatureScan && (
       <Link href={`/mensch/${userId}/unterschriften-eintragen`} passHref>
         <section
           className={cN(
