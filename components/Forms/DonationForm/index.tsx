@@ -528,6 +528,7 @@ const DonationForm = ({ onboardingNextPage }: DonationFormProps) => {
                     value={+initialValues.customAmount}
                   />
                   <Button
+                    type="submit"
                     name="submit"
                     onClick={() => setPaypalButtonClicked(true)}
                   >
@@ -580,6 +581,7 @@ const DonationForm = ({ onboardingNextPage }: DonationFormProps) => {
                     value={+initialValues.customAmount}
                   />
                   <Button
+                    type="submit"
                     name="submit"
                     tabIndex={0}
                     onClick={() => setPaypalButtonClicked(true)}
