@@ -12,7 +12,7 @@ import { SectionWrapper } from './SectionWrapper';
 import { SectionsTextEditable } from './SectionsTextEditable';
 import { YoutubeEmbed } from '../Video/YoutubeEmbed';
 import { XbgeAppContext } from '../../context/App';
-import { CTAButton } from '../Forms/CTAButton';
+import { CTAButton, CTALink, CTALinkExternal } from '../Forms/CTAButton';
 import { useRouter } from 'next/router';
 import { FAQ } from '../FAQ';
 import CollectionMap, { MapConfig } from '../CollectionMap';
@@ -110,6 +110,7 @@ export type SectionElementBase = {
   index: number;
   column: Column;
   groupWithPrevious: boolean;
+  alignTop?: boolean;
 };
 
 export type ColorScheme =
@@ -179,7 +180,7 @@ export const Section = ({ section }: SectionProps): ReactElement => {
         <>
           <div className={s.elementContainer}>
             {modifiedSection.render.map((element, index) => {
-              const { column } = element;
+              const { column, alignTop } = element;
 
               if (elementsToSkip.includes(index)) {
                 return null;
@@ -312,25 +313,16 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                               </CTAButton>
                             )}
                             {elementToRender.type === 'href' && (
-                              <CTAButton
-                                onClick={() =>
-                                  window.open(
-                                    elementToRender.href || '',
-                                    '_blank'
-                                  )
-                                }
+                              <CTALinkExternal
+                                href={elementToRender.href || ''}
                               >
                                 {elementToRender.buttonText}
-                              </CTAButton>
+                              </CTALinkExternal>
                             )}
                             {elementToRender.type === 'slug' && (
-                              <CTAButton
-                                onClick={() =>
-                                  router.push(elementToRender.slug || '')
-                                }
-                              >
+                              <CTALink to={elementToRender.slug || ''}>
                                 {elementToRender.buttonText}
-                              </CTAButton>
+                              </CTALink>
                             )}
                           </div>
                         </div>
@@ -405,6 +397,7 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                 <div
                   key={index}
                   className={cN(s.element, {
+                    [s.centerVertically]: !alignTop,
                     [s.elementLeft]: column === 'left',
                     [s.elementRight]: column === 'right',
                     [s.elementLeftThird]: column === 'leftThird',
