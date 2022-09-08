@@ -44,7 +44,11 @@ export const ProfileOverview = ({
   //     ({ ags }) => ags === stateToAgs['bremen']
   //   ) !== -1;
 
-  const showPackageSection = IS_BERLIN_PROJECT || isSignedUpForBerlin;
+  {/* Controls the conditions for when different profile tiles are shown */}
+  const showPackageSection = false;
+  const showSignatureScan = false;
+
+
   // Filter interactions to only use interactions which were created
   // as pledge package
   useEffect(() => {
@@ -135,6 +139,7 @@ export const ProfileOverview = ({
         </section>
       </Link>
 
+      {showPackageSection && (
       <Link href={`/mensch/${userId}/unterschriften-eintragen`} passHref>
         <section
           className={cN(
@@ -161,8 +166,8 @@ export const ProfileOverview = ({
           )}
         </section>
       </Link>
+      )}
 
-      {/* Only show this section if user is signed up for berlin or if berlin page */}
       {showPackageSection && (
         <Link href={`/mensch/${userId}/paket-nehmen`} passHref>
           <section
