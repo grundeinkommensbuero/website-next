@@ -44,7 +44,7 @@ export const ProfileOverview = ({
   //     ({ ags }) => ags === stateToAgs['bremen']
   //   ) !== -1;
 
-  {/* Controls the conditions for when different profile tiles are shown */}
+  // Controls the conditions for when different profile tiles are shown
   const showPackageSection = false;
   const showSignatureScan = false;
 
@@ -139,32 +139,32 @@ export const ProfileOverview = ({
       </Link>
 
       {showSignatureScan && (
-      <Link href={`/mensch/${userId}/unterschriften-eintragen`} passHref>
-        <section
-          className={cN(
-            s.profilePageSection,
-            s.profilePageSectionLarge,
-            s.signaturesSection,
-            {
-              [s.rose]: IS_BERLIN_PROJECT,
-            }
-          )}
-        >
-          <h2 className={s.profileHeadline}>Eingegangene Unterschriften</h2>
-          {signatureCountOfUser && (
-            <>
-              <SignatureStats
-                signatureCount={signatureCountOfUser}
-                className={s.signatureStats}
-                layout="horizontal"
-              />
-              <div className={s.sectionLink}>
-                <span>Mehr sehen und eintragen</span>
-              </div>
-            </>
-          )}
-        </section>
-      </Link>
+        <Link href={`/mensch/${userId}/unterschriften-eintragen`} passHref>
+          <section
+            className={cN(
+              s.profilePageSection,
+              s.profilePageSectionLarge,
+              s.signaturesSection,
+              {
+                [s.rose]: IS_BERLIN_PROJECT,
+              }
+            )}
+          >
+            <h2 className={s.profileHeadline}>Eingegangene Unterschriften</h2>
+            {signatureCountOfUser && (
+              <>
+                <SignatureStats
+                  signatureCount={signatureCountOfUser}
+                  className={s.signatureStats}
+                  layout="horizontal"
+                />
+                <div className={s.sectionLink}>
+                  <span>Mehr sehen und eintragen</span>
+                </div>
+              </>
+            )}
+          </section>
+        </Link>
       )}
 
       {showPackageSection && (
