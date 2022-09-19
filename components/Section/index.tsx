@@ -234,7 +234,11 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                           />
                         )}
                         {elementToRender.imageLink ? (
-                          <a href={elementToRender.imageLink} target="_blank">
+                          <a
+                            href={elementToRender.imageLink}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
                             <Image
                               src={getAssetURL(elementToRender.image.id)}
                               // We need to set a default width if an svg is used
