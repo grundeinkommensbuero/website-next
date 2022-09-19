@@ -120,9 +120,12 @@ p {
 }
 
 .pageWidth {
-  /* padding-left: calc(calc(100vw - #{$headerWidth}) / 2); */
   margin: 0 auto;
-  width: $headerWidth;
+  max-width: $headerWidth;
+
+  @media (max-width: $breakPointXL) {
+    padding: 0 1rem;
+  }
 }
 
 .fullWidth {

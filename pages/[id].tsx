@@ -7,6 +7,7 @@ import { Section } from '../components/Section';
 import { Hero } from '../components/Hero';
 import { Directus } from '@directus/sdk';
 import PageNotFound from './404';
+import s from './style.module.scss';
 
 export type PageProps = {
   page: Page | null;
@@ -26,7 +27,7 @@ const PageWithSections = ({ page }: PageProps): ReactElement => {
         />
       )}
       <div className="pageWidth">
-        {page.title && <h2 className="my-8">{page.title}</h2>}
+        {page.title && <h1 className={s.pageTitle}>{page.title}</h1>}
       </div>
       {page.sections.map((section: Section) => {
         return <Section key={section.id} section={section} />;
