@@ -53,19 +53,32 @@ export const SmallSignup = ({
     fields.push('nudgeBox', 'newsletterConsent');
   }
 
-  return (
-    <SignUp
-      fieldsToRender={fields}
-      // If this is a signup for a specific collection (date and location set), that should be saved.
-      // Otherwise we pass that user wants to collect in general
-      additionalData={additionalData}
-      showHeading={false}
-      smallFormMargin={true}
-      postSignupAction={() => setSuccess(true)}
-      loginCodeInModal={loginCodeInModal}
-      optionalNewsletterConsent={optionalNewsletterConsent}
-      hideIfAuthenticated={hideIfAuthenticated}
-      nudgeBoxText={nudgeBoxText}
-    />
-  );
+  if (isAuthenticated) {
+    const { customUserData } = useContext(AuthContext);
+    return (
+      <div>
+        <h3>Du bist mit der Adresse {customUserData.email} angemeldet.</h3>
+        <p>
+          Um dich mit einer anderen Adresse anzumelden, klicke bitte zuerst im
+          Menü auf "abmelden".
+        </p>
+      </div>
+    );
+  } else {
+    return (
+      <SignUp
+        fieldsToRender={fields}
+        // If this is a signup for a specific collection (date and location set), that should be saved.
+        // Otherwise we pass that user wants to collect in general
+        additionalData={additionalData}
+        showHeading={false}
+        smallFormMargin={true}
+        postSignupAction={() => setSuccess(true)}
+        loginCodeInModal={loginCodeInModal}
+        optionalNewsletterConsent={optionalNewsletterConsent}
+        hideIfAuthenticated={hideIfAuthenticated}
+        nudgeBoxText={nudgeBoxText}
+      />
+    );
+  }
 };
