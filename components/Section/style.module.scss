@@ -150,7 +150,7 @@
   grid-template-rows: auto;
   grid-auto-flow: column;
 
-  @media (max-width: $breakPointL) {
+  @media (max-width: $breakPointM) {
     grid-template-columns: none;
     // Works for map section
     grid-template-columns: 1fr;
@@ -164,6 +164,13 @@
 
   &.centerVertically {
     align-self: center;
+  }
+}
+
+.elementLeft,
+.elementRight {
+  @media (max-width: $breakPointM) {
+    justify-self: center;
   }
 }
 
@@ -194,6 +201,10 @@
 .elementCenterThird {
   align-self: center;
 
+  @media (max-width: $breakPointM) {
+    justify-self: center;
+  }
+
   @media (max-width: $breakPointS) {
     padding: 1rem 0;
   }
@@ -204,7 +215,7 @@
   grid-column-end: last-line;
   padding-top: 0;
 
-  @media (min-width: $breakPointL) {
+  @media (min-width: $breakPointM) {
     padding: 0 2.5rem 0 0;
     grid-column-start: 1;
     grid-column-end: 3;
@@ -216,7 +227,7 @@
   grid-column-start: 1;
   grid-column-end: last-line;
 
-  @media (min-width: $breakPointL) {
+  @media (min-width: $breakPointM) {
     padding: 0 0 0 2.5rem;
     grid-column-start: 5;
     grid-column-end: last-line;
@@ -227,7 +238,7 @@
   grid-column-start: 1;
   grid-column-end: last-line;
 
-  @media (min-width: $breakPointL) {
+  @media (min-width: $breakPointM) {
     padding: 0 2.5rem;
     grid-column-start: 3;
     grid-column-end: 5;
