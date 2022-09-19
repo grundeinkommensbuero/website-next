@@ -133,6 +133,7 @@ type FetchedElement = {
     maxBounds?: [Coordinates, Coordinates]; // json
     groupWithPrevious: boolean;
     alignTop?: boolean;
+    imageLink?: string;
   };
 };
 
@@ -162,6 +163,7 @@ const elementFields = [
   'props',
   'groupWithPrevious',
   'alignTop',
+  'imageLink',
 ];
 
 const faqFields = ['title', 'question', 'answer', 'openInitially'];
@@ -278,6 +280,7 @@ const updatePageStructure = (fetchedPage: FetchedPage): Page => {
                     collection: 'sectionsImage',
                     image: element.item.image,
                     alt: element.item.alt,
+                    imageLink: element.item.imageLink,
                   } as SectionsImage;
                 case 'sectionsComponent':
                   return {

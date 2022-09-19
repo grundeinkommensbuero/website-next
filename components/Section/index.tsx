@@ -66,6 +66,7 @@ export type SectionsImage = SectionElementBase & {
   collection: 'sectionsImage';
   image: DirectusImage;
   alt: string;
+  imageLink: string;
 };
 
 export type SectionsComponent = SectionElementBase & {
@@ -232,13 +233,25 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                             element={elementToRender}
                           />
                         )}
-                        <Image
-                          src={getAssetURL(elementToRender.image.id)}
-                          // We need to set a default width if an svg is used
-                          width={elementToRender.image.width || 500}
-                          height={elementToRender.image.height || 500}
-                          alt={elementToRender.alt}
-                        />
+                        {elementToRender.imageLink ? (
+                          <a href={elementToRender.imageLink} target="_blank">
+                            <Image
+                              src={getAssetURL(elementToRender.image.id)}
+                              // We need to set a default width if an svg is used
+                              width={elementToRender.image.width || 500}
+                              height={elementToRender.image.height || 500}
+                              alt={elementToRender.alt}
+                            />
+                          </a>
+                        ) : (
+                          <Image
+                            src={getAssetURL(elementToRender.image.id)}
+                            // We need to set a default width if an svg is used
+                            width={elementToRender.image.width || 500}
+                            height={elementToRender.image.height || 500}
+                            alt={elementToRender.alt}
+                          />
+                        )}
                       </div>
                     );
                     break;
