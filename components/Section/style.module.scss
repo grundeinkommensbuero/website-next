@@ -199,8 +199,6 @@
 .elementLeftThird,
 .elementRightThird,
 .elementCenterThird {
-  align-self: center;
-
   @media (max-width: $breakPointM) {
     justify-self: center;
     padding: 1rem 0 2rem 0;
