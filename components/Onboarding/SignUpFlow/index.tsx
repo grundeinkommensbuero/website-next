@@ -7,7 +7,7 @@ export const SignUpFlow = () => {
   return (
     <PageContainer>
       <div className={s.signupContainer}>
-        <SignUp />
+        <SignUp isOnboarding={true} />
       </div>
     </PageContainer>
   );

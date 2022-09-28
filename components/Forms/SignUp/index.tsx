@@ -129,6 +129,7 @@ type SignUpProps = {
   optionalNewsletterConsent?: boolean;
   hideIfAuthenticated?: boolean;
   nudgeBoxText?: string;
+  isOnboarding?: boolean;
 };
 
 const SignUp = ({
@@ -148,6 +149,7 @@ const SignUp = ({
   optionalNewsletterConsent = false,
   hideIfAuthenticated = false,
   nudgeBoxText,
+  isOnboarding = false,
 }: SignUpProps) => {
   const [signUpState, userExists, signUp, setSignUpState] = useSignUp();
   const [updateUserState, updateUser] = useUpdateUser();
@@ -239,9 +241,26 @@ const SignUp = ({
                   ? 'colorSchemeRoseOnWhite'
                   : 'colorSchemeWhite'
               }
+              loadingColorScheme={
+                IS_BERLIN_PROJECT ? 'colorSchemeRose' : 'colorSchemeViolet'
+              }
             />
           </div>
         </Modal>
+      );
+    }
+
+    if (isOnboarding) {
+      return (
+        <EnterLoginCode
+          preventSignIn={true}
+          colorScheme={
+            IS_BERLIN_PROJECT ? 'colorSchemeRoseOnWhite' : 'colorSchemeWhite'
+          }
+          loadingColorScheme={
+            IS_BERLIN_PROJECT ? 'colorSchemeRose' : 'colorSchemeViolet'
+          }
+        />
       );
     }
 

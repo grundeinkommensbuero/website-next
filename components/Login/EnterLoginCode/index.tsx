@@ -23,6 +23,7 @@ type EnterLoginCodeProps = {
   buttonText?: string;
   onAnswerChallengeSuccess?: () => void;
   colorScheme?: ColorScheme;
+  loadingColorScheme?: ColorScheme;
   wrongCodeMessage?: ReactElement | string;
   inputClassName?: string;
 };
@@ -33,6 +34,7 @@ export const EnterLoginCode = ({
   buttonText,
   onAnswerChallengeSuccess,
   colorScheme,
+  loadingColorScheme,
   wrongCodeMessage,
   inputClassName,
 }: EnterLoginCodeProps) => {
@@ -82,7 +84,7 @@ export const EnterLoginCode = ({
 
   if (answerChallengeState === 'loading' || signInState === 'loading') {
     return (
-      <FinallyMessage colorScheme={colorScheme} loading>
+      <FinallyMessage colorScheme={loadingColorScheme || colorScheme} loading>
         Einen Moment bitte...
       </FinallyMessage>
     );
@@ -90,7 +92,7 @@ export const EnterLoginCode = ({
 
   if (answerChallengeState === 'success') {
     return (
-      <FinallyMessage colorScheme={colorScheme}>
+      <FinallyMessage colorScheme={loadingColorScheme || colorScheme}>
         Erfolgreich identifiziert.
       </FinallyMessage>
     );
