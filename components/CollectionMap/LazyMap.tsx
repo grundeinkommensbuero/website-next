@@ -138,6 +138,23 @@ const LazyMap = ({
           });
 
           map.current.addControl(geocoder);
+        } else {
+          // For now we want to only either show search or geolocation button. Both take too much space.
+          // It looks weird, and since we still cannot choose a location (when creating an event) on the map
+          // the geolocation is not really helpful in that case
+
+          // Geolocation to jump to current location
+          const geoLocation = new mapboxgl.GeolocateControl({
+            positionOptions: {
+              enableHighAccuracy: true,
+            },
+            // When active the map will receive updates to the device's location as it changes.
+            trackUserLocation: true,
+            // Draw an arrow next to the location dot to indicate which direction the device is heading.
+            showUserHeading: false,
+          });
+
+          map.current.addControl(geoLocation);
         }
       }
 
