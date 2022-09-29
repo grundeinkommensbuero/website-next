@@ -9,9 +9,6 @@ import { NoSsr } from '../Util/NoSsr';
 import querystring from 'query-string';
 import translations from '../../data/transaltions.json';
 import CirclesSharingFeature from '../CirclesShare';
-import { LoadingAnimation } from '../LoadingAnimation';
-import { getRootAssetURL } from '../Util/getRootAssetURL';
-import Head from 'next/head';
 
 const xbgeTheme = {
   baseColor: '#FB8298',
