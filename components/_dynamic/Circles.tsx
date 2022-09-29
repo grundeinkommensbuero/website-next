@@ -29,15 +29,6 @@ const Circles = () => {
 
   const [updateState, updateUserStore] = useUpdateUser();
 
-  const [initPhase, setInitPhase] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => {
-      // To wait for the safeAddress this timeout is a workaround
-      setInitPhase(false);
-    }, 1000);
-  });
-
   const resumee = customUserData?.store?.circlesResumee;
   const voucherShopEnabled = !customUserData.store?.voucherStoreEnabled
     ? false
@@ -100,10 +91,6 @@ const Circles = () => {
     }
   }, [isAuthenticated, customUserData]);
 
-  if (initPhase) {
-    return <LoadingAnimation />;
-  }
-
   return (
     <>
       {!isAuthenticated && (
@@ -156,7 +143,7 @@ const Circles = () => {
                 </p>
               </>
             )}
-            {customUserData && (
+            {customUserData && customUserData.email !== '' && (
               <CirclesPink
                 lang="de" // app language
                 buyVoucherEurLimit={35} // limit of vouchers that can be bought in eur
