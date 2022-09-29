@@ -178,7 +178,7 @@ const Circles = () => {
                 translations={translations} // json with app text
                 email={`user-${userId}@xbge.de`} // email to be send to circles garden
                 sharingFeature={
-                  customUserData?.store?.circlesResumee?.lastState.tag !==
+                  customUserData?.store?.circlesResumee?.lastState?.tag !==
                   'Dashboard' ? (
                     <CirclesSharingFeature
                       userData={customUserData}
