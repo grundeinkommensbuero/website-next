@@ -1,3 +1,7 @@
 .modalContent {
   padding: 2rem 3rem;
+
+  @media (max-width: $breakPointM) {
+    padding: 1rem 0.5rem;
+  }
 }

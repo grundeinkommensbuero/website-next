@@ -2,9 +2,25 @@ import React, { useContext, useState } from 'react';
 import AuthContext from '../../../context/Authentication';
 import { stateToAgs } from '../../../utils/stateToAgs';
 import { FinallyMessage } from '../FinallyMessage';
-import SignUp from '../SignUp';
+import SignUp, { Fields } from '../SignUp';
 
-export const SmallSignup = ({ ags, flag }: { ags?: string; flag?: string }) => {
+export const SmallSignup = ({
+  ags,
+  flag,
+  loginCodeInModal = true,
+  showNewsletterConsent = false,
+  optionalNewsletterConsent = false,
+  hideIfAuthenticated = false,
+  nudgeBoxText,
+}: {
+  ags?: string;
+  flag?: string;
+  loginCodeInModal?: boolean;
+  showNewsletterConsent?: boolean;
+  optionalNewsletterConsent?: boolean;
+  hideIfAuthenticated?: boolean;
+  nudgeBoxText?: string;
+}) => {
   if (!ags) {
     ags = stateToAgs.berlin;
   }
@@ -13,6 +29,9 @@ export const SmallSignup = ({ ags, flag }: { ags?: string; flag?: string }) => {
   const [success, setSuccess] = useState(false);
 
   if (success && isAuthenticated) {
+    if (hideIfAuthenticated) {
+      return null;
+    }
     return (
       <FinallyMessage>
         <p>Vielen Dank für die Anmeldung!</p>
@@ -28,16 +47,25 @@ export const SmallSignup = ({ ags, flag }: { ags?: string; flag?: string }) => {
     };
   }
 
+  const fields: Fields[] = ['email'];
+
+  if (showNewsletterConsent) {
+    fields.push('nudgeBox', 'newsletterConsent');
+  }
+
   return (
     <SignUp
-      fieldsToRender={['email']}
+      fieldsToRender={fields}
       // If this is a signup for a specific collection (date and location set), that should be saved.
       // Otherwise we pass that user wants to collect in general
       additionalData={additionalData}
       showHeading={false}
       smallFormMargin={true}
       postSignupAction={() => setSuccess(true)}
-      loginCodeInModal={true}
+      loginCodeInModal={loginCodeInModal}
+      optionalNewsletterConsent={optionalNewsletterConsent}
+      hideIfAuthenticated={hideIfAuthenticated}
+      nudgeBoxText={nudgeBoxText}
     />
   );
 };

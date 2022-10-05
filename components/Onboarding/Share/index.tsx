@@ -1,4 +1,4 @@
-import React, { RefObject, useState } from 'react';
+import React, { ReactElement, RefObject, useState } from 'react';
 import cN from 'classnames';
 import s from './style.module.scss';
 import gS from '../style.module.scss';
@@ -15,14 +15,14 @@ export type Channel = {
 };
 
 type SharingFeatureProps = {
-  compIndex: number;
-  setCurrentElementByIndex: (index: number) => void;
-  municipality: Municipality | null;
+  compIndex?: number;
+  setCurrentElementByIndex?: (index: number) => void;
+  municipality?: Municipality | null;
   userData: User;
   userId: string;
   isInOnboarding?: boolean;
   introText?: string;
-  previewComponent?: string;
+  previewComponent?: ReactElement | string;
   scrollToRef?: RefObject<any>;
 };
 
@@ -134,7 +134,10 @@ export const SharingFeature = ({
               <div className={gS.fullWidthFlex}>
                 <Button
                   className={gS.nextButton}
-                  onClick={() => setCurrentElementByIndex(compIndex + 1)}
+                  onClick={() =>
+                    setCurrentElementByIndex &&
+                    setCurrentElementByIndex((compIndex || 0) + 1)
+                  }
                 >
                   Weiter
                 </Button>

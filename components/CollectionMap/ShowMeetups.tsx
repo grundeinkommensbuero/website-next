@@ -9,6 +9,7 @@ import { Checkbox } from '../Forms/Checkbox';
 import FormWrapper from '../Forms/FormWrapper';
 import FormSection from '../Forms/FormSection';
 import {
+  checkIfDateIsDayAfterTomorrow,
   checkIfDateIsToday,
   checkIfDateIsTomorrow,
 } from './utils/dateStringManipulation';
@@ -49,15 +50,16 @@ export const ShowMeetups = ({
       isIframe
   );
   const [showCollectionEvents, setShowCollectionEvents] = useState(
-    router.asPath.includes('termine') || router.asPath === '/' || isIframe
+    router.asPath.includes('termine') || router.pathname === '/' || isIframe
   );
   const [showStorages, setShowStorages] = useState(
-    router.asPath.includes('material') || isIframe
+    router.asPath.includes('material') || router.pathname === '/' || isIframe
   );
 
   // Day filters
-  const [filterToday, setFilterToday] = useState(router.asPath === '/');
+  const [filterToday, setFilterToday] = useState(false);
   const [filterTomorrow, setFilterTomorrow] = useState(false);
+  const [filterDayAfterTomorrow, setFilterDayAfterTomorrow] = useState(false);
 
   // Time filters
   const [filterBefore12, setFilterBefore12] = useState(true);
@@ -111,10 +113,30 @@ export const ShowMeetups = ({
               ((showLists && type === 'lists') ||
                 (showCollectionEvents && type === 'collect') ||
                 (showStorages && type === 'storage')) &&
-              (!endTime ||
-                (!filterToday && !filterTomorrow) ||
-                (filterToday && checkIfDateIsToday(new Date(endTime))) ||
-                (filterTomorrow && checkIfDateIsTomorrow(new Date(endTime)))) &&
+              // Filter for both start and endtime:
+              // if endtime exists we want to include it in the filtering
+              // If endtime and startime don't exist (should not happen) we don't filter
+              // I used to check only endtime, because app always created events with event time
+              // but this won't be the case in the future
+              ((!endTime && !startTime) ||
+                (endTime &&
+                  ((!filterToday &&
+                    !filterTomorrow &&
+                    !filterDayAfterTomorrow) ||
+                    (filterToday && checkIfDateIsToday(new Date(endTime))) ||
+                    (filterTomorrow &&
+                      checkIfDateIsTomorrow(new Date(endTime))) ||
+                    (filterDayAfterTomorrow &&
+                      checkIfDateIsDayAfterTomorrow(new Date(endTime))))) ||
+                (startTime &&
+                  ((!filterToday &&
+                    !filterTomorrow &&
+                    !filterDayAfterTomorrow) ||
+                    (filterToday && checkIfDateIsToday(new Date(startTime))) ||
+                    (filterTomorrow &&
+                      checkIfDateIsTomorrow(new Date(startTime))) ||
+                    (filterDayAfterTomorrow &&
+                      checkIfDateIsDayAfterTomorrow(new Date(startTime)))))) &&
               (!startInHours ||
                 (filterBefore12 && startInHours < 12) ||
                 (filterBefore18 && startInHours >= 12 && startInHours < 18) ||
@@ -185,10 +207,15 @@ export const ShowMeetups = ({
                     <Checkbox
                       label="Egal"
                       type="checkbox"
-                      checked={!filterTomorrow && !filterToday}
+                      checked={
+                        !filterTomorrow &&
+                        !filterToday &&
+                        !filterDayAfterTomorrow
+                      }
                       onChange={() => {
                         setFilterToday(false);
                         setFilterTomorrow(false);
+                        setFilterDayAfterTomorrow(false);
                       }}
                     />
                     <Checkbox
@@ -202,6 +229,14 @@ export const ShowMeetups = ({
                       type="checkbox"
                       checked={filterTomorrow}
                       onChange={() => setFilterTomorrow(!filterTomorrow)}
+                    />
+                    <Checkbox
+                      label="Übermorgen"
+                      type="checkbox"
+                      checked={filterDayAfterTomorrow}
+                      onChange={() =>
+                        setFilterDayAfterTomorrow(!filterDayAfterTomorrow)
+                      }
                     />
                   </FormSection>
                 )}
@@ -252,9 +287,20 @@ export const ShowMeetups = ({
         locations={locationsFiltered}
         className={className}
       />
+      {!isIframe && router.pathname !== '/' && (
+        <>
+          {/* Jump to anchor */}
+          <div className={s.jumpToAnchorWrapper}>
+            <div className={s.jumpToAnchor} id="events" />
+          </div>
+
+          <EventsListed locationsFiltered={locationsFiltered} />
+        </>
+      )}
+
       {(isBerlin || isHamburg || isDemocracy || isClimate) && (
         <div>
-          {!isIframe && router.asPath !== '/' && (
+          {!isIframe && router.pathname !== '/' && (
             <>
               {/* Jump to anchor */}
               <div className={s.jumpToAnchorWrapper}>
@@ -305,18 +351,8 @@ export const ShowMeetups = ({
               </section>
             </>
           )}
-          {!isIframe && router.asPath !== '/' && (
-            <>
-              {/* Jump to anchor */}
-              <div className={s.jumpToAnchorWrapper}>
-                <div className={s.jumpToAnchor} id="events" />
-              </div>
 
-              <EventsListed locationsFiltered={locationsFiltered} />
-            </>
-          )}
-
-          {router.asPath === '/' && (
+          {router.pathname === '/' && (
             <CTALink to="/termine" className="mt-8">
               Weitere Events
             </CTALink>

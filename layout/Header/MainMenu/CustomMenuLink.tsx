@@ -33,7 +33,7 @@ export const CustomMenuLink = ({
         onClick={() => {
           if (extraCallback) extraCallback();
         }}
-        className={`${!isMobile ? 'mx-2' : ''} text-xl nowrap cursor-pointer ${
+        className={`${!isMobile ? 'mx-2' : ''} nowrap cursor-pointer ${
           prefixedSlug === currentRoute ? 'underline' : 'hoverUnderline'
         } ${className}`}
         aria-label={`Zu ${entry.slug} navigieren`}

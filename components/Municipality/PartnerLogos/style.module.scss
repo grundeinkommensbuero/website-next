@@ -1,0 +1,55 @@
+.introText {
+  font-size: $DesktopFontSizeL;
+
+  @media (max-width: $breakPointS) {
+    font-size: $MobileFontSizeL;
+  }
+}
+
+.logoContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.partnerLogo {
+  width: 49%;
+  max-width: 300px;
+  padding: 0.5rem;
+
+  img {
+    width: 100%;
+    height: auto;
+    min-width: 100px;
+  }
+}
+
+.diwLogo {
+  display: flex;
+  align-items: center;
+}
+
+.changeLogo {
+  display: flex;
+  align-items: center;
+}
+
+.fribisLogo {
+  display: flex;
+  align-items: center;
+  background-color: white;
+}
+
+.xbgeLogo {
+  display: flex;
+  align-items: center;
+}
+
+.centerButton {
+  margin-bottom: 3rem;
+
+  @media (min-width: $breakPointM) {
+    display: none;
+  }
+}

@@ -12,6 +12,10 @@ type ModalProps = {
 export const Modal = ({ children, showModal, setShowModal }: ModalProps) => {
   useEffect(() => {
     document.body.classList.toggle(s.bodyOverlayOpen, showModal);
+
+    return () => {
+      document.body.classList.toggle(s.bodyOverlayOpen, false);
+    };
   }, [showModal]);
 
   const renderBackdrop = () => <div className="backdrop" />;

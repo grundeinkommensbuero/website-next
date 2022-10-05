@@ -23,6 +23,9 @@ export type Page = {
   heroTitle: string | null;
   heroSubTitle: string | null;
   heroImage: string | null;
+  metaTitle: string | null;
+  metaDescription: string | null;
+  ogImage: string | null;
   sections: Section[];
 };
 
@@ -34,6 +37,9 @@ type FetchedPage = {
   heroTitle: string | null;
   heroSubTitle: string | null;
   heroImage: string | null;
+  metaTitle: string | null;
+  metaDescription: string | null;
+  ogImage: string | null;
   sections: FetchedSectionData[];
 };
 
@@ -45,6 +51,9 @@ const pageFields = [
   'heroTitle',
   'heroSubTitle',
   'heroImage',
+  'metaTitle',
+  'metaDescription',
+  'ogImage',
 ];
 
 type FetchedSectionData = {
@@ -123,6 +132,8 @@ type FetchedElement = {
     state?: string;
     maxBounds?: [Coordinates, Coordinates]; // json
     groupWithPrevious: boolean;
+    alignTop?: boolean;
+    imageLink?: string;
   };
 };
 
@@ -151,6 +162,8 @@ const elementFields = [
   'maxBounds',
   'props',
   'groupWithPrevious',
+  'alignTop',
+  'imageLink',
 ];
 
 const faqFields = ['title', 'question', 'answer', 'openInitially'];
@@ -216,6 +229,9 @@ const updatePageStructure = (fetchedPage: FetchedPage): Page => {
     heroTitle: fetchedPage.heroTitle,
     heroSubTitle: fetchedPage.heroSubTitle,
     heroImage: fetchedPage.heroImage,
+    metaTitle: fetchedPage.metaTitle,
+    metaDescription: fetchedPage.metaDescription,
+    ogImage: fetchedPage.ogImage,
     sections: fetchedPage.sections
       .filter(
         s =>
@@ -248,6 +264,7 @@ const updatePageStructure = (fetchedPage: FetchedPage): Page => {
                 sort: element.item.sort,
                 column: element.item.column || 'centerWide',
                 groupWithPrevious: element.item.groupWithPrevious,
+                alignTop: !!element.item.alignTop,
                 index,
               };
               switch (element.collection) {
@@ -263,6 +280,7 @@ const updatePageStructure = (fetchedPage: FetchedPage): Page => {
                     collection: 'sectionsImage',
                     image: element.item.image,
                     alt: element.item.alt,
+                    imageLink: element.item.imageLink,
                   } as SectionsImage;
                 case 'sectionsComponent':
                   return {

@@ -29,7 +29,7 @@ import { validatePhoneNumber } from '../../../hooks/Authentication/validatePhone
 
 type Illustration = 'POINT_LEFT';
 
-type Fields =
+export type Fields =
   | 'email'
   | 'username'
   | 'phoneNumber'
@@ -126,6 +126,9 @@ type SignUpProps = {
   showHeading?: boolean;
   smallFormMargin?: boolean;
   loginCodeInModal?: boolean;
+  optionalNewsletterConsent?: boolean;
+  hideIfAuthenticated?: boolean;
+  nudgeBoxText?: string;
 };
 
 const SignUp = ({
@@ -142,6 +145,9 @@ const SignUp = ({
   showHeading = true,
   smallFormMargin = false,
   loginCodeInModal = false,
+  optionalNewsletterConsent = false,
+  hideIfAuthenticated = false,
+  nudgeBoxText,
 }: SignUpProps) => {
   const [signUpState, userExists, signUp, setSignUpState] = useSignUp();
   const [updateUserState, updateUser] = useUpdateUser();
@@ -216,6 +222,10 @@ const SignUp = ({
       setSignUpState(undefined);
     }
   }, [isAuthenticated, hasSubmitted, formData, userId]);
+
+  if (hideIfAuthenticated && isAuthenticated) {
+    return null;
+  }
 
   if (signUpState === 'success') {
     if (loginCodeInModal) {
@@ -359,7 +369,7 @@ const SignUp = ({
     },
     nudgeBox: {
       name: 'nudgeBox',
-      label: getNudgeBoxLabel(municipalityInForm),
+      label: nudgeBoxText || getNudgeBoxLabel(municipalityInForm),
       type: 'checkbox',
       component: Checkbox,
     },
@@ -431,7 +441,13 @@ const SignUp = ({
           username: userData?.username || '',
         }}
         validate={(values: SignUpFormValues) =>
-          validate(values, municipalityInForm, fields, overwriteMandatoryFields)
+          validate(
+            values,
+            municipalityInForm,
+            fields,
+            overwriteMandatoryFields,
+            optionalNewsletterConsent
+          )
         }
         keepDirtyOnReinitialize={true}
         render={({ handleSubmit }) => {
@@ -476,7 +492,8 @@ const validate = (
   values: SignUpFormValues,
   municipalityInForm: Municipality | null,
   fields: Fields[],
-  overwriteMandatoryFields: MandatoryFields[]
+  overwriteMandatoryFields: MandatoryFields[],
+  optionalNewsletterConsent?: boolean
 ) => {
   const errors: SignUpErrors = {};
 
@@ -499,10 +516,12 @@ const validate = (
   // If fields do not include  consent, we don't need to validate
   if (
     fields.includes('newsletterConsent') &&
+    !optionalNewsletterConsent &&
     !values.nudgeBox &&
     !values.newsletterConsent
   ) {
-    errors.newsletterConsent = 'Bitte bestätige, dass du dabei sein willst';
+    errors.newsletterConsent =
+      'Bitte bestätige, dass du dich bei der Expedition anmelden willst.';
   }
 
   // If fields do not include municipality, we don't need to validate

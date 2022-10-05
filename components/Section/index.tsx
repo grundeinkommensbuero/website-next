@@ -12,7 +12,7 @@ import { SectionWrapper } from './SectionWrapper';
 import { SectionsTextEditable } from './SectionsTextEditable';
 import { YoutubeEmbed } from '../Video/YoutubeEmbed';
 import { XbgeAppContext } from '../../context/App';
-import { CTAButton } from '../Forms/CTAButton';
+import { CTAButton, CTALink, CTALinkExternal } from '../Forms/CTAButton';
 import { useRouter } from 'next/router';
 import { FAQ } from '../FAQ';
 import CollectionMap, { MapConfig } from '../CollectionMap';
@@ -66,6 +66,7 @@ export type SectionsImage = SectionElementBase & {
   collection: 'sectionsImage';
   image: DirectusImage;
   alt: string;
+  imageLink: string;
 };
 
 export type SectionsComponent = SectionElementBase & {
@@ -110,6 +111,7 @@ export type SectionElementBase = {
   index: number;
   column: Column;
   groupWithPrevious: boolean;
+  alignTop?: boolean;
 };
 
 export type ColorScheme =
@@ -179,7 +181,7 @@ export const Section = ({ section }: SectionProps): ReactElement => {
         <>
           <div className={s.elementContainer}>
             {modifiedSection.render.map((element, index) => {
-              const { column } = element;
+              const { column, alignTop } = element;
 
               if (elementsToSkip.includes(index)) {
                 return null;
@@ -231,13 +233,29 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                             element={elementToRender}
                           />
                         )}
-                        <Image
-                          src={getAssetURL(elementToRender.image.id)}
-                          // We need to set a default width if an svg is used
-                          width={elementToRender.image.width || 500}
-                          height={elementToRender.image.height || 500}
-                          alt={elementToRender.alt}
-                        />
+                        {elementToRender.imageLink ? (
+                          <a
+                            href={elementToRender.imageLink}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            <Image
+                              src={getAssetURL(elementToRender.image.id)}
+                              // We need to set a default width if an svg is used
+                              width={elementToRender.image.width || 500}
+                              height={elementToRender.image.height || 500}
+                              alt={elementToRender.alt}
+                            />
+                          </a>
+                        ) : (
+                          <Image
+                            src={getAssetURL(elementToRender.image.id)}
+                            // We need to set a default width if an svg is used
+                            width={elementToRender.image.width || 500}
+                            height={elementToRender.image.height || 500}
+                            alt={elementToRender.alt}
+                          />
+                        )}
                       </div>
                     );
                     break;
@@ -312,25 +330,16 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                               </CTAButton>
                             )}
                             {elementToRender.type === 'href' && (
-                              <CTAButton
-                                onClick={() =>
-                                  window.open(
-                                    elementToRender.href || '',
-                                    '_blank'
-                                  )
-                                }
+                              <CTALinkExternal
+                                href={elementToRender.href || ''}
                               >
                                 {elementToRender.buttonText}
-                              </CTAButton>
+                              </CTALinkExternal>
                             )}
                             {elementToRender.type === 'slug' && (
-                              <CTAButton
-                                onClick={() =>
-                                  router.push(elementToRender.slug || '')
-                                }
-                              >
+                              <CTALink to={elementToRender.slug || ''}>
                                 {elementToRender.buttonText}
-                              </CTAButton>
+                              </CTALink>
                             )}
                           </div>
                         </div>
@@ -405,6 +414,7 @@ export const Section = ({ section }: SectionProps): ReactElement => {
                 <div
                   key={index}
                   className={cN(s.element, {
+                    [s.centerVertically]: !alignTop,
                     [s.elementLeft]: column === 'left',
                     [s.elementRight]: column === 'right',
                     [s.elementLeftThird]: column === 'leftThird',

@@ -19,6 +19,7 @@ import {
 } from '../../hooks/Api/Municipalities';
 import Image from 'next/image';
 import NotFound from '../../components/NotFound';
+import { CTALink } from '../../components/Forms/CTAButton';
 
 const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
 
@@ -59,6 +60,7 @@ const MunicipalityPage = ({ page, municipality }: PageProps): ReactElement => {
               <b>Hol das Grundeinkommen jetzt in deinen Wohnort!</b>
             )}
           </h2>
+          <CTALink to="#ticker">Mehr erfahren</CTALink>
         </div>
         <div className="bg-violet w-full h-10percent absolute bottom-0 z-0"></div>
       </div>

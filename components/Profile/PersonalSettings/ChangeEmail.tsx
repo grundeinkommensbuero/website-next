@@ -46,7 +46,7 @@ export const ChangeEmail = ({
   // This callback is passed to EnterCode component and is called,
   // when validation of new email was successful
   const onAnswerChallengeSuccess = () => {
-    updateEmail({ email: tempEmail });
+    updateEmail({ email: tempEmail?.toLowerCase() });
   };
 
   return (

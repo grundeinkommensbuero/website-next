@@ -13,6 +13,8 @@ import { getRootAssetURL } from '../components/Util/getRootAssetURL';
 import { useRouter } from 'next/router';
 import { jumpToHash } from '../utils/jumpToHash';
 import { LoadingAnimation } from '../components/LoadingAnimation';
+import Script from 'next/script';
+import { getAssetURL } from '../components/Util/getAssetURL';
 
 const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
 
@@ -31,12 +33,24 @@ type LayoutProps = {
   children: ReactElement;
   mainMenu: Menu;
   footerMenu: Menu;
+  title?: string;
+  description?: string;
+  ogImage?: string;
 };
+
+declare global {
+  interface Window {
+    _paq: any;
+  }
+}
 
 export const Layout = ({
   children,
   mainMenu,
   footerMenu,
+  title,
+  description,
+  ogImage,
 }: LayoutProps): ReactElement => {
   const router = useRouter();
   const { currentRoute } = useContext(XbgeAppContext);
@@ -58,7 +72,15 @@ export const Layout = ({
   }, [currentRoute]);
 
   useEffect(() => {
-    const handleStart = (url: string) => setPageIsLoading(true);
+    const handleStart = (url: string) => {
+      if (window && window._paq) {
+        window._paq.push(['setCustomUrl', url]);
+        window._paq.push(['setDocumentTitle', document.title]);
+        window._paq.push(['trackPageView']);
+      }
+
+      setPageIsLoading(true);
+    };
     const handleComplete = (url: string) => setPageIsLoading(false);
 
     router.events.on('routeChangeStart', handleStart);
@@ -74,6 +96,17 @@ export const Layout = ({
     return <>{children}</>;
   }
 
+  const metaDescription =
+    description ||
+    project?.siteDescription ||
+    'Modellversuch zum Grundeinkommen jetzt!';
+  const metaTitle = title || project?.siteTitle || 'Expedition Grundeinkommen';
+  const metaImage = ogImage
+    ? getAssetURL(ogImage)
+    : getRootAssetURL(
+        project?.ogimage || '57331286-2406-4f11-a523-dda6a2166c2e'
+      );
+
   return (
     <>
       <div
@@ -82,50 +115,79 @@ export const Layout = ({
         })}
       >
         <Head>
-          <title key="title">
-            {project?.siteTitle || 'Expedition Grundeinkommen'}
-          </title>
-          <meta
-            key="description"
-            name="description"
-            content={
-              project?.siteDescription ||
-              'Modellversuch zum Grundeinkommen jetzt!'
-            }
-          />
-          <meta
-            key="og:title"
-            property="og:title"
-            content={project?.siteTitle || 'Expedition Grundeinkommen'}
-          />
-          <meta
-            key="og:description"
-            property="og:description"
-            content={
-              project?.siteDescription ||
-              'Modellversuch zum Grundeinkommen jetzt!'
-            }
-          />
-          <meta
-            key="og:image"
-            property="og:image"
-            content={getRootAssetURL(
-              project?.ogimage || '57331286-2406-4f11-a523-dda6a2166c2e'
-            )}
-          />
+          <>
+            <title key="title">
+              {`${title ? `${title} - ` : ''}${
+                project?.siteTitle || 'Expedition Grundeinkommen'
+              }`}
+            </title>
+            <meta
+              key="description"
+              name="description"
+              content={metaDescription}
+            />
+            <meta key="og:title" property="og:title" content={metaTitle} />
+            <meta
+              key="og:description"
+              property="og:description"
+              content={metaDescription}
+            />
+            <meta key="og:image" property="og:image" content={metaImage} />
+
+            <meta
+              key="twitter:card"
+              name="twitter:card"
+              content="summary_large_image"
+            />
+            <meta
+              key="twitter:site"
+              name="twitter:site"
+              content="@exbeditionbge"
+            />
+            <meta
+              key="twitter:title"
+              name="twitter:title"
+              content={metaTitle}
+            />
+            <meta
+              key="twitter:description"
+              name="twitter:description"
+              content={metaDescription}
+            />
+            <meta
+              key="twitter:image"
+              name="twitter:image"
+              content={metaImage}
+            />
+          </>
+
           {IS_BERLIN_PROJECT ? (
             <link key="favicon" rel="icon" href="/favicon-berlin.ico" />
           ) : (
             <link key="favicon" rel="icon" href="/favicon.ico" />
           )}
         </Head>
-
         <Header mainMenu={mainMenu} currentRoute={currentRoute} />
         {children}
         <Footer footerMenu={footerMenu} />
         <div className="grow bg-red" />
       </div>
       {pageIsLoading && <LoadingAnimation fixed />}
+      <Script id="matomo">
+        {`  
+        var _paq = window._paq = window._paq || [];
+        _paq.push(['disableCookies']);
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+          const u="//expeditiongrundeinkommen.matomo.cloud/";
+          _paq.push(['setTrackerUrl', u+'matomo.php']);
+          _paq.push(['setSiteId', ${process.env.NEXT_PUBLIC_MATOMO_SITE_ID}]);
+          var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+          g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+        })();
+  `}
+      </Script>
     </>
   );
 };
