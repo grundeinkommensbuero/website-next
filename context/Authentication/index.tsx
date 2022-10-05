@@ -102,6 +102,7 @@ export type User = {
     };
   };
   listFlow?: ListFlow;
+  circlesLimit?: number
 };
 
 export type CirclesResumee = {
