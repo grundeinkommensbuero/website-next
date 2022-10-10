@@ -9,9 +9,6 @@ import { NoSsr } from '../Util/NoSsr';
 import querystring from 'query-string';
 import translations from '../../data/transaltions.json';
 import CirclesSharingFeature from '../CirclesShare';
-import { LoadingAnimation } from '../LoadingAnimation';
-import { getRootAssetURL } from '../Util/getRootAssetURL';
-import Head from 'next/head';
 
 const xbgeTheme = {
   baseColor: '#FB8298',
@@ -28,15 +25,6 @@ const Circles = () => {
     useContext(AuthContext);
 
   const [updateState, updateUserStore] = useUpdateUser();
-
-  const [initPhase, setInitPhase] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => {
-      // To wait for the safeAddress this timeout is a workaround
-      setInitPhase(false);
-    }, 1000);
-  });
 
   const resumee = customUserData?.store?.circlesResumee;
   const voucherShopEnabled = !customUserData.store?.voucherStoreEnabled
@@ -100,10 +88,6 @@ const Circles = () => {
     }
   }, [isAuthenticated, customUserData]);
 
-  if (initPhase) {
-    return <LoadingAnimation />;
-  }
-
   return (
     <>
       {!isAuthenticated && (
@@ -156,10 +140,10 @@ const Circles = () => {
                 </p>
               </>
             )}
-            {customUserData && (
+            {customUserData && customUserData.email !== '' && (
               <CirclesPink
                 lang="de" // app language
-                buyVoucherEurLimit={35} // limit of vouchers that can be bought in eur
+                buyVoucherEurLimit={customUserData.circlesLimit || 35} // limit of vouchers that can be bought in eur
                 theme={xbgeTheme} // app color theme
                 xbgeCampaign={true} // enable xbge special components
                 xbgeSafeAddress={'0xB9AE1Ce83a6548f1395ddfC36673957B98Eb234D'}
@@ -191,7 +175,7 @@ const Circles = () => {
                 translations={translations} // json with app text
                 email={`user-${userId}@xbge.de`} // email to be send to circles garden
                 sharingFeature={
-                  customUserData?.store?.circlesResumee?.lastState.tag !==
+                  customUserData?.store?.circlesResumee?.lastState?.tag !==
                   'Dashboard' ? (
                     <CirclesSharingFeature
                       userData={customUserData}

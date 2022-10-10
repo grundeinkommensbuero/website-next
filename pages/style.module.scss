@@ -20,4 +20,27 @@
   @media (max-width: $breakPointXXL) {
     font-size: 3rem;
   }
+
+  @media (min-width: $breakPointXXL) {
+    font-size: 4rem;
+  }
+}
+
+.keyVisualElement {
+  width: 50%;
+
+  @media (max-width: $breakPointM) {
+    width: 100%;
+  }
+}
+
+.keyVisual {
+  @media (max-width: $breakPointM) {
+    flex-direction: column;
+  }
+}
+
+.keyVisualImage {
+  position: relative;
+  top: 3rem;
 }

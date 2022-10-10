@@ -5,12 +5,6 @@
   @media (max-width: $breakPointM) {
     display: block;
   }
-
-  --button-font-color: #{$white};
-  --button-bg-color: #{$black}; // IE Fallback
-  --button-bg-color: #{$whiteTransparent};
-  --button-hover-bg-color: #{$white};
-  --button-hover-font-color: #{$aqua};
 }
 
 .userInfo {
@@ -75,11 +69,6 @@
 
 .revokeButton {
   margin: 0.5rem;
-  --button-font-color: #{$aqua};
-  --button-bg-color: #{$black}; // IE Fallback
-  --button-bg-color: #{$aquaTransparent};
-  --button-hover-bg-color: #{$aqua};
-  --button-hover-font-color: #{$white};
 }
 
 .revokeButtonRow {
