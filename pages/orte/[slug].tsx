@@ -40,8 +40,8 @@ const MunicipalityPage = ({ page, municipality }: PageProps): ReactElement => {
   }
   return (
     <section>
-      <div className="flex mt-16 relative">
-        <div className="w-half">
+      <div className={`${s.keyVisual} flex mt-16 relative`}>
+        <div className={`${s.keyVisualElement} ${s.keyVisualImage}`}>
           <Image
             priority={true}
             src={`${process.env.NEXT_PUBLIC_DIRECTUS}assets/ca61a987-1b56-4f7a-903b-f2767b41fbe4`}
@@ -52,7 +52,7 @@ const MunicipalityPage = ({ page, municipality }: PageProps): ReactElement => {
             className="z-10"
           />
         </div>
-        <div className="w-half pr-16 pl-6 pt-16">
+        <div className={`${s.keyVisualElement} pb-16 pr-16 pl-6 pt-16`}>
           <h2 className={`z-10 text-violet ${s.keyVisualClaim}`}>
             {municipality.name ? (
               <b>Hol das Grundeinkommen jetzt nach {municipality.name}</b>
@@ -62,7 +62,6 @@ const MunicipalityPage = ({ page, municipality }: PageProps): ReactElement => {
           </h2>
           <CTALink to="#ticker">Mehr erfahren</CTALink>
         </div>
-        <div className="bg-violet w-full h-10percent absolute bottom-0 z-0"></div>
       </div>
       {page.sections.map((section: Section) => {
         // Check if section should be rendered for this municipality
