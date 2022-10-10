@@ -27,6 +27,10 @@
   position: relative;
   height: 7.5rem;
   line-height: 1;
+
+  @media (max-width: $breakPointXL) {
+    overflow: hidden;
+  }
 }
 
 .barGoal {
@@ -146,8 +150,8 @@
     font-size: $DesktopFontSizeXL;
   }
 
-  @media (max-width: 360px) {
-    font-size: $DesktopFontSizeXL;
+  @media (max-width: 430px) {
+    font-size: $DesktopFontSizeL;
   }
 
   &::before {
@@ -173,6 +177,10 @@
     z-index: 1;
     bottom: -0.3rem;
     right: 1rem;
+
+    @media (max-width: 430px) {
+      bottom: 0;
+    }
   }
 
   &.outside {
