@@ -130,6 +130,7 @@ type SignUpProps = {
   hideIfAuthenticated?: boolean;
   nudgeBoxText?: string;
   isOnboarding?: boolean;
+  formClassName?: string;
 };
 
 const SignUp = ({
@@ -150,6 +151,7 @@ const SignUp = ({
   hideIfAuthenticated = false,
   nudgeBoxText,
   isOnboarding = false,
+  formClassName,
 }: SignUpProps) => {
   const [signUpState, userExists, signUp, setSignUpState] = useSignUp();
   const [updateUserState, updateUser] = useUpdateUser();
@@ -405,7 +407,7 @@ const SignUp = ({
   };
 
   return (
-    <>
+    <div className={formClassName}>
       {showHeading && (
         <>
           <h3 aria-label="Anmeldeformular">Willkommen bei der Expedition!</h3>
@@ -494,7 +496,7 @@ const SignUp = ({
           );
         }}
       ></Form>
-    </>
+    </div>
   );
 };
 

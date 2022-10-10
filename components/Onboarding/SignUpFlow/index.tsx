@@ -6,9 +6,7 @@ import { PageContainer } from '../PageContainer';
 export const SignUpFlow = () => {
   return (
     <PageContainer>
-      <div className={s.signupContainer}>
-        <SignUp isOnboarding={true} />
-      </div>
+      <SignUp isOnboarding={true} formClassName={s.signupContainer} />
     </PageContainer>
   );
 };
