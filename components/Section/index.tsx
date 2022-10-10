@@ -124,13 +124,19 @@ export type ColorScheme =
 
 type SectionProps = {
   section: Section;
+  isFirstSection?: boolean;
 };
 
-export const Section = ({ section }: SectionProps): ReactElement => {
+export const Section = ({
+  section,
+  isFirstSection = false,
+}: SectionProps): ReactElement => {
   const { pageBuilderActive } = useContext(XbgeAppContext);
   const [modifiedSection, setModifiedSection] = useState<Section>(section);
   const router = useRouter();
   const [actions] = useActions();
+
+  console.log({ isFirstSection });
 
   // Should be moved to a "EditText" component
   const updateContent = (index: number, content: string): void => {
@@ -177,6 +183,7 @@ export const Section = ({ section }: SectionProps): ReactElement => {
         heroImage={modifiedSection.heroImage}
         heroTitle={modifiedSection.heroTitle}
         anchor={modifiedSection.anchor}
+        isFirstSection={isFirstSection}
       >
         <>
           <div className={s.elementContainer}>
