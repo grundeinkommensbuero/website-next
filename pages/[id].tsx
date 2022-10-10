@@ -29,8 +29,6 @@ const PageWithSections = ({ page }: PageProps): ReactElement => {
         {page.title && <h2 className="my-8">{page.title}</h2>}
       </div>
       {page.sections.map((section: Section, index: number) => {
-        console.log('index of section', index);
-
         return (
           <Section
             key={section.id}

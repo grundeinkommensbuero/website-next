@@ -136,8 +136,6 @@ export const Section = ({
   const router = useRouter();
   const [actions] = useActions();
 
-  console.log({ isFirstSection });
-
   // Should be moved to a "EditText" component
   const updateContent = (index: number, content: string): void => {
     const origElement = modifiedSection.render[index] as SectionsText;
