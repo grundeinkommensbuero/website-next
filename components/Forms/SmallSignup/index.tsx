@@ -3,6 +3,8 @@ import AuthContext from '../../../context/Authentication';
 import { stateToAgs } from '../../../utils/stateToAgs';
 import { FinallyMessage } from '../FinallyMessage';
 import SignUp, { Fields } from '../SignUp';
+import { InlineButton } from '../Button';
+import s from './style.module.scss';
 
 export const SmallSignup = ({
   ags,
@@ -25,7 +27,8 @@ export const SmallSignup = ({
     ags = stateToAgs.berlin;
   }
 
-  const { isAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated, customUserData, signUserOut } =
+    useContext(AuthContext);
   const [success, setSuccess] = useState(false);
 
   if (success && isAuthenticated) {
@@ -53,14 +56,19 @@ export const SmallSignup = ({
     fields.push('nudgeBox', 'newsletterConsent');
   }
 
-  if (isAuthenticated) {
-    const { customUserData } = useContext(AuthContext);
+  if (
+    (!ags && customUserData.newsletterConsent.value) ||
+    (ags &&
+      customUserData.customNewsletters?.find(
+        newsletter => newsletter.ags === ags
+      ))
+  ) {
     return (
       <div>
         <h3>Du bist mit der Adresse {customUserData.email} angemeldet.</h3>
-        <p>
-          Um dich mit einer anderen Adresse anzumelden, klicke bitte zuerst im
-          Menü auf "abmelden".
+        <p className={s.hint}>
+          Um dich mit einer anderen Adresse anzumelden, klicke bitte zuerst auf{' '}
+          <InlineButton onClick={() => signUserOut()}>abmelden</InlineButton>.
         </p>
       </div>
     );
