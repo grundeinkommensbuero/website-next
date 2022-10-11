@@ -15,6 +15,7 @@ type SectionWrapperProps = {
   heroTitle?: string;
   heroImage?: string;
   anchor?: string;
+  isFirstSection?: boolean;
 };
 
 export const SectionWrapper = ({
@@ -26,8 +27,14 @@ export const SectionWrapper = ({
   heroTitle,
   heroImage,
   anchor,
+  isFirstSection = false,
 }: SectionWrapperProps) => {
   const anchorId = anchor && stringToId(anchor);
+
+  const headlineClasses = cN(
+    'mb-4',
+    `${colorScheme === 'colorSchemeWhite' ? 'text-violet' : ''}`
+  );
 
   return (
     <>
@@ -51,16 +58,12 @@ export const SectionWrapper = ({
       >
         {status === 'draft' && <h3 className={s.draftLabel}>Entwurf</h3>}
         <section className="sections">
-          {title && (
-            <h2
-              className={cN(
-                'mb-4',
-                `${colorScheme === 'colorSchemeWhite' ? 'text-violet' : ''}`
-              )}
-            >
-              {title}
-            </h2>
-          )}
+          {title &&
+            (isFirstSection ? (
+              <h1 className={headlineClasses}>{title}</h1>
+            ) : (
+              <h2 className={headlineClasses}>{title}</h2>
+            ))}
           {children}
         </section>
 

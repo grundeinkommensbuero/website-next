@@ -53,13 +53,13 @@ const MunicipalityPage = ({ page, municipality }: PageProps): ReactElement => {
           />
         </div>
         <div className={`${s.keyVisualElement} pb-16 pr-16 pl-6 pt-16`}>
-          <h2 className={`z-10 text-violet ${s.keyVisualClaim}`}>
+          <h1 className={`z-10 text-violet ${s.keyVisualClaim}`}>
             {municipality.name ? (
               <b>Hol das Grundeinkommen jetzt nach {municipality.name}</b>
             ) : (
               <b>Hol das Grundeinkommen jetzt in deinen Wohnort!</b>
             )}
-          </h2>
+          </h1>
           <CTALink to="#ticker">Mehr erfahren</CTALink>
         </div>
       </div>
