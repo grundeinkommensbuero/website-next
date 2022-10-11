@@ -129,6 +129,8 @@ type SignUpProps = {
   optionalNewsletterConsent?: boolean;
   hideIfAuthenticated?: boolean;
   nudgeBoxText?: string;
+  isOnboarding?: boolean;
+  formClassName?: string;
 };
 
 const SignUp = ({
@@ -148,6 +150,8 @@ const SignUp = ({
   optionalNewsletterConsent = false,
   hideIfAuthenticated = false,
   nudgeBoxText,
+  isOnboarding = false,
+  formClassName,
 }: SignUpProps) => {
   const [signUpState, userExists, signUp, setSignUpState] = useSignUp();
   const [updateUserState, updateUser] = useUpdateUser();
@@ -239,9 +243,26 @@ const SignUp = ({
                   ? 'colorSchemeRoseOnWhite'
                   : 'colorSchemeWhite'
               }
+              loadingColorScheme={
+                IS_BERLIN_PROJECT ? 'colorSchemeRose' : 'colorSchemeViolet'
+              }
             />
           </div>
         </Modal>
+      );
+    }
+
+    if (isOnboarding) {
+      return (
+        <EnterLoginCode
+          preventSignIn={true}
+          colorScheme={
+            IS_BERLIN_PROJECT ? 'colorSchemeRoseOnWhite' : 'colorSchemeWhite'
+          }
+          loadingColorScheme={
+            IS_BERLIN_PROJECT ? 'colorSchemeRose' : 'colorSchemeViolet'
+          }
+        />
       );
     }
 
@@ -386,7 +407,7 @@ const SignUp = ({
   };
 
   return (
-    <>
+    <div className={formClassName}>
       {showHeading && (
         <>
           <h3 aria-label="Anmeldeformular">Willkommen bei der Expedition!</h3>
@@ -475,7 +496,7 @@ const SignUp = ({
           );
         }}
       ></Form>
-    </>
+    </div>
   );
 };
 
