@@ -72,7 +72,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async ({ params, preview }) => {
   if (!(typeof params?.id === 'string')) {
     return {
       props: {
@@ -81,7 +81,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     };
   }
 
-  const pageProps = await getPageProps(params.id);
+  const pageProps = await getPageProps(params.id, preview);
 
   return {
     props: pageProps,

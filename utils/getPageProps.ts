@@ -200,7 +200,10 @@ const fields = [
   ),
 ];
 
-export const getPageProps = async (slug: string): Promise<PageProps> => {
+export const getPageProps = async (
+  slug: string,
+  isPreview?: boolean
+): Promise<PageProps> => {
   const directus = new Directus(process.env.DIRECTUS || '');
 
   try {
@@ -210,7 +213,7 @@ export const getPageProps = async (slug: string): Promise<PageProps> => {
     })) as FetchedPage;
 
     return {
-      page: updatePageStructure(_page),
+      page: updatePageStructure(_page, isPreview),
     };
   } catch (err) {
     console.log(err);
@@ -220,7 +223,10 @@ export const getPageProps = async (slug: string): Promise<PageProps> => {
   }
 };
 
-const updatePageStructure = (fetchedPage: FetchedPage): Page => {
+const updatePageStructure = (
+  fetchedPage: FetchedPage,
+  isPreview?: boolean
+): Page => {
   return {
     slug: fetchedPage.slug,
     title: fetchedPage.title,
@@ -235,7 +241,9 @@ const updatePageStructure = (fetchedPage: FetchedPage): Page => {
     sections: fetchedPage.sections
       .filter(
         s =>
-          s.item.status === 'published' || process.env.NEXT_PUBLIC_DEVELOPMENT
+          s.item.status === 'published' ||
+          (isPreview && s.item.status === 'draft') ||
+          process.env.NEXT_PUBLIC_DEVELOPMENT
       )
       .map(section => {
         return {
@@ -255,6 +263,7 @@ const updatePageStructure = (fetchedPage: FetchedPage): Page => {
             .filter(
               e =>
                 e.item.status === 'published' ||
+                (isPreview && e.item.status === 'draft') ||
                 process.env.NEXT_PUBLIC_DEVELOPMENT
             )
             .map((element, index) => {
