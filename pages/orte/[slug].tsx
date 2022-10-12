@@ -80,7 +80,7 @@ const MunicipalityPage = ({ page, municipality }: PageProps): ReactElement => {
 export const getServerSideProps: GetServerSideProps = async ({
   params,
   res,
-  preview
+  preview,
 }) => {
   res.setHeader(
     'Cache-Control',
