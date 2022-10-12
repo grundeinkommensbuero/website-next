@@ -30,7 +30,7 @@ const preview = async (req: NextApiRequest, res: NextApiResponse) => {
 
   // Redirect to the path from the fetched page
   // We don't redirect to req.query.slug as that might lead to open redirect vulnerabilities
-  res.redirect(page.slug);
+  res.redirect(`/${page.slug}`);
 };
 
 export default preview;
