@@ -26,6 +26,7 @@ import { Location, MapProps } from './Map';
 import mapboxgl, { Marker } from 'mapbox-gl';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import { Coordinates } from '.';
+import { LoadingAnimation } from '../LoadingAnimation';
 
 mapboxgl.accessToken =
   'pk.eyJ1IjoiYW55a2V5IiwiYSI6ImNrM3JkZ2IwMDBhZHAzZHBpemswd3F3MjYifQ.RLinVZ2-Vdp9JwErHAJz6w';
@@ -99,9 +100,7 @@ const LazyMap = ({
   }, []);
 
   useEffect(() => {
-    // If we render the map with search, we don't
-    // need to depend on locations
-    if (hasWebGl && (withSearch || locations)) {
+    if (hasWebGl) {
       // Initialize map only once
       if (!map.current) {
         // Default config for mapboxgl
@@ -249,8 +248,13 @@ const LazyMap = ({
             Browser.
           </FinallyMessage>
         )}
+
         {(hasWebGl === true || hasWebGl === null) && (
-          <div ref={container} className={s.container} />
+          <div ref={container} className={s.container}>
+            {!map.current && (
+              <LoadingAnimation className={s.loadingAnimation} />
+            )}
+          </div>
         )}
       </section>
       {!hideLegend && (
