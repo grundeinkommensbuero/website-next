@@ -203,6 +203,17 @@
   margin-top: 0;
 }
 
+.climateCheckbox {
+  input {
+    border-color: #e70000;
+    color: white !important;
+  }
+
+  :checked {
+    background: #e70000;
+  }
+}
+
 .dropdown {
   margin-right: 1.5rem;
 }
@@ -220,8 +231,13 @@
   }
 }
 
+.climateDropdownButton:hover {
+  background: #00965a;
+}
+
 .dropdownContent {
   background-color: white;
+  color: black;
   position: relative;
   z-index: 9;
   padding: 0.5rem;

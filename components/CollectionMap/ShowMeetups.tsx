@@ -170,7 +170,9 @@ export const ShowMeetups = ({
                 type="checkbox"
                 checked={showLists}
                 onChange={() => setShowLists(!showLists)}
-                className={s.inlineCheckbox}
+                className={cN(s.inlineCheckbox, {
+                  [s.climateCheckbox]: isClimate,
+                })}
                 labelClassName={s.inlineCheckboxLabel}
               />
               <Checkbox
@@ -178,7 +180,9 @@ export const ShowMeetups = ({
                 type="checkbox"
                 checked={showCollectionEvents}
                 onChange={() => setShowCollectionEvents(!showCollectionEvents)}
-                className={s.inlineCheckbox}
+                className={cN(s.inlineCheckbox, {
+                  [s.climateCheckbox]: isClimate,
+                })}
                 labelClassName={s.inlineCheckboxLabel}
               />
               <Checkbox
@@ -186,7 +190,9 @@ export const ShowMeetups = ({
                 type="checkbox"
                 checked={showStorages}
                 onChange={() => setShowStorages(!showStorages)}
-                className={s.inlineCheckbox}
+                className={cN(s.inlineCheckbox, {
+                  [s.climateCheckbox]: isClimate,
+                })}
                 labelClassName={s.inlineCheckboxLabel}
               />
             </div>
@@ -194,7 +200,9 @@ export const ShowMeetups = ({
             <div className={s.flexRow}>
               <div className={s.dropdown}>
                 <DropdownButton
-                  className={s.dropdownButton}
+                  className={cN(s.dropdownButton, {
+                    [s.climateDropdownButton]: isClimate,
+                  })}
                   onClick={() => setShowDayFilters(!showDayFilters)}
                   isOpen={showDayFilters}
                   isActive={filterTomorrow || filterToday}
@@ -217,18 +225,27 @@ export const ShowMeetups = ({
                         setFilterTomorrow(false);
                         setFilterDayAfterTomorrow(false);
                       }}
+                      className={cN({
+                        [s.climateCheckbox]: isClimate,
+                      })}
                     />
                     <Checkbox
                       label="Heute"
                       type="checkbox"
                       checked={filterToday}
                       onChange={() => setFilterToday(!filterToday)}
+                      className={cN({
+                        [s.climateCheckbox]: isClimate,
+                      })}
                     />
                     <Checkbox
                       label="Morgen"
                       type="checkbox"
                       checked={filterTomorrow}
                       onChange={() => setFilterTomorrow(!filterTomorrow)}
+                      className={cN({
+                        [s.climateCheckbox]: isClimate,
+                      })}
                     />
                     <Checkbox
                       label="Übermorgen"
@@ -237,6 +254,9 @@ export const ShowMeetups = ({
                       onChange={() =>
                         setFilterDayAfterTomorrow(!filterDayAfterTomorrow)
                       }
+                      className={cN({
+                        [s.climateCheckbox]: isClimate,
+                      })}
                     />
                   </FormSection>
                 )}
@@ -244,7 +264,9 @@ export const ShowMeetups = ({
 
               <div className={s.dropdown}>
                 <DropdownButton
-                  className={s.dropdownButton}
+                  className={cN(s.dropdownButton, {
+                    [s.climateDropdownButton]: isClimate,
+                  })}
                   onClick={() => setShowTimeFilters(!showTimeFilters)}
                   isOpen={showTimeFilters}
                   isActive={
@@ -261,18 +283,27 @@ export const ShowMeetups = ({
                       type="checkbox"
                       checked={filterBefore12}
                       onChange={() => setFilterBefore12(!filterBefore12)}
+                      className={cN({
+                        [s.climateCheckbox]: isClimate,
+                      })}
                     />
                     <Checkbox
                       label="Zwischen 12 und 18 Uhr"
                       type="checkbox"
                       checked={filterBefore18}
                       onChange={() => setFilterBefore18(!filterBefore18)}
+                      className={cN({
+                        [s.climateCheckbox]: isClimate,
+                      })}
                     />
                     <Checkbox
                       label="Nach 18 Uhr"
                       type="checkbox"
                       checked={filterAfter18}
                       onChange={() => setFilterAfter18(!filterAfter18)}
+                      className={cN({
+                        [s.climateCheckbox]: isClimate,
+                      })}
                     />
                   </FormSection>
                 )}
