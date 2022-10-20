@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@aws-amplify/auth": "^4.4.3",
-    "@circles-pink/web-client": "^1.0.53",
+    "@circles-pink/web-client": "^1.0.54",
     "@directus/sdk": "^10.1.2",
     "@mapbox/mapbox-gl-geocoder": "^5.0.1",
     "@mdi/font": "^7.0.96",
