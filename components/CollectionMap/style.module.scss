@@ -2,6 +2,10 @@
   height: 40rem;
   max-height: 60vh;
   color: $violet;
+
+  @media (max-width: $breakPointS) {
+    height: 20rem;
+  }
 }
 
 .tooltip {
@@ -247,6 +251,11 @@
     top: 0.8rem;
     height: 2.5rem;
     width: 2.5rem;
+
+    @media (max-width: $breakPointS) {
+      height: 2rem;
+      width: 2rem;
+    }
   }
 }
 
