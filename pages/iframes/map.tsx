@@ -1,9 +1,10 @@
 import React from 'react';
 import { ShowMeetups } from '../../components/CollectionMap/ShowMeetups';
+import s from './style.module.scss';
 
 const IframeMap = () => {
   return (
-    <div className="py-4">
+    <div className={`${s.page} py-4`}>
       <ShowMeetups
         isIframe={true}
         mapConfig={{
