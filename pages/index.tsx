@@ -29,8 +29,8 @@ const Start = ({ page }: PageProps): ReactElement => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async () => {
-  const pageProps = await getPageProps('start');
+export const getStaticProps: GetStaticProps = async ({ preview }) => {
+  const pageProps = await getPageProps('start', preview);
 
   return {
     props: pageProps,
