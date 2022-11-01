@@ -147,6 +147,9 @@ const LazyMap = ({
             positionOptions: {
               enableHighAccuracy: true,
             },
+            fitBoundsOptions: {
+              maxZoom: 15,
+            },
             // When active the map will receive updates to the device's location as it changes.
             trackUserLocation: true,
             // Draw an arrow next to the location dot to indicate which direction the device is heading.
