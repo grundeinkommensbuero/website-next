@@ -149,7 +149,6 @@ const CreateMeetup = ({
         onLocationChosen={handleLocationChosen}
         withSearch={true}
         mapConfig={mapConfig}
-        hideLegend={true}
       />
       {location && !district && (
         <p>

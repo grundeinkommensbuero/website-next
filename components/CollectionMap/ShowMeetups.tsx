@@ -19,6 +19,14 @@ import { List as Loader } from 'react-content-loader';
 import { useRouter } from 'next/router';
 import cN from 'classnames';
 import { CTALink } from '../Forms/CTAButton';
+import CollectIcon from './icon-collect.svg';
+import SignIcon from './icon-sign.svg';
+import StorageIcon from './icon-storage.svg';
+import CollectIconBerlin from './icon-collect-berlin.svg';
+import SignIconBerlin from './icon-sign-berlin.svg';
+import StorageIconBerlin from './icon-storage-berlin.svg';
+
+const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
 
 const CreateMeetup = dynamic(() => import('../CreateMeetup'), {
   ssr: true,
@@ -159,6 +167,14 @@ export const ShowMeetups = ({
     allLocations,
   ]);
 
+  const StorageIconComponent = IS_BERLIN_PROJECT
+    ? StorageIconBerlin
+    : StorageIcon;
+  const SignIconComponent = IS_BERLIN_PROJECT ? SignIconBerlin : SignIcon;
+  const CollectIconComponent = IS_BERLIN_PROJECT
+    ? CollectIconBerlin
+    : CollectIcon;
+
   return (
     <>
       {!isBremen && (
@@ -166,7 +182,12 @@ export const ShowMeetups = ({
           <>
             <div className={s.flexRow}>
               <Checkbox
-                label="Soli-Orte anzeigen"
+                label={
+                  <>
+                    <SignIconComponent />
+                    Soli Orte anzeigen
+                  </>
+                }
                 type="checkbox"
                 checked={showLists}
                 onChange={() => setShowLists(!showLists)}
@@ -176,7 +197,12 @@ export const ShowMeetups = ({
                 labelClassName={s.inlineCheckboxLabel}
               />
               <Checkbox
-                label="Sammel-Termine anzeigen"
+                label={
+                  <>
+                    <CollectIconComponent />
+                    Sammel-Termine anzeigen
+                  </>
+                }
                 type="checkbox"
                 checked={showCollectionEvents}
                 onChange={() => setShowCollectionEvents(!showCollectionEvents)}
@@ -186,7 +212,12 @@ export const ShowMeetups = ({
                 labelClassName={s.inlineCheckboxLabel}
               />
               <Checkbox
-                label="Materiallager anzeigen"
+                label={
+                  <>
+                    <StorageIconComponent />
+                    Materiallager anzeigen
+                  </>
+                }
                 type="checkbox"
                 checked={showStorages}
                 onChange={() => setShowStorages(!showStorages)}

@@ -33,7 +33,6 @@ export type MapProps = {
   withSearch?: boolean;
   onLocationChosen?: (e: any) => void;
   className?: string;
-  hideLegend?: boolean;
 };
 
 const Map = ({
@@ -42,7 +41,6 @@ const Map = ({
   withSearch,
   onLocationChosen,
   className,
-  hideLegend,
 }: MapProps) => {
   return (
     <LoadableMap
@@ -51,7 +49,6 @@ const Map = ({
       withSearch={withSearch}
       onLocationChosen={onLocationChosen}
       className={className}
-      hideLegend={hideLegend}
     />
   );
 };
