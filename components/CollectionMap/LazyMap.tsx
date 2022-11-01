@@ -148,7 +148,7 @@ const LazyMap = ({
               enableHighAccuracy: true,
             },
             fitBoundsOptions: {
-              maxZoom: 15,
+              maxZoom: 14,
             },
             // When active the map will receive updates to the device's location as it changes.
             trackUserLocation: true,
