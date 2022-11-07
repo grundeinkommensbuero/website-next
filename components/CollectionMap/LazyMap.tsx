@@ -176,6 +176,8 @@ const LazyMap = ({
                 markerClass = s.collectBerlin;
               } else if (meetup.type === 'lists') {
                 markerClass = s.signBerlin;
+              } else if (meetup.type === 'delivery') {
+                markerClass = s.deliveryBerlin;
               } else {
                 markerClass = s.storageBerlin;
               }

@@ -25,8 +25,17 @@ import StorageIcon from './icon-storage.svg';
 import CollectIconBerlin from './icon-collect-berlin.svg';
 import SignIconBerlin from './icon-sign-berlin.svg';
 import StorageIconBerlin from './icon-storage-berlin.svg';
+import DeliveryIconBerlin from './icon-delivery-berlin.svg';
+import querystring from 'query-string';
 
 const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
+
+type UrlParams = {
+  delivery?: boolean;
+  storage?: boolean;
+  collect?: boolean;
+  lists?: boolean;
+};
 
 const CreateMeetup = dynamic(() => import('../CreateMeetup'), {
   ssr: true,
@@ -63,6 +72,7 @@ export const ShowMeetups = ({
   const [showStorages, setShowStorages] = useState(
     router.asPath.includes('material') || router.pathname === '/' || isIframe
   );
+  const [showDeliveryLocations, setShowDeliveryLocations] = useState(isIframe);
 
   // Day filters
   const [filterToday, setFilterToday] = useState(false);
@@ -120,7 +130,8 @@ export const ShowMeetups = ({
             return (
               ((showLists && type === 'lists') ||
                 (showCollectionEvents && type === 'collect') ||
-                (showStorages && type === 'storage')) &&
+                (showStorages && type === 'storage') ||
+                (showDeliveryLocations && type === 'delivery')) &&
               // Filter for both start and endtime:
               // if endtime exists we want to include it in the filtering
               // If endtime and startime don't exist (should not happen) we don't filter
@@ -166,6 +177,17 @@ export const ShowMeetups = ({
     filterAfter18,
     allLocations,
   ]);
+
+  useEffect(() => {
+    const urlParams = querystring.parse(window.location.search);
+
+    if (Object.keys(urlParams).length > 0) {
+      setShowCollectionEvents('collect' in urlParams);
+      setShowLists('lists' in urlParams);
+      setShowDeliveryLocations('delivery' in urlParams);
+      setShowStorages('storage' in urlParams);
+    }
+  }, []);
 
   const StorageIconComponent = IS_BERLIN_PROJECT
     ? StorageIconBerlin
@@ -221,6 +243,23 @@ export const ShowMeetups = ({
                 type="checkbox"
                 checked={showStorages}
                 onChange={() => setShowStorages(!showStorages)}
+                className={cN(s.inlineCheckbox, {
+                  [s.climateCheckbox]: isClimate,
+                })}
+                labelClassName={s.inlineCheckboxLabel}
+              />
+              <Checkbox
+                label={
+                  <>
+                    <DeliveryIconBerlin color="black" />
+                    Abgabeorte anzeigen
+                  </>
+                }
+                type="checkbox"
+                checked={showDeliveryLocations}
+                onChange={() =>
+                  setShowDeliveryLocations(!showDeliveryLocations)
+                }
                 className={cN(s.inlineCheckbox, {
                   [s.climateCheckbox]: isClimate,
                 })}

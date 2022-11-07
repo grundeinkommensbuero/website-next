@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 
 const LoadableMap = dynamic(() => import('./LazyMap'), { ssr: true });
 
-export type LocationType = 'collect' | 'lists' | 'storage';
+export type LocationType = 'collect' | 'lists' | 'storage' | 'delivery';
 
 export type Location = {
   coordinates: {

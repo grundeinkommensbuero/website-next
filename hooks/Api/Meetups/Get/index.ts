@@ -8,6 +8,8 @@ import { useState } from 'react';
 import CONFIG from '../../../../backend-config';
 import { Location } from '../../../../components/CollectionMap/Map';
 
+import deliveryLocationsFromJson from '../../../../public/climate/locations.json';
+
 // The whole naming of meetups does not really make that much sense anymore, since
 // we are using the new api backend structure, where list locations and events are two
 // entirely different api and schemas.
@@ -51,6 +53,12 @@ type LocationFromAppApi = {
   equipment?: string;
   type?: string;
   initiativeId?: number;
+};
+
+type DeliveryLocationFromJson = {
+  coordinates: [number, number];
+  description: string;
+  address: string;
 };
 
 export const useGetMeetups = (): [
@@ -100,7 +108,20 @@ const getMeetups = async (
           isClimate
         );
 
-        setMeetups([...events, ...listLocations, ...storages]);
+        const deliveryLocations = isClimate
+          ? formatDeliveryLocations(
+              deliveryLocationsFromJson as DeliveryLocationFromJson[]
+            )
+          : [];
+
+        console.log({ deliveryLocations });
+
+        setMeetups([
+          ...events,
+          ...listLocations,
+          ...storages,
+          ...deliveryLocations,
+        ]);
       } else {
         console.log(
           'Response is not 200',
@@ -277,4 +298,18 @@ const formatStorages = (
       description: location.equipment,
       typeOfStorage: location.type,
     }));
+};
+
+const formatDeliveryLocations = (
+  locations: DeliveryLocationFromJson[]
+): Location[] => {
+  return locations.map(location => ({
+    ...location,
+    coordinates: {
+      lon: location.coordinates[0],
+      lat: location.coordinates[1],
+    },
+    type: 'delivery',
+    title: 'Abgabeort',
+  }));
 };
