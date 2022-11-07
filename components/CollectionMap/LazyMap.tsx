@@ -13,12 +13,6 @@ import { FinallyMessage } from '../Forms/FinallyMessage';
 
 import PinIcon from './icon-pin.svg';
 import CalenderIcon from './icon-calendar.svg';
-import CollectIcon from './icon-collect.svg';
-import SignIcon from './icon-sign.svg';
-import StorageIcon from './icon-storage.svg';
-import CollectIconBerlin from './icon-collect-berlin.svg';
-import SignIconBerlin from './icon-sign-berlin.svg';
-import StorageIconBerlin from './icon-storage-berlin.svg';
 
 import { detectWebGLContext } from '../../utils/detectWebGLContext';
 import { InlineLinkButton } from '../Forms/Button';
@@ -86,7 +80,6 @@ const LazyMap = ({
   withSearch = false,
   onLocationChosen,
   className,
-  hideLegend = false,
 }: MapProps) => {
   const [hasWebGl, setHasWebGL] = useState<boolean | null>(null);
 
@@ -232,14 +225,6 @@ const LazyMap = ({
     };
   }, []);
 
-  const StorageIconComponent = IS_BERLIN_PROJECT
-    ? StorageIconBerlin
-    : StorageIcon;
-  const SignIconComponent = IS_BERLIN_PROJECT ? SignIconBerlin : SignIcon;
-  const CollectIconComponent = IS_BERLIN_PROJECT
-    ? CollectIconBerlin
-    : CollectIcon;
-
   return (
     <>
       <section className={className}>
@@ -260,29 +245,14 @@ const LazyMap = ({
           </div>
         )}
       </section>
-      {!hideLegend && (
-        <div className={IS_BERLIN_PROJECT ? s.legendBerlin : s.legend}>
-          <div>
-            <StorageIconComponent alt="Illustration eines Materiallagers" />
-            <span>Materiallager</span>
-          </div>
-          <div>
-            <SignIconComponent alt="Illustration einer UnterschriftenListe" />
-            <span>Soli-Ort</span>
-          </div>
-          <div>
-            <CollectIconComponent alt="Illustration eines Sammelevents" />
-            <span>Sammelevent</span>
-          </div>
-        </div>
-      )}
-      {highlightedPoint.length !== 0 && (
+      {/* Probably not needed anymore? */}
+      {/* {highlightedPoint.length !== 0 && (
         <section className={s.popUpOutside}>
           <div>
             <PopupContent {...highlightedPoint[0]} />
           </div>
         </section>
-      )}
+      )} */}
     </>
   );
 };

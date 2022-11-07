@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import s from './style.module.scss';
 import { ValidationError } from '../ValidationError';
 import cN from 'classnames';
 
 type CheckboxProps = {
   input?: any;
-  label: string;
+  label: string | ReactElement;
   className?: string;
   labelClassName?: string;
   checked: boolean;
