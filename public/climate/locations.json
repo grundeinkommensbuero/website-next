@@ -22,14 +22,14 @@
   },
   {
     "address": "Wühlischstr. 28, 10245 Berlin",
-    "coordinates": [13.4585995859, 52.5094663350],
+    "coordinates": [13.4585995859, 52.509466335],
     "description": "Prachtmädchen. Mo-Fr 11-19, Sa 11-18 Uhr",
     "district": "Friedrichshain",
     "stand": false
   },
   {
     "address": "Paul-Linke-Ufer 21, 10999 Berlin",
-    "coordinates": [13.4296381460, 52.4937083585],
+    "coordinates": [13.429638146, 52.4937083585],
     "description": "Außen-Briefkasten von Berlin 2030, rund um die Uhr zugänglich",
     "district": "Kreuzberg",
     "stand": false
@@ -169,7 +169,7 @@
   },
   {
     "address": "Sammel- und Abgabestand Antonplatz",
-    "coordinates": [13.4510552665, 52.5485278230],
+    "coordinates": [13.4510552665, 52.548527823],
     "description": "Auf dem Antonplatz. Sa 13-17 Uhr, Mo 16-20 Uhr",
     "district": "Weißensee",
     "stand": true
