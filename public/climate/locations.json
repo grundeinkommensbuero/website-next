@@ -52,14 +52,12 @@
   {
     "address": "Carl-Schurz-Straße 53, 13597 Berlin",
     "coordinates": [13.2026115, 52.53879],
-    "description": "Dorotheenstädtische Buchhandlung. Mo-Fr 9:30-18:30, Sa 9:30-14:00",
-    "district": "Spandau"
+    "description": "Dorotheenstädtische Buchhandlung. Mo-Fr 9:30-18:30, Sa 9:30-14:00"
   },
     {
     "address": "Yva-Bogen, Kantstraße 10, 10623 Berlin",
     "coordinates": [13.3288082, 52.506483],
-    "description": "Delphi LUX. Mo-So 10.30-00:00 Uhr",
-    "district": "Charlottenburg"
+    "description": "Delphi LUX. Mo-So 10.30-00:00 Uhr"
   },
   {
     "address": "Dankelmannstr. 39, 14059 Berlin",
