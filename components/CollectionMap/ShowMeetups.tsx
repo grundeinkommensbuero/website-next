@@ -170,6 +170,7 @@ export const ShowMeetups = ({
     showLists,
     showCollectionEvents,
     showStorages,
+    showDeliveryLocations,
     filterToday,
     filterTomorrow,
     filterBefore12,
