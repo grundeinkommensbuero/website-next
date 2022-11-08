@@ -59,6 +59,8 @@ type DeliveryLocationFromJson = {
   coordinates: [number, number];
   description: string;
   address: string;
+  stand: true;
+  district: string;
 };
 
 export const useGetMeetups = (): [
