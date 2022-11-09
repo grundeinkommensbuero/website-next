@@ -72,7 +72,7 @@
   {
     "address": "Oderstr. 52, 12049 Berlin",
     "coordinates": [13.4188706114, 52.4763691405],
-    "description": "180° Cafe, Bistro, Apero by Sarah Klausen. Mi-Fr 12-19 Uhr, So-So 11-19 Uhr",
+    "description": "180° Cafe, Bistro, Apero by Sarah Klausen. Mi-Fr 12-19 Uhr, Sa-So 11-19 Uhr",
     "district": "Neukölln",
     "stand": false
   },
@@ -87,7 +87,7 @@
     "address": "Lückstraße 56, 10317 Berlin",
     "coordinates": [13.4910825844, 52.5014332825],
     "description": "Coffea, Mo-So 9-17 Uhr",
-    "district": "Rummelsburg",
+    "district": "Lichtenberg",
     "stand": false
   },
   {
@@ -145,33 +145,5 @@
     "description": "supercoop. Mo, Mi-Fr 10-20 Uhr Sa 9-20 Uhr",
     "district": "Wedding",
     "stand": false
-  },
-  {
-    "address": "Sammel- und Abgabestand Mauerpark",
-    "coordinates": [13.4044463392, 52.5407556488],
-    "description": "Eingang von der Eberswalderstr., ggü Oderbergerstr. Fr 14-18, Sa+So 13-17 Uhr, Mo 16-20 Uhr",
-    "district": "Prenzlauer Berg",
-    "stand": true
-  },
-  {
-    "address": "Sammel- und Abgabestand Schönhauser Allee",
-    "coordinates": [13.4140854726, 52.5496220721],
-    "description": "Auf dem Platz vor den Arkaden. Fr 15-18, Sa 13-17 Uhr, Mo 16-20 Uhr",
-    "district": "Prenzlauer Berg",
-    "stand": true
-  },
-  {
-    "address": "Sammel- und Abgabestand S-Bahn Pankow",
-    "coordinates": [13.4114141589, 52.5671922004],
-    "description": "Florastr vor Eingang zur S-Bahn. Sa 13-17 Uhr, Mo 16-20 Uhr",
-    "district": "Pankow",
-    "stand": true
-  },
-  {
-    "address": "Sammel- und Abgabestand Antonplatz",
-    "coordinates": [13.4510552665, 52.548527823],
-    "description": "Auf dem Antonplatz. Sa 13-17 Uhr, Mo 16-20 Uhr",
-    "district": "Weißensee",
-    "stand": true
   }
 ]
