@@ -30,14 +30,14 @@
   {
     "address": "Paul-Linke-Ufer 21, 10999 Berlin",
     "coordinates": [13.429638146, 52.4937083585],
-    "description": "Außen-Briefkasten von Berlin 2030, rund um die Uhr zugänglich",
+    "description": "Außen-Briefkasten von Berlin 2030. Rund um die Uhr zugänglich",
     "district": "Kreuzberg",
     "stand": false
   },
   {
     "address": "Gneisenaustr. 63, 10961 Berlin",
     "coordinates": [13.4031976696, 52.4901653804],
-    "description": "Außen-Briefkasten von Berlin 2030 rund um die Uhr zugänglich",
+    "description": "Außen-Briefkasten von Berlin 2030. Rund um die Uhr zugänglich",
     "district": "Kreuzberg",
     "stand": false
   },
@@ -72,7 +72,7 @@
   {
     "address": "Oderstr. 52, 12049 Berlin",
     "coordinates": [13.4188706114, 52.4763691405],
-    "description": "180° Cafe, Bistro, Apero by Sarah Klausen. Mi-Fr 12-19 Uhr, Sa-So 11-19 Uhr",
+    "description": "180° Café, Bistro, Apero by Sarah Klausen. Mi-Fr 12-19 Uhr, Sa-So 11-19 Uhr",
     "district": "Neukölln",
     "stand": false
   },
@@ -98,9 +98,16 @@
     "stand": false
   },
   {
+    "address": "Korsörer Str. 9, 10437 Berlin",
+    "coordinates": [13.4023125259, 52.5478308879],
+    "description": "Briefkasten mit Berlin-2030-Sticker im Hinterhaus, Eingang 9.2, rund um die Uhr zugänglich (Zugangscode Außentür 10437)",
+    "district": "Prenzlauer Berg",
+    "stand": false
+  },
+  {
     "address": "Akazienstraße 22, 10823 Berlin",
     "coordinates": [13.3540874556, 52.4879892798],
-    "description": "Cafe Double Eye. Mo-Fr 08:18-18:29 Uhr, Sa 09:05-18:29 Uhr",
+    "description": "Café Double Eye. Mo-Fr 08:18-18:29 Uhr, Sa 09:05-18:29 Uhr",
     "district": "Schöneberg",
     "stand": false
   },
