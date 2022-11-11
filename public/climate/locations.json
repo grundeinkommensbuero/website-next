@@ -100,7 +100,7 @@
   {
     "address": "Korsörer Str. 9, 10437 Berlin",
     "coordinates": [13.4023125259, 52.5478308879],
-    "description": "Briefkasten mit Berlin-2030-Sticker im Hinterhaus, Eingang 9.2, rund um die Uhr zugänglich (Zugangscode Außentür 10437)",
+    "description": "Briefkasten mit Berlin-2030-Sticker im Hinterhaus, Eingang 9.2. Rund um die Uhr zugänglich (Zugangscode Außentür 10437)",
     "district": "Prenzlauer Berg",
     "stand": false
   },
@@ -108,6 +108,13 @@
     "address": "Akazienstraße 22, 10823 Berlin",
     "coordinates": [13.3540874556, 52.4879892798],
     "description": "Café Double Eye. Mo-Fr 08:18-18:29 Uhr, Sa 09:05-18:29 Uhr",
+    "district": "Schöneberg",
+    "stand": false
+  },
+  {
+    "address": "Leberstr. 2, 10829 Berlin",
+    "coordinates": [13.3610584983, 52.4857343795],
+    "description": "Bioinsel. Mo-Sa 8:00-20:00 Uhr",
     "district": "Schöneberg",
     "stand": false
   },
