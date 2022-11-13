@@ -2,7 +2,7 @@
   {
     "address": "Seelingstraße 30, 14059 Berlin",
     "coordinates": [13.2922934691, 52.5156271667],
-    "description": "Brotgarten. Sonntag 7-17 Uhr, Montag 7-18 Uhr",
+    "description": "Brotgarten. Montag 7-18 Uhr",
     "district": "Charlottenburg",
     "stand": false
   },
@@ -51,7 +51,7 @@
   {
     "address": "Platz der Nachbarschaft, Lehrter Str. 24e, 10557 Berlin",
     "coordinates": [13.3615254979, 52.5315714265],
-    "description": "Zazza Moabit. Sonntag 8-19 Uhr, Montag 8-18 Uhr",
+    "description": "Zazza Moabit. Montag 8-18 Uhr",
     "district": "Moabit",
     "stand": false
   },
@@ -59,13 +59,6 @@
     "address": "Altenbraker Str. 15, 12053 Berlin",
     "coordinates": [13.4324330942, 52.4706553728],
     "description": "Robin Hood Store. Montag 9:30 bis 18:00 Uhr",
-    "district": "Neukölln",
-    "stand": false
-  },
-  {
-    "address": "Oderstr. 52, 12049 Berlin",
-    "coordinates": [13.4188706114, 52.4763691405],
-    "description": "180° Café, Bistro, Apero by Sarah Klausen. Sonntag 11-19 Uhr",
     "district": "Neukölln",
     "stand": false
   },
@@ -86,7 +79,7 @@
   {
     "address": "Korsörer Str. 9, 10437 Berlin",
     "coordinates": [13.4023125259, 52.5478308879],
-    "description": "Briefkasten mit Berlin-2030-Sticker im Hinterhaus, Eingang 9.2 (Zugangscode Außentür 10437). Rund um die Uhr zugänglich (bis Montag 18 Uhr)",
+    "description": "Briefkasten mit Berlin-2030-Sticker im Hinterhaus, Eingang 9.2 (Zugangscode Außentür 10437). Rund um die Uhr zugänglich (Last-Minute-Abgabe: Bis Montag 20 Uhr)",
     "district": "Prenzlauer Berg",
     "stand": false
   },
@@ -121,7 +114,7 @@
   {
     "address": "Viktoriastraße 10-18, 12105 Berlin",
     "coordinates": [13.3819175268, 52.4546820417],
-    "description": "Café Rudi & Rosa. Sonntag 10:00-19:00 Uhr, Montag 10:00-18:00 Uhr",
+    "description": "Café Rudi & Rosa. Montag 10:00-18:00 Uhr",
     "district": "Tempelhof",
     "stand": false
   },
