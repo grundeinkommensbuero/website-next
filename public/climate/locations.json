@@ -77,13 +77,6 @@
     "stand": false
   },
   {
-    "address": "Lückstraße 56, 10317 Berlin",
-    "coordinates": [13.4910825844, 52.5014332825],
-    "description": "Coffea, Sonntag+Montag 10-17 Uhr",
-    "district": "Lichtenberg",
-    "stand": false
-  },
-  {
     "address": "Bötzowstr. 1-5, 10407 Berlin",
     "coordinates": [13.4303530979, 52.5290384528],
     "description": "Filmtheater am Friedrichshain. Sonntag 14:00-23:59 Uhr, Montag 14:00-18:00 Uhr",
