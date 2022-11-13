@@ -9,7 +9,7 @@
   {
     "address": "Kantstraße 10, 10623 Berlin",
     "coordinates": [13.3309968979, 52.5064895101],
-    "description": "Delphi LUX. Sonntag 10:30-00:00 Uhr, Montag 10:30-18:00 Uhr",
+    "description": "Delphi LUX. Montag 10:30-18:00 Uhr",
     "district": "Charlottenburg",
     "stand": false
   },
@@ -32,6 +32,13 @@
     "coordinates": [13.4031976696, 52.4901653804],
     "description": "Außen-Briefkasten von Berlin 2030. Rund um die Uhr zugänglich (Last-Minute-Briefkasten: Montag bis 22 Uhr)",
     "district": "Kreuzberg",
+    "stand": false
+  },
+  {
+    "address": "Delbrückstraße 22, 10315 Berlin",
+    "coordinates": [13.5010072268, 52.5024196798],
+    "description": "Privater Briefkasten: Bei Suarez Hernandez / Bartneck klingeln und in den Briefkasten werfen. Montag 9-18 Uhr",
+    "district": "Lichtenberg",
     "stand": false
   },
   {
@@ -65,14 +72,14 @@
   {
     "address": "Hauptstr 13, 10317 Berlin",
     "coordinates": [13.4883835979, 52.4912297472],
-    "description": "Ostbloc Boulderhalle. Sonntag 9-23 Uhr, Montag 10-18 Uhr",
+    "description": "Ostbloc Boulderhalle. Montag 10-18 Uhr",
     "district": "Rummelsburg",
     "stand": false
   },
   {
     "address": "Bötzowstr. 1-5, 10407 Berlin",
     "coordinates": [13.4303530979, 52.5290384528],
-    "description": "Filmtheater am Friedrichshain. Sonntag 14:00-23:59 Uhr, Montag 14:00-18:00 Uhr",
+    "description": "Filmtheater am Friedrichshain. Montag 14-18 Uhr",
     "district": "Prenzlauer Berg",
     "stand": false
   },
@@ -107,7 +114,7 @@
   {
     "address": "Gutsmuthsstraße 26, 12163 Berlin",
     "coordinates": [13.3261064859, 52.4643783246],
-    "description": "Café GM 26. Sonntag 10:00-23:59 Uhr, Montag 15:00-18:00 Uhr",
+    "description": "Café GM 26. Montag 15:00-18:00 Uhr",
     "district": "Steglitz",
     "stand": false
   },
