@@ -1,27 +1,6 @@
 [
   {
-    "address": "Seelingstraße 30, 14059 Berlin",
-    "coordinates": [13.2922934691, 52.5156271667],
-    "description": "Brotgarten. Montag 7-18 Uhr",
-    "district": "Charlottenburg",
-    "stand": false
-  },
-  {
-    "address": "Kantstraße 10, 10623 Berlin",
-    "coordinates": [13.3309968979, 52.5064895101],
-    "description": "Delphi LUX. Montag 10:30-18:00 Uhr",
-    "district": "Charlottenburg",
-    "stand": false
-  },
-  {
-    "address": "Wühlischstr. 28, 10245 Berlin",
-    "coordinates": [13.4585995859, 52.509466335],
-    "description": "Prachtmädchen. Montag 11:30-18:00 Uhr",
-    "district": "Friedrichshain",
-    "stand": false
-  },
-  {
-    "address": "Paul-Linke-Ufer 21, 10999 Berlin",
+    "address": "Paul-Lincke-Ufer 21, 10999 Berlin",
     "coordinates": [13.429638146, 52.4937083585],
     "description": "Außen-Briefkasten von Berlin 2030. Rund um die Uhr zugänglich (Last-Minute-Briefkasten: Montag bis 22 Uhr)",
     "district": "Kreuzberg",
@@ -35,115 +14,10 @@
     "stand": false
   },
   {
-    "address": "Delbrückstraße 22, 10315 Berlin",
-    "coordinates": [13.5010072268, 52.5024196798],
-    "description": "Privater Briefkasten: Bei Suarez Hernandez / Bartneck klingeln und in den Briefkasten werfen. Montag 9-18 Uhr",
-    "district": "Lichtenberg",
-    "stand": false
-  },
-  {
-    "address": "Landsberger Allee 487, 12679 Berlin",
-    "coordinates": [13.5621710691, 52.5451832831],
-    "description": "Briefkasten von “Heße” (siehe Sticker). Rund um die Uhr zugänglich (bis Montag 18 Uhr)",
-    "district": "Marzahn",
-    "stand": false
-  },
-  {
-    "address": "Münzstraße 10, 10178 Berlin",
-    "coordinates": [13.4083126571, 52.5244636587],
-    "description": "Patagonia Store. Montag 11-18 Uhr",
-    "district": "Mitte",
-    "stand": false
-  },
-  {
-    "address": "Platz der Nachbarschaft, Lehrter Str. 24e, 10557 Berlin",
-    "coordinates": [13.3615254979, 52.5315714265],
-    "description": "Zazza Moabit. Montag 8-18 Uhr",
-    "district": "Moabit",
-    "stand": false
-  },
-  {
-    "address": "Altenbraker Str. 15, 12053 Berlin",
-    "coordinates": [13.4324330942, 52.4706553728],
-    "description": "Robin Hood Store. Montag 9:30 bis 18:00 Uhr",
-    "district": "Neukölln",
-    "stand": false
-  },
-  {
-    "address": "Hauptstr 13, 10317 Berlin",
-    "coordinates": [13.4883835979, 52.4912297472],
-    "description": "Ostbloc Boulderhalle. Montag 10-18 Uhr",
-    "district": "Rummelsburg",
-    "stand": false
-  },
-  {
-    "address": "Bötzowstr. 1-5, 10407 Berlin",
-    "coordinates": [13.4303530979, 52.5290384528],
-    "description": "Filmtheater am Friedrichshain. Montag 14-18 Uhr",
-    "district": "Prenzlauer Berg",
-    "stand": false
-  },
-  {
     "address": "Korsörer Str. 9, 10437 Berlin",
     "coordinates": [13.4023125259, 52.5478308879],
     "description": "Briefkasten mit Berlin-2030-Sticker im Hinterhaus, Eingang 9.2 (Zugangscode Außentür 10437). Rund um die Uhr zugänglich (Last-Minute-Abgabe: Bis Montag 20 Uhr)",
     "district": "Prenzlauer Berg",
-    "stand": false
-  },
-  {
-    "address": "Akazienstraße 22, 10823 Berlin",
-    "coordinates": [13.3540874556, 52.4879892798],
-    "description": "Café Double Eye. Montag 08:18-18:00 Uhr",
-    "district": "Schöneberg",
-    "stand": false
-  },
-  {
-    "address": "Leberstr. 2, 10829 Berlin",
-    "coordinates": [13.3610584983, 52.4857343795],
-    "description": "Bioinsel. Montag 8:00-18:00 Uhr",
-    "district": "Schöneberg",
-    "stand": false
-  },
-  {
-    "address": "Carl-Schurz-Straße 53, 13597 Berlin",
-    "coordinates": [13.2048109268, 52.5387834542],
-    "description": "Dorotheenstädtische Buchhandlung. Montag 9:30-18:00 Uhr",
-    "district": "Spandau",
-    "stand": false
-  },
-  {
-    "address": "Gutsmuthsstraße 26, 12163 Berlin",
-    "coordinates": [13.3261064859, 52.4643783246],
-    "description": "Café GM 26. Montag 15:00-18:00 Uhr",
-    "district": "Steglitz",
-    "stand": false
-  },
-  {
-    "address": "Viktoriastraße 10-18, 12105 Berlin",
-    "coordinates": [13.3819175268, 52.4546820417],
-    "description": "Café Rudi & Rosa. Montag 10:00-18:00 Uhr",
-    "district": "Tempelhof",
-    "stand": false
-  },
-  {
-    "address": "Wilhelminenhofstr. 92, 12459 Berlin",
-    "coordinates": [13.5090207268, 52.4622668059],
-    "description": "KAOS CoWorking GmbH. Unregelmäßig geöffnet; Außenbriefkasten am Hofeingang. Rund um die Uhr zugänglich (bis Montag 18 Uhr)",
-    "district": "Treptow-Köpenick",
-    "stand": false
-  },
-  {
-    "address": "Bölschestr. 120, 12587 Berlin",
-    "coordinates": [13.6242733268, 52.4493766633],
-    "description": "Unverpackt Laden. Montag 9:30-18:00 Uhr",
-    "district": "Treptow-Köpenick",
-    "stand": false
-  },
-  {
-    "address": "Oudenarder Str 16, 13347 Berlin",
-    "coordinates": [13.3585029268, 52.5533259096],
-    "description": "supercoop. Montag 10-18 Uhr",
-    "district": "Wedding",
     "stand": false
   }
 ]
