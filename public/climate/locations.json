@@ -12,12 +12,5 @@
     "description": "Außen-Briefkasten von Berlin 2030. Rund um die Uhr zugänglich (Last-Minute-Briefkasten: Montag bis 22 Uhr)",
     "district": "Kreuzberg",
     "stand": false
-  },
-  {
-    "address": "Korsörer Str. 9, 10437 Berlin",
-    "coordinates": [13.4023125259, 52.5478308879],
-    "description": "Briefkasten mit Berlin-2030-Sticker im Hinterhaus, Eingang 9.2 (Zugangscode Außentür 10437). Rund um die Uhr zugänglich (Last-Minute-Abgabe: Bis Montag 20 Uhr)",
-    "district": "Prenzlauer Berg",
-    "stand": false
   }
 ]
