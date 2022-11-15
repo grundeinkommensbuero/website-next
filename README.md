@@ -74,8 +74,3 @@ We use Dynamo DB as database.
 - Implemented in the Authentication context and the Authentication hook.
 - User table in the database is linked to Cognito user database by the cognito id.
 
-
-## Dependency Graph:
-
-![Dependencies](./dependencygraph.svg)
-<!-- <img src="./dependencygraph.svg"> -->
