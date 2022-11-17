@@ -351,9 +351,7 @@ const formatDeliveryLocations = (
 };
 
 const formatPlacards = (placards: PlacardFromApi[]): Location[] => {
-  const activePlacards = placards.filter(
-    placard => placard.abgehangen === true
-  );
+  const activePlacards = placards.filter(placard => !placard.abgehangen);
 
   return activePlacards.map(placard => ({
     coordinates: { lon: placard.longitude, lat: placard.latitude },
