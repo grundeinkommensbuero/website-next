@@ -1765,7 +1765,7 @@
     node-fetch "^2.0.0"
     web3 "^1.7.1"
 
-"@circles-pink/web-client@^1.0.58":
+"@circles-pink/web-client@^1.0.57":
   version "1.0.58"
   resolved "https://registry.yarnpkg.com/@circles-pink/web-client/-/web-client-1.0.58.tgz#adf5258196d4b675d45ff0222fa3edfd752d83b8"
   integrity sha512-zPkXiwBEq4/oAZ+VzGb5xa7EzOR/wwKY0i9gkCKybh7a74mm8C/fQSL2trRXRUzWrjihWeaJ/mB2qh5LvBZyzQ==
