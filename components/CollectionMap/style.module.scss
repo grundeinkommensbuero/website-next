@@ -127,6 +127,13 @@
   &.deliveryBerlin {
     background-image: url('marker-delivery-berlin.png');
   }
+
+  &.placardBerlin {
+    background-image: url('marker-placard-berlin.png');
+    width: 2rem;
+    height: 2rem;
+    top: -20px !important;
+  }
 }
 
 .eventContainer {

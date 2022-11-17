@@ -63,6 +63,15 @@ type DeliveryLocationFromJson = {
   district: string;
 };
 
+type PlacardFromApi = {
+  longitude: number;
+  latitude: number;
+  adresse: string;
+  abgehangen: boolean;
+  id: string;
+  initiativenId: number;
+};
+
 export const useGetMeetups = (): [
   Location[] | undefined,
   (state: string) => void
@@ -85,17 +94,23 @@ const getMeetups = async (
     if (isBerlin || isClimate) {
       // In comparison to the way we handle events and list locations in our backend
       // those two types are two different api endpoints in the app backend
-      const [eventsResponse, listLocationsResponse, storagesResponse] =
-        await Promise.all([
-          getEventsFromAppApi(isClimate),
-          getListLocationsFromAppApi(isClimate),
-          getStoragesFromAppApi(),
-        ]);
+      const [
+        eventsResponse,
+        listLocationsResponse,
+        storagesResponse,
+        placardsResponse,
+      ] = await Promise.all([
+        getEventsFromAppApi(isClimate),
+        getListLocationsFromAppApi(isClimate),
+        getStoragesFromAppApi(),
+        getPlacardsFromAppApi(),
+      ]);
 
       if (
         eventsResponse.status === 200 &&
         listLocationsResponse.status === 200 &&
-        storagesResponse.status === 200
+        storagesResponse.status === 200 &&
+        placardsResponse.status === 200
       ) {
         // We don't need to thoroughly format list locations, only event meetups
         const events = formatMeetups({
@@ -110,19 +125,20 @@ const getMeetups = async (
           isClimate
         );
 
+        const placards = formatPlacards(await placardsResponse.json());
+
         const deliveryLocations = isClimate
           ? formatDeliveryLocations(
               deliveryLocationsFromJson as DeliveryLocationFromJson[]
             )
           : [];
 
-        console.log({ deliveryLocations });
-
         setMeetups([
           ...events,
           ...listLocations,
           ...storages,
           ...deliveryLocations,
+          ...placards,
         ]);
       } else {
         console.log(
@@ -211,6 +227,24 @@ const getStoragesFromAppApi = () => {
   };
 
   return fetch(`${CONFIG.APP_API.INVOKE_URL}/service/storages`, request);
+};
+
+const getPlacardsFromAppApi = (isClimate = true) => {
+  // Endpoint is POST to optionally receive  a filter as body
+  const request: RequestInit = {
+    method: 'POST',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    // Pass filter with attribute details to also fetch description
+    // and pass filter to only show events for grundeinkommen
+    body: JSON.stringify({
+      initiativenIds: [isClimate ? 2 : 1],
+    }),
+  };
+
+  return fetch(`${CONFIG.APP_API.INVOKE_URL}/service/plakate`, request);
 };
 
 const formatMeetups = ({
@@ -313,5 +347,18 @@ const formatDeliveryLocations = (
     },
     type: 'delivery',
     title: 'Abgabeort',
+  }));
+};
+
+const formatPlacards = (placards: PlacardFromApi[]): Location[] => {
+  const activePlacards = placards.filter(
+    placard => placard.abgehangen === true
+  );
+
+  return activePlacards.map(placard => ({
+    coordinates: { lon: placard.longitude, lat: placard.latitude },
+    type: 'placard',
+    address: placard.adresse,
+    title: 'Plakat',
   }));
 };

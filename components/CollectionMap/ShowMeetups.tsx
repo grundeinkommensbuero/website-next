@@ -26,6 +26,7 @@ import CollectIconBerlin from './icon-collect-berlin.svg';
 import SignIconBerlin from './icon-sign-berlin.svg';
 import StorageIconBerlin from './icon-storage-berlin.svg';
 import DeliveryIconBerlin from './icon-delivery-berlin.svg';
+import PlacardIconBerlin from './icon-placard-berlin.svg';
 import querystring from 'query-string';
 
 const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
@@ -73,6 +74,7 @@ export const ShowMeetups = ({
     router.asPath.includes('material') || router.pathname === '/' || isIframe
   );
   const [showDeliveryLocations, setShowDeliveryLocations] = useState(isIframe);
+  const [showPlacards, setShowPlacards] = useState(false);
 
   // Day filters
   const [filterToday, setFilterToday] = useState(false);
@@ -131,7 +133,8 @@ export const ShowMeetups = ({
               ((showLists && type === 'lists') ||
                 (showCollectionEvents && type === 'collect') ||
                 (showStorages && type === 'storage') ||
-                (showDeliveryLocations && type === 'delivery')) &&
+                (showDeliveryLocations && type === 'delivery') ||
+                (showPlacards && type === 'placard')) &&
               // Filter for both start and endtime:
               // if endtime exists we want to include it in the filtering
               // If endtime and startime don't exist (should not happen) we don't filter
@@ -171,6 +174,7 @@ export const ShowMeetups = ({
     showCollectionEvents,
     showStorages,
     showDeliveryLocations,
+    showPlacards,
     filterToday,
     filterTomorrow,
     filterBefore12,
@@ -187,6 +191,7 @@ export const ShowMeetups = ({
       setShowLists('lists' in urlParams);
       setShowDeliveryLocations('delivery' in urlParams);
       setShowStorages('storage' in urlParams);
+      setShowPlacards('placard' in urlParams);
     }
   }, []);
 
@@ -261,6 +266,21 @@ export const ShowMeetups = ({
                 onChange={() =>
                   setShowDeliveryLocations(!showDeliveryLocations)
                 }
+                className={cN(s.inlineCheckbox, {
+                  [s.climateCheckbox]: isClimate,
+                })}
+                labelClassName={s.inlineCheckboxLabel}
+              />
+              <Checkbox
+                label={
+                  <>
+                    <PlacardIconBerlin color="black" />
+                    Plakate anzeigen
+                  </>
+                }
+                type="checkbox"
+                checked={showPlacards}
+                onChange={() => setShowPlacards(!showPlacards)}
                 className={cN(s.inlineCheckbox, {
                   [s.climateCheckbox]: isClimate,
                 })}
