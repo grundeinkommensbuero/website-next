@@ -22,10 +22,9 @@ export const PartnerLogos = () => {
   return (
     <div>
       <p className={s.introText}>
-        Gemeinsam mit dir und starken Partnern starten wir staatliche
-        Modellversuche zum Grundeinkommen. Demokratisch beschlossen.
-        Deutschlandweit mit bis zu 10.000 Teilnehmenden – davon 2.000
-        Teilnehmende allein in Hamburg.
+        Gemeinsam mit dir und starken Partnern starten wir einen staatlichen
+        Modellversuch zum Grundeinkommen in Hamburg. Demokratisch beschlossen.
+        Mit 2.000 Teilnehmenden.
       </p>
       <p className={s.introText}>Bist du dabei?</p>
       <SignupButtonAndTile className={s.centerButton} />
