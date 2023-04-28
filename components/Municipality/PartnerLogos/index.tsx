@@ -36,8 +36,8 @@ export const PartnerLogos = () => {
           <Image
             width={525}
             height={198}
-            src="/logo-changeverein.png"
-            alt="Logo Change.org e.V."
+            src="/442A4C9C-4D80-41BE-ACC7-5C2E8D694798.png"
+            alt="Logo innn.it"
           />
         </div>
         <div className={cN(s.partnerLogo, s.fribisLogo)}>
