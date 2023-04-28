@@ -36,7 +36,7 @@ export const PartnerLogos = () => {
           <Image
             width={525}
             height={198}
-            src="/442A4C9C-4D80-41BE-ACC7-5C2E8D694798.png"
+            src="/2F003EF0-61FC-486F-B40F-96F73873BDA1.png"
             alt="Logo innn.it"
           />
         </div>
