@@ -34,7 +34,7 @@ export const PartnerLogos = () => {
         </div>
         <div className={cN(s.partnerLogo, s.changeLogo)}>
           <Image
-            width={525}
+            width={410}
             height={198}
             src="/2F003EF0-61FC-486F-B40F-96F73873BDA1.png"
             alt="Logo innn.it"
