@@ -57,8 +57,8 @@ type Menus = {
   footerMenu: Menu;
 };
 
-const MAINMENU_ID = 2;
-const FOOTERMENU_ID = 3;
+const MAINMENU_ID = process.env.NEXT_PUBLIC_PROJECT === 'Hamburg' ? 4 : 2;
+const FOOTERMENU_ID = process.env.NEXT_PUBLIC_PROJECT === 'Hamburg' ? 5 : 3;
 
 const menuFields = [
   'id',
