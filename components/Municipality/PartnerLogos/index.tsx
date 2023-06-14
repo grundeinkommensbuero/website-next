@@ -22,10 +22,9 @@ export const PartnerLogos = () => {
   return (
     <div>
       <p className={s.introText}>
-        Gemeinsam mit dir und starken Partnern starten wir staatliche
-        Modellversuche zum Grundeinkommen. Demokratisch beschlossen.
-        Deutschlandweit mit bis zu 10.000 Teilnehmenden – davon 2.000
-        Teilnehmende allein in Hamburg.
+        Gemeinsam mit dir und starken Partnern starten wir einen staatlichen
+        Modellversuch zum Grundeinkommen in Hamburg. Demokratisch beschlossen.
+        Mit 2.000 Teilnehmenden.
       </p>
       <p className={s.introText}>Bist du dabei?</p>
       <SignupButtonAndTile className={s.centerButton} />
@@ -35,10 +34,10 @@ export const PartnerLogos = () => {
         </div>
         <div className={cN(s.partnerLogo, s.changeLogo)}>
           <Image
-            width={525}
+            width={410}
             height={198}
-            src="/logo-changeverein.png"
-            alt="Logo Change.org e.V."
+            src="/2F003EF0-61FC-486F-B40F-96F73873BDA1.png"
+            alt="Logo innn.it"
           />
         </div>
         <div className={cN(s.partnerLogo, s.fribisLogo)}>
