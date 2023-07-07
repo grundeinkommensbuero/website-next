@@ -125,3 +125,41 @@ $bgColors: (
   --input-border-color: #{$black};
   --input-font-color: #{$black};
 }
+
+.colorSchemeHamburg {
+  background-color: $white;
+  color: $black;
+  --primary-color: #{$white};
+  --secondary-color: #{$black};
+  --bg-color: #{$white};
+  --font-color: #{$black};
+  --heading-color: #{$black};
+  --text-on-secondary-color: #{$black};
+  --button-font-color: #{$black};
+  --button-bg-color: #{$hh_orange};
+  --button-hover-bg-color: #{$black};
+  --button-hover-font-color: #{$white};
+  --button-focus-bg-color: lighten(#{$black}, 20%);
+  --button-focus-font-color: #{$white};
+  --input-border-color: #{$black};
+  --input-font-color: #{$black};
+}
+
+.colorSchemeHamburgAlternate {
+  background-color: #{$hh_grey};
+  color: $black;
+  --primary-color: #{$hh_grey};
+  --secondary-color: #{$black};
+  --bg-color: #{$white};
+  --font-color: #{$black};
+  --heading-color: #{$black};
+  --text-on-secondary-color: #{$black};
+  --button-font-color: #{$black};
+  --button-bg-color: #{$hh_orange};
+  --button-hover-bg-color: #{$black};
+  --button-hover-font-color: #{$white};
+  --button-focus-bg-color: lighten(#{$black}, 20%);
+  --button-focus-font-color: #{$white};
+  --input-border-color: #{$black};
+  --input-font-color: #{$black};
+}

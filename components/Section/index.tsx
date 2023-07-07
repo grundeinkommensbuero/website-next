@@ -120,7 +120,9 @@ export type ColorScheme =
   | 'colorSchemeWhite'
   | 'colorSchemeRed'
   | 'colorSchemeRose'
-  | 'colorSchemeRoseOnWhite';
+  | 'colorSchemeRoseOnWhite'
+  | 'colorSchemeHamburg'
+  | 'colorSchemeHamburgAlternate';
 
 type SectionProps = {
   section: Section;
