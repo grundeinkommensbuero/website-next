@@ -20,6 +20,16 @@ const options: Option[] = [
     label: 'Rose on white',
     fontColor: 'text-black',
   },
+  {
+    value: 'colorSchemeHamburg',
+    label: 'Hamburg (weißer Hintergrund)',
+    fontColor: 'text-black',
+  },
+  {
+    value: 'colorSchemeHamburgAlternate',
+    label: 'Hamburg (grauer Hintergrund)',
+    fontColor: 'text-black',
+  },
 ];
 
 export const SelectColor = ({
