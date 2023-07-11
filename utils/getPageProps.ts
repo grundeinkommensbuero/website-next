@@ -23,6 +23,8 @@ export type Page = {
   heroTitle: string | null;
   heroSubTitle: string | null;
   heroImage: string | null;
+  heroCTAText: string | null;
+  heroCTALink: string | null;
   metaTitle: string | null;
   metaDescription: string | null;
   ogImage: string | null;
@@ -37,6 +39,8 @@ type FetchedPage = {
   heroTitle: string | null;
   heroSubTitle: string | null;
   heroImage: string | null;
+  heroCTAText: string | null;
+  heroCTALink: string | null;
   metaTitle: string | null;
   metaDescription: string | null;
   ogImage: string | null;
@@ -51,6 +55,8 @@ const pageFields = [
   'heroTitle',
   'heroSubTitle',
   'heroImage',
+  'heroCTAText',
+  'heroCTALink',
   'metaTitle',
   'metaDescription',
   'ogImage',
@@ -71,6 +77,8 @@ type FetchedSectionData = {
     hasHero: boolean;
     heroTitle?: string;
     heroImage?: string;
+    heroCTAText?: string;
+    heroCTALink?: string;
     elements: FetchedElement[];
   };
 };
@@ -86,6 +94,8 @@ const sectionFields = [
   'hasHero',
   'heroTitle',
   'heroImage',
+  'heroCTAText',
+  'heroCTALink',
 ];
 
 export type Align = 'left' | 'center' | 'right';
@@ -235,6 +245,8 @@ const updatePageStructure = (
     heroTitle: fetchedPage.heroTitle,
     heroSubTitle: fetchedPage.heroSubTitle,
     heroImage: fetchedPage.heroImage,
+    heroCTAText: fetchedPage.heroCTAText,
+    heroCTALink: fetchedPage.heroCTALink,
     metaTitle: fetchedPage.metaTitle,
     metaDescription: fetchedPage.metaDescription,
     ogImage: fetchedPage.ogImage,
@@ -259,6 +271,8 @@ const updatePageStructure = (
           hasHero: section.item.hasHero,
           heroTitle: section.item.heroTitle,
           heroImage: section.item.heroImage,
+          heroCTAText: section.item.heroCTAText,
+          heroCTALink: section.item.heroCTALink,
           render: section.item.elements
             .filter(
               e =>

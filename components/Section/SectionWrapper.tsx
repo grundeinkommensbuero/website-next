@@ -14,6 +14,7 @@ type SectionWrapperProps = {
   hasHero?: boolean;
   heroTitle?: string;
   heroImage?: string;
+  heroCTAText?: string;
   anchor?: string;
   isFirstSection?: boolean;
 };
@@ -26,6 +27,7 @@ export const SectionWrapper = ({
   hasHero,
   heroTitle,
   heroImage,
+  heroCTAText,
   anchor,
   isFirstSection = false,
 }: SectionWrapperProps) => {

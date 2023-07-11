@@ -16,6 +16,7 @@ const Start = ({ page }: PageProps): ReactElement => {
               heroTitle={page.heroTitle}
               heroSubTitle={page.heroSubTitle}
               heroImage={page.heroImage}
+              heroCTAText={page.heroCTAText}
             />
           )}
           <section>

@@ -23,6 +23,7 @@ const PageWithSections = ({ page }: PageProps): ReactElement => {
           heroTitle={page.heroTitle}
           heroSubTitle={page.heroSubTitle}
           heroImage={page.heroImage}
+          heroCTAText={page.heroCTAText}
         />
       )}
       <div className="pageWidth">

@@ -36,6 +36,8 @@ export type Section = {
   hasHero: boolean;
   heroTitle?: string;
   heroImage?: string;
+  heroCTAText?: string;
+  heroCTALink?: string;
   render: SectionElement[];
 };
 
@@ -182,6 +184,7 @@ export const Section = ({
         hasHero={modifiedSection.hasHero}
         heroImage={modifiedSection.heroImage}
         heroTitle={modifiedSection.heroTitle}
+        heroCTAText={modifiedSection.heroCTAText}
         anchor={modifiedSection.anchor}
         isFirstSection={isFirstSection}
       >

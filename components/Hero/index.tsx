@@ -9,9 +9,10 @@ type HeroProps = {
   heroTitle: string | null;
   heroSubTitle: string | null;
   heroImage: string;
+  heroCTAText: string | null;
 };
 
-export const Hero = ({ heroTitle, heroSubTitle, heroImage }: HeroProps) => {
+export const Hero = ({ heroTitle, heroSubTitle, heroImage, heroCTAText }: HeroProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   return (
