@@ -2,8 +2,11 @@ import { ReactElement } from 'react';
 import { Dropdown, Menu, MenuEntry } from '../../../../utils/getMenus';
 import { MenuLink } from '../MenuLink';
 import { UserMenuLink } from '../UserMenuLink';
+import { LinkButton } from '../../../../components/Forms/Button';
 import s from '../style.module.scss';
 import cN from 'classnames';
+
+const IS_HAMBURG_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Hamburg';
 
 type MainMenuProps = {
   mainMenu: Menu;
@@ -49,16 +52,22 @@ export const MainMenu = ({
             </li>
           );
         })}
-        <li>
-          <UserMenuLink
-            entry={{
-              id: 'login',
-              slug: `login${getLoginNextPageParam(currentRoute)}`,
-              label: 'Einloggen',
-            }}
-            currentRoute={currentRoute}
-          />
-        </li>
+        {IS_HAMBURG_PROJECT ? (
+          <li>
+            <LinkButton href="/sammeln">Jetzt sammeln</LinkButton>
+          </li>
+        ) : (
+          <li>
+            <UserMenuLink
+              entry={{
+                id: 'login',
+                slug: `login${getLoginNextPageParam(currentRoute)}`,
+                label: 'Einloggen',
+              }}
+              currentRoute={currentRoute}
+            />
+          </li>
+        )}
       </ul>
     </nav>
   );

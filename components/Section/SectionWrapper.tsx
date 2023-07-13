@@ -6,6 +6,8 @@ import { getAssetURL } from '../Util/getAssetURL';
 import { stringToId } from '../../utils/stringToId';
 import s from './style.module.scss';
 
+const IS_HAMBURG_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Hamburg';
+
 type SectionWrapperProps = {
   children: ReactElement;
   colorScheme: ColorScheme;
@@ -53,7 +55,7 @@ export const SectionWrapper = ({
 
       <div
         className={`${hasHero ? s.hasHero : ''} ${
-          s.sectionWrapper
+          s.sectionWrapper + (IS_HAMBURG_PROJECT ? ' hamburg' : '')
         } ${colorScheme} ${status === 'draft' ? s.draftSection : ''} relative`}
       >
         {status === 'draft' && <h3 className={s.draftLabel}>Entwurf</h3>}

@@ -6,6 +6,7 @@ $bgColors: (
   red: $red,
   white: $white,
   black: $black,
+  navy: $hh_navy,
 );
 
 @each $label, $color in $bgColors {
