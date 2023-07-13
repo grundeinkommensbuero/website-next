@@ -11,6 +11,7 @@ import {
   SectionsCTAButton,
   SectionsFAQ,
   SectionsCollectionMap,
+  SectionsSlider,
   Status,
 } from '../components/Section';
 import { PageProps } from '../pages/[id]';
@@ -107,6 +108,7 @@ type FetchedElement = {
     | 'sectionsVideo'
     | 'sectionsCTAButton'
     | 'sectionsFAQ'
+    | 'sectionsSlider'
     | 'sectionsCollectionMap';
   item: {
     id: string;
@@ -340,6 +342,21 @@ const updatePageStructure = (
                     state: element.item.state,
                     maxBounds: element.item.maxBounds,
                   } as SectionsCollectionMap;
+                case 'sectionsSlider':
+                  return {
+                    ...baseElement,
+                    collection: 'sectionsSlider',
+                    title: element.item.title,
+                    sliderPages: element.item.sliderPages
+                      ? element.item.sliderPages.map(sliderPage => {
+                          return {
+                            question:
+                              sliderPage.questionAnswerPair_id.question,
+                            answer: questionAnswer.questionAnswerPair_id.answer,
+                          };
+                        })
+                      : [],
+                  } as SectionsSlider;
               }
             }),
         };
