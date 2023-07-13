@@ -17,6 +17,7 @@ import Script from 'next/script';
 import { getAssetURL } from '../components/Util/getAssetURL';
 
 const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
+const IS_HAMBURG_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Hamburg';
 
 type Project = {
   siteTitle: string;
@@ -170,7 +171,13 @@ export const Layout = ({
         <Header mainMenu={mainMenu} currentRoute={currentRoute} />
         {children}
         <Footer footerMenu={footerMenu} />
-        <div className="grow bg-red" />
+        <div
+          className={cN(
+            'grow',
+            { 'bg-navy': IS_HAMBURG_PROJECT },
+            { 'bg-red': !IS_HAMBURG_PROJECT }
+          )}
+        />
       </div>
       {pageIsLoading && <LoadingAnimation fixed />}
       <Script id="matomo">

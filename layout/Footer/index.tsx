@@ -8,13 +8,20 @@ import cN from 'classnames';
 import LogoExpedition from '../logo-expedition.svg';
 
 const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
+const IS_HAMBURG_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Hamburg';
 
 type FooterProps = {
   footerMenu: Menu;
 };
 
 export const Footer = ({ footerMenu }: FooterProps): ReactElement => (
-  <footer className={cN(s.footer, { [s.black]: IS_BERLIN_PROJECT })}>
+  <footer
+    className={cN(
+      s.footer,
+      { [s.black]: IS_BERLIN_PROJECT },
+      { [s.hamburg]: IS_HAMBURG_PROJECT }
+    )}
+  >
     <div className={s.itemContainer}>
       <div className="text-d-lg">
         {IS_BERLIN_PROJECT && (

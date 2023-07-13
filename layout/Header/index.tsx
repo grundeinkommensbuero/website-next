@@ -15,6 +15,7 @@ import AuthContext, {
 import { stateToAgs } from '../../utils/stateToAgs';
 
 const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
+const IS_HAMBURG_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Hamburg';
 
 type HeaderProps = {
   mainMenu: Menu;
@@ -105,7 +106,13 @@ export const Header = ({
 
   return (
     <>
-      <header className={s.header}>
+      <header
+        className={cN(
+          s.header,
+          { [s.hamburg]: IS_HAMBURG_PROJECT },
+          { colorSchemeHamburg: IS_HAMBURG_PROJECT }
+        )}
+      >
         <div className={s.headerContent}>
           <Logo
             className={`cursor-pointer h-12 ${s.logo}`}
@@ -128,7 +135,11 @@ export const Header = ({
         </div>
       </header>
       {isMobile && mobileMenuActive && (
-        <div className={cN(s.mobileMenu)}>
+        <div
+          className={cN(s.mobileMenu, {
+            colorSchemeHamburg: IS_HAMBURG_PROJECT,
+          })}
+        >
           <MainMenuMobile
             mainMenu={modifiedMainMenu}
             currentRoute={currentRoute}

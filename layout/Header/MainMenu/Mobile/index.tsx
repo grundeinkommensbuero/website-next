@@ -2,9 +2,12 @@ import { ReactElement } from 'react';
 import { Dropdown, Menu, MenuEntry } from '../../../../utils/getMenus';
 import { MenuLink } from '../MenuLink';
 import { UserMenuLinkMobile } from './UserMenuLinkMobile';
+import { LinkButton } from '../../../../components/Forms/Button';
 import cN from 'classnames';
 import s from '../style.module.scss';
 import { getLoginNextPageParam } from '../Desktop';
+
+const IS_HAMBURG_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Hamburg';
 
 type MainMenuMobileProps = {
   mainMenu: Menu;
@@ -56,17 +59,23 @@ export const MainMenuMobile = ({
             </li>
           );
         })}
-        <li>
-          <UserMenuLinkMobile
-            entry={{
-              id: 'login',
-              slug: `login${getLoginNextPageParam(currentRoute)}`,
-              label: 'Einloggen',
-            }}
-            currentRoute={currentRoute}
-            extraCallback={closeMenu}
-          />
-        </li>
+        {IS_HAMBURG_PROJECT ? (
+          <li>
+            <LinkButton href="/sammeln">Jetzt sammeln</LinkButton>
+          </li>
+        ) : (
+          <li>
+            <UserMenuLinkMobile
+              entry={{
+                id: 'login',
+                slug: `login${getLoginNextPageParam(currentRoute)}`,
+                label: 'Einloggen',
+              }}
+              currentRoute={currentRoute}
+              extraCallback={closeMenu}
+            />
+          </li>
+        )}
       </ul>
     </nav>
   );
