@@ -8,6 +8,7 @@ import SuccessIconBerlin from './success-rosa.svg';
 export type ButtonSize = 'MEDIUM' | 'SMALL';
 
 const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
+const IS_HAMBURG_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Hamburg';
 
 const SuccessIcon = IS_BERLIN_PROJECT ? SuccessIconBerlin : SuccessIconStandard;
 
@@ -32,7 +33,12 @@ export function LinkButton({
     <a
       href={href}
       target={target}
-      className={cN(s.linkButton, className, { [s.medium]: size === 'MEDIUM' })}
+      className={cN(
+        s.linkButton,
+        className,
+        { [s.medium]: size === 'MEDIUM' },
+        { [s.hamburg]: IS_HAMBURG_PROJECT }
+      )}
       {...other}
     >
       {children}
@@ -56,7 +62,12 @@ export function LinkButtonLocal({
   ...other
 }: LinkButtonLocalProps) {
   return (
-    <div className={cN(s.linkButton, className)} {...other}>
+    <div
+      className={cN(s.linkButton, className, {
+        [s.hamburg]: IS_HAMBURG_PROJECT,
+      })}
+      {...other}
+    >
       <Link href={to}>{children}</Link>
     </div>
   );
@@ -99,6 +110,7 @@ export function Button({
         className={cN(
           s.button,
           className,
+          { [s.hamburg]: IS_HAMBURG_PROJECT },
           { [s.medium]: size === 'MEDIUM' },
           // Only use small buttons as exception!
           { [s.small]: size === 'SMALL' },

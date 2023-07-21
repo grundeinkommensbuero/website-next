@@ -8,6 +8,7 @@ import { HamburgerMenu } from './MainMenu/Mobile/HamburgerMenu';
 import s from './style.module.scss';
 import PageLogo from '../logo-expedition.svg';
 import PageLogoBerlin from '../logo-berlin.svg';
+import PageLogoHamburg from '../logo-hamburg.svg';
 import { useRouter } from 'next/router';
 import AuthContext, {
   MunicipalityOfUser,
@@ -35,7 +36,11 @@ export const Header = ({
   const { width } = useWindowDimensions();
   const router = useRouter();
 
-  const Logo = IS_BERLIN_PROJECT ? PageLogoBerlin : PageLogo;
+  const Logo = IS_BERLIN_PROJECT
+    ? PageLogoBerlin
+    : IS_HAMBURG_PROJECT
+    ? PageLogoHamburg
+    : PageLogo;
 
   useEffect(() => {
     setIsMobile(width < 900);
@@ -138,6 +143,7 @@ export const Header = ({
         <div
           className={cN(s.mobileMenu, {
             colorSchemeHamburg: IS_HAMBURG_PROJECT,
+            [s.hamburg]: IS_HAMBURG_PROJECT,
           })}
         >
           <MainMenuMobile
