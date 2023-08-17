@@ -22,7 +22,13 @@ export const MainMenuMobile = ({
 }: MainMenuMobileProps): ReactElement => {
   return (
     <nav
-      className={cN('flex-column', 'items-start', s.nav, s.mobileMenuContainer)}
+      className={cN(
+        'flex-column',
+        'items-start',
+        s.nav,
+        s.mobileMenuContainer,
+        { [s.hamburg]: IS_HAMBURG_PROJECT }
+      )}
     >
       <ul>
         {mainMenu.map((entry, index) => {
@@ -49,7 +55,13 @@ export const MainMenuMobile = ({
               </li>
             );
           return (
-            <li className="my-2" key={(entry as MenuEntry).slug}>
+            <li
+              className={cN(
+                { 'my-2': !IS_HAMBURG_PROJECT },
+                { 'my-10': IS_HAMBURG_PROJECT }
+              )}
+              key={(entry as MenuEntry).slug}
+            >
               <MenuLink
                 entry={entry as MenuEntry}
                 currentRoute={currentRoute}
@@ -60,7 +72,7 @@ export const MainMenuMobile = ({
           );
         })}
         {IS_HAMBURG_PROJECT ? (
-          <li>
+          <li className={cN({ 'my-10': IS_HAMBURG_PROJECT })}>
             <LinkButton href="/sammeln">Jetzt sammeln</LinkButton>
           </li>
         ) : (
@@ -77,6 +89,7 @@ export const MainMenuMobile = ({
           </li>
         )}
       </ul>
+      {IS_HAMBURG_PROJECT ? '' : ''}
     </nav>
   );
 };

@@ -174,7 +174,7 @@ export const Layout = ({
         <div
           className={cN(
             'grow',
-            { 'bg-navy': IS_HAMBURG_PROJECT },
+            { 'bg-hh_rose': IS_HAMBURG_PROJECT },
             { 'bg-red': !IS_HAMBURG_PROJECT }
           )}
         />

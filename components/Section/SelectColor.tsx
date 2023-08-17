@@ -30,6 +30,11 @@ const options: Option[] = [
     label: 'Hamburg (grauer Hintergrund)',
     fontColor: 'text-black',
   },
+  {
+    value: 'colorSchemeHamburgBlackOnOrange',
+    label: 'Hamburg (schwarz auf orange)',
+    fontColor: 'text-black',
+  },
 ];
 
 export const SelectColor = ({

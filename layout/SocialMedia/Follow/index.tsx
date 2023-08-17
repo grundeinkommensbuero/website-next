@@ -25,3 +25,23 @@ export const Follow = ({ className }: { className: string }) => (
     />
   </div>
 );
+
+export const FollowHamburg = ({ className }: { className: string }) => (
+  <div className={className + ' flex justify-center'}>
+    <SocialMediaButton
+      icon="FacebookHamburg"
+      link="https://www.facebook.com/expedition.grundeinkommen"
+      label="Folge auf Facebook"
+    />
+    <SocialMediaButton
+      icon="InstagramHamburg"
+      link="https://www.instagram.com/expedition.grundeinkommen/"
+      label="Folge auf Instagram"
+    />
+    <SocialMediaButton
+      icon="TwitterHamburg"
+      link="https://twitter.com/expeditionbge"
+      label="Folge auf Twitter"
+    />
+  </div>
+);

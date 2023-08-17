@@ -18,7 +18,7 @@ export const MainMenu = ({
   currentRoute,
 }: MainMenuProps): ReactElement => {
   return (
-    <nav className={s.nav}>
+    <nav className={cN([s.nav], { [s.hamburg]: IS_HAMBURG_PROJECT })}>
       <ul className={cN('flex-row', 'items-center')}>
         {mainMenu.map(entry => {
           if ((entry as Dropdown).entries)

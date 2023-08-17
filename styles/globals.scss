@@ -148,7 +148,7 @@ p {
   h4,
   h5 {
     font-family: 'Obviously', Tahoma, Arial, Helvetica, sans-serif !important;
-    font-weight: normal !important;
+    font-weight: bold !important;
     line-height: 1 !important;
   }
 
@@ -269,15 +269,41 @@ p {
 }
 
 .hamburg {
-  div,
+  font-family: 'Obviously', Tahoma, Arial, Helvetica, sans-serif;
+
+  div {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
+    font-family: 'Obviously', Tahoma, Arial, Helvetica, sans-serif;
+    font-weight: bold;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  h1 {
+    color: $white;
+    background: $black;
+    border-radius: 35px;
+    padding: 0.5rem;
+    font-size: 42px;
+    width: fit-content;
+  }
+
+  h2 {
+    font-size: 42px;
+  }
+
+  h3 {
+    font-size: 32px;
   }
 }
