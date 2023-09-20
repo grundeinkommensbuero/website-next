@@ -11,8 +11,13 @@ const preview = async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(401).json({ message: 'Invalid token' });
   }
 
-  const slug = req.query.slug !== '/' ? req.query.slug : 'start';
-
+  // const slug = req.query.slug !== '/' ? req.query.slug : 'start';
+  const slug = IS_BERLIN_PROJECT
+    ? req.query.slug !== '/' ? req.query.slug : 'start'
+    : IS_HAMBURG_PROJECT
+    ? req.query.slug !== '/' ? req.query.slug : 'start-hamburg'
+    : req.query.slug !== '/' ? req.query.slug : 'start'
+  
   // Fetch the headless CMS to check if the provided `slug` exists
   const directus = new Directus(process.env.DIRECTUS || '');
 
