@@ -16,10 +16,16 @@ const preview = async (req: NextApiRequest, res: NextApiResponse) => {
 
   // const slug = req.query.slug !== '/' ? req.query.slug : 'start';
   const slug = IS_BERLIN_PROJECT
-    ? (req.query.slug !== '/' ? req.query.slug : 'start')
+    ? req.query.slug !== "/"
+      ? req.query.slug
+      : "start"
     : IS_HAMBURG_PROJECT
-    ? (req.query.slug !== '/' ? req.query.slug : 'start-hamburg')
-    : (req.query.slug !== '/' ? req.query.slug : 'start');
+    ? req.query.slug !== "/"
+      ? req.query.slug
+      : "start-hamburg"
+    : req.query.slug !== "/"
+    ? req.query.slug
+    : "start";
   
   // Fetch the headless CMS to check if the provided `slug` exists
   const directus = new Directus(process.env.DIRECTUS || '');
