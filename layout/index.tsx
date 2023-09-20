@@ -105,7 +105,7 @@ export const Layout = ({
   const metaImage = ogImage
     ? getAssetURL(ogImage)
     : getRootAssetURL(
-        project?.ogimage || '57331286-2406-4f11-a523-dda6a2166c2e'
+        project?.ogimage || 'f6a625ba-4e00-4e92-9da7-be20ef7294c3'
       );
 
   return (
