@@ -30,7 +30,7 @@ const Start = ({ page }: PageProps): ReactElement => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ preview }) => {
-  const pageProps = await getPageProps('start', preview);
+  const pageProps = await getPageProps('start-hamburg', preview);
 
   return {
     props: pageProps,
