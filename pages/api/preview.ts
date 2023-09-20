@@ -1,6 +1,9 @@
 import { Directus } from '@directus/sdk';
 import { NextApiRequest, NextApiResponse } from 'next';
 
+const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
+const IS_HAMBURG_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Hamburg';
+
 const preview = async (req: NextApiRequest, res: NextApiResponse) => {
   // Check the token and next parameters
   // This token should only be known to this API route and the CMS
