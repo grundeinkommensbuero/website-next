@@ -320,7 +320,7 @@ const SignUp = ({
   const fieldData: SignUpValues = {
     email: {
       name: 'email',
-      label: 'E-mail',
+      label: 'Bitte trag hier deine E-Mail-Adresse ein:',
       description: 'Pflichtfeld',
       placeholder: 'E-Mail',
       type: 'email',
