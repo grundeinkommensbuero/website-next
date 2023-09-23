@@ -1,10 +1,10 @@
-import s from "./style.module.scss";
-import { PageProps } from "./[id]";
-import { ReactElement } from "react";
-import { Section } from "../components/Section";
-import { GetStaticProps } from "next";
-import { getPageProps } from "../utils/getPageProps";
-import { Hero } from "../components/Hero";
+import s from './style.module.scss';
+import { PageProps } from './[id]';
+import { ReactElement } from 'react';
+import { Section } from '../components/Section';
+import { GetStaticProps } from 'next';
+import { getPageProps } from '../utils/getPageProps';
+import { Hero } from '../components/Hero';
 
 const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === "Berlin";
 const IS_HAMBURG_PROJECT = process.env.NEXT_PUBLIC_PROJECT === "Hamburg";
