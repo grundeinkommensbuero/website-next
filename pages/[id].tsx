@@ -53,7 +53,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
             _eq: 'published',
           },
           slug: {
-            _neq: 'start',
+            _neq: 'start-hamburg',
           },
         },
       })
