@@ -1,6 +1,6 @@
 import { Directus } from '@directus/sdk';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { index_slug } from './[id]';
+import { index_slug } from '../[id]';
 
 const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === "Berlin";
 const IS_HAMBURG_PROJECT = process.env.NEXT_PUBLIC_PROJECT === "Hamburg";
