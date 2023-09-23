@@ -31,7 +31,7 @@ const Start = ({ page }: PageProps): ReactElement => {
 
 export const getStaticProps: GetStaticProps = async ({ preview }) => {
   const pageProps = await getPageProps('index_slug', preview);
-    
+
   return {
     props: pageProps,
   };

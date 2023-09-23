@@ -8,10 +8,14 @@ import { Hero } from '../components/Hero';
 import { Directus } from '@directus/sdk';
 import PageNotFound from './404';
 
-const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === "Berlin";
-const IS_HAMBURG_PROJECT = process.env.NEXT_PUBLIC_PROJECT === "Hamburg";
+const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
+const IS_HAMBURG_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Hamburg';
 
-export const index_slug = IS_BERLIN_PROJECT ? 'start' : IS_HAMBURG_PROJECT ? 'start-hamburg' : 'start-hamburg'; //set to start-hamburg on expedition-grundeinkommen.de also temporarily
+export const index_slug = IS_BERLIN_PROJECT
+  ? 'start'
+  : IS_HAMBURG_PROJECT
+  ? 'start-hamburg'
+  : 'start-hamburg'; //set to start-hamburg on expedition-grundeinkommen.de also temporarily
 
 export type PageProps = {
   page: Page | null;
