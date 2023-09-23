@@ -1,5 +1,5 @@
 import s from './style.module.scss';
-import { PageProps } from './[id]';
+import { PageProps, index_slug } from './[id]';
 import { ReactElement } from 'react';
 import { Section } from '../components/Section';
 import { GetStaticProps } from 'next';
