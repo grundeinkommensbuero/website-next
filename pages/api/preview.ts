@@ -19,7 +19,7 @@ const preview = async (req: NextApiRequest, res: NextApiResponse) => {
     ? 'start'
     : IS_HAMBURG_PROJECT
     ? 'start-hamburg'
-    : 'start-hamburg' //set to start-hamburg on expedition-grundeinkommen.de also temporarily
+    : 'start-hamburg'; //set to start-hamburg on expedition-grundeinkommen.de also temporarily
 
   // Fetch the headless CMS to check if the provided `slug` exists
   const directus = new Directus(process.env.DIRECTUS || '');
