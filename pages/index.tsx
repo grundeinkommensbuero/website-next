@@ -6,6 +6,9 @@ import { GetStaticProps } from 'next';
 import { getPageProps } from '../utils/getPageProps';
 import { Hero } from '../components/Hero';
 
+const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
+const IS_HAMBURG_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Hamburg';
+
 const Start = ({ page }: PageProps): ReactElement => {
   return (
     <div className={s.container}>
@@ -30,7 +33,12 @@ const Start = ({ page }: PageProps): ReactElement => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ preview }) => {
-  const pageProps = await getPageProps('start-hamburg', preview);
+  const pageProps = IS_BERLIN_PROJECT
+  ? await getPageProps('start', preview);
+  : IS_HAMBURG_PROJECT
+  ? await getPageProps('start-hamburg', preview);
+  : await getPageProps('start-hamburg', preview); //set to start-hamburg on expedition-grundeinkommen.de temporarily
+
 
   return {
     props: pageProps,
