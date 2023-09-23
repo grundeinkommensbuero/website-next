@@ -73,7 +73,7 @@ export const MainMenuMobile = ({
         })}
         {IS_HAMBURG_PROJECT ? (
           <li className={cN({ 'my-10': IS_HAMBURG_PROJECT })}>
-            <LinkButton href="/sammeln">Jetzt sammeln</LinkButton>
+            <LinkButton href="/mitmachen">Jetzt sammeln</LinkButton>
           </li>
         ) : (
           <li>
