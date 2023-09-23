@@ -34,9 +34,9 @@ const Start = ({ page }: PageProps): ReactElement => {
 
 export const getStaticProps: GetStaticProps = async ({ preview }) => {
   const pageProps = IS_BERLIN_PROJECT
-  ? await getPageProps('start', preview);
+  ? await getPageProps('start', preview)
   : IS_HAMBURG_PROJECT
-  ? await getPageProps('start-hamburg', preview);
+  ? await getPageProps('start-hamburg', preview)
   : await getPageProps('start-hamburg', preview); //set to start-hamburg on expedition-grundeinkommen.de temporarily
 
 
