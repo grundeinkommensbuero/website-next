@@ -1,5 +1,5 @@
 import s from './style.module.scss';
-import { PageProps } from './[id]';
+import { PageProps, index_slug } from './[id]';
 import { ReactElement } from 'react';
 import { Section } from '../components/Section';
 import { GetStaticProps } from 'next';
@@ -30,7 +30,7 @@ const Start = ({ page }: PageProps): ReactElement => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ preview }) => {
-  const pageProps = await getPageProps('start-hamburg', preview);
+  const pageProps = await getPageProps('index_slug', preview);
 
   return {
     props: pageProps,
