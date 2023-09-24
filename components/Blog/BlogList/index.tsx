@@ -47,13 +47,13 @@ export const BlogSnippet = ({
           {formatDate(dateObject)}
         </time>
         <h2 className={s.title}>
-          <Link href={`/blog/${id}`} passHref>
+          <Link href={`/blog/${id}`} passHref legacyBehavior>
             {title}
           </Link>
         </h2>
       </header>
       {featured_image && (
-        <Link href={`/blog/${id}`} passHref>
+        <Link href={`/blog/${id}`} passHref legacyBehavior>
           <div className={s.imageContainer}>
             <Image
               src={getRootAssetURL(featured_image.id)}

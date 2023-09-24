@@ -62,7 +62,7 @@ export const ProfileOverview = ({
 
   return (
     <section className={gS.profilePageGrid}>
-      <Link href={`/mensch/${userId}/stammdaten`} passHref shallow>
+      <Link href={`/mensch/${userId}/stammdaten`} passHref shallow legacyBehavior>
         <section
           className={cN(
             s.profilePageSection,
@@ -95,7 +95,7 @@ export const ProfileOverview = ({
         </section>
       </Link>
 
-      <Link href={`/mensch/${userId}/spenden-einstellungen`} passHref>
+      <Link href={`/mensch/${userId}/spenden-einstellungen`} passHref legacyBehavior>
         <section
           className={cN(s.profilePageSection, {
             [s.rose]: IS_BERLIN_PROJECT,
@@ -117,7 +117,7 @@ export const ProfileOverview = ({
         </section>
       </Link>
 
-      <Link href={`/mensch/${userId}/kontakt-einstellungen`} passHref>
+      <Link href={`/mensch/${userId}/kontakt-einstellungen`} passHref legacyBehavior>
         <section
           className={cN(s.profilePageSection, {
             [s.rose]: IS_BERLIN_PROJECT,
@@ -139,7 +139,10 @@ export const ProfileOverview = ({
       </Link>
 
       {showSignatureScan && (
-        <Link href={`/mensch/${userId}/unterschriften-eintragen`} passHref>
+        <Link
+          href={`/mensch/${userId}/unterschriften-eintragen`}
+          passHref
+          legacyBehavior>
           <section
             className={cN(
               s.profilePageSection,
@@ -168,7 +171,7 @@ export const ProfileOverview = ({
       )}
 
       {showPackageSection && (
-        <Link href={`/mensch/${userId}/paket-nehmen`} passHref>
+        <Link href={`/mensch/${userId}/paket-nehmen`} passHref legacyBehavior>
           <section
             className={cN(
               s.profilePageSection,

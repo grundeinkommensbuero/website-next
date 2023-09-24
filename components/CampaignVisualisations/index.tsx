@@ -527,7 +527,7 @@ const WrapInLink = ({ link, children, className }: WrapLinkProps) => {
       );
     } else {
       return (
-        <Link href={link} passHref>
+        <Link href={link} passHref legacyBehavior>
           <span className={className}>{children}</span>
         </Link>
       );

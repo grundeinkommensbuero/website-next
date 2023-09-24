@@ -28,19 +28,20 @@ export const CustomMenuLink = ({
     entry.slug.substring(0, 1) === '/' ? entry.slug : `/${entry.slug}`;
 
   return (
-    <Link key={entry.id} href={prefixedSlug}>
-      <a
-        onClick={() => {
-          if (extraCallback) extraCallback();
-        }}
-        className={`${!isMobile ? 'mx-2' : ''} nowrap cursor-pointer ${
-          prefixedSlug === currentRoute ? 'underline' : 'hoverUnderline'
-        } ${className}`}
-        aria-label={`Zu ${entry.slug} navigieren`}
-      >
-        {entry.label}
-        {children}
-      </a>
-    </Link>
+    (<Link
+      key={entry.id}
+      href={prefixedSlug}
+      onClick={() => {
+        if (extraCallback) extraCallback();
+      }}
+      className={`${!isMobile ? 'mx-2' : ''} nowrap cursor-pointer ${
+        prefixedSlug === currentRoute ? 'underline' : 'hoverUnderline'
+      } ${className}`}
+      aria-label={`Zu ${entry.slug} navigieren`}>
+
+      {entry.label}
+      {children}
+
+    </Link>)
   );
 };

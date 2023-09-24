@@ -28,29 +28,27 @@ export const MenuLink = ({
   const action = entry.useAction && entry.action ? actions[entry.action] : null;
 
   return (
-    <Link
+    (<Link
       key={entry.id}
       href={entry.useAction && entry.action ? '' : prefixedSlug}
-    >
-      <a
-        onClick={() => {
-          if (extraCallback) extraCallback();
-          if (action) action();
-          (document.activeElement as HTMLElement).blur();
-        }}
-        className={`${!isMobile ? 'mx-2' : ''} nowrap ${
-          prefixedSlug === currentRoute
-            ? `underline${underlineColor}`
-            : `hoverUnderline${hoverUnderlineColor}`
-        }`}
-        aria-label={
-          slug !== ''
-            ? `Zu ${slug === '/' ? 'Start' : entry.slug} navigieren`
-            : ''
-        }
-      >
-        {entry.label}
-      </a>
-    </Link>
+      onClick={() => {
+        if (extraCallback) extraCallback();
+        if (action) action();
+        (document.activeElement as HTMLElement).blur();
+      }}
+      className={`${!isMobile ? 'mx-2' : ''} nowrap ${
+        prefixedSlug === currentRoute
+          ? `underline${underlineColor}`
+          : `hoverUnderline${hoverUnderlineColor}`
+      }`}
+      aria-label={
+        slug !== ''
+          ? `Zu ${slug === '/' ? 'Start' : entry.slug} navigieren`
+          : ''
+      }>
+
+      {entry.label}
+
+    </Link>)
   );
 };

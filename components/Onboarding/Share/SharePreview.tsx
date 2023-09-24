@@ -181,112 +181,108 @@ export const SharePreview = ({
     const subject = `Gemeinsam bringen wir das Grundeinkommen nach ${municipality.name}`;
     const body = mailBody();
     const quote = `Bring das Grundeinkommen mit mir an den Staat! Melde dich dafür bei der Expedition Grundeinkommen an. Ich bin schon in ${municipality.name} dabei :)`;
-    return (
-      <>
-        {CaseButton && shareChannel ? (
-          <CaseButton
-            title={title}
-            hashtags={hashtags}
-            subject={subject}
-            body={body}
-            quote={quote}
-            url={constructShareURL()}
-            className={gS.buttonRowSingle}
-            windowWidth={1200}
-            windowHeight={1000}
-          >
-            <button className={gS.selectableOption}>
-              Über {shareChannel?.label?.replace(/\\/g, '')} teilen
-            </button>
-          </CaseButton>
-        ) : null}
-      </>
-    );
+    return <>
+      {CaseButton && shareChannel ? (
+        <CaseButton
+          title={title}
+          hashtags={hashtags}
+          subject={subject}
+          body={body}
+          quote={quote}
+          url={constructShareURL()}
+          className={gS.buttonRowSingle}
+          windowWidth={1200}
+          windowHeight={1000}
+        >
+          <button className={gS.selectableOption}>
+            Über {shareChannel?.label?.replace(/\\/g, '')} teilen
+          </button>
+        </CaseButton>
+      ) : null}
+    </>;
   };
 
   useEffect(() => {
     setUseProfilePicture(!!userData?.profilePictures?.original);
   }, [userData]);
 
-  return (
-    <>
-      {shareChannel?.channelIdentifier !== 'instagram' ? (
-        <>
-          <h3 className={gS.moduleTitle}>
-            Über {shareChannel?.label.replace(/\\/g, '')} teilen
-          </h3>
-          <div className={s.sharePreviewContainer}>
-            {useProfilePicture ? (
-              <>
-                <img
-                  src={
-                    'https://images.ctfassets.net/af08tobnb0cl/4LVqlgSyy9xfpnZvsABNlF/65e368bfbe1d3f7c650bf640927cb59d/Teilen-Leer.png?h=500'
-                  }
-                  alt={'sharing background'}
-                  className={s.sharePreview}
-                />
-                <AvatarImage user={userData} className={s.avatarImage} />
-              </>
-            ) : (
+  return <>
+    {shareChannel?.channelIdentifier !== 'instagram' ? (
+      <>
+        <h3 className={gS.moduleTitle}>
+          Über {shareChannel?.label.replace(/\\/g, '')} teilen
+        </h3>
+        <div className={s.sharePreviewContainer}>
+          {useProfilePicture ? (
+            <>
               <img
                 src={
-                  'https://images.ctfassets.net/af08tobnb0cl/2JpoX7gHOGy49opxwetJXG/f5fa878ae57259ee0dcfbe7af45ddaf8/Teilen-Fallback-Leer.png?h=500'
+                  'https://images.ctfassets.net/af08tobnb0cl/4LVqlgSyy9xfpnZvsABNlF/65e368bfbe1d3f7c650bf640927cb59d/Teilen-Leer.png?h=500'
                 }
                 alt={'sharing background'}
                 className={s.sharePreview}
               />
-            )}
-            <h3
-              className={cN(s.mainCaption, {
-                [s.mainCaptionHuge]: !isInOnboarding,
-              })}
-            >
-              {userData.username
-                ? `${userData.username} bringt das #Grundeinkommen nach${' '}
-                ${municipality.name}`
-                : `Ich bringe das #Grundeinkomme nach${' '}
-                ${municipality.name}`}
-            </h3>
-            <h4 className={s.subCaption}>Hol es auch in deinen Ort!</h4>
-          </div>
+              <AvatarImage user={userData} className={s.avatarImage} />
+            </>
+          ) : (
+            <img
+              src={
+                'https://images.ctfassets.net/af08tobnb0cl/2JpoX7gHOGy49opxwetJXG/f5fa878ae57259ee0dcfbe7af45ddaf8/Teilen-Fallback-Leer.png?h=500'
+              }
+              alt={'sharing background'}
+              className={s.sharePreview}
+            />
+          )}
+          <h3
+            className={cN(s.mainCaption, {
+              [s.mainCaptionHuge]: !isInOnboarding,
+            })}
+          >
+            {userData.username
+              ? `${userData.username} bringt das #Grundeinkommen nach${' '}
+              ${municipality.name}`
+              : `Ich bringe das #Grundeinkomme nach${' '}
+              ${municipality.name}`}
+          </h3>
+          <h4 className={s.subCaption}>Hol es auch in deinen Ort!</h4>
+        </div>
 
-          <ShareButton />
+        <ShareButton />
 
-          {userData?.profilePictures?.original && (
-            <div className={gS.optionSelectionContainer}>
-              {useProfilePicture ? (
+        {userData?.profilePictures?.original && (
+          <div className={gS.optionSelectionContainer}>
+            {useProfilePicture ? (
+              <Button
+                onClick={() => setUseProfilePicture(!useProfilePicture)}
+              >
+                Lieber kein Profilbild nutzen
+              </Button>
+            ) : (
+              <>
                 <Button
                   onClick={() => setUseProfilePicture(!useProfilePicture)}
                 >
-                  Lieber kein Profilbild nutzen
+                  Lieber mit Profilbild teilen
                 </Button>
-              ) : (
-                <>
-                  <Button
-                    onClick={() => setUseProfilePicture(!useProfilePicture)}
-                  >
-                    Lieber mit Profilbild teilen
-                  </Button>
-                </>
-              )}
-            </div>
-          )}
+              </>
+            )}
+          </div>
+        )}
 
-          {showProfileImageUpload && (
-            <div className={s.imageUploadContainer}>
-              <ImageUpload
-                userData={userData}
-                userId={userId}
-                size={'large'}
-                onUploadDone={() => {}}
-                smallSubmitButton={true}
-              />
-            </div>
-          )}
-        </>
-      ) : (
-        <InstagramHowTo />
-      )}
-    </>
-  );
+        {showProfileImageUpload && (
+          <div className={s.imageUploadContainer}>
+            <ImageUpload
+              userData={userData}
+              userId={userId}
+              size={'large'}
+              onUploadDone={() => {}}
+              smallSubmitButton={true}
+            />
+          </div>
+        )}
+      </>
+    ) : (
+      <InstagramHowTo />
+    )}
+  </>;
 };

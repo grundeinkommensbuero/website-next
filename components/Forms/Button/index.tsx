@@ -68,7 +68,7 @@ export function LinkButtonLocal({
       })}
       {...other}
     >
-      <Link href={to}>{children}</Link>
+      <Link href={to} legacyBehavior>{children}</Link>
     </div>
   );
 }
