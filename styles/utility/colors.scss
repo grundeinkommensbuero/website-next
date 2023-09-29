@@ -182,10 +182,4 @@ $bgColors: (
   --button-focus-font-color: #{$white};
   --input-border-color: #{$black};
   --input-font-color: #{$black};
-
-  & > section {
-    /* rather evil misuse of the color scheme here */
-    margin-bottom: -4.5rem;
-    margin-top: -1.5rem;
-  }
 }
