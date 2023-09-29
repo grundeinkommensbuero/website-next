@@ -81,6 +81,7 @@
   width: 15rem;
 
   @media (max-width: $breakPointS) {
-    width: 11rem;
+    padding: 0.5rem 0;
+    width: 12rem;
   }
 }

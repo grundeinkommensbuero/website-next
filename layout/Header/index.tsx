@@ -125,6 +125,8 @@ export const Header = ({
             alt={
               IS_BERLIN_PROJECT
                 ? 'Volksentscheid Grundeinkommen Home'
+                : IS_HAMBURG_PROJECT
+                ? 'Hamburg testet Grundeinkommen'
                 : 'Expedition Grundeinkommen Home'
             }
             onClick={() => router.push('/')}
