@@ -41,21 +41,16 @@
   animation: 0.25s ease-in-out 0s 1 expandMenu;
 
   &.hamburg {
+    padding: 0;
     font-family: 'Obviously', Tahoma, Arial, Helvetica, sans-serif;
     font-weight: bold;
-    background: linear-gradient(
-      to bottom,
-      $hh_orange 0%,
-      $hh_orange 50%,
-      $hh_rose 50%,
-      $hh_rose 100%
-    );
+    background: $hh_rose;
     height: calc(100vh - $headerHeightS);
     text-align: center;
 
     nav {
       justify-content: space-between;
-      height: 50%;
+      height: auto;
     }
 
     ul {
