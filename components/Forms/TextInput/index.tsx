@@ -53,7 +53,7 @@ export function TextInput({
           [s.hideNumberArrows]:
             input.name === 'zipCode' || input.name === 'listId',
         },
-        {[s.hamburg]: IS_HAMBURG_PROJECT}
+        { [s.hamburg]: IS_HAMBURG_PROJECT }
       )}
       ref={customRef}
       {...input}

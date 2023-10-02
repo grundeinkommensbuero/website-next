@@ -189,10 +189,11 @@ export const Section = ({
         isFirstSection={isFirstSection}
       >
         <>
-          <div className={cN(
-            s.elementContainer,
-            {[s.hamburg]: IS_HAMBURG_PROJECT},
-          )}>
+          <div
+            className={cN(s.elementContainer, {
+              [s.hamburg]: IS_HAMBURG_PROJECT,
+            })}
+          >
             {modifiedSection.render.map((element, index) => {
               const { column, alignTop } = element;
 
