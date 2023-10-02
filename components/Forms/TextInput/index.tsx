@@ -4,6 +4,8 @@ import cN from 'classnames';
 import LabelInputErrorWrapper from '../LabelInputErrorWrapper';
 import { ValidationError } from '../ValidationError';
 
+const IS_HAMBURG_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Hamburg';
+
 export type InputSize = 'SMALL';
 
 type TextInputProps = {
@@ -50,7 +52,8 @@ export function TextInput({
         {
           [s.hideNumberArrows]:
             input.name === 'zipCode' || input.name === 'listId',
-        }
+        },
+        { [s.hamburg]: IS_HAMBURG_PROJECT }
       )}
       ref={customRef}
       {...input}

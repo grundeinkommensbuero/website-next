@@ -32,6 +32,13 @@ $inputWidth: 25rem;
     border: 2px solid var(--input-border-color);
     box-shadow: inset 0 0 0 $borderWidthThick var(--input-border-color);
   }
+
+  &.hamburg {
+    border-radius: 2rem;
+    border-width: 2px;
+    padding: 0.7rem 1rem 0.8rem;
+    margin: 0.5rem auto;
+  }
 }
 
 .textInputSmall {

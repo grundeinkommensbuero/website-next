@@ -16,8 +16,20 @@
     gap: 40px;
   }
 
-  @media (max-width: $breakPointM) {
-    font-size: $MobileFontSizeM;
+  &.hamburg.mobileMenuContainer ul {
+    & li > span {
+      display: block;
+      margin-top: 2.5rem;
+    }
+
+    & ul {
+      font-size: 60%;
+      font-weight: normal;
+    }
+
+    & ul li {
+      margin: 0;
+    }
   }
 }
 
@@ -69,6 +81,7 @@
   box-sizing: content-box;
 
   &.hamburg {
+    background: $hh_orange;
     width: 100%;
   }
 }
