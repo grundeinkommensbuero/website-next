@@ -203,6 +203,12 @@
     justify-self: center;
     padding: 1rem 0 2rem 0;
   }
+
+  @media (min-width: $breakPointM) {
+    .hamburg & p {
+      font-size: 0.9rem;
+    }
+  }
 }
 
 .elementLeftThird {
