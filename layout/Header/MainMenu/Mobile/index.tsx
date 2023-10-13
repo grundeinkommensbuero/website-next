@@ -27,7 +27,8 @@ export const MainMenuMobile = ({
         'items-start',
         s.nav,
         s.mobileMenuContainer,
-        { [s.hamburg]: IS_HAMBURG_PROJECT }
+        { [s.hamburg]: IS_HAMBURG_PROJECT },
+        { colorSchemeHamburgBlackOnOrange: IS_HAMBURG_PROJECT }
       )}
     >
       <ul>
