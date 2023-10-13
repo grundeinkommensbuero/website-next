@@ -139,19 +139,14 @@
   }
 
   &.hamburg:active {
-    background: $hh_orange;
+    background: var(--button-focus-bg-color);
     box-shadow: none;
     transform: translateX(2px) translateY(4px);
   }
 
-  &.hamburg:hover {
-    background: $hh_orange_dark;
-    color: $black;
-  }
-
   &.hamburg:focus {
-    background: $hh_orange;
-    color: $black;
+    background: var(--button-focus-bg-color);
+    color: var(--button-focus-font-color);
     border-color: $black;
   }
 }
