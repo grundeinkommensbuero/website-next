@@ -26,8 +26,10 @@ export const TickerMunicipality = () => {
       prefixText="Schon"
       highlight1={peopleCount}
       inBetween1=""
-      inBetween2="Menschen holen Grundeinkommen nach"
+      inBetween2="Menschen aus "
       highlight2={municipality?.name}
+      inBetween3=" haben sich bei der Expedition Grundeinkommen angemeldet und holen so Grundeinkommen an ihren Wohnort."
+      inviteText="Komm dazu."
       suffixHighlight2=""
     />
   );
@@ -68,7 +70,7 @@ const TickerDisplay = ({
                 s.bold
               )}
             >
-              {prefixText}{' '}
+              {prefixText}
             </span>
           )}
 
@@ -126,10 +128,10 @@ const TickerDisplay = ({
                   s.counterLabelLongText
                 )}
               >
-                {inBetween2 && <span>{inBetween2} </span>}
+                {inBetween2 && <span>{inBetween2}</span>}
                 <br />
-                <span>{highlight2}.</span>
-                <p className={s.inviteHeadline}>Komm dazu.</p>
+                <span>{highlight2}{inBetween3}</span>
+                <p className={s.inviteHeadline}>{inviteText}</p>
                 {/* {suffixHighlight2 && <span>{suffixHighlight2}</span>} */}
               </h2>
             </>
