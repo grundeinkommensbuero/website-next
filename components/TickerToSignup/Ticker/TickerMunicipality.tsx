@@ -57,6 +57,8 @@ const TickerDisplay = ({
   inBetween1,
   inBetween2,
   highlight2,
+  inBetween3,
+  inviteText,
   suffixHighlight2,
   tickerDescription,
 }: TickerDisplayProps) => {
