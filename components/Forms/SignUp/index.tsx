@@ -594,7 +594,7 @@ const getNudgeBoxLabel = (municipality: Municipality | null): string => {
 
   // Hamburg
   if (municipality?.ags === '02000000') {
-    return 'Ja, ich will, dass Hamburg an dem Modellversuch teilnimmt.';
+    return 'Ja, ich will, dass Hamburg einen Modellversuch bekommt.';
   }
 
   // Bremen
