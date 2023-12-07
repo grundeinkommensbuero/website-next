@@ -45,6 +45,8 @@ type TickerDisplayProps = {
   inBetween1?: string;
   inBetween2?: string;
   highlight2?: number | string;
+  inBetween3?: string;
+  inviteText?: string;
   suffixHighlight2?: string;
   tickerDescription?: string;
 };
