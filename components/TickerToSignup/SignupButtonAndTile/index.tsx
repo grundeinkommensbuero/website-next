@@ -71,7 +71,7 @@ export const getButtonText = (
   }
   // Hamburg
   if (municipality.ags === '02000000') {
-    return `Ja, es soll weiter gehen!`;
+    return `Jetzt anmelden!`;
   }
   // Bremen
   if (municipality.ags === '04011000') {

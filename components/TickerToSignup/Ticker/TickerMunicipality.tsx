@@ -26,9 +26,9 @@ export const TickerMunicipality = () => {
       prefixText="Schon"
       highlight1={peopleCount}
       inBetween1=""
-      inBetween2="Menschen aus "
+      inBetween2="Menschen in "
       highlight2={municipality?.name}
-      inBetween3=" haben sich bei der Expedition Grundeinkommen angemeldet und holen so Grundeinkommen an ihren Wohnort."
+      inBetween3=" haben sich angemeldet, um Grundeinkommen an ihren Wohnort zu holen."
       inviteText="Komm dazu."
       suffixHighlight2=""
     />
