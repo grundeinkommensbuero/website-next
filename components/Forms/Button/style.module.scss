@@ -124,6 +124,31 @@
       }
     }
   }
+
+  :not(li) > &.hamburg {
+    margin-top: 40px;
+  }
+
+  &.hamburg {
+    border-width: $borderWidthMedium;
+    padding: 0.7rem 4rem 0.8rem;
+    box-shadow: 3px 6px 0 $black;
+    font-size: 1rem;
+    min-width: 280px;
+    text-align: center;
+  }
+
+  &.hamburg:active {
+    background: var(--button-focus-bg-color);
+    box-shadow: none;
+    transform: translateX(2px) translateY(4px);
+  }
+
+  &.hamburg:focus {
+    background: var(--button-focus-bg-color);
+    color: var(--button-focus-font-color);
+    border-color: $black;
+  }
 }
 
 .linkButton {

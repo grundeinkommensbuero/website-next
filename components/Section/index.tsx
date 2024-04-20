@@ -23,6 +23,8 @@ import Image from 'next/image';
 import { getAssetURL } from '../Util/getAssetURL';
 import { LoadingAnimation } from '../LoadingAnimation';
 
+const IS_HAMBURG_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Hamburg';
+
 export type Section = {
   id: string;
   title: string;
@@ -120,7 +122,10 @@ export type ColorScheme =
   | 'colorSchemeWhite'
   | 'colorSchemeRed'
   | 'colorSchemeRose'
-  | 'colorSchemeRoseOnWhite';
+  | 'colorSchemeRoseOnWhite'
+  | 'colorSchemeHamburg'
+  | 'colorSchemeHamburgAlternate'
+  | 'colorSchemeHamburgBlackOnOrange';
 
 type SectionProps = {
   section: Section;
@@ -184,7 +189,11 @@ export const Section = ({
         isFirstSection={isFirstSection}
       >
         <>
-          <div className={s.elementContainer}>
+          <div
+            className={cN(s.elementContainer, {
+              [s.hamburg]: IS_HAMBURG_PROJECT,
+            })}
+          >
             {modifiedSection.render.map((element, index) => {
               const { column, alignTop } = element;
 

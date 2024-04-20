@@ -17,6 +17,7 @@ import Script from 'next/script';
 import { getAssetURL } from '../components/Util/getAssetURL';
 
 const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
+const IS_HAMBURG_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Hamburg';
 
 type Project = {
   siteTitle: string;
@@ -104,7 +105,7 @@ export const Layout = ({
   const metaImage = ogImage
     ? getAssetURL(ogImage)
     : getRootAssetURL(
-        project?.ogimage || '57331286-2406-4f11-a523-dda6a2166c2e'
+        project?.ogimage || 'f6a625ba-4e00-4e92-9da7-be20ef7294c3'
       );
 
   return (
@@ -170,7 +171,13 @@ export const Layout = ({
         <Header mainMenu={mainMenu} currentRoute={currentRoute} />
         {children}
         <Footer footerMenu={footerMenu} />
-        <div className="grow bg-red" />
+        <div
+          className={cN(
+            'grow',
+            { 'bg-hh_rose': IS_HAMBURG_PROJECT },
+            { 'bg-red': !IS_HAMBURG_PROJECT }
+          )}
+        />
       </div>
       {pageIsLoading && <LoadingAnimation fixed />}
       <Script id="matomo">

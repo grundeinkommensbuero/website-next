@@ -8,6 +8,7 @@ import { HamburgerMenu } from './MainMenu/Mobile/HamburgerMenu';
 import s from './style.module.scss';
 import PageLogo from '../logo-expedition.svg';
 import PageLogoBerlin from '../logo-berlin.svg';
+import PageLogoHamburg from '../logo-hamburg.svg';
 import { useRouter } from 'next/router';
 import AuthContext, {
   MunicipalityOfUser,
@@ -15,6 +16,7 @@ import AuthContext, {
 import { stateToAgs } from '../../utils/stateToAgs';
 
 const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
+const IS_HAMBURG_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Hamburg';
 
 type HeaderProps = {
   mainMenu: Menu;
@@ -34,7 +36,11 @@ export const Header = ({
   const { width } = useWindowDimensions();
   const router = useRouter();
 
-  const Logo = IS_BERLIN_PROJECT ? PageLogoBerlin : PageLogo;
+  const Logo = IS_BERLIN_PROJECT
+    ? PageLogoBerlin
+    : IS_HAMBURG_PROJECT
+    ? PageLogoHamburg
+    : PageLogo;
 
   useEffect(() => {
     setIsMobile(width < 900);
@@ -105,7 +111,13 @@ export const Header = ({
 
   return (
     <>
-      <header className={s.header}>
+      <header
+        className={cN(
+          s.header,
+          { [s.hamburg]: IS_HAMBURG_PROJECT },
+          { colorSchemeHamburg: IS_HAMBURG_PROJECT }
+        )}
+      >
         <div className={s.headerContent}>
           <Logo
             className={`cursor-pointer h-12 ${s.logo}`}
@@ -113,6 +125,8 @@ export const Header = ({
             alt={
               IS_BERLIN_PROJECT
                 ? 'Volksentscheid Grundeinkommen Home'
+                : IS_HAMBURG_PROJECT
+                ? 'Hamburg testet Grundeinkommen'
                 : 'Expedition Grundeinkommen Home'
             }
             onClick={() => router.push('/')}
@@ -128,7 +142,12 @@ export const Header = ({
         </div>
       </header>
       {isMobile && mobileMenuActive && (
-        <div className={cN(s.mobileMenu)}>
+        <div
+          className={cN(s.mobileMenu, {
+            colorSchemeHamburg: IS_HAMBURG_PROJECT,
+            [s.hamburg]: IS_HAMBURG_PROJECT,
+          })}
+        >
           <MainMenuMobile
             mainMenu={modifiedMainMenu}
             currentRoute={currentRoute}

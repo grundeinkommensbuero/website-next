@@ -7,8 +7,29 @@
 
   font-size: $DesktopFontSizeM;
 
-  @media (max-width: $breakPointM) {
-    font-size: $MobileFontSizeM;
+  &.hamburg {
+    font-size: 1rem;
+    margin: 0 0 0 auto;
+  }
+
+  &.hamburg ul {
+    gap: 40px;
+  }
+
+  &.hamburg.mobileMenuContainer ul {
+    & li > span {
+      display: block;
+      margin-top: 2.5rem;
+    }
+
+    & ul {
+      font-size: 60%;
+      font-weight: normal;
+    }
+
+    & ul li {
+      margin: 0;
+    }
   }
 }
 
@@ -58,6 +79,10 @@
   // move the scrollbar out of view
   padding-right: 3rem;
   box-sizing: content-box;
+
+  &.hamburg {
+    width: 100%;
+  }
 }
 
 .button {

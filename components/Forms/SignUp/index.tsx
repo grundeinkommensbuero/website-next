@@ -322,7 +322,7 @@ const SignUp = ({
   const fieldData: SignUpValues = {
     email: {
       name: 'email',
-      label: 'E-mail',
+      label: 'Bitte trag hier deine E-Mail-Adresse ein:',
       description: 'Pflichtfeld',
       placeholder: 'E-Mail',
       type: 'email',
@@ -604,7 +604,7 @@ const getNudgeBoxLabel = (municipality: Municipality | null): string => {
 
   // Hamburg
   if (municipality?.ags === '02000000') {
-    return 'Ja, ich will, dass Hamburg an dem Modellversuch teilnimmt.';
+    return 'Ja, ich will, dass Hamburg einen Modellversuch bekommt.';
   }
 
   // Bremen

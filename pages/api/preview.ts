@@ -1,5 +1,6 @@
 import { Directus } from '@directus/sdk';
 import { NextApiRequest, NextApiResponse } from 'next';
+import { index_slug } from '../[id]';
 
 const preview = async (req: NextApiRequest, res: NextApiResponse) => {
   // Check the token and next parameters
@@ -11,7 +12,7 @@ const preview = async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(401).json({ message: 'Invalid token' });
   }
 
-  const slug = req.query.slug !== '/' ? req.query.slug : 'start';
+  const slug = req.query.slug !== '/' ? req.query.slug : index_slug;
 
   // Fetch the headless CMS to check if the provided `slug` exists
   const directus = new Directus(process.env.DIRECTUS || '');
