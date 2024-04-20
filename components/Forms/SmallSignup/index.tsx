@@ -86,6 +86,7 @@ export const SmallSignup = ({
         optionalNewsletterConsent={optionalNewsletterConsent}
         hideIfAuthenticated={hideIfAuthenticated}
         nudgeBoxText={nudgeBoxText}
+        newsletterConsent={true}
       />
     );
   }

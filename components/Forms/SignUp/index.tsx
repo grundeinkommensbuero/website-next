@@ -131,6 +131,7 @@ type SignUpProps = {
   nudgeBoxText?: string;
   isOnboarding?: boolean;
   formClassName?: string;
+  newsletterConsent?: boolean;
 };
 
 const SignUp = ({
@@ -152,6 +153,7 @@ const SignUp = ({
   nudgeBoxText,
   isOnboarding = false,
   formClassName,
+  newsletterConsent,
 }: SignUpProps) => {
   const [signUpState, userExists, signUp, setSignUpState] = useSignUp();
   const [updateUserState, updateUser] = useUpdateUser();
@@ -418,7 +420,15 @@ const SignUp = ({
       <Form
         onSubmit={e => {
           e.ags = municipalityInForm?.ags;
-          if (!e.newsletterConsent && fields.includes('newsletterConsent')) {
+
+          // If newsletter consent is set to true in props we always want to set it to true in the form
+          // This is for example used in small signup
+          if (newsletterConsent === true) {
+            e.newsletterConsent = true;
+          } else if (
+            !e.newsletterConsent &&
+            fields.includes('newsletterConsent')
+          ) {
             e.newsletterConsent = false;
           }
 
