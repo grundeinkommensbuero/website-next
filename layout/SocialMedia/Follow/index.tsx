@@ -5,7 +5,7 @@ export const Follow = ({ className }: { className: string }) => (
   <div className={className + ' flex justify-center'}>
     <SocialMediaButton
       icon="Instagram"
-      link="https://www.instagram.com/expedition.grundeinkommen/"
+      link="https://www.instagram.com/hamburg.testet.grundeinkommen/"
       label="Folge auf Instagram"
     />
     <SocialMediaButton
@@ -35,7 +35,7 @@ export const FollowHamburg = ({ className }: { className: string }) => (
     />
     <SocialMediaButton
       icon="InstagramHamburg"
-      link="https://www.instagram.com/expedition.grundeinkommen/"
+      link="https://www.instagram.com/hamburg.testet.grundeinkommen/"
       label="Folge auf Instagram"
     />
     <SocialMediaButton
