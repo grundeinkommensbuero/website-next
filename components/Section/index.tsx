@@ -38,6 +38,7 @@ export type Section = {
   hasHero: boolean;
   heroHTML?: string;
   heroTitle?: string;
+  //why is here no heroSubtitle? also missing in different locations
   heroImage?: string;
   render: SectionElement[];
 };
