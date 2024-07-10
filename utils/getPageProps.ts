@@ -72,7 +72,6 @@ type FetchedSectionData = {
     includeAgs?: string[];
     excludeAgs?: string[];
     hasHero: boolean;
-    heroHTML?: string;
     heroTitle?: string;
     heroImage?: string;
     elements: FetchedElement[];
@@ -88,7 +87,6 @@ const sectionFields = [
   'anchor',
   'colorScheme',
   'hasHero',
-  'heroHTML',
   'heroTitle',
   'heroImage',
 ];
@@ -263,7 +261,6 @@ const updatePageStructure = (
           includeAgs: section.item.includeAgs || [],
           excludeAgs: section.item.excludeAgs || [],
           hasHero: section.item.hasHero,
-          heroHTML: section.item.heroHTML,
           heroTitle: section.item.heroTitle,
           heroImage: section.item.heroImage,
           render: section.item.elements
