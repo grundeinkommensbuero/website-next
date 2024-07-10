@@ -184,9 +184,9 @@ export const Section = ({
         title={modifiedSection.title}
         status={modifiedSection.status}
         hasHero={modifiedSection.hasHero}
-        heroImage={modifiedSection.heroImage}
         heroHTML={modifiedSection.heroHTML}
         heroTitle={modifiedSection.heroTitle}
+        heroImage={modifiedSection.heroImage}
         anchor={modifiedSection.anchor}
         isFirstSection={isFirstSection}
       >
