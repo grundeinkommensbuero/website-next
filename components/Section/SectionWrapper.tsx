@@ -14,7 +14,6 @@ type SectionWrapperProps = {
   title?: string;
   status?: Status;
   hasHero?: boolean;
-  heroHTML?: string;
   heroTitle?: string;
   heroImage?: string;
   anchor?: string;
@@ -27,7 +26,6 @@ export const SectionWrapper = ({
   title,
   status,
   hasHero,
-  heroHTML,
   heroTitle,
   heroImage,
   anchor,
