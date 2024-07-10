@@ -27,8 +27,11 @@ const PageWithSections = ({ page }: PageProps): ReactElement => {
   }
   return (
     <section>
-      {(page === "test-balken") && (
-        <div>Hello World!</div>)}
+      {page === 'test-balken' && (
+        <div>
+          Hello World!
+        </div>
+      )}
       {page.hasHero && page.heroImage && (
         <Hero
           heroTitle={page.heroTitle}
