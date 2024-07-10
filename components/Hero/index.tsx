@@ -44,8 +44,7 @@ export const Hero = ({
             className={s.heroHTMLContainer}
             dangerouslySetInnerHTML={{ __html: heroHTML }}
           />
-        );
-      }
+        )}
       {heroTitle && <h1 className={cN(s.title, s.titles)}>{heroTitle}</h1>}
       {heroSubTitle && (
         <h3 className={cN(s.subTitle, s.titles)}>{heroSubTitle}</h3>
