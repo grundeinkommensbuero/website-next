@@ -88,6 +88,7 @@ const sectionFields = [
   'anchor',
   'colorScheme',
   'hasHero',
+  'heroHTML',
   'heroTitle',
   'heroImage',
 ];
