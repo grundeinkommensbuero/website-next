@@ -36,9 +36,7 @@ export type Section = {
   includeAgs: string[];
   excludeAgs: string[];
   hasHero: boolean;
-  heroHTML?: string;
   heroTitle?: string;
-  //why is here no heroSubtitle? also missing in different locations
   heroImage?: string;
   render: SectionElement[];
 };
@@ -185,7 +183,6 @@ export const Section = ({
         title={modifiedSection.title}
         status={modifiedSection.status}
         hasHero={modifiedSection.hasHero}
-        heroHTML={modifiedSection.heroHTML}
         heroTitle={modifiedSection.heroTitle}
         heroImage={modifiedSection.heroImage}
         anchor={modifiedSection.anchor}
