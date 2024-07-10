@@ -36,7 +36,13 @@ export const Hero = ({
           />
         </div>
       )}
-      {heroHTML && <div className={s.heroHTMLContainer}>{heroHTML}</div>}
+      {/* see https://legacy.reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml and https://blog.logrocket.com/using-dangerouslysetinnerhtml-react-application/ */}
+      {heroHTML && (
+        <div
+          className={s.heroHTMLContainer}
+          dangerouslySetInnerHTML={{ __html: heroHTML }}
+        />
+      )}
       {heroTitle && <h1 className={cN(s.title, s.titles)}>{heroTitle}</h1>}
       {heroSubTitle && (
         <h3 className={cN(s.subTitle, s.titles)}>{heroSubTitle}</h3>
