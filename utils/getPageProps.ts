@@ -20,6 +20,7 @@ export type Page = {
   title: string;
   status: Status;
   hasHero: boolean;
+  heroHTML: string | null;
   heroTitle: string | null;
   heroSubTitle: string | null;
   heroImage: string | null;
@@ -34,6 +35,7 @@ type FetchedPage = {
   title: string;
   status: Status;
   hasHero: boolean;
+  heroHTML: string | null;
   heroTitle: string | null;
   heroSubTitle: string | null;
   heroImage: string | null;
@@ -48,6 +50,7 @@ const pageFields = [
   'title',
   'status',
   'hasHero',
+  'heroHTML',
   'heroTitle',
   'heroSubTitle',
   'heroImage',
@@ -232,6 +235,7 @@ const updatePageStructure = (
     title: fetchedPage.title,
     status: fetchedPage.status,
     hasHero: fetchedPage.hasHero,
+    heroHTML: fetchedPage.heroHTML,
     heroTitle: fetchedPage.heroTitle,
     heroSubTitle: fetchedPage.heroSubTitle,
     heroImage: fetchedPage.heroImage,
