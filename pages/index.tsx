@@ -11,7 +11,7 @@ const Start = ({ page }: PageProps): ReactElement => {
     <div className={s.container}>
       {page && (
         <>
-          {page.hasHero && page.heroImage && (
+          {page.hasHero && (page.heroImage || page.heroHTML) && (
             <Hero
               heroHTML={page.heroHTML}
               heroTitle={page.heroTitle}
