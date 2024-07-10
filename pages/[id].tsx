@@ -27,7 +27,7 @@ const PageWithSections = ({ page }: PageProps): ReactElement => {
   }
   return (
     <section>
-      {page === 'test-balken' && (
+      {page.slug === 'test-balken' && (
         <div>
           Hello World!
         </div>
