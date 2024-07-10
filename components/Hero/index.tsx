@@ -36,8 +36,7 @@ export const Hero = ({
           />
         </div>
       )}
-      //see https://legacy.reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml
-      //see https://blog.logrocket.com/using-dangerouslysetinnerhtml-react-application/
+      {/* see https://legacy.reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml and https://blog.logrocket.com/using-dangerouslysetinnerhtml-react-application/ */}
       {
         heroHTML && (
           <div
