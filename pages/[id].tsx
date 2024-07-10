@@ -27,11 +27,12 @@ const PageWithSections = ({ page }: PageProps): ReactElement => {
   }
   return (
     <section>
-      {page.hasHero && page.heroImage && (
+      {page.hasHero && (page.heroImage || page.heroHTML) && (
         <Hero
-          heroTitle={page.heroTitle}
-          heroSubTitle={page.heroSubTitle}
-          heroImage={page.heroImage}
+          heroHTML={page.heroHTML ?? null}
+          heroTitle={page.heroTitle ?? null}
+          heroSubTitle={page.heroSubTitle ?? null}
+          heroImage={page.heroImage ?? null}
         />
       )}
       <div className="pageWidth">

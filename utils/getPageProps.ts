@@ -20,6 +20,7 @@ export type Page = {
   title: string;
   status: Status;
   hasHero: boolean;
+  heroHTML: string | null;
   heroTitle: string | null;
   heroSubTitle: string | null;
   heroImage: string | null;
@@ -34,6 +35,7 @@ type FetchedPage = {
   title: string;
   status: Status;
   hasHero: boolean;
+  heroHTML: string | null;
   heroTitle: string | null;
   heroSubTitle: string | null;
   heroImage: string | null;
@@ -48,6 +50,7 @@ const pageFields = [
   'title',
   'status',
   'hasHero',
+  'heroHTML',
   'heroTitle',
   'heroSubTitle',
   'heroImage',
@@ -69,6 +72,7 @@ type FetchedSectionData = {
     includeAgs?: string[];
     excludeAgs?: string[];
     hasHero: boolean;
+    heroHTML?: string;
     heroTitle?: string;
     heroImage?: string;
     elements: FetchedElement[];
@@ -232,6 +236,7 @@ const updatePageStructure = (
     title: fetchedPage.title,
     status: fetchedPage.status,
     hasHero: fetchedPage.hasHero,
+    heroHTML: fetchedPage.heroHTML,
     heroTitle: fetchedPage.heroTitle,
     heroSubTitle: fetchedPage.heroSubTitle,
     heroImage: fetchedPage.heroImage,
@@ -257,6 +262,7 @@ const updatePageStructure = (
           includeAgs: section.item.includeAgs || [],
           excludeAgs: section.item.excludeAgs || [],
           hasHero: section.item.hasHero,
+          heroHTML: section.item.heroHTML,
           heroTitle: section.item.heroTitle,
           heroImage: section.item.heroImage,
           render: section.item.elements

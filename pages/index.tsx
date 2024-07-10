@@ -13,6 +13,7 @@ const Start = ({ page }: PageProps): ReactElement => {
         <>
           {page.hasHero && page.heroImage && (
             <Hero
+              heroHTML={page.heroHTML}
               heroTitle={page.heroTitle}
               heroSubTitle={page.heroSubTitle}
               heroImage={page.heroImage}

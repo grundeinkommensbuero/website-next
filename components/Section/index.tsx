@@ -36,6 +36,7 @@ export type Section = {
   includeAgs: string[];
   excludeAgs: string[];
   hasHero: boolean;
+  heroHTML?: string;
   heroTitle?: string;
   heroImage?: string;
   render: SectionElement[];
@@ -184,6 +185,7 @@ export const Section = ({
         status={modifiedSection.status}
         hasHero={modifiedSection.hasHero}
         heroImage={modifiedSection.heroImage}
+        heroHTML={modifiedSection.heroHTML}
         heroTitle={modifiedSection.heroTitle}
         anchor={modifiedSection.anchor}
         isFirstSection={isFirstSection}
