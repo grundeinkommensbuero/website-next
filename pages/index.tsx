@@ -10,7 +10,11 @@ import { Hero } from '../components/Hero';
 const Start = ({ page }: PageProps): ReactElement => {
   return (
     <section>
-      {/* see https://legacy.reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml and https://blog.logrocket.com/using-dangerouslysetinnerhtml-react-application/ */}
+      {/* see 
+      https://legacy.reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml 
+      and 
+      https://blog.logrocket.com/using-dangerouslysetinnerhtml-react-application/
+      */}
       {page.heroHTML && (
         <div
           className={s.heroHTMLContainer}
