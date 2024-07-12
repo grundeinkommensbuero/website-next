@@ -4,6 +4,7 @@ import { ReactElement } from 'react';
 import { Section } from '../components/Section';
 import { GetStaticProps } from 'next';
 import { getPageProps } from '../utils/getPageProps';
+import { Widget } from '@typeform/embed-react';
 import { Hero } from '../components/Hero';
 
 const Start = ({ page }: PageProps): ReactElement => {
