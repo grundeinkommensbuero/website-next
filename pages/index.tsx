@@ -15,15 +15,15 @@ const Start = ({ page }: PageProps): ReactElement => {
       and 
       https://blog.logrocket.com/using-dangerouslysetinnerhtml-react-application/
       */}
-      {(page.heroHTML !== null) && (
+      {(page.heroHTML) && (
         <div
           className={s.heroHTMLContainer}
-          dangerouslySetInnerHTML={{ __html: page.heroHTML  ?? '' }}
+          dangerouslySetInnerHTML={{ __html: page.heroHTML! }}
         />
       )}
       {page.typeformId && (
         <Widget
-          id={page.typeformId ?? '' }
+          id={page.typeformId!}
           style={{ width: '100%', height: '500px' }}
           className="my-form"
         />
