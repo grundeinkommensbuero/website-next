@@ -1,3 +1,5 @@
+import { GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next';
+
 import React, { ReactElement } from "react";
 
 import { getPageProps, Page } from "../utils/getPageProps";
