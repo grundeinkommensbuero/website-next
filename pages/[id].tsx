@@ -30,7 +30,7 @@ const PageWithSections = ({ page }: PageProps): ReactElement => {
     <section>
       {page.slug === 'sammeln' && (
         <Widget
-          id="01J2ECV3JHPMCP07N5RHFTSGBP"
+          id="OrKNzuDN"
           style={{ width: '50%' }}
           className="my-form"
         />
