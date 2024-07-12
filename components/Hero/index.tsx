@@ -6,14 +6,12 @@ import Image from 'next/image';
 import { getAssetURL } from '../Util/getAssetURL';
 
 type HeroProps = {
-  heroHTML: string | null;
   heroTitle: string | null;
   heroSubTitle: string | null;
   heroImage: string | null;
 };
 
 export const Hero = ({
-  heroHTML,
   heroTitle,
   heroSubTitle,
   heroImage,
