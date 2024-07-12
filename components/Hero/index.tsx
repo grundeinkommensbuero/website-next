@@ -47,7 +47,6 @@ export const Hero = ({
           dangerouslySetInnerHTML={{ __html: heroHTML }}
         />
       )}
-
     </section>
   );
 };
