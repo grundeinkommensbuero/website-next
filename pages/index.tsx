@@ -8,6 +8,9 @@ import { Widget } from '@typeform/embed-react';
 import { Hero } from '../components/Hero';
 
 const Start = ({ page }: PageProps): ReactElement => {
+  if (!page) {
+    return <PageNotFound />;
+  }
   return (
     <section>
       {/* see https://legacy.reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml and https://blog.logrocket.com/using-dangerouslysetinnerhtml-react-application/ */}
