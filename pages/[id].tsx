@@ -29,7 +29,11 @@ const PageWithSections = ({ page }: PageProps): ReactElement => {
   return (
     <section>
       {page.slug === 'sammeln' && (
-        return <Widget id="01J2ECV3JHPMCP07N5RHFTSGBP" style={{ width: '50%' }} className="my-form" />
+        <Widget
+          id="01J2ECV3JHPMCP07N5RHFTSGBP"
+          style={{ width: "50%" }}
+          className="my-form"
+        />
       )}
       {page.hasHero && (page.heroImage || page.heroHTML) && (
         <Hero
