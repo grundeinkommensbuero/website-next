@@ -1,22 +1,22 @@
-import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
+import { GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next';
 
-import React, { ReactElement } from "react";
+import React, { ReactElement } from 'react';
 
-import { getPageProps, Page } from "../utils/getPageProps";
-import { Section } from "../components/Section";
-import { Hero } from "../components/Hero";
-import { Directus } from "@directus/sdk";
-import { Widget } from "@typeform/embed-react";
-import PageNotFound from "./404";
+import { getPageProps, Page } from '../utils/getPageProps';
+import { Section } from '../components/Section';
+import { Hero } from '../components/Hero';
+import { Directus } from '@directus/sdk';
+import { Widget } from '@typeform/embed-react';
+import PageNotFound from './404';
 
-const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === "Berlin";
-const IS_HAMBURG_PROJECT = process.env.NEXT_PUBLIC_PROJECT === "Hamburg";
+const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
+const IS_HAMBURG_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Hamburg';
 
 export const index_slug = IS_BERLIN_PROJECT
-  ? "start"
+  ? 'start'
   : IS_HAMBURG_PROJECT
-    ? "start-hamburg"
-    : "start-hamburg"; //set to start-hamburg on expedition-grundeinkommen.de also temporarily
+    ? 'start-hamburg'
+    : 'start-hamburg'; //set to start-hamburg on expedition-grundeinkommen.de also temporarily
 
 export type PageProps = {
   page: Page | null;
@@ -28,10 +28,10 @@ const PageWithSections = ({ page }: PageProps): ReactElement => {
   }
   return (
     <section>
-      {page.slug === "sammeln" && (
+      {page.slug === 'sammeln' && (
         <Widget
           id="01J2ECV3JHPMCP07N5RHFTSGBP"
-          style={{ width: "50%" }}
+          style={{ width: '50%' }}
           className="my-form"
         />
       )}
@@ -60,15 +60,15 @@ const PageWithSections = ({ page }: PageProps): ReactElement => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const directus = new Directus(process.env.DIRECTUS || "");
+  const directus = new Directus(process.env.DIRECTUS || '');
 
   try {
     const pages = (
-      await directus.items("pages").readByQuery({
-        fields: ["slug"],
+      await directus.items('pages').readByQuery({
+        fields: ['slug'],
         filter: {
           status: {
-            _eq: "published",
+            _eq: 'published',
           },
           slug: {
             _neq: index_slug,
@@ -91,7 +91,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params, preview }) => {
-  if (!(typeof params?.id === "string")) {
+  if (!(typeof params?.id === 'string')) {
     return {
       props: {
         page: null,
