@@ -37,14 +37,17 @@ const PageWithSections = ({ page }: PageProps): ReactElement => {
         />
       )}
       {page.slug === 'sammeln' && (
-        <Widget id="OrKNzuDN" style={{ width: '100%' }} className="my-form" />
+        <Widget
+          id={page.typeformId}
+          style={{ width: '100%', height: '500px' }}
+          className="my-form"
+        />
       )}
-      {page.hasHero && (page.heroImage || page.heroHTML) && (
+      {page.hasHero && page.heroImage && (
         <Hero
-          heroHTML={page.heroHTML ?? null}
-          heroTitle={page.heroTitle ?? null}
-          heroSubTitle={page.heroSubTitle ?? null}
-          heroImage={page.heroImage ?? null}
+          heroTitle={page.heroTitle}
+          heroSubTitle={page.heroSubTitle}
+          heroImage={page.heroImage}
         />
       )}
       <div className="pageWidth">
