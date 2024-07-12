@@ -16,8 +16,8 @@ const IS_HAMBURG_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Hamburg';
 export const index_slug = IS_BERLIN_PROJECT
   ? 'start'
   : IS_HAMBURG_PROJECT
-    ? 'start-hamburg'
-    : 'start-hamburg'; //set to start-hamburg on expedition-grundeinkommen.de also temporarily
+  ? 'start-hamburg'
+  : 'start-hamburg'; //set to start-hamburg on expedition-grundeinkommen.de also temporarily
 
 export type PageProps = {
   page: Page | null;
