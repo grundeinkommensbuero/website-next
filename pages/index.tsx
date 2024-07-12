@@ -15,7 +15,7 @@ const Start = ({ page }: PageProps): ReactElement => {
       and 
       https://blog.logrocket.com/using-dangerouslysetinnerhtml-react-application/
       */}
-      {(page.heroHTML) && (
+      {page.heroHTML && (
         <div
           className={s.heroHTMLContainer}
           dangerouslySetInnerHTML={{ __html: page.heroHTML! }}
