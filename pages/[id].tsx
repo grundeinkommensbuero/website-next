@@ -1,12 +1,3 @@
-import React, { useState } from "react";
-import s from "./style.module.scss";
-import cN from "classnames";
-import { DirectusImage } from "../Section";
-import Image from "next/image";
-import { getAssetURL } from "../Util/getAssetURL";
-
-import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
-
 import React, { ReactElement } from "react";
 
 import { getPageProps, Page } from "../utils/getPageProps";
