@@ -36,7 +36,7 @@ const PageWithSections = ({ page }: PageProps): ReactElement => {
           dangerouslySetInnerHTML={{ __html: page.heroHTML }}
         />
       )}
-      {page.slug === 'sammeln' && (
+      {page.typeformId && (
         <Widget
           id={page.typeformId}
           style={{ width: '100%', height: '500px' }}
