@@ -29,10 +29,10 @@ const PageWithSections = ({ page }: PageProps): ReactElement => {
   return (
     <section>
       {/* see https://legacy.reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml and https://blog.logrocket.com/using-dangerouslysetinnerhtml-react-application/ */}
-      {heroHTML && (
+      {page.heroHTML && (
         <div
           className={s.heroHTMLContainer}
-          dangerouslySetInnerHTML={{ __html: heroHTML }}
+          dangerouslySetInnerHTML={{ __html: page.heroHTML }}
         />
       )}
       {page.slug === 'sammeln' && (
