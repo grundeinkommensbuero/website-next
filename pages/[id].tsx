@@ -6,6 +6,7 @@ import { getPageProps, Page } from '../utils/getPageProps';
 import { Section } from '../components/Section';
 import { Hero } from '../components/Hero';
 import { Directus } from '@directus/sdk';
+import { Widget } from '@typeform/embed-react';
 import PageNotFound from './404';
 
 const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
@@ -27,6 +28,9 @@ const PageWithSections = ({ page }: PageProps): ReactElement => {
   }
   return (
     <section>
+      {page.slug === 'sammeln' && (
+        return <Widget id="01J2ECV3JHPMCP07N5RHFTSGBP" style={{ width: '50%' }} className="my-form" />
+      )}
       {page.hasHero && (page.heroImage || page.heroHTML) && (
         <Hero
           heroHTML={page.heroHTML ?? null}
