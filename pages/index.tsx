@@ -6,6 +6,7 @@ import { GetStaticProps } from 'next';
 import { getPageProps } from '../utils/getPageProps';
 import { Widget } from '@typeform/embed-react';
 import { Hero } from '../components/Hero';
+import PageNotFound from './404';
 
 const Start = ({ page }: PageProps): ReactElement => {
   if (!page) {
