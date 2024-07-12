@@ -1,7 +1,8 @@
 import { GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next';
 
 import React, { ReactElement } from 'react';
-
+import s from './style.module.scss';
+import cN from 'classnames';
 import { getPageProps, Page } from '../utils/getPageProps';
 import { Section } from '../components/Section';
 import { Hero } from '../components/Hero';
