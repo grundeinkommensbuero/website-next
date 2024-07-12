@@ -1,7 +1,8 @@
 import { GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next';
 
 import React, { ReactElement } from 'react';
-
+import s from './style.module.scss';
+import cN from 'classnames';
 import { getPageProps, Page } from '../utils/getPageProps';
 import { Section } from '../components/Section';
 import { Hero } from '../components/Hero';
@@ -28,12 +29,15 @@ const PageWithSections = ({ page }: PageProps): ReactElement => {
   }
   return (
     <section>
-      {page.slug === 'sammeln' && (
-        <Widget
-          id="OrKNzuDN"
-          style={{ width: '50%' }}
-          className="my-form"
+      {/* see https://legacy.reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml and https://blog.logrocket.com/using-dangerouslysetinnerhtml-react-application/ */}
+      {page.heroHTML && (
+        <div
+          className={s.heroHTMLContainer}
+          dangerouslySetInnerHTML={{ __html: page.heroHTML }}
         />
+      )}
+      {page.slug === 'sammeln' && (
+        <Widget id="OrKNzuDN" style={{ width: '100%' }} className="my-form" />
       )}
       {page.hasHero && (page.heroImage || page.heroHTML) && (
         <Hero
