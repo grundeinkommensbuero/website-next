@@ -21,6 +21,7 @@ export type Page = {
   status: Status;
   hasHero: boolean;
   heroHTML: string | null;
+  typeformId: string | null;
   heroTitle: string | null;
   heroSubTitle: string | null;
   heroImage: string | null;
@@ -36,6 +37,7 @@ type FetchedPage = {
   status: Status;
   hasHero: boolean;
   heroHTML: string | null;
+  typeformId: string | null;
   heroTitle: string | null;
   heroSubTitle: string | null;
   heroImage: string | null;
@@ -51,6 +53,7 @@ const pageFields = [
   'status',
   'hasHero',
   'heroHTML',
+  'typeformId',
   'heroTitle',
   'heroSubTitle',
   'heroImage',
@@ -236,6 +239,7 @@ const updatePageStructure = (
     status: fetchedPage.status,
     hasHero: fetchedPage.hasHero,
     heroHTML: fetchedPage.heroHTML,
+    typeformId: fetchedPage.typeformId,
     heroTitle: fetchedPage.heroTitle,
     heroSubTitle: fetchedPage.heroSubTitle,
     heroImage: fetchedPage.heroImage,
