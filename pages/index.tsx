@@ -18,12 +18,12 @@ const Start = ({ page }: PageProps): ReactElement => {
       {page.heroHTML && (
         <div
           className={s.heroHTMLContainer}
-          dangerouslySetInnerHTML={{ __html: page.heroHTML! }}
+          dangerouslySetInnerHTML={{ __html: page.heroHTML }}
         />
       )}
       {page.typeformId && (
         <Widget
-          id={page.typeformId!}
+          id={page.typeformId}
           style={{ width: '100%', height: '500px' }}
           className="my-form"
         />
