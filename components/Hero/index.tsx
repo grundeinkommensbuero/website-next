@@ -11,11 +11,7 @@ type HeroProps = {
   heroImage: string | null;
 };
 
-export const Hero = ({
-  heroTitle,
-  heroSubTitle,
-  heroImage,
-}: HeroProps) => {
+export const Hero = ({ heroTitle, heroSubTitle, heroImage }: HeroProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   return (
