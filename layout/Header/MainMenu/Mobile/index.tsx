@@ -74,7 +74,7 @@ export const MainMenuMobile = ({
         })}
         {IS_HAMBURG_PROJECT ? (
           <li className={cN({ 'my-10': IS_HAMBURG_PROJECT })}>
-            <LinkButton href="#spenden">Spenden</LinkButton>
+            <LinkButton href="#https://volksentscheid-grundeinkommen.de/#spenden">Spenden</LinkButton>
           </li>
         ) : (
           <li>
