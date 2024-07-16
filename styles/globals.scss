@@ -315,3 +315,12 @@ p {
     font-size: 32px;
   }
 }
+
+// specific to HH24
+#bigNumber {
+  font-size: 20rem;
+
+  @media (max-width: $breakPointM) {
+    font-size: 10rem;
+  }
+}
