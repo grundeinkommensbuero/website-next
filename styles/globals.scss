@@ -298,6 +298,7 @@ p {
     margin-right: auto;
   }
 
+  /* fix buggy h1 and format like h2
   h1 {
     color: $white;
     background: $black;
@@ -306,7 +307,9 @@ p {
     font-size: 42px;
     width: fit-content;
   }
+  */
 
+  h1,
   h2 {
     font-size: 42px;
   }
