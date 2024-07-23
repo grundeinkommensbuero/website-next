@@ -39,7 +39,7 @@ const PageWithSections = ({ page }: PageProps): ReactElement => {
       {page.typeformId && (
         <Widget
           id={page.typeformId}
-          style={{ width: '100%', height: '500px' }}
+          style={{ width: '100%', height: '650px' }}
           className="my-form"
         />
       )}
