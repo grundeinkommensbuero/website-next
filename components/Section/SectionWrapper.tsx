@@ -44,7 +44,7 @@ export const SectionWrapper = ({
         <div className={s.sectionHero}>
           <Image
             src={getAssetURL(heroImage)}
-            alt={'Bild der Expedition Grundeinkommen'}
+            alt={'Bild von der Unterschriftensammlung von Hamburg testet Grundeinkommen'}
             layout="fill"
             objectFit="cover"
           />
