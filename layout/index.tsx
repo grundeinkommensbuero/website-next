@@ -101,7 +101,7 @@ export const Layout = ({
     description ||
     project?.siteDescription ||
     'Modellversuch zum Grundeinkommen jetzt!';
-  const metaTitle = title || project?.siteTitle || 'Expedition Grundeinkommen';
+  const metaTitle = title || project?.siteTitle || 'Hamburg testet Grundeinkommen';
   const metaImage = ogImage
     ? getAssetURL(ogImage)
     : getRootAssetURL(
