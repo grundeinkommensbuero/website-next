@@ -64,12 +64,12 @@ export function LinkButtonLocal({
   return (
     <Link href={to}>
       <div
-      className={cN(s.linkButton, className, {
-        [s.hamburg]: IS_HAMBURG_PROJECT,
-      })}
-      {...other}
-    >
-      {children}
+        className={cN(s.linkButton, className, {
+          [s.hamburg]: IS_HAMBURG_PROJECT,
+        })}
+        {...other}
+      >
+        {children}
       </div>
     </Link>
   );
