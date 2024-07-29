@@ -28,6 +28,8 @@ type Project = {
 
 const project: Project = IS_BERLIN_PROJECT
   ? projects.BERLIN_SITE
+  : IS_HAMBURG_PROJECT
+  ? projects.HAMBURG_SITE
   : projects.DEFAULT_SITE;
 
 type LayoutProps = {
@@ -101,7 +103,8 @@ export const Layout = ({
     description ||
     project?.siteDescription ||
     'Modellversuch zum Grundeinkommen jetzt!';
-  const metaTitle = title || project?.siteTitle || 'Expedition Grundeinkommen';
+  const metaTitle =
+    title || project?.siteTitle || 'Hamburg testet Grundeinkommen';
   const metaImage = ogImage
     ? getAssetURL(ogImage)
     : getRootAssetURL(
