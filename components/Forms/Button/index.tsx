@@ -62,14 +62,16 @@ export function LinkButtonLocal({
   ...other
 }: LinkButtonLocalProps) {
   return (
-    <div
+    <Link href={to}>
+      <div
       className={cN(s.linkButton, className, {
         [s.hamburg]: IS_HAMBURG_PROJECT,
       })}
       {...other}
     >
-      <Link href={to}>{children}</Link>
-    </div>
+      {children}
+      </div>
+    </Link>
   );
 }
 
