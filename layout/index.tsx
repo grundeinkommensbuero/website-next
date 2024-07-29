@@ -28,6 +28,8 @@ type Project = {
 
 const project: Project = IS_BERLIN_PROJECT
   ? projects.BERLIN_SITE
+  : IS_HAMBURG_PROJECT
+  ? projects.HAMBURG_SITE
   : projects.DEFAULT_SITE;
 
 type LayoutProps = {
