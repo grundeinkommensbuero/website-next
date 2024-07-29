@@ -24,7 +24,9 @@ export const Hero = ({ heroTitle, heroSubTitle, heroImage }: HeroProps) => {
             }}
             className={cN(s.heroImage, { [s.imageZoom]: imageLoaded })}
             src={getAssetURL(heroImage)}
-            alt={'Bild der Unterschriftensammlung von Hamburg testet Grundeinkommen'}
+            alt={
+              'Bild der Unterschriftensammlung von Hamburg testet Grundeinkommen'
+            }
             layout={'fill'}
             priority={true}
           />
