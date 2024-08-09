@@ -9,6 +9,7 @@ import { Hero } from '../components/Hero';
 import { Directus } from '@directus/sdk';
 import { Widget } from '@typeform/embed-react';
 import PageNotFound from './404';
+import { LinkButton } from '../components/Forms/Button';
 
 const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
 const IS_HAMBURG_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Hamburg';
@@ -35,6 +36,11 @@ const PageWithSections = ({ page }: PageProps): ReactElement => {
           className={s.heroHTMLContainer}
           dangerouslySetInnerHTML={{ __html: page.heroHTML }}
         />
+      )}
+      {page.slug === 'willkommen' && (
+        <section className="colorSchemeOrangeonRose">
+          <LinkButton>Unterschreiben</LinkButton>
+        </section>
       )}
       {page.typeformId && (
         <Widget
