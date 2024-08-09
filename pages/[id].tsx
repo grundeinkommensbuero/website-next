@@ -33,7 +33,7 @@ window.addEventListener('message', (message) => {
   }
   if(message.data.message === 'sendLetterEntryRegistrationSuccessToParent'
   ) {
-    window.location.href = 'https://hamburg-testet-grundeinkommen.de/briefeintragung-erfolg'
+    window.location.href = '/briefeintragung-erfolg'
   }
 })
 </script>
