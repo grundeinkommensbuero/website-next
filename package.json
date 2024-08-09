@@ -57,7 +57,8 @@
     "sass": "^1.48.0",
     "sortablejs": "^1.14.0",
     "svg-inline-loader": "^0.8.2",
-    "trackjs": "^3.10.1"
+    "trackjs": "^3.10.1",
+    "typeform": "^1.0.1"
   },
   "devDependencies": {
     "@types/canvas-confetti": "^1.4.3",

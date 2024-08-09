@@ -10,6 +10,34 @@ import { Directus } from '@directus/sdk';
 import { Widget } from '@typeform/embed-react';
 import PageNotFound from './404';
 
+/* FIXME: This is not how we should do it */
+const IframeBriefeintragung = `
+<iframe src='https://briefeintragung-grundeinkommen.netlify.app/register'
+  scrolling='no' width='100%' id='briefeintragung-iframe'>
+</iframe>
+<script>
+window.addEventListener('message', (message) => {
+  console.debug('got message', message)
+  if (
+    typeof message.data !== 'object' ||
+    !message.data ||
+    !('message' in message.data)) {
+    console.debug('ignoring unknown message')
+    return
+  }
+  if(message.data.message === 'sendLetterEntryHeightToParent'
+  ) {
+    const heightPx = \`\${message.data.height}px\`
+    document.getElementById('briefeintragung-iframe')?.setAttribute('height', heightPx)
+  }
+  if(message.data.message === 'sendLetterEntryRegistrationSuccessToParent'
+  ) {
+    window.location.href = 'https://hamburg-testet-grundeinkommen.de/briefeintragung-erfolg'
+  }
+})
+</script>
+`;
+
 const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
 const IS_HAMBURG_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Hamburg';
 
@@ -62,6 +90,13 @@ const PageWithSections = ({ page }: PageProps): ReactElement => {
           />
         );
       })}
+      {page.slug == 'briefeintragung' && (
+        <div
+          dangerouslySetInnerHTML={{
+            __html: IframeBriefeintragung,
+          }}
+        />
+      )}
     </section>
   );
 };
