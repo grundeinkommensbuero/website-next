@@ -23,17 +23,17 @@ window.addEventListener('message', (message) => {
     typeof message.data !== 'object' ||
     !message.data ||
     !('message' in message.data)) {
-    console.debug('ignoring unknown message')
-    return
+    console.debug('ignoring unknown message');
+    return;
   }
   if(message.data.message === 'sendLetterEntryHeightToParent'
   ) {
-    const heightPx = \`\${message.data.height}px\`
-    document.getElementById('briefeintragung-iframe')?.setAttribute('height', heightPx)
+    const heightPx = \`\${message.data.height}px\`;
+    document.getElementById('briefeintragung-iframe')?.setAttribute('height', heightPx);
   }
   if(message.data.message === 'sendLetterEntryRegistrationSuccessToParent'
   ) {
-    window.location.href = 'https://hamburg-testet-grundeinkommen.de/briefeintragung-erfolg'
+    setTimeout(function(){document.location.href = 'https://hamburg-testet-grundeinkommen.de/briefeintragung-erfolg';},250);
   }
 })
 </script>
