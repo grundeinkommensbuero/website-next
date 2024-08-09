@@ -14,7 +14,7 @@ import PageNotFound from './404';
 const IframeBriefeintragung = `
 <iframe src='https://briefeintragung-grundeinkommen.netlify.app/register'
   scrolling='no' width='100%' id='briefeintragung-iframe'
-  style='height: 1200px; border: none;' sandbox='allow-scripts allow-same-origin allow-forms allow-popups allow-top-navigation'>
+  style='height: 1200px; border: none;' sandbox='allow-scripts allow-same-origin allow-forms allow-modals allow-popups allow-top-navigation allow-top-navigation-by-user-activation'>
 </iframe>
 <script>
 window.addEventListener('message', (message) => {
