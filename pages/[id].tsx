@@ -13,7 +13,8 @@ import PageNotFound from './404';
 /* FIXME: This is not how we should do it */
 const IframeBriefeintragung = `
 <iframe src='https://briefeintragung-grundeinkommen.netlify.app/register'
-  scrolling='no' width='100%' id='briefeintragung-iframe'>
+  scrolling='no' width='100%' id='briefeintragung-iframe'
+  style='height: 1200px; border: none;'>
 </iframe>
 <script>
 window.addEventListener('message', (message) => {
@@ -36,6 +37,12 @@ window.addEventListener('message', (message) => {
   }
 })
 </script>
+<style>
+.iframe-container {
+  top: -40px;
+  position: relative;
+}
+</style>
 `;
 
 const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
@@ -92,6 +99,7 @@ const PageWithSections = ({ page }: PageProps): ReactElement => {
       })}
       {page.slug == 'briefeintragung' && (
         <div
+          className="iframe-container"
           dangerouslySetInnerHTML={{
             __html: IframeBriefeintragung,
           }}
