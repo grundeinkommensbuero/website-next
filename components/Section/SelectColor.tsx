@@ -35,6 +35,11 @@ const options: Option[] = [
     label: 'Hamburg (schwarz auf orange)',
     fontColor: 'text-black',
   },
+  {
+    value: 'colorSchemeOrangeOnRose',
+    label: 'Hamburg (orange auf rosa)',
+    fontColor: 'text-black',
+  },
 ];
 
 export const SelectColor = ({
