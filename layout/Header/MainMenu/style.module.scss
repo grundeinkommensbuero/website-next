@@ -55,12 +55,9 @@
 .hamburg .dropdownContent {
   background: none;
   & ul {
-    margin: 0 -8px 0 0;
-    padding: 0 16px;
+    margin-right: -16px;
+    padding: 1px 16px;
     background: white;
-    & li a {
-      margin: 0;
-    }
   }
 }
 
