@@ -72,11 +72,6 @@ const PageWithSections = ({ page }: PageProps): ReactElement => {
           dangerouslySetInnerHTML={{ __html: page.heroHTML }}
         />
       )}
-      {page.slug === 'willkommen' && (
-        <section className="colorSchemeOrangeonRose">
-          <LinkButton>Unterschreiben</LinkButton>
-        </section>
-      )}
       {page.typeformId && (
         <Widget
           id={page.typeformId}
