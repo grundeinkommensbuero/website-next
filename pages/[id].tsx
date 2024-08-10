@@ -15,7 +15,7 @@ import { LinkButton } from '../components/Forms/Button';
 const IframeBriefeintragung = `
 <iframe src='https://briefeintragung-grundeinkommen.netlify.app/register'
   scrolling='no' width='100%' id='briefeintragung-iframe'
-  style='height: 1200px; border: none;' sandbox='allow-scripts allow-same-origin allow-forms allow-modals allow-popups allow-top-navigation allow-top-navigation-by-user-activation'>
+  sandbox='allow-scripts allow-same-origin allow-forms allow-modals allow-popups allow-top-navigation allow-top-navigation-by-user-activation'>
 </iframe>
 <script>
 window.addEventListener('message', (message) => {
@@ -42,6 +42,15 @@ window.addEventListener('message', (message) => {
 .iframe-container {
   top: -40px;
   position: relative;
+}
+#briefeintragung-iframe {
+  height: 1200px;
+  border: none;
+}
+@media screen and (min-width: 500px) {
+  #briefeintragung-iframe{
+    height: 1050px;
+  }
 }
 </style>
 `;
