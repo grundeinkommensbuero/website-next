@@ -18,8 +18,8 @@
 
   &.hamburg.mobileMenuContainer ul {
     & li > span {
-      display: block;
-      margin-top: 2.5rem;
+      /* don't display headings for 2nd level menus on mobile */
+      display: none;
     }
 
     & ul {
@@ -50,6 +50,20 @@
   z-index: 1;
   background-color: white;
   overflow: hidden;
+}
+
+.hamburg .dropdownContent {
+  background: none;
+  & ul {
+    border-right: 6px solid $hh_orange;
+    border-bottom: 6px solid $hh_orange;
+    margin: 0 -14px -6px 0;
+    padding: 0 16px;
+    background: white;
+    & li a {
+      margin: 0;
+    }
+  }
 }
 
 .dropdown:hover .dropdownContent,
