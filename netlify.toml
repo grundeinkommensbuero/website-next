@@ -5,3 +5,12 @@ NEXT_PUBLIC_USE_DEV_BACKEND = "override"
   for = "/iframes/*"
   [headers.values]
     X-Frame-Options = "ALLOWALL"
+
+[[redirects]]
+  from = "/*"
+  to = "https://hamburg-testet-grundeinkommen.de/:splat"
+  status = 301
+  force = true
+
+[redirects.conditions]
+    hostname = "!hamburg-testet-grundeinkommen.de"
