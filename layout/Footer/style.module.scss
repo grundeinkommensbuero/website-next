@@ -82,6 +82,13 @@
   .hamburg & {
     margin: 2rem 60px;
     gap: 0 60px;
+
+    & svg path {
+      fill: $white;
+    }
+    & svg:hover path {
+      fill: $hh_orange;
+    }
   }
 }
 
