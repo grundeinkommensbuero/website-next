@@ -8,6 +8,8 @@ import { useState } from 'react';
 import CONFIG from '../../../../backend-config';
 import { Location } from '../../../../components/CollectionMap/Map';
 
+import deliveryLocationsFromJson from '../../../../public/climate/locations.json';
+
 // The whole naming of meetups does not really make that much sense anymore, since
 // we are using the new api backend structure, where list locations and events are two
 // entirely different api and schemas.
