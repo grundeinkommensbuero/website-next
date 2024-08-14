@@ -168,7 +168,7 @@ export const Layout = ({
           {IS_BERLIN_PROJECT ? (
             <link key="favicon" rel="icon" href="/favicon-berlin.ico" />
           ) : IS_HAMBURG_PROJECT ? (
-            <link key="favicon" rel="icon" href="/favicon-hamburg.png" />
+            <link key="favicon" rel="icon" href="/favicon-hamburg.ico" />
           ) : (
             <link key="favicon" rel="icon" href="/favicon.ico" />
           )}
