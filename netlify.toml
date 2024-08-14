@@ -5,10 +5,4 @@ NEXT_PUBLIC_USE_DEV_BACKEND = "override"
   for = "/iframes/*"
   [headers.values]
     X-Frame-Options = "ALLOWALL"
-
-[[redirects]]
-  from = "/*"
-  to = "https://hamburg-testet-grundeinkommen.de/:splat"
-  status = 301
-  force = true
-  conditions = {hostname = ["www.volksentscheid-grundeinkommen.de", "volksentscheid-grundeinkommen.de", "5gutegruende.netlify.app", "hamburg-testet-grundeinkommen.de", "www.hamburg-testet-grundeinkommen.de", "www.xn--5gutegrnde-geb.hamburg", "xn--5gutegrnde-geb.hamburg", "5gutegruende.hamburg", "5gutegruende.com", "www.5gutegruende.hamburg", "www.5gutegruende.com"]}
+    
