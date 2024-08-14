@@ -124,6 +124,7 @@ export type ColorScheme =
   | 'colorSchemeRose'
   | 'colorSchemeRoseOnWhite'
   | 'colorSchemeOrangeOnRose'
+  | 'colorSchemeOrangeOnPurple'
   | 'colorSchemeHamburg'
   | 'colorSchemeHamburgAlternate'
   | 'colorSchemeHamburgBlackOnOrange';
