@@ -19,15 +19,12 @@ function IframeBriefeintragung() {
   }, []);
   // Code needs to run client side to get access to 'window'
   if (isClient) {
-    const IframeBriefeintragungURL =
-      'https://briefeintragung-grundeinkommen.netlify.app/register/';
     const queryString = querystring.parse(window.location.search);
-    var IframeHTML =
-      "<iframe src='" +
-      IframeBriefeintragungURL +
+    var IframeURL =
+      'https://briefeintragung-grundeinkommen.netlify.app/register/' +
       '?' +
-      querystring.stringify(queryString) +
-      `'
+      querystring.stringify(queryString);
+    var IframeHTML = `<iframe src=''
   scrolling='no' width='100%' id='briefeintragung-iframe'
   sandbox='allow-scripts allow-same-origin allow-forms allow-modals allow-popups allow-top-navigation allow-top-navigation-by-user-activation'>
 </iframe>
@@ -69,8 +66,12 @@ window.addEventListener('message', (message) => {
 </style>
 `;
     var iframediv = document.getElementsByClassName('iframe-container')[0];
-    if (iframediv !== undefined) {
+    if (iframediv !== null) {
       iframediv.innerHTML = IframeHTML;
+    }
+    var iframe = document.getElementById('briefeintragung-iframe');
+    if (iframe !== null) {
+      iframe.setAttribute('src', IframeURL);
     }
   }
   // We have to return a string because we invoke the function via
