@@ -43,9 +43,9 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    justify-content: space-around;
-    margin: 29px 60px 27px 60px;
-    max-width: 100%;
+    justify-content: space-evenly;
+    gap: 30px;
+    margin: 29px auto 27px;
   }
 }
 
@@ -80,11 +80,11 @@
   margin: 2rem 0;
 
   .hamburg & {
-    margin: 2rem 2rem;
-    gap: 0 60px;
+    margin: 2rem 30px;
+    gap: 0 calc(min(60px, 15vw));
 
-    @media (max-width: $breakPointS) {
-      margin: 2rem 0rem;
+    @media (max-width: $breakPointM) {
+      width: 100%;
     }
 
     & svg path {
@@ -114,7 +114,7 @@
   }
 
   .hamburg & {
-    margin: auto 60px;
+    margin: auto 30px;
     gap: 0 20px;
   }
 }
