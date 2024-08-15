@@ -40,7 +40,7 @@ window.addEventListener('message', (message) => {
 </script>
 <style>
 .iframe-container {
-  top: -40px;
+  top: -85px;
   position: relative;
 }
 #briefeintragung-iframe {
