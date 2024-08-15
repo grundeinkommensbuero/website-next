@@ -1,6 +1,6 @@
 import { GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next';
 
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useState, useEffect } from 'react';
 import s from './style.module.scss';
 import cN from 'classnames';
 import { getPageProps, Page } from '../utils/getPageProps';
@@ -9,11 +9,25 @@ import { Hero } from '../components/Hero';
 import { Directus } from '@directus/sdk';
 import { Widget } from '@typeform/embed-react';
 import PageNotFound from './404';
-import { LinkButton } from '../components/Forms/Button';
+import querystring from 'query-string';
 
 /* FIXME: This is not how we should do it */
-const IframeBriefeintragung = `
-<iframe src='https://briefeintragung-grundeinkommen.netlify.app/register'
+function IframeBriefeintragung() {
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+  // Code needs to run client side to get access to 'window'
+  if (isClient) {
+    const IframeBriefeintragungURL =
+      'https://briefeintragung-grundeinkommen.netlify.app/register/';
+    const queryString = querystring.parse(window.location.search);
+    var IframeHTML =
+      "<iframe src='" +
+      IframeBriefeintragungURL +
+      '?' +
+      querystring.stringify(queryString) +
+      `'
   scrolling='no' width='100%' id='briefeintragung-iframe'
   sandbox='allow-scripts allow-same-origin allow-forms allow-modals allow-popups allow-top-navigation allow-top-navigation-by-user-activation'>
 </iframe>
@@ -54,6 +68,15 @@ window.addEventListener('message', (message) => {
 }
 </style>
 `;
+    var iframediv = document.getElementsByClassName('iframe-container')[0];
+    if (iframediv !== undefined) {
+      iframediv.innerHTML = IframeHTML;
+    }
+  }
+  // We have to return a string because we invoke the function via
+  // dangerouslySetInnerHTML
+  return '';
+}
 
 const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
 const IS_HAMBURG_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Hamburg';
@@ -110,9 +133,13 @@ const PageWithSections = ({ page }: PageProps): ReactElement => {
       {page.slug == 'briefeintragung' && (
         <div
           className="iframe-container"
-          dangerouslySetInnerHTML={{
-            __html: IframeBriefeintragung,
-          }}
+          /*
+           * FIXME: There must be a nicer way to do this:
+           * IframeBriefeintragung() does not actually return HTML,
+           * but modifies the divs HTML on the client, i. e. we just
+           * call it for the side effects
+           */
+          dangerouslySetInnerHTML={{ __html: IframeBriefeintragung() }}
         />
       )}
     </section>
