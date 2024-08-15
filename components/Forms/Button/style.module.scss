@@ -132,10 +132,10 @@
   &.hamburg {
     font-family: 'Maru', Tahoma, Arial, Helvetica, sans-serif;
     border-width: $borderWidthMedium;
-    padding: 0.75rem 4rem;
+    padding: 0.75rem 2rem;
     box-shadow: 3px 6px 0 $black;
     font-size: 1rem;
-    min-width: 280px;
+    width: 280px;
     text-align: center;
   }
 
