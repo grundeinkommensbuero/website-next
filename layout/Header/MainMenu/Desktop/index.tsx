@@ -20,6 +20,27 @@ export const MainMenu = ({
   return (
     <nav className={cN([s.nav], { [s.hamburg]: IS_HAMBURG_PROJECT })}>
       <ul className={cN('flex-row', 'items-center')}>
+        {IS_HAMBURG_PROJECT ? (
+          <>
+            <li>
+              <LinkButton href="/briefeintragung">Jetzt unterschreiben!</LinkButton>
+            </li>
+            <li>
+              <LinkButton href="/sammeln">Jetzt mitsammeln!</LinkButton>
+            </li>
+          </>
+        ) : (
+          <li>
+            <UserMenuLink
+              entry={{
+                id: 'login',
+                slug: `login${getLoginNextPageParam(currentRoute)}`,
+                label: 'Einloggen',
+              }}
+              currentRoute={currentRoute}
+            />
+          </li>
+        )}
         {mainMenu.map(entry => {
           if ((entry as Dropdown).entries)
             return (
@@ -52,27 +73,6 @@ export const MainMenu = ({
             </li>
           );
         })}
-        {IS_HAMBURG_PROJECT ? (
-          <>
-            <li>
-              <LinkButton href="/briefeintragung">Jetzt unterschreiben!</LinkButton>
-            </li>
-            <li>
-              <LinkButton href="/sammeln">Jetzt mitsammeln!</LinkButton>
-            </li>
-          </>
-        ) : (
-          <li>
-            <UserMenuLink
-              entry={{
-                id: 'login',
-                slug: `login${getLoginNextPageParam(currentRoute)}`,
-                label: 'Einloggen',
-              }}
-              currentRoute={currentRoute}
-            />
-          </li>
-        )}
       </ul>
     </nav>
   );
