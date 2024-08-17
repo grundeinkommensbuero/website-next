@@ -23,7 +23,9 @@ export const MainMenu = ({
         {IS_HAMBURG_PROJECT ? (
           <>
             <li>
-              <LinkButton href="/briefeintragung">Jetzt unterschreiben!</LinkButton>
+              <LinkButton href="/briefeintragung">
+                Jetzt unterschreiben!
+              </LinkButton>
             </li>
             <li>
               <LinkButton href="/sammeln">Jetzt mitsammeln!</LinkButton>
