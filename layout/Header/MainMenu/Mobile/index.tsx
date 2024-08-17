@@ -32,6 +32,30 @@ export const MainMenuMobile = ({
       )}
     >
       <ul>
+        {IS_HAMBURG_PROJECT ? (
+          <>
+            <li className={cN({ 'my-10': IS_HAMBURG_PROJECT })}>
+              <LinkButton href="/briefeintragung">
+                Jetzt unterschreiben!
+              </LinkButton>
+            </li>
+            <li className={cN({ 'my-10': IS_HAMBURG_PROJECT })}>
+              <LinkButton href="/sammeln">Jetzt mitsammeln!</LinkButton>
+            </li>
+          </>
+        ) : (
+          <li>
+            <UserMenuLinkMobile
+              entry={{
+                id: 'login',
+                slug: `login${getLoginNextPageParam(currentRoute)}`,
+                label: 'Einloggen',
+              }}
+              currentRoute={currentRoute}
+              extraCallback={closeMenu}
+            />
+          </li>
+        )}
         {mainMenu.map((entry, index) => {
           if ((entry as Dropdown).entries)
             return (
@@ -56,28 +80,6 @@ export const MainMenuMobile = ({
               </li>
             );
           return (
-            {IS_HAMBURG_PROJECT ? (
-              <>
-                <li className={cN({ 'my-10': IS_HAMBURG_PROJECT })}>
-                  <LinkButton href="/briefeintragung">Jetzt unterschreiben!</LinkButton>
-                </li>
-                <li className={cN({ 'my-10': IS_HAMBURG_PROJECT })}>
-                  <LinkButton href="/sammeln">Jetzt mitsammeln!</LinkButton>
-                </li>
-              </>
-            ) : (
-              <li>
-                <UserMenuLinkMobile
-                  entry={{
-                    id: 'login',
-                    slug: `login${getLoginNextPageParam(currentRoute)}`,
-                    label: 'Einloggen',
-                  }}
-                  currentRoute={currentRoute}
-                  extraCallback={closeMenu}
-                />
-              </li>
-            )}
             <li
               className={cN(
                 { 'my-2': !IS_HAMBURG_PROJECT },
