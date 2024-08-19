@@ -29,7 +29,7 @@ const Start = ({ page }: PageProps): ReactElement => {
             className="my-form"
           />
           <p>
-            Das Formular wird nicht angezeigt? Dann klicke{' '}
+            Das Formular lädt nicht? Dann klicke{' '}
             <a
               href={`https://expeditionbge.typeform.com/to/${page.typeformId}?utm_campaign=formular_error`}
             >
