@@ -82,13 +82,13 @@ const PageWithSections = ({ page }: PageProps): ReactElement => {
         />
       )}
       {page.typeformId && (
-        <>
+        <div className={cN({ 'hamburg': IS_HAMBURG_PROJECT })}>
           <Widget
             id={page.typeformId}
             style={{ width: '100%', height: '650px' }}
             className="my-form"
           />
-          <p className={cN([s.p], { [s.hamburg]: IS_HAMBURG_PROJECT })}>
+          <p className={cN({ 'hamburg': IS_HAMBURG_PROJECT })}>
             Das Formular wird nicht angezeigt? Dann klicke{' '}
             <a
               href={`https://expeditionbge.typeform.com/to/${page.typeformId}?utm_campaign=formular_error`}
@@ -97,7 +97,7 @@ const PageWithSections = ({ page }: PageProps): ReactElement => {
             </a>
             .
           </p>
-        </>
+        </div>
       )}
       {page.hasHero && page.heroImage && (
         <Hero
