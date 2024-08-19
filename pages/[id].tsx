@@ -17,6 +17,14 @@ const IframeBriefeintragung = `
   scrolling='no' width='100%' id='briefeintragung-iframe'
   sandbox='allow-scripts allow-same-origin allow-forms allow-modals allow-popups allow-top-navigation allow-top-navigation-by-user-activation'>
 </iframe>
+<div>
+  <p class="element">
+    Das Formular wird nicht angezeigt? Dann klicke 
+      <a href="https://expeditionbge.typeform.com/Sammlung2024?utm_campaign=formular_error">
+        hier
+    </a>.
+  </p>
+</div>
 <script>
 window.addEventListener('message', (message) => {
   console.debug('got message', message)
