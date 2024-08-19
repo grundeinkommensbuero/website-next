@@ -82,11 +82,22 @@ const PageWithSections = ({ page }: PageProps): ReactElement => {
         />
       )}
       {page.typeformId && (
-        <Widget
-          id={page.typeformId}
-          style={{ width: '100%', height: '650px' }}
-          className="my-form"
-        />
+        <>
+          <Widget
+            id={page.typeformId}
+            style={{ width: '100%', height: '650px' }}
+            className="my-form"
+          />
+          <div>
+            <p className="element">
+              Das Formular wird nicht angezeigt? Dann klicke{' '}
+              `https://expeditionbge.typeform.com/to/${page.typeformId}?utm_campaign=formular_error`
+                hier
+              </a>
+              .
+            </p>
+          </div>
+        </>
       )}
       {page.hasHero && page.heroImage && (
         <Hero
