@@ -91,7 +91,9 @@ const PageWithSections = ({ page }: PageProps): ReactElement => {
           <div>
             <p className="element">
               Das Formular wird nicht angezeigt? Dann klicke{' '}
-              `https://expeditionbge.typeform.com/to/${page.typeformId}?utm_campaign=formular_error`
+              <a
+                href={`https://expeditionbge.typeform.com/to/${page.typeformId}?utm_campaign=formular_error`}
+              >
                 hier
               </a>
               .
