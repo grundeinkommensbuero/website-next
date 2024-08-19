@@ -13,7 +13,7 @@ const Start = ({ page }: PageProps): ReactElement => {
     return <PageNotFound />;
   }
   return (
-    <section>
+    <section className={cN({ 'hamburg': IS_HAMBURG_PROJECT })}>
       {/* see https://legacy.reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml and https://blog.logrocket.com/using-dangerouslysetinnerhtml-react-application/ */}
       {page.heroHTML && (
         <div
@@ -22,24 +22,22 @@ const Start = ({ page }: PageProps): ReactElement => {
         />
       )}
       {page.typeformId && (
-        <>
+        <div>
           <Widget
             id={page.typeformId}
             style={{ width: '100%', height: '650px' }}
             className="my-form"
           />
-          <div>
-            <p className="element">
-              Das Formular wird nicht angezeigt? Dann klicke{' '}
-              <a
-                href={`https://expeditionbge.typeform.com/to/${page.typeformId}?utm_campaign=formular_error`}
-              >
-                hier
-              </a>
-              .
-            </p>
-          </div>
-        </>
+          <p>
+            Das Formular wird nicht angezeigt? Dann klicke{' '}
+            <a
+              href={`https://expeditionbge.typeform.com/to/${page.typeformId}?utm_campaign=formular_error`}
+            >
+              hier
+            </a>
+            .
+          </p>
+        </div>
       )}
       {page.hasHero && page.heroImage && (
         <Hero
