@@ -73,7 +73,7 @@ const PageWithSections = ({ page }: PageProps): ReactElement => {
     return <PageNotFound />;
   }
   return (
-    <section>
+    <section className={cN({ 'hamburg': IS_HAMBURG_PROJECT })}>
       {/* see https://legacy.reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml and https://blog.logrocket.com/using-dangerouslysetinnerhtml-react-application/ */}
       {page.heroHTML && (
         <div
@@ -82,7 +82,7 @@ const PageWithSections = ({ page }: PageProps): ReactElement => {
         />
       )}
       {page.typeformId && (
-        <div className={cN({ 'hamburg': IS_HAMBURG_PROJECT })}>
+        <div>
           <Widget
             id={page.typeformId}
             style={{ width: '100%', height: '650px' }}
