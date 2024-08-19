@@ -1,4 +1,5 @@
 import s from './style.module.scss';
+import cN from 'classnames';
 import { PageProps, index_slug } from './[id]';
 import { ReactElement } from 'react';
 import { Section } from '../components/Section';
