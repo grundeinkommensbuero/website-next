@@ -9,6 +9,9 @@ import { Widget } from '@typeform/embed-react';
 import { Hero } from '../components/Hero';
 import PageNotFound from './404';
 
+const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
+const IS_HAMBURG_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Hamburg';
+
 const Start = ({ page }: PageProps): ReactElement => {
   if (!page) {
     return <PageNotFound />;
