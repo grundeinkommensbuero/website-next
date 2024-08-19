@@ -108,23 +108,12 @@ const PageWithSections = ({ page }: PageProps): ReactElement => {
         );
       })}
       {page.slug == 'briefeintragung' && (
-        <>
-          <div
-            className="iframe-container"
-            dangerouslySetInnerHTML={{
-              __html: IframeBriefeintragung,
-            }}
-          />
-          <div>
-            <p className="element">
-              Das Formular wird nicht angezeigt? Dann klicke{' '}
-              <a href="https://expeditionbge.typeform.com/Sammlung2024?utm_campaign=formular_error">
-                hier
-              </a>
-              .
-            </p>
-          </div>
-        </>
+         <div
+          className="iframe-container"
+          dangerouslySetInnerHTML={{
+            __html: IframeBriefeintragung,
+          }}
+        />
       )}
     </section>
   );
