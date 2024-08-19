@@ -32,6 +32,13 @@ const project: Project = IS_BERLIN_PROJECT
   ? projects.HAMBURG_SITE
   : projects.DEFAULT_SITE;
 
+// Base URLs for the canonical links
+const baseCanonicalUrl = IS_BERLIN_PROJECT 
+  ? 'https://expedition-grundeinkommen.de'
+  : IS_HAMBURG_PROJECT
+  ? 'https://hamburg-testet-grundeinkommen.de'
+  : 'https://expedition-grundeinkommen.de';
+
 type LayoutProps = {
   children: ReactElement;
   mainMenu: Menu;
@@ -58,6 +65,8 @@ export const Layout = ({
   const router = useRouter();
   const { currentRoute } = useContext(XbgeAppContext);
   const { resetMunicipality } = useContext(MunicipalityContext);
+  // Full canonical URL with path
+  const canonicalUrl = `${baseCanonicalUrl}${router.asPath}`;
 
   const [pageIsLoading, setPageIsLoading] = useState(false);
 
@@ -130,6 +139,7 @@ export const Layout = ({
               name="description"
               content={metaDescription}
             />
+            <link rel="canonical" href={canonicalUrl} />
             <meta key="og:title" property="og:title" content={metaTitle} />
             <meta
               key="og:description"
