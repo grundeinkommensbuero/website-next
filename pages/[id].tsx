@@ -49,7 +49,7 @@ window.addEventListener('message', (message) => {
 }
 @media screen and (min-width: 500px) {
   #briefeintragung-iframe{
-    height: 1050px;
+    height: 1150px;
   }
 }
 </style>
