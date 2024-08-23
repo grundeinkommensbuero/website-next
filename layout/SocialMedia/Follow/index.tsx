@@ -31,17 +31,22 @@ export const FollowHamburg = ({ className }: { className: string }) => (
     <SocialMediaButton
       icon="FacebookHamburg"
       link="https://www.facebook.com/expedition.grundeinkommen"
-      label="Folge auf Facebook"
+      label="Folge uns auf Facebook"
     />
     <SocialMediaButton
       icon="InstagramHamburg"
       link="https://www.instagram.com/hamburg.testet.grundeinkommen/"
-      label="Folge auf Instagram"
+      label="Folge uns auf Instagram"
     />
     <SocialMediaButton
       icon="TwitterHamburg"
       link="https://twitter.com/expeditionbge"
-      label="Folge auf Twitter"
+      label="Folge uns auf Twitter"
+    />
+    <SocialMediaButton
+      icon="TiktokHamburg"
+      link="https://www.tiktok.com/@expeditionbge"
+      label="Folge uns auf Tiktok"
     />
   </div>
 );
