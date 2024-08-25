@@ -34,7 +34,9 @@ export const SmallSignup = ({
 
     if (email) {
       // Automatically trigger the signup process
-      const additionalData: { [key: string]: any } = { ags: ags || stateToAgs.berlin };
+      const additionalData: { [key: string]: any } = {
+        ags: ags || stateToAgs.berlin,
+      };
 
       if (flag) {
         additionalData.store = {
@@ -55,11 +57,11 @@ export const SmallSignup = ({
           ...additionalData,
           newsletterConsent: true,
         };
-        
+
         setSuccess(true);
         // Use the signup function from AuthContext or directly call the signUp hook
         // Assuming `signUp` is a function from AuthContext or a similar hook
-        // signUp(signUpData); 
+        // signUp(signUpData);
       }
     }
   }, [router.query, ags, flag, isAuthenticated, showNewsletterConsent]);
