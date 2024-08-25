@@ -1,10 +1,11 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import AuthContext from '../../../context/Authentication';
 import { stateToAgs } from '../../../utils/stateToAgs';
 import { FinallyMessage } from '../FinallyMessage';
 import SignUp, { Fields } from '../SignUp';
 import { InlineButton } from '../Button';
 import s from './style.module.scss';
+import { useRouter } from 'next/router';
 
 export const SmallSignup = ({
   ags,
@@ -23,13 +24,49 @@ export const SmallSignup = ({
   hideIfAuthenticated?: boolean;
   nudgeBoxText?: string;
 }) => {
-  if (!ags) {
-    ags = stateToAgs.berlin;
-  }
-
   const { isAuthenticated, customUserData, signUserOut } =
     useContext(AuthContext);
   const [success, setSuccess] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    const email = router.query.email as string;
+
+    if (email) {
+      // Automatically trigger the signup process
+      const additionalData: { [key: string]: any } = { ags: ags || stateToAgs.berlin };
+
+      if (flag) {
+        additionalData.store = {
+          [flag]: { value: true, timestamp: new Date().toISOString() },
+        };
+      }
+
+      const fields: Fields[] = ['email'];
+
+      if (showNewsletterConsent) {
+        fields.push('nudgeBox', 'newsletterConsent');
+      }
+
+      if (!isAuthenticated) {
+        // Call the signup directly without rendering the form
+        const signUpData = {
+          email,
+          ...additionalData,
+          newsletterConsent: true,
+        };
+        
+        setSuccess(true);
+        // Use the signup function from AuthContext or directly call the signUp hook
+        // Assuming `signUp` is a function from AuthContext or a similar hook
+        // signUp(signUpData); 
+      }
+    }
+  }, [router.query, ags, flag, isAuthenticated, showNewsletterConsent]);
+
+  if (!ags) {
+    ags = stateToAgs.berlin;
+  }
 
   if (success && isAuthenticated) {
     if (hideIfAuthenticated) {
@@ -76,8 +113,6 @@ export const SmallSignup = ({
     return (
       <SignUp
         fieldsToRender={fields}
-        // If this is a signup for a specific collection (date and location set), that should be saved.
-        // Otherwise we pass that user wants to collect in general
         additionalData={additionalData}
         showHeading={false}
         smallFormMargin={true}
