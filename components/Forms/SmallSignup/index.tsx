@@ -24,47 +24,23 @@ export const SmallSignup = ({
   hideIfAuthenticated?: boolean;
   nudgeBoxText?: string;
 }) => {
+  if (!ags) {
+    ags = stateToAgs.hamburg;
+  }
   const { isAuthenticated, customUserData, signUserOut } =
     useContext(AuthContext);
   const [success, setSuccess] = useState(false);
   const router = useRouter();
 
+  var autoSignupEmail = null;
+
   useEffect(() => {
     const email = router.query.email as string;
-
+    console.log("email: " + email);
     if (email) {
-      // Automatically trigger the signup process
-      const additionalData: { [key: string]: any } = {
-        ags: ags || stateToAgs.berlin,
-      };
-
-      if (flag) {
-        additionalData.store = {
-          [flag]: { value: true, timestamp: new Date().toISOString() },
-        };
-      }
-
-      const fields: Fields[] = ['email'];
-
-      if (showNewsletterConsent) {
-        fields.push('nudgeBox', 'newsletterConsent');
-      }
-
-      if (!isAuthenticated) {
-        // Call the signup directly without rendering the form
-        const signUpData = {
-          email,
-          ...additionalData,
-          newsletterConsent: true,
-        };
-
-        setSuccess(true);
-        // Use the signup function from AuthContext or directly call the signUp hook
-        // Assuming `signUp` is a function from AuthContext or a similar hook
-        // signUp(signUpData);
-      }
+      autoSignupEmail = email;
     }
-  }, [router.query, ags, flag, isAuthenticated, showNewsletterConsent]);
+  }, [router.query]);
 
   if (!ags) {
     ags = stateToAgs.berlin;
@@ -124,6 +100,7 @@ export const SmallSignup = ({
         hideIfAuthenticated={hideIfAuthenticated}
         nudgeBoxText={nudgeBoxText}
         newsletterConsent={true}
+        autoSignupEmail={autoSignupEmail}
       />
     );
   }
