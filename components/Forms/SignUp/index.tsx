@@ -132,6 +132,7 @@ type SignUpProps = {
   isOnboarding?: boolean;
   formClassName?: string;
   newsletterConsent?: boolean;
+  autoSignup?: boolean
 };
 
 const SignUp = ({
@@ -154,7 +155,7 @@ const SignUp = ({
   isOnboarding = false,
   formClassName,
   newsletterConsent,
-  autoSignupEmail,
+  autoSignup,
 }: SignUpProps) => {
   const [signUpState, userExists, signUp, setSignUpState] = useSignUp();
   const [updateUserState, updateUser] = useUpdateUser();
@@ -186,7 +187,7 @@ const SignUp = ({
 
   // Automatically submit the form if initialValues.email is provided
   useEffect(() => {
-    if (initialValues?.email && !hasSubmitted && !isAuthenticated) {
+    if (initialValues?.email && !hasSubmitted && autoSignup) {
       const signUpData = {
         ...initialValues,
         ...additionalData,
@@ -197,7 +198,7 @@ const SignUp = ({
       setFormData(signUpData);
       signUp(signUpData);
     }
-  }, [initialValues, hasSubmitted, isAuthenticated, additionalData, municipalityInForm, newsletterConsent, signUp]);
+  }, [initialValues, hasSubmitted, autoSignup, additionalData, municipalityInForm, newsletterConsent, signUp]);
 
   // After signup process is successful, do post signup
   useEffect(() => {

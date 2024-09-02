@@ -32,13 +32,13 @@ export const SmallSignup = ({
   const [success, setSuccess] = useState(false);
   const router = useRouter();
 
-  var autoSignupEmail = null;
+  const [autoSignupEmail, setAutoSignupEmail] = useState(undefined as undefined | string)
 
   useEffect(() => {
     const email = router.query.email as string;
     console.log("email: " + email);
     if (email) {
-      autoSignupEmail = email;
+      setAutoSignupEmail(email);
     }
   }, [router.query]);
 
@@ -100,7 +100,8 @@ export const SmallSignup = ({
         hideIfAuthenticated={hideIfAuthenticated}
         nudgeBoxText={nudgeBoxText}
         newsletterConsent={true}
-        autoSignupEmail={autoSignupEmail}
+        autoSignup={true}
+        initialValues={{ email: autoSignupEmail }}
       />
     );
   }
