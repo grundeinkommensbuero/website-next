@@ -1,4 +1,5 @@
 import { GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next';
+import { useRouter } from 'next/router';
 
 import React, { ReactElement } from 'react';
 import s from './style.module.scss';
@@ -11,12 +12,30 @@ import { Widget } from '@typeform/embed-react';
 import PageNotFound from './404';
 import { LinkButton } from '../components/Forms/Button';
 
+// Function to convert query params to a string
+const getQueryParamsString = (router: ReturnType<typeof useRouter>): string => {
+  return new URLSearchParams(router.query as Record<string, string>).toString();
+};
+
+const GetURLParamsComponent: React.FC = () => {
+  const router = useRouter(); // This must be inside a component
+
+  const queryParamsString = getQueryParamsString(router); // Make sure router is used within the component
+  const iframeSrc = 'https://briefeintragung-grundeinkommen.netlify.app/register?' +
+    queryParamsString;
+
+  return (
+    <iframe id="briefeintragung-iframe"
+      src={iframeSrc}
+      sandbox="allow-scripts allow-same-origin allow-forms allow-modals allow-popups allow-top-navigation allow-top-navigation-by-user-activation"
+    ></iframe>
+  );
+};
+
+//export default GetURLParamsComponent;
+
 /* FIXME: This is not how we should do it */
-const IframeBriefeintragung = `
-<iframe src='https://briefeintragung-grundeinkommen.netlify.app/register'
-  scrolling='no' width='100%' id='briefeintragung-iframe'
-  sandbox='allow-scripts allow-same-origin allow-forms allow-modals allow-popups allow-top-navigation allow-top-navigation-by-user-activation'>
-</iframe>
+const IframeBriefeintragungScriptCSS = `
 <script>
 window.addEventListener('message', (message) => {
   console.debug('got message', message)
@@ -44,6 +63,7 @@ window.addEventListener('message', (message) => {
   position: relative;
 }
 #briefeintragung-iframe {
+  width: 100%;
   height: 1200px;
   border: none;
 }
@@ -61,8 +81,8 @@ const IS_HAMBURG_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Hamburg';
 export const index_slug = IS_BERLIN_PROJECT
   ? 'start'
   : IS_HAMBURG_PROJECT
-  ? 'start-hamburg'
-  : 'start-hamburg'; //set to start-hamburg on expedition-grundeinkommen.de also temporarily
+    ? 'start-hamburg'
+    : 'start-hamburg'; //set to start-hamburg on expedition-grundeinkommen.de also temporarily
 
 export type PageProps = {
   page: Page | null;
@@ -73,7 +93,7 @@ const PageWithSections = ({ page }: PageProps): ReactElement => {
     return <PageNotFound />;
   }
   return (
-    <section className={cN({ 'hamburg': IS_HAMBURG_PROJECT })}>
+    <section className={cN({ hamburg: IS_HAMBURG_PROJECT })}>
       {/* see https://legacy.reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml and https://blog.logrocket.com/using-dangerouslysetinnerhtml-react-application/ */}
       {page.heroHTML && (
         <div
@@ -119,12 +139,16 @@ const PageWithSections = ({ page }: PageProps): ReactElement => {
         );
       })}
       {page.slug == 'briefeintragung' && (
-         <div
-          className="iframe-container"
-          dangerouslySetInnerHTML={{
-            __html: IframeBriefeintragung,
-          }}
-        />
+        <div>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: IframeBriefeintragungScriptCSS,
+            }}
+          />
+          <div className="iframe-container">
+            <GetURLParamsComponent />
+          </div>
+        </div>
       )}
     </section>
   );
