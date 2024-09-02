@@ -53,7 +53,12 @@ window.addEventListener('message', (message) => {
   }
   if(message.data.message === 'sendLetterEntryRegistrationSuccessToParent'
   ) {
-    window.location.href = '/briefeintragung-erfolg'
+    const values = message.data.values || {}
+    if(values.newsletterOptIn === true && values.email) {
+      window.location.href = '/briefeintragung-erfolg?email=' + encodeURIComponent(values.email);
+    } else {
+      window.location.href = '/briefeintragung-erfolg'
+    }
   }
 })
 </script>

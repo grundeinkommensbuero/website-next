@@ -1,10 +1,11 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import AuthContext from '../../../context/Authentication';
 import { stateToAgs } from '../../../utils/stateToAgs';
 import { FinallyMessage } from '../FinallyMessage';
 import SignUp, { Fields } from '../SignUp';
 import { InlineButton } from '../Button';
 import s from './style.module.scss';
+import { useRouter } from 'next/router';
 
 export const SmallSignup = ({
   ags,
@@ -24,12 +25,26 @@ export const SmallSignup = ({
   nudgeBoxText?: string;
 }) => {
   if (!ags) {
-    ags = stateToAgs.berlin;
+    ags = stateToAgs.hamburg;
   }
-
   const { isAuthenticated, customUserData, signUserOut } =
     useContext(AuthContext);
   const [success, setSuccess] = useState(false);
+  const router = useRouter();
+
+  const [autoSignupEmail, setAutoSignupEmail] = useState(undefined as undefined | string)
+
+  useEffect(() => {
+    const email = router.query.email as string;
+    console.log("email: " + email);
+    if (email) {
+      setAutoSignupEmail(email);
+    }
+  }, [router.query]);
+
+  if (!ags) {
+    ags = stateToAgs.berlin;
+  }
 
   if (success && isAuthenticated) {
     if (hideIfAuthenticated) {
@@ -76,8 +91,6 @@ export const SmallSignup = ({
     return (
       <SignUp
         fieldsToRender={fields}
-        // If this is a signup for a specific collection (date and location set), that should be saved.
-        // Otherwise we pass that user wants to collect in general
         additionalData={additionalData}
         showHeading={false}
         smallFormMargin={true}
@@ -87,6 +100,8 @@ export const SmallSignup = ({
         hideIfAuthenticated={hideIfAuthenticated}
         nudgeBoxText={nudgeBoxText}
         newsletterConsent={true}
+        autoSignup={true}
+        initialValues={{ email: autoSignupEmail }}
       />
     );
   }
