@@ -28,7 +28,7 @@ const GetURLParamsComponent: React.FC = () => {
     <iframe id="briefeintragung-iframe"
       src={iframeSrc}
       sandbox="allow-scripts allow-same-origin allow-forms allow-modals allow-popups allow-top-navigation allow-top-navigation-by-user-activation"
-      style="width:100%;height: 1250px;"
+      style={{ width: "100%", height: "1250px" }}
     ></iframe>
   );
 };
