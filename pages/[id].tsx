@@ -48,7 +48,7 @@ window.addEventListener('message', (message) => {
   }
   if(message.data.message === 'sendLetterEntryHeightToParent'
   ) {
-    const heightPx = \`\${parseInt(message.data.height, 10) + 100}px\`;
+    const heightPx = \`\${message.data.height}px\`;
     document.getElementById('briefeintragung-iframe')?.setAttribute('height', heightPx)
   }
   if(message.data.message === 'sendLetterEntryRegistrationSuccessToParent'
@@ -69,13 +69,7 @@ window.addEventListener('message', (message) => {
 }
 #briefeintragung-iframe {
   width: 100%;
-  height: 1200px;
   border: none;
-}
-@media screen and (min-width: 500px) {
-  #briefeintragung-iframe{
-    height: 1150px;
-  }
 }
 </style>
 `;
