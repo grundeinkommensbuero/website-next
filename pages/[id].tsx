@@ -48,7 +48,7 @@ window.addEventListener('message', (message) => {
   }
   if(message.data.message === 'sendLetterEntryHeightToParent'
   ) {
-    const heightPx = \`\${message.data.height}px\`
+    const heightPx = `${parseInt(message.data.height, 10) + 100}px`;
     document.getElementById('briefeintragung-iframe')?.setAttribute('height', heightPx)
   }
   if(message.data.message === 'sendLetterEntryRegistrationSuccessToParent'
