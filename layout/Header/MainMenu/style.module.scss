@@ -10,6 +10,12 @@
   &.hamburg {
     font-size: 1rem;
     margin: 0 0 0 auto;
+    @media screen and (max-width: 899px) {
+      padding-top: 4rem;
+    }
+    @media (max-width: $breakPointS) {
+      padding-top: 3rem;
+    }
   }
 
   &.hamburg ul {
