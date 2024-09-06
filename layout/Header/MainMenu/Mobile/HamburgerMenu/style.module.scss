@@ -23,6 +23,7 @@
   background-color: black;
   content: '';
   transition: transform 0.3s ease;
+  box-shadow: 0 0 4px 4px white; /* for black backgrounds */
 }
 .hamburger:before {
   top: 0;
@@ -46,4 +47,5 @@
 }
 .hamburger.isActive:after {
   transform: translateY(-450%) rotate(-45deg);
+  box-shadow: none; /* for black backgrounds */
 }
