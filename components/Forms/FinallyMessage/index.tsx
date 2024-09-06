@@ -6,6 +6,7 @@ import { ColorScheme } from '../../Section';
 import { scrollIntoView } from '../../../utils/scrollIntoView';
 
 const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
+const IS_HAMBURG_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Hamburg';
 
 type FinallyMessageProps = {
   loading?: boolean;
@@ -20,7 +21,11 @@ export const FinallyMessage = ({
   children,
   className,
   preventScrolling,
-  colorScheme = IS_BERLIN_PROJECT ? 'colorSchemeRose' : 'colorSchemeViolet',
+  colorScheme = IS_BERLIN_PROJECT
+    ? 'colorSchemeRose'
+    : IS_HAMBURG_PROJECT
+    ? 'colorSchemeHamburg'
+    : 'colorSchemeViolet',
 }: FinallyMessageProps) => {
   useEffect(() => {
     if (!preventScrolling) {

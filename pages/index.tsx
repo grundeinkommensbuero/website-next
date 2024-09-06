@@ -17,7 +17,7 @@ const Start = ({ page }: PageProps): ReactElement => {
     return <PageNotFound />;
   }
   return (
-    <section className={cN({ 'hamburg': IS_HAMBURG_PROJECT })}>
+    <section className={cN({ hamburg: IS_HAMBURG_PROJECT })}>
       {/* see https://legacy.reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml and https://blog.logrocket.com/using-dangerouslysetinnerhtml-react-application/ */}
       {page.heroHTML && (
         <div
@@ -32,7 +32,7 @@ const Start = ({ page }: PageProps): ReactElement => {
             style={{ width: '100%', height: '650px' }}
             className="my-form"
           />
-         <p className={s.manualLoadingHint}>
+          <p className={s.manualLoadingHint}>
             Das Formular lädt nicht? Dann klicke{' '}
             <a
               href={`https://expeditionbge.typeform.com/to/${page.typeformId}?utm_campaign=formular_error`}

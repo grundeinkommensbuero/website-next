@@ -81,7 +81,7 @@
 
   .hamburg & {
     margin: 2rem 30px;
-    gap: 0 calc(min(60px, 15vw));
+    gap: 0 calc(min(60px, 7.5vw));
 
     @media (max-width: $breakPointM) {
       width: 100%;

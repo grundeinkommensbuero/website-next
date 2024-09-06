@@ -32,11 +32,13 @@ export const SmallSignup = ({
   const [success, setSuccess] = useState(false);
   const router = useRouter();
 
-  const [autoSignupEmail, setAutoSignupEmail] = useState(undefined as undefined | string)
+  const [autoSignupEmail, setAutoSignupEmail] = useState(
+    undefined as undefined | string
+  );
 
   useEffect(() => {
     const email = router.query.email as string;
-    console.log("email: " + email);
+    console.log('email: ' + email);
     if (email) {
       setAutoSignupEmail(email);
     }
