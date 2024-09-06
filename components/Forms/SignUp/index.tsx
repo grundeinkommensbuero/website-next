@@ -132,7 +132,7 @@ type SignUpProps = {
   isOnboarding?: boolean;
   formClassName?: string;
   newsletterConsent?: boolean;
-  autoSignup?: boolean
+  autoSignup?: boolean;
 };
 
 const SignUp = ({
@@ -198,7 +198,15 @@ const SignUp = ({
       setFormData(signUpData);
       signUp(signUpData);
     }
-  }, [initialValues, hasSubmitted, autoSignup, additionalData, municipalityInForm, newsletterConsent, signUp]);
+  }, [
+    initialValues,
+    hasSubmitted,
+    autoSignup,
+    additionalData,
+    municipalityInForm,
+    newsletterConsent,
+    signUp,
+  ]);
 
   // After signup process is successful, do post signup
   useEffect(() => {

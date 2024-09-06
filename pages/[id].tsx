@@ -21,11 +21,13 @@ const GetURLParamsComponent: React.FC = () => {
   const router = useRouter(); // This must be inside a component
 
   const queryParamsString = getQueryParamsString(router); // Make sure router is used within the component
-  const iframeSrc = 'https://briefeintragung-grundeinkommen.netlify.app/register?' +
+  const iframeSrc =
+    'https://briefeintragung-grundeinkommen.netlify.app/register?' +
     queryParamsString;
 
   return (
-    <iframe id="briefeintragung-iframe"
+    <iframe
+      id="briefeintragung-iframe"
       src={iframeSrc}
       sandbox="allow-scripts allow-same-origin allow-forms allow-modals allow-popups allow-top-navigation allow-top-navigation-by-user-activation"
     ></iframe>
@@ -80,8 +82,8 @@ const IS_HAMBURG_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Hamburg';
 export const index_slug = IS_BERLIN_PROJECT
   ? 'start'
   : IS_HAMBURG_PROJECT
-    ? 'start-hamburg'
-    : 'start-hamburg'; //set to start-hamburg on expedition-grundeinkommen.de also temporarily
+  ? 'start-hamburg'
+  : 'start-hamburg'; //set to start-hamburg on expedition-grundeinkommen.de also temporarily
 
 export type PageProps = {
   page: Page | null;

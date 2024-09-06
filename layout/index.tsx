@@ -33,7 +33,7 @@ const project: Project = IS_BERLIN_PROJECT
   : projects.DEFAULT_SITE;
 
 // Base URLs for the canonical links
-const baseCanonicalUrl = IS_BERLIN_PROJECT 
+const baseCanonicalUrl = IS_BERLIN_PROJECT
   ? 'https://expedition-grundeinkommen.de'
   : IS_HAMBURG_PROJECT
   ? 'https://hamburg-testet-grundeinkommen.de'
