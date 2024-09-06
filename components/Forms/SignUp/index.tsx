@@ -23,6 +23,7 @@ import { hasKey } from '../../../utils/hasKey';
 import { useRouter } from 'next/router';
 
 const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
+const IS_HAMBURG_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Hamburg';
 
 import { Modal } from '../../Modal';
 import { validatePhoneNumber } from '../../../hooks/Authentication/validatePhoneNumber';
@@ -268,10 +269,16 @@ const SignUp = ({
               colorScheme={
                 IS_BERLIN_PROJECT
                   ? 'colorSchemeRoseOnWhite'
+                  : IS_HAMBURG_PROJECT
+                  ? 'colorSchemeHamburg'
                   : 'colorSchemeWhite'
               }
               loadingColorScheme={
-                IS_BERLIN_PROJECT ? 'colorSchemeRose' : 'colorSchemeViolet'
+                IS_BERLIN_PROJECT
+                  ? 'colorSchemeRose'
+                  : IS_HAMBURG_PROJECT
+                  ? 'colorSchemeHamburg'
+                  : 'colorSchemeViolet'
               }
             />
           </div>
@@ -284,10 +291,18 @@ const SignUp = ({
         <EnterLoginCode
           preventSignIn={true}
           colorScheme={
-            IS_BERLIN_PROJECT ? 'colorSchemeRoseOnWhite' : 'colorSchemeWhite'
+            IS_BERLIN_PROJECT
+              ? 'colorSchemeRoseOnWhite'
+              : IS_HAMBURG_PROJECT
+              ? 'colorSchemeHamburg'
+              : 'colorSchemeWhite'
           }
           loadingColorScheme={
-            IS_BERLIN_PROJECT ? 'colorSchemeRose' : 'colorSchemeViolet'
+            IS_BERLIN_PROJECT
+              ? 'colorSchemeRose'
+              : IS_HAMBURG_PROJECT
+              ? 'colorSchemeHamburg'
+              : 'colorSchemeViolet'
           }
         />
       );
