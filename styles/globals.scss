@@ -312,6 +312,10 @@ p {
   h1,
   h2 {
     font-size: 42px;
+
+    @media (max-width: $breakPointS) {
+      font-size: $MobileFontSizeXL;
+    }
   }
 
   h3 {
