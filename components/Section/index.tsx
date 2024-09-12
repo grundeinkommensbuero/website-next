@@ -191,6 +191,18 @@ export const Section = ({
         isFirstSection={isFirstSection}
       >
         <>
+          {/* Custom conditional rendering for iframe */}
+          {section.id === "soliort-karte" && (
+            <div className={s.customIframeContainer}>
+              <iframe
+                src="https://umap.openstreetmap.fr/de/map/orte-zum-unterschreiben_1112227?scaleControl=false&miniMap=false&scrollWheelZoom=false&zoomControl=true&editMode=disabled&moreControl=true&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=true&onLoadPanel=none&captionBar=false&captionMenus=true#18/53.55782/9.97000"  // Replace with the actual iframe source
+                width="100%"
+                height="500px"
+                frameBorder="0"
+                allowFullScreen
+              ></iframe>
+            </div>
+          )}
           <div
             className={cN(s.elementContainer, {
               [s.hamburg]: IS_HAMBURG_PROJECT,
