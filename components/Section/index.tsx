@@ -191,6 +191,18 @@ export const Section = ({
         isFirstSection={isFirstSection}
       >
         <>
+          {/* Custom conditional rendering for iframe */}
+          {section.id === "soliort-karte" && (
+            <div className={s.customIframeContainer}>
+              <iframe
+                src="https://example.com"  // Replace with the actual iframe source
+                width="100%"
+                height="500px"
+                frameBorder="0"
+                allowFullScreen
+              ></iframe>
+            </div>
+          )}
           <div
             className={cN(s.elementContainer, {
               [s.hamburg]: IS_HAMBURG_PROJECT,
