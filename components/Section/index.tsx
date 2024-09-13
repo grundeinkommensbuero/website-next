@@ -26,7 +26,7 @@ import { LoadingAnimation } from '../LoadingAnimation';
 const IS_HAMBURG_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Hamburg';
 
 export type Section = {
-  id: number;
+  id: number | string;
   title: string;
   label: string;
   sort: number | null;
