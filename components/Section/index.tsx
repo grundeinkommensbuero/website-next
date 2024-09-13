@@ -26,7 +26,7 @@ import { LoadingAnimation } from '../LoadingAnimation';
 const IS_HAMBURG_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Hamburg';
 
 export type Section = {
-  id: string;
+  id: number;
   title: string;
   label: string;
   sort: number | null;
@@ -191,6 +191,25 @@ export const Section = ({
         isFirstSection={isFirstSection}
       >
         <>
+          {/* Custom conditional rendering for umap iframe */}
+          {section.id === 198 && (
+            <div className={s.customIframeContainer}>
+              <iframe
+                src="http://u.osmfr.org/m/1112227/"
+                width="100%"
+                height="500px"
+                frameBorder="0"
+                allowFullScreen
+              ></iframe>
+              <a
+                href="http://u.osmfr.org/m/1112227/"
+                target="_blank"
+                className={s.umapLink}
+              >
+                Karte als Vollbild anzeigen
+              </a>
+            </div>
+          )}
           <div
             className={cN(s.elementContainer, {
               [s.hamburg]: IS_HAMBURG_PROJECT,
