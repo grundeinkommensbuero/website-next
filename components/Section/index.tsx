@@ -195,7 +195,7 @@ export const Section = ({
           {section.id === 198 && (
             <div className={s.customIframeContainer}>
               <iframe
-                src="http://u.osmfr.org/m/1112227/"
+                src="https://u.osmfr.org/m/1112227/"
                 width="100%"
                 height="500px"
                 frameBorder="0"
