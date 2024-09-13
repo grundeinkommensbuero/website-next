@@ -204,6 +204,7 @@ export const Section = ({
               <a
                 href="http://u.osmfr.org/m/1112227/"
                 target="_blank"
+                rel="noreferrer"
                 className={s.umapLink}
               >
                 Karte als Vollbild anzeigen
