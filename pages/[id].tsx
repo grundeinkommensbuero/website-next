@@ -30,6 +30,7 @@ const GetURLParamsComponent: React.FC = () => {
       id="briefeintragung-iframe"
       src={iframeSrc}
       sandbox="allow-scripts allow-same-origin allow-forms allow-modals allow-popups allow-top-navigation allow-top-navigation-by-user-activation"
+      height="1202px"
     ></iframe>
   );
 };
