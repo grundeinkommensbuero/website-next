@@ -182,49 +182,56 @@ const DonationForm = ({ onboardingNextPage }: DonationFormProps) => {
   return (
     <div className={s.donationForm}>
       {/* Spendenturnus */}
-      {!hasDonated && !donationError && !enteredPaymentInfo && !needsToLogin && (
-        <div className={s.donationIntervalSelection}>
-          <p className={s.hint}>
-            Hinweis: Falls du eine Spendenbescheinigung möchtest, schreibe eine
-            E-Mail an support@expedition-grundeinkommen.de. Du bekommst die
-            Spendenbescheinigung dann über den gesamten Jahresbetrag. Du kannst
-            deine Spende jederzeit wieder beenden.
-          </p>
-          <h3>Wie möchtest du spenden?</h3>
-          <div className={s.selectionContainer}>
-            <button
-              className={cN(s.selectionElement, {
-                [s.selectionElementActive]: donationInterval === 'jährlich',
-              })}
-              onClick={() => {
-                setDonationInverval('jährlich');
-              }}
-            >
-              Jährlich
-            </button>
-            <button
-              className={cN(s.selectionElement, {
-                [s.selectionElementActive]: donationInterval === 'monatlich',
-              })}
-              onClick={() => {
-                setDonationInverval('monatlich');
-              }}
-            >
-              Monatlich
-            </button>
-            <button
-              className={cN(s.selectionElement, {
-                [s.selectionElementActive]: donationInterval === 'einmalig',
-              })}
-              onClick={() => {
-                setDonationInverval('einmalig');
-              }}
-            >
-              Einmalig
-            </button>
+      {!hasDonated &&
+        !donationError &&
+        !enteredPaymentInfo &&
+        !needsToLogin && (
+          <div className={s.donationIntervalSelection}>
+            <p className={s.hint}>
+              Für Spenden bis zu 300 Euro reicht dein Kontoauszug als Nachweis
+              für das Finanzamt. Wenn du eine separate Spendenbescheinigung
+              wünschst, sende bitte eine E-Mail an
+              <a href="mailto:hamburg@hamburg-testet-grundeinkommen.de">
+                hamburg@hamburg-testet-grundeinkommen.de
+              </a>
+              . Die Bescheinigung erhältst du dann über den gesamten
+              Jahresbetrag. Du kannst deine Spende jederzeit beenden.
+            </p>
+            <h3>Wie möchtest du spenden?</h3>
+            <div className={s.selectionContainer}>
+              <button
+                className={cN(s.selectionElement, {
+                  [s.selectionElementActive]: donationInterval === 'jährlich',
+                })}
+                onClick={() => {
+                  setDonationInverval('jährlich');
+                }}
+              >
+                Jährlich
+              </button>
+              <button
+                className={cN(s.selectionElement, {
+                  [s.selectionElementActive]: donationInterval === 'monatlich',
+                })}
+                onClick={() => {
+                  setDonationInverval('monatlich');
+                }}
+              >
+                Monatlich
+              </button>
+              <button
+                className={cN(s.selectionElement, {
+                  [s.selectionElementActive]: donationInterval === 'einmalig',
+                })}
+                onClick={() => {
+                  setDonationInverval('einmalig');
+                }}
+              >
+                Einmalig
+              </button>
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
       {!hasDonated &&
         !enteredPaymentInfo &&
