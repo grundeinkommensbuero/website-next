@@ -192,10 +192,10 @@ export const Section = ({
       >
         <>
           {/* Custom conditional rendering for umap iframe */}
-          {section.id === 198 && (
+          {section.anchor === "hh-karte" && (
             <div className={s.customIframeContainer}>
               <iframe
-                src="http://u.osmfr.org/m/1112227/"
+                src="https://u.osmfr.org/m/1112227/"
                 width="100%"
                 height="500px"
                 frameBorder="0"
