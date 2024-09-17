@@ -190,7 +190,7 @@ const DonationForm = ({ onboardingNextPage }: DonationFormProps) => {
             <p className={s.hint}>
               Für Spenden bis zu 300 Euro reicht dein Kontoauszug als Nachweis
               für das Finanzamt. Wenn du eine separate Spendenbescheinigung
-              wünschst, sende bitte eine E-Mail an
+              wünschst, sende bitte eine E-Mail an {}
               <a href="mailto:hamburg@hamburg-testet-grundeinkommen.de">
                 hamburg@hamburg-testet-grundeinkommen.de
               </a>
