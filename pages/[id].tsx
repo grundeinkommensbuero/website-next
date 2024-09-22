@@ -22,6 +22,7 @@ const GetURLParamsComponent: React.FC = () => {
   const router = useRouter(); // This must be inside a component
   
   useEffect(() => {
+    console.log('useEffect');
     if (router.isReady) {
       // Get query params string from the router
       const queryString = getQueryParamsString(router);
