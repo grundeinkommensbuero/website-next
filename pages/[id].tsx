@@ -22,29 +22,40 @@ const GetURLParamsComponent: React.FC = () => {
   const router = useRouter(); // This must be inside a component
   
   useEffect(() => {
-  if (router.isReady) {
-    // Get query params string from the router
-    const queryString = getQueryParamsString(router);
-
-    // Log the URL parameters by calling the Netlify function
-    fetch(`/api/logUrlParams${window.location.search}`) // Add this fetch call
-      .then(response => response.json())
-      .then(data => {
-        console.log(data.message); // Show the response message in the console
-      })
-      .catch(error => console.error('Error logging URL parameters:', error));
-
-    // Build the iframe URL with the query params
-    const iframeSrc =
-      'https://briefeintragung-grundeinkommen.netlify.app/register?' + queryString;
-
-    // Set the iframe URL
-    const iframeElement = document.getElementById('briefeintragung-iframe') as HTMLIFrameElement;
-    if (iframeElement) {
-      iframeElement.src = iframeSrc;
+    if (router.isReady) {
+      // Get query params string from the router
+      const queryString = getQueryParamsString(router);
+    
+      // Log the URL parameters by calling the Netlify function
+      fetch(`/api/logUrlParams${window.location.search}`) // Add this fetch call
+        .then(response => response.json())
+        .then(data => {
+          console.log(data.message); // Show the response message in the console
+        })
+        .catch(error => console.error('Error logging URL parameters:', error));
+    
+      // Build the iframe URL with the query params
+      const iframeSrc =
+        'https://briefeintragung-grundeinkommen.netlify.app/register?' + queryString;
+    
+      // Set the iframe URL
+      const iframeElement = document.getElementById('briefeintragung-iframe') as HTMLIFrameElement;
+      if (iframeElement) {
+        iframeElement.src = iframeSrc;
+      }
     }
-  }
-}, [router.isReady]); // Ensure this runs when the router is ready
+  }, [router.isReady]); // Ensure this runs when the router is ready
+
+  return (
+    <iframe
+      id="briefeintragung-iframe"
+      sandbox="allow-scripts allow-same-origin allow-forms allow-modals allow-popups allow-top-navigation allow-top-navigation-by-user-activation"
+      height="1202px"
+      width="100%"
+      style={{ border: 'none' }}
+    ></iframe>
+  );
+}; // <-- Closing brace added here
 
 //export default GetURLParamsComponent;
 
