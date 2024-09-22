@@ -27,7 +27,7 @@ const GetURLParamsComponent: React.FC = () => {
       const queryString = getQueryParamsString(router);
     
       // Log the URL parameters by calling the Netlify function
-      fetch(`/api/logUrlParams${window.location.search}`) // Add this fetch call
+      fetch(`https://hamburg-testet-grundeinkommen.de/.netlify/functions/logUrlParams${window.location.search}`) // Add this fetch call
         .then(response => response.json())
         .then(data => {
           console.log(data.message); // Show the response message in the console
