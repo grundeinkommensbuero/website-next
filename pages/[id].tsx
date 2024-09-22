@@ -18,7 +18,10 @@ const getQueryParamsString = (router: ReturnType<typeof useRouter>): string => {
   return new URLSearchParams(router.query as Record<string, string>).toString();
 };
 
-useEffect(() => {
+const GetURLParamsComponent: React.FC = () => {
+  const router = useRouter(); // This must be inside a component
+  
+  useEffect(() => {
   if (router.isReady) {
     // Get query params string from the router
     const queryString = getQueryParamsString(router);
