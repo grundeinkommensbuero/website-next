@@ -6,3 +6,5 @@ NEXT_PUBLIC_USE_DEV_BACKEND = "override"
   [headers.values]
     X-Frame-Options = "ALLOWALL"
     
+[build]
+  functions = "netlify/functions"
