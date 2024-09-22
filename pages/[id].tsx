@@ -1,5 +1,6 @@
 import { GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react'; // Add this to the imports
 
 import React, { ReactElement } from 'react';
 import s from './style.module.scss';
@@ -17,23 +18,30 @@ const getQueryParamsString = (router: ReturnType<typeof useRouter>): string => {
   return new URLSearchParams(router.query as Record<string, string>).toString();
 };
 
-const GetURLParamsComponent: React.FC = () => {
-  const router = useRouter(); // This must be inside a component
+useEffect(() => {
+  if (router.isReady) {
+    // Get query params string from the router
+    const queryString = getQueryParamsString(router);
 
-  const queryParamsString = getQueryParamsString(router); // Make sure router is used within the component
-  const iframeSrc =
-    'https://briefeintragung-grundeinkommen.netlify.app/register?' +
-    queryParamsString;
+    // Log the URL parameters by calling the Netlify function
+    fetch(`/api/logUrlParams${window.location.search}`) // Add this fetch call
+      .then(response => response.json())
+      .then(data => {
+        console.log(data.message); // Show the response message in the console
+      })
+      .catch(error => console.error('Error logging URL parameters:', error));
 
-  return (
-    <iframe
-      id="briefeintragung-iframe"
-      src={iframeSrc}
-      sandbox="allow-scripts allow-same-origin allow-forms allow-modals allow-popups allow-top-navigation allow-top-navigation-by-user-activation"
-      height="1202px"
-    ></iframe>
-  );
-};
+    // Build the iframe URL with the query params
+    const iframeSrc =
+      'https://briefeintragung-grundeinkommen.netlify.app/register?' + queryString;
+
+    // Set the iframe URL
+    const iframeElement = document.getElementById('briefeintragung-iframe') as HTMLIFrameElement;
+    if (iframeElement) {
+      iframeElement.src = iframeSrc;
+    }
+  }
+}, [router.isReady]); // Ensure this runs when the router is ready
 
 //export default GetURLParamsComponent;
 
