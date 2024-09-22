@@ -20,7 +20,7 @@ const nextConfig = {
     return [
       {
         source: '/api/logUrlParams', // Deine verkürzte API-Route
-        destination: 'https://your-site-name.netlify.app/.netlify/functions/logUrlParams', // Tatsächliche URL der Netlify-Funktion
+        destination: 'https://hamburg-testet-grundeinkommen.de/.netlify/functions/logUrlParams', // Tatsächliche URL der Netlify-Funktion
       },
     ];
   },
