@@ -16,6 +16,14 @@ const nextConfig = {
   sassOptions: {
     prependData: `@import "./styles/vars.scss";`,
   },
+  async rewrites() {
+    return [
+      {
+        source: '/api/logUrlParams', // Deine verkürzte API-Route
+        destination: 'https://hamburg-testet-grundeinkommen.de/.netlify/functions/logUrlParams', // Tatsächliche URL der Netlify-Funktion
+      },
+    ];
+  },
   webpack(config) {
     // config.module.noParse = /(gun|scrypt)\.js$/;
     config.module.rules.push({
