@@ -45,7 +45,7 @@ export const FollowHamburg = ({ className }: { className: string }) => (
     />
     <SocialMediaButton
       icon="TiktokHamburg"
-      link="https://www.tiktok.com/@expeditionbge"
+      link="https://www.tiktok.com/@hhtestetgrundeinkommen"
       label="Folge uns auf Tiktok"
     />
   </div>
