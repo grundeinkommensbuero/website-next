@@ -198,17 +198,14 @@ export const EnterLoginCode = ({
         {!answerChallengeState && !children && (
           <>
             <p>
-              Zu deiner Sicherheit haben wir dir per E-Mail einen geheimen Code
+              Damit wir sicher sein können, dass niemand anderes sich mit deiner
+              Adresse anmeldet, haben wir dir per E-Mail einen geheimen Code
               geschickt. Schau mal in dein Postfach!{' '}
             </p>
             {tempEmail && <p>Deine Email: {tempEmail}</p>}
           </>
         )}
-        <p>
-          Falls wir dich schon kennen, können wir dich damit identifizieren. Und
-          falls du neu bei uns bist, brauchen wir den Code als Bestätigung, dass
-          du wirklich E-Mails an die angegebene Adresse erhalten möchtest.
-        </p>
+        <p>Bitte gib den Code aus der Email zur Bestätigung ein.</p>
         {timerCounter === 0 ? (
           <InlineButton
             type="button"
