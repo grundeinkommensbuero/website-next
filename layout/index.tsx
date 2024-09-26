@@ -45,7 +45,7 @@ type LayoutProps = {
   footerMenu: Menu;
   title?: string;
   description?: string;
-  og?: string;
+  ogImage?: string;
 };
 
 declare global {
@@ -60,7 +60,7 @@ export const Layout = ({
   footerMenu,
   title,
   description,
-  og,
+  ogImage,
 }: LayoutProps): ReactElement => {
   const router = useRouter();
   const { currentRoute } = useContext(XbgeAppContext);
@@ -114,8 +114,8 @@ export const Layout = ({
     'Modellversuch zum Grundeinkommen jetzt!';
   const metaTitle =
     title || project?.siteTitle || 'Hamburg testet Grundeinkommen';
-  const meta = og
-    ? getAssetURL(og)
+  const metaImage = ogImage
+    ? getAssetURL(ogImage)
     : getRootAssetURL(
         project?.ogimage || '0263593e-697f-4c06-82ac-9aa7872c0384'
       );
