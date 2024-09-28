@@ -60,7 +60,7 @@ export const MainMenu = ({
               </LinkButton>
             </li>
             <li>
-              <LinkButton href="/sammeln">Jetzt mitsammeln!</LinkButton>
+              <LinkButton href="/spenden-hamburg">Jetzt spenden!</LinkButton>
             </li>
           </>
         ) : (
