@@ -75,11 +75,6 @@ export const MainMenuMobile = ({
         {IS_HAMBURG_PROJECT ? (
           <>
             <li className={cN({ 'my-10': IS_HAMBURG_PROJECT })}>
-              <LinkButton href="/unterschreiben-hamburg">
-                Jetzt unterschreiben!
-              </LinkButton>
-            </li>
-            <li className={cN({ 'my-10': IS_HAMBURG_PROJECT })}>
               <LinkButton href="/spenden-hamburg">Jetzt spenden!</LinkButton>
             </li>
           </>
