@@ -97,7 +97,9 @@ a {
   color: currentColor;
 }
 
-p {
+p,
+ul,
+ol {
   line-height: 1.5;
   font-size: $DesktopFontSizeM;
 
@@ -281,12 +283,14 @@ p {
 
   ul,
   ol {
-    font-size: 1.25rem;
     margin-left: 10px;
+    @media (max-width: $breakPointM) {
+      margin-left: -10px;
+    }
   }
 
   li {
-    padding-bottom: 10px;
+    padding-bottom: 6px;
   }
 
   h1,
