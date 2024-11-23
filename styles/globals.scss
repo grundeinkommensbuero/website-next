@@ -275,8 +275,14 @@ p {
 .hamburg {
   font-family: 'Maru', Tahoma, Arial, Helvetica, sans-serif;
 
-  ul {
-    list-style-position: inside;
+  strong {
+    background: rgba($hh_orange, 0.25);
+  }
+
+  ul,
+  ol {
+    font-size: 1.25rem;
+    margin-left: 10px;
   }
 
   h1,
