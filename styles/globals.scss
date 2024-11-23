@@ -97,9 +97,7 @@ a {
   color: currentColor;
 }
 
-p,
-ul,
-ol {
+p {
   line-height: 1.5;
   font-size: $DesktopFontSizeM;
 
@@ -283,8 +281,12 @@ ol {
 
   ul,
   ol {
+    line-height: 1.5;
+    font-size: $DesktopFontSizeM;
     margin-left: 10px;
+
     @media (max-width: $breakPointM) {
+      font-size: $MobileFontSizeM;
       margin-left: -10px;
     }
   }
