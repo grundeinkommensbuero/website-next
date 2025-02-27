@@ -327,7 +327,11 @@ p {
   }
 
   h3 {
-    font-size: 32px;
+    line-height: 2.4rem;
+
+    @media (max-width: $breakPointM) {
+      line-height: 2rem;
+    }
   }
 }
 
