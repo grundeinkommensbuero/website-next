@@ -14,7 +14,7 @@ const icons: IIndexable = {
   FacebookSquare: require('!svg-inline-loader!./icons/facebook-square-brands.svg'),
   Instagram: require('!svg-inline-loader!./icons/instagram-brands.svg'),
   InstagramHamburg: require('!svg-inline-loader!./icons/instagram-hamburg.svg'),
-  Twitter: require('!svg-inline-loader!./icons/twitter-brands.svg'),
+  X: require('!svg-inline-loader!./icons/x.svg'),
   XHamburg: require('!svg-inline-loader!./icons/x-hamburg.svg'),
   WhatsApp: require('!svg-inline-loader!./icons/whatsapp-brands.svg'),
   WhatsAppSquare: require('!svg-inline-loader!./icons/whatsapp-square-brands.svg'),
@@ -22,6 +22,7 @@ const icons: IIndexable = {
   TelegramRound: require('!svg-inline-loader!./icons/telegram-brands.svg'),
   Youtube: require('!svg-inline-loader!./icons/youtube.svg'),
   YoutubeHamburg: require('!svg-inline-loader!./icons/youtube-hamburg.svg'),
+  TikTok: require('!svg-inline-loader!./icons/tiktok.svg'),
   TiktokHamburg: require('!svg-inline-loader!./icons/tiktok-hamburg-neu.svg'),
 };
 

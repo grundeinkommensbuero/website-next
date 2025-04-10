@@ -9,9 +9,9 @@ export const Follow = ({ className }: { className: string }) => (
       label="Folge auf Instagram"
     />
     <SocialMediaButton
-      icon="Twitter"
-      link="https://twitter.com/expeditionbge"
-      label="Folge auf Twitter"
+      icon="Facebook"
+      link="https://www.facebook.com/expedition.grundeinkommen"
+      label="Folge auf Facebook"
     />
     <SocialMediaButton
       icon="Youtube"
@@ -19,9 +19,9 @@ export const Follow = ({ className }: { className: string }) => (
       label="Folge auf Youtube"
     />
     <SocialMediaButton
-      icon="Facebook"
-      link="https://www.facebook.com/expedition.grundeinkommen"
-      label="Folge auf Facebook"
+      icon="X"
+      link="https://x.com/expeditionbge"
+      label="Folge auf X"
     />
   </div>
 );
