@@ -15,7 +15,7 @@ const icons: IIndexable = {
   Instagram: require('!svg-inline-loader!./icons/instagram-brands.svg'),
   InstagramHamburg: require('!svg-inline-loader!./icons/instagram-hamburg.svg'),
   Twitter: require('!svg-inline-loader!./icons/twitter-brands.svg'),
-  TwitterHamburg: require('!svg-inline-loader!./icons/twitter-hamburg.svg'),
+  XHamburg: require('!svg-inline-loader!./icons/x-hamburg.svg'),
   WhatsApp: require('!svg-inline-loader!./icons/whatsapp-brands.svg'),
   WhatsAppSquare: require('!svg-inline-loader!./icons/whatsapp-square-brands.svg'),
   Telegram: require('!svg-inline-loader!./icons/telegram-plane-brands.svg'),

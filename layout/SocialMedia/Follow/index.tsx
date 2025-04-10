@@ -29,19 +29,9 @@ export const Follow = ({ className }: { className: string }) => (
 export const FollowHamburg = ({ className }: { className: string }) => (
   <div className={className + ' flex justify-center'}>
     <SocialMediaButton
-      icon="FacebookHamburg"
-      link="https://www.facebook.com/expedition.grundeinkommen"
-      label="Folge uns auf Facebook"
-    />
-    <SocialMediaButton
       icon="InstagramHamburg"
       link="https://www.instagram.com/hamburg.testet.grundeinkommen/"
       label="Folge uns auf Instagram"
-    />
-    <SocialMediaButton
-      icon="TwitterHamburg"
-      link="https://twitter.com/expeditionbge"
-      label="Folge uns auf Twitter"
     />
     <SocialMediaButton
       icon="TiktokHamburg"
@@ -49,9 +39,19 @@ export const FollowHamburg = ({ className }: { className: string }) => (
       label="Folge uns auf Tiktok"
     />
     <SocialMediaButton
+      icon="FacebookHamburg"
+      link="https://www.facebook.com/expedition.grundeinkommen"
+      label="Folge uns auf Facebook"
+    />
+    <SocialMediaButton
       icon="YoutubeHamburg"
       link="https://www.youtube.com/@expeditiongrundeinkommen7639"
       label="Folge uns auf Youtube"
+    />
+    <SocialMediaButton
+      icon="XHamburg"
+      link="https://twitter.com/expeditionbge"
+      label="Folge uns auf X"
     />
   </div>
 );

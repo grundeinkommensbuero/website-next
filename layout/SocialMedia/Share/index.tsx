@@ -27,10 +27,10 @@ export const Share = ({ children, className }: ShareProps) => {
           className={s.shareButton}
         />
         <SocialMediaButton
-          icon="Twitter"
+          icon="X"
           link={`https://www.twitter.com/intent/tweet?text=${twitterText}`}
           iconSize={iconSize}
-          label="Teile auf Twitter"
+          label="Teile auf X"
           className={s.shareButton}
         />
       </div>
