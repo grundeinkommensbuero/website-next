@@ -48,5 +48,10 @@ export const FollowHamburg = ({ className }: { className: string }) => (
       link="https://www.tiktok.com/@hhtestetgrundeinkommen"
       label="Folge uns auf Tiktok"
     />
+    <SocialMediaButton
+      icon="YoutubeHamburg"
+      link="https://www.youtube.com/@expeditiongrundeinkommen7639"
+      label="Folge uns auf Youtube"
+    />
   </div>
 );

@@ -21,6 +21,7 @@ const icons: IIndexable = {
   Telegram: require('!svg-inline-loader!./icons/telegram-plane-brands.svg'),
   TelegramRound: require('!svg-inline-loader!./icons/telegram-brands.svg'),
   Youtube: require('!svg-inline-loader!./icons/youtube.svg'),
+  YoutubeHamburg: require('!svg-inline-loader!./icons/youtube-hamburg.svg'),
   TiktokHamburg: require('!svg-inline-loader!./icons/tiktok-hamburg-neu.svg'),
 };
 
