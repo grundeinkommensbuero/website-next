@@ -10,7 +10,7 @@ export const Follow = ({ className }: { className: string }) => (
     />
     <SocialMediaButton
       icon="Facebook"
-      link="https://www.facebook.com/expedition.grundeinkommen"
+      link="https://www.facebook.com/hamburg.testet.grundeinkommen"
       label="Folge auf Facebook"
     />
     <SocialMediaButton
@@ -40,7 +40,7 @@ export const FollowHamburg = ({ className }: { className: string }) => (
     />
     <SocialMediaButton
       icon="FacebookHamburg"
-      link="https://www.facebook.com/expedition.grundeinkommen"
+      link="https://www.facebook.com/hamburg.testet.grundeinkommen"
       label="Folge uns auf Facebook"
     />
     <SocialMediaButton
