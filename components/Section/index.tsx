@@ -385,7 +385,10 @@ export const Section = ({
 
                   case 'sectionsFAQ':
                     element = (
-                      <div key={'component-' + elementToRender.index}>
+                      <div
+                        key={'component-' + elementToRender.index}
+                        className={s.faqWrapper}
+                      >
                         {pageBuilderActive && (
                           <EditElement
                             modifiedSection={modifiedSection}
@@ -394,7 +397,9 @@ export const Section = ({
                           />
                         )}
                         {elementToRender.title && (
-                          <h2>{elementToRender.title}</h2>
+                          <h2 className={s.faqTitle}>
+                            {elementToRender.title}
+                          </h2>
                         )}
                         {elementToRender.questionAnswerPair.map(
                           questionAnswer => {
