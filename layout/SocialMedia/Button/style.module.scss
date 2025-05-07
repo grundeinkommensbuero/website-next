@@ -20,5 +20,9 @@
 
   &.hamburg svg {
     width: 60px;
+
+    @media (max-width: $breakPointM) {
+      width: 45px;
+    }
   }
 }
