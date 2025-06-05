@@ -135,6 +135,10 @@ export const Layout = ({
               }`}
             </title>
             <meta
+              name="google-site-verification"
+              content="W6exlkRIcZXmcytF4HtrpyM_R2vzPOLYuqNbvRgN8pQ"
+            />
+            <meta
               key="description"
               name="description"
               content={metaDescription}
