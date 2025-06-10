@@ -15,16 +15,17 @@
 .ratio16to9,
 .ratioPhone {
   position: relative;
-  width: 100%;
-  height: 0;
+  width: auto;
+  height: 100%;
+  max-height: 800px;
 }
 
 .ratio16to9 {
-  padding-bottom: 56.25%; // 16:9
+  aspect-ratio: 16 / 9;
 }
 
 .ratioPhone {
-  padding-bottom: 177.77%; // 9:16
+  aspect-ratio: 9 / 16;
 }
 
 .ratio16to9 iframe,
