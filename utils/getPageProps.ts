@@ -123,6 +123,7 @@ type FetchedElement = {
     content?: string;
     component?: string;
     embedId?: string;
+    aspectRatio?: string;
     buttonText?: string;
     type?: string;
     action?: string;
@@ -156,6 +157,7 @@ const elementFields = [
   'content',
   'component',
   'embedId',
+  'aspectRatio',
   'buttonText',
   'type',
   'action',
@@ -311,6 +313,7 @@ const updatePageStructure = (
                     ...baseElement,
                     collection: 'sectionsVideo',
                     embedId: element.item.embedId,
+                    aspectRatio: element.item.aspectRatio,
                   } as SectionsVideo;
                 case 'sectionsCTAButton':
                   return {

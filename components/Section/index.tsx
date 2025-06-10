@@ -80,6 +80,7 @@ export type SectionsComponent = SectionElementBase & {
 export type SectionsVideo = SectionElementBase & {
   collection: 'sectionsVideo';
   embedId: string;
+  aspectRatio: string;
 };
 
 export type SectionsCTAButton = SectionElementBase & {
@@ -325,7 +326,10 @@ export const Section = ({
                             element={elementToRender}
                           />
                         )}
-                        <YoutubeEmbed embedId={elementToRender.embedId} />
+                        <YoutubeEmbed
+                          embedId={elementToRender.embedId}
+                          ratio={elementToRender.aspectRatio}
+                        />
                       </div>
                     );
                     break;
