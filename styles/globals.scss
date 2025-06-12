@@ -323,7 +323,7 @@ p {
 
     @media (max-width: $breakPointS) {
       font-size: $MobileFontSizeXL;
-      line-height: 2.6rem;
+      line-height: 2.4rem;
     }
   }
 
@@ -331,8 +331,8 @@ p {
     line-height: 2.4rem;
 
     @media (max-width: $breakPointM) {
-      font-size: $MobileFontSizeXL;
-      line-height: 2rem;
+      font-size: $MobileFontSizeL;
+      line-height: 1.8rem;
     }
   }
 }
