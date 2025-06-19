@@ -67,7 +67,7 @@ export const SmallSignup = ({
     };
   }
 
-  const fields: Fields[] = ['email'];
+  const fields: Fields[] = ['email', 'phoneNumber'];
 
   if (showNewsletterConsent) {
     fields.push('nudgeBox', 'newsletterConsent');
