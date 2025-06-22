@@ -1,7 +1,6 @@
 import { GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
-
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import s from './style.module.scss';
 import cN from 'classnames';
 import { getPageProps, Page } from '../utils/getPageProps';
@@ -12,15 +11,13 @@ import { Widget } from '@typeform/embed-react';
 import PageNotFound from './404';
 import { LinkButton } from '../components/Forms/Button';
 
-// Function to convert query params to a string
 const getQueryParamsString = (router: ReturnType<typeof useRouter>): string => {
   return new URLSearchParams(router.query as Record<string, string>).toString();
 };
 
 const GetURLParamsComponent: React.FC = () => {
-  const router = useRouter(); // This must be inside a component
-
-  const queryParamsString = getQueryParamsString(router); // Make sure router is used within the component
+  const router = useRouter();
+  const queryParamsString = getQueryParamsString(router);
   const iframeSrc =
     'https://briefeintragung-grundeinkommen.netlify.app/register?' +
     queryParamsString;
@@ -35,48 +32,6 @@ const GetURLParamsComponent: React.FC = () => {
   );
 };
 
-//export default GetURLParamsComponent;
-
-/* FIXME: This is not how we should do it */
-const IframeBriefeintragungScriptCSS = `
-<script>
-window.addEventListener('message', (message) => {
-  console.debug('got message', message)
-  if (
-    typeof message.data !== 'object' ||
-    !message.data ||
-    !('message' in message.data)) {
-    console.debug('ignoring unknown message')
-    return
-  }
-  if(message.data.message === 'sendLetterEntryHeightToParent'
-  ) {
-    const heightPx = \`\${message.data.height}px\`;
-    document.getElementById('briefeintragung-iframe')?.setAttribute('height', heightPx)
-  }
-  if(message.data.message === 'sendLetterEntryRegistrationSuccessToParent'
-  ) {
-    const values = message.data.values || {}
-    if(values.newsletterOptIn === true && values.email) {
-      window.location.href = '/briefeintragung-erfolg?email=' + encodeURIComponent(values.email);
-    } else {
-      window.location.href = '/briefeintragung-erfolg'
-    }
-  }
-})
-</script>
-<style>
-.iframe-container {
-  top: -85px;
-  position: relative;
-}
-#briefeintragung-iframe {
-  width: 100%;
-  border: none;
-}
-</style>
-`;
-
 const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
 const IS_HAMBURG_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Hamburg';
 
@@ -84,19 +39,52 @@ export const index_slug = IS_BERLIN_PROJECT
   ? 'start'
   : IS_HAMBURG_PROJECT
   ? 'start-hamburg'
-  : 'start-hamburg'; //set to start-hamburg on expedition-grundeinkommen.de also temporarily
+  : 'start-hamburg';
 
 export type PageProps = {
   page: Page | null;
 };
 
 const PageWithSections = ({ page }: PageProps): ReactElement => {
+  useEffect(() => {
+    const handleMessage = (message: MessageEvent) => {
+      if (
+        typeof message.data !== 'object' ||
+        !message.data ||
+        !('message' in message.data)
+      ) {
+        console.debug('ignoring unknown message');
+        return;
+      }
+
+      if (message.data.message === 'sendLetterEntryHeightToParent') {
+        const heightPx = `${message.data.height}px`;
+        document.getElementById('briefeintragung-iframe')?.setAttribute('height', heightPx);
+      }
+
+      if (message.data.message === 'sendLetterEntryRegistrationSuccessToParent') {
+        const values = message.data.values || {};
+        if (values.newsletterOptIn === true && values.email) {
+          window.location.href = '/briefeintragung-erfolg?email=' + encodeURIComponent(values.email);
+        } else {
+          window.location.href = '/briefeintragung-erfolg';
+        }
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+
+    return () => {
+      window.removeEventListener('message', handleMessage);
+    };
+  }, []);
+
   if (!page) {
     return <PageNotFound />;
   }
+
   return (
     <section className={cN({ hamburg: IS_HAMBURG_PROJECT })}>
-      {/* see https://legacy.reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml and https://blog.logrocket.com/using-dangerouslysetinnerhtml-react-application/ */}
       {page.heroHTML && (
         <div
           className={s.heroHTMLContainer}
@@ -140,14 +128,9 @@ const PageWithSections = ({ page }: PageProps): ReactElement => {
           />
         );
       })}
-      {page.slug == 'briefeintragung' && (
+      {page.slug === 'briefeintragung' && (
         <div>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: IframeBriefeintragungScriptCSS,
-            }}
-          />
-          <div className="iframe-container">
+          <div className="iframe-container" style={{ position: 'relative', top: '-85px' }}>
             <GetURLParamsComponent />
           </div>
         </div>
