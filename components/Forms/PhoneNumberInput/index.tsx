@@ -27,8 +27,9 @@ export const PhoneNumberInput = ({
   errorClassName,
   hideLabel,
 }: Props) => {
-  if (hide) return null;
   const [phoneNumber, setPhoneNumber] = React.useState<string | undefined>('');
+
+  if (hide) return null;
   const outputLabel = description ? `${label} (${description})` : label;
 
   return (
