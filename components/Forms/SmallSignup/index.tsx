@@ -38,7 +38,7 @@ export const SmallSignup = ({
 
   useEffect(() => {
     const email = router.query.email as string;
-    console.log('email: ' + email);
+
     if (email) {
       setAutoSignupEmail(email);
     }

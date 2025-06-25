@@ -1,32 +1,33 @@
-import React, { useState, useEffect, useContext, ReactElement } from 'react';
-import { Form, Field } from 'react-final-form';
-import { TextInputWrapped } from '../TextInput';
-import FormSection from '../FormSection';
+import { useContext, useEffect, useState } from 'react';
+import { Field, Form } from 'react-final-form';
+import AuthContext from '../../../context/Authentication';
+import { useUpdateUser } from '../../../hooks/Api/Users/Update';
+import { useSignUp } from '../../../hooks/Authentication';
+import { EnterLoginCode } from '../../Login/EnterLoginCode';
 import { Checkbox } from '../Checkbox';
-import { CTAButtonContainer, CTAButton } from '../CTAButton';
+import { CTAButton, CTAButtonContainer } from '../CTAButton';
+import FormSection from '../FormSection';
 import FormWrapper from '../FormWrapper';
 import SignUpFeedbackMessage from '../SignUpFeedbackMessage';
-import { useSignUp } from '../../../hooks/Authentication';
-import { useUpdateUser } from '../../../hooks/Api/Users/Update';
-import AuthContext from '../../../context/Authentication';
-import { EnterLoginCode } from '../../Login/EnterLoginCode';
+import { TextInputWrapped } from '../TextInput';
 // import AuthInfo from '../../AuthInfo';
 // import { FinallyMessage } from '../FinallyMessage';
-import s from './style.module.scss';
+import { useRouter } from 'next/router';
+import { isValidPhoneNumber } from 'react-phone-number-input';
 import {
   Municipality,
   MunicipalityContext,
 } from '../../../context/Municipality';
-import { SearchPlaces } from '../SearchPlaces';
 import { validateEmail } from '../../../hooks/Authentication/validateEmail';
 import { hasKey } from '../../../utils/hasKey';
-import { useRouter } from 'next/router';
+import { SearchPlaces } from '../SearchPlaces';
+import s from './style.module.scss';
 
 const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
 const IS_HAMBURG_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Hamburg';
 
 import { Modal } from '../../Modal';
-import { validatePhoneNumber } from '../../../hooks/Authentication/validatePhoneNumber';
+import { PhoneNumberInput } from '../PhoneNumberInput';
 
 type Illustration = 'POINT_LEFT';
 
@@ -415,7 +416,7 @@ const SignUp = ({
         : undefined,
       placeholder: 'Telefonnummer',
       type: 'text',
-      component: TextInputWrapped,
+      component: PhoneNumberInput,
       hide:
         fieldsToHideIfValueExists.includes('phoneNumber') &&
         !!userData?.phoneNumber,
@@ -510,6 +511,7 @@ const SignUp = ({
           zipCode: prefilledZip,
           email: (isAuthenticated && userData?.email) || '',
           username: userData?.username || '',
+          phoneNumber: '+49',
         }}
         validate={(values: SignUpFormValues) =>
           validate(
@@ -580,7 +582,7 @@ const validate = (
     errors.email = 'Wir benötigen eine valide E-Mail Adresse';
   }
 
-  if (values.phoneNumber && !validatePhoneNumber(values.phoneNumber)) {
+  if (values.phoneNumber && !isValidPhoneNumber(values.phoneNumber)) {
     errors.phoneNumber = 'Wir benötigen eine valide Telefonnummer.';
   }
 
