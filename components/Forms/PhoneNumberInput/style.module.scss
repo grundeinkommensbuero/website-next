@@ -1,8 +1,11 @@
 $inputWidth: 30rem;
 
-.textInput,
-.textInputInline,
-.textarea {
+.phoneNumberInputContainer {
+  width: $inputWidth;
+  max-width: 100%;
+}
+
+.phoneNumberInput {
   background: $white;
   border: 2px solid var(--secondary-color);
   color: var(--input-font-color);
@@ -10,8 +13,6 @@ $inputWidth: 30rem;
   border-radius: 0;
   padding: $inputPadding;
   line-height: inherit;
-  max-width: 100%;
-  width: $inputWidth;
   font-size: $DesktopFontSizeL;
 
   @media (max-width: $breakPointS) {
@@ -41,38 +42,6 @@ $inputWidth: 30rem;
     border: 2px solid var(--input-border-color);
     box-shadow: inset 0 0 0 $borderWidthThick var(--input-border-color);
   }
-}
-
-.textInputSmall {
-  font-size: $DesktopFontSizeS;
-}
-
-.textInputInline {
-  font-size: $DesktopFontSizeS;
-}
-
-.textarea {
-  font-size: $DesktopFontSizeS;
-  resize: vertical;
-  min-height: 6rem;
-}
-
-.hideNumberArrows {
-  &[type='number'] {
-    -moz-appearance: textfield;
-  }
-
-  &::-webkit-outer-adjust-hue-button,
-  &::-webkit-inner-adjust-hue-button {
-    -webkit-appearance: none;
-  }
-}
-
-.charLeftDisplay {
-  font-weight: normal;
-  text-align: right;
-  max-width: 100%;
-  width: $inputWidth;
 }
 
 .disabled {

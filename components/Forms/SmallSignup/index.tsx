@@ -38,7 +38,7 @@ export const SmallSignup = ({
 
   useEffect(() => {
     const email = router.query.email as string;
-    console.log('email: ' + email);
+
     if (email) {
       setAutoSignupEmail(email);
     }
@@ -67,7 +67,7 @@ export const SmallSignup = ({
     };
   }
 
-  const fields: Fields[] = ['email'];
+  const fields: Fields[] = ['email', 'phoneNumber'];
 
   if (showNewsletterConsent) {
     fields.push('nudgeBox', 'newsletterConsent');
