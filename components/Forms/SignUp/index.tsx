@@ -413,7 +413,7 @@ const SignUp = ({
       label: 'Telefonnummer',
       description: overwriteMandatoryFields.includes('phoneNumber')
         ? 'Pflichtfeld'
-        : undefined,
+        : 'Optional – wir nutzen deine Nummer nur, um dich kurz vor der Abstimmung per SMS zu erinnern. Kein Spam, versprochen!',
       placeholder: 'Telefonnummer',
       type: 'text',
       component: PhoneNumberInput,

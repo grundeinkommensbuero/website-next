@@ -30,30 +30,31 @@ export const PhoneNumberInput = ({
   const [phoneNumber, setPhoneNumber] = React.useState<string | undefined>('');
 
   if (hide) return null;
-  const outputLabel = description ? `${label} (${description})` : label;
 
   return (
     <LabelInputErrorWrapper
-      label={!hideLabel ? outputLabel : undefined}
+      label={!hideLabel ? label : undefined}
       meta={meta}
       className={className}
       errorClassName={errorClassName}
     >
-      <PhoneInput
-        value={phoneNumber}
-        onChange={val => {
-          setPhoneNumber(val);
-          input.onChange(val);
-        }}
-        international
-        defaultCountry="DE"
-        className={cN(s.phoneInput)}
-        numberInputProps={{
-          className: cN(s.phoneNumberInput, className, {
-            [s.hamburg]: IS_HAMBURG_PROJECT,
-          }),
-        }}
-      />
+      <div className={cN(s.phoneNumberInputContainer)}>
+        <PhoneInput
+          value={phoneNumber}
+          onChange={val => {
+            setPhoneNumber(val);
+            input.onChange(val);
+          }}
+          international
+          defaultCountry="DE"
+          numberInputProps={{
+            className: cN(s.phoneNumberInput, className, {
+              [s.hamburg]: IS_HAMBURG_PROJECT,
+            }),
+          }}
+        />
+        {description && <div>({description})</div>}
+      </div>
     </LabelInputErrorWrapper>
   );
 };
