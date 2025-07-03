@@ -51,3 +51,15 @@
   text-align: center;
   margin-bottom: 5rem;
 }
+
+.popupContentContainer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0rem 5rem 1rem 5rem;
+  gap: 2rem;
+  text-align: justify;
+}

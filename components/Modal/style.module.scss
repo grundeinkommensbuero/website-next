@@ -38,6 +38,10 @@
   padding-bottom: 2rem;
 }
 
+.noFixedHeight {
+  height: fit-content;
+}
+
 .lonelyCloseButton {
   background-color: $red;
   width: 2.4rem;
