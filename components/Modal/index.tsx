@@ -3,6 +3,7 @@ import ReactModal from 'react-overlays/Modal';
 import s from './style.module.scss';
 import cN from 'classnames';
 import CloseIcon from './close-icon.svg';
+import { ColorScheme } from '../Section';
 
 const IS_HAMBURG_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Hamburg';
 
@@ -10,7 +11,7 @@ type ModalProps = {
   children: ReactElement | ReactElement[] | string;
   showModal: boolean;
   setShowModal: (arg: boolean) => void;
-  colorScheme?: string;
+  colorScheme?: ColorScheme;
   noFixedHeight?: boolean;
 };
 

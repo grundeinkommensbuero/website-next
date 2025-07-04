@@ -46,11 +46,11 @@ type FetchedPage = {
   heroTitle: string | null;
   heroSubTitle: string | null;
   heroImage: string | null;
-  hasPopup: boolean;
-  popupContent: string | null;
-  popupButtonText: string | null;
-  popupButtonLink: string | null;
-  popupColorScheme: ColorScheme;
+  hasPopup?: boolean;
+  popupContent?: string | null;
+  popupButtonText?: string | null;
+  popupButtonLink?: string | null;
+  popupColorScheme?: ColorScheme;
   metaTitle: string | null;
   metaDescription: string | null;
   ogImage: string | null;
@@ -260,11 +260,11 @@ const updatePageStructure = (
     heroTitle: fetchedPage.heroTitle,
     heroSubTitle: fetchedPage.heroSubTitle,
     heroImage: fetchedPage.heroImage,
-    hasPopup: fetchedPage.hasPopup,
-    popupContent: fetchedPage.popupContent,
-    popupButtonText: fetchedPage.popupButtonText,
-    popupButtonLink: fetchedPage.popupButtonLink,
-    popupColorScheme: fetchedPage.popupColorScheme,
+    hasPopup: fetchedPage.hasPopup ?? false,
+    popupContent: fetchedPage.popupContent ?? '',
+    popupButtonText: fetchedPage.popupButtonText ?? '',
+    popupButtonLink: fetchedPage.popupButtonLink ?? '',
+    popupColorScheme: fetchedPage.popupColorScheme ?? 'colorSchemeWhite',
     metaTitle: fetchedPage.metaTitle,
     metaDescription: fetchedPage.metaDescription,
     ogImage: fetchedPage.ogImage,
