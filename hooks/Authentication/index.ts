@@ -165,13 +165,21 @@ const startSignInProcess = async (
 
 // Amplifys Auth class is used to sign up user
 const signUp = async (
-  data: { referral: string | (string | null)[] | null; email: string },
+  data: {
+    referral: string | (string | null)[] | null;
+    email: string;
+    phoneNumber: string;
+  },
   { setUserId }: { setUserId: React.Dispatch<string | undefined> }
 ) => {
   // We have to “generate” a password for them, because a password is required by Amazon Cognito when users sign up
   const { userSub: userId } = await Auth.signUp({
     username: data.email.toLowerCase(),
     password: getRandomString(30),
+    attributes: {
+      email: data.email.toLowerCase(),
+      phone_number: data.phoneNumber,
+    },
   });
 
   data.referral = getReferral();

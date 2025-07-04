@@ -9,6 +9,7 @@ export const createUser = async ({
   newsletterConsent?: boolean;
   referral: string | (string | null)[] | null;
   email: string;
+  phoneNumber: string;
   userId: string;
 }) => {
   const url = `${CONFIG.API.INVOKE_URL}/users`;

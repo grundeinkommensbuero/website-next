@@ -8,6 +8,7 @@ import ReactTooltip from 'react-tooltip';
 import { ProviderWrapper } from '../components/Util/ProviderWrapper';
 import { Toaster } from 'react-hot-toast';
 import { TrackJS } from 'trackjs';
+import 'react-phone-number-input/style.css';
 
 type XbgeAppProps = AppProps & { mainMenu: Menu; footerMenu: Menu };
 
