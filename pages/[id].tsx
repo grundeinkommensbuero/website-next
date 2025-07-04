@@ -1,16 +1,16 @@
-import { GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next';
+import { GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
-
-import React, { ReactElement } from 'react';
-import s from './style.module.scss';
-import cN from 'classnames';
-import { getPageProps, Page } from '../utils/getPageProps';
-import { Section } from '../components/Section';
-import { Hero } from '../components/Hero';
 import { Directus } from '@directus/sdk';
 import { Widget } from '@typeform/embed-react';
+import cN from 'classnames';
+import React, { ReactElement, useEffect, useState } from 'react';
+import { CTALink } from '../components/Forms/CTAButton';
+import { Hero } from '../components/Hero';
+import { Modal } from '../components/Modal';
+import { Section } from '../components/Section';
+import { getPageProps, Page } from '../utils/getPageProps';
 import PageNotFound from './404';
-import { LinkButton } from '../components/Forms/Button';
+import s from './style.module.scss';
 
 // Function to convert query params to a string
 const getQueryParamsString = (router: ReturnType<typeof useRouter>): string => {
@@ -91,11 +91,38 @@ export type PageProps = {
 };
 
 const PageWithSections = ({ page }: PageProps): ReactElement => {
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    if (page?.hasPopup) {
+      const hasSeenPopup = sessionStorage.getItem('hasSeenPopup');
+
+      if (!hasSeenPopup) {
+        setShowModal(true);
+        sessionStorage.setItem('hasSeenPopup', 'true');
+      }
+    }
+  }, [page?.hasPopup]);
+
   if (!page) {
     return <PageNotFound />;
   }
+
   return (
     <section className={cN({ hamburg: IS_HAMBURG_PROJECT })}>
+      <Modal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        colorScheme={page.popupColorScheme}
+        noFixedHeight
+      >
+        <div className={s.popupContentContainer}>
+          <div>{page.popupContent}</div>
+          {page.popupButtonLink && page.popupButtonText && (
+            <CTALink to={page.popupButtonLink}>{page.popupButtonText}</CTALink>
+          )}
+        </div>
+      </Modal>
       {/* see https://legacy.reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml and https://blog.logrocket.com/using-dangerouslysetinnerhtml-react-application/ */}
       {page.heroHTML && (
         <div
