@@ -63,3 +63,10 @@
   gap: 2rem;
   text-align: justify;
 }
+
+@media (max-width: 600px) {
+  .popupContentContainer {
+    padding: 0rem 3rem 1rem 3rem;
+    text-align: left;
+  }
+}
