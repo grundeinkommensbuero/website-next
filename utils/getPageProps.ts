@@ -25,6 +25,11 @@ export type Page = {
   heroTitle: string | null;
   heroSubTitle: string | null;
   heroImage: string | null;
+  hasPopup: boolean;
+  popupContent: string | null;
+  popupButtonText: string | null;
+  popupButtonLink: string | null;
+  popupColorScheme: ColorScheme;
   metaTitle: string | null;
   metaDescription: string | null;
   ogImage: string | null;
@@ -41,6 +46,11 @@ type FetchedPage = {
   heroTitle: string | null;
   heroSubTitle: string | null;
   heroImage: string | null;
+  hasPopup?: boolean;
+  popupContent?: string | null;
+  popupButtonText?: string | null;
+  popupButtonLink?: string | null;
+  popupColorScheme?: ColorScheme;
   metaTitle: string | null;
   metaDescription: string | null;
   ogImage: string | null;
@@ -57,6 +67,11 @@ const pageFields = [
   'heroTitle',
   'heroSubTitle',
   'heroImage',
+  'hasPopup',
+  'popupContent',
+  'popupButtonText',
+  'popupButtonLink',
+  'popupColorScheme',
   'metaTitle',
   'metaDescription',
   'ogImage',
@@ -245,6 +260,11 @@ const updatePageStructure = (
     heroTitle: fetchedPage.heroTitle,
     heroSubTitle: fetchedPage.heroSubTitle,
     heroImage: fetchedPage.heroImage,
+    hasPopup: fetchedPage.hasPopup ?? false,
+    popupContent: fetchedPage.popupContent ?? '',
+    popupButtonText: fetchedPage.popupButtonText ?? '',
+    popupButtonLink: fetchedPage.popupButtonLink ?? '',
+    popupColorScheme: fetchedPage.popupColorScheme ?? 'colorSchemeWhite',
     metaTitle: fetchedPage.metaTitle,
     metaDescription: fetchedPage.metaDescription,
     ogImage: fetchedPage.ogImage,
