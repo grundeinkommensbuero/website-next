@@ -3,6 +3,7 @@ import ReactModal from 'react-overlays/Modal';
 import s from './style.module.scss';
 import cN from 'classnames';
 import CloseIcon from './close-icon.svg';
+import CloseIconHamburg from './close-icon-hamburg.svg';
 import { ColorScheme } from '../Section';
 
 const IS_HAMBURG_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Hamburg';
@@ -50,7 +51,16 @@ export const Modal = ({
           className={s.lonelyCloseButton}
           onClick={() => setShowModal(false)}
         >
-          <CloseIcon alt="Modal schließen" />
+          {IS_HAMBURG_PROJECT ? (
+            <CloseIconHamburg
+              alt="Modal schließen"
+              height={36}
+              width={36}
+              fill="#000"
+            />
+          ) : (
+            <CloseIcon alt="Modal schließen" />
+          )}
         </button>
         <div className={s.modalContent}>{children}</div>
       </>
