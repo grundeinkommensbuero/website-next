@@ -168,7 +168,7 @@ const signUp = async (
   data: {
     referral: string | (string | null)[] | null;
     email: string;
-    phoneNumber: string;
+    phoneNumber: string | null;
   },
   { setUserId }: { setUserId: React.Dispatch<string | undefined> }
 ) => {
