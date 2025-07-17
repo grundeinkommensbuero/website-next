@@ -582,11 +582,11 @@ const validate = (
     errors.email = 'Wir benötigen eine valide E-Mail Adresse';
   }
 
-  if (
-    values.phoneNumber &&
-    values.phoneNumber != '+49' &&
-    !isValidPhoneNumber(values.phoneNumber)
-  ) {
+  if (values.phoneNumber === '+49') {
+    values.phoneNumber = undefined;
+  }
+
+  if (values.phoneNumber && !isValidPhoneNumber(values.phoneNumber)) {
     errors.phoneNumber = 'Wir benötigen eine valide Telefonnummer.';
   }
 
