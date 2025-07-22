@@ -110,19 +110,23 @@ const PageWithSections = ({ page }: PageProps): ReactElement => {
 
   return (
     <section className={cN({ hamburg: IS_HAMBURG_PROJECT })}>
-      <Modal
-        showModal={showModal}
-        setShowModal={setShowModal}
-        colorScheme={page.popupColorScheme}
-        noFixedHeight
-      >
-        <div className={s.popupContentContainer}>
-          <div>{page.popupContent}</div>
-          {page.popupButtonLink && page.popupButtonText && (
-            <CTALink to={page.popupButtonLink}>{page.popupButtonText}</CTALink>
-          )}
-        </div>
-      </Modal>
+      {page?.hasPopup && (
+        <Modal
+          showModal={showModal}
+          setShowModal={setShowModal}
+          colorScheme={page.popupColorScheme}
+          noFixedHeight
+        >
+          <div className={s.popupContentContainer}>
+            <div>{page.popupContent}</div>
+            {page.popupButtonLink && page.popupButtonText && (
+              <CTALink to={page.popupButtonLink}>
+                {page.popupButtonText}
+              </CTALink>
+            )}
+          </div>
+        </Modal>
+      )}
       {/* see https://legacy.reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml and https://blog.logrocket.com/using-dangerouslysetinnerhtml-react-application/ */}
       {page.heroHTML && (
         <div
