@@ -29,7 +29,6 @@ export const SocialMediaShareButtons = ({
         showModal={showInstagramModal}
         setShowModal={setShowInstagramModal}
         colorScheme={'colorSchemeHamburgYellow'}
-        scrollable
       >
         <InstagramShareInstructions />
       </Modal>
