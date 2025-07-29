@@ -11,20 +11,32 @@ import {
   XIcon,
 } from 'react-share';
 import s from './style.module.scss';
+import React from 'react';
+import { Modal } from '../../Modal';
+import InstagramShareInstructions from './InstagramShareInstructions';
 
-export const SharingFeatureHamburg = ({
+export const SocialMediaShareButtons = ({
   shareMessage,
   shareUrl,
 }: {
   shareMessage: string;
   shareUrl: string;
 }) => {
+  const [showInstagramModal, setShowInstagramModal] = React.useState(false);
   return (
     <section>
+      <Modal
+        showModal={showInstagramModal}
+        setShowModal={setShowInstagramModal}
+        colorScheme={'colorSchemeHamburgYellow'}
+        scrollable
+      >
+        <InstagramShareInstructions />
+      </Modal>
       <div className={s.socialMediaButtonsContainer}>
         <div className={s.buttonWithLabel}>
           <WhatsappShareButton
-            url={shareUrl}
+            url={' '}
             title={shareMessage}
             className={s.whatsapp}
           >
@@ -35,7 +47,7 @@ export const SharingFeatureHamburg = ({
 
         <div className={s.buttonWithLabel}>
           <TelegramShareButton
-            url={shareUrl}
+            url={' '}
             title={shareMessage}
             className={s.telegram}
           >
@@ -46,7 +58,7 @@ export const SharingFeatureHamburg = ({
 
         <div className={s.buttonWithLabel}>
           <EmailShareButton
-            url={shareUrl}
+            url={' '}
             subject="Grundeinkommen – Volksentscheid in Hamburg"
             body={shareMessage}
             className={s.email}
@@ -57,7 +69,10 @@ export const SharingFeatureHamburg = ({
         </div>
 
         <div className={s.buttonWithLabel}>
-          <div className={s.instagram}>
+          <div
+            className={s.instagram}
+            onClick={() => setShowInstagramModal(true)}
+          >
             <div className={s.iconWrapper} title="Instagram">
               <img
                 src="/icons/Instagram.svg"
@@ -82,7 +97,7 @@ export const SharingFeatureHamburg = ({
 
         <div className={s.buttonWithLabel}>
           <TwitterShareButton
-            url={shareUrl}
+            url={' '}
             title={shareMessage}
             className={s.twitter}
           >
@@ -95,4 +110,4 @@ export const SharingFeatureHamburg = ({
   );
 };
 
-export default SharingFeatureHamburg;
+export default SocialMediaShareButtons;

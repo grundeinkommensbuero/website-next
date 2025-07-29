@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 import s from './style.module.scss';
 
-export const SharingFeatureHamburg = ({
+export const CopyShareMessageBox = ({
   shareMessage,
 }: {
   shareMessage: string;
@@ -53,4 +53,4 @@ export const SharingFeatureHamburg = ({
   );
 };
 
-export default SharingFeatureHamburg;
+export default CopyShareMessageBox;

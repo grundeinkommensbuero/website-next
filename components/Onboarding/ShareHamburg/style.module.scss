@@ -16,6 +16,7 @@
   margin-top: 0.3rem;
   font-size: 0.75rem;
   text-align: center;
+  font-size: small !important;
 }
 
 .socialMediaButtonsContainer > * {
@@ -93,7 +94,6 @@
   align-items: center;
   gap: 0.5rem;
   margin-bottom: 1rem;
-  font-size: 20px;
 }
 
 .toggleText {
@@ -107,4 +107,41 @@
 
 .triangle.open {
   transform: rotate(90deg);
+}
+
+.instaImageContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.imageButton {
+  background-color: transparent;
+  border: 0px;
+
+  &:hover {
+    background-color: transparent;
+  }
+}
+
+.sharePicInstagram {
+  margin-left: 5%;
+  width: 90%;
+  border: solid 0.5rem $violet;
+
+  &:hover {
+    border: solid 0.5rem $aqua;
+    cursor: pointer;
+  }
+}
+
+.instagramShareInstructions {
+  padding: 0 2rem;
+}
+
+.instaStoryButton {
+  div {
+    text-wrap: nowrap;
+  }
+  width: fit-content !important;
+  margin-bottom: 1.5rem;
 }
