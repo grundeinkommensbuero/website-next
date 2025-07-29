@@ -128,7 +128,8 @@ export type ColorScheme =
   | 'colorSchemeOrangeOnPurple'
   | 'colorSchemeHamburg'
   | 'colorSchemeHamburgAlternate'
-  | 'colorSchemeHamburgBlackOnOrange';
+  | 'colorSchemeHamburgBlackOnOrange'
+  | 'colorSchemeHamburgYellow';
 
 type SectionProps = {
   section: Section;
