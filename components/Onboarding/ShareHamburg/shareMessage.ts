@@ -10,4 +10,10 @@ Es geht um mehr Gerechtigkeit, mehr Vertrauen und Chancen für alle. Die Forschu
 
 Ich bin dabei. Machst du auch mit?`;
 
+export const shareMessageShort = `Ein historischer Moment: Hamburg stimmt am 12. Okt. über ein #Grundeinkommen ab.
+📬 Lass dich erinnern - der Newsletter hilft dir, nichts zu verpassen.
+📣 Erzähl es weiter - wir brauchen jede Stimme!
+👉 https://hamburg-testet-grundeinkommen.de/
+Ich mach mit. Du auch?`;
+
 export const shareUrl = 'https://hamburg-testet-grundeinkommen.de/';

@@ -17,9 +17,11 @@ import InstagramShareInstructions from './InstagramShareInstructions';
 
 export const SocialMediaShareButtons = ({
   shareMessage,
+  shareMessageShort,
   shareUrl,
 }: {
   shareMessage: string;
+  shareMessageShort: string;
   shareUrl: string;
 }) => {
   const [showInstagramModal, setShowInstagramModal] = React.useState(false);
@@ -97,7 +99,7 @@ export const SocialMediaShareButtons = ({
         <div className={s.buttonWithLabel}>
           <TwitterShareButton
             url={' '}
-            title={shareMessage}
+            title={shareMessageShort}
             className={s.twitter}
           >
             <XIcon className={s.twitterIcon} round />
