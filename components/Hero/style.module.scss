@@ -1,3 +1,19 @@
+@import '../../styles/vars.scss';
+
+.heroHamburg {
+  background: linear-gradient(to right, #f7bbc8 50%, #ffea44 50%);
+}
+
+.heroHamburgSecondary {
+  max-width: 800px;
+  display: flex;
+  margin: 0 auto;
+}
+
+.heroHamburgHalf {
+  padding: 2rem;
+}
+
 .heroContainer {
   position: relative;
 }
