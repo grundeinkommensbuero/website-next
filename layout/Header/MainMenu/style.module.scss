@@ -68,6 +68,10 @@
   }
 }
 
+.hamburg .dropdown:hover .dropdownContent ul {
+  border: 3px solid black;
+}
+
 .dropdown:hover .dropdownContent,
 .dropdown:focus-within .dropdownContent {
   height: auto;

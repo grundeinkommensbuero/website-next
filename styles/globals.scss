@@ -280,6 +280,11 @@ p {
     font-size: 1.15rem;
   }
 
+  p a {
+    text-decoration: underline;
+    box-shadow: none;
+  }
+
   ul,
   ol {
     line-height: 1.5;
