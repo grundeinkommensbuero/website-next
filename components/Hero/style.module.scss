@@ -1,17 +1,91 @@
 @import '../../styles/vars.scss';
 
 .heroHamburg {
-  background: linear-gradient(to right, #f7bbc8 50%, #ffea44 50%);
+  background: linear-gradient(to right, $hh_rose 50%, $hh_yellow 50%);
 }
 
-.heroHamburgSecondary {
-  max-width: 800px;
+.heroHamburgMain {
+  max-width: 900px;
   display: flex;
+  align-items: center;
   margin: 0 auto;
 }
 
+.heroHamburgImage {
+  position: relative;
+  min-width: 300px;
+  margin: 0 2rem;
+}
+
+.titleHamburg {
+  display: inline;
+  padding: 0em 0.3em 0.2em;
+  vertical-align: middle;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.heroSubtitleHamburg {
+  transform: rotate(1.5deg);
+}
+
+.heroSubtitleHamburg span {
+  background-color: white;
+  font-size: 40px;
+  line-height: 1.1;
+}
+
+.titleInform {
+  transform: rotate(1.5deg);
+}
+
+.titleParticipate {
+  transform: rotate(-1.5deg);
+  margin: -1rem 0 1.5rem 0;
+}
+
+.heroTitleHamburg span,
+.titleInform span,
+.titleParticipate span {
+  background-color: black;
+  color: white;
+  line-height: 1.1;
+}
+
+.heroHamburgSecondary {
+  max-width: 900px;
+  display: flex;
+  margin: 0 auto;
+  padding: 3.5rem 0 6rem 0;
+}
+
 .heroHamburgHalf {
-  padding: 2rem;
+  width: 50%;
+}
+
+.heroHamburgLeft {
+  padding: 0 3rem 0 0;
+}
+
+.heroHamburgRight {
+  padding: 0 0 0 3rem;
+}
+
+.heroHamburgButton {
+  background-color: $hh_orange_dark;
+  border-color: black;
+  color: black;
+
+  &:hover,
+  &:focus {
+    background-color: $hh_purple;
+    color: white;
+  }
+
+  &:active {
+    background-color: black !important;
+    color: white !important;
+  }
 }
 
 .heroContainer {

@@ -4,6 +4,7 @@ import cN from 'classnames';
 import { DirectusImage } from '../Section';
 import Image from 'next/image';
 import { getAssetURL } from '../Util/getAssetURL';
+import { CTAButtonContainer, CTALink } from '../Forms/CTAButton';
 
 type HeroProps = {
   heroTitle: string | null;
@@ -21,39 +22,63 @@ export const Hero = ({ heroTitle, heroSubTitle, heroImage }: HeroProps) => {
         <div className={s.heroHamburg}>
           <div className={s.heroHamburgMain}>
             {heroImage && (
-              <div>
+              <div className={s.heroHamburgImage}>
                 <Image
                   className={s.heroImageHamburg}
                   src={getAssetURL(heroImage)}
                   alt={'Briefi auf dem Weg zum Wahllokal'}
-                  width={500}
+                  width={400}
                   height={400}
+                  objectFit="contain"
                   priority={true}
                 />
               </div>
             )}
-            {heroSubTitle && (
-              <h3 className={s.heroSubtitleHamburg}>{heroSubTitle}</h3>
-            )}
-            {heroTitle && <h1 className={s.heroTitleHamburg}>{heroTitle}</h1>}
+            <div className={s.heroHamburgTitles}>
+              {' '}
+              {heroSubTitle && (
+                <h3 className={s.heroSubtitleHamburg}>
+                  <span className={s.titleHamburg}>{heroSubTitle}</span>
+                </h3>
+              )}
+              {heroTitle && (
+                <h1 className={s.heroTitleHamburg}>
+                  <span className={s.titleHamburg}>{heroTitle}</span>
+                </h1>
+              )}
+            </div>
           </div>
           <div className={s.heroHamburgSecondary}>
             <div className={cN(s.heroHamburgHalf, s.heroHamburgLeft)}>
-              <h3>Informieren</h3>
+              <h3 className={s.titleInform}>
+                <span className={s.titleHamburg}>Informieren</span>
+              </h3>
               <p>
                 Kann das Grundeinkommen uns als Gesellschaft weiterbringen?
                 Testen wir es doch einfach! Per Volksentscheid wollen wir einen
                 staatlich finanzierten Modellversuch möglich machen, um genau
                 diese Frage zu beantworten.
               </p>
+              <CTAButtonContainer>
+                <CTALink to="/informieren" className={s.heroHamburgButton}>
+                  Informieren
+                </CTALink>
+              </CTAButtonContainer>
             </div>
             <div className={cN(s.heroHamburgHalf, s.heroHamburgRight)}>
-              <h3>Mitmachen</h3>
+              <h3 className={s.titleParticipate}>
+                <span className={s.titleHamburg}>Mitmachen</span>
+              </h3>
               <p>
                 Wir brauchen deine Unterstützung! Um den Volksentscheid zu
                 gewinnen, müssen mindestens 265.000 Hamburger*innen dafür
                 stimmen. Sei dabei und hilf mit, dieses Ziel zu erreichen!
               </p>
+              <CTAButtonContainer>
+                <CTALink to="/mach-mit" className={s.heroHamburgButton}>
+                  Mitmachen
+                </CTALink>
+              </CTAButtonContainer>
             </div>
           </div>
         </div>
@@ -70,7 +95,7 @@ export const Hero = ({ heroTitle, heroSubTitle, heroImage }: HeroProps) => {
                 alt={
                   'Bild der Unterschriftensammlung von Hamburg testet Grundeinkommen'
                 }
-                layout={'fill'}
+                layout="fill"
                 priority={true}
               />
             </div>
