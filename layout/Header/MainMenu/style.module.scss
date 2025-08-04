@@ -69,7 +69,7 @@
   height: 1px;
   width: 1px;
   position: absolute;
-  top: 38px;
+  top: 26px;
   text-align: right;
   right: -1rem;
   // box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
@@ -83,7 +83,7 @@
   background: none;
   & ul {
     margin-right: -16px;
-    padding: 1px 16px;
+    padding: 10px 16px 0 16px;
     background: white;
   }
 }
