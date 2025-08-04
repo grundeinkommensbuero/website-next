@@ -410,10 +410,10 @@ const SignUp = ({
     },
     phoneNumber: {
       name: 'phoneNumber',
-      label: 'Telefonnummer',
+      label: 'Optional: Verrätst du uns deine Nummer?',
       description: overwriteMandatoryFields.includes('phoneNumber')
         ? 'Pflichtfeld'
-        : 'Optional – wir nutzen deine Nummer nur, um dich kurz vor der Abstimmung per SMS zu erinnern. Kein Spam, versprochen!',
+        : 'Wir nutzen deine Nummer nur, um dich kurz vor der Abstimmung per SMS zu erinnern. Kein Spam, versprochen!',
       placeholder: 'Telefonnummer',
       type: 'text',
       component: PhoneNumberInput,
