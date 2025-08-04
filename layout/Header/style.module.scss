@@ -87,7 +87,10 @@
 }
 
 .hamburg .logo {
+  @media screen and (min-width: $breakPointXL) {
+    margin-right: 2rem;
+  }
+
   width: 12rem;
-  margin-right: 2rem;
   padding: 0;
 }

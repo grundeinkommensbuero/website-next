@@ -8,7 +8,7 @@
   font-size: $DesktopFontSizeM;
 
   &.hamburg {
-    font-size: 1rem;
+    font-size: 0.9rem;
     margin: 0 0 0 auto;
     @media screen and (max-width: 899px) {
       padding-top: 4rem;
@@ -19,7 +19,7 @@
   }
 
   &.hamburg ul {
-    gap: 30px;
+    gap: 20px;
   }
 
   &.hamburg.mobileMenuContainer ul {
@@ -41,7 +41,11 @@
 }
 
 .featuredButton {
-  margin-left: 2rem;
+  margin-left: 0.5rem;
+
+  @media screen and (min-width: $breakPointXL) {
+    margin-left: 2rem;
+  }
 
   .featuredButtonLink {
     min-width: auto;
@@ -51,18 +55,20 @@
 
 .dropdown {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
 }
 
 .dropdownContent {
   height: 1px;
   width: 1px;
   position: absolute;
+  top: 38px;
   text-align: right;
   right: -1rem;
   // box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
-  padding: 12px 16px;
-  padding-top: 0.5rem;
+  padding: 0 16px;
   z-index: 1;
   background-color: white;
   overflow: hidden;
