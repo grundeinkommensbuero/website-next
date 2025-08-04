@@ -5,7 +5,15 @@
 
 @font-face {
   font-family: 'Obviously';
-  font-weight: normal;
+  font-weight: 400;
+  src: url('../../webfonts/obviously/obviously-regular.woff2') format('woff2'),
+    url('../../webfonts//obviously/obviously-regular.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Obviously';
+  font-weight: 500;
   src: url('../../webfonts/obviously/obviously-medium.woff2') format('woff2'),
     url('../../webfonts//obviously/obviously-medium.woff') format('woff');
   font-display: swap;
@@ -13,7 +21,7 @@
 
 @font-face {
   font-family: 'Obviously';
-  font-weight: bold;
+  font-weight: 700;
   src: url('../../webfonts/obviously/obviously-bold.woff2') format('woff2'),
     url('../../webfonts//obviously/obviously-bold.woff') format('woff');
   font-display: swap;
