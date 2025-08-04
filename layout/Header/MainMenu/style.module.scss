@@ -42,6 +42,11 @@
 
 .featuredButton {
   margin-left: 2rem;
+
+  .featuredButtonLink {
+    min-width: auto;
+    font-size: 1rem;
+  }
 }
 
 .dropdown {
