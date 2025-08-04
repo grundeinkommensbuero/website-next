@@ -8,8 +8,13 @@
   font-size: $DesktopFontSizeM;
 
   &.hamburg {
-    font-size: 0.9rem;
+    font-size: 1rem;
     margin: 0 0 0 auto;
+
+    @media screen and (max-width: $breakPointXL) {
+      font-size: 0.9rem;
+    }
+
     @media screen and (max-width: 899px) {
       padding-top: 4rem;
     }
