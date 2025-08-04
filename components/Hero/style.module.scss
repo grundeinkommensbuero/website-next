@@ -76,17 +76,6 @@
   background-color: $hh_orange_dark;
   border-color: black;
   color: black;
-
-  &:hover,
-  &:focus {
-    background-color: $hh_purple;
-    color: white;
-  }
-
-  &:active {
-    background-color: black !important;
-    color: white !important;
-  }
 }
 
 .heroContainer {
