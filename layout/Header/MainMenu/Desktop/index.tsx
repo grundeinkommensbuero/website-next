@@ -41,6 +41,7 @@ export const MainMenu = ({
                     </>
                   </ul>
                 </div>
+                <span className={s.caret}></span>
               </li>
             );
           return (

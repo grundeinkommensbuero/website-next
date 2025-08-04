@@ -88,6 +88,16 @@
   min-width: 160px;
 }
 
+.caret {
+  display: inline-block;
+  margin-left: 0.3em;
+  transform: rotate(45deg) translateY(-0.2em);
+  border: solid currentColor;
+  border-width: 0 0.08em 0.08em 0;
+  padding: 0.2em;
+  vertical-align: middle;
+}
+
 .loginParentAvatar {
   object-fit: cover;
   height: 2.25rem;
