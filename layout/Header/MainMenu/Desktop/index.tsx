@@ -56,11 +56,8 @@ export const MainMenu = ({
         {IS_HAMBURG_PROJECT ? (
           <>
             <li className={s.featuredButton}>
-              <LinkButton
-                href="/spenden-hamburg"
-                className={s.featuredButtonLink}
-              >
-                Jetzt spenden!
+              <LinkButton href="/mach-mit" className={s.featuredButtonLink}>
+                Mach mit!
               </LinkButton>
             </li>
           </>
