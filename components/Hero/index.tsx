@@ -54,7 +54,10 @@ export const Hero = ({ heroTitle, heroSubTitle, heroImage }: HeroProps) => {
                 <span className={s.titleHamburg}>Informieren</span>
               </h3>
               <p>
-                Kann das Grundeinkommen uns als Gesellschaft weiterbringen?
+                <strong>
+                  Kann das Grundeinkommen uns als Gesellschaft weiterbringen?
+                </strong>
+                <br />
                 Testen wir es doch einfach! Per Volksentscheid wollen wir einen
                 staatlich finanzierten Modellversuch möglich machen, um genau
                 diese Frage zu beantworten.
@@ -70,9 +73,11 @@ export const Hero = ({ heroTitle, heroSubTitle, heroImage }: HeroProps) => {
                 <span className={s.titleHamburg}>Mitmachen</span>
               </h3>
               <p>
-                Wir brauchen deine Unterstützung! Um den Volksentscheid zu
-                gewinnen, müssen mindestens 265.000 Hamburger*innen dafür
-                stimmen. Sei dabei und hilf mit, dieses Ziel zu erreichen!
+                <strong>Wir brauchen deine Unterstützung!</strong>
+                <br />
+                Um den Volksentscheid zu gewinnen, müssen mindestens 265.000
+                Hamburger*innen dafür stimmen. <br />
+                Sei dabei und hilf mit, dieses Ziel zu erreichen!
               </p>
               <CTAButtonContainer>
                 <CTALink to="/mach-mit" className={s.heroHamburgButton}>
