@@ -62,7 +62,7 @@ export const InstagramShareInstructions = () => {
           }
           className={s.instaStoryButton}
         >
-          Hier geht's zu Instagram
+          Hier geht es zu Instagram
         </CTAButton>
       </div>
     </div>
