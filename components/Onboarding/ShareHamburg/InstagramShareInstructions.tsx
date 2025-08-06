@@ -37,7 +37,7 @@ export const InstagramShareInstructions = () => {
           className={s.imageButton}
           onClick={() =>
             downloadImage({
-              url: 'https://directus.volksentscheid-grundeinkommen.de/assets/45431b3b-485f-4380-acf9-e15c87fbef05?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE4ZmY0YzExLWFlNjQtNDkxMC05OTg0LTZkMDRiOTA4MWVjNSIsInJvbGUiOiJiMTczZTkzZS03NWQ1LTRiN2QtYjE3NC1hZTM0NjQ4MTQxMDEiLCJhcHBfYWNjZXNzIjp0cnVlLCJhZG1pbl9hY2Nlc3MiOnRydWUsImlhdCI6MTc1NDQ5NDI2MywiZXhwIjoxNzU0NDk1MTYzLCJpc3MiOiJkaXJlY3R1cyJ9.moRSUEraJvnbCYT15Z317mLQr0BDcBhVBJoeNwTiVYI',
+              url: 'https://directus.volksentscheid-grundeinkommen.de/assets/45431b3b-485f-4380-acf9-e15c87fbef05',
               filename: 'Hamburg-testet-Grundeinkommen_Insta-Story.jpg',
             })
           }
@@ -45,7 +45,7 @@ export const InstagramShareInstructions = () => {
         >
           <img
             className={s.sharePicInstagram}
-            src="https://directus.volksentscheid-grundeinkommen.de/assets/45431b3b-485f-4380-acf9-e15c87fbef05?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE4ZmY0YzExLWFlNjQtNDkxMC05OTg0LTZkMDRiOTA4MWVjNSIsInJvbGUiOiJiMTczZTkzZS03NWQ1LTRiN2QtYjE3NC1hZTM0NjQ4MTQxMDEiLCJhcHBfYWNjZXNzIjp0cnVlLCJhZG1pbl9hY2Nlc3MiOnRydWUsImlhdCI6MTc1NDQ5NDI2MywiZXhwIjoxNzU0NDk1MTYzLCJpc3MiOiJkaXJlY3R1cyJ9.moRSUEraJvnbCYT15Z317mLQr0BDcBhVBJoeNwTiVYI"
+            src="https://directus.volksentscheid-grundeinkommen.de/assets/45431b3b-485f-4380-acf9-e15c87fbef05"
             alt="sharepic"
           />
         </button>
