@@ -24,7 +24,7 @@ export const InstagramShareInstructions = () => {
 
   return (
     <div className={s.instagramShareInstructions}>
-      <h3>Teile die Kampagne auf Instagram!</h3>
+      <h2>Teile die Kampagne auf Instagram!</h2>
       <p>
         Wir haben da was für dich vorbereitet: Lade dir einfach diese Kachel
         herunter, poste sie als Story, und tagge drei Menschen, die vom
@@ -32,6 +32,7 @@ export const InstagramShareInstructions = () => {
       </p>
 
       <div className={s.instaImageContainer}>
+        <h3>1. Kachel runterladen:</h3>
         <button
           className={s.imageButton}
           onClick={() =>
@@ -50,17 +51,20 @@ export const InstagramShareInstructions = () => {
         </button>
       </div>
 
-      <CTAButton
-        onClick={() =>
-          window.open(
-            'https://www.instagram.com/tv/CN7reFmqrVc/?igshid=1gc54jw6cni9p',
-            '_blank'
-          )
-        }
-        className={s.instaStoryButton}
-      >
-        Hier geht's zu Instagram
-      </CTAButton>
+      <div className={s.instaImageContainer}>
+        <h3>2. In deiner Story teilen</h3>
+        <CTAButton
+          onClick={() =>
+            window.open(
+              'https://www.instagram.com/hamburg.testet.grundeinkommen/',
+              '_blank'
+            )
+          }
+          className={s.instaStoryButton}
+        >
+          Hier geht's zu Instagram
+        </CTAButton>
+      </div>
     </div>
   );
 };

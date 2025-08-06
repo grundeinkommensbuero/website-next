@@ -110,14 +110,19 @@
 }
 
 .instaImageContainer {
-  display: flex;
-  justify-content: center;
+  width: 50%;
+  padding-right: 1rem;
+
+  @media (max-width: $breakPointM) {
+    width: 100%;
+    padding: 0 0 2rem 0;
+  }
 }
 
 .imageButton {
   background-color: transparent;
   border: 0px;
-  max-width: 400px;
+  max-width: 300px;
 
   &:hover {
     background-color: transparent;
@@ -125,17 +130,19 @@
 }
 
 .sharePicInstagram {
-  margin-left: 5%;
-  width: 90%;
-  border: solid 0.5rem $violet;
+  margin-left: 0;
+  width: 100%;
+  border: solid 3px $hh_orange;
 
   &:hover {
-    border: solid 0.5rem $aqua;
+    border: solid 3px $hh_yellow;
     cursor: pointer;
   }
 }
 
 .instagramShareInstructions {
+  display: flex;
+  flex-wrap: wrap;
   padding: 0 2rem;
 }
 
