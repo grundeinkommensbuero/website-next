@@ -111,12 +111,13 @@
 
 .instaImageContainer {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .imageButton {
   background-color: transparent;
   border: 0px;
+  max-width: 400px;
 
   &:hover {
     background-color: transparent;
@@ -144,4 +145,5 @@
   }
   width: fit-content !important;
   margin-bottom: 1.5rem;
+  margin-top: 1rem;
 }
