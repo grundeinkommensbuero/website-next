@@ -1,0 +1,156 @@
+.socialMediaButtonsContainer {
+  display: flex;
+  column-gap: 2rem;
+  row-gap: 2rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.buttonWithLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.label {
+  margin-top: 0.3rem;
+  font-size: 0.75rem;
+  text-align: center;
+  font-size: small !important;
+}
+
+.socialMediaButtonsContainer > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.socialMediaButtonsContainer > *:hover {
+  transform: scale(1.1);
+  z-index: 10;
+}
+
+.iconWrapper {
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  padding: 5px;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.iconImage {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+}
+
+.instagram .iconWrapper {
+  width: 62px;
+  height: 62px;
+  margin: 2px 0 4px 0;
+  background-color: #e1306c;
+}
+
+.copyBox {
+  background: var(--primary-color);
+  padding: 1.5rem 2rem;
+  border: $borderWidthThick solid var(--input-border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.shareText {
+  white-space: pre-wrap;
+  font-family: inherit;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.copyButton {
+  font-family: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--button-bg-color);
+  border-radius: 20px;
+  padding: 0.5rem 0.8rem;
+  margin: 0.2rem;
+  cursor: pointer;
+  border: 2px solid black;
+  width: fit-content;
+}
+
+.toggleButton {
+  font-family: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.toggleText {
+  text-decoration: underline;
+}
+
+.triangle {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.triangle.open {
+  transform: rotate(90deg);
+}
+
+.instaImageContainer {
+  width: 50%;
+  padding-right: 1rem;
+
+  @media (max-width: $breakPointS) {
+    width: 100%;
+    padding: 0 0 2rem 0;
+  }
+}
+
+.imageButton {
+  background-color: transparent;
+  border: 0px;
+  max-width: 300px;
+
+  &:hover {
+    background-color: transparent;
+  }
+}
+
+.sharePicInstagram {
+  margin-left: 0;
+  width: 100%;
+  border: solid 3px $hh_orange;
+
+  &:hover {
+    border: solid 3px $hh_yellow;
+    cursor: pointer;
+  }
+}
+
+.instagramShareInstructions {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 2rem;
+
+  @media (max-width: $breakPointS) {
+    padding: 0 1rem;
+  }
+}
+
+.instaStoryButton {
+  margin-bottom: 1.5rem;
+  margin-top: 1rem;
+}

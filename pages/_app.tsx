@@ -9,6 +9,9 @@ import { ProviderWrapper } from '../components/Util/ProviderWrapper';
 import { Toaster } from 'react-hot-toast';
 import { TrackJS } from 'trackjs';
 import 'react-phone-number-input/style.css';
+import { config } from '@fortawesome/fontawesome-svg-core';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+config.autoAddCss = false;
 
 type XbgeAppProps = AppProps & { mainMenu: Menu; footerMenu: Menu };
 

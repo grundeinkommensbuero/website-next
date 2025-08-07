@@ -184,6 +184,27 @@ $bgColors: (
   --input-font-color: #{$black};
 }
 
+.colorSchemeHamburgYellow {
+  background-color: #{$hh_yellow};
+  color: $black;
+  --primary-color: #{$white};
+  --secondary-color: #{$black};
+  --bg-color: #{$white};
+  --font-color: #{$black};
+  --heading-color: #{$white};
+  --h2-color: #{$black};
+  --heading-background-color: #{$black};
+  --text-on-secondary-color: #{$white};
+  --button-font-color: #{$black};
+  --button-bg-color: #{$hh_orange};
+  --button-hover-bg-color: #{$hh_orange_dark};
+  --button-hover-font-color: #{$black};
+  --button-focus-bg-color: #{$hh_orange_dark};
+  --button-focus-font-color: #{$black};
+  --input-border-color: #{$black};
+  --input-font-color: #{$black};
+}
+
 .colorSchemeOrangeOnRose {
   background-color: $rose;
   color: $black;
