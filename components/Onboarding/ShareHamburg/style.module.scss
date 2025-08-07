@@ -113,7 +113,7 @@
   width: 50%;
   padding-right: 1rem;
 
-  @media (max-width: $breakPointM) {
+  @media (max-width: $breakPointS) {
     width: 100%;
     padding: 0 0 2rem 0;
   }
@@ -144,13 +144,13 @@
   display: flex;
   flex-wrap: wrap;
   padding: 0 2rem;
+
+  @media (max-width: $breakPointS) {
+    padding: 0 1rem;
+  }
 }
 
 .instaStoryButton {
-  div {
-    text-wrap: nowrap;
-  }
-  width: fit-content !important;
   margin-bottom: 1.5rem;
   margin-top: 1rem;
 }
