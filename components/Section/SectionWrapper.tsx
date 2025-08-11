@@ -64,9 +64,13 @@ export const SectionWrapper = ({
         <section className="sections">
           {title &&
             (isFirstSection ? (
-              <h1 className={headlineClasses}>{title}</h1>
+              <h1 className={headlineClasses}>
+                <span className={s.hamburgBox}>{title}</span>
+              </h1>
             ) : (
-              <h2 className={headlineClasses}>{title}</h2>
+              <h2 className={headlineClasses}>
+                <span className={s.hamburgBox}>{title}</span>
+              </h2>
             ))}
           {children}
         </section>
