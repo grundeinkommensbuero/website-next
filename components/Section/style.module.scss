@@ -273,6 +273,14 @@
 }
 
 .hamburg {
+  .faqWrapper {
+    margin: 2rem 0;
+  }
+
+  .faqTitle {
+    font-size: $DesktopFontSizeL;
+  }
+
   .hamburgBox {
     display: inline;
     background-color: black;
@@ -281,13 +289,5 @@
     vertical-align: middle;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
-  }
-
-  .faqWrapper {
-    margin: 2rem 0;
-  }
-
-  .faqTitle {
-    font-size: $DesktopFontSizeL;
   }
 }
