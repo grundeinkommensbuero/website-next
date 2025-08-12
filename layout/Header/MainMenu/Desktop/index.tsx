@@ -24,7 +24,7 @@ export const MainMenu = ({
           if ((entry as Dropdown).entries)
             return (
               <li key={entry.id} className={s.dropdown}>
-                <span className="mx-2 nowrap">{entry.label}</span>
+                <span className="nowrap">{entry.label}</span>
                 <div className={s.dropdownContent}>
                   <ul>
                     <>
@@ -41,6 +41,7 @@ export const MainMenu = ({
                     </>
                   </ul>
                 </div>
+                <span className={s.caret}></span>
               </li>
             );
           return (
@@ -54,8 +55,10 @@ export const MainMenu = ({
         })}
         {IS_HAMBURG_PROJECT ? (
           <>
-            <li>
-              <LinkButton href="/spenden-hamburg">Jetzt spenden!</LinkButton>
+            <li className={s.featuredButton}>
+              <LinkButton href="/mach-mit" className={s.featuredButtonLink}>
+                Mach mit!
+              </LinkButton>
             </li>
           </>
         ) : (

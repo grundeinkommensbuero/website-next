@@ -53,7 +53,7 @@ export const PhoneNumberInput = ({
             }),
           }}
         />
-        {description && <div>({description})</div>}
+        {description && <div className={s.hint}>({description})</div>}
       </div>
     </LabelInputErrorWrapper>
   );

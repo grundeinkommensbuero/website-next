@@ -8,7 +8,7 @@ import { HamburgerMenu } from './MainMenu/Mobile/HamburgerMenu';
 import s from './style.module.scss';
 import PageLogo from '../logo-expedition.svg';
 import PageLogoBerlin from '../logo-berlin.svg';
-import PageLogoHamburg from '../logo-hamburg.svg';
+import PageLogoHamburg from '../logo-hamburg2025.svg';
 import { useRouter } from 'next/router';
 import AuthContext, {
   MunicipalityOfUser,

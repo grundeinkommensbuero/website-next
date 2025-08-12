@@ -295,10 +295,20 @@ p {
 }
 
 .hamburg {
-  font-family: 'Maru', Tahoma, Arial, Helvetica, sans-serif;
+  font-family: 'Obviously', Tahoma, Arial, Helvetica, sans-serif;
+
+  p {
+    font-weight: 400;
+    font-size: 1.15rem;
+  }
+
+  p a {
+    text-decoration: underline;
+    box-shadow: none;
+  }
 
   strong {
-    background: rgba($hh_orange, 0.25);
+    font-weight: 500;
   }
 
   ul,

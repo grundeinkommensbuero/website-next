@@ -1,3 +1,134 @@
+@import '../../styles/vars.scss';
+
+.heroHamburg {
+  background: linear-gradient(to right, $hh_rose 50%, $hh_yellow 50%);
+
+  @media (max-width: $breakPointXL) {
+    padding: 0 1rem;
+  }
+
+  @media (max-width: $breakPointM) {
+    padding: 0;
+    background: $hh_rose;
+  }
+}
+
+.heroHamburgMain {
+  max-width: 900px;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  padding-top: 2rem;
+
+  @media (max-width: $breakPointM) {
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+    padding: 3rem 1rem 0 1rem;
+  }
+}
+
+.heroHamburgImage {
+  position: relative;
+  min-width: 300px;
+  margin: 0 2rem;
+}
+
+.heroHamburgTitles {
+  @media (max-width: $breakPointM) {
+    max-width: 500px;
+  }
+}
+
+.titleHamburg {
+  display: inline;
+  padding: 0em 0.3em 0.2em;
+  vertical-align: middle;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+
+  @media (max-width: $breakPointS) {
+    font-size: $MobileFontSizeXL;
+  }
+}
+
+.heroSubtitleHamburg {
+  transform: rotate(-1.5deg);
+  margin-bottom: 0.8rem;
+}
+
+.heroSubtitleHamburg .titleHamburg {
+  @media (max-width: $breakPointS) {
+    font-size: $MobileFontSizeXL;
+  }
+}
+
+.heroSubtitleHamburg span {
+  background-color: white;
+  font-size: 40px;
+  line-height: 1.1;
+}
+
+.titleInform {
+  transform: rotate(1.5deg);
+}
+
+.titleParticipate {
+  transform: rotate(-1.5deg);
+  margin: -1rem 0 1.5rem 0;
+}
+
+.heroTitleHamburg span,
+.titleInform span,
+.titleParticipate span {
+  background-color: black;
+  color: white;
+  line-height: 1.1;
+}
+
+.heroHamburgSecondary {
+  max-width: 59.5rem;
+  display: flex;
+  margin: 0 auto;
+  padding: 3.5rem 0 6rem 0;
+
+  @media (max-width: $breakPointM) {
+    flex-wrap: wrap;
+    padding: 0;
+  }
+}
+
+.heroHamburgHalf {
+  width: 50%;
+
+  @media (max-width: $breakPointM) {
+    width: 100%;
+  }
+}
+
+.heroHamburgLeft {
+  padding: 0 3rem 0 0;
+
+  @media (max-width: $breakPointM) {
+    background-color: $hh_yellow;
+    padding: 3rem 1rem;
+  }
+}
+
+.heroHamburgRight {
+  padding: 0 0 0 3rem;
+
+  @media (max-width: $breakPointM) {
+    background-color: $hh_rose;
+    padding: 3rem 1rem;
+  }
+}
+
+.heroHamburgButton {
+  background-color: $hh_orange_dark;
+  border-color: black;
+  color: black;
+}
+
 .heroContainer {
   position: relative;
 }

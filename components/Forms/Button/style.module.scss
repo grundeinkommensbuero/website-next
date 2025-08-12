@@ -130,25 +130,29 @@
   } */
 
   &.hamburg {
-    font-family: 'Maru', Tahoma, Arial, Helvetica, sans-serif;
-    border-width: $borderWidthMedium;
-    padding: 0.75rem 2rem;
-    box-shadow: 3px 6px 0 $black;
-    font-size: 1rem;
-    width: 250px;
+    min-width: 230px;
+    font-family: 'Obviously', Tahoma, Arial, Helvetica, sans-serif;
+    border-width: $borderWidthThick;
+    padding: 0.5rem 2rem 0.7rem 2rem;
+    font-size: 1.2rem;
+    font-weight: 500;
     text-align: center;
   }
 
+  &.hamburg:hover {
+    background: $hh_yellow;
+    color: black;
+  }
+
   &.hamburg:active {
-    background: var(--button-focus-bg-color);
-    box-shadow: none;
-    transform: translateX(2px) translateY(4px);
+    background: $hh_yellow;
+    color: black;
   }
 
   &.hamburg:focus {
-    background: var(--button-focus-bg-color);
-    color: var(--button-focus-font-color);
-    border-color: $black;
+    background: darken($yellow, 30%);
+    color: black;
+    border-color: black;
   }
 }
 
