@@ -142,6 +142,16 @@ p {
   font-size: 40px;
 }
 
+.hamburg .hamburgBox {
+  display: inline;
+  background-color: black;
+  color: white;
+  padding: 0em 0.3em 0.2em;
+  vertical-align: middle;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
 .container {
   min-height: 100vh;
 }
