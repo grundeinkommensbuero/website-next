@@ -25,17 +25,32 @@
     flex-direction: column-reverse;
     padding: 3rem 1rem 0 1rem;
   }
+
+  @media (max-width: $breakPointS) {
+    align-items: flex-start;
+    padding: 2rem 0.5rem 0 0.5rem;
+  }
 }
 
 .heroHamburgImage {
   position: relative;
   min-width: 300px;
   margin: 0 2rem;
+
+  @media (max-width: $breakPointS) {
+    margin: 0;
+    max-width: 100%;
+    min-width: 0; //https://stackoverflow.com/questions/61589592/flexbox-flex-1-grows-too-large-when-img-is-too-big-with-height-100
+  }
 }
 
 .heroHamburgTitles {
   @media (max-width: $breakPointM) {
     max-width: 500px;
+  }
+
+  @media (max-width: $breakPointS) {
+    max-width: 100%;
   }
 }
 
