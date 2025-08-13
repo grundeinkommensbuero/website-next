@@ -59,6 +59,16 @@
   }
 }
 
+.hamburgButton {
+  @media (max-width: $breakPointS) {
+    max-width: 250px;
+  }
+}
+
+.hamburgButton a {
+  padding: 0.4em 1.4em;
+}
+
 .dropdown {
   position: relative;
   display: inline-flex;

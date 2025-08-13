@@ -62,7 +62,7 @@ export const MainMenu = ({
             </li>
           </>
         ) : (
-          <li>
+          /*           <li>
             <UserMenuLink
               entry={{
                 id: 'login',
@@ -71,7 +71,17 @@ export const MainMenu = ({
               }}
               currentRoute={currentRoute}
             />
-          </li>
+          </li> */
+          <>
+            <li className={s.hamburgButton}>
+              <LinkButton
+                href="https://hamburg-testet-grundeinkommen.de/"
+                className={s.featuredButtonLink}
+              >
+                Hamburg testet Grundeinkommen
+              </LinkButton>
+            </li>
+          </>
         )}
       </ul>
     </nav>
