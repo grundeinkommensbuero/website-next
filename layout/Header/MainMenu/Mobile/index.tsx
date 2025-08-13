@@ -79,7 +79,7 @@ export const MainMenuMobile = ({
             </li>
           </>
         ) : (
-          <li>
+          /*           <li>
             <UserMenuLinkMobile
               entry={{
                 id: 'login',
@@ -89,7 +89,14 @@ export const MainMenuMobile = ({
               currentRoute={currentRoute}
               extraCallback={closeMenu}
             />
-          </li>
+          </li> */
+          <>
+            <li className={s.hamburgButton}>
+              <LinkButton href="/mach-https://hamburg-testet-grundeinkommen.de/">
+                Hamburg testet Grundeinkommen
+              </LinkButton>
+            </li>
+          </>
         )}
       </ul>
       {IS_HAMBURG_PROJECT ? '' : ''}
