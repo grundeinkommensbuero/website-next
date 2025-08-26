@@ -2,6 +2,7 @@
   "name": "xbge-next",
   "private": true,
   "scripts": {
+    "prebuild": "sh ./scripts/copy-favicon.sh",
     "dev": "next dev",
     "build": "next build",
     "start": "node server.js",
