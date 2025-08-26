@@ -3,11 +3,11 @@ const useDevBackend =
   process.env.NEXT_PUBLIC_USE_DEV_BACKEND === 'override';
 
 let API_INVOKE_URL = useDevBackend
-  ? 'https://2j0bcp5tr9.execute-api.eu-central-1.amazonaws.com/dev'
+  ? 'https://51kjphvbxi.execute-api.eu-central-1.amazonaws.com/dev'
   : 'https://ag5gu1z06h.execute-api.eu-central-1.amazonaws.com/prod';
 
 let USER_POOL_ID = useDevBackend
-  ? 'eu-central-1_SYtDaO0qH'
+  ? 'eu-central-1_uLU400Ns2'
   : 'eu-central-1_xx4VmPPdF';
 
 const cognitoConfig = {
