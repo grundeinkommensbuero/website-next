@@ -7,6 +7,9 @@ import { XbgeAppContext } from '../context/App/index';
 import cN from 'classnames';
 import { MunicipalityContext } from '../context/Municipality';
 
+import 'klaro/dist/klaro.css';
+import config from '../klaro-config';
+
 // This could also be fetched from directus, if frequently edited
 import projects from './projects.json';
 import { getRootAssetURL } from '../components/Util/getRootAssetURL';
@@ -69,6 +72,13 @@ export const Layout = ({
   const canonicalUrl = `${baseCanonicalUrl}${router.asPath}`;
 
   const [pageIsLoading, setPageIsLoading] = useState(false);
+
+  useEffect(() => {
+    import('klaro').then(klaro => {
+      window.klaroConfig = config;
+      klaro.setup(config);
+    });
+  }, []);
 
   useEffect(() => {
     // on every route change we check, if we are still on a
@@ -199,6 +209,23 @@ export const Layout = ({
         />
       </div>
       {pageIsLoading && <LoadingAnimation fixed />}
+      {/* Google Ads Global Site Tag */}
+      <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=AW-11121806048"
+        data-name="google-tag-manager"
+      ></script>
+      <script
+        data-name="google-tag-manager"
+        dangerouslySetInnerHTML={{
+          __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-11121806048');
+            `,
+        }}
+      />
       <Script id="matomo">
         {`  
         var _paq = window._paq = window._paq || [];
