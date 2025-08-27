@@ -8,9 +8,8 @@ import cN from 'classnames';
 import { MunicipalityContext } from '../context/Municipality';
 
 import 'klaro/dist/klaro.css';
-import config from '../klaro-config';
+import klaroConfig from '../klaro-config.js';
 
-// This could also be fetched from directus, if frequently edited
 import projects from './projects.json';
 import { getRootAssetURL } from '../components/Util/getRootAssetURL';
 import { useRouter } from 'next/router';
@@ -74,10 +73,12 @@ export const Layout = ({
   const [pageIsLoading, setPageIsLoading] = useState(false);
 
   useEffect(() => {
-    import('klaro').then(klaro => {
-      window.klaroConfig = config;
-      klaro.setup(config);
-    });
+    (async () => {
+      if (typeof window !== 'undefined') {
+        const klaroModule = (await import('klaro')) as any;
+        klaroModule.setup(klaroConfig);
+      }
+    })();
   }, []);
 
   useEffect(() => {
