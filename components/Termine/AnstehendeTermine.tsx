@@ -86,7 +86,10 @@ export default function AnstehendeTermine({ listAll }: AnstehendeTermineProps) {
               </b>
             </h4>
             {event.description && (
-              <p className="text-sm">{event.description}</p>
+              <p
+                className="text-sm"
+                dangerouslySetInnerHTML={{ __html: event.description }}
+              />
             )}
             <p>
               🗓{' '}
