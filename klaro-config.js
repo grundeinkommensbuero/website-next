@@ -14,6 +14,20 @@ const klaroConfig = {
       ok: 'Accept all',
       save: 'Save settings',
     },
+    de: {
+      consentModal: {
+        title: 'Cookies & Dienste',
+        description: 'Wir nutzen Cookies, um unsere Website zu verbessern.',
+      },
+      consentNotice: {
+        description:
+          'Wir verwenden Cookies, um Inhalte zu personalisieren und die Zugriffe auf unsere Website zu analysieren.',
+        learnMore: 'Mehr erfahren',
+      },
+      ok: 'Alles klar',
+      decline: 'Ablehnen',
+      save: 'Speichern',
+    },
   },
   apps: [
     {
