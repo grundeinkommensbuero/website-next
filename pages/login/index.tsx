@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import { LoadingAnimation } from '../../components/LoadingAnimation';
 import s from './style.module.scss';
 import cN from 'classnames';
+import NotFound from '../../components/NotFound';
 
 const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
 
@@ -40,6 +41,9 @@ const Login = (): ReactElement => {
     router.push(nextPageParam ? `/${nextPageParam}` : '/');
   }
 
+  if (true) {
+    return <NotFound />; // Disabling login page for now
+  }
   return (
     <section
       className={cN(s.wrapper, {
