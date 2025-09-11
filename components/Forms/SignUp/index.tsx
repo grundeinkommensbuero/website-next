@@ -135,8 +135,8 @@ type SignUpProps = {
   formClassName?: string;
   newsletterConsent?: boolean;
   autoSignup?: boolean;
-  updateUser: (data: any) => Promise<void>;
-  updateUserState: string;
+  updateUser?: (data: any) => Promise<void>;
+  updateUserState?: string;
 };
 
 const SignUp = ({
@@ -243,7 +243,8 @@ const SignUp = ({
       hasSubmitted &&
       formData &&
       userId &&
-      userExists !== false
+      userExists !== false &&
+      updateUser
     ) {
       updateUser({
         // TODO: check if we need to add ags here at all
