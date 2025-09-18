@@ -6,6 +6,10 @@ import SignUp, { Fields } from '../SignUp';
 import { InlineButton } from '../Button';
 import s from './style.module.scss';
 import { useRouter } from 'next/router';
+import SharingFeatureHamburg from '../../Onboarding/ShareHamburg/SharingFeatureHamburg';
+import { CTAButton } from '../CTAButton';
+import { Modal } from '../../Modal';
+import { useUpdateUser } from '../../../hooks/Api/Users/Update';
 
 export const SmallSignup = ({
   ags,
@@ -31,6 +35,14 @@ export const SmallSignup = ({
     useContext(AuthContext);
   const [success, setSuccess] = useState(false);
   const router = useRouter();
+  const [updateUserState, updateUser] = useUpdateUser();
+  const [showSignedInModal, setShowSignedInModal] = useState(false);
+
+  useEffect(() => {
+    if (updateUserState === 'updated') {
+      setSuccess(true);
+    }
+  }, [updateUserState]);
 
   const [autoSignupEmail, setAutoSignupEmail] = useState(
     undefined as undefined | string
@@ -44,8 +56,24 @@ export const SmallSignup = ({
     }
   }, [router.query]);
 
+  useEffect(() => {
+    if (success && isAuthenticated) {
+      setShowSignedInModal(true);
+    }
+  }, [success, isAuthenticated]);
+
   if (!ags) {
     ags = stateToAgs.berlin;
+  }
+
+  if (showSignedInModal) {
+    return (
+      <Modal showModal={showSignedInModal} setShowModal={setShowSignedInModal}>
+        <div className={s.modalContent}>
+          <SharingFeatureHamburg />
+        </div>
+      </Modal>
+    );
   }
 
   if (success && isAuthenticated) {
@@ -91,20 +119,26 @@ export const SmallSignup = ({
     );
   } else {
     return (
-      <SignUp
-        fieldsToRender={fields}
-        additionalData={additionalData}
-        showHeading={false}
-        smallFormMargin={true}
-        postSignupAction={() => setSuccess(true)}
-        loginCodeInModal={loginCodeInModal}
-        optionalNewsletterConsent={optionalNewsletterConsent}
-        hideIfAuthenticated={hideIfAuthenticated}
-        nudgeBoxText={nudgeBoxText}
-        newsletterConsent={true}
-        autoSignup={true}
-        initialValues={{ email: autoSignupEmail }}
-      />
+      <div>
+        {' '}
+        <CTAButton onClick={() => signUserOut()}>abmelden</CTAButton>.
+        <SignUp
+          fieldsToRender={fields}
+          additionalData={additionalData}
+          showHeading={false}
+          smallFormMargin={true}
+          postSignupAction={() => setSuccess(true)}
+          loginCodeInModal={loginCodeInModal}
+          optionalNewsletterConsent={optionalNewsletterConsent}
+          hideIfAuthenticated={hideIfAuthenticated}
+          nudgeBoxText={nudgeBoxText}
+          newsletterConsent={true}
+          autoSignup={true}
+          initialValues={{ email: autoSignupEmail }}
+          updateUser={updateUser}
+          updateUserState={updateUserState}
+        />
+      </div>
     );
   }
 };
