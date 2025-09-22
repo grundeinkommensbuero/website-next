@@ -457,3 +457,9 @@ p {
 .klaro .cookie-notice .cm-list-input:checked + .cm-list-label .slider {
   background-color: $hh_purple !important;
 }
+
+.klaro .cookie-modal .cm-list-label .slider,
+.klaro .context-notice .cm-list-label .slider,
+.klaro .cookie-notice .cm-list-label .slider {
+  background-color: $black !important;
+}
