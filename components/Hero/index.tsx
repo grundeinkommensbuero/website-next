@@ -75,7 +75,7 @@ export const Hero = ({ heroTitle, heroSubTitle, heroImage }: HeroProps) => {
               <p>
                 <strong>Wir brauchen deine Unterstützung!</strong>
                 <br />
-                Um den Volksentscheid zu gewinnen, müssen mindestens 265.000
+                Um den Volksentscheid zu gewinnen, müssen mindestens 262.609
                 Hamburger*innen dafür stimmen. <br />
                 Sei dabei und hilf mit, dieses Ziel zu erreichen!
               </p>

@@ -189,14 +189,7 @@ export const Layout = ({
               content={metaImage}
             />
           </>
-
-          {IS_BERLIN_PROJECT ? (
-            <link key="favicon" rel="icon" href="/favicon-berlin.ico" />
-          ) : IS_HAMBURG_PROJECT ? (
-            <link key="favicon" rel="icon" href="/favicon-hamburg.ico" />
-          ) : (
-            <link key="favicon" rel="icon" href="/favicon.ico" />
-          )}
+          <link key="favicon" rel="icon" href="/favicon.ico" />
         </Head>
         <Header mainMenu={mainMenu} currentRoute={currentRoute} />
         {children}
