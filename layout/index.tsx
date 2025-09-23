@@ -7,7 +7,9 @@ import { XbgeAppContext } from '../context/App/index';
 import cN from 'classnames';
 import { MunicipalityContext } from '../context/Municipality';
 
-// This could also be fetched from directus, if frequently edited
+import 'klaro/dist/klaro.css';
+import klaroConfig from '../klaro-config.js';
+
 import projects from './projects.json';
 import { getRootAssetURL } from '../components/Util/getRootAssetURL';
 import { useRouter } from 'next/router';
@@ -69,6 +71,15 @@ export const Layout = ({
   const canonicalUrl = `${baseCanonicalUrl}${router.asPath}`;
 
   const [pageIsLoading, setPageIsLoading] = useState(false);
+
+  useEffect(() => {
+    (async () => {
+      if (typeof window !== 'undefined') {
+        const klaroModule = (await import('klaro')) as any;
+        klaroModule.setup(klaroConfig);
+      }
+    })();
+  }, []);
 
   useEffect(() => {
     // on every route change we check, if we are still on a
@@ -192,6 +203,23 @@ export const Layout = ({
         />
       </div>
       {pageIsLoading && <LoadingAnimation fixed />}
+      {/* Google Ads Global Site Tag */}
+      <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=AW-11121806048"
+        data-name="google-tag-manager"
+      ></script>
+      <script
+        data-name="google-tag-manager"
+        dangerouslySetInnerHTML={{
+          __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-11121806048');
+            `,
+        }}
+      />
       <Script id="matomo">
         {`  
         var _paq = window._paq = window._paq || [];

@@ -21,7 +21,8 @@
     "**/*.ts",
     "**/*.tsx",
     "components/Onboarding/Share/SharePreview.js",
-    "components/Onboarding/Share/ShareButtonRow.js"
+    "components/Onboarding/Share/ShareButtonRow.js",
+    "types/**/*.d.ts"
   ],
   "exclude": ["node_modules"]
 }
