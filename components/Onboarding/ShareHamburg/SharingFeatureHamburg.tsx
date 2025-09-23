@@ -23,6 +23,15 @@ const SharingFeatureHamburg = () => {
         und auf einer Plattform deiner Wahl teilen:
       </p>
       <CopyShareMessageBox shareMessage={shareMessage} />
+      <h3>
+        <b>Teil die Kampagne auch auf nebenan.de!</b>
+      </h3>
+      <p>
+        Kennst du schon das Nachbarschafts-Netzwerk{' '}
+        <a href="https://nebenan.de/">nebenan.de</a>? Dort kannst du deine
+        Nachbarn direkt erreichen. <a href="nebenan">Schau mal hier vorbei</a>,
+        um einen Share-Text zu finden und ihn zu teilen.
+      </p>
     </div>
   );
 };

@@ -120,8 +120,6 @@ export const SmallSignup = ({
   } else {
     return (
       <div>
-        {' '}
-        <CTAButton onClick={() => signUserOut()}>abmelden</CTAButton>.
         <SignUp
           fieldsToRender={fields}
           additionalData={additionalData}
