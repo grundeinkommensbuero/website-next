@@ -2,12 +2,17 @@ import { LinkButtonLocal } from '../Forms/Button';
 import { SectionWrapper } from '../Section/SectionWrapper';
 
 const IS_BERLIN_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Berlin';
+const IS_HAMBURG_PROJECT = process.env.NEXT_PUBLIC_PROJECT === 'Hamburg';
 
 const NotFound = () => {
   return (
     <SectionWrapper
       colorScheme={
-        IS_BERLIN_PROJECT ? 'colorSchemeRoseOnWhite' : 'colorSchemeWhite'
+        IS_BERLIN_PROJECT
+          ? 'colorSchemeRoseOnWhite'
+          : IS_HAMBURG_PROJECT
+          ? 'colorSchemeHamburg'
+          : 'colorSchemeWhite'
       }
     >
       <div className="text-center">
