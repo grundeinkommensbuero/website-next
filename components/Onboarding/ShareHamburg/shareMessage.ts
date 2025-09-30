@@ -1,19 +1,16 @@
-export const shareMessage = `Hast du das schon gehört? In Hamburg kommt es zum ersten Volksentscheid in Deutschland über ein bedingungsloses Grundeinkommen – am 12. Oktober.
+export const shareMessage = `Nicht verpassen:
+🚨 Hamburg stimmt ab!
+Beim ersten Volksentscheid in Deutschland über ein bedingungsloses Grundeinkommen.
 
-Du kannst mithelfen, dass er erfolgreich ist:
-📬 Hol dir den Newsletter, der dich an deine Wahlunterlagen erinnert und dir Ideen schickt, wie du beitragen kannst.
-📣 Erzähl es weiter – deiner Familie, deinem Freundeskreis und bei der Arbeit.
+Die Wahlunterlagen hast du und kannst sofort aktiv werden:
+📬 Stimme mit JA! - Rücksendung der Unterlagen bis spätestens 8. Oktober
+📣 Jede Stimme zählt: Familie, Freundeskreis und bei der Arbeit - erzähl allen vom Modellversuch
 
 https://hamburg-testet-grundeinkommen.de/
 
-Es geht um mehr Gerechtigkeit, mehr Vertrauen und Chancen für alle. Die Forschung zeigt: Grundeinkommen wirkt. Jetzt können wir zeigen, wie – mit dem ersten staatlichen Modellversuch, über den Hamburg per Briefwahl entscheidet.
+Es geht um mehr Gerechtigkeit, Chancen und Vertrauen für alle. Lass dich nicht verunsichern: Hamburg kann sich den Modellversuch gut leisten – und wird als Leuchtturm für ganz Deutschland wertvolles Wissen über die Wirkung des Grundeinkommens sammeln.`;
 
-Ich bin dabei. Machst du auch mit?`;
-
-export const shareMessageShort = `Ein historischer Moment: Hamburg stimmt am 12. Okt. über ein #Grundeinkommen ab.
-📬 Lass dich erinnern - der Newsletter hilft dir, nichts zu verpassen.
-📣 Erzähl es weiter - wir brauchen jede Stimme!
-👉 https://hamburg-testet-grundeinkommen.de/
-Ich mach mit. Du auch?`;
+export const shareMessageShort = `Hamburg kann sich den Modellversuch gut leisten - und wird als Leuchtturm für ganz Deutschland wertvolles Wissen über die Wirkung des Grundeinkommens sammeln. Es geht um mehr Gerechtigkeit und Chancen für alle.
+Ich habe mit JA! gestimmt. Du auch?`;
 
 export const shareUrl = 'https://hamburg-testet-grundeinkommen.de/';
