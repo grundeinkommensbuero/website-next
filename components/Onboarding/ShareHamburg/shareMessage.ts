@@ -1,16 +1,25 @@
-export const shareMessage = `Nicht verpassen:
-🚨 Hamburg stimmt ab!
-Beim ersten Volksentscheid in Deutschland über ein bedingungsloses Grundeinkommen.
+export const shareMessage = `Gerade entscheidet sich, ob Hamburg Grundeinkommen testet oder nicht.
+Und es wird richtig knapp.
 
-Die Wahlunterlagen hast du und kannst sofort aktiv werden:
-📬 Stimme mit JA! - Rücksendung der Unterlagen bis spätestens 8. Oktober
-📣 Jede Stimme zählt: Familie, Freundeskreis und bei der Arbeit - erzähl allen vom Modellversuch
+Deine Briefwahlunterlagen hast du schon im Briefkasten - schicke sie unbedingt JETZT ab. Heute ist der letzte Tag. 
 
-https://hamburg-testet-grundeinkommen.de
+Noch Fragen zur Briefwahl? 
+Alle Infos findest du hier: hamburg-testet-grundeinkommen.de/#abstimmen
 
-Es geht um mehr Gerechtigkeit, Chancen und Vertrauen für alle. Lass dich nicht verunsichern: Hamburg kann sich den Modellversuch gut leisten – und wird als Leuchtturm für ganz Deutschland wertvolles Wissen über die Wirkung des Grundeinkommens sammeln.`;
+Wählen vor Ort?
+Am 12. Oktober kannst du von 8:00 bis 18.00 Uhr in 185 Wahllokalen in ganz Hamburg abstimmen - auch nur mit deinem Personalausweis oder Reisepass.  
 
-export const shareMessageShort = `Hamburg kann sich den Modellversuch gut leisten - und wird als Leuchtturm für ganz Deutschland wertvolles Wissen über die Wirkung des Grundeinkommens sammeln. Es geht um mehr Gerechtigkeit und Chancen für alle.
-Ich habe mit JA! gestimmt. Du auch?`;
+Habe ich nicht schon abgestimmt?
+Jein. Auch wenn du bereits im letzten Jahr unterschrieben hast, musst du abstimmen. Diese Unterschrift zählt nämlich NICHT automatisch für den Volksentscheid. 
+
+Wenn wir jetzt alle handeln, können wir das schaffen. ❤️
+
+hamburg-testet-grundeinkommen.de
+
+PS: Leite diese Nachricht noch an mehr Leute weiter.`;
+
+export const shareMessageShort = `Gerade entscheidet sich, ob Hamburg Grundeinkommen testet oder nicht. Und es wird richtig knapp.
+Deine Briefwahlunterlagen hast du schon im Briefkasten - schicke sie unbedingt JETZT ab. Heute ist der letzte Tag. 
+Wenn wir jetzt alle handeln, können wir das schaffen. ❤️`;
 
 export const shareUrl = 'https://hamburg-testet-grundeinkommen.de/';

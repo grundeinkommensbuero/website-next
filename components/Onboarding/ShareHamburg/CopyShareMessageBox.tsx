@@ -9,7 +9,6 @@ export const CopyShareMessageBox = ({
   shareMessage: string;
 }) => {
   const [copied, setCopied] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(shareMessage);
@@ -19,36 +18,28 @@ export const CopyShareMessageBox = ({
 
   return (
     <section>
-      <div className={s.toggleButton} onClick={() => setIsOpen(!isOpen)}>
-        <span className={s.toggleText}>Text anzeigen</span>
-        <span className={`${s.triangle} ${isOpen ? s.open : ''}`}>▶</span>
+      <div className={s.copyBox}>
+        <pre className={s.shareText}>{shareMessage}</pre>
+        <button className={s.copyButton} onClick={copyToClipboard}>
+          {copied ? (
+            <>
+              <FontAwesomeIcon
+                icon={faCheck}
+                style={{ marginRight: '0.4rem' }}
+              />
+              Kopiert!
+            </>
+          ) : (
+            <>
+              <FontAwesomeIcon
+                icon={faCopy}
+                style={{ marginRight: '0.4rem' }}
+              />
+              Text kopieren
+            </>
+          )}
+        </button>
       </div>
-
-      {isOpen && (
-        <div className={s.copyBox}>
-          <pre className={s.shareText}>{shareMessage}</pre>
-
-          <button className={s.copyButton} onClick={copyToClipboard}>
-            {copied ? (
-              <>
-                <FontAwesomeIcon
-                  icon={faCheck}
-                  style={{ marginRight: '0.4rem' }}
-                />
-                Kopiert!
-              </>
-            ) : (
-              <>
-                <FontAwesomeIcon
-                  icon={faCopy}
-                  style={{ marginRight: '0.4rem' }}
-                />
-                Text kopieren
-              </>
-            )}
-          </button>
-        </div>
-      )}
     </section>
   );
 };
