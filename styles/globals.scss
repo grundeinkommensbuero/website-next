@@ -12,6 +12,19 @@
 @import 'fonts/obviouslyWebfont.scss';
 @import 'fonts/idealWebfont.scss';
 
+/* fix for jumpmarks on Safari */
+@supports (-webkit-touch-callout: none) {
+  :target {
+    scroll-margin-top: $headerHeight; /* height of sticky header */
+  }
+
+  @media (max-width: $breakPointS) {
+    :target {
+      scroll-margin-top: $headerHeightS;
+    }
+  }
+}
+
 html,
 body {
   font-family: 'Ideal', Tahoma, Arial, Helvetica, sans-serif;
