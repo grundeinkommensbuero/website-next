@@ -18,8 +18,8 @@
   --headerHeightS: #{$headerHeightS};
 }
 
-/* fix for jumpmarks on Safari */
-@supports (-webkit-touch-callout: none) {
+/* fix for jumpmarks on Safari - (-webkit-touch-callout: none) */
+@supports (scroll-margin-top: 1px) { //@supports (-webkit-touch-callout: none) didn't work
   :target {
     scroll-margin-top: var(--headerHeight);
   }
