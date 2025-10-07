@@ -31,6 +31,16 @@
   }
 }
 
+[id] {
+  scroll-margin-top: $headerHeight;
+}
+
+@media (max-width: $breakPointS) {
+  [id] {
+    scroll-margin-top: $headerHeightS;
+  }
+}
+
 html,
 body {
   font-family: 'Ideal', Tahoma, Arial, Helvetica, sans-serif;
