@@ -14,6 +14,7 @@ import s from './style.module.scss';
 import React from 'react';
 import { Modal } from '../../Modal';
 import InstagramShareInstructions from './InstagramShareInstructions';
+import TiktokShareInstructions from './TiktokShareInstructions';
 
 export const SocialMediaShareButtons = ({
   shareMessage,
@@ -25,6 +26,8 @@ export const SocialMediaShareButtons = ({
   shareUrl: string;
 }) => {
   const [showInstagramModal, setShowInstagramModal] = React.useState(false);
+  const [showTiktokModal, setShowTiktokModal] = React.useState(false);
+
   return (
     <section>
       <Modal
@@ -33,6 +36,13 @@ export const SocialMediaShareButtons = ({
         colorScheme={'colorSchemeHamburgYellow'}
       >
         <InstagramShareInstructions />
+      </Modal>
+      <Modal
+        showModal={showTiktokModal}
+        setShowModal={setShowTiktokModal}
+        colorScheme={'colorSchemeHamburgYellow'}
+      >
+        <TiktokShareInstructions />
       </Modal>
       <div className={s.socialMediaButtonsContainer}>
         <div className={s.buttonWithLabel}>
@@ -105,6 +115,18 @@ export const SocialMediaShareButtons = ({
             <XIcon className={s.twitterIcon} round />
           </TwitterShareButton>
           <span className={s.label}>X</span>
+        </div>
+        <div className={s.buttonWithLabel}>
+          <div className={s.tiktok} onClick={() => setShowTiktokModal(true)}>
+            <div className={s.iconWrapper} title="Tiktok">
+              <img
+                src="/icons/Tiktok.svg"
+                alt="Tiktok"
+                className={s.iconImage}
+              />
+            </div>
+          </div>
+          <span className={s.label}>Tiktok</span>
         </div>
       </div>
     </section>

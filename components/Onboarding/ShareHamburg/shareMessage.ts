@@ -17,7 +17,17 @@ Finde ein Wahllokal in deiner Nähe: https://www.google.com/maps/d/edit?mid=1W99
 PS: Leite diese Nachricht noch an mehr Leute weiter. 
 `;
 
-export const shareMessageShort = `Hamburg kann sich den Modellversuch gut leisten - und wird als Leuchtturm für ganz Deutschland wertvolles Wissen über die Wirkung des Grundeinkommens sammeln. Es geht um mehr Gerechtigkeit und Chancen für alle.
-Ich habe mit JA! gestimmt. Du auch?`;
+Habe ich nicht schon abgestimmt?
+Jein. Auch wenn du bereits im letzten Jahr unterschrieben hast, musst du abstimmen. Diese Unterschrift zählt nämlich NICHT automatisch für den Volksentscheid. 
+
+Wenn wir jetzt alle handeln, können wir das schaffen. ❤️
+
+hamburg-testet-grundeinkommen.de
+
+PS: Leite diese Nachricht noch an mehr Leute weiter.`;
+
+export const shareMessageShort = `Gerade entscheidet sich, ob Hamburg Grundeinkommen testet oder nicht. Und es wird richtig knapp.
+Deine Briefwahlunterlagen hast du schon im Briefkasten - schicke sie unbedingt JETZT ab. Heute ist der letzte Tag. 
+Wenn wir jetzt alle handeln, können wir das schaffen. ❤️`;
 
 export const shareUrl = 'https://hamburg-testet-grundeinkommen.de/';
