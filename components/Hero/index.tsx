@@ -50,38 +50,13 @@ export const Hero = ({ heroTitle, heroSubTitle, heroImage }: HeroProps) => {
           </div>
           <div className={s.heroHamburgSecondary}>
             <div className={cN(s.heroHamburgHalf, s.heroHamburgLeft)}>
-              <h3 className={s.titleInform}>
-                <span className={s.titleHamburg}>Informieren</span>
-              </h3>
               <p>
-                <strong>
-                  Kann das Grundeinkommen uns als Gesellschaft weiterbringen?
-                </strong>
-                <br />
-                Testen wir es doch einfach! Per Volksentscheid wollen wir einen
-                staatlich finanzierten Modellversuch möglich machen, um genau
-                diese Frage zu beantworten.
+                Am 12.10. entscheidet Hamburg an der Urne: Soll Hamburg das
+                bedingungslose Grundeinkommen in einem Modellversuch testen?
               </p>
               <CTAButtonContainer>
                 <CTALink to="/informieren" className={s.heroHamburgButton}>
                   Informieren
-                </CTALink>
-              </CTAButtonContainer>
-            </div>
-            <div className={cN(s.heroHamburgHalf, s.heroHamburgRight)}>
-              <h3 className={s.titleParticipate}>
-                <span className={s.titleHamburg}>Mitmachen</span>
-              </h3>
-              <p>
-                <strong>Wir brauchen deine Unterstützung!</strong>
-                <br />
-                Um den Volksentscheid zu gewinnen, müssen mindestens 262.609
-                Hamburger*innen dafür stimmen. <br />
-                Sei dabei und hilf mit, dieses Ziel zu erreichen!
-              </p>
-              <CTAButtonContainer>
-                <CTALink to="/mach-mit" className={s.heroHamburgButton}>
-                  Mitmachen
                 </CTALink>
               </CTAButtonContainer>
             </div>

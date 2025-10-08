@@ -1,7 +1,7 @@
 @import '../../styles/vars.scss';
 
 .heroHamburg {
-  background: linear-gradient(to right, $hh_rose 50%, $hh_yellow 50%);
+  background-color: $hh_rose;
 
   @media (max-width: $breakPointXL) {
     padding: 0 1rem;
@@ -101,10 +101,10 @@
 }
 
 .heroHamburgSecondary {
-  max-width: 59.5rem;
+  max-width: 50rem;
   display: flex;
   margin: 0 auto;
-  padding: 3.5rem 0 6rem 0;
+  padding: 1rem 0 6rem 0;
 
   @media (max-width: $breakPointM) {
     flex-wrap: wrap;
@@ -113,7 +113,7 @@
 }
 
 .heroHamburgHalf {
-  width: 50%;
+  width: 100%;
 
   @media (max-width: $breakPointM) {
     width: 100%;
@@ -124,8 +124,7 @@
   padding: 0 3rem 0 0;
 
   @media (max-width: $breakPointM) {
-    background-color: $hh_yellow;
-    padding: 3rem 1rem;
+    padding: 1rem 2rem 4rem 2rem;
   }
 }
 
