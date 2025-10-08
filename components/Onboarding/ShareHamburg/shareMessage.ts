@@ -18,8 +18,7 @@ PS: Leite diese Nachricht noch an mehr Leute weiter.
 `;
 
 export const shareMessageShort = `Gerade entscheidet sich, ob Hamburg Grundeinkommen testet oder nicht. Und es wird richtig knapp.
-Wenn du am 12.10. zwischen 8 und 18 Uhr eine Viertelstunde Zeit hast –
-geh bitte ins Wahllokal, auch ohne Unterlagen, einfach mit Ausweis.
+Geh am 12.10. zwischen 8 und 18 Uhr ins Wahllokal, auch ohne Unterlagen, einfach mit Ausweis.
 Wenn wir jetzt alle handeln, können wir das schaffen. ❤️`;
 
 export const shareUrl = 'https://hamburg-testet-grundeinkommen.de/';
