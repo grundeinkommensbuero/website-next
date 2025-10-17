@@ -1,25 +1,24 @@
-export const shareMessage = `Gerade entscheidet sich, ob Hamburg Grundeinkommen testet oder nicht.
+export const shareMessage = `Am Sonntag entscheidet sich, ob Hamburg Grundeinkommen testet – oder nicht.
 Und es wird richtig knapp.
 
-Deine Briefwahlunterlagen hast du schon im Briefkasten - schicke sie unbedingt JETZT ab. Heute ist der letzte Tag. 
+So viele haben schon abgestimmt, aber jede Stimme zählt. Wirklich.
+Wenn du am 12.10. zwischen 8 und 18 Uhr eine Viertelstunde Zeit hast –
+geh bitte ins Wahllokal, auch ohne Unterlagen, einfach mit Ausweis. 
 
-Noch Fragen zur Briefwahl? 
-Alle Infos findest du hier: hamburg-testet-grundeinkommen.de/#abstimmen
+Ich hab schon mit JA! gestimmt, weil ich glaub, dass wir damit was verändern können.
+Geh du auch – und schnapp dir noch zwei, drei Leute.
 
-Wählen vor Ort?
-Am 12. Oktober kannst du von 8:00 bis 18.00 Uhr in 185 Wahllokalen in ganz Hamburg abstimmen - auch nur mit deinem Personalausweis oder Reisepass.  
+Wenn wir jetzt alle hingehen und jeweils noch ein oder zwei Menschen mitmobilisieren, können wir das schaffen. ❤️
 
-Habe ich nicht schon abgestimmt?
-Jein. Auch wenn du bereits im letzten Jahr unterschrieben hast, musst du abstimmen. Diese Unterschrift zählt nämlich NICHT automatisch für den Volksentscheid. 
+https://hamburg-testet-grundeinkommen.de/
 
-Wenn wir jetzt alle handeln, können wir das schaffen. ❤️
+Finde ein Wahllokal in deiner Nähe: https://www.google.com/maps/d/edit?mid=1W99ennH6cHWjpV-eO9dkhi2umpmcQCE&usp=sharing
 
-hamburg-testet-grundeinkommen.de
-
-PS: Leite diese Nachricht noch an mehr Leute weiter.`;
+PS: Leite diese Nachricht noch an mehr Leute weiter. 
+`;
 
 export const shareMessageShort = `Gerade entscheidet sich, ob Hamburg Grundeinkommen testet oder nicht. Und es wird richtig knapp.
-Deine Briefwahlunterlagen hast du schon im Briefkasten - schicke sie unbedingt JETZT ab. Heute ist der letzte Tag. 
+Geh am 12.10. zwischen 8 und 18 Uhr ins Wahllokal, auch ohne Unterlagen, einfach mit Ausweis.
 Wenn wir jetzt alle handeln, können wir das schaffen. ❤️`;
 
 export const shareUrl = 'https://hamburg-testet-grundeinkommen.de/';
