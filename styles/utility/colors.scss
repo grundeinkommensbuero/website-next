@@ -206,11 +206,11 @@ $bgColors: (
 }
 
 .colorSchemeOrangeOnRose {
-  background-color: $rose;
+  background-color: $hh_rose;
   color: $black;
-  --primary-color: #{$rose};
+  --primary-color: #{$hh_rose};
   --secondary-color: #{$black};
-  --bg-color: #{$rose};
+  --bg-color: #{$hh_rose};
   --font-color: #{$black};
   --heading-color: #{$black};
   --text-on-secondary-color: #{$white};
@@ -227,7 +227,7 @@ $bgColors: (
 .colorSchemeOrangeOnPurple {
   background-color: $hh_purple;
   color: $white;
-  --primary-color: #{$rose};
+  --primary-color: #{$hh_rose};
   --secondary-color: #{$white};
   --bg-color: #{$hh_purple};
   --font-color: #{$white};

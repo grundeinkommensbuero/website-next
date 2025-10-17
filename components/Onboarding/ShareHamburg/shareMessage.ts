@@ -1,19 +1,24 @@
-export const shareMessage = `Hast du das schon gehört? In Hamburg kommt es zum ersten Volksentscheid in Deutschland über ein bedingungsloses Grundeinkommen – am 12. Oktober.
+export const shareMessage = `Am Sonntag entscheidet sich, ob Hamburg Grundeinkommen testet – oder nicht.
+Und es wird richtig knapp.
 
-Du kannst mithelfen, dass er erfolgreich ist:
-📬 Hol dir den Newsletter, der dich an deine Wahlunterlagen erinnert und dir Ideen schickt, wie du beitragen kannst.
-📣 Erzähl es weiter – deiner Familie, deinem Freundeskreis und bei der Arbeit.
+So viele haben schon abgestimmt, aber jede Stimme zählt. Wirklich.
+Wenn du am 12.10. zwischen 8 und 18 Uhr eine Viertelstunde Zeit hast –
+geh bitte ins Wahllokal, auch ohne Unterlagen, einfach mit Ausweis. 
+
+Ich hab schon mit JA! gestimmt, weil ich glaub, dass wir damit was verändern können.
+Geh du auch – und schnapp dir noch zwei, drei Leute.
+
+Wenn wir jetzt alle hingehen und jeweils noch ein oder zwei Menschen mitmobilisieren, können wir das schaffen. ❤️
 
 https://hamburg-testet-grundeinkommen.de/
 
-Es geht um mehr Gerechtigkeit, mehr Vertrauen und Chancen für alle. Die Forschung zeigt: Grundeinkommen wirkt. Jetzt können wir zeigen, wie – mit dem ersten staatlichen Modellversuch, über den Hamburg per Briefwahl entscheidet.
+Finde ein Wahllokal in deiner Nähe: https://www.google.com/maps/d/edit?mid=1W99ennH6cHWjpV-eO9dkhi2umpmcQCE&usp=sharing
 
-Ich bin dabei. Machst du auch mit?`;
+PS: Leite diese Nachricht noch an mehr Leute weiter. 
+`;
 
-export const shareMessageShort = `Ein historischer Moment: Hamburg stimmt am 12. Okt. über ein #Grundeinkommen ab.
-📬 Lass dich erinnern - der Newsletter hilft dir, nichts zu verpassen.
-📣 Erzähl es weiter - wir brauchen jede Stimme!
-👉 https://hamburg-testet-grundeinkommen.de/
-Ich mach mit. Du auch?`;
+export const shareMessageShort = `Gerade entscheidet sich, ob Hamburg Grundeinkommen testet oder nicht. Und es wird richtig knapp.
+Geh am 12.10. zwischen 8 und 18 Uhr ins Wahllokal, auch ohne Unterlagen, einfach mit Ausweis.
+Wenn wir jetzt alle handeln, können wir das schaffen. ❤️`;
 
 export const shareUrl = 'https://hamburg-testet-grundeinkommen.de/';
