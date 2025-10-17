@@ -26,5 +26,3 @@ https://5gutegruende.hamburg/*                  https://hamburg-testet-grundeink
 https://5gutegruende.com/*                      https://hamburg-testet-grundeinkommen.de/:splat  301!
 https://www.5gutegruende.hamburg/*              https://hamburg-testet-grundeinkommen.de/:splat  301!
 https://www.5gutegruende.com/*                  https://hamburg-testet-grundeinkommen.de/:splat  301!
-/_next/*   /_next/:splat   200
-/*         /               301
