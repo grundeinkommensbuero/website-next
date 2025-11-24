@@ -101,6 +101,10 @@ article h1,
 aside h1,
 nav h1 {
   font-size: $DesktopFontSizeXL; // reuse your variable
+
+  @media (max-width: $breakPointS) {
+    font-size: $MobileFontSizeXL;
+  }
 }
 
 h1,
