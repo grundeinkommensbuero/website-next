@@ -8,7 +8,6 @@ const nextConfig = {
   },
   images: {
     dangerouslyAllowSVG: true,
-    unoptimized: true,
     domains: [
       'directus.expedition-grundeinkommen.de',
       'directus.volksentscheid-grundeinkommen.de',
