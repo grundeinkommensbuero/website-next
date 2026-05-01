@@ -277,21 +277,34 @@ export const Section = ({
                             target="_blank"
                             rel="noreferrer"
                           >
-                            <Image
+                            <img
                               src={getAssetURL(elementToRender.image.id)}
                               // We need to set a default width if an svg is used
                               width={elementToRender.image.width || 500}
                               height={elementToRender.image.height || 500}
                               alt={elementToRender.alt}
+                              style={{
+                                width: '100%',
+                                height: 'auto',
+                                maxWidth:
+                                  elementToRender.image.width || '500px',
+                                display: 'block',
+                              }}
                             />
                           </a>
                         ) : (
-                          <Image
+                          <img
                             src={getAssetURL(elementToRender.image.id)}
                             // We need to set a default width if an svg is used
                             width={elementToRender.image.width || 500}
                             height={elementToRender.image.height || 500}
                             alt={elementToRender.alt}
+                            style={{
+                              width: '100%',
+                              height: 'auto',
+                              maxWidth: elementToRender.image.width || '500px',
+                              display: 'block',
+                            }}
                           />
                         )}
                       </div>
